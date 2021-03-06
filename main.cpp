@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 {
     cpToTmp();
 //    QString path=QStandardPaths::writableLocation(QStandardPaths::HomeLocation)+"/.config/deepin-dreamscene/";
-    QString path = "/opt/deepin-dreamscene/";
+    QString path = "/opt/deepin-dreamscene-ui/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -75,23 +75,15 @@ int main(int argc, char *argv[])
 
     QThread *th = QThread::create([ = ]() {
         QProcess::execute("killall dde-desktop");
+        qDebug() << "killall dde-desktop";
+        qDebug() << "loading new dde-desktop";
         if (QFileInfo(path + "/dde-desktop").isFile()) {
             QProcess process;
-            QStringList env = QProcess::systemEnvironment();
-            QString ldPath = "LD_LIBRARY_PATH=.:" + path + ":/usr/lib/x86_64-linux-gnu";
-            QString ldPath1 = "LD_LIBRARY_PATH=" + path;
-            env << ldPath1; // Add an environment variable
-            process.setEnvironment(env);
             process.execute(path + "dde-desktop");
         } else {
             QProcess process;
-            QStringList env = QProcess::systemEnvironment();
-            QString ldPath = "LD_LIBRARY_PATH=.:" + path + ":/usr/lib/x86_64-linux-gnu";
-            env << ldPath; // Add an environment variable
-            process.setEnvironment(env);
             process.execute("./dde-desktop");
         }
-        qDebug() << "xx";
     });
     th->start();
 
@@ -103,14 +95,8 @@ int main(int argc, char *argv[])
         a.setApplicationName(QObject::tr("Deepin DreamScene"));
         a.setApplicationVersion("Version 0.1");
 
-
-//        if(qApp->desktop()->screenCount()>1){
-//            Wallpaper *w2 = new Wallpaper;
-//            w2->setScreen(1);
-//        }
-
         DMainWindow *mainwindw = new DMainWindow();
-        settingWindow *window = new settingWindow(nullptr, nullptr);
+        settingWindow *window = new settingWindow(mainwindw, mainwindw);
         mainwindw->setCentralWidget(window);
         int index = 0;
         for (const QString &arg : qApp->arguments()) {
@@ -145,13 +131,13 @@ int main(int argc, char *argv[])
                                  QDBusConnection::sessionBus());
             iface.asyncCall("Register", QString(cookie));
         }
-        qDebug() << QCoreApplication::applicationDirPath() + "dynamicWallPaper.desktop";
-        DDesktopEntry desktop(path + "dynamicWallPaper.desktop");
-        QString name = desktop.name();
-        QString name1 = desktop.name();
-        QString Exec;
-        desktop.setStringValue(path + "start", "Exec");
-        desktop.save();
+//        qDebug() << QCoreApplication::applicationDirPath() + "dynamicWallPaper.desktop";
+//        DDesktopEntry desktop(path + "dynamicWallPaper.desktop");
+//        QString name = desktop.name();
+//        QString name1 = desktop.name();
+//        QString Exec;
+//        desktop.setStringValue(path + "start", "Exec");
+//        desktop.save();
     }
 
     return a.exec();

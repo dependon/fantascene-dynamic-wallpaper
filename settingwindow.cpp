@@ -28,12 +28,13 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText("退出");
     connect(exitAction, &QAction::triggered, this, [ = ] {
-//        QProcess::execute("killall dde-desktop");
-//        QThread *th=QThread::create([=](){
-//            QProcess::execute("dde-desktop");
-//        });
-//        th->start();
-//        saveSettings();
+        QProcess::execute("killall dde-desktop");
+        QThread *th = QThread::create([ = ]()
+        {
+            QProcess::execute("dde-desktop");
+        });
+        th->start();
+        saveSettings();
         dApp->exit();
     });
 
@@ -86,7 +87,7 @@ settingWindow::~settingWindow()
 
 void settingWindow::readSettings()
 {
-    QString path = "/opt/deepin-dreamscene/";
+    QString path = "/opt/deepin-dreamscene-ui/";
     QSettings settings(path + SETTINGPATH, QSettings::IniFormat);
 
     m_currentPath = settings.value("WallPaper/CurrentPath").toString();
@@ -105,7 +106,7 @@ void settingWindow::readSettings()
 
 void settingWindow::saveSettings()
 {
-    QString path = "/opt/deepin-dreamscene/";
+    QString path = "/opt/deepin-dreamscene-ui/";
     QSettings settings(path + SETTINGPATH, QSettings::IniFormat);
     settings.clear();
     settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
@@ -225,7 +226,7 @@ void settingWindow::on_startScreen_clicked()
 void settingWindow::on_autoStart_clicked()
 {
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    QProcess::execute("cp /opt/deepin-dreamscene/dynamicWallPaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+    QProcess::execute("cp /opt/deepin-dreamscene-ui/deepin-dreamscene-ui.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
