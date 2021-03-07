@@ -4,8 +4,8 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QObject>
-
-
+#include <QThread>
+#include <QProcess>
 DWIDGET_USE_NAMESPACE
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
@@ -29,6 +29,10 @@ Q_SIGNALS:
 
     void setScreenMode(const QString &);
 
+public:
+    QThread *m_startDesktop{nullptr};
+    QProcess *m_startDesktopProcess{nullptr};
+    qint64 m_processId{0};
 
 };
 

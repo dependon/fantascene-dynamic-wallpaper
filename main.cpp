@@ -13,6 +13,7 @@
 #include <QDebug>
 #include <QCoreApplication>
 #include <DDesktopEntry>
+#include <QFile>
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
 void cpToTmp()
@@ -59,7 +60,7 @@ void cpToTmp()
     qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     qDebug() << QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
 //        qDebug()<<QStandardPaths::HomeLocation;
-    qDebug() << QCoreApplication::applicationDirPath() + "/dynamicWallPaper.desktop";
+    qDebug() << QCoreApplication::applicationDirPath() + "/deepin-dreamscene-ui.desktop";
 }
 int main(int argc, char *argv[])
 {
@@ -71,21 +72,35 @@ int main(int argc, char *argv[])
 
     Application a(argc, argv);
     //打印当前路径
+    qDebug() << "打印当前路径1";
     qDebug() << QCoreApplication::applicationDirPath();
-
-    QThread *th = QThread::create([ = ]() {
+    qDebug() << "打印当前路径2";
+    bool isShowMainWindow = false;
+    if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
+        int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
+        if (iRet != 0) {
+            return 0;
+        }
+        isShowMainWindow = true;
+    } else {
+        qDebug() << "可以启动: " << path + "dde-desktop";
+    }
+    dApp->m_startDesktop  = QThread::create([ = ]() {
         QProcess::execute("killall dde-desktop");
         qDebug() << "killall dde-desktop";
         qDebug() << "loading new dde-desktop";
-        if (QFileInfo(path + "/dde-desktop").isFile()) {
-            QProcess process;
-            process.execute(path + "dde-desktop");
-        } else {
-            QProcess process;
-            process.execute("./dde-desktop");
+        dApp->m_startDesktopProcess = new QProcess(dApp);
+        if (QFileInfo(path + "dde-desktop").isFile()) {
+//            dApp->m_startDesktopProcess->start("export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/deepin-dreamscene-ui/;"
+//                                               " /opt/deepin-dreamscene-ui/dde-desktop");
+            dApp->m_startDesktopProcess->start("bash /opt/deepin-dreamscene-ui/startdesktop.sh");
+            dApp->m_processId = dApp->m_startDesktopProcess->processId();
+            qDebug() << "processId" << dApp->m_processId;
+            dApp->m_startDesktopProcess->waitForFinished();
         }
+        qDebug() << "启动失败: " << path + "dde-desktop";
     });
-    th->start();
+    dApp->m_startDesktop->start();
 
     a.setTheme("light");
 
@@ -104,7 +119,7 @@ int main(int argc, char *argv[])
                 index++;
             }
         }
-        if (index == 0) {
+        if (index == 0 && isShowMainWindow) {
             mainwindw->show();
         }
 

@@ -1,12 +1,13 @@
-Source: deepin-dreamscene
-Section: base
+Source: deepin-dreamscene-ui
+Section: utils
 Priority: optional
 Maintainer: kirigaya <kirigaya@mkacg.com>
-Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev 
+Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev
 Standards-Version: 0.1-1
 Homepage: http://blog.mkacg.com
 
-Package: deepin-dreamscene
+Package: deepin-dreamscene-ui
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for deepin.
