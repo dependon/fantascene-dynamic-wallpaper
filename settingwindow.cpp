@@ -11,7 +11,7 @@
 #include <QCoreApplication>
 #include <QProcess>
 #include <QStandardPaths>
-
+#include <QTimer>
 DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
@@ -106,6 +106,27 @@ void settingWindow::readSettings()
     if (m_isAutoStart > 0) {
         ui->autoStartBox->setCheckState(Qt::Checked);
     }
+    QTimer::singleShot(300,[=]{
+        QSettings settings(CONFIG_PATH, QSettings::IniFormat);
+        int widthPY=settings.value("WallPaper/widthPY").toInt();
+        int heightPY=settings.value("WallPaper/heightPY").toInt();
+        int width=settings.value("WallPaper/width").toInt();
+        int height=settings.value("WallPaper/height").toInt();
+
+        dApp->m_manual.setRect(widthPY,heightPY,width,height);
+        ui->widthPY->setText(QString::number(widthPY));
+        ui->heightPY->setText(QString::number(heightPY));
+        ui->width->setText(QString::number(width));
+        ui->height->setText(QString::number(height));
+
+        QString comboxText=settings.value("WallPaper/Mode").toString();
+        if(!comboxText.isEmpty()){
+              ui->comboBox->setCurrentText(comboxText);
+              setScreenMode(comboxText);
+        }
+    });
+
+
 
     qDebug() << "x";
 }
@@ -118,6 +139,12 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
     settings.setValue("WallPaper/CurrentPath", m_currentPath);
 
+    settings.setValue("WallPaper/Mode",ui->comboBox->currentText());
+
+    settings.setValue("WallPaper/widthPY",dApp->m_manual.x());
+    settings.setValue("WallPaper/heightPY",dApp->m_manual.y());
+    settings.setValue("WallPaper/width",dApp->m_manual.width());
+    settings.setValue("WallPaper/height",dApp->m_manual.height());
 }
 
 QString settingWindow::getCurrentPath()
@@ -250,4 +277,16 @@ void settingWindow::on_autoStartBox_stateChanged(int arg1)
 void settingWindow::on_comboBox_activated(const QString &arg1)
 {
     setScreenMode(arg1);
+}
+
+void settingWindow::on_setManual_clicked()
+{
+    int widthPY=ui->widthPY->text().toInt();
+    int heightPY=ui->heightPY->text().toInt();
+    int width=ui->width->text().toInt();
+    int height=ui->height->text().toInt();
+    dApp->m_manual.setRect(widthPY,heightPY,width,height);
+    if(ui->comboBox->currentText()=="手动设置尺寸"){
+        emit dApp->sigupdateGeometry();
+    }
 }
