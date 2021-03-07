@@ -8,6 +8,7 @@
 enum ScreenMode {
     IdCopyScreen,
     IdlayoutScreen,
+    IdManualSet
 };
 class Wallpaper : public QWidget
 {
@@ -27,9 +28,9 @@ public slots:
 
     void slotrefreshPix(const QPixmap &pix);
     void slotsetScreenMode(const QString &mode);
+    void updateGeometry();
 private:
     void registerDesktop();
-    void updateGeometry();
 
 private:
     QHBoxLayout *mainlayout;

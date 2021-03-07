@@ -58,6 +58,8 @@ private slots:
     void pathChanged(const QString &path);
     void on_comboBox_activated(const QString &arg1);
 
+    void on_setManual_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};

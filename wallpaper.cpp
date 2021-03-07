@@ -94,6 +94,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setMpvstop, this, &Wallpaper::stop);
     connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
     connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
+    connect(dApp, &Application::sigupdateGeometry,this,&Wallpaper::updateGeometry);
 
 
 
@@ -112,8 +113,16 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         break;
     }
     case IdlayoutScreen: {
-        layout()->removeWidget(m_label2);
         if (nullptr != m_label2) {
+            layout()->removeWidget(m_label2);
+            delete m_label2 ;
+            m_label2 = nullptr;
+        }
+        break;
+    }
+    case IdManualSet: {
+        if (nullptr != m_label2) {
+            layout()->removeWidget(m_label2);
             delete m_label2 ;
             m_label2 = nullptr;
         }
@@ -177,9 +186,10 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
         m_cuurentMode = IdCopyScreen;
     } else if (mode == "扩展") {
         m_cuurentMode = IdlayoutScreen;
+    } else if (mode == "手动设置尺寸") {
+        m_cuurentMode = IdManualSet;
     }
     changeScreenMode(m_cuurentMode);
-
 
 }
 
@@ -203,21 +213,30 @@ void Wallpaper::updateGeometry()
 {
     QTimer::singleShot(100, this, [ = ] {
         QRect rec;
+        QSize size1(0,0);
         rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-
+        QRect rec2=qApp->desktop()->screenGeometry();
+        QRect deskRect =qApp->desktop()->availableGeometry();
+        rec=deskRect;
         if (m_cuurentMode == IdCopyScreen)
         {
             rec = QRect(0, 0, rec.width(), rec.height());
+            size1.setWidth(rec.width());
+            size1.setHeight(rec.height());
+
         } else if (m_cuurentMode == IdlayoutScreen)
         {
             rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+            size1.setWidth(rec.width() * dApp->desktop()->screenCount());
+            size1.setHeight(rec.height());
         }
+        else  if(m_cuurentMode == IdManualSet){
+            rec = dApp->m_manual;
+            size1.setWidth(dApp->m_manual.width());
+            size1.setHeight(dApp->m_manual.height());
 
-        setGeometry(rec);
-        int x = rec.x();
-        int y = rec.y();
-
-        QSize size1(rec.width(), rec.height());
+        }
+        this->setGeometry(rec);
         m_mpv->move(rect().topLeft());
         m_mpv->setFixedSize(size1);
 
