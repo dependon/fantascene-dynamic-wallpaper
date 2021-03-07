@@ -100,29 +100,30 @@ void settingWindow::readSettings()
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
 
-    if (m_crrenNumber > 1) {
-//        ui->autoisMScreen->setCheckState(Qt::Checked);
-    }
-    if (m_isAutoStart > 0) {
-        ui->autoStartBox->setCheckState(Qt::Checked);
-    }
+    int widthPY=settings.value("WallPaper/widthPY").toInt();
+    int heightPY=settings.value("WallPaper/heightPY").toInt();
+    int width=settings.value("WallPaper/width").toInt();
+    int height=settings.value("WallPaper/height").toInt();
+    m_currentMode=settings.value("WallPaper/Mode").toString();
+
+    dApp->m_manual.setRect(widthPY,heightPY,width,height);
+
+
     QTimer::singleShot(300,[=]{
-        QSettings settings(CONFIG_PATH, QSettings::IniFormat);
-        int widthPY=settings.value("WallPaper/widthPY").toInt();
-        int heightPY=settings.value("WallPaper/heightPY").toInt();
-        int width=settings.value("WallPaper/width").toInt();
-        int height=settings.value("WallPaper/height").toInt();
+        ui->widthPY->setText(QString::number( dApp->m_manual.x()));
+        ui->heightPY->setText(QString::number( dApp->m_manual.y()));
+        ui->width->setText(QString::number( dApp->m_manual.width()));
+        ui->height->setText(QString::number( dApp->m_manual.height()));
 
-        dApp->m_manual.setRect(widthPY,heightPY,width,height);
-        ui->widthPY->setText(QString::number(widthPY));
-        ui->heightPY->setText(QString::number(heightPY));
-        ui->width->setText(QString::number(width));
-        ui->height->setText(QString::number(height));
-
-        QString comboxText=settings.value("WallPaper/Mode").toString();
-        if(!comboxText.isEmpty()){
-              ui->comboBox->setCurrentText(comboxText);
-              setScreenMode(comboxText);
+        if(!m_currentMode.isEmpty()){
+              ui->comboBox->setCurrentText(m_currentMode);
+              setScreenMode(m_currentMode);
+        }
+        if (m_crrenNumber > 1) {
+    //        ui->autoisMScreen->setCheckState(Qt::Checked);
+        }
+        if (m_isAutoStart > 0) {
+            ui->autoStartBox->setCheckState(Qt::Checked);
         }
     });
 

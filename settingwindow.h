@@ -70,6 +70,7 @@ private:
     QString m_currentPath;
     int m_crrenNumber{0};
     int m_isAutoStart{0};
+    QString m_currentMode;
 };
 
 #endif // SETTINGWINDOW_H
