@@ -71,7 +71,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
-            QString playPath = "./9.mp4";
+            QString playPath = "/opt/deepin-dreamscene-ui/09.mp4";
             if (!m_currentPath.isEmpty()) {
                 if (QFileInfo(m_currentPath).isFile()) {
                     playPath = m_currentPath;

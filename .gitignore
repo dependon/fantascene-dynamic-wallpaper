@@ -2,28 +2,38 @@
 *.slo
 *.lo
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
 
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
 
 # Compiled Static libraries
 *.lai
 *.la
 *.a
-*.lib
+moc_*
+ui_*
+Makefile
+build*/
+include*/
 
-# Executables
-*.exe
-*.out
-*.app
+*.txt.user*
+*.pro.user*
+*.DS_Store
+*.qm
+*.autosave
+
+vendor/include/*
+vendor/lib/*
+
+.vscode/*
+
+*.log
+
+# debian
+debian/*
+!debian/changelog
+!debian/rules
+!debian/control
+!debian/compat
+!debian/source/*

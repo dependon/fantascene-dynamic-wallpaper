@@ -24,27 +24,24 @@ HEADERS += \
 RESOURCES += \
     qrc.qrc
 
-
+OTHER_FILES+=$$PWD/install/*
 target.path=/opt/deepin-dreamscene-ui
 
-desktop.files=deepin-dreamscene-ui.desktop
-desktop.path=/opt/deepin-dreamscene-ui
 
-dde-desktop.files=dde-desktop
-dde-desktop.path=/opt/deepin-dreamscene-ui
+other.path=/opt/deepin-dreamscene-ui
+other.files= $$PWD/install/*
+#other.extra = -$(QINSTALL) $$PWD/desktop/dde-desktop $(INSTALL_ROOT)/opt/deepin-dreamscene-ui/dde-desktop
 
-config.files=config.ini
-config.path=/opt/deepin-dreamscene-ui
+desktop.path = /usr/share/applications/
+desktop.files = $$PWD/install/deepin-dreamscene-ui.desktop
 
-icon.files=tray.ico
-icon.path=/opt/deepin-dreamscene-ui
 DISTFILES += \
     com.deepin.dde.DreamScene.service
 
 dbus_service.files += com.deepin.dde.DreamScene.service
 dbus_service.path = /usr/share/dbus-1/services
 
-INSTALLS += target dbus_service desktop dde-desktop config icon
+INSTALLS += target dbus_service other desktop
 
 FORMS += \
     settingwindow.ui

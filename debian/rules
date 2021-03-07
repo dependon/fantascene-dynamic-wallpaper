@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
+include /usr/share/dpkg/default.mk
+
+export QT_SELECT = qt5
 
 %:
-	dh $@  --parallel
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- DEFINES+="VERSION=$(DEB_VERSION_UPSTREAM)"
