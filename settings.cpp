@@ -30,9 +30,6 @@ Settings::Settings(QWidget *parent)
     , m_listView(new QListWidget)
     , m_videoSwitchBtn(new DSwitchButton)
 {
-//    setAttribute(Qt::WA_TranslucentBackground);
-//    setTranslucentBackground(true);
-//    setEnableBlurWindow(true);
 
     setMinimumSize(800, 600);
 
@@ -103,5 +100,5 @@ void Settings::clean()
 
 void Settings::finished()
 {
-//    emit requestSetFolder(m_list, m_is);
+    //    emit requestSetFolder(m_list, m_is);
 }

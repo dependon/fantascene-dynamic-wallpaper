@@ -16,13 +16,13 @@ DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/deepin-dreamscene-ui/config.ini";
+        "/.config/deepin-dreamscene-ui/config.ini";
 settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)
 {
-//    saveSettings();
+    //    saveSettings();
 
     ui->setupUi(this);
     readSettings();
@@ -99,12 +99,12 @@ void settingWindow::readSettings()
     m_currentPath = settings.value("WallPaper/CurrentPath").toString();
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
-
     int widthPY=settings.value("WallPaper/widthPY").toInt();
     int heightPY=settings.value("WallPaper/heightPY").toInt();
     int width=settings.value("WallPaper/width").toInt();
     int height=settings.value("WallPaper/height").toInt();
     m_currentMode=settings.value("WallPaper/Mode").toString();
+    m_voiceVolume=settings.value("WallPaper/voiceVolume").toInt();
 
     dApp->m_manual.setRect(widthPY,heightPY,width,height);
 
@@ -115,12 +115,15 @@ void settingWindow::readSettings()
         ui->width->setText(QString::number( dApp->m_manual.width()));
         ui->height->setText(QString::number( dApp->m_manual.height()));
 
+        if(m_voiceVolume >= 0 && m_voiceVolume <100){
+            ui->Slider->setValue(m_voiceVolume);
+        }
         if(!m_currentMode.isEmpty()){
-              ui->comboBox->setCurrentText(m_currentMode);
-              setScreenMode(m_currentMode);
+            ui->comboBox->setCurrentText(m_currentMode);
+            setScreenMode(m_currentMode);
         }
         if (m_crrenNumber > 1) {
-    //        ui->autoisMScreen->setCheckState(Qt::Checked);
+            //        ui->autoisMScreen->setCheckState(Qt::Checked);
         }
         if (m_isAutoStart > 0) {
             ui->autoStartBox->setCheckState(Qt::Checked);
@@ -139,13 +142,12 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
     settings.setValue("WallPaper/CurrentPath", m_currentPath);
-
     settings.setValue("WallPaper/Mode",ui->comboBox->currentText());
-
     settings.setValue("WallPaper/widthPY",dApp->m_manual.x());
     settings.setValue("WallPaper/heightPY",dApp->m_manual.y());
     settings.setValue("WallPaper/width",dApp->m_manual.width());
     settings.setValue("WallPaper/height",dApp->m_manual.height());
+    settings.setValue("WallPaper/voiceVolume",m_voiceVolume);
 }
 
 QString settingWindow::getCurrentPath()
@@ -165,28 +167,12 @@ int settingWindow::isAutoStart()
 
 void settingWindow::cpToTmp()
 {
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
+    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene-ui/";
     QDir dir(path);
     if (!dir.exists()) {
         QDir dir1;
         dir1.mkpath(path);
     }
-    QFile::copy(QCoreApplication::applicationDirPath() + "/dynamicWallPaper.desktop", path + "dynamicWallPaper.desktop");
-
-    QProcess::execute("cp libdde-file-manager.so.1.8.2 " + path);
-    QProcess::execute("cp libdde-file-manager.so.1.8 " + path);
-    QProcess::execute("cp libdde-file-manager.so.1 " + path);
-    QProcess::execute("cp libdde-file-manager.so " + path);
-    QProcess::execute("cp dde-desktop " + path);
-    QProcess::execute("cp deepin-dreamscene " + path);
-    QProcess::execute("cp config.ini " + path);
-    QProcess::execute("cp 9.mp4 " + path);
-    qDebug() << QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
-    qDebug() << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    qDebug() << QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-//        qDebug()<<QStandardPaths::HomeLocation;
-    qDebug() << QCoreApplication::applicationDirPath() + "/dynamicWallPaper.desktop";
 }
 
 void settingWindow::setScreenMode(const QString &arg)
@@ -230,6 +216,7 @@ void settingWindow::on_stopBtn_clicked()
 void settingWindow::on_Slider_valueChanged(int value)
 {
     emit dApp->setMpvVolume(value);
+    m_voiceVolume=value;
 }
 
 void settingWindow::on_startBtn_clicked()
@@ -255,7 +242,7 @@ void settingWindow::on_autoStart_clicked()
 
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
     if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/deepin-dreamscene-ui.desktop").isFile())
-        QProcess::execute("cp /opt/deepin-dreamscene-ui/deepin-dreamscene-ui.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+        QProcess::execute("cp /opt/apps/deepin.dreamscene.ui/deepin-dreamscene-ui.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
@@ -291,3 +278,5 @@ void settingWindow::on_setManual_clicked()
         emit dApp->sigupdateGeometry();
     }
 }
+
+
