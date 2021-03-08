@@ -1,6 +1,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
+#define protected public
 #include <DApplication>
+#undef protected
 #include <QCoreApplication>
 #include <QString>
 #include <QObject>
@@ -28,6 +30,7 @@ Q_SIGNALS:
     void refreshPix(const QPixmap &);
     void setScreenMode(const QString &);
     void sigupdateGeometry();
+    void quitApp();
 
 public:
     QThread *m_startDesktop{nullptr};

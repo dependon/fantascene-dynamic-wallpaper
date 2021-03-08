@@ -60,6 +60,8 @@ private slots:
 
     void on_setManual_clicked();
 
+    void quitApp();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
