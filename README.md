@@ -17,3 +17,5 @@
 目前已知问题:
 在运行中修改分辨率，需要重启程序
 
+github地址:https://github.com/dependon/deepin-dreamscene-ui
+gitee地址:https://gitee.com/liuminghang/deepin-dreamscene-ui
