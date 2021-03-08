@@ -29,21 +29,8 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText("退出");
-    connect(exitAction, &QAction::triggered, this, [ = ] {
-
-        QProcess::execute("killall dde-desktop");
-        if (0 != dApp->m_processId)
-        {
-            QProcess::execute("kill " + QString::number(dApp->m_processId));
-        }
-        QThread *th = QThread::create([ = ]()
-        {
-            QProcess::execute("dde-desktop");
-        });
-        th->start();
-        saveSettings();
-        dApp->exit();
-    });
+    connect(exitAction, &QAction::triggered, this, &settingWindow::quitApp);
+    connect(dApp,&Application::quitApp,this,&settingWindow::quitApp,Qt::DirectConnection);
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
     setMpvPlayAction->setText("播放");
@@ -277,6 +264,22 @@ void settingWindow::on_setManual_clicked()
     if(ui->comboBox->currentText()=="手动设置尺寸"){
         emit dApp->sigupdateGeometry();
     }
+}
+
+void settingWindow::quitApp()
+{
+    QProcess::execute("killall dde-desktop");
+    if (0 != dApp->m_processId)
+    {
+        QProcess::execute("kill " + QString::number(dApp->m_processId));
+    }
+    QThread *th = QThread::create([ = ]()
+    {
+        QProcess::execute("dde-desktop");
+    });
+    th->start();
+    saveSettings();
+    dApp->exit();
 }
 
 
