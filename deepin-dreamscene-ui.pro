@@ -25,12 +25,10 @@ RESOURCES += \
     qrc.qrc
 
 OTHER_FILES+=$$PWD/install/*
-target.path=/opt/deepin-dreamscene-ui
+target.path=/opt/apps/deepin.dreamscene.ui
 
-
-other.path=/opt/deepin-dreamscene-ui
+other.path=/opt/apps/deepin.dreamscene.ui
 other.files= $$PWD/install/*
-#other.extra = -$(QINSTALL) $$PWD/desktop/dde-desktop $(INSTALL_ROOT)/opt/deepin-dreamscene-ui/dde-desktop
 
 desktop.path = /usr/share/applications/
 desktop.files = $$PWD/install/deepin-dreamscene-ui.desktop

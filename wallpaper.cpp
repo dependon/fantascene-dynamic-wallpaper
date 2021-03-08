@@ -31,27 +31,27 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     registerDesktop();
 
     m_mpv = new MpvWidget(this);
-
-
     m_mpv->setGeometry(geometry());
     m_mpv->setGeometry(geometry());
     m_mpv->setGeometry(geometry());
     layout->addWidget(m_mpv);
     m_mpv->hide();
-
     m_mpv->setProperty("loop", true);
     m_mpv->setProperty("panscan", 1);
-
     m_mpv->setGeometry(geometry());
 
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
-
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
-    setVolume(0);
     connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
+    connect(dApp, &Application::setPlayPath, this, &Wallpaper::setFile);
+    connect(dApp, &Application::setMpvPlay, this, &Wallpaper::play);
+    connect(dApp, &Application::setMpvpause, this, &Wallpaper::pause);
+    connect(dApp, &Application::setMpvstop, this, &Wallpaper::stop);
+    connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
+    connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
+    connect(dApp, &Application::sigupdateGeometry,this,&Wallpaper::updateGeometry);
     QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
-
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
         int index1 = 0;
@@ -71,7 +71,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
-            QString playPath = "/opt/deepin-dreamscene-ui/09.mp4";
+            QString playPath = "/opt/apps/deepin.dreamscene.ui/09.mp4";
             if (!m_currentPath.isEmpty()) {
                 if (QFileInfo(m_currentPath).isFile()) {
                     playPath = m_currentPath;
@@ -88,13 +88,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             layout->addWidget(m_label2);
         }
     });
-    connect(dApp, &Application::setPlayPath, this, &Wallpaper::setFile);
-    connect(dApp, &Application::setMpvPlay, this, &Wallpaper::play);
-    connect(dApp, &Application::setMpvpause, this, &Wallpaper::pause);
-    connect(dApp, &Application::setMpvstop, this, &Wallpaper::stop);
-    connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
-    connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
-    connect(dApp, &Application::sigupdateGeometry,this,&Wallpaper::updateGeometry);
+
+    setVolume(0);
+
 
 
 

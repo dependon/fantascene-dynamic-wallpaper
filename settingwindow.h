@@ -71,6 +71,7 @@ private:
     int m_crrenNumber{0};
     int m_isAutoStart{0};
     QString m_currentMode;
+    int m_voiceVolume{0};
 };
 
 #endif // SETTINGWINDOW_H
