@@ -7,7 +7,7 @@
 最近几个月都会保持更新
 
 有什么想法和问题都可以联系我liuminghang0821@gmail.com
-                    liuminghang0821@qq.com
+
 有问必回
 
 也可以提交issues 和pull requests
@@ -15,7 +15,9 @@
 个人想法有限，能提意见和需求最好
 
 目前已知问题:
-在运行中修改分辨率，需要重启程序
+1.在运行中修改分辨率，需要重启程序
+2.nvdia电脑下可能尺寸不对，需要自定义设置
 
 github地址:https://github.com/dependon/deepin-dreamscene-ui
 gitee地址:https://gitee.com/liuminghang/deepin-dreamscene-ui
+
