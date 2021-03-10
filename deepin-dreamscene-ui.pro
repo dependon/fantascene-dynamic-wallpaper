@@ -25,9 +25,9 @@ RESOURCES += \
     qrc.qrc
 
 OTHER_FILES+=$$PWD/install/*
-target.path=/opt/apps/deepin.dreamscene.ui
+target.path=/opt/durapps/deepin-dreamscene-ui
 
-other.path=/opt/apps/deepin.dreamscene.ui
+other.path=/opt/durapps/deepin-dreamscene-ui
 other.files= $$PWD/install/*
 
 desktop.path = /usr/share/applications/
