@@ -50,7 +50,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setMpvstop, this, &Wallpaper::stop);
     connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
     connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
-    connect(dApp, &Application::sigupdateGeometry,this,&Wallpaper::updateGeometry);
+    connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
@@ -71,7 +71,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
-            QString playPath = "/opt/apps/deepin.dreamscene.ui/09.mp4";
+            QString playPath = "/opt/durapps/deepin-dreamscene-ui/09.mp4";
             if (!m_currentPath.isEmpty()) {
                 if (QFileInfo(m_currentPath).isFile()) {
                     playPath = m_currentPath;
@@ -103,6 +103,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         if (qApp->desktop()->screenCount() > 1) {
             if (nullptr == m_label2) {
                 m_label2 = new QLabel();
+                m_label2->setVisible(true);
             }
             layout()->addWidget(m_label2);
         }
@@ -209,11 +210,11 @@ void Wallpaper::updateGeometry()
 {
     QTimer::singleShot(100, this, [ = ] {
         QRect rec;
-        QSize size1(0,0);
+        QSize size1(0, 0);
         rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-        QRect rec2=qApp->desktop()->screenGeometry();
-        QRect deskRect =qApp->desktop()->availableGeometry();
-        rec=deskRect;
+        QRect rec2 = qApp->desktop()->screenGeometry();
+        QRect deskRect = qApp->desktop()->availableGeometry();
+        rec = deskRect;
         if (m_cuurentMode == IdCopyScreen)
         {
             rec = QRect(0, 0, rec.width(), rec.height());
@@ -225,8 +226,8 @@ void Wallpaper::updateGeometry()
             rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
             size1.setWidth(rec.width() * dApp->desktop()->screenCount());
             size1.setHeight(rec.height());
-        }
-        else  if(m_cuurentMode == IdManualSet){
+        } else  if (m_cuurentMode == IdManualSet)
+        {
             rec = dApp->m_manual;
             size1.setWidth(dApp->m_manual.width());
             size1.setHeight(dApp->m_manual.height());

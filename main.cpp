@@ -28,7 +28,7 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/apps/deepin.dreamscene.ui/";
+    QString path = "/opt/durapps/deepin-dreamscene-ui/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
         dApp->m_startDesktopProcess = new QProcess(dApp);
         if (QFileInfo(path + "dde-desktop").isFile()) {
 
-            dApp->m_startDesktopProcess->start("bash /opt/apps/deepin.dreamscene.ui/startdesktop.sh");
+            dApp->m_startDesktopProcess->start("bash /opt/durapps/deepin-dreamscene-ui/startdesktop.sh");
             dApp->m_processId = dApp->m_startDesktopProcess->processId();
             qDebug() << "processId" << dApp->m_processId;
             dApp->m_startDesktopProcess->waitForFinished();
