@@ -180,13 +180,22 @@ void Wallpaper::slotrefreshPix(const QPixmap &pix)
 void Wallpaper::slotsetScreenMode(const QString &mode)
 {
     if (mode == "复制") {
-        m_cuurentMode = IdCopyScreen;
+        if (m_cuurentMode != IdCopyScreen) {
+            m_cuurentMode = IdCopyScreen;
+            changeScreenMode(m_cuurentMode);
+        }
     } else if (mode == "扩展") {
-        m_cuurentMode = IdlayoutScreen;
+        if (m_cuurentMode != IdlayoutScreen) {
+            m_cuurentMode = IdlayoutScreen;
+            changeScreenMode(m_cuurentMode);
+        }
     } else if (mode == "手动设置尺寸") {
-        m_cuurentMode = IdManualSet;
+        if (m_cuurentMode != IdManualSet) {
+            m_cuurentMode = IdManualSet;
+            changeScreenMode(m_cuurentMode);
+        }
     }
-    changeScreenMode(m_cuurentMode);
+
 
 }
 
@@ -224,7 +233,7 @@ void Wallpaper::updateGeometry()
         } else if (m_cuurentMode == IdlayoutScreen)
         {
             rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
-            size1.setWidth(rec.width() * dApp->desktop()->screenCount());
+            size1.setWidth(rec.width());
             size1.setHeight(rec.height());
         } else  if (m_cuurentMode == IdManualSet)
         {

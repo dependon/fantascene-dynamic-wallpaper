@@ -92,8 +92,11 @@ void settingWindow::readSettings()
     int height = settings.value("WallPaper/height").toInt();
     m_currentMode = settings.value("WallPaper/Mode").toString();
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
-
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
+    if (!m_currentMode.isEmpty()) {
+        ui->comboBox->setCurrentText(m_currentMode);
+        setScreenMode(m_currentMode);
+    }
 
 
     QTimer::singleShot(300, [ = ] {
