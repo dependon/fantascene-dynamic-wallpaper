@@ -33,10 +33,6 @@ int main(int argc, char *argv[])
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
-    //打印当前路径
-    qDebug() << "打印当前路径1";
-    qDebug() << QCoreApplication::applicationDirPath();
-    qDebug() << "打印当前路径2";
     bool isShowMainWindow = false;
     if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
         int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
@@ -47,7 +43,13 @@ int main(int argc, char *argv[])
     } else {
         qDebug() << "可以启动: " << path + "dde-desktop";
     }
+
     dApp->m_startDesktop  = QThread::create([ = ]() {
+        //打印当前路径
+        qDebug() << "打印当前路径1";
+        qDebug() << QCoreApplication::applicationDirPath();
+        qDebug() << "打印当前路径2";
+
         QProcess::execute("killall dde-desktop");
         qDebug() << "关闭原生dde-desktop";
         qDebug() << "loading new dde-desktop";
