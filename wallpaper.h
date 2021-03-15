@@ -31,7 +31,8 @@ public slots:
     void updateGeometry();
 private:
     void registerDesktop();
-
+private slots:
+    void onSysLockState(QString, QVariantMap key2value, QStringList);
 private:
     QHBoxLayout *mainlayout;
     QString m_currentPath;
