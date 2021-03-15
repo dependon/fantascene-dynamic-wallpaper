@@ -11,8 +11,8 @@ Application::Application(int &argc, char **argv)
                                        "基于justforlxz的渲染方法开发\n"
                                        "github地址:https://github.com/dependon/deepin-dreamscene-ui/\n"
                                        "gitee地址:https://gitee.com/liuminghang/deepin-dreamscene-ui\n"
-                                       "mail: liuminghang0821@gmail.com"
-                                       "nvdia闭源驱动电脑下需要自定义模式配置尺寸"));
+                                       "mail: liuminghang0821@gmail.com\n"
+                                       "nvdia闭源驱动电脑下某些情况需要自定义模式配置尺寸"));
     this->setProductIcon(QIcon(":/tray.ico"));
 
 }
