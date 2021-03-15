@@ -14,6 +14,7 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QLabel>
+#include <QDBusConnection>
 #include "application.h"
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
@@ -51,6 +52,11 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
     connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
     connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
+
+    QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "com/deepin/SessionManager",
+                                          "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
+                                          SLOT(onSysLockState(QString, QVariantMap, QStringList)));
+
     QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
@@ -213,6 +219,15 @@ void Wallpaper::registerDesktop()
         show();
         lower();
     });
+}
+
+void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
+{
+    if (key2value.value("Locked").value<bool>()) {
+        pause();
+    } else {
+        play();
+    }
 }
 
 void Wallpaper::updateGeometry()
