@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
-    if (a.setSingleInstance("deepin-dreamscene")) {
+    if (a.setSingleInstance("deepin-dreamscene-ui")) {
         bool isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
