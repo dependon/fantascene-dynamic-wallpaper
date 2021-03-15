@@ -33,43 +33,43 @@ int main(int argc, char *argv[])
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
-    bool isShowMainWindow = false;
-    if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
-        int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
-        if (iRet != 0) {
-            return 0;
-        }
-        isShowMainWindow = true;
-    } else {
-        qDebug() << "可以启动: " << path + "dde-desktop";
-    }
-
-    dApp->m_startDesktop  = QThread::create([ = ]() {
-        //打印当前路径
-        qDebug() << "打印当前路径1";
-        qDebug() << QCoreApplication::applicationDirPath();
-        qDebug() << "打印当前路径2";
-
-        QProcess::execute("killall dde-desktop");
-        qDebug() << "关闭原生dde-desktop";
-        qDebug() << "loading new dde-desktop";
-        dApp->m_startDesktopProcess = new QProcess(dApp);
-        if (QFileInfo(path + "dde-desktop").isFile()) {
-
-            dApp->m_startDesktopProcess->start("bash /opt/durapps/deepin-dreamscene-ui/startdesktop.sh");
-            dApp->m_processId = dApp->m_startDesktopProcess->processId();
-            qDebug() << "processId" << dApp->m_processId;
-            dApp->m_startDesktopProcess->waitForFinished();
-        }
-        qDebug() << "启动失败: " << path + "dde-desktop";
-    });
-    dApp->m_startDesktop->start();
 
     a.setTheme("light");
-
     setlocale(LC_NUMERIC, "C");
 
     if (a.setSingleInstance("deepin-dreamscene")) {
+        bool isShowMainWindow = false;
+        if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
+            int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
+            if (iRet != 0) {
+                return 0;
+            }
+            isShowMainWindow = true;
+        } else {
+            qDebug() << "可以启动: " << path + "dde-desktop";
+        }
+
+        dApp->m_startDesktop  = QThread::create([ = ]() {
+            //打印当前路径
+            qDebug() << "打印当前路径1";
+            qDebug() << QCoreApplication::applicationDirPath();
+            qDebug() << "打印当前路径2";
+
+            QProcess::execute("killall dde-desktop");
+            qDebug() << "关闭原生dde-desktop";
+            qDebug() << "loading new dde-desktop";
+            dApp->m_startDesktopProcess = new QProcess(dApp);
+            if (QFileInfo(path + "dde-desktop").isFile()) {
+
+                dApp->m_startDesktopProcess->start("bash /opt/durapps/deepin-dreamscene-ui/startdesktop.sh");
+                dApp->m_processId = dApp->m_startDesktopProcess->processId();
+                qDebug() << "processId" << dApp->m_processId;
+                dApp->m_startDesktopProcess->waitForFinished();
+            }
+            qDebug() << "启动失败: " << path + "dde-desktop";
+        });
+        dApp->m_startDesktop->start();
+
         a.setApplicationName(QObject::tr("Deepin DreamScene"));
         a.setApplicationVersion("Version 0.1");
 
