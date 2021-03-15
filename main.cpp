@@ -109,6 +109,8 @@ int main(int argc, char *argv[])
                                  QDBusConnection::sessionBus());
             iface.asyncCall("Register", QString(cookie));
         }
+    } else {
+        return 0;
     }
 
     return a.exec();
