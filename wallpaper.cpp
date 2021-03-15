@@ -53,7 +53,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
     connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
 
-    QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "com/deepin/SessionManager",
+    QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
                                           SLOT(onSysLockState(QString, QVariantMap, QStringList)));
 
