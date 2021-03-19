@@ -88,7 +88,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             m_currentPath = QFileInfo(m_currentPath).filePath();
             emit dApp->pathChanged(m_currentPath);
         }
-        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == m_cuurentMode)
+        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode)
         {
             m_label2 = new QLabel();
             layout->addWidget(m_label2);
@@ -186,19 +186,19 @@ void Wallpaper::slotrefreshPix(const QPixmap &pix)
 void Wallpaper::slotsetScreenMode(const QString &mode)
 {
     if (mode == "复制") {
-        if (m_cuurentMode != IdCopyScreen) {
-            m_cuurentMode = IdCopyScreen;
-            changeScreenMode(m_cuurentMode);
+        if (dApp->m_cuurentMode != IdCopyScreen) {
+            dApp->m_cuurentMode = IdCopyScreen;
+            changeScreenMode(dApp->m_cuurentMode);
         }
     } else if (mode == "扩展") {
-        if (m_cuurentMode != IdlayoutScreen) {
-            m_cuurentMode = IdlayoutScreen;
-            changeScreenMode(m_cuurentMode);
+        if (dApp->m_cuurentMode != IdlayoutScreen) {
+            dApp->m_cuurentMode = IdlayoutScreen;
+            changeScreenMode(dApp->m_cuurentMode);
         }
     } else if (mode == "手动设置尺寸") {
-        if (m_cuurentMode != IdManualSet) {
-            m_cuurentMode = IdManualSet;
-            changeScreenMode(m_cuurentMode);
+        if (dApp->m_cuurentMode != IdManualSet) {
+            dApp->m_cuurentMode = IdManualSet;
+            changeScreenMode(dApp->m_cuurentMode);
         }
     }
 
@@ -233,24 +233,25 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 void Wallpaper::updateGeometry()
 {
     QTimer::singleShot(100, this, [ = ] {
+        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
         QRect rec;
         QSize size1(0, 0);
         rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
         QRect rec2 = qApp->desktop()->screenGeometry();
         QRect deskRect = qApp->desktop()->availableGeometry();
         rec = deskRect;
-        if (m_cuurentMode == IdCopyScreen)
+        if (dApp->m_cuurentMode == IdCopyScreen)
         {
             rec = QRect(0, 0, rec.width(), rec.height());
             size1.setWidth(rec.width());
             size1.setHeight(rec.height());
 
-        } else if (m_cuurentMode == IdlayoutScreen)
+        } else if (dApp->m_cuurentMode == IdlayoutScreen)
         {
             rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
             size1.setWidth(rec.width());
             size1.setHeight(rec.height());
-        } else  if (m_cuurentMode == IdManualSet)
+        } else  if (dApp->m_cuurentMode == IdManualSet)
         {
             rec = dApp->m_manual;
             size1.setWidth(dApp->m_manual.width());

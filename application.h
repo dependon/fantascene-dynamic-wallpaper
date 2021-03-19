@@ -9,6 +9,8 @@
 #include <QThread>
 #include <QProcess>
 #include <QRect>
+
+#include "data.h"
 DWIDGET_USE_NAMESPACE
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
@@ -36,7 +38,9 @@ public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
     qint64 m_processId{0};
-    QRect m_manual{0,0,0,0};
+    QRect m_manual{0, 0, 0, 0};
+    ScreenMode m_cuurentMode{IdCopyScreen};
+    int m_currentScreenNum{0};
 
 };
 

@@ -19,7 +19,8 @@ HEADERS += \
     mpvwidget.h \
     settings.h \
     settingwindow.h \
-    application.h
+    application.h \
+    data.h
 
 RESOURCES += \
     qrc.qrc

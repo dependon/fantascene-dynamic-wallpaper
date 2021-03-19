@@ -159,16 +159,6 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
-void settingWindow::cpToTmp()
-{
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene-ui/";
-    QDir dir(path);
-    if (!dir.exists()) {
-        QDir dir1;
-        dir1.mkpath(path);
-    }
-}
-
 void settingWindow::setScreenMode(const QString &arg)
 {
     emit dApp->setScreenMode(arg);
