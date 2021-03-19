@@ -2,14 +2,11 @@
 #define WALLPAPER_H
 
 #include "mpvwidget.h"
+#include "data.h"
 
 #include <QWidget>
 #include <QHBoxLayout>
-enum ScreenMode {
-    IdCopyScreen,
-    IdlayoutScreen,
-    IdManualSet
-};
+
 class Wallpaper : public QWidget
 {
     Q_OBJECT
@@ -40,7 +37,7 @@ private:
 
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
-    ScreenMode m_cuurentMode{IdCopyScreen};
+//    ScreenMode m_cuurentMode{IdCopyScreen};
 };
 
 #endif // WALLPAPER_H

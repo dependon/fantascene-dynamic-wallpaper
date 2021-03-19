@@ -29,7 +29,6 @@ public:
 
     int isAutoStart();
 
-    void cpToTmp();
 
     void setScreenMode(const QString &arg);
 private slots:

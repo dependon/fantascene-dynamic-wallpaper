@@ -17,8 +17,10 @@
  */
 
 #include "mpvwidget.h"
+#include "application.h"
 
 #include <stdexcept>
+
 #include <QtGui/QOpenGLContext>
 #include <QtCore/QMetaObject>
 #include <QDebug>
@@ -100,11 +102,14 @@ void MpvWidget::initializeGL()
     if (r < 0)
         throw std::runtime_error("could not initialize OpenGL");
 }
-#include "application.h"
+
 void MpvWidget::paintGL()
 {
     mpv_opengl_cb_draw(mpv_gl, defaultFramebufferObject(), width(), -height());
-    emit dApp->refreshPix(QPixmap::fromImage(grabFramebuffer()));
+    if (dApp->m_cuurentMode == IdCopyScreen && dApp->m_currentScreenNum > 1) {
+        emit dApp->refreshPix(QPixmap::fromImage(grabFramebuffer()));
+    }
+
 }
 
 void MpvWidget::swapped()
