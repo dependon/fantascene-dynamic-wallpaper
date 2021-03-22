@@ -72,6 +72,10 @@ void settingWindow::pathChanged(const QString &path)
 {
     m_currentPath = path;
     ui->pathEdit->setText(m_currentPath);
+    QPixmap pix = dApp->getThumbnail(m_currentPath);
+    if (!pix.isNull()) {
+        ui->pixThumbnail->setPixmap(pix);
+    }
 }
 settingWindow::~settingWindow()
 {
@@ -97,7 +101,10 @@ void settingWindow::readSettings()
         ui->comboBox->setCurrentText(m_currentMode);
         setScreenMode(m_currentMode);
     }
-
+    QPixmap pix = dApp->getThumbnail(m_currentPath);
+    if (!pix.isNull()) {
+        ui->pixThumbnail->setPixmap(pix);
+    }
 
     QTimer::singleShot(300, [ = ] {
         ui->widthPY->setText(QString::number(dApp->m_manual.x()));
@@ -168,6 +175,11 @@ void settingWindow::on_pathBtn_clicked()
 {
     QString path = QFileDialog::getOpenFileName();
     ui->pathEdit->setText(path);
+    QPixmap pix = dApp->getThumbnail(path);
+    if (!pix.isNull()) {
+        ui->pixThumbnail->setPixmap(pix);
+    }
+
 }
 
 void settingWindow::on_setBtn_clicked()
