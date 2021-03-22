@@ -94,6 +94,8 @@ int main(int argc, char *argv[])
         mainwindw->titlebar()->setIcon(QIcon(":/tray.ico"));
         mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
+        mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
+
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
         qDebug() << qApp->desktop()->screenNumber();
         qDebug() << qApp->desktop()->primaryScreen();
