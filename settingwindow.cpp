@@ -277,6 +277,7 @@ void settingWindow::on_setManual_clicked()
 
 void settingWindow::quitApp()
 {
+#ifdef QT_NO_DEBUG
     QProcess::execute("killall dde-desktop");
     if (0 != dApp->m_processId) {
         QProcess::execute("kill " + QString::number(dApp->m_processId));
@@ -286,6 +287,7 @@ void settingWindow::quitApp()
     });
     th->start();
     saveSettings();
+#endif
     dApp->exit();
 }
 

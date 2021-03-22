@@ -38,7 +38,9 @@ int main(int argc, char *argv[])
     setlocale(LC_NUMERIC, "C");
 
     if (a.setSingleInstance("deepin-dreamscene-ui")) {
-        bool isShowMainWindow = false;
+        bool isShowMainWindow = true;
+#ifdef QT_NO_DEBUG
+        isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
             if (iRet != 0) {
@@ -69,7 +71,7 @@ int main(int argc, char *argv[])
             qDebug() << "启动失败: " << path + "dde-desktop";
         });
         dApp->m_startDesktop->start();
-
+#endif
         a.setApplicationName(QObject::tr("Deepin DreamScene"));
         a.setApplicationVersion("Version 0.1");
 
