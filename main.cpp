@@ -14,6 +14,7 @@
 #include <QCoreApplication>
 #include <DDesktopEntry>
 #include <QFile>
+#include <DTitlebar>
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
 void cpToTmp()
@@ -87,7 +88,11 @@ int main(int argc, char *argv[])
         if (index == 0 && isShowMainWindow) {
             mainwindw->show();
         }
-        mainwindw->setFixedSize(QSize(640, 400));
+        mainwindw->setFixedSize(QSize(640, 450));
+        mainwindw->setWindowTitle("动态壁纸");
+        mainwindw->setWindowIcon(QIcon(":/tray.ico"));
+        mainwindw->titlebar()->setIcon(QIcon(":/tray.ico"));
+        mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
         qDebug() << qApp->desktop()->screenNumber();

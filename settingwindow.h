@@ -61,6 +61,8 @@ private slots:
 
     void quitApp();
 
+    void on_mainWeb_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
