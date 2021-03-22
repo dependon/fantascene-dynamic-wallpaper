@@ -12,6 +12,7 @@
 #include <QProcess>
 #include <QStandardPaths>
 #include <QTimer>
+#include <QDesktopServices>
 DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
@@ -71,10 +72,12 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 void settingWindow::pathChanged(const QString &path)
 {
     m_currentPath = path;
-    ui->pathEdit->setText(m_currentPath);
-    QPixmap pix = dApp->getThumbnail(m_currentPath);
-    if (!pix.isNull()) {
-        ui->pixThumbnail->setPixmap(pix);
+    if (!m_currentPath.isEmpty()) {
+        ui->pathEdit->setText(m_currentPath);
+        QPixmap pix = dApp->getThumbnail(m_currentPath);
+        if (!pix.isNull()) {
+            ui->pixThumbnail->setPixmap(pix);
+        }
     }
 }
 settingWindow::~settingWindow()
@@ -101,9 +104,12 @@ void settingWindow::readSettings()
         ui->comboBox->setCurrentText(m_currentMode);
         setScreenMode(m_currentMode);
     }
-    QPixmap pix = dApp->getThumbnail(m_currentPath);
-    if (!pix.isNull()) {
-        ui->pixThumbnail->setPixmap(pix);
+    if (!m_currentPath.isEmpty()) {
+        ui->pathEdit->setText(m_currentPath);
+        QPixmap pix = dApp->getThumbnail(m_currentPath);
+        if (!pix.isNull()) {
+            ui->pixThumbnail->setPixmap(pix);
+        }
     }
 
     QTimer::singleShot(300, [ = ] {
@@ -174,12 +180,13 @@ void settingWindow::setScreenMode(const QString &arg)
 void settingWindow::on_pathBtn_clicked()
 {
     QString path = QFileDialog::getOpenFileName();
-    ui->pathEdit->setText(path);
-    QPixmap pix = dApp->getThumbnail(path);
-    if (!pix.isNull()) {
-        ui->pixThumbnail->setPixmap(pix);
+    if (!path.isEmpty()) {
+        ui->pathEdit->setText(path);
+        QPixmap pix = dApp->getThumbnail(path);
+        if (!pix.isNull()) {
+            ui->pixThumbnail->setPixmap(pix);
+        }
     }
-
 }
 
 void settingWindow::on_setBtn_clicked()
@@ -292,3 +299,8 @@ void settingWindow::quitApp()
 }
 
 
+
+void settingWindow::on_mainWeb_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui")));
+}

@@ -24,6 +24,7 @@ Application::Application(int &argc, char **argv)
                                        "bug可以联系mail: liuminghang0821@gmail.com\n"
                                        "nvdia闭源驱动电脑下某些情况需要自定义模式配置尺寸"));
     this->setProductIcon(QIcon(":/tray.ico"));
+    this->setWindowIcon(QIcon(":/tray.ico"));
 
 }
 
