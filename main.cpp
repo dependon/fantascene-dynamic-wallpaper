@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
         if (index == 0 && isShowMainWindow) {
             mainwindw->show();
         }
+        mainwindw->setFixedSize(QSize(640, 400));
 
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
         qDebug() << qApp->desktop()->screenNumber();

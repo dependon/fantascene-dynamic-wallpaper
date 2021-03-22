@@ -21,6 +21,8 @@ public:
     Application(int &argc, char **argv);
     ~Application();
 
+    const QString thumbnailCachePath();
+    const QPixmap getThumbnail(const QString &path);
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
@@ -41,6 +43,7 @@ public:
     QRect m_manual{0, 0, 0, 0};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
+
 
 };
 
