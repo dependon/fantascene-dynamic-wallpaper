@@ -13,6 +13,9 @@
 #include <QStandardPaths>
 #include <QTimer>
 #include <QDesktopServices>
+#include <QDesktopWidget>
+
+#include <listview/historywidget.h>
 DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
@@ -66,7 +69,9 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     });
 
     connect(dApp, &Application::pathChanged, this, &settingWindow::pathChanged);
+    connect(dApp, &Application::setWallPaper, this, &settingWindow::slotWallPaper);
 
+    connect(dApp, &Application::saveSetting, this, &settingWindow::saveSettings);
 
 }
 void settingWindow::pathChanged(const QString &path)
@@ -82,7 +87,10 @@ void settingWindow::pathChanged(const QString &path)
 }
 settingWindow::~settingWindow()
 {
-
+    if (m_history) {
+        m_history->deleteLater();
+        m_history = nullptr;
+    }
     delete ui;
 }
 
@@ -99,6 +107,19 @@ void settingWindow::readSettings()
     int height = settings.value("WallPaper/height").toInt();
     m_currentMode = settings.value("WallPaper/Mode").toString();
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
+    //取值本地地址
+    QString strLocalPath;
+    int localIndex = 1;
+    do {
+        strLocalPath = settings.value("Movie/localPath" + QString::number(localIndex++)).toString();
+        if (nullptr != strLocalPath) {
+            if (!dApp->m_allPath.contains(strLocalPath)) {
+                dApp->m_allPath.push_back(strLocalPath);
+                emit dApp->addPaperView(strLocalPath);
+            }
+        }
+    } while (nullptr != strLocalPath);
+
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
     if (!m_currentMode.isEmpty()) {
         ui->comboBox->setCurrentText(m_currentMode);
@@ -155,6 +176,13 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/width", dApp->m_manual.width());
     settings.setValue("WallPaper/height", dApp->m_manual.height());
     settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
+
+    int indexLocal = 1;
+    //去重
+    dApp->m_allPath = dApp->m_allPath.toSet().toList();
+    for (QString str : dApp->m_allPath) {
+        settings.setValue("Movie/localPath" + QString::number(indexLocal++), str);
+    }
 }
 
 QString settingWindow::getCurrentPath()
@@ -195,7 +223,9 @@ void settingWindow::on_setBtn_clicked()
         m_currentPath = ui->pathEdit->text();
         emit dApp->setPlayPath(ui->pathEdit->text());
         emit dApp->setMpvPlay();
+        dApp->m_allPath.push_back(m_currentPath);
         saveSettings();
+        emit dApp->addPaperView(m_currentPath);
     }
 }
 
@@ -303,4 +333,26 @@ void settingWindow::quitApp()
 void settingWindow::on_mainWeb_clicked()
 {
     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui")));
+}
+
+void settingWindow::on_history_clicked()
+{
+    if (!m_history) {
+        m_history = new historyWidget();
+    }
+    m_history->showNormal();
+    m_history->move(qApp->desktop()->screen()->rect().center() - m_history->rect().center());
+}
+
+void settingWindow::slotWallPaper(const QString &path)
+{
+    if (!path.isEmpty()) {
+        ui->pathEdit->setText(path);
+        m_currentPath = path;
+        emit dApp->setPlayPath(ui->pathEdit->text());
+        emit dApp->setMpvPlay();
+        dApp->m_allPath.push_back(m_currentPath);
+        dApp->m_allPath = dApp->m_allPath.toSet().toList();
+        saveSettings();
+    }
 }

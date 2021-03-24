@@ -36,6 +36,12 @@ Q_SIGNALS:
     void sigupdateGeometry();
     void quitApp();
 
+    void setWallPaper(const QString &path);
+    void saveSetting();
+
+    void addPaperView(const QString &path);
+    void removePaperView(const QString &path);
+
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
@@ -43,6 +49,8 @@ public:
     QRect m_manual{0, 0, 0, 0};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
+
+    QStringList m_allPath;
 
 
 };
