@@ -329,6 +329,13 @@
      </property>
     </spacer>
    </item>
+   <item row="8" column="0">
+    <widget class="QPushButton" name="history">
+     <property name="text">
+      <string>历史及导入壁纸</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
