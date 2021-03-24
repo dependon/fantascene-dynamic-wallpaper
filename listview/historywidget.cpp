@@ -11,7 +11,7 @@ historyWidget::historyWidget(QWidget *parent) :
     ui->setupUi(this);
     m_view = new view();
     ui->verticalLayout->addWidget(m_view);
-    setWindowTitle("历史及导入壁纸");
+    setWindowTitle("历史壁纸");
 }
 
 historyWidget::~historyWidget()

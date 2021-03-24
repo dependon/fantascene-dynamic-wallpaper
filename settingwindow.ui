@@ -332,7 +332,7 @@
    <item row="8" column="0">
     <widget class="QPushButton" name="history">
      <property name="text">
-      <string>历史及导入壁纸</string>
+      <string>历史/导入壁纸</string>
      </property>
     </widget>
    </item>
