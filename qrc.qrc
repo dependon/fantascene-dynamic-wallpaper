@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>tray.ico</file>
+        <file>select_active.svg</file>
     </qresource>
 </RCC>

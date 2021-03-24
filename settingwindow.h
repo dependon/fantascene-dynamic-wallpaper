@@ -6,6 +6,7 @@
 #include <DMainWindow>
 class QSystemTrayIcon;
 class QMenu;
+class historyWidget;
 
 namespace Ui {
 class settingWindow;
@@ -21,7 +22,7 @@ public:
 
     void readSettings();
 
-    void saveSettings();
+
 
     QString getCurrentPath();
 
@@ -32,6 +33,9 @@ public:
 
     void setScreenMode(const QString &arg);
 private slots:
+
+    void saveSettings();
+
     void on_pathBtn_clicked();
 
     void on_setBtn_clicked();
@@ -63,6 +67,10 @@ private slots:
 
     void on_mainWeb_clicked();
 
+    void on_history_clicked();
+
+    void slotWallPaper(const QString &path);
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
@@ -75,6 +83,8 @@ private:
     int m_isAutoStart{0};
     QString m_currentMode;
     int m_voiceVolume{0};
+
+    historyWidget *m_history{nullptr};
 };
 
 #endif // SETTINGWINDOW_H

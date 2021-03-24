@@ -5,13 +5,18 @@ CONFIG += c++11 link_pkgconfig
 PKGCONFIG += xcb-ewmh dtkwidget mpv
 TARGET = deepin-dreamscene-ui
 
+DEFINES += QT_DEPRECATED_WARNINGS
+
 SOURCES += main.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
     settings.cpp \
     settingwindow.cpp \
-    application.cpp
+    application.cpp \
+    listview/delegate.cpp \
+    listview/view.cpp \
+    listview/historywidget.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -20,7 +25,10 @@ HEADERS += \
     settings.h \
     settingwindow.h \
     application.h \
-    data.h
+    data.h \
+    listview/delegate.h \
+    listview/view.h \
+    listview/historywidget.h
 
 RESOURCES += \
     qrc.qrc
@@ -43,4 +51,5 @@ dbus_service.path = /usr/share/dbus-1/services
 INSTALLS += target dbus_service other desktop
 
 FORMS += \
-    settingwindow.ui
+    settingwindow.ui \
+    listview/historywidget.ui
