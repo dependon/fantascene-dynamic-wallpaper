@@ -356,3 +356,19 @@ void settingWindow::slotWallPaper(const QString &path)
         saveSettings();
     }
 }
+
+
+void settingWindow::on_giteeWeb_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://gitee.com/liuminghang/deepin-dreamscene-ui/releases")));
+}
+
+void settingWindow::on_githubWeb_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/releases")));
+}
+
+void settingWindow::on_bugBtn_clicked()
+{
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/issues/new")));
+}

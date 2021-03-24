@@ -71,6 +71,13 @@ private slots:
 
     void slotWallPaper(const QString &path);
 
+
+    void on_giteeWeb_clicked();
+
+    void on_githubWeb_clicked();
+
+    void on_bugBtn_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
