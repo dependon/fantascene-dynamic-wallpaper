@@ -44,13 +44,24 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     setMpvpauseAction->setText("暂停");
     connect(setMpvpauseAction, &QAction::triggered, dApp, &Application::setMpvpause);
 
-    //    QAction *setMpvstopAction=new QAction(m_traymenu);
-    //    setMpvstopAction->setText("停止");
-    //    connect(setMpvstopAction,&QAction::triggered,dApp,&Application::setMpvstop);
+    QAction *setHistoryAction = new QAction(m_traymenu);
+    setHistoryAction->setText("历史壁纸");
+    connect(setHistoryAction, &QAction::triggered, this, &settingWindow::on_history_clicked);
 
+    QAction *setMainViewAction = new QAction(m_traymenu);
+    setMainViewAction->setText("主界面");
+    connect(setMainViewAction, &QAction::triggered, this, [ = ] {
+        if (m_parentMainWindow)
+        {
+            m_parentMainWindow->show();
+            m_parentMainWindow->activateWindow();
+        }
+    });
+
+    m_traymenu->addAction(setMainViewAction);
+    m_traymenu->addAction(setHistoryAction);
     m_traymenu->addAction(setMpvPlayAction);
     m_traymenu->addAction(setMpvpauseAction);
-    //    m_traymenu->addAction(setMpvstopAction);
     m_traymenu->addAction(exitAction);
 
     m_trayIcon = new QSystemTrayIcon(this);
