@@ -82,7 +82,7 @@
      </item>
     </layout>
    </item>
-   <item row="4" column="0">
+   <item row="3" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -95,7 +95,7 @@
      </property>
     </spacer>
    </item>
-   <item row="5" column="0">
+   <item row="4" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="label">
@@ -116,7 +116,7 @@
      </item>
     </layout>
    </item>
-   <item row="7" column="0">
+   <item row="5" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="startBtn">
@@ -196,10 +196,10 @@
      </item>
     </layout>
    </item>
-   <item row="8" column="0">
+   <item row="6" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
@@ -228,16 +228,86 @@
            </item>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <widget class="QCheckBox" name="autoStartBox">
            <property name="text">
             <string>是否自启动</string>
            </property>
           </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>视频比例</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="videoBLCombox">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>默认</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>4:3</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>16:9</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>16:10</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>1.85:1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>2.35:1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>自定义</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLineEdit" name="videoBLEdit">
+             <property name="text">
+              <string>1.33</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="videoBZDY">
+             <property name="text">
+              <string>设置比例</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>
@@ -316,7 +386,7 @@
      </item>
     </layout>
    </item>
-   <item row="9" column="0">
+   <item row="7" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_14">
      <item>
       <widget class="QPushButton" name="mainWeb">
@@ -354,7 +424,7 @@
      </item>
     </layout>
    </item>
-   <item row="10" column="0">
+   <item row="8" column="0">
     <widget class="QPushButton" name="history">
      <property name="text">
       <string>历史/导入壁纸</string>

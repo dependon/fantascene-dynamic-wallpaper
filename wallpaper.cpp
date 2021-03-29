@@ -41,7 +41,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     m_mpv->setProperty("panscan", 1);
     m_mpv->setGeometry(geometry());
 
-
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
     connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
@@ -52,6 +51,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setMpvVolume, this, &Wallpaper::setVolume);
     connect(dApp, &Application::setScreen, this, &Wallpaper::setScreen);
     connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
+    connect(dApp, &Application::setMpvValue, this, &Wallpaper::slotSetMpvValue);
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -228,6 +228,11 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
     } else {
         play();
     }
+}
+
+void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
+{
+    m_mpv->setProperty(key, value);
 }
 
 void Wallpaper::updateGeometry()

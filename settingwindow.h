@@ -78,6 +78,10 @@ private slots:
 
     void on_bugBtn_clicked();
 
+    void on_videoBLCombox_activated(const QString &arg1);
+
+    void on_videoBZDY_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
@@ -92,6 +96,9 @@ private:
     int m_voiceVolume{0};
 
     historyWidget *m_history{nullptr};
+
+    QString m_videoASpectStr{"默认"};
+    double m_videoAspect{1.33};
 };
 
 #endif // SETTINGWINDOW_H
