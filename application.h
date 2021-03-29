@@ -29,6 +29,8 @@ Q_SIGNALS:
     void setMpvpause();
     void setMpvstop();
     void setMpvVolume(const qint32 volume);
+    void setMpvValue(const QString &key, const QString &value);
+
     void setScreen(const int &index);
     void pathChanged(const QString &);
     void refreshPix(const QPixmap &);

@@ -30,6 +30,8 @@ private:
     void registerDesktop();
 private slots:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
+
+    void slotSetMpvValue(const QString &key, const QString &value);
 private:
     QHBoxLayout *mainlayout;
     QString m_currentPath;

@@ -69,6 +69,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     m_trayIcon->setToolTip("双击打开配置界面");
     m_trayIcon->setIcon(QIcon(":/tray.ico"));
     m_trayIcon->show();
+
     //void activated(QSystemTrayIcon::ActivationReason reason);
     connect(m_trayIcon, &QSystemTrayIcon::activated, this, [ = ](QSystemTrayIcon::ActivationReason reason) {
         if (QSystemTrayIcon::Trigger == reason) {
@@ -118,6 +119,11 @@ void settingWindow::readSettings()
     int height = settings.value("WallPaper/height").toInt();
     m_currentMode = settings.value("WallPaper/Mode").toString();
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
+    m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
+    m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
+    ui->videoBLEdit->setText(QString::number(m_videoAspect));
+    ui->videoBLCombox->setCurrentText(m_videoASpectStr);
+
     //取值本地地址
     QString strLocalPath;
     int localIndex = 1;
@@ -167,6 +173,8 @@ void settingWindow::readSettings()
         {
             ui->autoStartBox->setCheckState(Qt::Checked);
         }
+
+        on_videoBLCombox_activated(m_videoASpectStr);
     });
 
 
@@ -187,6 +195,8 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/width", dApp->m_manual.width());
     settings.setValue("WallPaper/height", dApp->m_manual.height());
     settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
+    settings.setValue("WallPaper/videoAspect", m_videoAspect);
+    settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
 
     int indexLocal = 1;
     //去重
@@ -382,4 +392,42 @@ void settingWindow::on_githubWeb_clicked()
 void settingWindow::on_bugBtn_clicked()
 {
     QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/issues/new")));
+}
+
+void settingWindow::on_videoBLCombox_activated(const QString &arg1)
+{
+    ui->videoBLEdit->setVisible(false);
+    ui->videoBZDY->setVisible(false);
+    double value = -1.0;
+    if (arg1.contains("默认")) {
+        value = -1.0;
+    } else if (arg1.contains("4:3")) {
+        value = 1.33333333;
+    } else if (arg1.contains("16:9")) {
+        value = 1.77777777;
+    } else if (arg1.contains("16:10")) {
+        value = 1.6;
+    } else if (arg1.contains("1.85:1")) {
+        value = 1.85;
+    } else if (arg1.contains("2.35:1")) {
+        value = 2.35;
+    } else if (arg1.contains("自定义")) {
+        ui->videoBLEdit->setVisible(true);
+        ui->videoBZDY->setVisible(true);
+        value = ui->videoBLEdit->text().toDouble();
+    }
+    ui->videoBLEdit->setText(QString::number(value));
+    m_videoAspect = value;
+    m_videoASpectStr = arg1;
+    emit dApp->setMpvValue("video-aspect", QString::number(value));
+
+    saveSettings();
+}
+
+void settingWindow::on_videoBZDY_clicked()
+{
+    double value = ui->videoBLEdit->text().toDouble();
+    m_videoAspect = value;
+    emit dApp->setMpvValue("video-aspect", QString::number(value));
+    saveSettings();
 }
