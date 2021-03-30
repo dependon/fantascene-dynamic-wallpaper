@@ -271,6 +271,8 @@ void settingWindow::on_Slider_valueChanged(int value)
 {
     emit dApp->setMpvVolume(value);
     m_voiceVolume = value;
+
+    saveSettings();
 }
 
 void settingWindow::on_startBtn_clicked()
@@ -319,6 +321,7 @@ void settingWindow::on_autoStartBox_stateChanged(int arg1)
 void settingWindow::on_comboBox_activated(const QString &arg1)
 {
     setScreenMode(arg1);
+    saveSettings();
 }
 
 void settingWindow::on_setManual_clicked()
@@ -371,6 +374,10 @@ void settingWindow::slotWallPaper(const QString &path)
         ui->pathEdit->setText(path);
         m_currentPath = path;
         emit dApp->setPlayPath(ui->pathEdit->text());
+        QPixmap pix = dApp->getThumbnail(path);
+        if (!pix.isNull()) {
+            ui->pixThumbnail->setPixmap(pix);
+        }
         emit dApp->setMpvPlay();
         dApp->m_allPath.push_back(m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
