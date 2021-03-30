@@ -334,6 +334,7 @@ void settingWindow::on_setManual_clicked()
     if (ui->comboBox->currentText() == "手动设置尺寸") {
         emit dApp->sigupdateGeometry();
     }
+    saveSettings();
 }
 
 void settingWindow::quitApp()
