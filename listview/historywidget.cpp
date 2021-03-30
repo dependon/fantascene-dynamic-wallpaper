@@ -35,6 +35,7 @@ void historyWidget::on_setWallPaper_clicked()
         QString path = m_view->m_allItemInfo[m_view->currentIndex().row()].path;
         dApp->setWallPaper(path);
     }
+    emit dApp->saveSetting();
 
 }
 
@@ -60,4 +61,5 @@ void historyWidget::on_importBtn_clicked()
             m_view->addPath(path);
         }
     }
+    emit dApp->saveSetting();
 }

@@ -194,6 +194,7 @@ void view::onDoubleClicked(const QModelIndex &index)
         QString str = info.path;
         qDebug() << str;
         dApp->setWallPaper(str);
+        dApp->saveSetting();
     }
 
 }
