@@ -271,8 +271,6 @@ void Wallpaper::updateGeometry()
     qDebug() << this->size();
     m_mpv->move(rect().topLeft());
     m_mpv->setFixedSize(size1);
-    m_mpv->m_isFirst = true;
-    m_mpv->m_size = size1;
 
     lower();
 //    });

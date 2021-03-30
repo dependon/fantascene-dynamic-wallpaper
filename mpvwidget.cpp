@@ -79,7 +79,13 @@ void MpvWidget::initializeGL()
 #include <QDateTime>
 void MpvWidget::paintGL()
 {
-    mpv_opengl_fbo mpfbo{static_cast<int>(defaultFramebufferObject()), m_size.width(), m_size.height(), 0};
+    int iwidth = width();
+    double dwidth = iwidth * devicePixelRatioF();
+    int iheight = height();
+    double dheight = iheight * devicePixelRatioF();
+    int deviceiwidth = dwidth;
+    int deviceiheight = dheight;
+    mpv_opengl_fbo mpfbo{static_cast<int>(defaultFramebufferObject()), deviceiwidth, deviceiheight, 0};
     int flip_y{1};
 
     mpv_render_param params[] = {
@@ -91,16 +97,7 @@ void MpvWidget::paintGL()
     // other API details.
     mpv_render_context_render(mpv_gl, params);
 
-    //第一次矫正窗口大小
-    if (m_isFirst) {
-        m_isFirst = false;
-        QPixmap pix = QPixmap::fromImage(grabFramebuffer());
-        if (pix.size() != m_size) {
-            m_size = pix.size();
-        }
-    }
     if (dApp->m_cuurentMode == IdCopyScreen && dApp->m_currentScreenNum > 1) {
-        m_isFirst = false;
         QPixmap pix = QPixmap::fromImage(grabFramebuffer());
         emit dApp->refreshPix(pix);
     }
