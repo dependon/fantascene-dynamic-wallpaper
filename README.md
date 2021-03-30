@@ -26,11 +26,8 @@
 个人想法有限，能提意见和需求最好
 
 目前已知问题:
-1.在运行中修改分辨率，需要重启程序
-2.nvdia电脑下可能尺寸不对，需要自定义设置（如下图这样）
-![image](./img/1.png)
-自定义配置方案:
-![image](./img/2.png)
+1.在运行中修改分辨率，也许需要重启程序
+
 
 
 github地址:https://github.com/dependon/deepin-dreamscene-ui
