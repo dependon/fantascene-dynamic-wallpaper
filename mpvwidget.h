@@ -18,8 +18,6 @@ public:
     QVariant getProperty(const QString &name) const;
     QSize sizeHint() const { return QSize(480, 270);}
 
-    bool m_isFirst{true};
-    QSize m_size{480, 270};
 Q_SIGNALS:
     void durationChanged(int value);
     void positionChanged(int value);
