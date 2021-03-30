@@ -53,6 +53,30 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
     connect(dApp, &Application::setMpvValue, this, &Wallpaper::slotSetMpvValue);
 
+    QDesktopWidget *desktopwidget = QApplication::desktop();
+    connect(desktopwidget, &QDesktopWidget::resized, this, [ = ] {
+        QTimer::singleShot(1000, [ = ]{
+            updateGeometry();
+        });
+        updateGeometry();
+    });
+    connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
+        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_label2)
+        {
+            m_label2 = new QLabel();
+            layout->addWidget(m_label2);
+        } else
+        {
+            layout->removeWidget(m_label2);
+            m_label2->deleteLater();
+            m_label2 = nullptr;
+        }
+        QTimer::singleShot(1000, [ = ] {
+            updateGeometry();
+        });
+        updateGeometry();
+    });
+
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
                                           SLOT(onSysLockState(QString, QVariantMap, QStringList)));
