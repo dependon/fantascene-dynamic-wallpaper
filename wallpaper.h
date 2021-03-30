@@ -6,7 +6,7 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
-
+class QLabel;
 class Wallpaper : public QWidget
 {
     Q_OBJECT

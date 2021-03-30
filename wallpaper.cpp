@@ -134,6 +134,10 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
     default:
         break;
     }
+    //暂时调用两次,为保证切换顺利
+    QTimer::singleShot(10, [ = ] {
+        updateGeometry();
+    });
     updateGeometry();
 }
 
@@ -234,39 +238,42 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 {
     m_mpv->setProperty(key, value);
 }
-
+#include <QDesktopWidget>
+#include <QGuiApplication>
 void Wallpaper::updateGeometry()
 {
-    QTimer::singleShot(100, this, [ = ] {
-        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-        QRect rec;
-        QSize size1(0, 0);
-        rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-        QRect rec2 = qApp->desktop()->screenGeometry();
-        QRect deskRect = qApp->desktop()->availableGeometry();
-        rec = deskRect;
-        if (dApp->m_cuurentMode == IdCopyScreen)
-        {
-            rec = QRect(0, 0, rec.width(), rec.height());
-            size1.setWidth(rec.width());
-            size1.setHeight(rec.height());
+//    QTimer::singleShot(100, this, [ = ] {
+    dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+    QRect rec;
+    QSize size1(0, 0);
+    rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
+    QRect rec2 = qApp->desktop()->screenGeometry();
+    QRect deskRect = qApp->desktop()->availableGeometry();
+    rec = deskRect;
+    if (dApp->m_cuurentMode == IdCopyScreen) {
+        rec = QRect(0, 0, rec.width(), rec.height());
+        size1.setWidth(rec.width());
+        size1.setHeight(rec.height());
 
-        } else if (dApp->m_cuurentMode == IdlayoutScreen)
-        {
-            rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
-            size1.setWidth(rec.width());
-            size1.setHeight(rec.height());
-        } else  if (dApp->m_cuurentMode == IdManualSet)
-        {
-            rec = dApp->m_manual;
-            size1.setWidth(dApp->m_manual.width());
-            size1.setHeight(dApp->m_manual.height());
+    } else if (dApp->m_cuurentMode == IdlayoutScreen) {
+        rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+        size1.setWidth(rec.width());
+        size1.setHeight(rec.height());
+    } else  if (dApp->m_cuurentMode == IdManualSet) {
+        rec = dApp->m_manual;
+        size1.setWidth(dApp->m_manual.width());
+        size1.setHeight(dApp->m_manual.height());
 
-        }
-        this->setGeometry(rec);
-        m_mpv->move(rect().topLeft());
-        m_mpv->setFixedSize(size1);
+    }
+    this->setGeometry(rec);
 
-        lower();
-    });
+//        m_mpv->setGeometry(rec2);
+    qDebug() << this->size();
+    m_mpv->move(rect().topLeft());
+    m_mpv->setFixedSize(size1);
+    m_mpv->m_isFirst = true;
+    m_mpv->m_size = size1;
+
+    lower();
+//    });
 }
