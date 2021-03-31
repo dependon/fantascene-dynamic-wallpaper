@@ -273,7 +273,7 @@ void Wallpaper::updateGeometry()
     rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
     QRect rec2 = qApp->desktop()->screenGeometry();
     QRect deskRect = qApp->desktop()->availableGeometry();
-    rec = deskRect;
+    rec = rec2;
     if (dApp->m_cuurentMode == IdCopyScreen) {
         rec = QRect(0, 0, rec.width(), rec.height());
         size1.setWidth(rec.width());
