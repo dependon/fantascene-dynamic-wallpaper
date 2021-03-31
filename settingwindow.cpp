@@ -364,9 +364,12 @@ void settingWindow::on_history_clicked()
 {
     if (!m_history) {
         m_history = new historyWidget();
+        m_history->showNormal();
+        m_history->move(qApp->desktop()->screen()->rect().center() - m_history->rect().center());
+    } else {
+        m_history->showNormal();
+        m_history->activateWindow();
     }
-    m_history->showNormal();
-    m_history->move(qApp->desktop()->screen()->rect().center() - m_history->rect().center());
 }
 
 void settingWindow::slotWallPaper(const QString &path)
