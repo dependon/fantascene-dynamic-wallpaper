@@ -4,6 +4,8 @@
 #include "application.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
+
 historyWidget::historyWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::historyWidget)
@@ -31,7 +33,7 @@ void historyWidget::showEvent(QShowEvent *event)
 
 void historyWidget::on_setWallPaper_clicked()
 {
-    if (m_view->m_allItemInfo.size() > m_view->currentIndex().row()) {
+    if (m_view->m_allItemInfo.size() > m_view->currentIndex().row() && m_view->currentIndex().row() >= 0) {
         QString path = m_view->m_allItemInfo[m_view->currentIndex().row()].path;
         dApp->setWallPaper(path);
     }
@@ -41,13 +43,19 @@ void historyWidget::on_setWallPaper_clicked()
 
 void historyWidget::on_delWallPaper_clicked()
 {
-    if (m_view->m_allItemInfo.size() > m_view->currentIndex().row()) {
+    if (m_view->m_allItemInfo.size() > m_view->currentIndex().row() && m_view->currentIndex().row() >= 0) {
         QString path = m_view->m_allItemInfo[m_view->currentIndex().row()].path;
         dApp->m_allPath.removeOne(path);
         m_view->m_allItemInfo.removeAt(m_view->currentIndex().row());
         m_view->refresh();
-        emit dApp->saveSetting();
+    } else if (m_view->currentIndex().row() < 0 && m_view->m_allItemInfo.size() > 0) {
+        if (QMessageBox::Yes == QMessageBox::information(NULL, "删除!!", "是否删除所有历史导入", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
+            m_view->m_allItemInfo.clear();
+            dApp->m_allPath.clear();
+            m_view->refresh();
+        }
     }
+    emit dApp->saveSetting();
 }
 
 void historyWidget::on_importBtn_clicked()

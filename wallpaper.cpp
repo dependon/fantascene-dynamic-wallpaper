@@ -102,6 +102,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         if (index1 == 0)
         {
             QString playPath = "/opt/durapps/deepin-dreamscene-ui/09.mp4";
+            m_currentPath = m_currentPath.replace("file://", "");
             if (!m_currentPath.isEmpty()) {
                 if (QFileInfo(m_currentPath).isFile()) {
                     playPath = m_currentPath;
@@ -247,6 +248,21 @@ void Wallpaper::registerDesktop()
         show();
         lower();
     });
+}
+
+bool Wallpaper::event(QEvent *event)
+{
+    //https://github.com/dependon/deepin-dreamscene-ui/issues/4，临时解决WIN+D的问题
+    if (event->type() == QEvent::WindowActivate) {
+        qDebug() << "Video WindowActivate";
+        QTimer::singleShot(100, this, []() {
+            for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
+                system("xdotool search --class dde-desktop windowactivate");
+            }
+            qDebug() << "Desktop WindowActivate";
+        });
+    }
+    return  QWidget::event(event);
 }
 
 void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)

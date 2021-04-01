@@ -14,6 +14,8 @@
 #include <QTimer>
 #include <QDesktopServices>
 #include <QDesktopWidget>
+#include <QDropEvent>
+#include <QMimeData>
 
 #include <listview/historywidget.h>
 DCORE_USE_NAMESPACE
@@ -29,6 +31,10 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     //    saveSettings();
 
     ui->setupUi(this);
+    /*qApp->*/installEventFilter(this);
+    ui->pathEdit->installEventFilter(this);
+    ui->pathEdit->setAcceptDrops(true);
+    setAcceptDrops(true);
     readSettings();
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
@@ -242,11 +248,16 @@ void settingWindow::on_setBtn_clicked()
 {
     if (ui->pathEdit->text() != nullptr) {
         m_currentPath = ui->pathEdit->text();
+        m_currentPath = m_currentPath.replace("file://", "");
         emit dApp->setPlayPath(ui->pathEdit->text());
         emit dApp->setMpvPlay();
         dApp->m_allPath.push_back(m_currentPath);
         saveSettings();
         emit dApp->addPaperView(m_currentPath);
+        QPixmap pix = dApp->getThumbnail(m_currentPath);
+        if (!pix.isNull()) {
+            ui->pixThumbnail->setPixmap(pix);
+        }
     }
 }
 
@@ -441,4 +452,60 @@ void settingWindow::on_videoBZDY_clicked()
     m_videoAspect = value;
     emit dApp->setMpvValue("video-aspect", QString::number(value));
     saveSettings();
+}
+
+bool settingWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (obj->objectName() == "pathEdit") {
+        if (event->type() == QEvent::DragEnter) {
+            ui->pathEdit->setText("");
+            return true;
+        }
+        event->accept();
+    }
+    if (event->type() == QEvent::Drop) {
+
+    }
+    if (event->type() == QEvent::DragMove) {
+        event->accept();
+    }
+    if (event->type() == QEvent::DragEnter) {
+        QList<QUrl> urls = static_cast<QDropEvent *>(event)->mimeData()->urls();
+        if (urls.isEmpty()) {
+            return false;
+        }
+
+        QStringList paths;
+        for (QUrl url : urls) {
+            const QString path = url.toLocalFile();
+            paths << path;
+        }
+
+        if (!paths.isEmpty()) {
+//            ui->mainImageView->openImage(paths.at(0));
+//            ui->basicImageView->openImage(paths.at(0));
+            ui->pathEdit->setText(paths.at(0));
+            QPixmap pix = dApp->getThumbnail(paths.at(0));
+            if (!pix.isNull()) {
+                ui->pixThumbnail->setPixmap(pix);
+            }
+        }
+
+        event->accept();
+        return true;
+    }
+
+    if (event->type() == QEvent::Resize && this->isVisible()) {
+
+    }
+
+    return false;
+}
+
+void settingWindow::on_pathEdit_textChanged(const QString &arg1)
+{
+    QPixmap pix = dApp->getThumbnail(arg1);
+    if (!pix.isNull()) {
+        ui->pixThumbnail->setPixmap(pix);
+    }
 }

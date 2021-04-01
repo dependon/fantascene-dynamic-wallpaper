@@ -28,6 +28,7 @@ public slots:
     void updateGeometry();
 private:
     void registerDesktop();
+    bool event(QEvent *event) override;
 private slots:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
 
