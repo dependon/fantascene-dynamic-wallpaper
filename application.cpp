@@ -62,7 +62,12 @@ const QPixmap Application::getThumbnail(const QString &path)
     QMutexLocker locker(&mutex);
 
     const QString cacheP = thumbnailCachePath();
-    const QUrl url = QUrl::fromLocalFile(path);
+    QUrl url;
+    if (!path.contains("file://")) {
+        url = QUrl::fromLocalFile(path);
+    } else {
+        url = QUrl(path);
+    }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
 //    const QString failEncodePath = cacheP + "/fail/" + md5s + ".png";

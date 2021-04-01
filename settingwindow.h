@@ -32,6 +32,8 @@ public:
 
 
     void setScreenMode(const QString &arg);
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
 private slots:
 
     void saveSettings();
@@ -81,6 +83,8 @@ private slots:
     void on_videoBLCombox_activated(const QString &arg1);
 
     void on_videoBZDY_clicked();
+
+    void on_pathEdit_textChanged(const QString &arg1);
 
 private:
     Ui::settingWindow *ui;
