@@ -14,15 +14,20 @@ const QString toMd5(const QByteArray &data)
 Application::Application(int &argc, char **argv)
     : DApplication(argc, argv)
 {
+    this->setApplicationVersion("Version 0.1.4");
     this->setApplicationName(tr("deepin-dreamscene-ui"));
     this->setApplicationDisplayName(tr("deepin-dreamscene-ui"));
-    this->setApplicationDescription(tr("deepin-dreamscene-ui\n"
-                                       "基于qt5.11.3版本\n"
-                                       "基于justforlxz的渲染方法开发\n"
-                                       "github地址:https://github.com/dependon/deepin-dreamscene-ui/\n"
-                                       "gitee地址:https://gitee.com/liuminghang/deepin-dreamscene-ui\n"
-                                       "bug可以联系mail: liuminghang0821@gmail.com\n"
-                                       "nvdia闭源驱动电脑下某些情况需要自定义模式配置尺寸"));
+    this->setApplicationDescription(
+                    QObject::tr(
+                        "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
+                        "<a href='https://github.com/dependon/deepin-dreamscene-ui/'>github/deepin-dreamscene-ui</a><br/>"
+                        "<a href='https://gitee.com/liuminghang/deepin-dreamscene-ui/'>gitee/deepin-dreamscene-ui</a><br/>"
+                        "<span style='font-size:12pt;'>qt5.15,deepinv20.2</span><br/><br/>"
+                        "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
+                        "Published under GPL V3"
+                        )
+                    );
+
     this->setProductIcon(QIcon(":/tray.ico"));
     this->setWindowIcon(QIcon(":/tray.ico"));
 
