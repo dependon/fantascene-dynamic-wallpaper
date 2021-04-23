@@ -17,7 +17,12 @@
 #include <QDropEvent>
 #include <QMimeData>
 
-#include <listview/historywidget.h>
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+
+#include "listview/historywidget.h"
+
+
 DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
@@ -44,11 +49,23 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
     setMpvPlayAction->setText("播放");
-    connect(setMpvPlayAction, &QAction::triggered, dApp, &Application::setMpvPlay);
+    connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
+        emit dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+        dApp->m_x11WindowFuscreen.clear();
+    });
 
+    QAction *setScreenshotAction = new QAction(m_traymenu);
+    setScreenshotAction->setText("截图");
+    connect(setScreenshotAction, &QAction::triggered, this, [ = ] {
+        emit dApp->sigscreenshot();
+    });
     QAction *setMpvpauseAction = new QAction(m_traymenu);
     setMpvpauseAction->setText("暂停");
-    connect(setMpvpauseAction, &QAction::triggered, dApp, &Application::setMpvpause);
+    connect(setMpvpauseAction, &QAction::triggered, this, [ = ] {
+        emit dApp->setMpvpause();
+        dApp->m_isNoMpvPause = false;
+    });
 
     QAction *setHistoryAction = new QAction(m_traymenu);
     setHistoryAction->setText("历史壁纸");
@@ -68,6 +85,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     m_traymenu->addAction(setHistoryAction);
     m_traymenu->addAction(setMpvPlayAction);
     m_traymenu->addAction(setMpvpauseAction);
+    m_traymenu->addAction(setScreenshotAction);
     m_traymenu->addAction(exitAction);
 
     m_trayIcon = new QSystemTrayIcon(this);
@@ -90,6 +108,12 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(dApp, &Application::setWallPaper, this, &settingWindow::slotWallPaper);
 
     connect(dApp, &Application::saveSetting, this, &settingWindow::saveSettings);
+
+    ui->bugBtn->hide();
+    ui->mainWeb->hide();
+    ui->githubWeb->hide();
+    ui->giteeWeb->hide();
+    ui->checkBox->hide();
 
 }
 void settingWindow::pathChanged(const QString &path)
@@ -127,6 +151,7 @@ void settingWindow::readSettings()
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
     m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
+    m_isAutoMode = settings.value("WallPaper/videoAutoMode").toInt();;
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
 
@@ -181,9 +206,17 @@ void settingWindow::readSettings()
         }
 
         on_videoBLCombox_activated(m_videoASpectStr);
+
+
     });
+    QTimer::singleShot(2000, [ = ] {
+        if (m_isAutoMode == 1)
+        {
+            ui->checkBox->setCheckState(Qt::Checked);
+        }
 
-
+        on_checkBox_stateChanged(m_isAutoMode);
+    });
 
     qDebug() << "x";
 }
@@ -203,6 +236,7 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
     settings.setValue("WallPaper/videoAspect", m_videoAspect);
     settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
+    settings.setValue("WallPaper/videoAutoMode", m_isAutoMode);
 
     int indexLocal = 1;
     //去重
@@ -251,6 +285,7 @@ void settingWindow::on_setBtn_clicked()
         m_currentPath = m_currentPath.replace("file://", "");
         emit dApp->setPlayPath(ui->pathEdit->text());
         emit dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
         dApp->m_allPath.push_back(m_currentPath);
         saveSettings();
         emit dApp->addPaperView(m_currentPath);
@@ -271,11 +306,13 @@ void settingWindow::on_cancelBtn_clicked()
 void settingWindow::on_pauseBtn_clicked()
 {
     emit dApp->setMpvpause();
+    dApp->m_isNoMpvPause = false;
 }
 
 void settingWindow::on_stopBtn_clicked()
 {
     emit dApp->setMpvstop();
+    dApp->m_isNoMpvPause = false;
 }
 
 void settingWindow::on_Slider_valueChanged(int value)
@@ -289,6 +326,8 @@ void settingWindow::on_Slider_valueChanged(int value)
 void settingWindow::on_startBtn_clicked()
 {
     emit dApp->setMpvPlay();
+    dApp->m_isNoMpvPause = true;
+    dApp->m_x11WindowFuscreen.clear();
 }
 
 void settingWindow::on_startScreen_clicked()
@@ -360,7 +399,17 @@ void settingWindow::quitApp()
     });
     th->start();
     saveSettings();
+#else
+    //dbus关闭壁纸透明
+    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+    saveSettings();
 #endif
+
+    m_stopx11Thread = true;
+    if (m_x11thread) {
+//        m_x11thread->wait();
+        m_x11thread->terminate();
+    }
     dApp->exit();
 }
 
@@ -394,6 +443,7 @@ void settingWindow::slotWallPaper(const QString &path)
             ui->pixThumbnail->setPixmap(pix);
         }
         emit dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
         dApp->m_allPath.push_back(m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
@@ -508,4 +558,133 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
     if (!pix.isNull()) {
         ui->pixThumbnail->setPixmap(pix);
     }
+}
+#include "setdesktop.h"
+
+void settingWindow::on_checkBox_stateChanged(int arg1)
+{
+    //问题很多
+    return;
+    if (arg1 == 0) {
+        m_isAutoMode = 0;
+        m_stopx11Thread = true;
+        if (m_x11thread) {
+//            m_x11thread->wait();
+            m_x11thread->terminate();
+            m_x11thread = nullptr;
+        }
+        dApp->m_x11WindowFuscreen.clear();
+    } else {
+        m_stopx11Thread = false;
+        m_isAutoMode = 1;
+        if (!m_x11thread) {
+            QTimer::singleShot(0, [ = ] {
+                m_x11thread = QThread::create([ = ]()
+                {
+                    Display *display;
+                    Window rootwin;
+                    display = XOpenDisplay(NULL);
+                    rootwin = DefaultRootWindow(display);
+                    XSelectInput(display, rootwin, ButtonReleaseMask |EnterWindowMask |LeaveWindowMask |PointerMotionHintMask | KeymapStateMask | ExposureMask | VisibilityChangeMask |StructureNotifyMask |ResizeRedirectMask|SubstructureNotifyMask |PropertyChangeMask |FocusChangeMask ); /*事件可以参考x.h*/
+                    XEvent event;
+                    while (!m_stopx11Thread) {
+                        XNextEvent(display, &event);
+                        qDebug()<<event.type;
+                        int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
+                        int screenheight = qApp->desktop()->screenGeometry().height() - 150;
+                        XConfigureEvent *configureEvent = (XConfigureEvent *)&event;
+                        if (configureEvent) {
+                            if (DestroyNotify!=event.type && UnmapNotify!=event.type &&0 >= configureEvent->x && 0 >= configureEvent->y) {
+                                if (!dApp->m_screenWid.contains(configureEvent->window) && configureEvent->width > screenwidth && configureEvent->height > screenheight) {
+
+                                    Drawable   d     /* d */;
+                                    Window     w /* root_return */;
+                                    int      x = 0   /* x_return */;
+                                    int      y = 0  /* y_return */;
+                                    unsigned int width = 0   /* width_return */;
+                                    unsigned int height = 0   /* height_return */;
+                                    unsigned int border_width = 0  /* border_width_return */;
+                                    unsigned int  depin = 0/* depth_return */;
+                                    XGetGeometry(display,  configureEvent->window, &w, &x, &y, &width, &height, &border_width, &depin);
+
+//                                    XWindowAttributes bute;
+
+//                                    XGetWindowAttributes(display,  configureEvent->window,&bute);
+//                                    a.search(configureEvent->window);
+                                    if (depin != 32 && depin != 0) {
+//                                        qDebug() << depin;
+                                        dApp->m_x11WindowFuscreen.insert(configureEvent->window, true);
+                                        dApp->setMpvpause();
+                                        continue;
+                                    }
+
+                                }
+
+                            }
+                            if (/*dApp->m_x11WindowFuscreen.contains(configureEvent->window) || */dApp->m_screenWid.contains(configureEvent->window)) {
+                                dApp->m_x11WindowFuscreen.remove(configureEvent->window);
+                            }
+                        }
+
+                        if(DestroyNotify==event.type || UnmapNotify==event.type){
+                            if(configureEvent){
+                                qDebug()<<"remove :"<<configureEvent->window;
+                                WindowsMatchingPid aa(display,configureEvent->window,1111);
+                                list <Window> list =aa.allresult();
+                                qDebug()<<list.size();
+                                dApp->m_x11WindowFuscreen.remove(configureEvent->window);
+                            }
+                        }
+                        if(PropertyNotify==event.type)
+                        {
+                            XPropertyEvent *Event = (XPropertyEvent *)&event;
+                            qDebug()<<"XPropertyEvent"<<Event->state;
+//                            if(Event->state==0){
+//                                dApp->m_x11WindowFuscreen.remove(Event->window);
+//                            }
+                        }
+                        QTimer::singleShot(50,[=]{
+
+                        });
+                        for (auto window : dApp->m_x11WindowFuscreen.keys()) {
+                            Drawable   d     /* d */;
+                            Window     w /* root_return */;
+                            int      x = 0   /* x_return */;
+                            int      y = 0  /* y_return */;
+                            unsigned int width = 0   /* width_return */;
+                            unsigned int height = 0   /* height_return */;
+                            unsigned int border_width = 0  /* border_width_return */;
+                            unsigned int  depin = 0/* depth_return */;
+
+                            XGetGeometry(display,  window, &w, &x, &y, &width, &height, &border_width, &depin);
+
+                            XWindowAttributes bute;
+
+                            XGetWindowAttributes(display,  window,&bute);
+
+                            WindowsMatchingPid aa(display,window,1111);
+
+                            qDebug() << x << y << width << height << border_width << depin;
+                            int iWidth = width;
+                            int iHeight = height;
+                            qDebug()<<window;
+                            if ((x > 0 && y > 0 && x < (qApp->desktop()->screenGeometry().width() - 10))
+                                    || (y > 0 && x > qApp->desktop()->screenGeometry().width())
+                                    || (iWidth < screenwidth || iHeight < screenheight) || depin == 32 ||bute.all_event_masks>0) {
+                                dApp->m_x11WindowFuscreen.remove(window);
+                            }
+                        }
+                        qDebug() << dApp->m_x11WindowFuscreen.count();
+                        if (dApp->m_x11WindowFuscreen.count() == 0 && dApp->m_isNoMpvPause) {
+                            dApp->setMpvPlay();
+                        }
+                        continue;
+                    }
+
+                });
+                m_x11thread->start();
+            });
+        }
+    }
+    saveSettings();
 }

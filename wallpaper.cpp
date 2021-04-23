@@ -248,6 +248,9 @@ void Wallpaper::registerDesktop()
         show();
         lower();
     });
+    if (!dApp->m_screenWid.contains(winId())) {
+        dApp->m_screenWid.push_back(winId());
+    }
 }
 
 bool Wallpaper::event(QEvent *event)
@@ -268,9 +271,11 @@ bool Wallpaper::event(QEvent *event)
 void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 {
     if (key2value.value("Locked").value<bool>()) {
+        dApp->m_isNoMpvPause = false;
         pause();
     } else {
         play();
+        dApp->m_isNoMpvPause = true;
     }
 }
 
@@ -313,5 +318,12 @@ void Wallpaper::updateGeometry()
     m_mpv->setFixedSize(size1);
 
     lower();
+
+    QTimer::singleShot(100, this, []() {
+        for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
+            system("xdotool search --class dde-desktop windowactivate");
+        }
+        qDebug() << "Desktop WindowActivate";
+    });
 //    });
 }

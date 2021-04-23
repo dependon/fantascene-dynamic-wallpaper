@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
+    <width>695</width>
     <height>426</height>
    </rect>
   </property>
@@ -232,6 +232,19 @@
           <widget class="QCheckBox" name="autoStartBox">
            <property name="text">
             <string>是否自启动</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox">
+           <property name="text">
+            <string>智能模式</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
