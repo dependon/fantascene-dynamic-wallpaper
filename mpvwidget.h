@@ -11,7 +11,7 @@ class MpvWidget Q_DECL_FINAL: public QOpenGLWidget
 {
     Q_OBJECT
 public:
-    MpvWidget(QWidget *parent = 0, Qt::WindowFlags f = 0);
+    MpvWidget(QWidget *parent = 0, Qt::WindowFlags f = nullptr);
     ~MpvWidget();
     void command(const QVariant &params);
     void setProperty(const QString &name, const QVariant &value);
@@ -33,7 +33,7 @@ private:
 
     mpv_handle *mpv;
     mpv_render_context *mpv_gl;
-
+    bool m_bScrrenShot{false};
 
 
 };

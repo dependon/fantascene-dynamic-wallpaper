@@ -9,8 +9,10 @@
 #include <QThread>
 #include <QProcess>
 #include <QRect>
+#include <QMutex>
 
 #include "data.h"
+
 DWIDGET_USE_NAMESPACE
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
@@ -23,6 +25,8 @@ public:
 
     const QString thumbnailCachePath();
     const QPixmap getThumbnail(const QString &path);
+
+    void setDesktopTransparent();
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
@@ -44,6 +48,8 @@ Q_SIGNALS:
     void addPaperView(const QString &path);
     void removePaperView(const QString &path);
 
+    void sigscreenshot();
+
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
@@ -53,8 +59,11 @@ public:
     int m_currentScreenNum{0};
 
     QStringList m_allPath;
+    QMutex mutex;
 
-
+    QMap <unsigned long, bool>m_x11WindowFuscreen;
+    QVector <unsigned long> m_screenWid;
+    bool m_isNoMpvPause{true};
 };
 
 #endif // APPLICATION_H

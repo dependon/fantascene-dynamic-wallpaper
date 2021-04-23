@@ -73,7 +73,8 @@ int main(int argc, char *argv[])
         });
         dApp->m_startDesktop->start();
 #endif
-
+        a.setApplicationName(QObject::tr("Deepin DreamScene"));
+        a.setApplicationVersion("Version 0.1");
 
         DMainWindow *mainwindw = new DMainWindow();
         settingWindow *window = new settingWindow(mainwindw, mainwindw);
@@ -118,6 +119,8 @@ int main(int argc, char *argv[])
                                  QDBusConnection::sessionBus());
             iface.asyncCall("Register", QString(cookie));
         }
+
+        dApp->setDesktopTransparent();
     } else {
         return 0;
     }
