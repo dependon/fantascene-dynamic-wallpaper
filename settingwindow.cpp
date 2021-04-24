@@ -81,11 +81,18 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
         }
     });
 
+    QAction *maingithub = new QAction(m_traymenu);
+    maingithub->setText("github");
+    connect(maingithub, &QAction::triggered, this, [ = ] {
+        QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/")));
+    });
+
     m_traymenu->addAction(setMainViewAction);
     m_traymenu->addAction(setHistoryAction);
     m_traymenu->addAction(setMpvPlayAction);
     m_traymenu->addAction(setMpvpauseAction);
     m_traymenu->addAction(setScreenshotAction);
+    m_traymenu->addAction(maingithub);
     m_traymenu->addAction(exitAction);
 
     m_trayIcon = new QSystemTrayIcon(this);
