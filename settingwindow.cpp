@@ -28,6 +28,9 @@ DCORE_USE_NAMESPACE
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
                               "/.config/deepin-dreamscene-ui/config.ini";
+
+const QString PIC_DIR_PATH =   QDir::homePath() +
+                               "/.config/deepin-dreamscene-ui/.thumbnail";
 settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
@@ -592,16 +595,16 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                     Window rootwin;
                     display = XOpenDisplay(NULL);
                     rootwin = DefaultRootWindow(display);
-                    XSelectInput(display, rootwin, ButtonReleaseMask |EnterWindowMask |LeaveWindowMask |PointerMotionHintMask | KeymapStateMask | ExposureMask | VisibilityChangeMask |StructureNotifyMask |ResizeRedirectMask|SubstructureNotifyMask |PropertyChangeMask |FocusChangeMask ); /*事件可以参考x.h*/
+                    XSelectInput(display, rootwin, ButtonReleaseMask | EnterWindowMask | LeaveWindowMask | PointerMotionHintMask | KeymapStateMask | ExposureMask | VisibilityChangeMask | StructureNotifyMask | ResizeRedirectMask | SubstructureNotifyMask | PropertyChangeMask | FocusChangeMask); /*事件可以参考x.h*/
                     XEvent event;
                     while (!m_stopx11Thread) {
                         XNextEvent(display, &event);
-                        qDebug()<<event.type;
+                        qDebug() << event.type;
                         int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
                         int screenheight = qApp->desktop()->screenGeometry().height() - 150;
                         XConfigureEvent *configureEvent = (XConfigureEvent *)&event;
                         if (configureEvent) {
-                            if (DestroyNotify!=event.type && UnmapNotify!=event.type &&0 >= configureEvent->x && 0 >= configureEvent->y) {
+                            if (DestroyNotify != event.type && UnmapNotify != event.type && 0 >= configureEvent->x && 0 >= configureEvent->y) {
                                 if (!dApp->m_screenWid.contains(configureEvent->window) && configureEvent->width > screenwidth && configureEvent->height > screenheight) {
 
                                     Drawable   d     /* d */;
@@ -633,24 +636,23 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                             }
                         }
 
-                        if(DestroyNotify==event.type || UnmapNotify==event.type){
-                            if(configureEvent){
-                                qDebug()<<"remove :"<<configureEvent->window;
-                                WindowsMatchingPid aa(display,configureEvent->window,1111);
-                                list <Window> list =aa.allresult();
-                                qDebug()<<list.size();
+                        if (DestroyNotify == event.type || UnmapNotify == event.type) {
+                            if (configureEvent) {
+                                qDebug() << "remove :" << configureEvent->window;
+                                WindowsMatchingPid aa(display, configureEvent->window, 1111);
+                                list <Window> list = aa.allresult();
+                                qDebug() << list.size();
                                 dApp->m_x11WindowFuscreen.remove(configureEvent->window);
                             }
                         }
-                        if(PropertyNotify==event.type)
-                        {
+                        if (PropertyNotify == event.type) {
                             XPropertyEvent *Event = (XPropertyEvent *)&event;
-                            qDebug()<<"XPropertyEvent"<<Event->state;
+                            qDebug() << "XPropertyEvent" << Event->state;
 //                            if(Event->state==0){
 //                                dApp->m_x11WindowFuscreen.remove(Event->window);
 //                            }
                         }
-                        QTimer::singleShot(50,[=]{
+                        QTimer::singleShot(50, [ = ] {
 
                         });
                         for (auto window : dApp->m_x11WindowFuscreen.keys()) {
@@ -667,17 +669,17 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 
                             XWindowAttributes bute;
 
-                            XGetWindowAttributes(display,  window,&bute);
+                            XGetWindowAttributes(display,  window, &bute);
 
-                            WindowsMatchingPid aa(display,window,1111);
+                            WindowsMatchingPid aa(display, window, 1111);
 
                             qDebug() << x << y << width << height << border_width << depin;
                             int iWidth = width;
                             int iHeight = height;
-                            qDebug()<<window;
+                            qDebug() << window;
                             if ((x > 0 && y > 0 && x < (qApp->desktop()->screenGeometry().width() - 10))
                                     || (y > 0 && x > qApp->desktop()->screenGeometry().width())
-                                    || (iWidth < screenwidth || iHeight < screenheight) || depin == 32 ||bute.all_event_masks>0) {
+                                    || (iWidth < screenwidth || iHeight < screenheight) || depin == 32 || bute.all_event_masks > 0) {
                                 dApp->m_x11WindowFuscreen.remove(window);
                             }
                         }
