@@ -13,6 +13,7 @@
 #include <QDir>
 #include <QPixmap>
 #include <QScrollBar>
+#include <QMessageBox>
 #include "application.h"
 
 const int ITEM_SPACING = 4;
@@ -193,8 +194,28 @@ void view::onDoubleClicked(const QModelIndex &index)
         ItemInfo info = m_allItemInfo.at(i);
         QString str = info.path;
         qDebug() << str;
-        dApp->setWallPaper(str);
-        dApp->saveSetting();
+        QFileInfo fileInfo(str);
+        if (fileInfo.isFile()) {
+            dApp->setWallPaper(str);
+            dApp->saveSetting();
+        } else {
+            if (QMessageBox::Yes == QMessageBox::information(NULL, "删除!!", "文件不存在,是否删除", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
+                if (m_allItemInfo.size() > currentIndex().row() && currentIndex().row() >= 0) {
+                    QString path = m_allItemInfo[currentIndex().row()].path;
+                    dApp->m_allPath.removeOne(path);
+                    m_allItemInfo.removeAt(currentIndex().row());
+                    refresh();
+                } else if (currentIndex().row() < 0 && m_allItemInfo.size() > 0) {
+                    if (QMessageBox::Yes == QMessageBox::information(NULL, "删除!!", "是否删除所有历史导入", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
+                        m_allItemInfo.clear();
+                        dApp->m_allPath.clear();
+                        refresh();
+                    }
+                }
+                emit dApp->saveSetting();
+            }
+        }
+
     }
 
 }
