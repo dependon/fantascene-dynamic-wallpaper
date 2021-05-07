@@ -10,10 +10,14 @@
 #include <QProcess>
 #include <QRect>
 #include <QMutex>
+#include <QDir>
 
 #include "data.h"
 
 DWIDGET_USE_NAMESPACE
+
+const QString PIC_DIR_PATH =   QDir::homePath() +
+                               "/.config/deepin-dreamscene-ui/.thumbnail";
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
 class Application : public DApplication
@@ -27,6 +31,8 @@ public:
     const QPixmap getThumbnail(const QString &path);
 
     void setDesktopTransparent();
+
+    bool setThumbnail(const QString &path);
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();

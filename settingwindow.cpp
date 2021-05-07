@@ -29,8 +29,7 @@ DCORE_USE_NAMESPACE
 const QString CONFIG_PATH =   QDir::homePath() +
                               "/.config/deepin-dreamscene-ui/config.ini";
 
-const QString PIC_DIR_PATH =   QDir::homePath() +
-                               "/.config/deepin-dreamscene-ui/.thumbnail";
+
 settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
@@ -148,6 +147,7 @@ settingWindow::~settingWindow()
 
 void settingWindow::readSettings()
 {
+
     QSettings settings(CONFIG_PATH, QSettings::IniFormat);
 
     m_currentPath = settings.value("WallPaper/CurrentPath").toString();

@@ -42,9 +42,10 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     mpv_observe_property(mpv, 0, "time-pos", MPV_FORMAT_DOUBLE);
     mpv_set_wakeup_callback(mpv, wakeup, this);
 
-    connect(dApp,&Application::sigscreenshot,this,[=]{
-        m_bScrrenShot=true;
+    connect(dApp, &Application::sigscreenshot, this, [ = ] {
+        m_bScrrenShot = true;
     });
+
 }
 
 MpvWidget::~MpvWidget()
@@ -104,12 +105,12 @@ void MpvWidget::paintGL()
     // other API details.
     mpv_render_context_render(mpv_gl, params);
 
-    if(m_bScrrenShot){
-        m_bScrrenShot=false;
-         QPixmap pix = QPixmap::fromImage(grabFramebuffer());
-         QDateTime::currentMSecsSinceEpoch();
-         QString path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) +"/"+ QString::number(QDateTime::currentMSecsSinceEpoch()) +".png";
-         pix.save(path);
+    if (m_bScrrenShot) {
+        m_bScrrenShot = false;
+        QPixmap pix = QPixmap::fromImage(grabFramebuffer());
+        QDateTime::currentMSecsSinceEpoch();
+        QString path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
+        pix.save(path);
     }
     if (dApp->m_cuurentMode == IdCopyScreen && dApp->m_currentScreenNum > 1) {
         QPixmap pix = QPixmap::fromImage(grabFramebuffer());

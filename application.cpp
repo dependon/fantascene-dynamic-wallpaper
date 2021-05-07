@@ -80,18 +80,20 @@ Application::Application(int &argc, char **argv)
     this->setApplicationName(tr("deepin-dreamscene-ui"));
     this->setApplicationDisplayName(tr("deepin-dreamscene-ui"));
     this->setApplicationDescription(
-                    QObject::tr(
-                        "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
-                        "<a href='https://github.com/dependon/deepin-dreamscene-ui/'>github/deepin-dreamscene-ui</a><br/>"
-                        "<a href='https://gitee.com/liuminghang/deepin-dreamscene-ui/'>gitee/deepin-dreamscene-ui</a><br/>"
-                        "<span style='font-size:12pt;'>qt5.15,deepinv20.2</span><br/><br/>"
-                        "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
-                        "Published under GPL V3"
-                        )
-                    );
+        QObject::tr(
+            "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
+            "<a href='https://github.com/dependon/deepin-dreamscene-ui/'>github/deepin-dreamscene-ui</a><br/>"
+            "<a href='https://gitee.com/liuminghang/deepin-dreamscene-ui/'>gitee/deepin-dreamscene-ui</a><br/>"
+            "<span style='font-size:12pt;'>qt5.15,deepinv20.2</span><br/><br/>"
+            "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
+            "Published under GPL V3"
+        )
+    );
 
     this->setProductIcon(QIcon(":/tray.ico"));
     this->setWindowIcon(QIcon(":/tray.ico"));
+
+
 
 }
 
@@ -123,9 +125,31 @@ const QString Application::thumbnailCachePath()
     return thumbCacheP;
 }
 
+bool Application::setThumbnail(const QString &path)
+{
+
+    QUrl url;
+    if (!path.contains("file://")) {
+        url = QUrl::fromLocalFile(path);
+    } else {
+        url = QUrl(path);
+    }
+    const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
+    const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
+    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath;
+    QProcess::execute(commod);
+}
+
 const QPixmap Application::getThumbnail(const QString &path)
 {
     QMutexLocker locker(&mutex);
+    QFileInfo info(path);
+    //mkdir PIC_DIR_PATH
+    QDir dir(PIC_DIR_PATH);
+    if (!dir.exists()) {
+        QDir dir;
+        dir.mkdir(PIC_DIR_PATH);
+    }
 
     const QString cacheP = thumbnailCachePath();
     QUrl url;
@@ -137,12 +161,30 @@ const QPixmap Application::getThumbnail(const QString &path)
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
 //    const QString failEncodePath = cacheP + "/fail/" + md5s + ".png";
-    if (QFileInfo(encodePath).exists()) {
-        return QPixmap(encodePath);
-    } else { /*if (QFileInfo(failEncodePath).exists()) */
-        qDebug() << "Fail-thumbnail exist, won't regenerate: " ;
-        return QPixmap();
+
+    const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
+    if (QFileInfo(thumPath).exists()) {
+        QPixmap  a(thumPath);
+        if (!a.isNull()) {
+            return  a;
+        }
     }
+    if (QFileInfo(encodePath).exists()) {
+        QPixmap  a(encodePath);
+        if (!a.isNull()) {
+            a.save(thumPath);
+            return  a;
+        }
+
+    }
+    if (QFileInfo(path).exists()) {
+        qDebug() << "Fail-thumbnail exist, won't regenerate: " ;
+        setThumbnail(path);
+        QPixmap  a(thumPath);
+        return a;
+    }
+
+    return QPixmap();
 }
 
 void Application::setDesktopTransparent()
