@@ -88,6 +88,7 @@ private slots:
 
     void on_checkBox_stateChanged(int arg1);
 
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
@@ -111,6 +112,7 @@ private:
 
 
     int m_isAutoMode{0};
+
 };
 
 #endif // SETTINGWINDOW_H

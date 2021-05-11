@@ -122,7 +122,9 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     ui->mainWeb->hide();
     ui->githubWeb->hide();
     ui->giteeWeb->hide();
-    ui->checkBox->hide();
+//    ui->checkBox->hide();
+
+
 
 }
 void settingWindow::pathChanged(const QString &path)
@@ -330,7 +332,7 @@ void settingWindow::on_Slider_valueChanged(int value)
     emit dApp->setMpvVolume(value);
     m_voiceVolume = value;
 
-    saveSettings();
+//    saveSettings();
 }
 
 void settingWindow::on_startBtn_clicked()
@@ -411,14 +413,18 @@ void settingWindow::quitApp()
     saveSettings();
 #else
     //dbus关闭壁纸透明
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+    QThread *th2 = QThread::create([ = ]() {
+        system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+    });
+    th2->start();
+
     saveSettings();
 #endif
 
     m_stopx11Thread = true;
     if (m_x11thread) {
-//        m_x11thread->wait();
-        m_x11thread->terminate();
+        m_x11thread->wait();
+        m_x11thread->quit();
     }
     dApp->exit();
 }
@@ -570,130 +576,71 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
     }
 }
 #include "setdesktop.h"
-
+#include <DWindowManagerHelper>
+#include <DForeignWindow>
+#include <QMutexLocker>
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
-    //问题很多
-    return;
+//问题很多
+//    return;
     if (arg1 == 0) {
         m_isAutoMode = 0;
         m_stopx11Thread = true;
         if (m_x11thread) {
 //            m_x11thread->wait();
-            m_x11thread->terminate();
+//            m_x11thread->quit();
+//            m_x11thread->terminate();
             m_x11thread = nullptr;
         }
         dApp->m_x11WindowFuscreen.clear();
+        if (dApp->m_isNoMpvPause) {
+            dApp->setMpvPlay();
+        }
     } else {
         m_stopx11Thread = false;
         m_isAutoMode = 1;
         if (!m_x11thread) {
-            QTimer::singleShot(0, [ = ] {
-                m_x11thread = QThread::create([ = ]()
-                {
-                    Display *display;
-                    Window rootwin;
-                    display = XOpenDisplay(NULL);
-                    rootwin = DefaultRootWindow(display);
-                    XSelectInput(display, rootwin, ButtonReleaseMask | EnterWindowMask | LeaveWindowMask | PointerMotionHintMask | KeymapStateMask | ExposureMask | VisibilityChangeMask | StructureNotifyMask | ResizeRedirectMask | SubstructureNotifyMask | PropertyChangeMask | FocusChangeMask); /*事件可以参考x.h*/
-                    XEvent event;
-                    while (!m_stopx11Thread) {
-                        XNextEvent(display, &event);
-                        qDebug() << event.type;
-                        int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
-                        int screenheight = qApp->desktop()->screenGeometry().height() - 150;
-                        XConfigureEvent *configureEvent = (XConfigureEvent *)&event;
-                        if (configureEvent) {
-                            if (DestroyNotify != event.type && UnmapNotify != event.type && 0 >= configureEvent->x && 0 >= configureEvent->y) {
-                                if (!dApp->m_screenWid.contains(configureEvent->window) && configureEvent->width > screenwidth && configureEvent->height > screenheight) {
+            m_x11thread = QThread::create([ = ]() {
+                int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
+                int screenheight = qApp->desktop()->screenGeometry().height() - 150;
+                while (!m_stopx11Thread) {
+                    if (dApp->m_isNoMpvPause) {
+                        int index = 0;
+//                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
+                        for (auto window : DWindowManagerHelper::instance()->currentWorkspaceWindows()) {
+//                            if (wid == winId()) {
+//                                continue;
+//                                qDebug() << "this";
+//                            }
 
-                                    Drawable   d     /* d */;
-                                    Window     w /* root_return */;
-                                    int      x = 0   /* x_return */;
-                                    int      y = 0  /* y_return */;
-                                    unsigned int width = 0   /* width_return */;
-                                    unsigned int height = 0   /* height_return */;
-                                    unsigned int border_width = 0  /* border_width_return */;
-                                    unsigned int  depin = 0/* depth_return */;
-                                    XGetGeometry(display,  configureEvent->window, &w, &x, &y, &width, &height, &border_width, &depin);
+//                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
+//                            //判断窗口是否有最大窗口
 
-//                                    XWindowAttributes bute;
+                            if (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen) {
+                                //            continue;
 
-//                                    XGetWindowAttributes(display,  configureEvent->window,&bute);
-//                                    a.search(configureEvent->window);
-                                    if (depin != 32 && depin != 0) {
-//                                        qDebug() << depin;
-                                        dApp->m_x11WindowFuscreen.insert(configureEvent->window, true);
-                                        dApp->setMpvpause();
-                                        continue;
-                                    }
+                                int wwidth = window->frameGeometry().width();
+                                int wheight = window->frameGeometry().height();
 
+                                if (wwidth > screenwidth && wheight > screenheight) {
+                                    dApp->setMpvpause();
+                                    index++;
                                 }
 
                             }
-                            if (/*dApp->m_x11WindowFuscreen.contains(configureEvent->window) || */dApp->m_screenWid.contains(configureEvent->window)) {
-                                dApp->m_x11WindowFuscreen.remove(configureEvent->window);
-                            }
+
                         }
-
-                        if (DestroyNotify == event.type || UnmapNotify == event.type) {
-                            if (configureEvent) {
-                                qDebug() << "remove :" << configureEvent->window;
-                                WindowsMatchingPid aa(display, configureEvent->window, 1111);
-                                list <Window> list = aa.allresult();
-                                qDebug() << list.size();
-                                dApp->m_x11WindowFuscreen.remove(configureEvent->window);
-                            }
-                        }
-                        if (PropertyNotify == event.type) {
-                            XPropertyEvent *Event = (XPropertyEvent *)&event;
-                            qDebug() << "XPropertyEvent" << Event->state;
-//                            if(Event->state==0){
-//                                dApp->m_x11WindowFuscreen.remove(Event->window);
-//                            }
-                        }
-                        QTimer::singleShot(50, [ = ] {
-
-                        });
-                        for (auto window : dApp->m_x11WindowFuscreen.keys()) {
-                            Drawable   d     /* d */;
-                            Window     w /* root_return */;
-                            int      x = 0   /* x_return */;
-                            int      y = 0  /* y_return */;
-                            unsigned int width = 0   /* width_return */;
-                            unsigned int height = 0   /* height_return */;
-                            unsigned int border_width = 0  /* border_width_return */;
-                            unsigned int  depin = 0/* depth_return */;
-
-                            XGetGeometry(display,  window, &w, &x, &y, &width, &height, &border_width, &depin);
-
-                            XWindowAttributes bute;
-
-                            XGetWindowAttributes(display,  window, &bute);
-
-                            WindowsMatchingPid aa(display, window, 1111);
-
-                            qDebug() << x << y << width << height << border_width << depin;
-                            int iWidth = width;
-                            int iHeight = height;
-                            qDebug() << window;
-                            if ((x > 0 && y > 0 && x < (qApp->desktop()->screenGeometry().width() - 10))
-                                    || (y > 0 && x > qApp->desktop()->screenGeometry().width())
-                                    || (iWidth < screenwidth || iHeight < screenheight) || depin == 32 || bute.all_event_masks > 0) {
-                                dApp->m_x11WindowFuscreen.remove(window);
-                            }
-                        }
-                        qDebug() << dApp->m_x11WindowFuscreen.count();
-                        if (dApp->m_x11WindowFuscreen.count() == 0 && dApp->m_isNoMpvPause) {
+                        if (0 == index &&  dApp->m_isNoMpvPause) {
                             dApp->setMpvPlay();
                         }
-                        continue;
                     }
-
-                });
-                m_x11thread->start();
+                    QThread::msleep(2000);
+                }
             });
+            m_x11thread->start();
         }
     }
     saveSettings();
 }
+
+
