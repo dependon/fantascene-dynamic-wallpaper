@@ -113,6 +113,8 @@ private:
 
     int m_isAutoMode{0};
 
+    QMenu *m_aboutMenu{nullptr};
+
 };
 
 #endif // SETTINGWINDOW_H
