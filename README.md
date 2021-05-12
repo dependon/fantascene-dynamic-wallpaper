@@ -1,16 +1,26 @@
-# 依赖
+## 目前是个动态壁纸demo [video wallpaper demo for deepin/uos]
+关于deepin和uos系统的测试软件包,可以在右侧网页下载
+
+## 演示视频:
+[https://www.bilibili.com/video/BV1bB4y1c7Fq](https://www.bilibili.com/video/BV1bB4y1c7Fq/)
+<div class="bilibili">
+    <iframe src="//player.bilibili.com/player.html?aid=587799607&bvid=BV1bB4y1c7Fq&cid=330007719&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+
+## 依赖
 sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg
 
-# 在已经能编译代码的情况下如何打包
+## 在已经能编译代码的情况下如何打包
 在修改了代码之后，直接在代码主目录下打开终端执行 dpkg-buildpackage -b -us -uc ，即可得到deb包
 
- 无理的需求可以随便提
- 如果有更好的做动态壁纸的方法欢迎讨论和分享
+无理的需求可以随便提
+
+如果有更好的做动态壁纸的方法欢迎讨论和分享
 
 本软件作为学习作用,可以提出一些有理无理的需求,有时间会做下去的.
 正在编码能力提高的路上,
 
-目前:用已经编译好的透明dde-desktop在运行时替换原生dde-desktop（和桌面组沟通过，他们以后会支持原生的透明，但是估计得几个月之后了）
+目前:用已经编译好的透明dde-desktop在运行时替换原生dde-desktop
 
 绘制动态壁纸，使用硬解码，目前最高支持双屏（功能当前相对简单）
 
