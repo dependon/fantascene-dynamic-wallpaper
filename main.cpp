@@ -15,6 +15,7 @@
 #include <DDesktopEntry>
 #include <QFile>
 #include <DTitlebar>
+#include <QStandardPaths>
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
 void cpToTmp()
@@ -34,7 +35,8 @@ int main(int argc, char *argv[])
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
-
+    a.loadTranslator();
+    a.setApplicationVersion(DApplication::buildVersion("1.0.0"));
 //    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
@@ -73,8 +75,8 @@ int main(int argc, char *argv[])
         });
         dApp->m_startDesktop->start();
 #endif
-        a.setApplicationName(QObject::tr("Deepin DreamScene"));
-        a.setApplicationVersion("Version 0.1");
+//        a.setApplicationName(QObject::tr("Deepin DreamScene"));
+//        a.setApplicationVersion("Version 0.1");
 
         DMainWindow *mainwindw = new DMainWindow();
         settingWindow *window = new settingWindow(mainwindw, mainwindw);
@@ -97,30 +99,31 @@ int main(int argc, char *argv[])
         mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
-        qDebug() << qApp->desktop()->screenNumber();
-        qDebug() << qApp->desktop()->primaryScreen();
-        qDebug() << qApp->desktop()->screenCount();
-
-        DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
-        Q_UNUSED(dbusInter);
-
-        QDBusConnection::sessionBus().registerService("com.deepin.dde.DreamScene");
-        QDBusConnection::sessionBus().registerObject("/com/deepin/dde/DreamScene", "com.deepin.dde.DreamScene", w);
-
-        QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
-
-        QByteArray cookie = qgetenv(envName.toUtf8().data());
-        qunsetenv(envName.toUtf8().data());
-
-        if (!cookie.isEmpty()) {
-            QDBusInterface iface("com.deepin.SessionManager",
-                                 "/com/deepin/SessionManager",
-                                 "com.deepin.SessionManager",
-                                 QDBusConnection::sessionBus());
-            iface.asyncCall("Register", QString(cookie));
-        }
-
         dApp->setDesktopTransparent();
+//        qDebug() << qApp->desktop()->screenNumber();
+//        qDebug() << qApp->desktop()->primaryScreen();
+//        qDebug() << qApp->desktop()->screenCount();
+
+//        DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
+//        Q_UNUSED(dbusInter);
+
+//        QDBusConnection::sessionBus().registerService("com.deepin.dde.DreamScene");
+//        QDBusConnection::sessionBus().registerObject("/com/deepin/dde/DreamScene", "com.deepin.dde.DreamScene", w);
+
+//        QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
+
+//        QByteArray cookie = qgetenv(envName.toUtf8().data());
+//        qunsetenv(envName.toUtf8().data());
+
+//        if (!cookie.isEmpty()) {
+//            QDBusInterface iface("com.deepin.SessionManager",
+//                                 "/com/deepin/SessionManager",
+//                                 "com.deepin.SessionManager",
+//                                 QDBusConnection::sessionBus());
+//            iface.asyncCall("Register", QString(cookie));
+//        }
+
+
     } else {
         return 0;
     }
