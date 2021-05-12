@@ -1,15 +1,14 @@
+# 依赖
+sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg
+
 # 在已经能编译代码的情况下如何打包
 在修改了代码之后，直接在代码主目录下打开终端执行 dpkg-buildpackage -b -us -uc ，即可得到deb包
 
- 已经上架星火商店(深度梦境动态壁纸)
- 期待你的星星 ,感谢!
  无理的需求可以随便提
  如果有更好的做动态壁纸的方法欢迎讨论和分享
 
 本软件作为学习作用,可以提出一些有理无理的需求,有时间会做下去的.
 正在编码能力提高的路上,
-
-基于deepin-dreamscene修改，加上了dtk控件的ui
 
 目前:用已经编译好的透明dde-desktop在运行时替换原生dde-desktop（和桌面组沟通过，他们以后会支持原生的透明，但是估计得几个月之后了）
 
