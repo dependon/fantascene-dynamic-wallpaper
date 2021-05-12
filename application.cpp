@@ -84,7 +84,6 @@ Application::Application(int &argc, char **argv)
             "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
             "<a href='https://github.com/dependon/deepin-dreamscene-ui/'>github/deepin-dreamscene-ui</a><br/>"
             "<a href='https://gitee.com/liuminghang/deepin-dreamscene-ui/'>gitee/deepin-dreamscene-ui</a><br/>"
-            "<span style='font-size:12pt;'>qt5.15,deepinv20.2</span><br/><br/>"
             "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
             "Published under GPL V3"
         )

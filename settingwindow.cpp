@@ -108,6 +108,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(m_trayIcon, &QSystemTrayIcon::activated, this, [ = ](QSystemTrayIcon::ActivationReason reason) {
         if (QSystemTrayIcon::Trigger == reason) {
             if (m_parentMainWindow) {
+                m_parentMainWindow->resize(500, 300);
                 m_parentMainWindow->show();
                 m_parentMainWindow->activateWindow();
             }
