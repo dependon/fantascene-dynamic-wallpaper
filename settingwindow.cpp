@@ -22,6 +22,7 @@
 
 #include "listview/historywidget.h"
 
+#include <DTitlebar>
 
 DCORE_USE_NAMESPACE
 
@@ -125,6 +126,25 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     ui->githubWeb->hide();
     ui->giteeWeb->hide();
 //    ui->checkBox->hide();
+
+    if (m_parentMainWindow) {
+        m_aboutMenu = new QMenu();
+        QAction *aboutgit = new QAction(m_aboutMenu);
+        aboutgit->setText("程序主页");
+        connect(aboutgit, &QAction::triggered, this, [ = ] {
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/")));
+        });
+
+        QAction *aboutMe = new QAction(m_aboutMenu);
+        aboutMe->setText("作者博客");
+        connect(aboutMe, &QAction::triggered, this, [ = ] {
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://dependon.github.com")));
+        });
+        m_aboutMenu->addAction(aboutgit);
+        m_aboutMenu->addAction(aboutMe);
+
+        m_parentMainWindow->titlebar()->setMenu(m_aboutMenu);
+    }
 
 
 
