@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     Application a(argc, argv);
 
-    a.setTheme("light");
+//    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
     if (a.setSingleInstance("deepin-dreamscene-ui")) {

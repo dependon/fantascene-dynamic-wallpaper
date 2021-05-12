@@ -78,6 +78,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(setMainViewAction, &QAction::triggered, this, [ = ] {
         if (m_parentMainWindow)
         {
+            m_parentMainWindow->resize(500, 300);
             m_parentMainWindow->show();
             m_parentMainWindow->activateWindow();
         }
@@ -401,6 +402,10 @@ void settingWindow::on_setManual_clicked()
 
 void settingWindow::quitApp()
 {
+    //dbus关闭壁纸透明
+
+    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+
 #ifdef QT_NO_DEBUG
     QProcess::execute("killall dde-desktop");
     if (0 != dApp->m_processId) {
@@ -412,11 +417,7 @@ void settingWindow::quitApp()
     th->start();
     saveSettings();
 #else
-    //dbus关闭壁纸透明
-    QThread *th2 = QThread::create([ = ]() {
-        system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
-    });
-    th2->start();
+
 
     saveSettings();
 #endif
@@ -582,7 +583,6 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
 //问题很多
-//    return;
     if (arg1 == 0) {
         m_isAutoMode = 0;
         m_stopx11Thread = true;
