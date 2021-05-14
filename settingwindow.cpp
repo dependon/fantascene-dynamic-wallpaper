@@ -423,9 +423,7 @@ void settingWindow::on_setManual_clicked()
 
 void settingWindow::quitApp()
 {
-    //dbus关闭壁纸透明
 
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
 
 #ifdef QT_NO_DEBUG
     QProcess::execute("killall dde-desktop");
@@ -438,11 +436,11 @@ void settingWindow::quitApp()
     th->start();
     saveSettings();
 #else
-
-
     saveSettings();
 #endif
+    //dbus关闭壁纸透明
 
+    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
     m_stopx11Thread = true;
     if (m_x11thread) {
         m_x11thread->wait();
