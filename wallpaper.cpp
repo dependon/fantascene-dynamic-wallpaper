@@ -101,7 +101,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
-            QString playPath = "/opt/durapps/deepin-dreamscene-ui/09.mp4";
+            QString playPath = "/opt/durapps/fantascene-dynamic-wallpaper/09.mp4";
             m_currentPath = m_currentPath.replace("file://", "");
             if (!m_currentPath.isEmpty()) {
                 if (QFileInfo(m_currentPath).isFile()) {
@@ -255,7 +255,7 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    //https://github.com/dependon/deepin-dreamscene-ui/issues/4，临时解决WIN+D的问题
+    //https://github.com/dependon/fantascene-dynamic-wallpaper/issues/4，临时解决WIN+D的问题
     if (event->type() == QEvent::WindowActivate) {
         qDebug() << "Video WindowActivate";
         QTimer::singleShot(100, this, []() {

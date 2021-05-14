@@ -3,7 +3,7 @@ TEMPLATE = app
 QT += gui x11extras widgets dbus
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += xcb-ewmh dtkwidget mpv x11
-TARGET = deepin-dreamscene-ui
+TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -35,13 +35,13 @@ RESOURCES += \
     qrc.qrc
 
 OTHER_FILES+=$$PWD/install/*
-target.path=/opt/durapps/deepin-dreamscene-ui
+target.path=/opt/durapps/fantascene-dynamic-wallpaper
 
-other.path=/opt/durapps/deepin-dreamscene-ui
+other.path=/opt/durapps/fantascene-dynamic-wallpaper
 other.files= $$PWD/install/*
 
 desktop.path = /usr/share/applications/
-desktop.files = $$PWD/install/deepin-dreamscene-ui.desktop
+desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service
