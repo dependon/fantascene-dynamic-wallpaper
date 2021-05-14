@@ -28,7 +28,7 @@ DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/deepin-dreamscene-ui/config.ini";
+                              "/.config/fantascene-dynamic-wallpaper/config.ini";
 
 
 settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
@@ -88,7 +88,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 //    QAction *maingithub = new QAction(m_traymenu);
 //    maingithub->setText("github");
 //    connect(maingithub, &QAction::triggered, this, [ = ] {
-//        QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/")));
+//        QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
 //    });
 
     m_traymenu->addAction(setMainViewAction);
@@ -132,7 +132,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
         QAction *aboutgit = new QAction(m_aboutMenu);
         aboutgit->setText("程序主页");
         connect(aboutgit, &QAction::triggered, this, [ = ] {
-            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/")));
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
         });
 
         QAction *aboutMe = new QAction(m_aboutMenu);
@@ -381,13 +381,13 @@ void settingWindow::on_autoStart_clicked()
 {
 
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/deepin-dreamscene-ui.desktop").isFile())
-        QProcess::execute("cp /opt/durapps/deepin-dreamscene-ui/deepin-dreamscene-ui.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop").isFile())
+        QProcess::execute("cp /opt/durapps/fantascene-dynamic-wallpaper/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
 {
-    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/deepin-dreamscene-ui.desktop");
+    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop");
 }
 
 void settingWindow::on_autoStartBox_stateChanged(int arg1)
@@ -453,7 +453,7 @@ void settingWindow::quitApp()
 
 void settingWindow::on_mainWeb_clicked()
 {
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui")));
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper")));
 }
 
 void settingWindow::on_history_clicked()
@@ -489,17 +489,17 @@ void settingWindow::slotWallPaper(const QString &path)
 
 void settingWindow::on_giteeWeb_clicked()
 {
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://gitee.com/liuminghang/deepin-dreamscene-ui/releases")));
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/releases")));
 }
 
 void settingWindow::on_githubWeb_clicked()
 {
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/releases")));
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
 }
 
 void settingWindow::on_bugBtn_clicked()
 {
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/deepin-dreamscene-ui/issues/new")));
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/issues/new")));
 }
 
 void settingWindow::on_videoBLCombox_activated(const QString &arg1)

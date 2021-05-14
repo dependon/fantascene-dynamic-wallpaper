@@ -17,7 +17,7 @@
 DWIDGET_USE_NAMESPACE
 
 const QString PIC_DIR_PATH =   QDir::homePath() +
-                               "/.config/deepin-dreamscene-ui/.thumbnail";
+                               "/.config/fantascene-dynamic-wallpaper/.thumbnail";
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
 class Application : public DApplication

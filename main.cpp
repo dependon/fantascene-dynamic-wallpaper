@@ -30,7 +30,7 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/durapps/deepin-dreamscene-ui/";
+    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 //    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
-    if (a.setSingleInstance("deepin-dreamscene-ui")) {
+    if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
         bool isShowMainWindow = true;
 #ifdef QT_NO_DEBUG
         isShowMainWindow = false;
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
             dApp->m_startDesktopProcess = new QProcess(dApp);
             if (QFileInfo(path + "dde-desktop").isFile()) {
 
-                dApp->m_startDesktopProcess->start("bash /opt/durapps/deepin-dreamscene-ui/startdesktop.sh");
+                dApp->m_startDesktopProcess->start("bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh");
                 dApp->m_processId = dApp->m_startDesktopProcess->processId();
                 qDebug() << "processId" << dApp->m_processId;
                 dApp->m_startDesktopProcess->waitForFinished();
