@@ -102,7 +102,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     m_trayIcon = new QSystemTrayIcon(this);
     m_trayIcon->setContextMenu(m_traymenu);
     m_trayIcon->setToolTip("双击打开配置界面");
-    m_trayIcon->setIcon(QIcon(":/tray.ico"));
+    m_trayIcon->setIcon(QIcon(":/install/wallpaper.png"));
     m_trayIcon->show();
 
     //void activated(QSystemTrayIcon::ActivationReason reason);

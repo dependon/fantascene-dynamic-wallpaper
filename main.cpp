@@ -92,8 +92,8 @@ int main(int argc, char *argv[])
         }
         mainwindw->setFixedSize(QSize(640, 450));
         mainwindw->setWindowTitle("动态壁纸");
-        mainwindw->setWindowIcon(QIcon(":/tray.ico"));
-        mainwindw->titlebar()->setIcon(QIcon(":/tray.ico"));
+        mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
+        mainwindw->titlebar()->setIcon(QIcon(":/install/wallpaper.png"));
         mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
         mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
