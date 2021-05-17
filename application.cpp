@@ -89,8 +89,8 @@ Application::Application(int &argc, char **argv)
         )
     );
 
-    this->setProductIcon(QIcon(":/tray.ico"));
-    this->setWindowIcon(QIcon(":/tray.ico"));
+    this->setProductIcon(QIcon(":/install/wallpaper.png"));
+    this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
 
 
