@@ -1,3 +1,6 @@
+## 原来的名称
+deepin-dreamscene-ui
+
 ## 目前是个动态壁纸demo [video wallpaper demo for deepin/uos]
 关于deepin和uos系统的测试软件包,可以在右侧网页下载
 
