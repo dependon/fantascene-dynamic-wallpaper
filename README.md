@@ -10,6 +10,9 @@ deepin-dreamscene-ui
 ## 依赖
 sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg
 
+## dde-desktop 根据这个patch打入dde-file-manager，拿出库和dde-desktop
+patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-feat.patch
+
 ## 在已经能编译代码的情况下如何打包
 在修改了代码之后，直接在代码主目录下打开终端执行 dpkg-buildpackage -b -us -uc ，即可得到deb包
 
