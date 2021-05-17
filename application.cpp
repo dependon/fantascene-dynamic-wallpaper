@@ -126,7 +126,7 @@ const QString Application::thumbnailCachePath()
 
 bool Application::setThumbnail(const QString &path)
 {
-
+//    return false;
     QUrl url;
     if (!path.contains("file://")) {
         url = QUrl::fromLocalFile(path);
@@ -137,8 +137,9 @@ bool Application::setThumbnail(const QString &path)
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
     QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath;
     qDebug() << commod;
-    QProcess::execute(commod);
+//    QProcess::execute(commod);
     system(commod.toStdString().c_str());
+    return true;
 //    system("ffmpeg -i /opt/durapps/fantascene-dynamic-wallpaper/09.mp4 -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' /home/lmh/.config/fantascene-dynamic-wallpaper/.thumbnail/d18420fa260c7eff8fd0f2fac2f7b1cf.png");
 }
 
