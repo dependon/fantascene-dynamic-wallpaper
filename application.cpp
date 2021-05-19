@@ -135,10 +135,13 @@ bool Application::setThumbnail(const QString &path)
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
-    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath;
+    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath +" |y";
     qDebug() << commod;
 //    QProcess::execute(commod);
-    system(commod.toStdString().c_str());
+    if(!QFileInfo(thumPath).isFile()){
+          system(commod.toStdString().c_str());
+    }
+
     return true;
 //    system("ffmpeg -i /opt/durapps/fantascene-dynamic-wallpaper/09.mp4 -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' /home/lmh/.config/fantascene-dynamic-wallpaper/.thumbnail/d18420fa260c7eff8fd0f2fac2f7b1cf.png");
 }
