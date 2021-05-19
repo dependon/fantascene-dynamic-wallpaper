@@ -46,10 +46,10 @@ desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 DISTFILES += \
     com.deepin.dde.DreamScene.service
 
-dbus_service.files += com.deepin.dde.DreamScene.service
-dbus_service.path = /usr/share/dbus-1/services
+#dbus_service.files += com.deepin.dde.DreamScene.service
+#dbus_service.path = /usr/share/dbus-1/services
 
-INSTALLS += target dbus_service other desktop
+INSTALLS += target  other desktop
 
 FORMS += \
     settingwindow.ui \
