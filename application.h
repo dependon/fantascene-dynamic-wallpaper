@@ -56,6 +56,7 @@ Q_SIGNALS:
 
     void sigscreenshot();
 
+    void moreSettingSave();
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
@@ -72,7 +73,7 @@ public:
     bool m_isNoMpvPause{true};
 
     MoreSetData m_moreData;
-
+//    int m_isAutoMode{0};
     QString m_currentPath;
 };
 
