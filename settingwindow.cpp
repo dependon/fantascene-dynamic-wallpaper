@@ -658,7 +658,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                             }
 
                         }
-                        if (0 == index &&  dApp->m_isNoMpvPause) {
+                        if (0 == index && !dApp->m_currentIsPlay &&  dApp->m_isNoMpvPause) {
                             dApp->setMpvPlay();
                         }
                     }
