@@ -75,6 +75,8 @@ public:
     MoreSetData m_moreData;
 //    int m_isAutoMode{0};
     QString m_currentPath;
+
+    bool m_currentIsPlay{false};
 };
 
 #endif // APPLICATION_H
