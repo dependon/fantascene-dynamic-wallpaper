@@ -194,10 +194,12 @@ void Wallpaper::play()
 {
     m_mpv->show();
     m_mpv->setProperty("pause", false);
+    dApp->m_currentIsPlay = true;
 }
 
 void Wallpaper::pause()
 {
+    dApp->m_currentIsPlay = false;
     m_mpv->setProperty("pause", true);
 }
 
