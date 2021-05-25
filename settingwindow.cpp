@@ -151,10 +151,10 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 }
 void settingWindow::pathChanged(const QString &path)
 {
-    m_currentPath = path;
-    if (!m_currentPath.isEmpty()) {
-        ui->pathEdit->setText(m_currentPath);
-        QPixmap pix = dApp->getThumbnail(m_currentPath);
+    dApp->m_currentPath = path;
+    if (!dApp->m_currentPath.isEmpty()) {
+        ui->pathEdit->setText(dApp->m_currentPath);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
         }
@@ -174,7 +174,7 @@ void settingWindow::readSettings()
 
     QSettings settings(CONFIG_PATH, QSettings::IniFormat);
 
-    m_currentPath = settings.value("WallPaper/CurrentPath").toString();
+    dApp->m_currentPath = settings.value("WallPaper/CurrentPath").toString();
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
     int widthPY = settings.value("WallPaper/widthPY").toInt();
@@ -207,9 +207,9 @@ void settingWindow::readSettings()
         ui->comboBox->setCurrentText(m_currentMode);
         setScreenMode(m_currentMode);
     }
-    if (!m_currentPath.isEmpty()) {
-        ui->pathEdit->setText(m_currentPath);
-        QPixmap pix = dApp->getThumbnail(m_currentPath);
+    if (!dApp->m_currentPath.isEmpty()) {
+        ui->pathEdit->setText(dApp->m_currentPath);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
         }
@@ -261,7 +261,7 @@ void settingWindow::saveSettings()
     settings.clear();
     settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
-    settings.setValue("WallPaper/CurrentPath", m_currentPath);
+    settings.setValue("WallPaper/CurrentPath", dApp->m_currentPath);
     settings.setValue("WallPaper/Mode", ui->comboBox->currentText());
     settings.setValue("WallPaper/widthPY", dApp->m_manual.x());
     settings.setValue("WallPaper/heightPY", dApp->m_manual.y());
@@ -282,7 +282,7 @@ void settingWindow::saveSettings()
 
 QString settingWindow::getCurrentPath()
 {
-    return m_currentPath;
+    return dApp->m_currentPath;
 }
 
 int settingWindow::getCurrentNumber()
@@ -315,15 +315,15 @@ void settingWindow::on_pathBtn_clicked()
 void settingWindow::on_setBtn_clicked()
 {
     if (ui->pathEdit->text() != nullptr) {
-        m_currentPath = ui->pathEdit->text();
-        m_currentPath = m_currentPath.replace("file://", "");
+        dApp->m_currentPath = ui->pathEdit->text();
+        dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
         emit dApp->setPlayPath(ui->pathEdit->text());
         emit dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_allPath.push_back(m_currentPath);
+        dApp->m_allPath.push_back(dApp->m_currentPath);
         saveSettings();
-        emit dApp->addPaperView(m_currentPath);
-        QPixmap pix = dApp->getThumbnail(m_currentPath);
+        emit dApp->addPaperView(dApp->m_currentPath);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
         }
@@ -472,7 +472,7 @@ void settingWindow::slotWallPaper(const QString &path)
 {
     if (!path.isEmpty()) {
         ui->pathEdit->setText(path);
-        m_currentPath = path;
+        dApp->m_currentPath = path;
         emit dApp->setPlayPath(ui->pathEdit->text());
         QPixmap pix = dApp->getThumbnail(path);
         if (!pix.isNull()) {
@@ -480,7 +480,7 @@ void settingWindow::slotWallPaper(const QString &path)
         }
         emit dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_allPath.push_back(m_currentPath);
+        dApp->m_allPath.push_back(dApp->m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
     }
@@ -663,3 +663,9 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 }
 
 
+#include "moresetting.h"
+void settingWindow::on_moreSettingBtn_clicked()
+{
+    MoreSetting a;
+    a.exec();
+}

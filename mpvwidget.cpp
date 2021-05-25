@@ -42,6 +42,10 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     mpv_observe_property(mpv, 0, "time-pos", MPV_FORMAT_DOUBLE);
     mpv_set_wakeup_callback(mpv, wakeup, this);
 
+    QList<QVariant> list;
+    list << "no-correct-pts";
+//    mpv::qt::command_variant(mpv, list);
+    mpv::qt::set_property_variant(mpv, "correct-pts", "no");
     connect(dApp, &Application::sigscreenshot, this, [ = ] {
         m_bScrrenShot = true;
     });

@@ -70,6 +70,10 @@ public:
     QMap <unsigned long, bool>m_x11WindowFuscreen;
     QVector <unsigned long> m_screenWid;
     bool m_isNoMpvPause{true};
+
+    MoreSetData m_moreData;
+
+    QString m_currentPath;
 };
 
 #endif // APPLICATION_H

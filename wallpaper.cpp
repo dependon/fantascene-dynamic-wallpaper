@@ -283,6 +283,10 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 {
     m_mpv->setProperty(key, value);
+    if (key.contains("fps")) {
+        setFile(dApp->m_currentPath);
+        play();
+    }
 }
 #include <QDesktopWidget>
 #include <QGuiApplication>

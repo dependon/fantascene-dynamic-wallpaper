@@ -251,6 +251,13 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QPushButton" name="moreSettingBtn">
+           <property name="text">
+            <string>更多设置</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
