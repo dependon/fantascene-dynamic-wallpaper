@@ -651,7 +651,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                                 int wheight = window->frameGeometry().height();
 
                                 if (wwidth > screenwidth && wheight > screenheight) {
-                                    dApp->setMpvpause();
+
                                     index++;
                                 }
 
@@ -660,7 +660,10 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                         }
                         if (0 == index && !dApp->m_currentIsPlay &&  dApp->m_isNoMpvPause) {
                             dApp->setMpvPlay();
+                        } else if (0 != index &&  dApp->m_currentIsPlay) {
+                            dApp->setMpvpause();
                         }
+
                     }
                     QThread::msleep(2000);
                 }
