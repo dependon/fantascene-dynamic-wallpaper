@@ -22,6 +22,8 @@ private slots:
 
     void on_cancelBtn_clicked();
 
+    void on_hwdecBox_activated(const QString &arg1);
+
 private:
     Ui::MoreSetting *ui;
 };
