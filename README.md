@@ -50,6 +50,6 @@ patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-
 
 
 
-github地址:https://github.com/dependon/deepin-dreamscene-ui
-gitee地址:https://gitee.com/liuminghang/deepin-dreamscene-ui
+github地址:https://github.com/dependon/fantascene-dynamic-wallpaper
+gitee地址:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
