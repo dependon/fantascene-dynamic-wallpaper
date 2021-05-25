@@ -121,6 +121,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 
     connect(dApp, &Application::saveSetting, this, &settingWindow::saveSettings);
 
+    connect(dApp, &Application::moreSettingSave, this, &settingWindow::slotMoreSettingSave);
     ui->bugBtn->hide();
     ui->mainWeb->hide();
     ui->githubWeb->hide();
@@ -185,7 +186,8 @@ void settingWindow::readSettings()
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
     m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
-    m_isAutoMode = settings.value("WallPaper/videoAutoMode").toInt();;
+    dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
+    dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();;
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
 
@@ -244,12 +246,12 @@ void settingWindow::readSettings()
 
     });
     QTimer::singleShot(2000, [ = ] {
-        if (m_isAutoMode == 1)
+        if (dApp->m_moreData.isAuto == 1)
         {
-            ui->checkBox->setCheckState(Qt::Checked);
+//            ui->checkBox->setCheckState(Qt::Checked);
         }
 
-        on_checkBox_stateChanged(m_isAutoMode);
+        on_checkBox_stateChanged(dApp->m_moreData.isAuto);
     });
 
     qDebug() << "x";
@@ -270,8 +272,8 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
     settings.setValue("WallPaper/videoAspect", m_videoAspect);
     settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
-    settings.setValue("WallPaper/videoAutoMode", m_isAutoMode);
-
+    settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
+    settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
     int indexLocal = 1;
     //去重
     dApp->m_allPath = dApp->m_allPath.toSet().toList();
@@ -588,6 +590,13 @@ bool settingWindow::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+void settingWindow::slotMoreSettingSave()
+{
+    on_checkBox_stateChanged(dApp->m_moreData.isAuto);
+    on_setBtn_clicked();
+    saveSettings();
+}
+
 void settingWindow::on_pathEdit_textChanged(const QString &arg1)
 {
     QPixmap pix = dApp->getThumbnail(arg1);
@@ -603,7 +612,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 {
 //问题很多
     if (arg1 == 0) {
-        m_isAutoMode = 0;
+        dApp->m_moreData.isAuto = 0;
         m_stopx11Thread = true;
         if (m_x11thread) {
 //            m_x11thread->wait();
@@ -617,7 +626,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
         }
     } else {
         m_stopx11Thread = false;
-        m_isAutoMode = 1;
+        dApp->m_moreData.isAuto = 1;
         if (!m_x11thread) {
             m_x11thread = QThread::create([ = ]() {
                 int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
@@ -667,5 +676,6 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 void settingWindow::on_moreSettingBtn_clicked()
 {
     MoreSetting a;
+    a.setData(dApp->m_moreData);
     a.exec();
 }

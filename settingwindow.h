@@ -36,6 +36,8 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private slots:
 
+    void slotMoreSettingSave();
+
     void saveSettings();
 
     void on_pathBtn_clicked();
@@ -110,9 +112,6 @@ private:
 
     QThread *m_x11thread{nullptr};
     bool m_stopx11Thread{false};
-
-
-    int m_isAutoMode{0};
 
     QMenu *m_aboutMenu{nullptr};
 

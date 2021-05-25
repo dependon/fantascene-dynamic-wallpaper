@@ -8,7 +8,7 @@ enum ScreenMode {
 };
 
 struct MoreSetData {
-    bool bisAuto = false;
+    int isAuto = 0;
     int fps = 10;
 };
 
