@@ -187,7 +187,11 @@ void settingWindow::readSettings()
     m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
     dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
-    dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();;
+    dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
+    dApp->m_moreData.hwdec= settings.value("WallPaper/hwdec").toString();
+    if(dApp->m_moreData.hwdec.isEmpty()){
+        dApp->m_moreData.hwdec="gpu";
+    }
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
 
@@ -250,7 +254,9 @@ void settingWindow::readSettings()
         {
 //            ui->checkBox->setCheckState(Qt::Checked);
         }
-
+        if(!dApp->m_moreData.hwdec.isEmpty()){
+           dApp->setMpvValue("hwdec",dApp->m_moreData.hwdec);
+        }
         on_checkBox_stateChanged(dApp->m_moreData.isAuto);
     });
 
@@ -274,6 +280,7 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
     settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
     settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
+    settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
     int indexLocal = 1;
     //去重
     dApp->m_allPath = dApp->m_allPath.toSet().toList();
@@ -593,6 +600,8 @@ bool settingWindow::eventFilter(QObject *obj, QEvent *event)
 void settingWindow::slotMoreSettingSave()
 {
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
+
+    dApp->setMpvValue("hwdec",dApp->m_moreData.hwdec);
     on_setBtn_clicked();
     saveSettings();
 }
