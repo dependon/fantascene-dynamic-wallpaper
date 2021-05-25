@@ -89,6 +89,8 @@ private slots:
     void on_checkBox_stateChanged(int arg1);
 
 
+    void on_moreSettingBtn_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
@@ -96,7 +98,6 @@ private:
     DMainWindow *m_parentMainWindow{nullptr};
     int index = 1;
 
-    QString m_currentPath;
     int m_crrenNumber{0};
     int m_isAutoStart{0};
     QString m_currentMode;

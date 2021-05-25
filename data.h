@@ -6,4 +6,10 @@ enum ScreenMode {
     IdlayoutScreen,
     IdManualSet
 };
+
+struct MoreSetData {
+    bool bisAuto = false;
+    int fps = 10;
+};
+
 #endif // DATA_H

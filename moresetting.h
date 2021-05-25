@@ -1,0 +1,29 @@
+#ifndef MORESETTING_H
+#define MORESETTING_H
+
+#include <QDialog>
+#include "data.h"
+namespace Ui {
+class MoreSetting;
+}
+
+class MoreSetting : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit MoreSetting(QWidget *parent = nullptr);
+    ~MoreSetting();
+
+    void setData(const MoreSetData &data);
+
+private slots:
+    void on_okBtn_clicked();
+
+    void on_cancelBtn_clicked();
+
+private:
+    Ui::MoreSetting *ui;
+};
+
+#endif // MORESETTING_H

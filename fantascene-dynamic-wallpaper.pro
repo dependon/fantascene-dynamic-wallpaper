@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     application.cpp \
     listview/delegate.cpp \
     listview/view.cpp \
-    listview/historywidget.cpp
+    listview/historywidget.cpp \
+    moresetting.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -29,7 +30,8 @@ HEADERS += \
     listview/delegate.h \
     listview/view.h \
     listview/historywidget.h \
-    setdesktop.h
+    setdesktop.h \
+    moresetting.h
 
 RESOURCES += \
     qrc.qrc
@@ -53,4 +55,5 @@ INSTALLS += target  other desktop
 
 FORMS += \
     settingwindow.ui \
-    listview/historywidget.ui
+    listview/historywidget.ui \
+    moresetting.ui
