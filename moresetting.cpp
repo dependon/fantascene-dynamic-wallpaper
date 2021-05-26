@@ -2,8 +2,11 @@
 #include "ui_moresetting.h"
 #include "application.h"
 
+#include <QTimer>
+#include <QDesktopWidget>
+
 MoreSetting::MoreSetting(QWidget *parent) :
-    QDialog(parent),
+    QWidget(parent),
     ui(new Ui::MoreSetting)
 {
     ui->setupUi(this);
@@ -27,15 +30,15 @@ void MoreSetting::setData(const MoreSetData &data)
     } else {
         ui->fpsbox->setCurrentText("默认");
     }
-    if(data.hwdec.contains("gpu")  ||
+    if (data.hwdec.contains("gpu")  ||
             data.hwdec.contains("vaapi")  ||
             data.hwdec.contains("vdpau")  ||
             data.hwdec.contains("no")  ||
             data.hwdec.contains("auto")
-            ){
+       ) {
         ui->hwdecEdit->hide();
         ui->hwdecBox->setCurrentText(data.hwdec);
-    }else {
+    } else {
         ui->hwdecBox->setCurrentText("其他");
         ui->hwdecEdit->setText(data.hwdec);
     }
@@ -61,12 +64,11 @@ void MoreSetting::on_okBtn_clicked()
         dApp->setMpvValue("fps", "0");
     }
 
-    QString hwdecBoxStr =ui->hwdecBox->currentText();
-    if(hwdecBoxStr.contains("其他")){
-        dApp->m_moreData.hwdec=ui->hwdecEdit->text();
-    }
-    else {
-        dApp->m_moreData.hwdec=ui->hwdecBox->currentText();
+    QString hwdecBoxStr = ui->hwdecBox->currentText();
+    if (hwdecBoxStr.contains("其他")) {
+        dApp->m_moreData.hwdec = ui->hwdecEdit->text();
+    } else {
+        dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
     }
 
     emit dApp->moreSettingSave();
@@ -80,10 +82,9 @@ void MoreSetting::on_cancelBtn_clicked()
 
 void MoreSetting::on_hwdecBox_activated(const QString &arg1)
 {
-    if(arg1.contains("其他")){
+    if (arg1.contains("其他")) {
         ui->hwdecEdit->show();
-    }
-    else {
+    } else {
         ui->hwdecEdit->hide();
     }
 }
