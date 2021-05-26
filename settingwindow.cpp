@@ -188,9 +188,9 @@ void settingWindow::readSettings()
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
     dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
-    dApp->m_moreData.hwdec= settings.value("WallPaper/hwdec").toString();
-    if(dApp->m_moreData.hwdec.isEmpty()){
-        dApp->m_moreData.hwdec="gpu";
+    dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
+    if (dApp->m_moreData.hwdec.isEmpty()) {
+        dApp->m_moreData.hwdec = "gpu";
     }
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
@@ -254,8 +254,9 @@ void settingWindow::readSettings()
         {
 //            ui->checkBox->setCheckState(Qt::Checked);
         }
-        if(!dApp->m_moreData.hwdec.isEmpty()){
-           dApp->setMpvValue("hwdec",dApp->m_moreData.hwdec);
+        if (!dApp->m_moreData.hwdec.isEmpty())
+        {
+            dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
         }
         on_checkBox_stateChanged(dApp->m_moreData.isAuto);
     });
@@ -601,9 +602,10 @@ void settingWindow::slotMoreSettingSave()
 {
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
 
-    dApp->setMpvValue("hwdec",dApp->m_moreData.hwdec);
+    dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
     on_setBtn_clicked();
     saveSettings();
+
 }
 
 void settingWindow::on_pathEdit_textChanged(const QString &arg1)
@@ -687,7 +689,9 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 #include "moresetting.h"
 void settingWindow::on_moreSettingBtn_clicked()
 {
-    MoreSetting a;
-    a.setData(dApp->m_moreData);
-    a.exec();
+    if (!m_moreSetting) {
+        m_moreSetting = new MoreSetting();
+    }
+    m_moreSetting->setData(dApp->m_moreData);
+    m_moreSetting->show();
 }

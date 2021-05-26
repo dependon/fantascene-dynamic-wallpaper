@@ -1,13 +1,13 @@
 #ifndef MORESETTING_H
 #define MORESETTING_H
 
-#include <QDialog>
+#include <QWidget>
 #include "data.h"
 namespace Ui {
 class MoreSetting;
 }
 
-class MoreSetting : public QDialog
+class MoreSetting : public QWidget
 {
     Q_OBJECT
 

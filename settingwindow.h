@@ -8,6 +8,7 @@ class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
 class QThread;
+class MoreSetting;
 namespace Ui {
 class settingWindow;
 }
@@ -114,6 +115,7 @@ private:
     bool m_stopx11Thread{false};
 
     QMenu *m_aboutMenu{nullptr};
+    MoreSetting *m_moreSetting{nullptr};
 
 };
 
