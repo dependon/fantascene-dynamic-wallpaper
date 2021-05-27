@@ -77,6 +77,9 @@ public:
     QString m_currentPath;
 
     bool m_currentIsPlay{false};
+
+
+    QString m_wallpaperEnginePath;
 };
 
 #endif // APPLICATION_H

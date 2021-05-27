@@ -28,6 +28,7 @@ public:
         }
     };
     explicit view(QWidget *parent = nullptr);
+    void setFiles(const QStringList &pathlist);
     ~view() override;
 
     void modifyAllPic(ItemInfo &info);
