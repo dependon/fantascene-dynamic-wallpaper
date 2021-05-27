@@ -137,9 +137,9 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
         });
 
         QAction *aboutMe = new QAction(m_aboutMenu);
-        aboutMe->setText("作者博客");
+        aboutMe->setText("最新版本");
         connect(aboutMe, &QAction::triggered, this, [ = ] {
-            QDesktopServices::openUrl(QUrl(QLatin1String("https://dependon.github.com")));
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
         });
         m_aboutMenu->addAction(aboutgit);
         m_aboutMenu->addAction(aboutMe);
