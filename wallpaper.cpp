@@ -261,7 +261,7 @@ bool Wallpaper::event(QEvent *event)
     //https://github.com/dependon/fantascene-dynamic-wallpaper/issues/4，临时解决WIN+D的问题
     if (event->type() == QEvent::WindowActivate) {
         qDebug() << "Video WindowActivate";
-        QTimer::singleShot(100, this, []() {
+        QTimer::singleShot(200, this, []() {
             for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
                 system("xdotool search --class dde-desktop windowactivate");
             }
@@ -322,7 +322,7 @@ void Wallpaper::updateGeometry()
 
     lower();
 
-    QTimer::singleShot(100, this, []() {
+    QTimer::singleShot(200, this, []() {
         for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
             system("xdotool search --class dde-desktop windowactivate");
         }

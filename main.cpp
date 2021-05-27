@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
         if (index == 0 && isShowMainWindow) {
             mainwindw->show();
         }
-        mainwindw->setFixedSize(QSize(640, 450));
+        mainwindw->setFixedSize(QSize(640, 500));
         mainwindw->setWindowTitle("动态壁纸");
         mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
         mainwindw->titlebar()->setIcon(QIcon(":/install/wallpaper.png"));
