@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>656</width>
-    <height>380</height>
+    <width>725</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,7 @@
       </size>
      </property>
      <property name="text">
-      <string>你需要在linux下steam中安装wallpaper engine，否则没啥用，这里采用递归遍历，谨慎选择路径</string>
+      <string>你需要在steam中安装wallpaper engine，否则没啥用，如果是linux下安装，其实也是打不开的，但能遍历到视频</string>
      </property>
     </widget>
    </item>
