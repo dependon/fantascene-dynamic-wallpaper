@@ -9,6 +9,7 @@ class QMenu;
 class historyWidget;
 class QThread;
 class MoreSetting;
+class wallpaperEnginePlugin;
 namespace Ui {
 class settingWindow;
 }
@@ -94,6 +95,8 @@ private slots:
 
     void on_moreSettingBtn_clicked();
 
+    void on_pluginBtn_clicked();
+
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
@@ -107,6 +110,8 @@ private:
     int m_voiceVolume{0};
 
     historyWidget *m_history{nullptr};
+
+    wallpaperEnginePlugin *m_wallpaperEnginePlugin{nullptr};
 
     QString m_videoASpectStr{"默认"};
     double m_videoAspect{1.33};

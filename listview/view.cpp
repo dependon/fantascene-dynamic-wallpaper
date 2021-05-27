@@ -36,16 +36,6 @@ view::view(QWidget *parent)
 //    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollMode(QListView::ScrollPerPixel);
     verticalScrollBar()->setSingleStep(20);
-    //文件
-    for (QString str : dApp->m_allPath) {
-        ItemInfo item;
-        item.name = QFileInfo(str).completeBaseName();
-        item.path = str;
-        item.image = dApp->getThumbnail(str);
-        modifyAllPic(item);
-        cutPixmap(item);
-        m_allItemInfo << item;
-    }
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -54,7 +44,22 @@ view::view(QWidget *parent)
     connect(this, &view::clicked, this, &view::onClicked);
     connect(this, &view::doubleClicked, this, &view::onDoubleClicked);
 
-    connect(dApp, &Application::addPaperView, this, &view::addPath);
+
+}
+
+void view::setFiles(const QStringList &pathlist)
+{
+    m_allItemInfo.clear();
+    //文件
+    for (QString str : pathlist) {
+        ItemInfo item;
+        item.name = QFileInfo(str).completeBaseName();
+        item.path = str;
+        item.image = dApp->getThumbnail(str);
+        modifyAllPic(item);
+        cutPixmap(item);
+        m_allItemInfo << item;
+    }
 }
 
 view::~view()

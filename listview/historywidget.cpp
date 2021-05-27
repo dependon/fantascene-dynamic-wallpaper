@@ -14,6 +14,11 @@ historyWidget::historyWidget(QWidget *parent) :
     m_view = new view();
     ui->verticalLayout->addWidget(m_view);
     setWindowTitle("历史壁纸");
+
+    connect(dApp, &Application::addPaperView, m_view, &view::addPath);
+    //文件
+    m_view->setFiles(dApp->m_allPath);
+
 }
 
 historyWidget::~historyWidget()

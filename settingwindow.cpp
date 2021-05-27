@@ -21,6 +21,7 @@
 #include <X11/Xatom.h>
 
 #include "listview/historywidget.h"
+#include "listview/wallpaperengineplugin.h"
 
 #include <DTitlebar>
 
@@ -694,4 +695,16 @@ void settingWindow::on_moreSettingBtn_clicked()
     }
     m_moreSetting->setData(dApp->m_moreData);
     m_moreSetting->show();
+}
+
+void settingWindow::on_pluginBtn_clicked()
+{
+    if (!m_wallpaperEnginePlugin) {
+        m_wallpaperEnginePlugin = new wallpaperEnginePlugin();
+        m_wallpaperEnginePlugin->showNormal();
+        m_wallpaperEnginePlugin->move(qApp->desktop()->screen()->rect().center() - m_wallpaperEnginePlugin->rect().center());
+    } else {
+        m_wallpaperEnginePlugin->showNormal();
+        m_wallpaperEnginePlugin->activateWindow();
+    }
 }
