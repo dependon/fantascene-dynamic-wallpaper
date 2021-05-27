@@ -114,14 +114,14 @@ void wallpaperEnginePlugin::showView()
 
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
-//    QThread *th = QThread::create([ = ]() {
+    QThread *th = QThread::create([ = ]() {
     FindFile(path);
     for (QString str : m_JasonList) {
         readJson(str);
     }
     showView();
-//    });
-//    th->start();
+    });
+    th->start();
 
 }
 
