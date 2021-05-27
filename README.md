@@ -1,6 +1,4 @@
 
-
-
 ## 如果你喜欢这个玩具，点下小星星
 后续会有详细使用说明写入wiki
 ## 1.0.3(deepinv20.2.1)/1.0.4(uos) 更新
@@ -24,8 +22,8 @@
 ## 原来的名称
 deepin-dreamscene-ui
 
-## 正在寻求技术突破项:
-视频播放帧率设置
+## 正在做的事情:
+让软件和 steam中wallpapar engine的软件中本地文件夹的壁纸共享，哈哈
 
 ## 目前是个动态壁纸demo [video wallpaper demo for deepin/uos]
 关于deepin和uos系统的测试软件包,可以在右侧网页下载
