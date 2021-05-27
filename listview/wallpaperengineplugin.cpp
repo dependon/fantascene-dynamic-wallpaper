@@ -132,8 +132,10 @@ wallpaperEnginePlugin::~wallpaperEnginePlugin()
 void wallpaperEnginePlugin::on_setEnginePath_clicked()
 {
     QString path = QFileDialog::getExistingDirectory();
-    ui->enginePath->setText(path);
-    refresh(path);
+    if(!path.isEmpty()){
+        ui->enginePath->setText(path);
+        refresh(path);
+    }
 }
 
 void wallpaperEnginePlugin::on_setWallPaperBtn_clicked()
