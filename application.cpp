@@ -164,6 +164,11 @@ const QPixmap Application::getThumbnail(const QString &path)
     } else {
         url = QUrl(path);
     }
+
+    QPixmap  wallPix(QFileInfo(path).path()+"/"+"preview.jpg");
+    if(!wallPix.isNull()){
+        return wallPix.scaled(256,144);
+    }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
 //    const QString failEncodePath = cacheP + "/fail/" + md5s + ".png";

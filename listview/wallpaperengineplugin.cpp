@@ -24,11 +24,11 @@ wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
     refresh(path);
 }
 
-int wallpaperEnginePlugin::FindFile(const QString &_filePath)
+void wallpaperEnginePlugin::FindFile(const QString &_filePath)
 {
     QDir dir(_filePath);
     if (!dir.exists()) {
-        return -1;
+        return ;
     }
 
     //取到所有的文件和文件名，但是去掉.和..的文件夹（这是QT默认有的）
@@ -40,7 +40,7 @@ int wallpaperEnginePlugin::FindFile(const QString &_filePath)
     //转化成一个list
     QFileInfoList list = dir.entryInfoList();
     if (list.size() < 1) {
-        return -1;
+        return ;
     }
     int i = 0;
 
@@ -60,6 +60,7 @@ int wallpaperEnginePlugin::FindFile(const QString &_filePath)
         }//end else
         i++;
     } while (i < list.size());
+    return;
 }
 
 void wallpaperEnginePlugin::readJson(const QString &path)
@@ -113,14 +114,14 @@ void wallpaperEnginePlugin::showView()
 
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
-    QThread *th = QThread::create([ = ]() {
-        FindFile(path);
-        for (QString str : m_JasonList) {
-            readJson(str);
-        }
-        showView();
-    });
-    th->start();
+//    QThread *th = QThread::create([ = ]() {
+    FindFile(path);
+    for (QString str : m_JasonList) {
+        readJson(str);
+    }
+    showView();
+//    });
+//    th->start();
 
 }
 
@@ -136,9 +137,4 @@ void wallpaperEnginePlugin::on_setEnginePath_clicked()
         ui->enginePath->setText(path);
         refresh(path);
     }
-}
-
-void wallpaperEnginePlugin::on_setWallPaperBtn_clicked()
-{
-
 }

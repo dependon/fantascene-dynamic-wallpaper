@@ -30,15 +30,13 @@ public:
     explicit wallpaperEnginePlugin(QWidget *parent = nullptr);
     ~wallpaperEnginePlugin();
 
-    int FindFile(const QString &_filePath);
+    void FindFile(const QString &_filePath);
     void readJson(const QString &path);
     void showView();
 
     void refresh(const QString &path);
 private slots:
     void on_setEnginePath_clicked();
-
-    void on_setWallPaperBtn_clicked();
 
 private:
     Ui::wallpaperEnginePlugin *ui;
