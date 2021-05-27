@@ -108,7 +108,11 @@ void wallpaperEnginePlugin::showView()
 
     }
     m_view->setFiles(list);
-    this->resize(800, 600);
+    if(this->size()==QSize(800,600)){
+        m_view->resize(QSize(801,601));
+    }else {
+        m_view->resize(QSize(800,600));
+    }
 
 }
 
@@ -133,7 +137,7 @@ wallpaperEnginePlugin::~wallpaperEnginePlugin()
 void wallpaperEnginePlugin::on_setEnginePath_clicked()
 {
     QString path = QFileDialog::getExistingDirectory();
-    if(!path.isEmpty()){
+    if(!path.isEmpty() &&path.contains("Steam")){
         ui->enginePath->setText(path);
         refresh(path);
     }
