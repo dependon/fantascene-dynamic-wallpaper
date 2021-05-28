@@ -1,6 +1,12 @@
 
 ## 如果你喜欢这个玩具，点下小星星
 后续会有详细使用说明写入wiki
+
+
+## 1.0.5新增功能
+遍历wallpaper engine的下载目录，emmm
+[![2FL7UH.png](https://z3.ax1x.com/2021/05/28/2FL7UH.png)](https://imgtu.com/i/2FL7UH)
+
 ## 1.0.3(deepinv20.2.1)/1.0.4(uos) 更新
 
 增加可以配置解码方式
@@ -64,8 +70,7 @@ patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-
 目前已知问题:
 1.在运行中修改屏幕分辨率等操作，也许需要重启程序
 
-
-
 github地址:https://github.com/dependon/fantascene-dynamic-wallpaper
+
 gitee地址:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
