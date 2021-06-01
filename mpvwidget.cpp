@@ -47,6 +47,8 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     list << "no-correct-pts";
 //    mpv::qt::command_variant(mpv, list);
     mpv::qt::set_property_variant(mpv, "correct-pts", "no");
+    mpv::qt::set_property_variant(mpv, "fps", "30");
+
     connect(dApp, &Application::sigscreenshot, this, [ = ] {
         m_bScrrenShot = true;
     });

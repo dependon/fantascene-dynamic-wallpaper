@@ -96,7 +96,8 @@ private slots:
     void on_moreSettingBtn_clicked();
 
     void on_pluginBtn_clicked();
-
+public slots:
+    void activeWindow();
 private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};

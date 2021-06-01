@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=com.deepin.dde.DreamScene
-Exec=/usr/bin/deepin-dreamscene
