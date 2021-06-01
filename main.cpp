@@ -104,27 +104,32 @@ int main(int argc, char *argv[])
 //        qDebug() << qApp->desktop()->primaryScreen();
 //        qDebug() << qApp->desktop()->screenCount();
 
-//        DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
+        DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
 //        Q_UNUSED(dbusInter);
 
-//        QDBusConnection::sessionBus().registerService("com.deepin.dde.DreamScene");
-//        QDBusConnection::sessionBus().registerObject("/com/deepin/dde/DreamScene", "com.deepin.dde.DreamScene", w);
+        QDBusConnection::sessionBus().registerService("com.deepin.dde.fantascene");
+        QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", w);
 
-//        QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
+        QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
 
-//        QByteArray cookie = qgetenv(envName.toUtf8().data());
-//        qunsetenv(envName.toUtf8().data());
+        QByteArray cookie = qgetenv(envName.toUtf8().data());
+        qunsetenv(envName.toUtf8().data());
 
-//        if (!cookie.isEmpty()) {
-//            QDBusInterface iface("com.deepin.SessionManager",
-//                                 "/com/deepin/SessionManager",
-//                                 "com.deepin.SessionManager",
-//                                 QDBusConnection::sessionBus());
-//            iface.asyncCall("Register", QString(cookie));
-//        }
+        if (!cookie.isEmpty()) {
+            QDBusInterface iface("com.deepin.SessionManager",
+                                 "/com/deepin/SessionManager",
+                                 "com.deepin.SessionManager",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("Register", QString(cookie));
+        }
 
 
     } else {
+        QDBusInterface iface("com.deepin.dde.fantascene",
+                             "/com/deepin/dde/fantascene",
+                             "com.deepin.dde.fantascene",
+                             QDBusConnection::sessionBus());
+        iface.asyncCall("activeWindow");
         return 0;
     }
 

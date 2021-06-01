@@ -57,6 +57,8 @@ Q_SIGNALS:
     void sigscreenshot();
 
     void moreSettingSave();
+
+    void sigActiveWindow();
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};

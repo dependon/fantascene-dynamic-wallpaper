@@ -123,6 +123,9 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(dApp, &Application::saveSetting, this, &settingWindow::saveSettings);
 
     connect(dApp, &Application::moreSettingSave, this, &settingWindow::slotMoreSettingSave);
+
+    connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
+
     ui->bugBtn->hide();
     ui->mainWeb->hide();
     ui->githubWeb->hide();
@@ -706,5 +709,14 @@ void settingWindow::on_pluginBtn_clicked()
     } else {
         m_wallpaperEnginePlugin->showNormal();
         m_wallpaperEnginePlugin->activateWindow();
+    }
+}
+
+void settingWindow::activeWindow()
+{
+    if (m_parentMainWindow) {
+        m_parentMainWindow->resize(500, 300);
+        m_parentMainWindow->show();
+        m_parentMainWindow->activateWindow();
     }
 }
