@@ -19,21 +19,21 @@
      <item>
       <widget class="QPushButton" name="setWallPaper">
        <property name="text">
-        <string>设置壁纸</string>
+        <string>set wallpaper</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delWallPaper">
        <property name="text">
-        <string>删除壁纸</string>
+        <string>Delete wallpaper</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="importBtn">
        <property name="text">
-        <string>导入</string>
+        <string>Import</string>
        </property>
       </widget>
      </item>

@@ -47,12 +47,12 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     readSettings();
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
-    exitAction->setText("退出");
+    exitAction->setText(tr("sign out"));
     connect(exitAction, &QAction::triggered, this, &settingWindow::quitApp);
     connect(dApp, &Application::quitApp, this, &settingWindow::quitApp, Qt::DirectConnection);
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
-    setMpvPlayAction->setText("播放");
+    setMpvPlayAction->setText(tr("play"));
     connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
         emit dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
@@ -60,23 +60,23 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     });
 
     QAction *setScreenshotAction = new QAction(m_traymenu);
-    setScreenshotAction->setText("截图");
+    setScreenshotAction->setText(tr("screenshot"));
     connect(setScreenshotAction, &QAction::triggered, this, [ = ] {
         emit dApp->sigscreenshot();
     });
     QAction *setMpvpauseAction = new QAction(m_traymenu);
-    setMpvpauseAction->setText("暂停");
+    setMpvpauseAction->setText(tr("pause"));
     connect(setMpvpauseAction, &QAction::triggered, this, [ = ] {
         emit dApp->setMpvpause();
         dApp->m_isNoMpvPause = false;
     });
 
     QAction *setHistoryAction = new QAction(m_traymenu);
-    setHistoryAction->setText("历史壁纸");
+    setHistoryAction->setText(tr("Historical wallpaper"));
     connect(setHistoryAction, &QAction::triggered, this, &settingWindow::on_history_clicked);
 
     QAction *setMainViewAction = new QAction(m_traymenu);
-    setMainViewAction->setText("主界面");
+    setMainViewAction->setText(tr("main view"));
     connect(setMainViewAction, &QAction::triggered, this, [ = ] {
         if (m_parentMainWindow)
         {
@@ -102,7 +102,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 
     m_trayIcon = new QSystemTrayIcon(this);
     m_trayIcon->setContextMenu(m_traymenu);
-    m_trayIcon->setToolTip("双击打开配置界面");
+    m_trayIcon->setToolTip(tr("Double click to open the configuration interface"));
     m_trayIcon->setIcon(QIcon(":/install/wallpaper.png"));
     m_trayIcon->show();
 
@@ -135,13 +135,13 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     if (m_parentMainWindow) {
         m_aboutMenu = new QMenu();
         QAction *aboutgit = new QAction(m_aboutMenu);
-        aboutgit->setText("程序主页");
+        aboutgit->setText(tr("github"));
         connect(aboutgit, &QAction::triggered, this, [ = ] {
             QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
         });
 
         QAction *aboutMe = new QAction(m_aboutMenu);
-        aboutMe->setText("最新版本");
+        aboutMe->setText(tr("Latest version"));
         connect(aboutMe, &QAction::triggered, this, [ = ] {
             QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
         });
@@ -429,7 +429,7 @@ void settingWindow::on_setManual_clicked()
     int width = ui->width->text().toInt();
     int height = ui->height->text().toInt();
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
-    if (ui->comboBox->currentText() == "手动设置尺寸") {
+    if (ui->comboBox->currentText() == tr("Manual")) {
         emit dApp->sigupdateGeometry();
     }
     saveSettings();

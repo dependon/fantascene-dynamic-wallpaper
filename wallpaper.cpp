@@ -217,17 +217,17 @@ void Wallpaper::slotrefreshPix(const QPixmap &pix)
 
 void Wallpaper::slotsetScreenMode(const QString &mode)
 {
-    if (mode == "复制") {
+    if (mode == tr("copy")) {
         if (dApp->m_cuurentMode != IdCopyScreen) {
             dApp->m_cuurentMode = IdCopyScreen;
             changeScreenMode(dApp->m_cuurentMode);
         }
-    } else if (mode == "扩展") {
+    } else if (mode == tr("extend")) {
         if (dApp->m_cuurentMode != IdlayoutScreen) {
             dApp->m_cuurentMode = IdlayoutScreen;
             changeScreenMode(dApp->m_cuurentMode);
         }
-    } else if (mode == "手动设置尺寸") {
+    } else if (mode == tr("Manual")) {
         if (dApp->m_cuurentMode != IdManualSet) {
             dApp->m_cuurentMode = IdManualSet;
             changeScreenMode(dApp->m_cuurentMode);

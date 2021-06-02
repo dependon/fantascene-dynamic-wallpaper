@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>窗口全屏是否继续播放</string>
+        <string>Does the window continue to play in full screen</string>
        </property>
       </widget>
      </item>
@@ -27,12 +27,12 @@
       <widget class="QComboBox" name="autoBox">
        <item>
         <property name="text">
-         <string>是</string>
+         <string>yes</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>否</string>
+         <string>no</string>
         </property>
        </item>
       </widget>
@@ -44,7 +44,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>帧率</string>
+        <string>pts</string>
        </property>
       </widget>
      </item>
@@ -52,7 +52,7 @@
       <widget class="QComboBox" name="fpsbox">
        <item>
         <property name="text">
-         <string>默认</string>
+         <string>default</string>
         </property>
        </item>
        <item>
@@ -99,7 +99,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>解码</string>
+        <string>decode</string>
        </property>
       </widget>
      </item>
@@ -132,7 +132,7 @@
        </item>
        <item>
         <property name="text">
-         <string>其他</string>
+         <string>other</string>
         </property>
        </item>
       </widget>
@@ -154,14 +154,14 @@
      <item>
       <widget class="QPushButton" name="okBtn">
        <property name="text">
-        <string>确定</string>
+        <string>ok</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="cancelBtn">
        <property name="text">
-        <string>取消</string>
+        <string>cancel</string>
        </property>
       </widget>
      </item>

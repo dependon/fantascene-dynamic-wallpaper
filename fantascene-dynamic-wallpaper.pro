@@ -38,6 +38,15 @@ HEADERS += \
 RESOURCES += \
     qrc.qrc
 
+CONFIG(release, debug|release) {
+    TRANSLATIONS = $$files($$PWD/translations/*.ts)
+    #遍历目录中的ts文件，调用lrelease将其生成为qm文件
+    for(tsfile, TRANSLATIONS) {
+        qmfile = $$replace(tsfile, .ts$, .qm)
+        system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
+    }
+}
+
 OTHER_FILES+=$$PWD/install/*
 target.path=/opt/durapps/fantascene-dynamic-wallpaper
 
@@ -56,10 +65,19 @@ DISTFILES += \
 dbus_service.files += com.deepin.dde.fantascene.service
 dbus_service.path = /usr/share/dbus-1/services
 
-INSTALLS += target  other desktop desktopleft
+APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
+
+translations.path = $$APPSHAREDIR/translations
+translations.files = $$PWD/translations/*.qm
+
+INSTALLS += target  other desktop desktopleft translations
 
 FORMS += \
     settingwindow.ui \
     listview/historywidget.ui \
     moresetting.ui \
     listview/wallpaperengineplugin.ui
+
+TRANSLATIONS += \
+    translations/fantascene-dynamic-wallpaper_zh_CN.ts \
+    translations/fantascene-dynamic-wallpaper_es.ts
