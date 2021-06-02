@@ -16,7 +16,7 @@
     <message>
         <location filename="../moresetting.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="22"/>
@@ -35,7 +35,7 @@
     <message>
         <location filename="../moresetting.ui" line="47"/>
         <source>pts</source>
-        <translation type="unfinished"></translation>
+        <translation>pts</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
@@ -43,42 +43,42 @@
         <location filename="../moresetting.cpp" line="61"/>
         <source>default</source>
         <translatorcomment>Incumplimiento</translatorcomment>
-        <translation>Incumplimiento</translation>
+        <translation>por defecto</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="60"/>
         <source>10</source>
-        <translation type="unfinished"></translation>
+        <translation>10</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="65"/>
         <source>15</source>
-        <translation type="unfinished"></translation>
+        <translation>15</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="70"/>
         <source>20</source>
-        <translation type="unfinished"></translation>
+        <translation>20</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="75"/>
         <source>24</source>
-        <translation type="unfinished"></translation>
+        <translation>24</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="80"/>
         <source>25</source>
-        <translation type="unfinished"></translation>
+        <translation>25</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="85"/>
         <source>30</source>
-        <translation type="unfinished"></translation>
+        <translation>30</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="90"/>
         <source>60</source>
-        <translation type="unfinished"></translation>
+        <translation>60</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
@@ -116,24 +116,24 @@
     <message>
         <location filename="../moresetting.ui" line="115"/>
         <source>gpu</source>
-        <translation type="unfinished"></translation>
+        <translation>gpu</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="120"/>
         <source>vaapi</source>
-        <translation type="unfinished"></translation>
+        <translation>vaapi</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="125"/>
         <source>vdpau</source>
-        <translation type="unfinished"></translation>
+        <translation>vdpau</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
         <location filename="../moresetting.ui" line="130"/>
         <location filename="../moresetting.cpp" line="26"/>
         <source>no</source>
-        <translation type="unfinished"></translation>
+        <translation>no</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="13"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="../application.cpp" line="83"/>
         <source>&lt;span style=&apos;font-size:10pt;font-weight:60;&apos;&gt;wallpaper by deepin community&lt;/span&gt;&lt;br/&gt;&lt;a href=&apos;https://github.com/dependon/fantascene-dynamic-wallpaper/&apos;&gt;github/fantascene-dynamic-wallpaper&lt;/a&gt;&lt;br/&gt;&lt;a href=&apos;https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/&apos;&gt;gitee/fantascene-dynamic-wallpaper&lt;/a&gt;&lt;br/&gt;&lt;span style=&apos;font-size:12pt;&apos;&gt;mail: liuminghang0821@gmail.com&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;Published under GPL V3</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;span style=&apos;font-size:10pt;font-weight:60;&apos;&gt;wallpaper por la comunidad deepin&lt;/span&gt;&lt;br/&gt;&lt;a href=&apos;https://github.com/dependon/fantascene-dynamic-wallpaper/&apos;&gt;github/fantascene-dynamic-wallpaper&lt;/a&gt;&lt;br/&gt;&lt;a href=&apos;https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/&apos;&gt;gitee/fantascene-dynamic-wallpaper&lt;/a&gt;&lt;br/&gt;&lt;span style=&apos;font-size:12pt;&apos;&gt;correo: liuminghang0821@gmail.com&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;Publicado bajo GPL V3</translation>
     </message>
 </context>
 <context>
@@ -155,27 +155,27 @@
     <message>
         <location filename="../settings.cpp" line="41"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="42"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="43"/>
         <source>Clean</source>
-        <translation type="unfinished"></translation>
+        <translation>Limpia</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="44"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="../settings.cpp" line="71"/>
         <source>Add Path</source>
-        <translation type="unfinished"></translation>
+        <translation>Añadir ruta</translation>
     </message>
 </context>
 <context>
@@ -201,7 +201,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="22"/>
@@ -227,12 +227,12 @@
     <message>
         <location filename="../settingwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation>MainWindow</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="29"/>
         <source>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</source>
-        <translation type="unfinished"></translation>
+        <translation>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="22"/>
@@ -317,27 +317,27 @@
     <message>
         <location filename="../settingwindow.ui" line="264"/>
         <source>4:3</source>
-        <translation type="unfinished"></translation>
+        <translation>4:3</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="269"/>
         <source>16:9</source>
-        <translation type="unfinished"></translation>
+        <translation>16:9</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="274"/>
         <source>16:10</source>
-        <translation type="unfinished"></translation>
+        <translation>16:10</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="279"/>
         <source>1.85:1</source>
-        <translation type="unfinished"></translation>
+        <translation>1.85.1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="284"/>
         <source>2.35:1</source>
-        <translation type="unfinished"></translation>
+        <translation>2:35:1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="289"/>
@@ -354,12 +354,12 @@
     <message>
         <location filename="../settingwindow.ui" line="325"/>
         <source>X</source>
-        <translation type="unfinished"></translation>
+        <translation>X</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="339"/>
         <source>Y</source>
-        <translation type="unfinished"></translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="353"/>
@@ -380,17 +380,17 @@
     <message>
         <location filename="../settingwindow.ui" line="400"/>
         <source>githubWeb</source>
-        <translation type="unfinished"></translation>
+        <translation>githubWeb</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="407"/>
         <source>new(gitee)</source>
-        <translation type="unfinished"></translation>
+        <translation>nuevo(gitee)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="414"/>
         <source>new(github)</source>
-        <translation type="unfinished"></translation>
+        <translation>nuevo(github)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="432"/>
@@ -407,17 +407,17 @@
     <message>
         <location filename="../settingwindow.ui" line="446"/>
         <source>wallpaper Engine-plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Motor-wallpaper Engine</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="299"/>
         <source>1.33</source>
-        <translation type="unfinished"></translation>
+        <translation>1.33</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="421"/>
         <source>reprotBug</source>
-        <translation type="unfinished"></translation>
+        <translation>reprotBug</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="50"/>
@@ -458,13 +458,13 @@
     <message>
         <location filename="../settingwindow.cpp" line="138"/>
         <source>github</source>
-        <translation type="unfinished"></translation>
+        <translation>github</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="144"/>
         <source>Latest version</source>
-        <translatorcomment>Nueva versión</translatorcomment>
-        <translation>Nueva versión</translation>
+        <translatorcomment>Última versión</translatorcomment>
+        <translation>Última versión</translation>
     </message>
 </context>
 <context>
@@ -472,7 +472,7 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="28"/>
