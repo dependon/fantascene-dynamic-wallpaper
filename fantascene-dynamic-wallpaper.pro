@@ -60,3 +60,7 @@ FORMS += \
     listview/historywidget.ui \
     moresetting.ui \
     listview/wallpaperengineplugin.ui
+
+TRANSLATIONS += \
+    translations/fantascene-dynamic-wallpaper_zh_CN.ts \
+    translations/fantascene-dynamic-wallpaper_es.ts
