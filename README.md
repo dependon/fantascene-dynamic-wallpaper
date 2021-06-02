@@ -35,13 +35,13 @@ deepin-dreamscene-ui
 ## Now it's a dynamic wallpaper demo [video wallpaper demo for deepin/uos]
 The test software package of deepin and UOS system can be downloaded from the right page
 
-## 演示视频:
+## demo video:
 [https://www.bilibili.com/video/BV1bB4y1c7Fq](https://www.bilibili.com/video/BV1bB4y1c7Fq/)
 
-## 依赖
+## dependcy
 sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake
 
-## dde-desktop 根据这个patch打入dde-file-manager，拿出库和dde-desktop
+## dde-desktop   ,  According to this patch, enter dde-file-manager, take the libdde-file-manager.so and dde-desktop
 patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-feat.patch
 
 ## How to package when the code can be compiled
