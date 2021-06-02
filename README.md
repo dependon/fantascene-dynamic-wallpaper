@@ -1,76 +1,86 @@
 
-## 如果你喜欢这个玩具，点下小星星
-后续会有详细使用说明写入wiki
+## If you like this toy, light the little star
+Detailed instructions will be written to wiki later
 
+## 1.0.6 modify:
 
-## 1.0.5新增功能
-遍历wallpaper engine的下载目录，emmm
+the default language is changed to English
+
+## 1.0.5 new features
+
+Traverse the download directory of the wallpaper engine, emmm
 [![2FL7UH.png](https://z3.ax1x.com/2021/05/28/2FL7UH.png)](https://imgtu.com/i/2FL7UH)
 
-## 1.0.3(deepinv20.2.1)/1.0.4(uos) 更新
+## 1.0.3(deepinv20.2.1)/1.0.4(uos) update
 
-增加可以配置解码方式
+Add configurable decoding mode
 
-增加可以降低帧率
+Increase can reduce the frame rate
 
-检测到全屏可以选择不继续模仿
+If full screen is detected, you can choose not to continue to imitate
 
-一切为了省电
+It's all about saving electricity
 
 [![2PUCz4.png](https://z3.ax1x.com/2021/05/27/2PUCz4.png)](https://imgtu.com/i/2PUCz4)
 
-## 1.0.0新增智能模式
-该模式，检测到有窗口全屏，暂停播放，窗口不再全屏时，继续播放，我很喜欢这样，哈哈！！
 
-## 程序限制
-这个是根据deepinv20及其以上版本制作的，uos在也能找到对应的版本(并且deepinv20.2和20.1有区分)，在下载的deb包有标识，打包采用本地打包
+##Procedural restrictions
 
-## 原来的名称
+This is based on the version of deepin V20 and above. The corresponding version can also be found in UOS (and deepin v20.2 and 20.1 are different). The downloaded DEB package is marked and packaged locally
+
+## Original name
 deepin-dreamscene-ui
 
-## 正在做的事情:
-让软件和 steam中wallpapar engine的软件中本地文件夹的壁纸共享，哈哈
 
-## 目前是个动态壁纸demo [video wallpaper demo for deepin/uos]
-关于deepin和uos系统的测试软件包,可以在右侧网页下载
+## Now it's a dynamic wallpaper demo [video wallpaper demo for deepin/uos]
+The test software package of deepin and UOS system can be downloaded from the right page
 
 ## 演示视频:
 [https://www.bilibili.com/video/BV1bB4y1c7Fq](https://www.bilibili.com/video/BV1bB4y1c7Fq/)
 
 ## 依赖
-sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg
+sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake
 
 ## dde-desktop 根据这个patch打入dde-file-manager，拿出库和dde-desktop
 patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-feat.patch
 
-## 在已经能编译代码的情况下如何打包
-在修改了代码之后，直接在代码主目录下打开终端执行 dpkg-buildpackage -b -us -uc ，即可得到deb包
+## How to package when the code can be compiled
 
-无理的需求可以随便提
+After modifying the code, open the terminal directly in the main directory of the code and execute 
 
-如果有更好的做动态壁纸的方法欢迎讨论和分享
+dpkg buildpackage - b - us - uc 
 
-本软件作为学习作用,可以提出一些有理无理的需求,有时间会做下去的.
-正在编码能力提高的路上,
+to get DEB package
 
-目前:用已经编译好的透明dde-desktop在运行时替换原生dde-desktop
+## other
+Unreasonable demands can be mentioned at will
 
-绘制动态壁纸，使用硬解码，目前最高支持双屏（功能当前相对简单）
+If there is a better way to make dynamic wallpaper, welcome to discuss and share
 
-最近几个月都会保持更新
+This software as a learning function, can put forward some reasonable and unreasonable needs, will do it when there is time
 
-有什么想法和问题都可以联系我liuminghang0821@gmail.com
+We are on the way to improve our coding ability,
 
-有问必回
+At present: replace the native DDE desktop with the compiled transparent DDE desktop at run time
 
-也可以提交issues 和pull requests
+Draw dynamic wallpaper, use hard decoding, at present the highest support double screen (the function is relatively simple)
 
-个人想法有限，能提意见和需求最好
+It will be updated in recent months
 
-目前已知问题:
-1.在运行中修改屏幕分辨率等操作，也许需要重启程序
+If you have any ideas or questions, please contact me liuminghang0821@gmail.com
 
-github地址:https://github.com/dependon/fantascene-dynamic-wallpaper
+If you ask, you will answer
 
-gitee地址:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
+You can also submit issues and pull requests
+
+Personal ideas are limited, and it's best to be able to put forward opinions and demands
+
+Currently known problems are as follows:
+
+1. You may need to restart the program to modify the screen resolution
+2. 
+
+github:https://github.com/dependon/fantascene-dynamic-wallpaper
+
+gitee:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
