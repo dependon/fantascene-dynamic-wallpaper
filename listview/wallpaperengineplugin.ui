@@ -25,7 +25,7 @@
      <item>
       <widget class="QPushButton" name="setEnginePath">
        <property name="text">
-        <string>选择steam的下载地址</string>
+        <string>Select the download address of steam</string>
        </property>
       </widget>
      </item>
@@ -46,7 +46,7 @@
       </size>
      </property>
      <property name="text">
-      <string>你需要在steam中安装wallpaper engine，否则没啥用，如果是linux下安装，其实也是打不开的，但能遍历到视频</string>
+      <string>You need to install the wallpaper engine in steam, otherwise it's useless. If you install it under Linux, you can't open it, but you can traverse the video</string>
      </property>
     </widget>
    </item>

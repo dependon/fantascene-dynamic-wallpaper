@@ -19,7 +19,7 @@
      <item>
       <widget class="QPushButton" name="pathBtn">
        <property name="text">
-        <string>选择地址</string>
+        <string>file</string>
        </property>
       </widget>
      </item>
@@ -100,7 +100,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>音量</string>
+        <string>volume</string>
        </property>
       </widget>
      </item>
@@ -133,7 +133,7 @@
         </size>
        </property>
        <property name="text">
-        <string>开始</string>
+        <string>start</string>
        </property>
       </widget>
      </item>
@@ -152,7 +152,7 @@
         </size>
        </property>
        <property name="text">
-        <string>暂停</string>
+        <string>pause</string>
        </property>
       </widget>
      </item>
@@ -171,7 +171,7 @@
         </size>
        </property>
        <property name="text">
-        <string>设置壁纸</string>
+        <string>setWallapaper</string>
        </property>
       </widget>
      </item>
@@ -190,7 +190,7 @@
         </size>
        </property>
        <property name="text">
-        <string>取消</string>
+        <string>cancel</string>
        </property>
       </widget>
      </item>
@@ -205,7 +205,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>模式</string>
+            <string>model</string>
            </property>
           </widget>
          </item>
@@ -213,17 +213,17 @@
           <widget class="QComboBox" name="comboBox">
            <item>
             <property name="text">
-             <string>复制</string>
+             <string>copy</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>扩展</string>
+             <string>extend</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>手动设置尺寸</string>
+             <string>Manual</string>
             </property>
            </item>
           </widget>
@@ -231,7 +231,7 @@
          <item>
           <widget class="QCheckBox" name="autoStartBox">
            <property name="text">
-            <string>是否自启动</string>
+            <string>Auto start or not</string>
            </property>
           </widget>
          </item>
@@ -242,7 +242,7 @@
          <item>
           <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>视频比例</string>
+            <string>Video ratio</string>
            </property>
           </widget>
          </item>
@@ -256,7 +256,7 @@
            </property>
            <item>
             <property name="text">
-             <string>默认</string>
+             <string>default</string>
             </property>
            </item>
            <item>
@@ -286,7 +286,7 @@
            </item>
            <item>
             <property name="text">
-             <string>自定义</string>
+             <string>custom</string>
             </property>
            </item>
           </widget>
@@ -303,7 +303,7 @@
            <item>
             <widget class="QPushButton" name="videoBZDY">
              <property name="text">
-              <string>设置比例</string>
+              <string>Set scale</string>
              </property>
             </widget>
            </item>
@@ -322,7 +322,7 @@
            <item>
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>横向偏移</string>
+              <string>X</string>
              </property>
             </widget>
            </item>
@@ -336,7 +336,7 @@
            <item>
             <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>纵向偏移</string>
+              <string>Y</string>
              </property>
             </widget>
            </item>
@@ -350,7 +350,7 @@
            <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>宽度</string>
+              <string>width</string>
              </property>
             </widget>
            </item>
@@ -364,7 +364,7 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>高度</string>
+              <string>height</string>
              </property>
             </widget>
            </item>
@@ -378,7 +378,7 @@
        <item>
         <widget class="QPushButton" name="setManual">
          <property name="text">
-          <string>设置自定义宽高</string>
+          <string>Set custom width and height</string>
          </property>
         </widget>
        </item>
@@ -397,21 +397,21 @@
         </size>
        </property>
        <property name="text">
-        <string>程序主页</string>
+        <string>githubWeb</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="giteeWeb">
        <property name="text">
-        <string>最新版下载(gitee)</string>
+        <string>new(gitee)</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="githubWeb">
        <property name="text">
-        <string>最新版本下载(github)</string>
+        <string>new(github)</string>
        </property>
       </widget>
      </item>
@@ -429,21 +429,21 @@
      <item>
       <widget class="QPushButton" name="moreSettingBtn">
        <property name="text">
-        <string>更多设置</string>
+        <string>More settings</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="history">
        <property name="text">
-        <string>历史/导入壁纸</string>
+        <string>History / import wallpaper</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pluginBtn">
        <property name="text">
-        <string>wallpaper Engine-插件</string>
+        <string>wallpaper Engine-plugin</string>
        </property>
       </widget>
      </item>
