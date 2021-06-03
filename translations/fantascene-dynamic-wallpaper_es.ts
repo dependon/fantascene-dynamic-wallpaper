@@ -291,7 +291,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
-        <location filename="../settingwindow.cpp" line="432"/>
+        <location filename="../settingwindow.cpp" line="435"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -475,13 +475,19 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.ui" line="28"/>
+        <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select the download address of steam</source>
         <translatorcomment>Seleccione la dirección steam</translatorcomment>
         <translation>Seleccione la dirección steam</translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.ui" line="49"/>
+        <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
+        <source>set</source>
+        <translatorcomment>Configuración</translatorcomment>
+        <translation>Configuración</translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You need to install the wallpaper engine in steam, otherwise it&apos;s useless. If you install it under Linux, you can&apos;t open it, but you can traverse the video</source>
         <translatorcomment>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translatorcomment>
         <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>

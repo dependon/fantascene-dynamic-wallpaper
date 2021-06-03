@@ -300,7 +300,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
-        <location filename="../settingwindow.cpp" line="432"/>
+        <location filename="../settingwindow.cpp" line="435"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -484,13 +484,19 @@
         <translation type="unfinished">窗口</translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.ui" line="28"/>
+        <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select the download address of steam</source>
         <translatorcomment>选择steam的下载地址</translatorcomment>
         <translation>选择steam的下载地址</translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.ui" line="49"/>
+        <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
+        <source>set</source>
+        <translatorcomment>设置</translatorcomment>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You need to install the wallpaper engine in steam, otherwise it&apos;s useless. If you install it under Linux, you can&apos;t open it, but you can traverse the video</source>
         <translatorcomment>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translatorcomment>
         <translation>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
