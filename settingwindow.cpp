@@ -193,6 +193,7 @@ void settingWindow::readSettings()
     dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
     dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
+    dApp->m_wallpaperEnginePath = settings.value("WallPaper/wallpaperEnginePath").toString();
     if (dApp->m_moreData.hwdec.isEmpty()) {
         dApp->m_moreData.hwdec = "gpu";
     }
@@ -286,6 +287,8 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
     settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
     settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
+    settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+
     int indexLocal = 1;
     //去重
     dApp->m_allPath = dApp->m_allPath.toSet().toList();
