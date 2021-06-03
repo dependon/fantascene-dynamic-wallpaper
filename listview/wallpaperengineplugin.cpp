@@ -9,6 +9,8 @@
 #include <QThread>
 
 #include "view.h"
+#include "application.h"
+
 wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::wallpaperEnginePlugin)
@@ -20,6 +22,11 @@ wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
 
     QString path = QDir::homePath() +
                    "/.local/share/Steam/steamapps/workshop/content";
+    if (!dApp->m_wallpaperEnginePath.isNull()) {
+        path = dApp->m_wallpaperEnginePath;
+    } else {
+        dApp->m_wallpaperEnginePath = path;
+    }
     ui->enginePath->setText(path);
     refresh(path);
 }
@@ -108,10 +115,10 @@ void wallpaperEnginePlugin::showView()
 
     }
     m_view->setFiles(list);
-    if(this->size()==QSize(800,600)){
-        m_view->resize(QSize(801,601));
-    }else {
-        m_view->resize(QSize(800,600));
+    if (this->size() == QSize(800, 600)) {
+        m_view->resize(QSize(801, 601));
+    } else {
+        m_view->resize(QSize(800, 600));
     }
 
 }
@@ -119,11 +126,11 @@ void wallpaperEnginePlugin::showView()
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
     QThread *th = QThread::create([ = ]() {
-    FindFile(path);
-    for (QString str : m_JasonList) {
-        readJson(str);
-    }
-    showView();
+        FindFile(path);
+        for (QString str : m_JasonList) {
+            readJson(str);
+        }
+        showView();
     });
     th->start();
 
@@ -137,8 +144,16 @@ wallpaperEnginePlugin::~wallpaperEnginePlugin()
 void wallpaperEnginePlugin::on_setEnginePath_clicked()
 {
     QString path = QFileDialog::getExistingDirectory();
-    if(!path.isEmpty() &&path.contains("Steam")){
+    if (!path.isEmpty() && path.contains("Steam")) {
         ui->enginePath->setText(path);
-        refresh(path);
+    }
+}
+
+void wallpaperEnginePlugin::on_setBtn_clicked()
+{
+    QString path = ui->enginePath->text();
+    if (!path.isNull() && path.contains("Steam")) {
+        refresh(ui->enginePath->text());
+        dApp->m_wallpaperEnginePath = ui->enginePath->text();
     }
 }
