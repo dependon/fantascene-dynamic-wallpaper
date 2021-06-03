@@ -20,12 +20,19 @@
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLineEdit" name="enginePath"/>
-     </item>
-     <item>
       <widget class="QPushButton" name="setEnginePath">
        <property name="text">
         <string>Select the download address of steam</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="enginePath"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setBtn">
+       <property name="text">
+        <string>set</string>
        </property>
       </widget>
      </item>
