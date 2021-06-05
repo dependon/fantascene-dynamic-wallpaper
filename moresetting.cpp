@@ -10,7 +10,7 @@ MoreSetting::MoreSetting(QWidget *parent) :
     ui(new Ui::MoreSetting)
 {
     ui->setupUi(this);
-    this->setWindowTitle(tr("more settings"));
+    this->setWindowTitle(tr("Advanced Settings"));
 }
 
 MoreSetting::~MoreSetting()
@@ -23,7 +23,7 @@ void MoreSetting::setData(const MoreSetData &data)
     if (data.isAuto == 0) {
         ui->autoBox->setCurrentText(tr("yes"));
     } else {
-        ui->autoBox->setCurrentText(tr("no"));
+        ui->autoBox->setCurrentText(tr("none"));
     }
     if (data.fps != 0) {
         ui->fpsbox->setCurrentText(QString::number(data.fps));
@@ -33,7 +33,7 @@ void MoreSetting::setData(const MoreSetData &data)
     if (data.hwdec.contains("gpu")  ||
             data.hwdec.contains("vaapi")  ||
             data.hwdec.contains("vdpau")  ||
-            data.hwdec.contains("no")  ||
+            data.hwdec.contains("none")  ||
             data.hwdec.contains("auto")
        ) {
         ui->hwdecEdit->hide();

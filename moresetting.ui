@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Does the window continue to play in full screen</string>
+        <string>Other applicaiton maximized</string>
        </property>
       </widget>
      </item>
@@ -44,7 +44,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>pts</string>
+        <string>Video FPS</string>
        </property>
       </widget>
      </item>
@@ -99,7 +99,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>decode</string>
+        <string>Decode</string>
        </property>
       </widget>
      </item>
@@ -127,7 +127,7 @@
        </item>
        <item>
         <property name="text">
-         <string>no</string>
+         <string>none</string>
         </property>
        </item>
        <item>
@@ -154,14 +154,14 @@
      <item>
       <widget class="QPushButton" name="okBtn">
        <property name="text">
-        <string>ok</string>
+        <string>Confirm</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="cancelBtn">
        <property name="text">
-        <string>cancel</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>

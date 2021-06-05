@@ -19,14 +19,14 @@
      <item>
       <widget class="QPushButton" name="setWallPaper">
        <property name="text">
-        <string>set wallpaper</string>
+        <string>Set Wallpaper</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="delWallPaper">
        <property name="text">
-        <string>Delete wallpaper</string>
+        <string>Delete</string>
        </property>
       </widget>
      </item>

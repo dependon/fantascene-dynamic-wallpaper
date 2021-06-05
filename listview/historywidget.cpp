@@ -13,7 +13,7 @@ historyWidget::historyWidget(QWidget *parent) :
     ui->setupUi(this);
     m_view = new view();
     ui->verticalLayout->addWidget(m_view);
-    setWindowTitle("历史壁纸");
+    setWindowTitle(tr("Wallpaper History"));
 
     connect(dApp, &Application::addPaperView, m_view, &view::addPath);
     //文件

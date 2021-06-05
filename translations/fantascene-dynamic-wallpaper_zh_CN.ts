@@ -20,10 +20,9 @@
         <translation>窗口</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>Does the window continue to play in full screen</source>
         <translatorcomment>窗口是否继续全屏播放</translatorcomment>
-        <translation>窗口是否继续全屏播放</translation>
+        <translation type="vanished">窗口是否继续全屏播放</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
@@ -33,9 +32,18 @@
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="47"/>
         <source>pts</source>
         <translatorcomment>帧率</translatorcomment>
+        <translation type="vanished">帧率</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>Other applicaiton maximized</source>
+        <translation>窗口是否继续全屏播放</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="47"/>
+        <source>Video FPS</source>
         <translation>帧率</translation>
     </message>
     <message>
@@ -83,9 +91,29 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
+        <source>Decode</source>
+        <translation>解码</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="130"/>
+        <location filename="../moresetting.cpp" line="26"/>
+        <source>none</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="157"/>
+        <source>Confirm</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="164"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
         <source>decode</source>
         <translatorcomment>解码</translatorcomment>
-        <translation>解码</translation>
+        <translation type="vanished">解码</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
@@ -96,16 +124,14 @@
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="157"/>
         <source>ok</source>
         <translatorcomment>确定</translatorcomment>
-        <translation>确定</translation>
+        <translation type="vanished">确定</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="164"/>
         <source>cancel</source>
         <translatorcomment>取消</translatorcomment>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="110"/>
@@ -129,8 +155,6 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
-        <location filename="../moresetting.ui" line="130"/>
-        <location filename="../moresetting.cpp" line="26"/>
         <source>no</source>
         <translatorcomment>否</translatorcomment>
         <translation>否</translation>
@@ -140,9 +164,13 @@
         <translation type="obsolete">更多设置界面</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="13"/>
         <source>more settings</source>
         <translatorcomment>更多设置界面</translatorcomment>
+        <translation type="vanished">更多设置界面</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="13"/>
+        <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
     </message>
 </context>
@@ -188,15 +216,23 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="220"/>
         <source>copy</source>
         <translatorcomment>复制</translatorcomment>
+        <translation type="vanished">复制</translation>
+    </message>
+    <message>
+        <source>extend</source>
+        <translatorcomment>扩展</translatorcomment>
+        <translation type="vanished">扩展</translation>
+    </message>
+    <message>
+        <location filename="../wallpaper.cpp" line="220"/>
+        <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="225"/>
-        <source>extend</source>
-        <translatorcomment>扩展</translatorcomment>
+        <source>Extend</source>
         <translation>扩展</translation>
     </message>
     <message>
@@ -215,21 +251,38 @@
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="22"/>
-        <source>set wallpaper</source>
-        <translatorcomment>设置壁纸</translatorcomment>
+        <source>Set Wallpaper</source>
         <translation>设置壁纸</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="29"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>Delete </source>
+        <translation type="vanished">删除</translation>
+    </message>
+    <message>
+        <source>set wallpaper</source>
+        <translatorcomment>设置壁纸</translatorcomment>
+        <translation type="vanished">设置壁纸</translation>
+    </message>
+    <message>
         <source>Delete wallpaper</source>
         <translatorcomment>删除壁纸</translatorcomment>
-        <translation>删除壁纸</translation>
+        <translation type="vanished">删除壁纸</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="36"/>
         <source>Import</source>
         <translatorcomment>导入</translatorcomment>
         <translation>导入</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.cpp" line="16"/>
+        <source>Wallpaper History</source>
+        <translation>历史壁纸</translation>
     </message>
 </context>
 <context>
@@ -241,62 +294,57 @@
         <translation>主窗体</translation>
     </message>
     <message>
+        <location filename="../settingwindow.ui" line="22"/>
+        <source>File</source>
+        <translation>选择文件</translation>
+    </message>
+    <message>
         <location filename="../settingwindow.ui" line="29"/>
         <source>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
         <source>file</source>
         <translatorcomment>打开文件</translatorcomment>
-        <translation>打开文件</translation>
+        <translation type="vanished">打开文件</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="103"/>
         <source>volume</source>
         <translatorcomment>音量</translatorcomment>
-        <translation>音量</translation>
+        <translation type="vanished">音量</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="136"/>
         <source>start</source>
         <translatorcomment>开始</translatorcomment>
-        <translation>开始</translation>
+        <translation type="vanished">开始</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="155"/>
-        <location filename="../settingwindow.cpp" line="68"/>
         <source>pause</source>
         <translatorcomment>暂停</translatorcomment>
-        <translation>暂停</translation>
+        <translation type="vanished">暂停</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="174"/>
         <source>setWallapaper</source>
         <translatorcomment>设置壁纸</translatorcomment>
-        <translation>设置壁纸</translation>
+        <translation type="vanished">设置壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="193"/>
         <source>cancel</source>
         <translatorcomment>取消</translatorcomment>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="208"/>
         <source>model</source>
         <translatorcomment>模式</translatorcomment>
-        <translation>模式</translation>
+        <translation type="vanished">模式</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="216"/>
         <source>copy</source>
-        <translation>复制</translation>
+        <translation type="vanished">复制</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="221"/>
         <source>extend</source>
-        <translation>扩展</translation>
+        <translation type="vanished">扩展</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
@@ -305,15 +353,65 @@
         <translation>手动</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="234"/>
         <source>Auto start or not</source>
+        <translation type="vanished">开机自启动</translation>
+    </message>
+    <message>
+        <source>Video ratio</source>
+        <translatorcomment>视频比例</translatorcomment>
+        <translation type="vanished">视频比例</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="103"/>
+        <source>Volume</source>
+        <translation>音量</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="136"/>
+        <location filename="../settingwindow.cpp" line="55"/>
+        <source>Play</source>
+        <translation>播放</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="155"/>
+        <location filename="../settingwindow.cpp" line="68"/>
+        <source>Pause</source>
+        <translation>暂停</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="174"/>
+        <source>Set New</source>
+        <translation>设置新壁纸</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="193"/>
+        <source>Hide</source>
+        <translation>隐藏窗口</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="208"/>
+        <source>Model</source>
+        <translation>模式</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="216"/>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="221"/>
+        <source>Extend</source>
+        <translation>扩展</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="234"/>
+        <source>Add to startup</source>
         <translation>开机自启动</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="245"/>
-        <source>Video ratio</source>
-        <translatorcomment>视频比例</translatorcomment>
-        <translation>视频比例</translation>
+        <source>Video aspect ratio</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="259"/>
@@ -352,9 +450,24 @@
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="306"/>
+        <location filename="../settingwindow.ui" line="432"/>
+        <source>Advanced Settings</source>
+        <translation>更多设置界面</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="439"/>
+        <location filename="../settingwindow.cpp" line="75"/>
+        <source>Wallpaper History</source>
+        <translation>历史壁纸</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="446"/>
+        <source>Wallpaper Engine-plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Set scale</source>
-        <translation>设置尺寸</translation>
+        <translation type="vanished">设置尺寸</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="325"/>
@@ -369,22 +482,19 @@
         <translation>纵向偏移</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="353"/>
         <source>width</source>
         <translatorcomment>宽度</translatorcomment>
-        <translation>宽度</translation>
+        <translation type="vanished">宽度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="367"/>
         <source>height</source>
         <translatorcomment>高度</translatorcomment>
-        <translation>高度</translation>
+        <translation type="vanished">高度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="381"/>
         <source>Set custom width and height</source>
         <translatorcomment>设置自定义宽高</translatorcomment>
-        <translation>设置自定义宽高</translation>
+        <translation type="vanished">设置自定义宽高</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="400"/>
@@ -404,21 +514,18 @@
         <translation>新版本(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="432"/>
         <source>More settings</source>
         <translatorcomment>更多设置</translatorcomment>
-        <translation>更多设置</translation>
+        <translation type="vanished">更多设置</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="439"/>
         <source>History / import wallpaper</source>
         <translatorcomment>历史/导入壁纸</translatorcomment>
-        <translation>历史/导入壁纸</translation>
+        <translation type="vanished">历史/导入壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="446"/>
         <source>wallpaper Engine-plugin</source>
-        <translation>wallapaper engine插件</translation>
+        <translation type="vanished">wallapaper engine插件</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="299"/>
@@ -426,38 +533,68 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../settingwindow.ui" line="306"/>
+        <source>Apply scale</source>
+        <translation>执行比例</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="353"/>
+        <source>Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="367"/>
+        <source>Height</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="381"/>
+        <source>Apply Custom Dimensions</source>
+        <translation>执行自定义尺寸</translation>
+    </message>
+    <message>
         <location filename="../settingwindow.ui" line="421"/>
         <source>reprotBug</source>
         <translation>报告bug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="50"/>
         <source>sign out</source>
         <translatorcomment>退出</translatorcomment>
-        <translation>退出</translation>
+        <translation type="vanished">退出</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="55"/>
         <source>play</source>
         <translatorcomment>播放</translatorcomment>
-        <translation>播放</translation>
+        <translation type="vanished">播放</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="63"/>
         <source>screenshot</source>
         <translatorcomment>截图</translatorcomment>
-        <translation>截图</translation>
+        <translation type="vanished">截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="75"/>
         <source>Historical wallpaper</source>
         <translatorcomment>历史壁纸</translatorcomment>
-        <translation>历史壁纸</translation>
+        <translation type="vanished">历史壁纸</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="79"/>
-        <source>main view</source>
+        <source>Main View</source>
         <translation>主窗体</translation>
+    </message>
+    <message>
+        <source>main view</source>
+        <translation type="vanished">主窗体</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="50"/>
+        <source>Exit</source>
+        <translation>退出</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="63"/>
+        <source>Screenshot</source>
+        <translation>截图</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="105"/>
@@ -465,15 +602,29 @@
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="138"/>
-        <source>github</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settingwindow.cpp" line="144"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>
+    </message>
+</context>
+<context>
+    <name>view</name>
+    <message>
+        <location filename="../listview/view.cpp" line="207"/>
+        <location filename="../listview/view.cpp" line="214"/>
+        <source>Delete!!</source>
+        <translation>删除!!</translation>
+    </message>
+    <message>
+        <location filename="../listview/view.cpp" line="207"/>
+        <source>The file does not exist. Do you want to delete it</source>
+        <translation>该文件不存在，是否删除它</translation>
+    </message>
+    <message>
+        <location filename="../listview/view.cpp" line="214"/>
+        <source>Delete all history imports ?</source>
+        <translation>是否删除所有?</translation>
     </message>
 </context>
 <context>
@@ -485,21 +636,33 @@
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
-        <source>Select the download address of steam</source>
-        <translatorcomment>选择steam的下载地址</translatorcomment>
-        <translation>选择steam的下载地址</translation>
+        <source>Select Path</source>
+        <translation>选择路径</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
-        <source>set</source>
-        <translatorcomment>设置</translatorcomment>
-        <translation>设置</translation>
+        <source>Apply</source>
+        <translation>执行</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <translation>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
+    </message>
+    <message>
+        <source>Select the download address of steam</source>
+        <translatorcomment>选择steam的下载地址</translatorcomment>
+        <translation type="vanished">选择steam的下载地址</translation>
+    </message>
+    <message>
+        <source>set</source>
+        <translatorcomment>设置</translatorcomment>
+        <translation type="vanished">设置</translation>
+    </message>
+    <message>
         <source>You need to install the wallpaper engine in steam, otherwise it&apos;s useless. If you install it under Linux, you can&apos;t open it, but you can traverse the video</source>
         <translatorcomment>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translatorcomment>
-        <translation>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
+        <translation type="vanished">你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
     </message>
 </context>
 </TS>
