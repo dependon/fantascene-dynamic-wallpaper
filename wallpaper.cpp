@@ -265,6 +265,7 @@ bool Wallpaper::event(QEvent *event)
             for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
                 system("xdotool search --class dde-desktop windowactivate");
             }
+            emit dApp->sigDesktopActive();
             qDebug() << "Desktop WindowActivate";
         });
     }

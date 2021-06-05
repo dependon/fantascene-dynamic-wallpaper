@@ -411,7 +411,7 @@
     <message>
         <location filename="../settingwindow.ui" line="245"/>
         <source>Video aspect ratio</source>
-        <translation></translation>
+        <translation>视频比例</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="259"/>

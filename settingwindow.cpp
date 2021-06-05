@@ -125,6 +125,13 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(dApp, &Application::moreSettingSave, this, &settingWindow::slotMoreSettingSave);
 
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
+    connect(dApp, &Application::sigDesktopActive,this, [=]{
+        if (m_parentMainWindow) {
+            m_parentMainWindow->resize(500, 300);
+            m_parentMainWindow->show();
+            m_parentMainWindow->activateWindow();
+        }
+    });
 
     ui->bugBtn->hide();
     ui->mainWeb->hide();
