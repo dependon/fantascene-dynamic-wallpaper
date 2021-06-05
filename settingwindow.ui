@@ -19,7 +19,7 @@
      <item>
       <widget class="QPushButton" name="pathBtn">
        <property name="text">
-        <string>file</string>
+        <string>File</string>
        </property>
       </widget>
      </item>
@@ -100,7 +100,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>volume</string>
+        <string>Volume</string>
        </property>
       </widget>
      </item>
@@ -133,7 +133,7 @@
         </size>
        </property>
        <property name="text">
-        <string>start</string>
+        <string>Play</string>
        </property>
       </widget>
      </item>
@@ -152,7 +152,7 @@
         </size>
        </property>
        <property name="text">
-        <string>pause</string>
+        <string>Pause</string>
        </property>
       </widget>
      </item>
@@ -171,7 +171,7 @@
         </size>
        </property>
        <property name="text">
-        <string>setWallapaper</string>
+        <string>Set New</string>
        </property>
       </widget>
      </item>
@@ -190,7 +190,7 @@
         </size>
        </property>
        <property name="text">
-        <string>cancel</string>
+        <string>Hide</string>
        </property>
       </widget>
      </item>
@@ -205,7 +205,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>model</string>
+            <string>Model</string>
            </property>
           </widget>
          </item>
@@ -213,12 +213,12 @@
           <widget class="QComboBox" name="comboBox">
            <item>
             <property name="text">
-             <string>copy</string>
+             <string>Copy</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>extend</string>
+             <string>Extend</string>
             </property>
            </item>
            <item>
@@ -231,7 +231,7 @@
          <item>
           <widget class="QCheckBox" name="autoStartBox">
            <property name="text">
-            <string>Auto start or not</string>
+            <string>Add to startup</string>
            </property>
           </widget>
          </item>
@@ -242,7 +242,7 @@
          <item>
           <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Video ratio</string>
+            <string>Video aspect ratio</string>
            </property>
           </widget>
          </item>
@@ -303,7 +303,7 @@
            <item>
             <widget class="QPushButton" name="videoBZDY">
              <property name="text">
-              <string>Set scale</string>
+              <string>Apply scale</string>
              </property>
             </widget>
            </item>
@@ -350,7 +350,7 @@
            <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>width</string>
+              <string>Width</string>
              </property>
             </widget>
            </item>
@@ -364,7 +364,7 @@
            <item>
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>height</string>
+              <string>Height</string>
              </property>
             </widget>
            </item>
@@ -378,7 +378,7 @@
        <item>
         <widget class="QPushButton" name="setManual">
          <property name="text">
-          <string>Set custom width and height</string>
+          <string>Apply Custom Dimensions</string>
          </property>
         </widget>
        </item>
@@ -429,21 +429,21 @@
      <item>
       <widget class="QPushButton" name="moreSettingBtn">
        <property name="text">
-        <string>More settings</string>
+        <string>Advanced Settings</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="history">
        <property name="text">
-        <string>History / import wallpaper</string>
+        <string>Wallpaper History</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pluginBtn">
        <property name="text">
-        <string>wallpaper Engine-plugin</string>
+        <string>Wallpaper Engine-plugin</string>
        </property>
       </widget>
      </item>

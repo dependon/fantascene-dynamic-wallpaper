@@ -19,10 +19,9 @@
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>Does the window continue to play in full screen</source>
         <translatorcomment>Si la ventana continúa jugando a pantalla completa</translatorcomment>
-        <translation>Si la ventana continúa jugando a pantalla completa</translation>
+        <translation type="vanished">Si la ventana continúa jugando a pantalla completa</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
@@ -33,9 +32,18 @@
         <translation>Sí</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="47"/>
         <source>pts</source>
-        <translation>pts</translation>
+        <translation type="vanished">pts</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>Other applicaiton maximized</source>
+        <translation>Si la ventana continúa jugando a pantalla completa</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="47"/>
+        <source>Video FPS</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
@@ -82,9 +90,29 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
+        <source>Decode</source>
+        <translation>Decodificar</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="130"/>
+        <location filename="../moresetting.cpp" line="26"/>
+        <source>none</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="157"/>
+        <source>Confirm</source>
+        <translation>Muy bien</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="164"/>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
         <source>decode</source>
         <translatorcomment>Decodificar</translatorcomment>
-        <translation>Decodificar</translation>
+        <translation type="vanished">Decodificar</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
@@ -96,16 +124,14 @@
         <translation>Otros</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="157"/>
         <source>ok</source>
         <translatorcomment>Muy bien</translatorcomment>
-        <translation>Muy bien</translation>
+        <translation type="vanished">Muy bien</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="164"/>
         <source>cancel</source>
         <translatorcomment>Cancelar</translatorcomment>
-        <translation>Cancelar</translation>
+        <translation type="vanished">Cancelar</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="110"/>
@@ -130,15 +156,17 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
-        <location filename="../moresetting.ui" line="130"/>
-        <location filename="../moresetting.cpp" line="26"/>
         <source>no</source>
         <translation>no</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="13"/>
         <source>more settings</source>
         <translatorcomment>Más ajustes</translatorcomment>
+        <translation type="vanished">Más ajustes</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="13"/>
+        <source>Advanced Settings</source>
         <translation>Más ajustes</translation>
     </message>
 </context>
@@ -181,13 +209,21 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="220"/>
         <source>copy</source>
+        <translation type="vanished">Copiar</translation>
+    </message>
+    <message>
+        <source>extend</source>
+        <translation type="vanished">Extensión</translation>
+    </message>
+    <message>
+        <location filename="../wallpaper.cpp" line="220"/>
+        <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="225"/>
-        <source>extend</source>
+        <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
@@ -205,21 +241,34 @@
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="22"/>
-        <source>set wallpaper</source>
-        <translatorcomment>Configurar fondos de pantalla</translatorcomment>
+        <source>Set Wallpaper</source>
         <translation>Configurar fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="29"/>
+        <source>Delete</source>
+        <translation>Configurar fondos de pantalla</translation>
+    </message>
+    <message>
+        <source>set wallpaper</source>
+        <translatorcomment>Configurar fondos de pantalla</translatorcomment>
+        <translation type="vanished">Configurar fondos de pantalla</translation>
+    </message>
+    <message>
         <source>Delete wallpaper</source>
         <translatorcomment>Borrar fondos de pantalla</translatorcomment>
-        <translation>Borrar fondos de pantalla</translation>
+        <translation type="vanished">Borrar fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="36"/>
         <source>Import</source>
         <translatorcomment>Importar</translatorcomment>
         <translation>Importar</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.cpp" line="16"/>
+        <source>Wallpaper History</source>
+        <translation>Historia / importar fondos de pantalla</translation>
     </message>
 </context>
 <context>
@@ -230,64 +279,59 @@
         <translation>MainWindow</translation>
     </message>
     <message>
+        <location filename="../settingwindow.ui" line="22"/>
+        <source>File</source>
+        <translation>Documentación</translation>
+    </message>
+    <message>
         <location filename="../settingwindow.ui" line="29"/>
         <source>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</source>
         <translation>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
         <source>file</source>
         <translatorcomment>Documentación</translatorcomment>
-        <translation>Documentación</translation>
+        <translation type="vanished">Documentación</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="103"/>
         <source>volume</source>
         <translatorcomment>Volumen</translatorcomment>
-        <translation>Volumen</translation>
+        <translation type="vanished">Volumen</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="136"/>
         <source>start</source>
         <translatorcomment>Inicio</translatorcomment>
-        <translation>Inicio</translation>
+        <translation type="vanished">Inicio</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="155"/>
-        <location filename="../settingwindow.cpp" line="68"/>
         <source>pause</source>
         <translatorcomment>Pausa</translatorcomment>
-        <translation>Pausa</translation>
+        <translation type="vanished">Pausa</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="174"/>
         <source>setWallapaper</source>
         <translatorcomment>Cubierta de papel</translatorcomment>
-        <translation>Cubierta de papel</translation>
+        <translation type="vanished">Cubierta de papel</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="193"/>
         <source>cancel</source>
         <translatorcomment>Cancelar</translatorcomment>
-        <translation>Cancelar</translation>
+        <translation type="vanished">Cancelar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="208"/>
         <source>model</source>
         <translatorcomment>Modelo</translatorcomment>
-        <translation>Modelo</translation>
+        <translation type="vanished">Modelo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="216"/>
         <source>copy</source>
         <translatorcomment>Copiar</translatorcomment>
-        <translation>Copiar</translation>
+        <translation type="vanished">Copiar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="221"/>
         <source>extend</source>
         <translatorcomment>Extensión</translatorcomment>
-        <translation>Extensión</translation>
+        <translation type="vanished">Extensión</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
@@ -297,15 +341,65 @@
         <translation>Manual</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="234"/>
         <source>Auto start or not</source>
         <translatorcomment>Iniciar automáticamente</translatorcomment>
+        <translation type="vanished">Iniciar automáticamente</translation>
+    </message>
+    <message>
+        <source>Video ratio</source>
+        <translatorcomment>Relación de vídeo</translatorcomment>
+        <translation type="vanished">Relación de vídeo</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="103"/>
+        <source>Volume</source>
+        <translation>Volumen</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="136"/>
+        <location filename="../settingwindow.cpp" line="55"/>
+        <source>Play</source>
+        <translation>Inicio</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="155"/>
+        <location filename="../settingwindow.cpp" line="68"/>
+        <source>Pause</source>
+        <translation>Pausa</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="174"/>
+        <source>Set New</source>
+        <translation>Cubierta de papel</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="193"/>
+        <source>Hide</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="208"/>
+        <source>Model</source>
+        <translation>Modelo</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="216"/>
+        <source>Copy</source>
+        <translation>Copiar</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="221"/>
+        <source>Extend</source>
+        <translation>Extensión</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="234"/>
+        <source>Add to startup</source>
         <translation>Iniciar automáticamente</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="245"/>
-        <source>Video ratio</source>
-        <translatorcomment>Relación de vídeo</translatorcomment>
+        <source>Video aspect ratio</source>
         <translation>Relación de vídeo</translation>
     </message>
     <message>
@@ -346,10 +440,25 @@
         <translation>Costumbre</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="306"/>
+        <location filename="../settingwindow.ui" line="432"/>
+        <source>Advanced Settings</source>
+        <translation>Más ajustes</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="439"/>
+        <location filename="../settingwindow.cpp" line="75"/>
+        <source>Wallpaper History</source>
+        <translation>Historia / importar fondos de pantalla</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="446"/>
+        <source>Wallpaper Engine-plugin</source>
+        <translation>Motor-wallpaper Engine</translation>
+    </message>
+    <message>
         <source>Set scale</source>
         <translatorcomment>Establecer escala</translatorcomment>
-        <translation>Establecer escala</translation>
+        <translation type="vanished">Establecer escala</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="325"/>
@@ -362,20 +471,17 @@
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="353"/>
         <source>width</source>
-        <translation>Ancho</translation>
+        <translation type="vanished">Ancho</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="367"/>
         <source>height</source>
-        <translation>Altura</translation>
+        <translation type="vanished">Altura</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="381"/>
         <source>Set custom width and height</source>
         <translatorcomment>Establecer ancho y altura personalizados</translatorcomment>
-        <translation>Establecer ancho y altura personalizados</translation>
+        <translation type="vanished">Establecer ancho y altura personalizados</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="400"/>
@@ -393,21 +499,18 @@
         <translation>nuevo(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="432"/>
         <source>More settings</source>
         <translatorcomment>Más ajustes</translatorcomment>
-        <translation>Más ajustes</translation>
+        <translation type="vanished">Más ajustes</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="439"/>
         <source>History / import wallpaper</source>
         <translatorcomment>Historia / importar fondos de pantalla</translatorcomment>
-        <translation>Historia / importar fondos de pantalla</translation>
+        <translation type="vanished">Historia / importar fondos de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="446"/>
         <source>wallpaper Engine-plugin</source>
-        <translation>Motor-wallpaper Engine</translation>
+        <translation type="vanished">Motor-wallpaper Engine</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="299"/>
@@ -415,39 +518,69 @@
         <translation>1.33</translation>
     </message>
     <message>
+        <location filename="../settingwindow.ui" line="306"/>
+        <source>Apply scale</source>
+        <translation>Establecer escala</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="353"/>
+        <source>Width</source>
+        <translation>Ancho</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="367"/>
+        <source>Height</source>
+        <translation>Altura</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="381"/>
+        <source>Apply Custom Dimensions</source>
+        <translation>Establecer ancho y altura personalizados</translation>
+    </message>
+    <message>
         <location filename="../settingwindow.ui" line="421"/>
         <source>reprotBug</source>
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="50"/>
         <source>sign out</source>
         <translatorcomment>Salida</translatorcomment>
-        <translation>Salida</translation>
+        <translation type="vanished">Salida</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="55"/>
         <source>play</source>
         <translatorcomment>Reproducir</translatorcomment>
-        <translation>Reproducir</translation>
+        <translation type="vanished">Reproducir</translation>
+    </message>
+    <message>
+        <source>screenshot</source>
+        <translatorcomment>Captura de pantalla</translatorcomment>
+        <translation type="vanished">Captura de pantalla</translation>
+    </message>
+    <message>
+        <source>Historical wallpaper</source>
+        <translatorcomment>Fondos de pantalla históricos</translatorcomment>
+        <translation type="vanished">Fondos de pantalla históricos</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="50"/>
+        <source>Exit</source>
+        <translation>Extensión</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="63"/>
-        <source>screenshot</source>
-        <translatorcomment>Captura de pantalla</translatorcomment>
+        <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="75"/>
-        <source>Historical wallpaper</source>
-        <translatorcomment>Fondos de pantalla históricos</translatorcomment>
-        <translation>Fondos de pantalla históricos</translation>
+        <location filename="../settingwindow.cpp" line="79"/>
+        <source>Main View</source>
+        <translation>Formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="79"/>
         <source>main view</source>
         <translatorcomment>Formulario principal</translatorcomment>
-        <translation>Formulario principal</translation>
+        <translation type="vanished">Formulario principal</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="105"/>
@@ -456,15 +589,33 @@
         <translation>Haga doble clic para abrir el formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="138"/>
         <source>github</source>
-        <translation>github</translation>
+        <translation type="vanished">github</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="144"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>
+    </message>
+</context>
+<context>
+    <name>view</name>
+    <message>
+        <location filename="../listview/view.cpp" line="207"/>
+        <location filename="../listview/view.cpp" line="214"/>
+        <source>Delete!!</source>
+        <translation>Borrar!!</translation>
+    </message>
+    <message>
+        <location filename="../listview/view.cpp" line="207"/>
+        <source>The file does not exist. Do you want to delete it</source>
+        <translation>El archivo no existe.¿Quieres borrarlo</translation>
+    </message>
+    <message>
+        <location filename="../listview/view.cpp" line="214"/>
+        <source>Delete all history imports ?</source>
+        <translation>¿Desea borrar todas las importaciones históricas?</translation>
     </message>
 </context>
 <context>
@@ -476,21 +627,33 @@
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
-        <source>Select the download address of steam</source>
-        <translatorcomment>Seleccione la dirección steam</translatorcomment>
+        <source>Select Path</source>
         <translation>Seleccione la dirección steam</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
-        <source>set</source>
-        <translatorcomment>Configuración</translatorcomment>
-        <translation>Configuración</translation>
+        <source>Apply</source>
+        <translation>Aplicar</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
+    </message>
+    <message>
+        <source>Select the download address of steam</source>
+        <translatorcomment>Seleccione la dirección steam</translatorcomment>
+        <translation type="vanished">Seleccione la dirección steam</translation>
+    </message>
+    <message>
+        <source>set</source>
+        <translatorcomment>Configuración</translatorcomment>
+        <translation type="vanished">Configuración</translation>
+    </message>
+    <message>
         <source>You need to install the wallpaper engine in steam, otherwise it&apos;s useless. If you install it under Linux, you can&apos;t open it, but you can traverse the video</source>
         <translatorcomment>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translatorcomment>
-        <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
+        <translation type="vanished">Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
     </message>
 </context>
 </TS>

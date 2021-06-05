@@ -38,6 +38,8 @@ public:
 private slots:
     void on_setEnginePath_clicked();
 
+    void on_setBtn_clicked();
+
 private:
     Ui::wallpaperEnginePlugin *ui;
 

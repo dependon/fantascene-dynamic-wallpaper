@@ -217,12 +217,12 @@ void Wallpaper::slotrefreshPix(const QPixmap &pix)
 
 void Wallpaper::slotsetScreenMode(const QString &mode)
 {
-    if (mode == tr("copy")) {
+    if (mode == tr("Copy")) {
         if (dApp->m_cuurentMode != IdCopyScreen) {
             dApp->m_cuurentMode = IdCopyScreen;
             changeScreenMode(dApp->m_cuurentMode);
         }
-    } else if (mode == tr("extend")) {
+    } else if (mode == tr("Extend")) {
         if (dApp->m_cuurentMode != IdlayoutScreen) {
             dApp->m_cuurentMode = IdlayoutScreen;
             changeScreenMode(dApp->m_cuurentMode);

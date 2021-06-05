@@ -47,12 +47,12 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     readSettings();
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
-    exitAction->setText(tr("sign out"));
+    exitAction->setText(tr("Exit"));
     connect(exitAction, &QAction::triggered, this, &settingWindow::quitApp);
     connect(dApp, &Application::quitApp, this, &settingWindow::quitApp, Qt::DirectConnection);
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
-    setMpvPlayAction->setText(tr("play"));
+    setMpvPlayAction->setText(tr("Play"));
     connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
         emit dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
@@ -60,23 +60,23 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     });
 
     QAction *setScreenshotAction = new QAction(m_traymenu);
-    setScreenshotAction->setText(tr("screenshot"));
+    setScreenshotAction->setText(tr("Screenshot"));
     connect(setScreenshotAction, &QAction::triggered, this, [ = ] {
         emit dApp->sigscreenshot();
     });
     QAction *setMpvpauseAction = new QAction(m_traymenu);
-    setMpvpauseAction->setText(tr("pause"));
+    setMpvpauseAction->setText(tr("Pause"));
     connect(setMpvpauseAction, &QAction::triggered, this, [ = ] {
         emit dApp->setMpvpause();
         dApp->m_isNoMpvPause = false;
     });
 
     QAction *setHistoryAction = new QAction(m_traymenu);
-    setHistoryAction->setText(tr("Historical wallpaper"));
+    setHistoryAction->setText(tr("Wallpaper History"));
     connect(setHistoryAction, &QAction::triggered, this, &settingWindow::on_history_clicked);
 
     QAction *setMainViewAction = new QAction(m_traymenu);
-    setMainViewAction->setText(tr("main view"));
+    setMainViewAction->setText(tr("Main View"));
     connect(setMainViewAction, &QAction::triggered, this, [ = ] {
         if (m_parentMainWindow)
         {
@@ -134,18 +134,18 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 
     if (m_parentMainWindow) {
         m_aboutMenu = new QMenu();
-        QAction *aboutgit = new QAction(m_aboutMenu);
-        aboutgit->setText(tr("github"));
-        connect(aboutgit, &QAction::triggered, this, [ = ] {
-            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
-        });
+//        QAction *aboutgit = new QAction(m_aboutMenu);
+//        aboutgit->setText(tr("github"));
+//        connect(aboutgit, &QAction::triggered, this, [ = ] {
+//            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
+//        });
 
         QAction *aboutMe = new QAction(m_aboutMenu);
         aboutMe->setText(tr("Latest version"));
         connect(aboutMe, &QAction::triggered, this, [ = ] {
             QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
         });
-        m_aboutMenu->addAction(aboutgit);
+//        m_aboutMenu->addAction(aboutgit);
         m_aboutMenu->addAction(aboutMe);
 
         m_parentMainWindow->titlebar()->setMenu(m_aboutMenu);
