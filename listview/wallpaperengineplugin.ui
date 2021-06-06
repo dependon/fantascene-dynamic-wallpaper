@@ -53,7 +53,7 @@
       </size>
      </property>
      <property name="text">
-      <string>You have to provide the path of Wallpaper Engine from Steam. It doesn't work on Linux,but required functionality is present</string>
+      <string>You have to provide the path of Wallpaper Engine from Steam. It doesn't work on Linux, but required functionality is present</string>
      </property>
     </widget>
    </item>
