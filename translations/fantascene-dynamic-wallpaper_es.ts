@@ -24,21 +24,34 @@
         <translation type="vanished">Si la ventana continúa jugando a pantalla completa</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="30"/>
-        <location filename="../moresetting.cpp" line="24"/>
-        <location filename="../moresetting.cpp" line="53"/>
         <source>yes</source>
         <translatorcomment>Sí</translatorcomment>
-        <translation>Sí</translation>
+        <translation type="vanished">Sí</translation>
     </message>
     <message>
         <source>pts</source>
         <translation type="vanished">pts</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>Other applicaiton maximized</source>
-        <translation>Si la ventana continúa jugando a pantalla completa</translation>
+        <translation type="vanished">Si la ventana continúa jugando a pantalla completa</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>when desktop is hidden</source>
+        <translation>Cuando el escritorio está oculto</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="30"/>
+        <location filename="../moresetting.cpp" line="24"/>
+        <source>continue playing</source>
+        <translation>Continuar jugando</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="35"/>
+        <location filename="../moresetting.cpp" line="26"/>
+        <source>pause</source>
+        <translation>Pausa</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="47"/>
@@ -90,12 +103,15 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
-        <source>Decode</source>
+        <source>Decoder</source>
         <translation>Decodificar</translation>
     </message>
     <message>
+        <source>Decode</source>
+        <translation type="vanished">Decodificar</translation>
+    </message>
+    <message>
         <location filename="../moresetting.ui" line="130"/>
-        <location filename="../moresetting.cpp" line="26"/>
         <source>none</source>
         <translation></translation>
     </message>
@@ -155,9 +171,8 @@
         <translation>vdpau</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="35"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation type="vanished">no</translation>
     </message>
     <message>
         <source>more settings</source>
@@ -168,6 +183,11 @@
         <location filename="../moresetting.cpp" line="13"/>
         <source>Advanced Settings</source>
         <translation>Más ajustes</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="53"/>
+        <source>continue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -335,7 +355,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
-        <location filename="../settingwindow.cpp" line="435"/>
+        <location filename="../settingwindow.cpp" line="442"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -593,7 +613,7 @@
         <translation type="vanished">github</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="144"/>
+        <location filename="../settingwindow.cpp" line="151"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>
