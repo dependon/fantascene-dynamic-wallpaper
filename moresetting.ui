@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Other applicaiton maximized</string>
+        <string>when desktop is hidden</string>
        </property>
       </widget>
      </item>
@@ -27,12 +27,12 @@
       <widget class="QComboBox" name="autoBox">
        <item>
         <property name="text">
-         <string>yes</string>
+         <string>continue playing</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>no</string>
+         <string>pause</string>
         </property>
        </item>
       </widget>
@@ -99,7 +99,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Decode</string>
+        <string>Decoder</string>
        </property>
       </widget>
      </item>

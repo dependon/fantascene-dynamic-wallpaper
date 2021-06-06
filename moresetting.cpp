@@ -21,9 +21,9 @@ MoreSetting::~MoreSetting()
 void MoreSetting::setData(const MoreSetData &data)
 {
     if (data.isAuto == 0) {
-        ui->autoBox->setCurrentText(tr("yes"));
+        ui->autoBox->setCurrentText(tr("continue playing"));
     } else {
-        ui->autoBox->setCurrentText(tr("none"));
+        ui->autoBox->setCurrentText(tr("pause"));
     }
     if (data.fps != 0) {
         ui->fpsbox->setCurrentText(QString::number(data.fps));
@@ -50,7 +50,7 @@ void MoreSetting::setData(const MoreSetData &data)
 void MoreSetting::on_okBtn_clicked()
 {
     dApp->m_moreData.fps = ui->fpsbox->currentText().toInt();
-    if (ui->autoBox->currentText() == tr("yes")) {
+    if (ui->autoBox->currentText().contains(tr("continue"))) {
         dApp->m_moreData.isAuto = 0;
     } else {
         dApp->m_moreData.isAuto = 1;
@@ -88,3 +88,4 @@ void MoreSetting::on_hwdecBox_activated(const QString &arg1)
         ui->hwdecEdit->hide();
     }
 }
+

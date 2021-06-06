@@ -25,11 +25,8 @@
         <translation type="vanished">窗口是否继续全屏播放</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="30"/>
-        <location filename="../moresetting.cpp" line="24"/>
-        <location filename="../moresetting.cpp" line="53"/>
         <source>yes</source>
-        <translation>是</translation>
+        <translation type="vanished">是</translation>
     </message>
     <message>
         <source>pts</source>
@@ -37,9 +34,25 @@
         <translation type="vanished">帧率</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>Other applicaiton maximized</source>
-        <translation>窗口是否继续全屏播放</translation>
+        <translation type="vanished">窗口是否继续全屏播放</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>when desktop is hidden</source>
+        <translation>当桌面被隐藏</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="30"/>
+        <location filename="../moresetting.cpp" line="24"/>
+        <source>continue playing</source>
+        <translation>继续播放</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="35"/>
+        <location filename="../moresetting.cpp" line="26"/>
+        <source>pause</source>
+        <translation>暂停</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="47"/>
@@ -91,12 +104,15 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
-        <source>Decode</source>
+        <source>Decoder</source>
         <translation>解码</translation>
     </message>
     <message>
+        <source>Decode</source>
+        <translation type="vanished">解码</translation>
+    </message>
+    <message>
         <location filename="../moresetting.ui" line="130"/>
-        <location filename="../moresetting.cpp" line="26"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
@@ -154,10 +170,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="35"/>
         <source>no</source>
         <translatorcomment>否</translatorcomment>
-        <translation>否</translation>
+        <translation type="vanished">否</translation>
     </message>
     <message>
         <source>更多设置界面</source>
@@ -172,6 +187,11 @@
         <location filename="../moresetting.cpp" line="13"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="53"/>
+        <source>continue</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -348,7 +368,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="226"/>
-        <location filename="../settingwindow.cpp" line="435"/>
+        <location filename="../settingwindow.cpp" line="442"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -602,7 +622,7 @@
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="144"/>
+        <location filename="../settingwindow.cpp" line="151"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>
