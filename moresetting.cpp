@@ -50,7 +50,7 @@ void MoreSetting::setData(const MoreSetData &data)
 void MoreSetting::on_okBtn_clicked()
 {
     dApp->m_moreData.fps = ui->fpsbox->currentText().toInt();
-    if (ui->autoBox->currentText().contains(tr("continue"))) {
+    if (ui->autoBox->currentText() == tr("continue playing")) {
         dApp->m_moreData.isAuto = 0;
     } else {
         dApp->m_moreData.isAuto = 1;
