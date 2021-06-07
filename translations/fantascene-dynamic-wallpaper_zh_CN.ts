@@ -38,13 +38,18 @@
         <translation type="vanished">窗口是否继续全屏播放</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>when desktop is hidden</source>
+        <translation type="vanished">当桌面被隐藏</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>When desktop is hidden</source>
         <translation>当桌面被隐藏</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="24"/>
+        <location filename="../moresetting.cpp" line="53"/>
         <source>continue playing</source>
         <translation>继续播放</translation>
     </message>
@@ -187,11 +192,6 @@
         <location filename="../moresetting.cpp" line="13"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
-    </message>
-    <message>
-        <location filename="../moresetting.cpp" line="53"/>
-        <source>continue</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -666,8 +666,12 @@
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
-        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
         <translation>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
+    </message>
+    <message>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <translation type="vanished">你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
     </message>
     <message>
         <source>Select the download address of steam</source>

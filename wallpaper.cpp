@@ -15,6 +15,8 @@
 #include <QDebug>
 #include <QLabel>
 #include <QDBusConnection>
+#include <QWebEngineView>
+
 #include "application.h"
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
@@ -40,6 +42,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     m_mpv->setProperty("loop", true);
     m_mpv->setProperty("panscan", 1);
     m_mpv->setGeometry(geometry());
+
+//     m_webView->showFullScreen();
+
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
@@ -108,6 +113,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                 if (QFileInfo(m_currentPath).isFile()) {
                     playPath = m_currentPath;
                 }
+                else if(path.contains("www") ||path.contains("http//")||path.contains("https//")){
+                    playPath = m_currentPath;
+                }
             }
             setFile(playPath);
             play();
@@ -174,9 +182,44 @@ void Wallpaper::setScreen(const int &index)
 
 void Wallpaper::setFile(const QString &path)
 {
-    m_mpv->show();
-    m_mpv->command(QStringList() << "loadfile" << path);
-    m_mpv->setProperty("pause", true);
+    if(path.contains("html")){
+        if(!m_webView){
+            m_webView=new QWebEngineView(this);
+        }
+        //        layout()->addWidget(m_webView);
+        if(QFileInfo(path).isFile()){
+            m_webView->load(QUrl("file://"+path));
+        }else {
+            m_webView->load(QUrl(path));
+        }
+
+        m_webView->show();
+        updateGeometry();
+        m_mpv->hide();
+        pause();
+    }
+    else if(path.contains("www") ||path.contains("http//")||path.contains("https//") ){
+        if(!m_webView){
+            m_webView=new QWebEngineView(this);
+        }
+        m_webView->load(QUrl(path));
+
+
+        m_webView->show();
+        updateGeometry();
+        m_mpv->hide();
+        pause();
+    }
+    else {
+        if(m_webView){
+            delete m_webView;
+            m_webView=nullptr;
+        }
+        m_mpv->show();
+        m_mpv->command(QStringList() << "loadfile" << path);
+        m_mpv->setProperty("pause", true);
+    }
+
 }
 
 void Wallpaper::setVolume(const qint32 volume)
@@ -192,9 +235,11 @@ void Wallpaper::clear()
 
 void Wallpaper::play()
 {
-    m_mpv->show();
-    m_mpv->setProperty("pause", false);
-    dApp->m_currentIsPlay = true;
+    if(!m_webView){
+        m_mpv->show();
+        m_mpv->setProperty("pause", false);
+        dApp->m_currentIsPlay = true;
+    }
 }
 
 void Wallpaper::pause()
@@ -318,9 +363,14 @@ void Wallpaper::updateGeometry()
 
 //        m_mpv->setGeometry(rec2);
     qDebug() << this->size();
-    m_mpv->move(rect().topLeft());
-    m_mpv->setFixedSize(size1);
-
+    if(m_mpv){
+        m_mpv->move(rect().topLeft());
+        m_mpv->setFixedSize(size1);
+    }
+    if(m_webView){
+        m_webView->move(rect().topLeft());
+        m_webView->setFixedSize(size1);
+    }
     lower();
 
     QTimer::singleShot(200, this, []() {

@@ -6,6 +6,8 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
+
+class QWebEngineView;
 class QLabel;
 class Wallpaper : public QWidget
 {
@@ -40,6 +42,7 @@ private:
 
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
+    QWebEngineView *m_webView{nullptr};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 };
 
