@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>when desktop is hidden</string>
+        <string>When desktop is hidden</string>
        </property>
       </widget>
      </item>
