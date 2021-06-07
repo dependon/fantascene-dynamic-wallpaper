@@ -37,13 +37,18 @@
         <translation type="vanished">Si la ventana continúa jugando a pantalla completa</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="22"/>
         <source>when desktop is hidden</source>
+        <translation type="vanished">Cuando el escritorio está oculto</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="22"/>
+        <source>When desktop is hidden</source>
         <translation>Cuando el escritorio está oculto</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="24"/>
+        <location filename="../moresetting.cpp" line="53"/>
         <source>continue playing</source>
         <translation>Continuar jugando</translation>
     </message>
@@ -183,11 +188,6 @@
         <location filename="../moresetting.cpp" line="13"/>
         <source>Advanced Settings</source>
         <translation>Más ajustes</translation>
-    </message>
-    <message>
-        <location filename="../moresetting.cpp" line="53"/>
-        <source>continue</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -657,8 +657,12 @@
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
-        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
         <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
+    </message>
+    <message>
+        <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux,but required functionality is present</source>
+        <translation type="vanished">Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
     </message>
     <message>
         <source>Select the download address of steam</source>

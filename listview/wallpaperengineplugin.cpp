@@ -108,9 +108,9 @@ void wallpaperEnginePlugin::showView()
 
         QString videoPath = data.JsonBasePath + "/" + data.file;
         if (QFileInfo(videoPath).isFile()) {
-            if (!QFileInfo(videoPath).suffix().contains("html")) {
+//            if (!QFileInfo(videoPath).suffix().contains("html")) {
                 list.push_back(videoPath);
-            };
+//            };
         }
 
     }
