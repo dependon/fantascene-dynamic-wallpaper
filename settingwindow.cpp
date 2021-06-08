@@ -125,8 +125,9 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     connect(dApp, &Application::moreSettingSave, this, &settingWindow::slotMoreSettingSave);
 
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
-    connect(dApp, &Application::sigDesktopActive,this, [=]{
-        if (m_parentMainWindow) {
+    connect(dApp, &Application::sigDesktopActive, this, [ = ] {
+        if (m_parentMainWindow)
+        {
             m_parentMainWindow->resize(500, 300);
             m_parentMainWindow->show();
             m_parentMainWindow->activateWindow();
@@ -531,7 +532,7 @@ void settingWindow::on_videoBLCombox_activated(const QString &arg1)
     ui->videoBLEdit->setVisible(false);
     ui->videoBZDY->setVisible(false);
     double value = -1.0;
-    if (arg1.contains("默认")) {
+    if (arg1 == tr("default")) {
         value = -1.0;
     } else if (arg1.contains("4:3")) {
         value = 1.33333333;
@@ -543,7 +544,7 @@ void settingWindow::on_videoBLCombox_activated(const QString &arg1)
         value = 1.85;
     } else if (arg1.contains("2.35:1")) {
         value = 2.35;
-    } else if (arg1.contains("自定义")) {
+    } else if (arg1 == tr("custom")) {
         ui->videoBLEdit->setVisible(true);
         ui->videoBZDY->setVisible(true);
         value = ui->videoBLEdit->text().toDouble();
