@@ -43,6 +43,7 @@ private:
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
     QWebEngineView *m_webView{nullptr};
+    QWebEngineView *m_webView2{nullptr};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 };
 
