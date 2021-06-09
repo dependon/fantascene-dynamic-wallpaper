@@ -2,6 +2,9 @@
 ## If you like this toy, light the little star
 Detailed instructions will be written to wiki later
 
+## 1.1.0 
+Added web wallpaper, but it won't be recorded in history
+
 ## 1.0.6 modify:
 
 the default language is changed to English
