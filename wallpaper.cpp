@@ -121,11 +121,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             m_currentPath = QFileInfo(m_currentPath).filePath();
             emit dApp->pathChanged(m_currentPath);
         }
-        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode)
-        {
-            m_label2 = new QLabel();
-            layout->addWidget(m_label2);
-        }
+
     });
 
     setVolume(0);
@@ -207,7 +203,12 @@ void Wallpaper::setScreen(const int &index)
 
 void Wallpaper::setFile(const QString &path)
 {
-    if (path.contains("html")) {
+    if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
+        if (m_label2) {
+            layout()->removeWidget(m_label2);
+            delete m_webView2;
+            m_webView2 = nullptr;
+        }
         if (!m_webView) {
             m_webView = new QWebEngineView(this);
         }
@@ -225,29 +226,27 @@ void Wallpaper::setFile(const QString &path)
         layout()->addWidget(m_webView);
         m_mpv->hide();
         pause();
-    } else if (path.contains("www") || path.contains("http//") || path.contains("https//")) {
-        if (!m_webView) {
-            m_webView = new QWebEngineView(this);
-        }
-        m_webView->load(QUrl(path));
-
-
-        m_webView->show();
-        updateGeometry();
-        m_mpv->hide();
-        pause();
-    } else {
+    }  else {
         if (m_webView) {
+            layout()->removeWidget(m_webView);
             delete m_webView;
             m_webView = nullptr;
         }
         if (m_webView2) {
+            layout()->removeWidget(m_webView2);
             delete m_webView2;
             m_webView2 = nullptr;
         }
         m_mpv->show();
         m_mpv->command(QStringList() << "loadfile" << path);
         m_mpv->setProperty("pause", true);
+        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
+            if (!m_label2) {
+                m_label2 = new QLabel();
+            }
+
+            layout()->addWidget(m_label2);
+        }
     }
     if (qApp->desktop()->screenCount() > 1) {
 
