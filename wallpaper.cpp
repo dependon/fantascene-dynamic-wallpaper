@@ -1,12 +1,14 @@
 #include "wallpaper.h"
 
+#include <xcb/xcb.h>
+#include <xcb/xcb_ewmh.h>
+#include <malloc.h>
+
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QApplication>
 #include <QtX11Extras/QX11Info>
 #include <QScreen>
-#include <xcb/xcb.h>
-#include <xcb/xcb_ewmh.h>
 #include <QApplication>
 #include <QPainter>
 #include <QTimer>
@@ -18,6 +20,7 @@
 #include <QWebEngineView>
 
 #include "application.h"
+
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
     , m_currentPath(path)
@@ -32,19 +35,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     setLayout(layout);
 
     registerDesktop();
-
-    m_mpv = new MpvWidget(this);
-    m_mpv->setGeometry(geometry());
-    m_mpv->setGeometry(geometry());
-    m_mpv->setGeometry(geometry());
-    layout->addWidget(m_mpv);
-    m_mpv->hide();
-    m_mpv->setProperty("loop", true);
-    m_mpv->setProperty("panscan", 1);
-    m_mpv->setGeometry(geometry());
-
-//     m_webView->showFullScreen();
-
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
@@ -66,15 +56,19 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         updateGeometry();
     });
     connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
-        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_label2)
+        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_label2 && m_mpv)
         {
-            m_label2 = new QLabel();
+            if (!m_label2) {
+                m_label2 = new QLabel();
+            }
             layout->addWidget(m_label2);
         } else
         {
-            layout->removeWidget(m_label2);
-            m_label2->deleteLater();
-            m_label2 = nullptr;
+            if (m_label2) {
+                layout->removeWidget(m_label2);
+                m_label2->deleteLater();
+                m_label2 = nullptr;
+            }
         }
         QTimer::singleShot(1000, [ = ] {
             updateGeometry();
@@ -203,11 +197,17 @@ void Wallpaper::setScreen(const int &index)
 
 void Wallpaper::setFile(const QString &path)
 {
+    malloc_trim(0);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_label2) {
             layout()->removeWidget(m_label2);
             delete m_webView2;
             m_webView2 = nullptr;
+        }
+        if (m_mpv) {
+            layout()->removeWidget(m_mpv);
+            m_mpv->deleteLater();
+            m_mpv = nullptr;
         }
         if (!m_webView) {
             m_webView = new QWebEngineView(this);
@@ -224,7 +224,6 @@ void Wallpaper::setFile(const QString &path)
 
         updateGeometry();
         layout()->addWidget(m_webView);
-        m_mpv->hide();
         pause();
     }  else {
         if (m_webView) {
@@ -236,6 +235,16 @@ void Wallpaper::setFile(const QString &path)
             layout()->removeWidget(m_webView2);
             delete m_webView2;
             m_webView2 = nullptr;
+        }
+        if (!m_mpv) {
+            m_mpv = new MpvWidget(this);
+            m_mpv->setGeometry(geometry());
+
+            layout()->addWidget(m_mpv);
+            m_mpv->setProperty("loop", true);
+            m_mpv->setProperty("panscan", 1);
+            m_mpv->setGeometry(geometry());
+
         }
         m_mpv->show();
         m_mpv->command(QStringList() << "loadfile" << path);
@@ -273,7 +282,10 @@ void Wallpaper::setFile(const QString &path)
 
 void Wallpaper::setVolume(const qint32 volume)
 {
-    m_mpv->setProperty("volume", volume);
+    if (m_mpv) {
+        m_mpv->setProperty("volume", volume);
+    }
+
 }
 
 void Wallpaper::clear()
@@ -284,7 +296,7 @@ void Wallpaper::clear()
 
 void Wallpaper::play()
 {
-    if (!m_webView) {
+    if (!m_webView && m_mpv) {
         m_mpv->show();
         m_mpv->setProperty("pause", false);
         dApp->m_currentIsPlay = true;
@@ -294,12 +306,16 @@ void Wallpaper::play()
 void Wallpaper::pause()
 {
     dApp->m_currentIsPlay = false;
-    m_mpv->setProperty("pause", true);
+    if (m_mpv) {
+        m_mpv->setProperty("pause", true);
+    }
 }
 
 void Wallpaper::stop()
 {
-    m_mpv->setProperty("stop", true);
+    if (m_mpv) {
+        m_mpv->setProperty("stop", true);
+    }
 }
 
 void Wallpaper::slotrefreshPix(const QPixmap &pix)
@@ -379,7 +395,9 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 
 void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 {
-    m_mpv->setProperty(key, value);
+    if (m_mpv) {
+        m_mpv->setProperty(key, value);
+    }
 }
 #include <QDesktopWidget>
 #include <QGuiApplication>
