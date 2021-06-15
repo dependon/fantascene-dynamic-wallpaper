@@ -5,7 +5,7 @@
 #include <QtWidgets/QOpenGLWidget>
 #include <mpv/client.h>
 #include <mpv/render_gl.h>
-#include <mpv/qthelper.hpp>
+#include "mympv/qthelper.hpp"
 #include <QSize>
 class MpvWidget Q_DECL_FINAL: public QOpenGLWidget
 {
