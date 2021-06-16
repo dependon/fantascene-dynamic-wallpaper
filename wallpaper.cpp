@@ -18,6 +18,8 @@
 #include <QLabel>
 #include <QDBusConnection>
 #include <QWebEngineView>
+#include <QDesktopWidget>
+#include <QGuiApplication>
 
 #include "application.h"
 
@@ -221,10 +223,10 @@ void Wallpaper::setFile(const QString &path)
 
 
         m_webView->show();
-
         updateGeometry();
         layout()->addWidget(m_webView);
         pause();
+
     }  else {
         if (m_webView) {
             layout()->removeWidget(m_webView);
@@ -244,9 +246,9 @@ void Wallpaper::setFile(const QString &path)
             m_mpv->setProperty("loop", true);
             m_mpv->setProperty("panscan", 1);
             m_mpv->setGeometry(geometry());
-
+            m_mpv->show();
         }
-        m_mpv->show();
+
         m_mpv->command(QStringList() << "loadfile" << path);
         m_mpv->setProperty("pause", true);
         if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
@@ -256,6 +258,7 @@ void Wallpaper::setFile(const QString &path)
 
             layout()->addWidget(m_label2);
         }
+//        updateGeometry();
     }
     if (qApp->desktop()->screenCount() > 1) {
 
@@ -277,6 +280,7 @@ void Wallpaper::setFile(const QString &path)
         }
         updateGeometry();
     }
+//    updateGeometry();
 
 }
 
@@ -399,8 +403,7 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
         m_mpv->setProperty(key, value);
     }
 }
-#include <QDesktopWidget>
-#include <QGuiApplication>
+
 void Wallpaper::updateGeometry()
 {
 //    QTimer::singleShot(100, this, [ = ] {
