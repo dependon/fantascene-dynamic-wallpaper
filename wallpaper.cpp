@@ -137,6 +137,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             if (m_webView) {
                 if (!m_webView2) {
                     m_webView2 = new QWebEngineView(this);
+                    m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
                 }
                 if (QFileInfo(path).isFile()) {
                     m_webView2->load(QUrl("file://" + path));
@@ -213,6 +214,7 @@ void Wallpaper::setFile(const QString &path)
         }
         if (!m_webView) {
             m_webView = new QWebEngineView(this);
+            m_webView->setContextMenuPolicy(Qt::NoContextMenu);
         }
         //        layout()->addWidget(m_webView);
         if (QFileInfo(path).isFile()) {
@@ -266,6 +268,7 @@ void Wallpaper::setFile(const QString &path)
         if (m_webView) {
             if (!m_webView2) {
                 m_webView2 = new QWebEngineView(this);
+                m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
             }
 
 
@@ -379,7 +382,7 @@ bool Wallpaper::event(QEvent *event)
             for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
                 system("xdotool search --class dde-desktop windowactivate");
             }
-            emit dApp->sigDesktopActive();
+//            emit dApp->sigDesktopActive();
             qDebug() << "Desktop WindowActivate";
         });
     }
