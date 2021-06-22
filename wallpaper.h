@@ -7,7 +7,8 @@
 #include <QWidget>
 #include <QHBoxLayout>
 
-class QWebEngineView;
+#include "webwidget.h"
+
 class QLabel;
 class Wallpaper : public QWidget
 {
@@ -16,6 +17,7 @@ public:
     explicit Wallpaper(QString path = nullptr, int currentScreen = 0, QWidget *parent = nullptr);
 
     void changeScreenMode(ScreenMode mode);
+    void LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos);
 public slots:
     void setFile(const QString &path);
     void setVolume(const qint32 volume);
@@ -28,6 +30,8 @@ public slots:
     void slotrefreshPix(const QPixmap &pix);
     void slotsetScreenMode(const QString &mode);
     void updateGeometry();
+
+    void slotMouseEvent();
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
@@ -42,8 +46,10 @@ private:
 
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
-    QWebEngineView *m_webView{nullptr};
-    QWebEngineView *m_webView2{nullptr};
+    webWidget *m_webView{nullptr};
+    webWidget *m_webView2{nullptr};
+    QTimer *m_mouseWebEventTimer{nullptr};
+    QPoint m_currentPos{0, 0};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 };
 

@@ -122,8 +122,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
     setVolume(0);
 
-
-
+    m_mouseWebEventTimer = new QTimer(this);
+    connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
+    m_mouseWebEventTimer->start(30);
 
 }
 
@@ -136,7 +137,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             QString path = dApp->m_currentPath;
             if (m_webView) {
                 if (!m_webView2) {
-                    m_webView2 = new QWebEngineView(this);
+                    m_webView2 = new webWidget(this);
                     m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
                 }
                 if (QFileInfo(path).isFile()) {
@@ -213,7 +214,7 @@ void Wallpaper::setFile(const QString &path)
             m_mpv = nullptr;
         }
         if (!m_webView) {
-            m_webView = new QWebEngineView(this);
+            m_webView = new webWidget(this);
             m_webView->setContextMenuPolicy(Qt::NoContextMenu);
         }
         //        layout()->addWidget(m_webView);
@@ -267,7 +268,7 @@ void Wallpaper::setFile(const QString &path)
         QString path = dApp->m_currentPath;
         if (m_webView) {
             if (!m_webView2) {
-                m_webView2 = new QWebEngineView(this);
+                m_webView2 = new webWidget(this);
                 m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
             }
 
@@ -456,5 +457,49 @@ void Wallpaper::updateGeometry()
         }
         qDebug() << "Desktop WindowActivate";
     });
+    //    });
+}
+#include <QEvent>
+#include <QMouseEvent>
+void Wallpaper::slotMouseEvent()
+{
+    if (m_webView) {
+        QPoint pos = QCursor::pos();
+        if (m_currentPos != pos) {
+            m_currentPos = pos;
+            foreach (QObject *obj, m_webView->children()) {
+                QWidget *wgt = qobject_cast<QWidget *>(obj);
+                if (wgt) {
+                    LeftMouseClick(wgt, pos);
+                }
+            }
+            if (m_webView2) {
+                foreach (QObject *obj, m_webView2->children()) {
+                    QWidget *wgt = qobject_cast<QWidget *>(obj);
+                    if (wgt) {
+                        LeftMouseClick(wgt, pos);
+                    }
+                }
+            }
+        }
+
+    }
+}
+void Wallpaper::LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos)
+{
+    QMouseEvent *press = new QMouseEvent(QEvent::MouseMove,
+                                         clickPos,
+                                         Qt::LeftButton,
+                                         Qt::MouseButton::NoButton,
+                                         Qt::NoModifier);
+    QCoreApplication::postEvent(eventsReciverWidget, press);
+    // Some delay
+//    QTimer::singleShot(300, [clickPos, eventsReciverWidget]() {
+//        QMouseEvent *release = new QMouseEvent(QEvent::MouseMove,
+//                                               clickPos,
+//                                               Qt::LeftButton,
+//                                               Qt::MouseButton::NoButton,
+//                                               Qt::NoModifier);
+//        QCoreApplication::postEvent(eventsReciverWidget, release);
 //    });
 }
