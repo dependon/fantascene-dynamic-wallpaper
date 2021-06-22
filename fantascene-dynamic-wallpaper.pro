@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     listview/view.cpp \
     listview/historywidget.cpp \
     moresetting.cpp \
-    listview/wallpaperengineplugin.cpp
+    listview/wallpaperengineplugin.cpp \
+    webwidget.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -33,7 +34,8 @@ HEADERS += \
     listview/historywidget.h \
     setdesktop.h \
     moresetting.h \
-    listview/wallpaperengineplugin.h
+    listview/wallpaperengineplugin.h \
+    webwidget.h
 
 RESOURCES += \
     qrc.qrc
