@@ -2,6 +2,9 @@
 ## If you like this toy, light the little star
 Detailed instructions will be written to wiki later
 
+## 1.1.1 
+To solve the problem that sometimes can't be opened, the web wallpaper event is added
+
 ## 1.1.0 
 Added web wallpaper, but it won't be recorded in history
 
