@@ -280,6 +280,7 @@ void Wallpaper::setFile(const QString &path)
             }
 
             m_webView2->show();
+
             layout()->addWidget(m_webView2);
         }
         updateGeometry();
@@ -466,6 +467,10 @@ void Wallpaper::slotMouseEvent()
     if (m_webView) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
+            QRect rec2 = qApp->desktop()->screenGeometry();
+            if(pos.x()>rec2.width()){
+                pos=QPoint(pos.x()-rec2.width(),pos.y());
+            }
             m_currentPos = pos;
             foreach (QObject *obj, m_webView->children()) {
                 QWidget *wgt = qobject_cast<QWidget *>(obj);
