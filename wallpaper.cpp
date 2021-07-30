@@ -20,15 +20,26 @@
 #include <QWebEngineView>
 #include <QDesktopWidget>
 #include <QGuiApplication>
+#include <QEvent>
+#include <QMouseEvent>
+
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xatom.h>
+#include <X11/Xproto.h>
+
+#include <X11/extensions/shape.h>
+#include <X11/extensions/Xrender.h>
 
 #include "application.h"
 
+#include "desktop.h"
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
     , m_currentPath(path)
     , m_currentScreen(currentScreen)
 {
-
+    this->setWindowFlags(Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout;
@@ -126,6 +137,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
     m_mouseWebEventTimer->start(30);
 
+    de = new Desktop(this);
+
 }
 
 void Wallpaper::changeScreenMode(ScreenMode mode)
@@ -202,6 +215,7 @@ void Wallpaper::setScreen(const int &index)
 void Wallpaper::setFile(const QString &path)
 {
     malloc_trim(0);
+    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_label2) {
             layout()->removeWidget(m_label2);
@@ -356,15 +370,16 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 
 }
 
+
 void Wallpaper::registerDesktop()
 {
-    xcb_ewmh_connection_t m_ewmh_connection;
-    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
-    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+//    xcb_ewmh_connection_t m_ewmh_connection;
+//    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+//    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
-    xcb_atom_t atoms[1];
-    atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
-    xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
+//    xcb_atom_t atoms[1];
+//    atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
+//    xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
 
     QTimer::singleShot(1, this, [ = ] {
         show();
@@ -372,6 +387,22 @@ void Wallpaper::registerDesktop()
     });
     if (!dApp->m_screenWid.contains(winId())) {
         dApp->m_screenWid.push_back(winId());
+    }
+
+    Atom xa = 1247;
+    if (xa != None) {
+        long prop = 0;
+
+        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+                        PropModeAppend, (unsigned char *) &prop, 1);
+    }
+
+    xa = 355;
+    if (xa != None) {
+        Atom xa_prop = 357;
+
+        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+                        PropModeAppend, (unsigned char *) &xa_prop, 1);
     }
 }
 
@@ -441,10 +472,17 @@ void Wallpaper::updateGeometry()
     if (m_mpv) {
         m_mpv->move(rect().topLeft());
         m_mpv->setFixedSize(size1);
+
+        de->setParent(m_mpv);
+        de->setFixedSize(size1);
     }
     if (m_webView) {
         m_webView->move(rect().topLeft());
         m_webView->setFixedSize(size1);
+
+        de->setParent(m_webView);
+        de->setFixedSize(size1);
+
     }
     if (m_webView2) {
 //        m_webView2->move(rect().topRight());
@@ -458,10 +496,11 @@ void Wallpaper::updateGeometry()
         }
         qDebug() << "Desktop WindowActivate";
     });
+    de->show();
+    de->move(0, 0);
     //    });
 }
-#include <QEvent>
-#include <QMouseEvent>
+
 void Wallpaper::slotMouseEvent()
 {
     if (m_webView) {
