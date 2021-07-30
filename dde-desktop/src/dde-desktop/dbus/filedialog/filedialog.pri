@@ -14,7 +14,7 @@ filedialog_xmls.files = $$dialog.files $$manager.files
 filedialog_service.path = /usr/share/dbus-1/services
 filedialog_service.files = $$PWD/com.deepin.filemanager.filedialog.service
 
-INSTALLS += filedialog_service filedialog_xmls
+#INSTALLS += filedialog_service filedialog_xmls
 
 HEADERS += \
     $$PWD/dbusfiledialoghandle.h \
