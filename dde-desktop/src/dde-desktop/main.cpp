@@ -32,6 +32,7 @@
 
 // DBus
 //#include "filedialogmanager_adaptor.h"
+#include "dbusadapt/filedialogmanager_adaptor.h"
 #include "dbus/filedialog/dbusfiledialogmanager.h"
 #include "filemanager1_adaptor.h"
 #include "dbusfilemanager1.h"
@@ -70,7 +71,7 @@ static bool registerDialogDBus()
     }
 
     DBusFileDialogManager *manager = new DBusFileDialogManager();
-//    Q_UNUSED(new FiledialogmanagerAdaptor(manager));
+    Q_UNUSED(new FiledialogmanagerAdaptor(manager));
 
     if (!QDBusConnection::sessionBus().registerObject("/com/deepin/filemanager/filedialogmanager", manager)) {
         qWarning("Cannot register to the D-Bus object: \"/com/deepin/filemanager/filedialogmanager\"\n");

@@ -83,7 +83,7 @@ SOURCES += \
     screen/screenobjectwayland.cpp \
     dbus/licenceInterface.cpp \
     view/canvasviewmanager.cpp \
-#filedialogmanager_adaptor.cpp \
+#    dbusadapt/filedialogmanager_adaptor.cpp \
 
 
 
@@ -121,7 +121,8 @@ HEADERS += \
     accessibility/ac-desktop-define.h \
     accessibility/acobjectlist.h \
     desktopprivate.h \
-    presenter/dfmsocketinterface_p.h
+    presenter/dfmsocketinterface_p.h \
+    dbusadapt/filedialogmanager_adaptor.h \
 
 RESOURCES +=
 
