@@ -27,7 +27,8 @@ equals( AC_FUNC_ENABLE, true ){
 QT       += core gui widgets dbus x11extras network concurrent multimedia #multimediawidgets svg
 QT       += core gui svg dbus x11extras concurrent multimedia dbus xml KCodecs network
 #private
-QT       += gui-private qml-private
+QT       += gui-private
+#QT       +=qml-private
 LIBS	 += -lKF5Codecs
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
