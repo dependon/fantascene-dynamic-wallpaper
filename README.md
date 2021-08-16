@@ -61,7 +61,7 @@ patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-
 
 After modifying the code, open the terminal directly in the main directory of the code and execute 
 
-dpkg buildpackage - b - us - uc 
+dpkg-buildpackage - b - us - uc 
 
 to get DEB package
 
