@@ -8,6 +8,8 @@ sudo apt install com.github.fantacene
 ## manjaro deepin linux (arch)
 
 yay -S fantascene-dynamic-wallpaper-git
+## 1.1.3
+Here the desktop source code is put in, modified a bit, to ensure that out of the library compilation, do not know whether stable (这里将桌面的源码都放进来了，修改了一点，保证脱离库编译，不知道是否稳定,所以需要文件管理器的环境，放出源内的第二行，更新一下，执行下面的依赖操作，就可以将编译环境弄好，建议直接用下方命令打包成deb)
 
 ## 1.1.1 
 To solve the problem that sometimes can't be opened, the web wallpaper event is added
@@ -52,7 +54,9 @@ The test software package of deepin and UOS system can be downloaded from the ri
 [https://www.bilibili.com/video/BV1bB4y1c7Fq](https://www.bilibili.com/video/BV1bB4y1c7Fq/)
 
 ## dependcy
-sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake
+sudo apt install qtcreator libdtkwidget-dev libdtkcore-dev libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev
+
+sudo apt build-dep dde-file-manager
 
 ## dde-desktop   ,  According to this patch, enter dde-file-manager, take the libdde-file-manager.so and dde-desktop
 patch :https://gitee.com/liuminghang/transparent-desktop5.11.3/blob/master/0001-feat.patch
