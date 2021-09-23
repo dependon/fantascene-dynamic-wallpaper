@@ -10,7 +10,7 @@
 #include "webwidget.h"
 
 class QLabel;
-class Desktop;
+//class Desktop;
 class Wallpaper : public QWidget
 {
     Q_OBJECT
@@ -52,7 +52,7 @@ private:
     QTimer *m_mouseWebEventTimer{nullptr};
     QPoint m_currentPos{0, 0};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
-    Desktop *de{nullptr};
+//    Desktop *de{nullptr};
 };
 
 #endif // WALLPAPER_H

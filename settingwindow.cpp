@@ -159,8 +159,6 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
         m_parentMainWindow->titlebar()->setMenu(m_aboutMenu);
     }
 
-
-
 }
 void settingWindow::pathChanged(const QString &path)
 {

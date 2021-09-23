@@ -31,6 +31,18 @@
 #include <X11/extensions/shape.h>
 #include <X11/extensions/Xrender.h>
 
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <iostream>
+using namespace std;
+
 #include "application.h"
 
 #include "desktop.h"
@@ -137,7 +149,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
     m_mouseWebEventTimer->start(30);
 
-    de = new Desktop(this);
+//    de = new Desktop(this);
 
 }
 
@@ -215,7 +227,7 @@ void Wallpaper::setScreen(const int &index)
 void Wallpaper::setFile(const QString &path)
 {
     malloc_trim(0);
-    de->setParent(this);
+//    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_label2) {
             layout()->removeWidget(m_label2);
@@ -370,7 +382,8 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 
 }
 
-
+#include <QWindow>
+#define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::registerDesktop()
 {
 //    xcb_ewmh_connection_t m_ewmh_connection;
@@ -403,6 +416,36 @@ void Wallpaper::registerDesktop()
 
         XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
                         PropModeAppend, (unsigned char *) &xa_prop, 1);
+    }
+    QWindow *window = QWindow::fromWinId(winId());
+    if (window) {
+        window->setOpacity(0.99);
+    }
+
+    if (1) {
+        xa = ATOM(_WIN_LAYER);
+        if (xa != None) {
+            long prop = 0;
+
+            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+                            PropModeAppend, (unsigned char *) &prop, 1);
+        }
+
+        xa = ATOM(_NET_WM_STATE);
+        if (xa != None) {
+            Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
+
+            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+                            PropModeAppend, (unsigned char *) &xa_prop, 1);
+        }
+    }
+    //事件穿透
+    Region region;
+
+    region = XCreateRegion();
+    if (region) {
+        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
+        XDestroyRegion(region);
     }
 }
 
@@ -473,15 +516,15 @@ void Wallpaper::updateGeometry()
         m_mpv->move(rect().topLeft());
         m_mpv->setFixedSize(size1);
 
-        de->setParent(m_mpv);
-        de->setFixedSize(size1);
+//        de->setParent(m_mpv);
+//        de->setFixedSize(size1);
     }
     if (m_webView) {
         m_webView->move(rect().topLeft());
         m_webView->setFixedSize(size1);
 
-        de->setParent(m_webView);
-        de->setFixedSize(size1);
+//        de->setParent(m_webView);
+//        de->setFixedSize(size1);
 
     }
     if (m_webView2) {
@@ -496,8 +539,8 @@ void Wallpaper::updateGeometry()
         }
         qDebug() << "Desktop WindowActivate";
     });
-    de->show();
-    de->move(0, 0);
+//    de->show();
+//    de->move(0, 0);
     //    });
 }
 
