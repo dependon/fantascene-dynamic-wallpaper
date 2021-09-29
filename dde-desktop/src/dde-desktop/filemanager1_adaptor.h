@@ -14,7 +14,7 @@
 
 #include <QtCore/QObject>
 #include <QtDBus/QtDBus>
-#include "/home/lmh/0305/fantascene-dynamic-wallpaper/dde-desktop/src/dde-desktop/dbus/filemanager1/dbusfilemanager1.h"
+#include "./dbus/filemanager1/dbusfilemanager1.h"
 QT_BEGIN_NAMESPACE
 class QByteArray;
 template<class T> class QList;
