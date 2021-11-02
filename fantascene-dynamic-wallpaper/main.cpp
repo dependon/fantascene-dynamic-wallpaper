@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
     if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
         bool isShowMainWindow = true;
-#ifdef QT_NO_DEBUG
+#if 0
         isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");

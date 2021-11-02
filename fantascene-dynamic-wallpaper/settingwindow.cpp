@@ -450,7 +450,7 @@ void settingWindow::quitApp()
 {
 
 
-#ifdef QT_NO_DEBUG
+#if 0
     QProcess::execute("killall dde-desktop");
     if (0 != dApp->m_processId) {
         QProcess::execute("kill " + QString::number(dApp->m_processId));

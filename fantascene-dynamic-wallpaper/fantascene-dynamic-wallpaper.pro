@@ -58,8 +58,8 @@ other.files= $$PWD/install/*
 desktop.path = /usr/share/applications/
 desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
-desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
-desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
+#desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
+#desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service
@@ -72,7 +72,7 @@ APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
 translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
 
-INSTALLS += target  other desktop desktopleft translations
+INSTALLS += target  other desktop translations
 
 FORMS += \
     settingwindow.ui \
