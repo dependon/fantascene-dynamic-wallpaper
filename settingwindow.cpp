@@ -448,22 +448,22 @@ void settingWindow::quitApp()
 {
 
 
-#ifdef QT_NO_DEBUG
-    QProcess::execute("killall dde-desktop");
-    if (0 != dApp->m_processId) {
-        QProcess::execute("kill " + QString::number(dApp->m_processId));
-    }
-    QThread *th = QThread::create([ = ]() {
-        QProcess::execute("dde-desktop");
-    });
-    th->start();
+//#ifdef QT_NO_DEBUG
+//    QProcess::execute("killall dde-desktop");
+//    if (0 != dApp->m_processId) {
+//        QProcess::execute("kill " + QString::number(dApp->m_processId));
+//    }
+//    QThread *th = QThread::create([ = ]() {
+//        QProcess::execute("dde-desktop");
+//    });
+//    th->start();
+//    saveSettings();
+//#else
     saveSettings();
-#else
-    saveSettings();
-#endif
+//#endif
     //dbus关闭壁纸透明
 
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+//    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
     m_stopx11Thread = true;
     if (m_x11thread) {
         m_x11thread->wait();
@@ -728,4 +728,9 @@ void settingWindow::activeWindow()
         m_parentMainWindow->show();
         m_parentMainWindow->activateWindow();
     }
+}
+
+void settingWindow::on_tansparency_slider_valueChanged(int value)
+{
+    emit dApp->sigSetTransparency(value);
 }

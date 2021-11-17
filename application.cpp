@@ -135,11 +135,11 @@ bool Application::setThumbnail(const QString &path)
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
-    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath +" |y";
+    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath + " |y";
     qDebug() << commod;
 //    QProcess::execute(commod);
-    if(!QFileInfo(thumPath).isFile()){
-          system(commod.toStdString().c_str());
+    if (!QFileInfo(thumPath).isFile()) {
+        system(commod.toStdString().c_str());
     }
 
     return true;
@@ -165,9 +165,9 @@ const QPixmap Application::getThumbnail(const QString &path)
         url = QUrl(path);
     }
 
-    QPixmap  wallPix(QFileInfo(path).path()+"/"+"preview.jpg");
-    if(!wallPix.isNull()){
-        return wallPix.scaled(256,144);
+    QPixmap  wallPix(QFileInfo(path).path() + "/" + "preview.jpg");
+    if (!wallPix.isNull()) {
+        return wallPix.scaled(256, 144);
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
@@ -200,23 +200,23 @@ const QPixmap Application::getThumbnail(const QString &path)
 
 void Application::setDesktopTransparent()
 {
-    //dbus开启壁纸透明
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground false");
-    //设置desktop透明
-    char str[12] = "dde-desktop";
-    int pid_t[128];
-    find_pid_by_name1(str, pid_t);
-    int pid = pid_t[0];
-    Display *display = XOpenDisplay(0);
-    WindowsMatchingPid match(display, XDefaultRootWindow(display), pid);
-    const list<Window> &result = match.result();
-    for (Window id : result) {
-        QWindow *window = QWindow::fromWinId((unsigned long)id);
-        if (window != nullptr) {
-            window->setOpacity(0.99);
-        }
-        if (!m_screenWid.contains(id)) {
-            m_screenWid.push_back(id);
-        }
-    }
+//    //dbus开启壁纸透明
+//    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground false");
+//    //设置desktop透明
+//    char str[12] = "dde-desktop";
+//    int pid_t[128];
+//    find_pid_by_name1(str, pid_t);
+//    int pid = pid_t[0];
+//    Display *display = XOpenDisplay(0);
+//    WindowsMatchingPid match(display, XDefaultRootWindow(display), pid);
+//    const list<Window> &result = match.result();
+//    for (Window id : result) {
+//        QWindow *window = QWindow::fromWinId((unsigned long)id);
+//        if (window != nullptr) {
+//            window->setOpacity(0.99);
+//        }
+//        if (!m_screenWid.contains(id)) {
+//            m_screenWid.push_back(id);
+//        }
+//    }
 }

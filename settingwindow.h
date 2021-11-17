@@ -96,6 +96,8 @@ private slots:
     void on_moreSettingBtn_clicked();
 
     void on_pluginBtn_clicked();
+    void on_tansparency_slider_valueChanged(int value);
+
 public slots:
     void activeWindow();
 private:
