@@ -40,6 +40,8 @@ private slots:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
 
     void slotSetMpvValue(const QString &key, const QString &value);
+
+    void slotSetTransparency(const int value);
 private:
     QHBoxLayout *mainlayout;
     QString m_currentPath;

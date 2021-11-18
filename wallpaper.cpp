@@ -73,6 +73,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::sigupdateGeometry, this, &Wallpaper::updateGeometry);
     connect(dApp, &Application::setMpvValue, this, &Wallpaper::slotSetMpvValue);
 
+    connect(dApp, &Application::sigSetTransparency, this, &Wallpaper::slotSetTransparency);
+
     QDesktopWidget *desktopwidget = QApplication::desktop();
     connect(desktopwidget, &QDesktopWidget::resized, this, [ = ] {
         QTimer::singleShot(1000, [ = ]{
@@ -448,8 +450,6 @@ void Wallpaper::registerDesktop()
         XDestroyRegion(region);
     }
 
-    QWindow *win = QWindow::fromWinId(winId());
-    win->setOpacity(0.5);
 }
 
 bool Wallpaper::event(QEvent *event)
@@ -473,6 +473,14 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
     if (m_mpv) {
         m_mpv->setProperty(key, value);
     }
+}
+
+void Wallpaper::slotSetTransparency(const int value)
+{
+    QWindow *win = QWindow::fromWinId(winId());
+    double dvalue = (double)value;
+    double dvalueOpacity = value / 100.0;
+    win->setOpacity(dvalueOpacity);
 }
 
 void Wallpaper::updateGeometry()
@@ -525,15 +533,6 @@ void Wallpaper::updateGeometry()
     }
     lower();
 
-    QTimer::singleShot(200, this, []() {
-        for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
-            system("xdotool search --class dde-desktop windowactivate");
-        }
-        qDebug() << "Desktop WindowActivate";
-    });
-//    de->show();
-//    de->move(0, 0);
-    //    });
 }
 
 void Wallpaper::slotMouseEvent()
@@ -572,13 +571,4 @@ void Wallpaper::LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos)
                                          Qt::MouseButton::NoButton,
                                          Qt::NoModifier);
     QCoreApplication::postEvent(eventsReciverWidget, press);
-    // Some delay
-//    QTimer::singleShot(300, [clickPos, eventsReciverWidget]() {
-//        QMouseEvent *release = new QMouseEvent(QEvent::MouseMove,
-//                                               clickPos,
-//                                               Qt::LeftButton,
-//                                               Qt::MouseButton::NoButton,
-//                                               Qt::NoModifier);
-//        QCoreApplication::postEvent(eventsReciverWidget, release);
-//    });
 }
