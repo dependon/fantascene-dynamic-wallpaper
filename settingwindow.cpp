@@ -1,8 +1,8 @@
 #include "settingwindow.h"
+
 #include "ui_settingwindow.h"
 #include "setdesktop.h"
 #include <QSystemTrayIcon>
-#include <QFileDialog>
 #include <QMenu>
 #include <QMainWindow>
 #include <QProcess>

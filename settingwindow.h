@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "application.h"
 #include <QMainWindow>
+#include <QFileDialog>
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
