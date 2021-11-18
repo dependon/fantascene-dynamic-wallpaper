@@ -1,23 +1,52 @@
-#include <QObject>
+#include <malloc.h>
 
 #include "application.h"
 #include "wallpaper.h"
 #include "dbuswallpaperservice.h"
-#include "settings.h"
-#include <malloc.h>
+
 #include "settingwindow.h"
-#include <DMainWindow>
+
+#include <QObject>
+#include <QMainWindow>
 #include <QProcess>
 #include <QThread>
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QCoreApplication>
-#include <DDesktopEntry>
 #include <QFile>
-#include <DTitlebar>
 #include <QStandardPaths>
-DWIDGET_USE_NAMESPACE
-DCORE_USE_NAMESPACE
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+bool checkOnly()
+{
+    //single
+    QString userName = QDir::homePath().section("/", -1, -1);
+    std::string path = (QDir::homePath() + "/.cache/deepin/fantascene/").toStdString();
+    QDir tdir(path.c_str());
+    if (!tdir.exists()) {
+        bool ret =  tdir.mkpath(path.c_str());
+        qDebug() << ret ;
+    }
+
+    path += "single";
+    int fd = open(path.c_str(), O_WRONLY | O_CREAT, 0644);
+    int flock = lockf(fd, F_TLOCK, 0);
+
+    if (fd == -1) {
+        perror("open lockfile/n");
+        return false;
+    }
+    if (flock == -1) {
+        perror("lock file error/n");
+        return false;
+    }
+    return true;
+}
+
 void cpToTmp()
 {
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
@@ -30,53 +59,19 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
+//    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
 
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
-    a.loadTranslator();
-    a.setApplicationVersion(DApplication::buildVersion("1.0.0"));
-//    a.setTheme("light");
+    a.setApplicationVersion("1.0.0");
+
     setlocale(LC_NUMERIC, "C");
 
-    if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
+    if (checkOnly()) {
         bool isShowMainWindow = true;
-//#ifdef QT_NO_DEBUG
-//        isShowMainWindow = false;
-//        if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
-//            int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
-//            if (iRet != 0) {
-//                return 0;
-//            }
-//            isShowMainWindow = true;
-//        } else {
-//            qDebug() << "可以启动: " << path + "dde-desktop";
-//        }
 
-//        dApp->m_startDesktop  = QThread::create([ = ]() {
-//            //打印当前路径
-//            qDebug() << "打印当前路径1";
-//            qDebug() << QCoreApplication::applicationDirPath();
-//            qDebug() << "打印当前路径2";
-
-//            QProcess::execute("killall dde-desktop");
-//            qDebug() << "关闭原生dde-desktop";
-//            qDebug() << "loading new dde-desktop";
-//            dApp->m_startDesktopProcess = new QProcess(dApp);
-//            if (QFileInfo(path + "dde-desktop").isFile()) {
-
-//                dApp->m_startDesktopProcess->start("bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh");
-//                dApp->m_processId = dApp->m_startDesktopProcess->processId();
-//                qDebug() << "processId" << dApp->m_processId;
-//                dApp->m_startDesktopProcess->waitForFinished();
-//            }
-//            qDebug() << "启动失败: " << path + "dde-desktop";
-//        });
-//        dApp->m_startDesktop->start();
-//#endif
-
-        DMainWindow *mainwindw = new DMainWindow();
+        QMainWindow *mainwindw = new QMainWindow();
         settingWindow *window = new settingWindow(mainwindw, mainwindw);
         mainwindw->setCentralWidget(window);
         int index = 0;
@@ -91,19 +86,14 @@ int main(int argc, char *argv[])
         mainwindw->setFixedSize(QSize(640, 500));
         mainwindw->setWindowTitle("动态壁纸");
         mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
-        mainwindw->titlebar()->setIcon(QIcon(":/install/wallpaper.png"));
-        mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
         mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
         dApp->setDesktopTransparent();
-//        qDebug() << qApp->desktop()->screenNumber();
-//        qDebug() << qApp->desktop()->primaryScreen();
-//        qDebug() << qApp->desktop()->screenCount();
 
         DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
-//        Q_UNUSED(dbusInter);
+        Q_UNUSED(dbusInter);
 
         QDBusConnection::sessionBus().registerService("com.deepin.dde.fantascene");
         QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", w);

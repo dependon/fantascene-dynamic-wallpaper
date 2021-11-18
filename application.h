@@ -1,8 +1,7 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
-#define protected public
-#include <DApplication>
-#undef protected
+
+#include <QApplication>
 #include <QCoreApplication>
 #include <QString>
 #include <QObject>
@@ -11,16 +10,17 @@
 #include <QRect>
 #include <QMutex>
 #include <QDir>
+#include <QVector>
 
 #include "data.h"
 
-DWIDGET_USE_NAMESPACE
+
 
 const QString PIC_DIR_PATH =   QDir::homePath() +
                                "/.config/fantascene-dynamic-wallpaper/.thumbnail";
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
-class Application : public DApplication
+class Application : public QApplication
 {
     Q_OBJECT
 public:

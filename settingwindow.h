@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "application.h"
-#include <DMainWindow>
+#include <QMainWindow>
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -19,7 +19,7 @@ class settingWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit settingWindow(QWidget *parent = nullptr, DMainWindow *mainWindow = nullptr);
+    explicit settingWindow(QWidget *parent = nullptr, QMainWindow *mainWindow = nullptr);
     ~settingWindow();
 
     void readSettings();
@@ -104,7 +104,7 @@ private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
     QMenu *m_traymenu{nullptr};
-    DMainWindow *m_parentMainWindow{nullptr};
+    QMainWindow *m_parentMainWindow{nullptr};
     int index = 1;
 
     int m_crrenNumber{0};

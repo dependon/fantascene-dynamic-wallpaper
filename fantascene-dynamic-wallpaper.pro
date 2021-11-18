@@ -2,7 +2,7 @@ TEMPLATE = app
 
 QT += gui x11extras widgets dbus webengine webenginewidgets
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += xcb-ewmh dtkwidget mpv x11 xext xrender
+PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -11,7 +11,6 @@ SOURCES += main.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
-    settings.cpp \
     settingwindow.cpp \
     application.cpp \
     listview/delegate.cpp \
@@ -26,7 +25,6 @@ HEADERS += \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \
-    settings.h \
     settingwindow.h \
     application.h \
     data.h \

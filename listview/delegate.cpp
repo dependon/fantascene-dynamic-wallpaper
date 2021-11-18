@@ -11,10 +11,9 @@
 #include <QMouseEvent>
 #include <QImageReader>
 #include <QApplication>
-#include <DGuiApplicationHelper>
-#include <DWidget>
+//#include <QGuiApplicationHelper>
+#include <QWidget>
 
-DWIDGET_USE_NAMESPACE
 
 delegate::delegate(QObject *parent)
     : QStyledItemDelegate(parent)
