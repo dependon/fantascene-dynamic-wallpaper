@@ -4,6 +4,7 @@
 #include <QUrl>
 #include <QMutexLocker>
 #include <QWindow>
+#include <QDebug>
 #include <QCryptographicHash>
 
 #include "setdesktop.h"
@@ -75,21 +76,20 @@ const QString toMd5(const QByteArray &data)
 }
 
 Application::Application(int &argc, char **argv)
-    : DApplication(argc, argv)
+    : QApplication(argc, argv)
 {
     this->setApplicationName(tr("fantascene-dynamic-wallpaper"));
     this->setApplicationDisplayName(tr("fantascene-dynamic-wallpaper"));
-    this->setApplicationDescription(
-        QObject::tr(
-            "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
-            "<a href='https://github.com/dependon/fantascene-dynamic-wallpaper/'>github/fantascene-dynamic-wallpaper</a><br/>"
-            "<a href='https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/'>gitee/fantascene-dynamic-wallpaper</a><br/>"
-            "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
-            "Published under GPL V3"
-        )
-    );
-
-    this->setProductIcon(QIcon(":/install/wallpaper.png"));
+//    this->setApplicationDescription(
+//        QObject::tr(
+//            "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
+//            "<a href='https://github.com/dependon/fantascene-dynamic-wallpaper/'>github/fantascene-dynamic-wallpaper</a><br/>"
+//            "<a href='https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/'>gitee/fantascene-dynamic-wallpaper</a><br/>"
+//            "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
+//            "Published under GPL V3"
+//        )
+//    );
+//    this->setProductIcon(QIcon(":/install/wallpaper.png"));
     this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
 

@@ -1,13 +1,13 @@
 #include "settingwindow.h"
 #include "ui_settingwindow.h"
+#include "setdesktop.h"
 #include <QSystemTrayIcon>
 #include <QFileDialog>
 #include <QMenu>
-#include <DMainWindow>
+#include <QMainWindow>
 #include <QProcess>
 #include <QThread>
 #include <QSettings>
-#include <DDesktopEntry>
 #include <QCoreApplication>
 #include <QProcess>
 #include <QStandardPaths>
@@ -16,23 +16,22 @@
 #include <QDesktopWidget>
 #include <QDropEvent>
 #include <QMimeData>
+#include <QDebug>
 
+#include <QMutexLocker>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 
 #include "listview/historywidget.h"
 #include "listview/wallpaperengineplugin.h"
 
-#include <DTitlebar>
-
-DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
                               "/.config/fantascene-dynamic-wallpaper/config.ini";
 
 
-settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
+settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)
@@ -138,25 +137,18 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     ui->mainWeb->hide();
     ui->githubWeb->hide();
     ui->giteeWeb->hide();
-//    ui->checkBox->hide();
 
     if (m_parentMainWindow) {
         m_aboutMenu = new QMenu();
-//        QAction *aboutgit = new QAction(m_aboutMenu);
-//        aboutgit->setText(tr("github"));
-//        connect(aboutgit, &QAction::triggered, this, [ = ] {
-//            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
-//        });
 
         QAction *aboutMe = new QAction(m_aboutMenu);
         aboutMe->setText(tr("Latest version"));
         connect(aboutMe, &QAction::triggered, this, [ = ] {
             QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
         });
-//        m_aboutMenu->addAction(aboutgit);
+
         m_aboutMenu->addAction(aboutMe);
 
-        m_parentMainWindow->titlebar()->setMenu(m_aboutMenu);
     }
 
 }
@@ -628,73 +620,9 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
         ui->pixThumbnail->setPixmap(pix);
     }
 }
-#include "setdesktop.h"
-#include <DWindowManagerHelper>
-#include <DForeignWindow>
-#include <QMutexLocker>
+
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
-//问题很多
-    if (arg1 == 0) {
-        dApp->m_moreData.isAuto = 0;
-        m_stopx11Thread = true;
-        if (m_x11thread) {
-//            m_x11thread->wait();
-//            m_x11thread->quit();
-//            m_x11thread->terminate();
-            m_x11thread = nullptr;
-        }
-        dApp->m_x11WindowFuscreen.clear();
-        if (dApp->m_isNoMpvPause) {
-            dApp->setMpvPlay();
-        }
-    } else {
-        m_stopx11Thread = false;
-        dApp->m_moreData.isAuto = 1;
-        if (!m_x11thread) {
-            m_x11thread = QThread::create([ = ]() {
-                int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
-                int screenheight = qApp->desktop()->screenGeometry().height() - 150;
-                while (!m_stopx11Thread) {
-                    if (dApp->m_isNoMpvPause) {
-                        int index = 0;
-//                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
-                        for (auto window : DWindowManagerHelper::instance()->currentWorkspaceWindows()) {
-//                            if (wid == winId()) {
-//                                continue;
-//                                qDebug() << "this";
-//                            }
-
-//                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
-//                            //判断窗口是否有最大窗口
-
-                            if (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen) {
-                                //            continue;
-
-                                int wwidth = window->frameGeometry().width();
-                                int wheight = window->frameGeometry().height();
-
-                                if (wwidth > screenwidth && wheight > screenheight) {
-
-                                    index++;
-                                }
-
-                            }
-
-                        }
-                        if (0 == index && !dApp->m_currentIsPlay &&  dApp->m_isNoMpvPause) {
-                            dApp->setMpvPlay();
-                        } else if (0 != index &&  dApp->m_currentIsPlay) {
-                            dApp->setMpvpause();
-                        }
-
-                    }
-                    QThread::msleep(2000);
-                }
-            });
-            m_x11thread->start();
-        }
-    }
     saveSettings();
 }
 
