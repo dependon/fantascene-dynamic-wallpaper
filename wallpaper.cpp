@@ -421,7 +421,7 @@ void Wallpaper::registerDesktop()
     }
     QWindow *window = QWindow::fromWinId(winId());
     if (window) {
-        window->setOpacity(0.99);
+        window->setOpacity(0.7);
     }
 
     if (1) {
