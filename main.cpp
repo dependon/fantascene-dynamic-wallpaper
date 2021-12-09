@@ -21,6 +21,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#define TRANSALTIONPATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+
 bool checkOnly()
 {
     //single
@@ -65,7 +67,20 @@ int main(int argc, char *argv[])
 
     Application a(argc, argv);
     a.setApplicationVersion("1.0.0");
-
+#ifdef Q_OS_LINUX
+    QDir dir(TRANSALTIONPATH);
+    if (dir.exists()) {
+        QDirIterator qmIt(TRANSALTIONPATH, QStringList() << QString("*%1.qm").arg(QLocale::system().name()), QDir::Files);
+        while (qmIt.hasNext()) {
+            qmIt.next();
+            QFileInfo finfo = qmIt.fileInfo();
+            QTranslator *translator = new QTranslator;
+            if (translator->load(finfo.baseName(), finfo.absolutePath())) {
+                qApp->installTranslator(translator);
+            }
+        }
+    }
+#endif
     setlocale(LC_NUMERIC, "C");
 
     if (checkOnly()) {

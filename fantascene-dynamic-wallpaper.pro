@@ -50,16 +50,17 @@ CONFIG(release, debug|release) {
 }
 
 OTHER_FILES+=$$PWD/install/*
-target.path=/opt/durapps/fantascene-dynamic-wallpaper
 
-other.path=/opt/durapps/fantascene-dynamic-wallpaper
-other.files= $$PWD/install/*
+unix:!android: target.path = /usr/bin
+
+icon.path=/usr/share/icons
+icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
 
 desktop.path = /usr/share/applications/
 desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
-desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
-desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
+#desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
+#desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service
@@ -72,7 +73,7 @@ APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
 translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
 
-INSTALLS += target  other desktop desktopleft translations
+INSTALLS += target  icon desktop  translations
 
 FORMS += \
     settingwindow.ui \
