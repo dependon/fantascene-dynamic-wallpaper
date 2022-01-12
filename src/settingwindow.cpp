@@ -133,6 +133,10 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
         }
     });
 
+    connect(dApp, &Application::sigReadConfig, this, [ = ] {
+        readSettings();
+    });
+
     ui->bugBtn->hide();
     ui->mainWeb->hide();
     ui->githubWeb->hide();
@@ -224,7 +228,7 @@ void settingWindow::readSettings()
         }
     }
 
-    QTimer::singleShot(300, [ = ] {
+    QTimer::singleShot(300, this, [ = ] {
         ui->widthPY->setText(QString::number(dApp->m_manual.x()));
         ui->heightPY->setText(QString::number(dApp->m_manual.y()));
         ui->width->setText(QString::number(dApp->m_manual.width()));
@@ -233,6 +237,7 @@ void settingWindow::readSettings()
         if (m_voiceVolume >= 0 && m_voiceVolume < 100)
         {
             ui->Slider->setValue(m_voiceVolume);
+            on_Slider_valueChanged(m_voiceVolume);
         }
         if (!m_currentMode.isEmpty())
         {
@@ -252,7 +257,7 @@ void settingWindow::readSettings()
 
 
     });
-    QTimer::singleShot(2000, [ = ] {
+    QTimer::singleShot(2000, this, [ = ] {
         if (dApp->m_moreData.isAuto == 1)
         {
 //            ui->checkBox->setCheckState(Qt::Checked);

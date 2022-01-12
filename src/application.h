@@ -63,6 +63,8 @@ Q_SIGNALS:
     void sigDesktopActive();
 
     void sigSetTransparency(const int value);
+
+    void sigReadConfig();
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
