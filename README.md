@@ -1,6 +1,12 @@
 
 ## Latest version code description (applicable to all Linux)
 The latest code can be compiled and used directly, but it can't make the desktop completely transparent. It can adjust the transparency of wallpaper by itself, so as to realize dynamic wallpaper. X11 method is used to change the transparency of form
+### 3.0.0(Suitable for all X11 Linux desktops)
+bilibili :[https://www.bilibili.com/video/BV1CR4y1g7sT/](https://www.bilibili.com/video/BV1CR4y1g7sT/)
+
+[https://depend.lanzouj.com/iQYvFyqjape](https://depend.lanzouj.com/iQYvFyqjape)
+
+password:23x2
 
 ## build //linux(ubuntu /deepin  other linux)
 sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev
