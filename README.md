@@ -4,7 +4,7 @@ The latest code can be compiled and used directly, but it can't make the desktop
 ### 3.0.0(Suitable for all X11 Linux desktops)
 bilibili :[https://www.bilibili.com/video/BV1CR4y1g7sT/](https://www.bilibili.com/video/BV1CR4y1g7sT/)
 
-[https://depend.lanzouj.com/iQYvFyqjape](https://depend.lanzouj.com/iQYvFyqjape)
+dowload : [https://depend.lanzouj.com/iQYvFyqjape](https://depend.lanzouj.com/iQYvFyqjape)
 
 password:23x2
 
