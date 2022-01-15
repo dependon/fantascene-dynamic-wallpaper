@@ -23,19 +23,19 @@
         <location filename="../desktop.cpp" line="52"/>
         <location filename="../desktop.cpp" line="60"/>
         <source>New folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nueva carpeta</translation>
     </message>
     <message>
         <location filename="../desktop.cpp" line="73"/>
         <location filename="../desktop.cpp" line="81"/>
         <location filename="../desktop.cpp" line="82"/>
         <source>New Txt Files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nuevos archivos Txt</translation>
     </message>
     <message>
         <location filename="../desktop.cpp" line="101"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Actualizar</translation>
     </message>
 </context>
 <context>
@@ -71,7 +71,7 @@
         <location filename="../moresetting.ui" line="47"/>
         <location filename="../ui_moresetting.h" line="144"/>
         <source>Video FPS</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">FPS Video</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
@@ -134,13 +134,13 @@
         <location filename="../moresetting.ui" line="130"/>
         <location filename="../ui_moresetting.h" line="159"/>
         <source>none</source>
-        <translation></translation>
+        <translation>nada</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <location filename="../ui_moresetting.h" line="162"/>
         <source>Confirm</source>
-        <translation>Muy bien</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="164"/>
@@ -162,8 +162,8 @@
         <location filename="../moresetting.ui" line="110"/>
         <location filename="../ui_moresetting.h" line="155"/>
         <source>auto</source>
-        <translatorcomment>Automóvil</translatorcomment>
-        <translation>Automóvil</translation>
+        <translatorcomment>Automático</translatorcomment>
+        <translation>Automático</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="115"/>
@@ -225,7 +225,7 @@
         <location filename="../listview/historywidget.ui" line="29"/>
         <location filename="../ui_historywidget.h" line="75"/>
         <source>Delete</source>
-        <translation>Configurar fondos de pantalla</translation>
+        <translation>Borrar</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="36"/>
@@ -237,7 +237,7 @@
     <message>
         <location filename="../listview/historywidget.cpp" line="16"/>
         <source>Wallpaper History</source>
-        <translation>Historia / importar fondos de pantalla</translation>
+        <translation>Historia del fondo de pantalla</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@
         <location filename="../settingwindow.ui" line="22"/>
         <location filename="../ui_settingwindow.h" line="409"/>
         <source>File</source>
-        <translation>Documentación</translation>
+        <translation>Archivo</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="29"/>
@@ -272,7 +272,7 @@
         <location filename="../settingwindow.ui" line="103"/>
         <location filename="../ui_settingwindow.h" line="412"/>
         <source>Transparency</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Transparencia</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="130"/>
@@ -285,7 +285,7 @@
         <location filename="../settingwindow.cpp" line="54"/>
         <location filename="../ui_settingwindow.h" line="414"/>
         <source>Play</source>
-        <translation>Inicio</translation>
+        <translation>Ejecutar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="182"/>
@@ -298,13 +298,13 @@
         <location filename="../settingwindow.ui" line="201"/>
         <location filename="../ui_settingwindow.h" line="416"/>
         <source>Set New</source>
-        <translation>Cubierta de papel</translation>
+        <translation>Establecer nuevo</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="220"/>
         <location filename="../ui_settingwindow.h" line="417"/>
         <source>Hide</source>
-        <translation>Cancelar</translation>
+        <translation>Ocultar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="235"/>
@@ -341,8 +341,8 @@
         <location filename="../settingwindow.cpp" line="525"/>
         <location filename="../ui_settingwindow.h" line="425"/>
         <source>default</source>
-        <translatorcomment>Incumplimiento</translatorcomment>
-        <translation>Incumplimiento</translation>
+        <translatorcomment>por defecto</translatorcomment>
+        <translation>por defecto</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="291"/>
@@ -379,27 +379,27 @@
         <location filename="../settingwindow.cpp" line="537"/>
         <location filename="../ui_settingwindow.h" line="431"/>
         <source>custom</source>
-        <translatorcomment>Costumbre</translatorcomment>
-        <translation>Costumbre</translation>
+        <translatorcomment>Personalizar</translatorcomment>
+        <translation>Personalizar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="459"/>
         <location filename="../ui_settingwindow.h" line="444"/>
         <source>Advanced Settings</source>
-        <translation>Más ajustes</translation>
+        <translation>Ajustes avanzados</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="466"/>
         <location filename="../settingwindow.cpp" line="74"/>
         <location filename="../ui_settingwindow.h" line="445"/>
         <source>Wallpaper History</source>
-        <translation>Historia / importar fondos de pantalla</translation>
+        <translation>Historia del fondo de pantalla</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="473"/>
         <location filename="../ui_settingwindow.h" line="446"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation>Motor-wallpaper Engine</translation>
+        <translation>Complemento-Wallpaper Engine</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="352"/>
@@ -459,7 +459,7 @@
         <location filename="../settingwindow.ui" line="408"/>
         <location filename="../ui_settingwindow.h" line="439"/>
         <source>Apply Custom Dimensions</source>
-        <translation>Establecer ancho y altura personalizados</translation>
+        <translation>Aplicar dimensiones personalizadas</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="448"/>
@@ -470,7 +470,7 @@
     <message>
         <location filename="../settingwindow.cpp" line="49"/>
         <source>Exit</source>
-        <translation>Extensión</translation>
+        <translation>Salir</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="62"/>
@@ -506,12 +506,12 @@
     <message>
         <location filename="../listview/view.cpp" line="207"/>
         <source>The file does not exist. Do you want to delete it</source>
-        <translation>El archivo no existe.¿Quieres borrarlo</translation>
+        <translation>El archivo no existe.¿Quieres borrarlo?</translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="214"/>
         <source>Delete all history imports ?</source>
-        <translation>¿Desea borrar todas las importaciones históricas?</translation>
+        <translation>¿Desea borrar todo el histórial?</translation>
     </message>
 </context>
 <context>
@@ -526,7 +526,7 @@
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <location filename="../ui_wallpaperengineplugin.h" line="82"/>
         <source>Select Path</source>
-        <translation>Seleccione la dirección steam</translation>
+        <translation>Seleccione la ruta</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
