@@ -1,12 +1,13 @@
-Source: fantascene-dynamic-wallpaper
-Section: utils
+Source: com.github.fantascene
+Version: 1.1.0
+Section: application
 Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
 Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
-Package: fantascene-dynamic-wallpaper
+Package: com.github.fantascene
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libqt5libqgtk2, kimageformat-plugins

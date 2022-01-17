@@ -139,6 +139,6 @@ TRANSLATIONS += $$PWD/translations/$${TARGET}.ts \
 
 include($$PWD/development.pri)
 
-target.path=/opt/durapps/fantascene-dynamic-wallpaper
+target.path=/opt/apps/com.github.fantascene/files/bin/
 
 INSTALLS += target

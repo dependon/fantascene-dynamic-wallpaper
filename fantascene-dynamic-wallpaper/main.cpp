@@ -30,7 +30,7 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
+    QString path = "/opt/apps/com.github.fantascene/files/bin/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 
             if (QFileInfo(path + "dde-desktop").isFile()) {
                 QProcess pro;
-                QString strPath = "bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh";
+                QString strPath = "bash /opt/apps/com.github.fantascene/files/bin/startdesktop.sh";
                 pro.startDetached(strPath);
             }
             qDebug() << "启动失败: " << path + "dde-desktop";
