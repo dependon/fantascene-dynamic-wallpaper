@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
     if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
         bool isShowMainWindow = true;
-#if 0
+#if QT_NO_DEBUG
         isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
@@ -60,16 +60,10 @@ int main(int argc, char *argv[])
             qDebug() << QCoreApplication::applicationDirPath();
             qDebug() << "打印当前路径2";
 
-            QProcess::execute("killall dde-desktop");
-            qDebug() << "关闭原生dde-desktop";
-            qDebug() << "loading new dde-desktop";
-            dApp->m_startDesktopProcess = new QProcess(dApp);
             if (QFileInfo(path + "dde-desktop").isFile()) {
-
-                dApp->m_startDesktopProcess->start("bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh");
-                dApp->m_processId = dApp->m_startDesktopProcess->processId();
-                qDebug() << "processId" << dApp->m_processId;
-                dApp->m_startDesktopProcess->waitForFinished();
+                QProcess pro;
+                QString strPath = "bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh";
+                pro.startDetached(strPath);
             }
             qDebug() << "启动失败: " << path + "dde-desktop";
         });
