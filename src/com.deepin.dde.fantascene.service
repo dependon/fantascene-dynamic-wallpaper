@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.deepin.dde.fantascene
+Exec=fantascene-dynamic-wallpaper
