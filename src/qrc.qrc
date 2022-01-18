@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>tray.ico</file>
+        <file>select_active.svg</file>
+        <file>install/wallpaper.png</file>
+    </qresource>
+</RCC>
