@@ -32,7 +32,8 @@ I put the download address in Lanzou cloud（下载地址我放在了蓝奏云�
 
 deepinV20.3: [https://depend.lanzoui.com/iXwewwk7fba](https://depend.lanzoui.com/iXwewwk7fba)
 
-uos_amd64:[https://depend.lanzoui.com/il0Lzwk35xi](https://depend.lanzoui.com/il0Lzwk35xi)
+uos_amd64:[https://depend.lanzouj.com/iyxY0yxo22f](https://depend.lanzouj.com/iyxY0yxo22f)
+密码:15h3
 
 uos_arm64:[https://depend.lanzoui.com/i35HSwxevkf](https://depend.lanzoui.com/i35HSwxevkf)
 
