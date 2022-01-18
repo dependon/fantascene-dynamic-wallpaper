@@ -1,7 +1,7 @@
 {
-    "appid": "com.github.fantascene",
+    "appid": "com.github.fantasceneuos",
     "name": "fantacene-dynamic-wallpaper",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "arch": ["amd64"],
     "permissions": {
         "autostart": false,
