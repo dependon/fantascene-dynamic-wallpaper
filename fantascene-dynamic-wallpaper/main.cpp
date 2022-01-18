@@ -30,7 +30,7 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/apps/com.github.fantascene/files/bin/";
+    QString path = "/opt/apps/com.github.fantasceneuos/files/bin/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
             qDebug() << "打印当前路径2";
             if (QFileInfo(path + "dde-desktop").isFile()) {
                 QProcess pro;
-                QString strPath = "bash /opt/apps/com.github.fantascene/files/bin/startdesktop.sh";
+                QString strPath = "bash /opt/apps/com.github.fantasceneuos/files/bin/startdesktop.sh";
                 pro.startDetached(strPath);
             }
             qDebug() << "启动失败: " << path + "dde-desktop";
