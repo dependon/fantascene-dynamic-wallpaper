@@ -56,9 +56,9 @@ OTHER_FILES+=$$PWD/install/*
 DISTFILES += \
     com.deepin.dde.DreamScene.service
 
-target.path=/opt/apps/com.github.fantascene/files/bin/
+target.path=/usr/bin/
 
-other.path=/opt/apps/com.github.fantascene/files/bin/
+other.path=/opt/durapps/fantascene-dynamic-wallpaper
 other.files= $$PWD/install/*
 
 dbus_service.files += com.deepin.dde.fantascene.service
@@ -66,19 +66,19 @@ dbus_service.path = /usr/share/dbus-1/services
 
 APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
 
-translations.path = /opt/apps/com.github.fantascene/files/bin/translations
+translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
 
-desktop1.path=/opt/apps/com.github.fantascene/entries/applications
-desktop1.files=$$PWD/install/com.github.fantascene.desktop
+desktop.path = /usr/share/applications/
+desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
-appicon.path=/opt/apps/com.github.fantascene/entries/icons
-appicon.files=$$PWD/install/fantascene.png
+icon.path=/usr/share/icons
+icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
 
-info.path=/opt/apps/com.github.fantascene/
-info.files= $$PWD/info/*
+#info.path=/opt/apps/com.github.fantascene/
+#info.files= $$PWD/info/*
 
-INSTALLS += target  other desktop1 translations appicon info
+INSTALLS += target  other desktop translations icon
 
 FORMS += \
     settingwindow.ui \
