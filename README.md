@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-# 在已经能编译代码的情况下如何打包
-
-# 0.1.3是 qt 5.15.1的版本(deepin v20.2)
-
-# 0.1.2是 qt 5.11.3的版本(deepin v20.1及之前版本)
-
-在修改了代码之后，直接在代码主目录下打开终端执行 dpkg-buildpackage -b -us -uc ，即可得到deb包
-=======
->>>>>>> future1
-
 ## Latest version code description (applicable to all Linux)
 The latest code can be compiled and used directly, but it can't make the desktop completely transparent. It can adjust the transparency of wallpaper by itself, so as to realize dynamic wallpaper. X11 method is used to change the transparency of form
 ### 3.0.0(Suitable for all X11 Linux desktops)
