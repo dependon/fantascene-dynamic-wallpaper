@@ -59,7 +59,6 @@ int main(int argc, char *argv[])
             qDebug() << "打印当前路径1";
             qDebug() << QCoreApplication::applicationDirPath();
             qDebug() << "打印当前路径2";
-
             if (QFileInfo(path + "dde-desktop").isFile()) {
                 QProcess pro;
                 QString strPath = "bash /opt/apps/com.github.fantascene/files/bin/startdesktop.sh";
@@ -92,6 +91,9 @@ int main(int argc, char *argv[])
 
         Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
         dApp->setDesktopTransparent();
+        QTimer::singleShot(1000, [ = ] {
+            dApp->setDesktopTransparent();
+        });
 //        qDebug() << qApp->desktop()->screenNumber();
 //        qDebug() << qApp->desktop()->primaryScreen();
 //        qDebug() << qApp->desktop()->screenCount();
