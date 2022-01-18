@@ -14,7 +14,7 @@
 
 #include <QtCore/QObject>
 #include <QtDBus/QtDBus>
-#include "/data/home/lmh/0330/dde-file-manager/src/dde-desktop/dbus/filedialog/dbusfiledialogmanager.h"
+#include "dbusfiledialogmanager.h"
 QT_BEGIN_NAMESPACE
 class QByteArray;
 template<class T> class QList;

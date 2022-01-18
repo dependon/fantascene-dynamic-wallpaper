@@ -3,7 +3,7 @@ Version: 1.1.0
 Section: application
 Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
-Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev
+Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev,libx11-xcb-dev,ffmpeg,qtwebengine5-dev,libxext-dev,libxrender-dev,libqt5x11extras5-dev
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
