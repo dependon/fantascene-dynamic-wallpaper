@@ -30,7 +30,7 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-    QString path = "/opt/durapps/fantascene-dynamic-wallpaper";
+    QString path = "/opt/durapps/fantascene-dynamic-wallpaper-uos";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 //    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
-    if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
+    if (a.setSingleInstance("fantascene-dynamic-wallpaper-uos")) {
         bool isShowMainWindow = true;
 #if QT_NO_DEBUG
         isShowMainWindow = false;
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
             qDebug() << "打印当前路径2";
             if (QFileInfo(path + "dde-desktop").isFile()) {
                 QProcess pro;
-                QString strPath = "bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh";
+                QString strPath = "bash /opt/durapps/fantascene-dynamic-wallpaper-uos/startdesktop.sh";
                 pro.startDetached(strPath);
             }
             qDebug() << "启动失败: " << path + "dde-desktop";
