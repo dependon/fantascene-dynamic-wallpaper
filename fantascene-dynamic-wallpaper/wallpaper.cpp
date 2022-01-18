@@ -250,6 +250,8 @@ void Wallpaper::setFile(const QString &path)
             m_mpv->setProperty("panscan", 1);
             m_mpv->setGeometry(geometry());
             m_mpv->show();
+            //发送读取配置文件
+            emit dApp->sigReadConfig();
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);

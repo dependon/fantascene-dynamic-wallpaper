@@ -61,6 +61,8 @@ Q_SIGNALS:
     void sigActiveWindow();
 
     void sigDesktopActive();
+
+    void sigReadConfig();
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
