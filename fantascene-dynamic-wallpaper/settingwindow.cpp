@@ -411,13 +411,13 @@ void settingWindow::on_autoStart_clicked()
 {
 
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop").isFile())
-        QProcess::execute("cp /opt/durapps/fantascene-dynamic-wallpaper/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/com.github.fantascene.desktop").isFile())
+        QProcess::execute("cp /opt/apps/com.github.fantascene/entries/applications/com.github.fantascene.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
 {
-    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop");
+    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/com.github.fantascene.desktop");
 }
 
 void settingWindow::on_autoStartBox_stateChanged(int arg1)
@@ -483,7 +483,7 @@ void settingWindow::quitApp()
 
 void settingWindow::on_mainWeb_clicked()
 {
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper")));
+    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/com.github.fantascene")));
 }
 
 void settingWindow::on_history_clicked()

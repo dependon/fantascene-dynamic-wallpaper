@@ -26,7 +26,7 @@
      <item>
       <widget class="QLineEdit" name="pathEdit">
        <property name="text">
-        <string>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</string>
+        <string>/opt/apps/com.github.fantascene/files/bin/09.mp4</string>
        </property>
       </widget>
      </item>
