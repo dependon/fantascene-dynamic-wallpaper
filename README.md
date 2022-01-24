@@ -1,14 +1,23 @@
 
 ## 1.2.0 (Fix stuck desktop (修复了会卡死桌面的问题))
 网盘下载:
+
 deepin:
+
 [https://depend.lanzouj.com/iCbccz7qena](https://depend.lanzouj.com/iCbccz7qena)
+
 password:85v9
+
 uos
+
 [https://depend.lanzouj.com/iZPYGz7qesf](https://depend.lanzouj.com/iZPYGz7qesf)
+
 password:8zyn
+
 uos_arm64
+
 [https://depend.lanzouj.com/iLpGPz7qfcf](https://depend.lanzouj.com/iLpGPz7qfcf)
+
 password:9s4j
 
 ## Latest version code description (applicable to all Linux)
