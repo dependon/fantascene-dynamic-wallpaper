@@ -82,26 +82,26 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         });
         updateGeometry();
     });
-    connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
-        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_label2 && m_mpv)
-        {
-            if (!m_label2) {
-                m_label2 = new QLabel();
-            }
-            layout->addWidget(m_label2);
-        } else
-        {
-            if (m_label2) {
-                layout->removeWidget(m_label2);
-                m_label2->deleteLater();
-                m_label2 = nullptr;
-            }
-        }
-        QTimer::singleShot(1000, [ = ] {
-            updateGeometry();
-        });
-        updateGeometry();
-    });
+//    connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
+//        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_mpv2 && m_mpv)
+//        {
+//            if (!m_mpv2) {
+//                m_mpv2 = new MpvWidget();
+//            }
+//            layout->addWidget(m_label2);
+//        } else
+//        {
+//            if (m_mpv2) {
+//                layout->removeWidget(m_mpv2);
+//                m_mpv2->deleteLater();
+//                m_mpv2 = nullptr;
+//            }
+//        }
+//        QTimer::singleShot(1000, [ = ] {
+//            updateGeometry();
+//        });
+//        updateGeometry();
+//    });
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -175,11 +175,16 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
 
                 m_webView2->show();
                 layout()->addWidget(m_webView2);
-                updateGeometry();
-            } else if (nullptr == m_label2) {
-                m_label2 = new QLabel();
-                m_label2->setVisible(true);
-                layout()->addWidget(m_label2);
+            } else if (nullptr == m_mpv2) {
+                m_mpv2 = new MpvWidget(this);
+                m_mpv2->setVisible(true);
+                m_mpv2->setProperty("loop", true);
+                m_mpv2->setProperty("panscan", 1);
+                m_mpv2->command(QStringList() << "loadfile" << path);
+                m_mpv2->setProperty("pause", true);
+                m_mpv2->setProperty("volume", 0);
+                layout()->addWidget(m_mpv2);
+
             }
 
         }
@@ -191,10 +196,10 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
-        if (nullptr != m_label2) {
-            layout()->removeWidget(m_label2);
-            delete m_label2 ;
-            m_label2 = nullptr;
+        if (nullptr != m_mpv2) {
+            layout()->removeWidget(m_mpv2);
+            delete m_mpv2 ;
+            m_mpv2 = nullptr;
         }
         break;
     }
@@ -204,10 +209,10 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
-        if (nullptr != m_label2) {
-            layout()->removeWidget(m_label2);
-            delete m_label2 ;
-            m_label2 = nullptr;
+        if (nullptr != m_mpv2) {
+            layout()->removeWidget(m_mpv2);
+            delete m_mpv2 ;
+            m_mpv2 = nullptr;
         }
         break;
     }
@@ -231,10 +236,10 @@ void Wallpaper::setFile(const QString &path)
     malloc_trim(0);
 //    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
-        if (m_label2) {
-            layout()->removeWidget(m_label2);
-            delete m_webView2;
-            m_webView2 = nullptr;
+        if (m_mpv2) {
+            layout()->removeWidget(m_mpv2);
+            delete m_mpv2;
+            m_mpv2 = nullptr;
         }
         if (m_mpv) {
             layout()->removeWidget(m_mpv);
@@ -257,6 +262,27 @@ void Wallpaper::setFile(const QString &path)
         updateGeometry();
         layout()->addWidget(m_webView);
         pause();
+        if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
+
+            QString path = dApp->m_currentPath;
+            if (m_webView) {
+                if (!m_webView2) {
+                    m_webView2 = new webWidget(this);
+                    m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
+                }
+
+                if (QFileInfo(path).isFile()) {
+                    m_webView2->load(QUrl("file://" + path));
+                } else {
+                    m_webView2->load(QUrl(path));
+                }
+
+                m_webView2->show();
+
+                layout()->addWidget(m_webView2);
+            }
+            updateGeometry();
+        }
 
     }  else {
         if (m_webView) {
@@ -278,51 +304,42 @@ void Wallpaper::setFile(const QString &path)
             m_mpv->setProperty("panscan", 1);
             m_mpv->setGeometry(geometry());
             m_mpv->show();
-            //发送读取配置文件
-            emit dApp->sigReadConfig();
+
+
+            if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
+                if (!m_mpv2) {
+                    m_mpv2 = new MpvWidget(this);
+                }
+                m_mpv2->setProperty("loop", true);
+                m_mpv2->setProperty("panscan", 1);
+                m_mpv2->setGeometry(geometry());
+                m_mpv2->setProperty("volume", 0);
+                m_mpv2->show();
+                layout()->addWidget(m_mpv2);
+
+                //发送读取配置文件
+                emit dApp->sigReadConfig();
+            }
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);
         m_mpv->setProperty("pause", true);
-        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
-            if (!m_label2) {
-                m_label2 = new QLabel();
-            }
-
-            layout()->addWidget(m_label2);
+        if (m_mpv2) {
+            m_mpv2->command(QStringList() << "loadfile" << path);
+            m_mpv2->setProperty("pause", true);
         }
-//        updateGeometry();
     }
-    if (qApp->desktop()->screenCount() > 1) {
 
-        QString path = dApp->m_currentPath;
-        if (m_webView) {
-            if (!m_webView2) {
-                m_webView2 = new webWidget(this);
-                m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
-            }
-
-
-            if (QFileInfo(path).isFile()) {
-                m_webView2->load(QUrl("file://" + path));
-            } else {
-                m_webView2->load(QUrl(path));
-            }
-
-            m_webView2->show();
-
-            layout()->addWidget(m_webView2);
-        }
-        updateGeometry();
-    }
-//    updateGeometry();
-
+    updateGeometry();
 }
 
 void Wallpaper::setVolume(const qint32 volume)
 {
     if (m_mpv) {
         m_mpv->setProperty("volume", volume);
+    }
+    if (m_mpv2) {
+        m_mpv2->setProperty("volume", 0);
     }
 
 }
@@ -340,6 +357,10 @@ void Wallpaper::play()
         m_mpv->setProperty("pause", false);
         dApp->m_currentIsPlay = true;
     }
+    if (m_mpv2) {
+        m_mpv2->show();
+        m_mpv2->setProperty("pause", false);
+    }
 }
 
 void Wallpaper::pause()
@@ -348,12 +369,18 @@ void Wallpaper::pause()
     if (m_mpv) {
         m_mpv->setProperty("pause", true);
     }
+    if (m_mpv2) {
+        m_mpv2->setProperty("pause", true);
+    }
 }
 
 void Wallpaper::stop()
 {
     if (m_mpv) {
         m_mpv->setProperty("stop", true);
+    }
+    if (m_mpv2) {
+        m_mpv2->setProperty("stop", true);
     }
 }
 
@@ -456,6 +483,16 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
+    //https://github.com/dependon/fantascene-dynamic-wallpaper/issues/4，临时解决WIN+D的问题
+    if (event->type() == QEvent::WindowActivate) {
+        qDebug() << "Video WindowActivate";
+        for (auto wid : dApp->m_screenWid) {
+            QWindow *window = QWindow::fromWinId(wid);
+            if (window) {
+                window->raise();
+            }
+        }
+    }
     return  QWidget::event(event);
 }
 
@@ -475,6 +512,9 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
     if (m_mpv) {
         m_mpv->setProperty(key, value);
     }
+    if (m_mpv2) {
+        m_mpv2->setProperty(key, value);
+    }
 }
 
 void Wallpaper::slotSetTransparency(const int value)
@@ -487,7 +527,7 @@ void Wallpaper::slotSetTransparency(const int value)
 
 void Wallpaper::updateGeometry()
 {
-//    QTimer::singleShot(100, this, [ = ] {
+
     dApp->m_currentScreenNum = dApp->desktop()->screenCount();
     QRect rec;
     QSize size1(0, 0);
@@ -499,16 +539,88 @@ void Wallpaper::updateGeometry()
         rec = QRect(0, 0, rec.width(), rec.height());
         size1.setWidth(rec.width());
         size1.setHeight(rec.height());
+        int twidth = 0;
+        int theight = 0;
+        for (auto screen : qApp->screens()) {
+            twidth += screen->geometry().width();
+            if (screen->geometry().height() > theight) {
+                theight = screen->geometry().height();
+            }
+        }
+
+        this->setGeometry(QRect(0, 0, twidth, theight));
+
+        int i = 1;
+        for (auto screen : qApp->screens()) {
+            dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+            if (i == 1 && m_mpv) {
+                qDebug() << screen->geometry();
+                m_mpv->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+            if (i == 2 && m_mpv2) {
+                qDebug() << screen->geometry();
+                m_mpv2->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+            if (i == 1 && m_webView) {
+                m_webView->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+            if (i == 2 && m_webView2) {
+                m_webView2->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+
+        }
 
     } else if (dApp->m_cuurentMode == IdlayoutScreen) {
         rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
         size1.setWidth(rec.width());
         size1.setHeight(rec.height());
+        this->setGeometry(rec);
+
+        if (m_mpv) {
+            m_mpv->setGeometry(rec);
+        }
+        if (m_mpv2) {
+            this->layout()->removeWidget(m_mpv2);
+            m_mpv2->deleteLater();
+            m_mpv2 = nullptr;
+        }
+        if (m_webView) {
+            m_webView->setGeometry(rec);
+        }
+        if (m_webView2) {
+            this->layout()->removeWidget(m_webView2);
+            m_webView2->deleteLater();
+            m_webView2 = nullptr;
+        }
     } else  if (dApp->m_cuurentMode == IdManualSet) {
         rec = dApp->m_manual;
         size1.setWidth(dApp->m_manual.width());
         size1.setHeight(dApp->m_manual.height());
-
+        this->setGeometry(rec);
+        if (m_mpv) {
+            m_mpv->setGeometry(rec);
+        }
+        if (m_mpv2) {
+            this->layout()->removeWidget(m_mpv2);
+            m_mpv2->deleteLater();
+            m_mpv2 = nullptr;
+        }
+        if (m_webView) {
+            m_webView->setGeometry(rec);
+        }
+        if (m_webView2) {
+            this->layout()->removeWidget(m_webView2);
+            m_webView2->deleteLater();
+            m_webView2 = nullptr;
+        }
     }
     this->setGeometry(rec);
 
@@ -517,17 +629,10 @@ void Wallpaper::updateGeometry()
     if (m_mpv) {
         m_mpv->move(rect().topLeft());
         m_mpv->setFixedSize(size1);
-
-//        de->setParent(m_mpv);
-//        de->setFixedSize(size1);
     }
     if (m_webView) {
         m_webView->move(rect().topLeft());
         m_webView->setFixedSize(size1);
-
-//        de->setParent(m_webView);
-//        de->setFixedSize(size1);
-
     }
     if (m_webView2) {
 //        m_webView2->move(rect().topRight());
@@ -535,6 +640,13 @@ void Wallpaper::updateGeometry()
     }
     lower();
 
+    QTimer::singleShot(200, this, []() {
+        for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
+            system("xdotool search --class dde-desktop windowactivate");
+        }
+        qDebug() << "Desktop WindowActivate";
+    });
+    //    });
 }
 
 void Wallpaper::slotMouseEvent()
