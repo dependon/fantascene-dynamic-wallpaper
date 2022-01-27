@@ -119,10 +119,10 @@ void MpvWidget::paintGL()
         QString path = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/" + QString::number(QDateTime::currentMSecsSinceEpoch()) + ".png";
         pix.save(path);
     }
-    if (dApp->m_cuurentMode == IdCopyScreen && dApp->m_currentScreenNum > 1) {
-        QPixmap pix = QPixmap::fromImage(grabFramebuffer());
-        emit dApp->refreshPix(pix);
-    }
+//    if (dApp->m_cuurentMode == IdCopyScreen && dApp->m_currentScreenNum > 1) {
+//        QPixmap pix = QPixmap::fromImage(grabFramebuffer());
+//        emit dApp->refreshPix(pix);
+//    }
 }
 
 void MpvWidget::on_mpv_events()
