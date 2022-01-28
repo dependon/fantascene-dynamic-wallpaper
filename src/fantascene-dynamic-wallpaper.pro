@@ -19,6 +19,7 @@ SOURCES += main.cpp \
     moresetting.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \
+    listview/playlistsettingdialog.cpp \
     desktop.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     moresetting.h \
     listview/wallpaperengineplugin.h \
     webwidget.h \
+    listview/playlistsettingdialog.h \
     desktop.h
 
 RESOURCES += \
@@ -80,6 +82,7 @@ FORMS += \
     listview/historywidget.ui \
     moresetting.ui \
     listview/wallpaperengineplugin.ui \
+    listview/playlistsettingdialog.ui \
     desktop.ui
 
 TRANSLATIONS += \

@@ -6,6 +6,7 @@
 #include <QWindow>
 #include <QDebug>
 #include <QCryptographicHash>
+#include <QTimer>
 
 #include "setdesktop.h"
 
@@ -93,7 +94,19 @@ Application::Application(int &argc, char **argv)
     this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
 
-
+    m_pplaylistTimer = new QTimer(this);
+    connect(m_pplaylistTimer, &QTimer::timeout, this, [ = ] {
+        if (m_isPlayList && m_playlistPath.contains(m_currentPath))
+        {
+            int index = m_playlistPath.indexOf(m_currentPath);
+            if (index < m_playlistPath.count() - 1) {
+                setWallPaper(m_playlistPath[index + 1]);
+            } else {
+                setWallPaper(m_playlistPath[0]);
+            }
+        }
+    });
+    m_pplaylistTimer->start(1000 * m_PlaylistTimer);
 }
 
 Application::~Application()
@@ -143,7 +156,21 @@ bool Application::setThumbnail(const QString &path)
     }
 
     return true;
-//    system("ffmpeg -i /opt/durapps/fantascene-dynamic-wallpaper/09.mp4 -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' /home/lmh/.config/fantascene-dynamic-wallpaper/.thumbnail/d18420fa260c7eff8fd0f2fac2f7b1cf.png");
+    //    system("ffmpeg -i /opt/durapps/fantascene-dynamic-wallpaper/09.mp4 -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' /home/lmh/.config/fantascene-dynamic-wallpaper/.thumbnail/d18420fa260c7eff8fd0f2fac2f7b1cf.png");
+}
+
+void Application::setPlayListTimer(int s)
+{
+    m_PlaylistTimer = s; //s
+    if (m_PlaylistTimer < 10) {
+        m_PlaylistTimer = 600;
+    }
+    m_pplaylistTimer->start(1000 * m_PlaylistTimer);
+}
+
+void Application::setisPlayList(bool bRet)
+{
+    m_isPlayList = bRet;
 }
 
 const QPixmap Application::getThumbnail(const QString &path)
