@@ -33,6 +33,9 @@ public:
     void setDesktopTransparent();
 
     bool setThumbnail(const QString &path);
+
+    void setPlayListTimer(int s);
+    void setisPlayList(bool bRet);
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
@@ -51,7 +54,10 @@ Q_SIGNALS:
     void setWallPaper(const QString &path);
     void saveSetting();
 
-    void addPaperView(const QString &path);
+    void addPaperView(const QString &path);//加入全部播放列表
+
+    void addplaylist(const QString &path);//加入自定义播放列表
+
     void removePaperView(const QString &path);
 
     void sigscreenshot();
@@ -63,6 +69,7 @@ Q_SIGNALS:
     void sigDesktopActive();
 
     void sigReadConfig();
+
 public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
@@ -72,11 +79,15 @@ public:
     int m_currentScreenNum{0};
 
     QStringList m_allPath;
+    QStringList m_playlistPath;
     QMutex mutex;
 
     QMap <unsigned long, bool>m_x11WindowFuscreen;
     QVector <unsigned long> m_screenWid;
     bool m_isNoMpvPause{true};
+    bool m_isPlayList{false};
+    int m_PlaylistTimer{600}; //s
+    QTimer *m_pplaylistTimer{nullptr};
 
     MoreSetData m_moreData;
 //    int m_isAutoMode{0};

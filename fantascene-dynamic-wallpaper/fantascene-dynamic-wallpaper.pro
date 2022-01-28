@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     listview/historywidget.cpp \
     moresetting.cpp \
     listview/wallpaperengineplugin.cpp \
-    webwidget.cpp
+    webwidget.cpp \
+    listview/playlistsettingdialog.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -35,7 +36,8 @@ HEADERS += \
     setdesktop.h \
     moresetting.h \
     listview/wallpaperengineplugin.h \
-    webwidget.h
+    webwidget.h \
+    listview/playlistsettingdialog.h
 
 RESOURCES += \
     qrc.qrc
@@ -84,7 +86,8 @@ FORMS += \
     settingwindow.ui \
     listview/historywidget.ui \
     moresetting.ui \
-    listview/wallpaperengineplugin.ui
+    listview/wallpaperengineplugin.ui \
+    listview/playlistsettingdialog.ui
 
 TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \
