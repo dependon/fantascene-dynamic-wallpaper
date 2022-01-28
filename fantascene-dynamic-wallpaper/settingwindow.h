@@ -24,8 +24,6 @@ public:
 
     void readSettings();
 
-
-
     QString getCurrentPath();
 
     int getCurrentNumber();

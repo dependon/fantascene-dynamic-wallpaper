@@ -23,9 +23,18 @@ private slots:
 
     void on_importBtn_clicked();
 
+    void on_addPlaylistBtn_clicked();
+
+    void on_moreSetting_clicked();
+
+    void on_loopBox_clicked(bool checked);
+
+    void on_deletePlaylist_clicked();
+
 private:
     Ui::historyWidget *ui;
-    view *m_view{nullptr};
+    view *m_viewHistory{nullptr};
+    view *m_viewPlayList{nullptr};
 };
 
 #endif // HISTORYWIDGET_H
