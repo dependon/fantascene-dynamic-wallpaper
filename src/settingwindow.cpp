@@ -196,6 +196,11 @@ void settingWindow::readSettings()
     dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
     dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
     dApp->m_wallpaperEnginePath = settings.value("WallPaper/wallpaperEnginePath").toString();
+    dApp->m_isPlayList = settings.value("WallPaper/isPlayList").toBool();
+    dApp->m_PlaylistTimer = settings.value("WallPaper/playlistTimer").toInt();
+    dApp->setisPlayList(dApp->m_isPlayList);
+    dApp->setPlayListTimer(dApp->m_PlaylistTimer);
+
     if (dApp->m_moreData.hwdec.isEmpty()) {
         dApp->m_moreData.hwdec = "gpu";
     }
@@ -214,6 +219,20 @@ void settingWindow::readSettings()
             }
         }
     } while (nullptr != strLocalPath);
+
+    //取值本地地址
+    QString strPlaylistPath;
+    int playlistIndex = 1;
+    do {
+        strPlaylistPath = settings.value("Movie/playlistPath" + QString::number(playlistIndex++)).toString();
+        if (nullptr != strPlaylistPath) {
+            if (!dApp->m_playlistPath.contains(strPlaylistPath)) {
+                dApp->m_playlistPath.push_back(strPlaylistPath);
+                emit dApp->addplaylist(strPlaylistPath);
+            }
+        }
+    } while (nullptr != strPlaylistPath);
+
 
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
     if (!m_currentMode.isEmpty()) {
@@ -291,6 +310,8 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
     settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
     settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+    settings.setValue("WallPaper/isPlayList", dApp->m_isPlayList);
+    settings.setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
 
     int indexLocal = 1;
     //去重
@@ -298,6 +319,14 @@ void settingWindow::saveSettings()
     for (QString str : dApp->m_allPath) {
         settings.setValue("Movie/localPath" + QString::number(indexLocal++), str);
     }
+
+    //去重
+    int playlistIndex = 1;
+    dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
+    for (QString str : dApp->m_playlistPath) {
+        settings.setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
+    }
+
 }
 
 QString settingWindow::getCurrentPath()
@@ -480,6 +509,7 @@ void settingWindow::on_history_clicked()
 {
     if (!m_history) {
         m_history = new historyWidget();
+        m_history->resize(800, 600);
         m_history->showNormal();
         m_history->move(qApp->desktop()->screen()->rect().center() - m_history->rect().center());
     } else {
