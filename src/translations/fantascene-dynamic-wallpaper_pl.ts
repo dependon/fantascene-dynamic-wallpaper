@@ -547,7 +547,7 @@
     <message>
         <location filename="../settingwindow.cpp" line="104"/>
         <source>Double click to open the configuration interface</source>
-        <translation>Przyciśnij dwukrotnie, aby włączyć ustawienia</translation>
+        <translation>Kliknij dwukrotnie, aby włączyć ustawienia</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="145"/>
