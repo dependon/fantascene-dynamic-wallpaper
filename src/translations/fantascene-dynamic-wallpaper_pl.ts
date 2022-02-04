@@ -117,7 +117,7 @@
     <message>
         <location filename="../moresetting.ui" line="130"/>
         <source>none</source>
-        <translation>brak</translation>
+        <translation>none</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
