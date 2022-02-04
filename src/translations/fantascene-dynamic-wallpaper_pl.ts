@@ -522,7 +522,7 @@
     <message>
         <location filename="../settingwindow.ui" line="426"/>
         <source>Apply Custom Dimensions</source>
-        <translation>Zastosuj proporcje niestandardowe</translation>
+        <translation>Zastosuj wymiary niestandardowe</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="191"/>
