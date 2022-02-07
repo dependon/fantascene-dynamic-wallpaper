@@ -288,10 +288,9 @@ void Wallpaper::setFile(const QString &path)
                 m_mpv2->setProperty("volume", 0);
                 m_mpv2->show();
                 layout()->addWidget(m_mpv2);
-
-                //发送读取配置文件
-                emit dApp->sigReadConfig();
             }
+            //发送读取配置文件
+            emit dApp->sigReadConfig();
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);
