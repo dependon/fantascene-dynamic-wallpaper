@@ -2,11 +2,14 @@
 Categories=Application;
 Comment=fantascene-dynamic-wallpaper-uos
 Comment[zh_CN]=幻梦动态壁纸uos版
+Comment[pl]=Tapeta dynamiczna Fantascene
 Exec=fantascene-dynamic-wallpaper-uos
 GenericName=fantascene-dynamic-wallpaper-uos
+GenericName[pl]=Tapeta dynamiczna Fantascene
 GenericName[zh_CN]=幻梦动态壁纸uos版
 Icon=fantascene-dynamic-wallpaper-uos
 Name=fantascene-dynamic-wallpaper-uos
+Name[pl]=Tapeta dynamiczna Fantascene
 Name[zh_CN]=幻梦动态壁纸uos版
 StartupNotify=false
 Terminal=false
