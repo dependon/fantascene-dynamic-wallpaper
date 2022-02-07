@@ -1,3 +1,9 @@
+## 1.2.7 
+
+1.add polish translation 
+
+2.add playlist
+
 ## 1.2.5 (Adaptation of special-shaped screen 增加了异形双屏适配)
 
 [![7juYBn.png](https://s4.ax1x.com/2022/01/27/7juYBn.png)](https://imgtu.com/i/7juYBn)
