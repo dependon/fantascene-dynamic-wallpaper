@@ -1,4 +1,4 @@
-## 1.2.7 
+## 1.2.8 
 
 1.add polish translation 
 
@@ -85,7 +85,7 @@ The current version will be smoother and support web and video wallpaper
 
 安装了这个版本的桌面,就可以使用源代码进行调试动态壁纸,以前的版本因为有问题,调试起来很困难(也就是说需要安装这个加上背景透明dbus接口的桌面才可以调试本软件)
 
-当前版本会更加流畅,支持web和视频壁纸两种)
+当前版本会更加���畅,支持web和视频壁纸两种)
 
 github:[https://github.com/dependon/fantascene-dynamic-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper)
 
