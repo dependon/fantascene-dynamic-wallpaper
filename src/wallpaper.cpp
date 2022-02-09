@@ -621,30 +621,13 @@ void Wallpaper::updateGeometry()
             m_webView2 = nullptr;
         }
     }
-    this->setGeometry(rec);
-
-//        m_mpv->setGeometry(rec2);
-    qDebug() << this->size();
-    if (m_mpv) {
-        m_mpv->move(rect().topLeft());
-        m_mpv->setFixedSize(size1);
-    }
-    if (m_webView) {
-        m_webView->move(rect().topLeft());
-        m_webView->setFixedSize(size1);
-    }
-    if (m_webView2) {
-//        m_webView2->move(rect().topRight());
-        m_webView2->setFixedSize(size1);
-    }
     lower();
-
-    QTimer::singleShot(200, this, []() {
-        for (int index = 0; index < dApp->desktop()->screenCount(); index++) {
-            system("xdotool search --class dde-desktop windowactivate");
+    for (auto wid : dApp->m_screenWid) {
+        QWindow *window = QWindow::fromWinId(wid);
+        if (window) {
+            window->raise();
         }
-        qDebug() << "Desktop WindowActivate";
-    });
+    }
     //    });
 }
 
