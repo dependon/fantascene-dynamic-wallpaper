@@ -326,10 +326,9 @@ void Wallpaper::setFile(const QString &path)
         if (m_mpv2) {
             m_mpv2->command(QStringList() << "loadfile" << path);
             m_mpv2->setProperty("pause", true);
+            updateGeometry();
         }
     }
-
-    updateGeometry();
 }
 
 void Wallpaper::setVolume(const qint32 volume)
@@ -482,16 +481,6 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    //https://github.com/dependon/fantascene-dynamic-wallpaper/issues/4，临时解决WIN+D的问题
-    if (event->type() == QEvent::WindowActivate) {
-        qDebug() << "Video WindowActivate";
-        for (auto wid : dApp->m_screenWid) {
-            QWindow *window = QWindow::fromWinId(wid);
-            if (window) {
-                window->raise();
-            }
-        }
-    }
     return  QWidget::event(event);
 }
 
@@ -619,13 +608,6 @@ void Wallpaper::updateGeometry()
             this->layout()->removeWidget(m_webView2);
             m_webView2->deleteLater();
             m_webView2 = nullptr;
-        }
-    }
-    lower();
-    for (auto wid : dApp->m_screenWid) {
-        QWindow *window = QWindow::fromWinId(wid);
-        if (window) {
-            window->raise();
         }
     }
     //    });
