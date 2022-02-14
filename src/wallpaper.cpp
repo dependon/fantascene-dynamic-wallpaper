@@ -515,102 +515,106 @@ void Wallpaper::slotSetTransparency(const int value)
 
 void Wallpaper::updateGeometry()
 {
-
-    dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-    QRect rec;
-    QSize size1(0, 0);
-    rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-    QRect rec2 = qApp->desktop()->screenGeometry();
-    QRect deskRect = qApp->desktop()->availableGeometry();
-    rec = rec2;
-    if (dApp->m_cuurentMode == IdCopyScreen) {
-        rec = QRect(0, 0, rec.width(), rec.height());
-        size1.setWidth(rec.width());
-        size1.setHeight(rec.height());
-        int twidth = 0;
-        int theight = 0;
-        for (auto screen : qApp->screens()) {
-            twidth += screen->geometry().width();
-            if (screen->geometry().height() > theight) {
-                theight = screen->geometry().height();
-            }
-        }
-
-        this->setGeometry(QRect(0, 0, twidth, theight));
-
-        int i = 1;
-        for (auto screen : qApp->screens()) {
-            dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-            if (i == 1 && m_mpv) {
-                qDebug() << screen->geometry();
-                m_mpv->setGeometry(screen->geometry());
-                i++;
-                continue;
-            }
-            if (i == 2 && m_mpv2) {
-                qDebug() << screen->geometry();
-                m_mpv2->setGeometry(screen->geometry());
-                i++;
-                continue;
-            }
-            if (i == 1 && m_webView) {
-                m_webView->setGeometry(screen->geometry());
-                i++;
-                continue;
-            }
-            if (i == 2 && m_webView2) {
-                m_webView2->setGeometry(screen->geometry());
-                i++;
-                continue;
+    QTimer::singleShot(100, [ = ] {
+        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+        QRect rec;
+        QSize size1(0, 0);
+        rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
+        QRect rec2 = qApp->desktop()->screenGeometry();
+        QRect deskRect = qApp->desktop()->availableGeometry();
+        rec = rec2;
+        if (dApp->m_cuurentMode == IdCopyScreen)
+        {
+            rec = QRect(0, 0, rec.width(), rec.height());
+            size1.setWidth(rec.width());
+            size1.setHeight(rec.height());
+            int twidth = 0;
+            int theight = 0;
+            for (auto screen : qApp->screens()) {
+                twidth += screen->geometry().width();
+                if (screen->geometry().height() > theight) {
+                    theight = screen->geometry().height();
+                }
             }
 
-        }
+            this->setGeometry(QRect(0, 0, twidth, theight));
 
-    } else if (dApp->m_cuurentMode == IdlayoutScreen) {
-        rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
-        size1.setWidth(rec.width());
-        size1.setHeight(rec.height());
-        this->setGeometry(rec);
+            int i = 1;
+            for (auto screen : qApp->screens()) {
+                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                if (i == 1 && m_mpv) {
+                    qDebug() << screen->geometry();
+                    m_mpv->setGeometry(screen->geometry());
+                    i++;
+                    continue;
+                }
+                if (i == 2 && m_mpv2) {
+                    qDebug() << screen->geometry();
+                    m_mpv2->setGeometry(screen->geometry());
+                    i++;
+                    continue;
+                }
+                if (i == 1 && m_webView) {
+                    m_webView->setGeometry(screen->geometry());
+                    i++;
+                    continue;
+                }
+                if (i == 2 && m_webView2) {
+                    m_webView2->setGeometry(screen->geometry());
+                    i++;
+                    continue;
+                }
 
-        if (m_mpv) {
-            m_mpv->setGeometry(rec);
+            }
+
+        } else if (dApp->m_cuurentMode == IdlayoutScreen)
+        {
+            rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+            size1.setWidth(rec.width());
+            size1.setHeight(rec.height());
+            this->setGeometry(rec);
+
+            if (m_mpv) {
+                m_mpv->setGeometry(rec);
+            }
+            if (m_mpv2) {
+                this->layout()->removeWidget(m_mpv2);
+                m_mpv2->deleteLater();
+                m_mpv2 = nullptr;
+            }
+            if (m_webView) {
+                m_webView->setGeometry(rec);
+            }
+            if (m_webView2) {
+                this->layout()->removeWidget(m_webView2);
+                m_webView2->deleteLater();
+                m_webView2 = nullptr;
+            }
+        } else  if (dApp->m_cuurentMode == IdManualSet)
+        {
+            rec = dApp->m_manual;
+            size1.setWidth(dApp->m_manual.width());
+            size1.setHeight(dApp->m_manual.height());
+            this->setGeometry(rec);
+            if (m_mpv) {
+                m_mpv->setGeometry(rec);
+            }
+            if (m_mpv2) {
+                this->layout()->removeWidget(m_mpv2);
+                m_mpv2->deleteLater();
+                m_mpv2 = nullptr;
+            }
+            if (m_webView) {
+                m_webView->setGeometry(rec);
+            }
+            if (m_webView2) {
+                this->layout()->removeWidget(m_webView2);
+                m_webView2->deleteLater();
+                m_webView2 = nullptr;
+            }
         }
-        if (m_mpv2) {
-            this->layout()->removeWidget(m_mpv2);
-            m_mpv2->deleteLater();
-            m_mpv2 = nullptr;
-        }
-        if (m_webView) {
-            m_webView->setGeometry(rec);
-        }
-        if (m_webView2) {
-            this->layout()->removeWidget(m_webView2);
-            m_webView2->deleteLater();
-            m_webView2 = nullptr;
-        }
-    } else  if (dApp->m_cuurentMode == IdManualSet) {
-        rec = dApp->m_manual;
-        size1.setWidth(dApp->m_manual.width());
-        size1.setHeight(dApp->m_manual.height());
-        this->setGeometry(rec);
-        if (m_mpv) {
-            m_mpv->setGeometry(rec);
-        }
-        if (m_mpv2) {
-            this->layout()->removeWidget(m_mpv2);
-            m_mpv2->deleteLater();
-            m_mpv2 = nullptr;
-        }
-        if (m_webView) {
-            m_webView->setGeometry(rec);
-        }
-        if (m_webView2) {
-            this->layout()->removeWidget(m_webView2);
-            m_webView2->deleteLater();
-            m_webView2 = nullptr;
-        }
-    }
-    //    });
+    });
+
 }
 
 void Wallpaper::slotMouseEvent()
