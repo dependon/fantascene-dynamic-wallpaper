@@ -111,7 +111,7 @@ Application::Application(int &argc, char **argv)
 
 Application::~Application()
 {
-    emit quitApp();
+    Q_EMIT quitApp();
 }
 
 const QString Application::thumbnailCachePath()

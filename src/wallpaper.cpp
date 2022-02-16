@@ -41,6 +41,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <iostream>
+#include <QStandardPaths>
+
 using namespace std;
 
 #include "application.h"
@@ -51,7 +53,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     , m_currentPath(path)
     , m_currentScreen(currentScreen)
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout;
@@ -140,7 +142,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             setFile(playPath);
             play();
             m_currentPath = QFileInfo(m_currentPath).filePath();
-            emit dApp->pathChanged(m_currentPath);
+            Q_EMIT dApp->pathChanged(m_currentPath);
         }
 
     });
@@ -152,6 +154,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     m_mouseWebEventTimer->start(30);
 
 //    de = new Desktop(this);
+    QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_iconView = new IconView(0, paths, this);
+    m_iconView->move(0, 0);
 
 }
 
@@ -233,6 +238,7 @@ void Wallpaper::setScreen(const int &index)
 
 void Wallpaper::setFile(const QString &path)
 {
+    m_iconView->setParent(this);
     malloc_trim(0);
 //    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
@@ -318,7 +324,7 @@ void Wallpaper::setFile(const QString &path)
                 layout()->addWidget(m_mpv2);
             }
             //发送读取配置文件
-            emit dApp->sigReadConfig();
+            Q_EMIT dApp->sigReadConfig();
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);
@@ -448,7 +454,7 @@ void Wallpaper::registerDesktop()
     }
     QWindow *window = QWindow::fromWinId(winId());
     if (window) {
-        window->setOpacity(0.7);
+        window->setOpacity(0.99);
     }
 
     if (1) {
@@ -468,14 +474,14 @@ void Wallpaper::registerDesktop()
                             PropModeAppend, (unsigned char *) &xa_prop, 1);
         }
     }
-    //事件穿透
-    Region region;
+//    //事件穿透
+//    Region region;
 
-    region = XCreateRegion();
-    if (region) {
-        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
-        XDestroyRegion(region);
-    }
+//    region = XCreateRegion();
+//    if (region) {
+//        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
+//        XDestroyRegion(region);
+//    }
 
 }
 
@@ -507,6 +513,7 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 
 void Wallpaper::slotSetTransparency(const int value)
 {
+    return;
     QWindow *win = QWindow::fromWinId(winId());
     double dvalue = (double)value;
     double dvalueOpacity = value / 100.0;
@@ -515,7 +522,7 @@ void Wallpaper::slotSetTransparency(const int value)
 
 void Wallpaper::updateGeometry()
 {
-    QTimer::singleShot(100, [ = ] {
+    QTimer::singleShot(200, [ = ] {
         dApp->m_currentScreenNum = dApp->desktop()->screenCount();
         QRect rec;
         QSize size1(0, 0);
@@ -613,7 +620,22 @@ void Wallpaper::updateGeometry()
                 m_webView2 = nullptr;
             }
         }
+        if (m_iconView)
+        {
+            if (m_mpv) {
+                m_iconView->setGeometry(m_mpv->geometry());
+                m_iconView->setFixedSize(m_mpv->size());
+                m_iconView->setParent(m_mpv);
+            } else if (m_webView) {
+                m_iconView->setGeometry(m_webView->geometry());
+                m_iconView->setFixedSize(m_webView->size());
+                m_iconView->setParent(m_webView);
+            }
+            m_iconView->show();
+            m_iconView->move(0, 0);
+        }
     });
+
 
 }
 
@@ -627,14 +649,14 @@ void Wallpaper::slotMouseEvent()
             if (pos.x() > rec2.width()) {
                 pos = QPoint(pos.x() - rec2.width(), pos.y());
             }
-            foreach (QObject *obj, m_webView->children()) {
+            for (QObject *obj : m_webView->children()) {
                 QWidget *wgt = qobject_cast<QWidget *>(obj);
                 if (wgt) {
                     LeftMouseClick(wgt, pos);
                 }
             }
             if (m_webView2) {
-                foreach (QObject *obj, m_webView2->children()) {
+                for (QObject *obj : m_webView2->children()) {
                     QWidget *wgt = qobject_cast<QWidget *>(obj);
                     if (wgt) {
                         LeftMouseClick(wgt, pos);

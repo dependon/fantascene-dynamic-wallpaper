@@ -8,7 +8,7 @@
 #include <QHBoxLayout>
 
 #include "webwidget.h"
-
+#include "desktop/iconview.h"
 class QLabel;
 //class Desktop;
 class Wallpaper : public QWidget
@@ -19,7 +19,7 @@ public:
 
     void changeScreenMode(ScreenMode mode);
     void LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos);
-public slots:
+public Q_SLOTS:
     void setFile(const QString &path);
     void setVolume(const qint32 volume);
     void setScreen(const int &index);
@@ -36,7 +36,7 @@ public slots:
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
-private slots:
+private Q_SLOTS:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
 
     void slotSetMpvValue(const QString &key, const QString &value);
@@ -56,6 +56,7 @@ private:
     QPoint m_currentPos{0, 0};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 //    Desktop *de{nullptr};
+    IconView *m_iconView{nullptr};
 };
 
 #endif // WALLPAPER_H

@@ -44,11 +44,11 @@ public:
     int rowSizeHint = 0;
     QList<ItemInfo> m_allItemLeft;//所有待处理的
 
-public slots:
+public Q_SLOTS:
     void setBaseHeight(int a);
     void removePath(const QString &path);
     void addPath(const QString &path);
-private slots:
+private Q_SLOTS:
     void onDoubleClicked(const QModelIndex &index);
     void onClicked(const QModelIndex &index);
 protected:

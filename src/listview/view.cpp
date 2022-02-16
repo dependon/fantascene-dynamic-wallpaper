@@ -217,7 +217,7 @@ void view::onDoubleClicked(const QModelIndex &index)
                         refresh();
                     }
                 }
-                emit dApp->saveSetting();
+                Q_EMIT dApp->saveSetting();
             }
         }
 

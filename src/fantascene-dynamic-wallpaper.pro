@@ -1,9 +1,12 @@
 TEMPLATE = app
 
 QT += gui core x11extras widgets dbus webengine webenginewidgets
-CONFIG += c++11 link_pkgconfig
+CONFIG += c++11 link_pkgconfig no_keywords
 PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 TARGET = fantascene-dynamic-wallpaper
+
+PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
+LIBS +=-lgio-2.0 -lglib-2.0
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -20,7 +23,12 @@ SOURCES += main.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \
     listview/playlistsettingdialog.cpp \
-    desktop.cpp
+    desktop.cpp \
+    desktop/filemodel.cpp \
+    desktop/fileoperationjob.cpp \
+    desktop/iconprovider.cpp \
+    desktop/iconview.cpp \
+    desktop/delegateicon.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -37,7 +45,12 @@ HEADERS += \
     listview/wallpaperengineplugin.h \
     webwidget.h \
     listview/playlistsettingdialog.h \
-    desktop.h
+    desktop.h \
+    desktop/filemodel.h \
+    desktop/fileoperationjob.h \
+    desktop/iconprovider.h \
+    desktop/iconview.h \
+    desktop/delegateicon.h
 
 RESOURCES += \
     qrc.qrc

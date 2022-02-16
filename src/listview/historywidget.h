@@ -16,7 +16,7 @@ public:
     ~historyWidget();
 protected:
     void showEvent(QShowEvent *event) override;
-private slots:
+private Q_SLOTS:
     void on_setWallPaper_clicked();
 
     void on_delWallPaper_clicked();

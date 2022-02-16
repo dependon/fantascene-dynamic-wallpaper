@@ -15,7 +15,7 @@ public:
     explicit PlaylistSettingDialog(QWidget *parent = nullptr);
     ~PlaylistSettingDialog();
 
-private slots:
+private Q_SLOTS:
     void on_timeCombox_currentTextChanged(const QString &arg1);
 
     void on_okBtn_clicked();

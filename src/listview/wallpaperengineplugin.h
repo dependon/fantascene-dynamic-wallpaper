@@ -35,7 +35,7 @@ public:
     void showView();
 
     void refresh(const QString &path);
-private slots:
+private Q_SLOTS:
     void on_setEnginePath_clicked();
 
     void on_setBtn_clicked();

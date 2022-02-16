@@ -53,7 +53,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QAction *setMpvPlayAction = new QAction(m_traymenu);
     setMpvPlayAction->setText(tr("Play"));
     connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
-        emit dApp->setMpvPlay();
+        Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->m_x11WindowFuscreen.clear();
     });
@@ -61,12 +61,12 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QAction *setScreenshotAction = new QAction(m_traymenu);
     setScreenshotAction->setText(tr("Screenshot"));
     connect(setScreenshotAction, &QAction::triggered, this, [ = ] {
-        emit dApp->sigscreenshot();
+        Q_EMIT dApp->sigscreenshot();
     });
     QAction *setMpvpauseAction = new QAction(m_traymenu);
     setMpvpauseAction->setText(tr("Pause"));
     connect(setMpvpauseAction, &QAction::triggered, this, [ = ] {
-        emit dApp->setMpvpause();
+        Q_EMIT dApp->setMpvpause();
         dApp->m_isNoMpvPause = false;
     });
 
@@ -215,7 +215,7 @@ void settingWindow::readSettings()
         if (nullptr != strLocalPath) {
             if (!dApp->m_allPath.contains(strLocalPath)) {
                 dApp->m_allPath.push_back(strLocalPath);
-                emit dApp->addPaperView(strLocalPath);
+                Q_EMIT dApp->addPaperView(strLocalPath);
             }
         }
     } while (nullptr != strLocalPath);
@@ -228,7 +228,7 @@ void settingWindow::readSettings()
         if (nullptr != strPlaylistPath) {
             if (!dApp->m_playlistPath.contains(strPlaylistPath)) {
                 dApp->m_playlistPath.push_back(strPlaylistPath);
-                emit dApp->addplaylist(strPlaylistPath);
+                Q_EMIT dApp->addplaylist(strPlaylistPath);
             }
         }
     } while (nullptr != strPlaylistPath);
@@ -346,7 +346,7 @@ int settingWindow::isAutoStart()
 
 void settingWindow::setScreenMode(const QString &arg)
 {
-    emit dApp->setScreenMode(arg);
+    Q_EMIT dApp->setScreenMode(arg);
 }
 
 void settingWindow::on_pathBtn_clicked()
@@ -366,12 +366,12 @@ void settingWindow::on_setBtn_clicked()
     if (ui->pathEdit->text() != nullptr) {
         dApp->m_currentPath = ui->pathEdit->text();
         dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
-        emit dApp->setPlayPath(ui->pathEdit->text());
-        emit dApp->setMpvPlay();
+        Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
+        Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->m_allPath.push_back(dApp->m_currentPath);
         saveSettings();
-        emit dApp->addPaperView(dApp->m_currentPath);
+        Q_EMIT dApp->addPaperView(dApp->m_currentPath);
         QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
@@ -388,19 +388,19 @@ void settingWindow::on_cancelBtn_clicked()
 
 void settingWindow::on_pauseBtn_clicked()
 {
-    emit dApp->setMpvpause();
+    Q_EMIT dApp->setMpvpause();
     dApp->m_isNoMpvPause = false;
 }
 
 void settingWindow::on_stopBtn_clicked()
 {
-    emit dApp->setMpvstop();
+    Q_EMIT dApp->setMpvstop();
     dApp->m_isNoMpvPause = false;
 }
 
 void settingWindow::on_Slider_valueChanged(int value)
 {
-    emit dApp->setMpvVolume(value);
+    Q_EMIT dApp->setMpvVolume(value);
     m_voiceVolume = value;
 
 //    saveSettings();
@@ -408,7 +408,7 @@ void settingWindow::on_Slider_valueChanged(int value)
 
 void settingWindow::on_startBtn_clicked()
 {
-    emit dApp->setMpvPlay();
+    Q_EMIT dApp->setMpvPlay();
     dApp->m_isNoMpvPause = true;
     dApp->m_x11WindowFuscreen.clear();
 }
@@ -420,7 +420,7 @@ void settingWindow::on_startScreen_clicked()
     } else {
         index = 1;
     }
-    emit dApp->setScreen(index);
+    Q_EMIT dApp->setScreen(index);
     on_setBtn_clicked();
     on_startBtn_clicked();
 
@@ -465,7 +465,7 @@ void settingWindow::on_setManual_clicked()
     int height = ui->height->text().toInt();
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
     if (ui->comboBox->currentText() == tr("Manual")) {
-        emit dApp->sigupdateGeometry();
+        Q_EMIT dApp->sigupdateGeometry();
     }
     saveSettings();
 }
@@ -523,12 +523,12 @@ void settingWindow::slotWallPaper(const QString &path)
     if (!path.isEmpty()) {
         ui->pathEdit->setText(path);
         dApp->m_currentPath = path;
-        emit dApp->setPlayPath(ui->pathEdit->text());
+        Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
         QPixmap pix = dApp->getThumbnail(path);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
         }
-        emit dApp->setMpvPlay();
+        Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->m_allPath.push_back(dApp->m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
@@ -577,7 +577,7 @@ void settingWindow::on_videoBLCombox_activated(const QString &arg1)
     ui->videoBLEdit->setText(QString::number(value));
     m_videoAspect = value;
     m_videoASpectStr = arg1;
-    emit dApp->setMpvValue("video-aspect", QString::number(value));
+    Q_EMIT dApp->setMpvValue("video-aspect", QString::number(value));
 
     saveSettings();
 }
@@ -586,7 +586,7 @@ void settingWindow::on_videoBZDY_clicked()
 {
     double value = ui->videoBLEdit->text().toDouble();
     m_videoAspect = value;
-    emit dApp->setMpvValue("video-aspect", QString::number(value));
+    Q_EMIT dApp->setMpvValue("video-aspect", QString::number(value));
     saveSettings();
 }
 
@@ -695,5 +695,5 @@ void settingWindow::activeWindow()
 
 void settingWindow::on_tansparency_slider_valueChanged(int value)
 {
-    emit dApp->sigSetTransparency(value);
+    Q_EMIT dApp->sigSetTransparency(value);
 }

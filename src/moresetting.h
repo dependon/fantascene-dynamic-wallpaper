@@ -17,7 +17,7 @@ public:
 
     void setData(const MoreSetData &data);
 
-private slots:
+private Q_SLOTS:
     void on_okBtn_clicked();
 
     void on_cancelBtn_clicked();

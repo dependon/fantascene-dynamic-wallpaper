@@ -71,7 +71,7 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
     }
 
-    emit dApp->moreSettingSave();
+    Q_EMIT dApp->moreSettingSave();
     close();
 }
 

@@ -35,7 +35,7 @@ public:
     void setScreenMode(const QString &arg);
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
-private slots:
+private Q_SLOTS:
 
     void slotMoreSettingSave();
 
@@ -97,7 +97,7 @@ private slots:
     void on_pluginBtn_clicked();
     void on_tansparency_slider_valueChanged(int value);
 
-public slots:
+public Q_SLOTS:
     void activeWindow();
 private:
     Ui::settingWindow *ui;

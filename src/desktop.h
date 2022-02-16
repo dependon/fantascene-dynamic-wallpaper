@@ -25,7 +25,7 @@ public:
     QString readSettings(const QString &path, const QString &group, const QString &key);
 
     void open(const QString &newpath);
-private slots:
+private Q_SLOTS:
     void on_listWidget_doubleClicked(const QModelIndex &index);
 
     void on_listWidget_customContextMenuRequested(const QPoint &pos);

@@ -50,7 +50,7 @@ void historyWidget::on_setWallPaper_clicked()
         QString path = m_viewHistory->m_allItemInfo[m_viewHistory->currentIndex().row()].path;
         dApp->setWallPaper(path);
     }
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 
 }
 
@@ -68,7 +68,7 @@ void historyWidget::on_delWallPaper_clicked()
             m_viewHistory->refresh();
         }
     }
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 }
 
 void historyWidget::on_importBtn_clicked()
@@ -82,7 +82,7 @@ void historyWidget::on_importBtn_clicked()
             m_viewHistory->addPath(path);
         }
     }
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 }
 
 void historyWidget::on_addPlaylistBtn_clicked()
@@ -94,7 +94,7 @@ void historyWidget::on_addPlaylistBtn_clicked()
         m_viewPlayList->setFiles(dApp->m_playlistPath);
         m_viewPlayList->refresh();
     }
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 }
 
 void historyWidget::on_moreSetting_clicked()
@@ -106,7 +106,7 @@ void historyWidget::on_moreSetting_clicked()
 void historyWidget::on_loopBox_clicked(bool checked)
 {
     dApp->setisPlayList(checked);
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 }
 
 void historyWidget::on_deletePlaylist_clicked()
@@ -123,5 +123,5 @@ void historyWidget::on_deletePlaylist_clicked()
             m_viewPlayList->refresh();
         }
     }
-    emit dApp->saveSetting();
+    Q_EMIT dApp->saveSetting();
 }

@@ -14,7 +14,7 @@ public:
 
     inline Wallpaper *parent() const;
 
-public slots:
+public Q_SLOTS:
     void setFile(const QString &path);
     void setVolume(const qint32 volume);
     void clear();

@@ -46,5 +46,5 @@ void DBusWallpaperService::stop()
 
 void DBusWallpaperService::activeWindow()
 {
-    emit dApp->sigActiveWindow();
+    Q_EMIT dApp->sigActiveWindow();
 }
