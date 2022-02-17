@@ -42,6 +42,10 @@ private:
     QPoint mLastPos = QPoint(0, 0);
     QString m_rootPath;
 
+Q_SIGNALS :
+    void sigMouseMove();
+    void sigMouseClick(const int &index);
+    void sigMouseDclick();
 public Q_SLOTS:
     void copyFile();
     void pauseFile();
@@ -54,6 +58,7 @@ protected:
 
     void mousePressEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
     void focusOutEvent(QFocusEvent *e) override;
 
     void closeEvent(QCloseEvent *e) override;

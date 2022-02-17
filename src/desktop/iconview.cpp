@@ -52,7 +52,7 @@
 IconView::IconView(int id, QString rootPath, QWidget *parent)
     : QListView(parent)
 {
-
+//    setAttribute(Qt::WA_TransparentForMouseEvents, true);
     setAttribute(Qt::WA_TranslucentBackground, true);
     setFrameShape(QListView::NoFrame);
     setStyleSheet("background-color:transparent");
@@ -129,7 +129,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
     setGridSize(QSize(size * 3, size * 3));
-    setIconSize(QSize(60, 60));
+    setIconSize(QSize(65, 65));
 //    setTextElideMode();
     setSpacing(4);
     setViewMode(QListView::IconMode);
@@ -338,14 +338,22 @@ void IconView::paintEvent(QPaintEvent *e)
 void IconView::mousePressEvent(QMouseEvent *e)
 {
     mLastPos = e->pos();
+    Q_EMIT sigMouseClick(0);
     //qDebug()<<"press event: "<<mLastPos;
     QListView::mousePressEvent(e);
 }
 
 void IconView::mouseMoveEvent(QMouseEvent *e)
 {
+//    Q_EMIT sigMouseMove();
     //setCursor(Qt::ArrowCursor);
     return QListView::mouseMoveEvent(e);
+}
+
+void IconView::mouseReleaseEvent(QMouseEvent *e)
+{
+    Q_EMIT sigMouseClick(1);
+    return QListView::mouseReleaseEvent(e);
 }
 
 void IconView::focusOutEvent(QFocusEvent *e)

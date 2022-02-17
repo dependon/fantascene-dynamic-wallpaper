@@ -70,7 +70,7 @@ Q_SIGNALS:
 
     void sigSetTransparency(const int value);
 
-    void sigReadConfig();
+    void sigReadPlayerConfig();
 
 public:
     QThread *m_startDesktop{nullptr};

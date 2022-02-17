@@ -11,6 +11,8 @@ MoreSetting::MoreSetting(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Advanced Settings"));
+    ui->label->hide();
+    ui->autoBox->hide();
 }
 
 MoreSetting::~MoreSetting()

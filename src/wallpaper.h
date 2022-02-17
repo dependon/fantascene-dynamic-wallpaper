@@ -18,7 +18,9 @@ public:
     explicit Wallpaper(QString path = nullptr, int currentScreen = 0, QWidget *parent = nullptr);
 
     void changeScreenMode(ScreenMode mode);
-    void LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos);
+    void LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos);
+    void LeftMouseRelease(QWidget *eventsReciverWidget, QPoint clickPos);
+    void LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos);
 public Q_SLOTS:
     void setFile(const QString &path);
     void setVolume(const qint32 volume);
@@ -33,6 +35,7 @@ public Q_SLOTS:
     void updateGeometry();
 
     void slotMouseEvent();
+    void slotMouseClick(const int &index);
 private:
     void registerDesktop();
     bool event(QEvent *event) override;

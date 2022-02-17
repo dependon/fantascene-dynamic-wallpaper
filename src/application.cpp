@@ -107,6 +107,8 @@ Application::Application(int &argc, char **argv)
         }
     });
     m_pplaylistTimer->start(1000 * m_PlaylistTimer);
+
+    setQuitOnLastWindowClosed(false);
 }
 
 Application::~Application()

@@ -109,6 +109,16 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
                                           SLOT(onSysLockState(QString, QVariantMap, QStringList)));
 
+    m_mouseWebEventTimer = new QTimer(this);
+    connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
+    m_mouseWebEventTimer->start(30);
+
+//    de = new Desktop(this);
+    QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    m_iconView = new IconView(0, paths, this);
+    connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
+    m_iconView->move(0, 0);
+
     QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
@@ -144,19 +154,16 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             m_currentPath = QFileInfo(m_currentPath).filePath();
             Q_EMIT dApp->pathChanged(m_currentPath);
         }
-
+        QTimer::singleShot(100, [ = ] {
+            updateGeometry();
+        });
     });
 
     setVolume(0);
 
-    m_mouseWebEventTimer = new QTimer(this);
-    connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
-    m_mouseWebEventTimer->start(30);
 
-//    de = new Desktop(this);
-    QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    m_iconView = new IconView(0, paths, this);
-    m_iconView->move(0, 0);
+
+
 
 }
 
@@ -238,6 +245,7 @@ void Wallpaper::setScreen(const int &index)
 
 void Wallpaper::setFile(const QString &path)
 {
+    dApp->m_currentPath = path;
     m_iconView->setParent(this);
     malloc_trim(0);
 //    de->setParent(this);
@@ -323,8 +331,6 @@ void Wallpaper::setFile(const QString &path)
                 m_mpv2->show();
                 layout()->addWidget(m_mpv2);
             }
-            //发送读取配置文件
-            Q_EMIT dApp->sigReadConfig();
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);
@@ -334,6 +340,11 @@ void Wallpaper::setFile(const QString &path)
             m_mpv2->setProperty("pause", true);
             updateGeometry();
         }
+
+//        //发送读取配置文件
+        Q_EMIT dApp->sigReadPlayerConfig();
+
+
     }
 }
 
@@ -421,13 +432,13 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 #define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::registerDesktop()
 {
-//    xcb_ewmh_connection_t m_ewmh_connection;
-//    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
-//    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+    xcb_ewmh_connection_t m_ewmh_connection;
+    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
-//    xcb_atom_t atoms[1];
-//    atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
-//    xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
+    xcb_atom_t atoms[1];
+    atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
+    xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
 
     QTimer::singleShot(1, this, [ = ] {
         show();
@@ -437,43 +448,44 @@ void Wallpaper::registerDesktop()
         dApp->m_screenWid.push_back(winId());
     }
 
-    Atom xa = 1247;
-    if (xa != None) {
-        long prop = 0;
+//    Atom xa = 1247;
+//    if (xa != None) {
+//        long prop = 0;
 
-        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
-                        PropModeAppend, (unsigned char *) &prop, 1);
-    }
+//        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+//                        PropModeAppend, (unsigned char *) &prop, 1);
+//    }
 
-    xa = 355;
-    if (xa != None) {
-        Atom xa_prop = 357;
+//    xa = 355;
+//    if (xa != None) {
+//        Atom xa_prop = 357;
 
-        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
-                        PropModeAppend, (unsigned char *) &xa_prop, 1);
-    }
-    QWindow *window = QWindow::fromWinId(winId());
-    if (window) {
-        window->setOpacity(0.99);
-    }
+//        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+//                        PropModeAppend, (unsigned char *) &xa_prop, 1);
+//    }
+//    QWindow *window = QWindow::fromWinId(winId());
+//    if (window) {
+//        window->setOpacity(0.99);
+//    }
 
-    if (1) {
-        xa = ATOM(_WIN_LAYER);
-        if (xa != None) {
-            long prop = 0;
+//    if (1) {
+//        xa = ATOM(_WIN_LAYER);
+//        if (xa != None) {
+//            long prop = 0;
 
-            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
-                            PropModeAppend, (unsigned char *) &prop, 1);
-        }
+//            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+//                            PropModeAppend, (unsigned char *) &prop, 1);
+//        }
 
-        xa = ATOM(_NET_WM_STATE);
-        if (xa != None) {
-            Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
+//        xa = ATOM(_NET_WM_STATE);
+//        if (xa != None) {
+//            Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
 
-            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
-                            PropModeAppend, (unsigned char *) &xa_prop, 1);
-        }
-    }
+//            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+//                            PropModeAppend, (unsigned char *) &xa_prop, 1);
+//        }
+//    }
+
 //    //事件穿透
 //    Region region;
 
@@ -522,121 +534,113 @@ void Wallpaper::slotSetTransparency(const int value)
 
 void Wallpaper::updateGeometry()
 {
-    QTimer::singleShot(200, [ = ] {
-        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-        QRect rec;
-        QSize size1(0, 0);
-        rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-        QRect rec2 = qApp->desktop()->screenGeometry();
-        QRect deskRect = qApp->desktop()->availableGeometry();
-        rec = rec2;
-        if (dApp->m_cuurentMode == IdCopyScreen)
-        {
-            rec = QRect(0, 0, rec.width(), rec.height());
-            size1.setWidth(rec.width());
-            size1.setHeight(rec.height());
-            int twidth = 0;
-            int theight = 0;
-            for (auto screen : qApp->screens()) {
-                twidth += screen->geometry().width();
-                if (screen->geometry().height() > theight) {
-                    theight = screen->geometry().height();
-                }
-            }
-
-            this->setGeometry(QRect(0, 0, twidth, theight));
-
-            int i = 1;
-            for (auto screen : qApp->screens()) {
-                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-                if (i == 1 && m_mpv) {
-                    qDebug() << screen->geometry();
-                    m_mpv->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
-                if (i == 2 && m_mpv2) {
-                    qDebug() << screen->geometry();
-                    m_mpv2->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
-                if (i == 1 && m_webView) {
-                    m_webView->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
-                if (i == 2 && m_webView2) {
-                    m_webView2->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
-
-            }
-
-        } else if (dApp->m_cuurentMode == IdlayoutScreen)
-        {
-            rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
-            size1.setWidth(rec.width());
-            size1.setHeight(rec.height());
-            this->setGeometry(rec);
-
-            if (m_mpv) {
-                m_mpv->setGeometry(rec);
-            }
-            if (m_mpv2) {
-                this->layout()->removeWidget(m_mpv2);
-                m_mpv2->deleteLater();
-                m_mpv2 = nullptr;
-            }
-            if (m_webView) {
-                m_webView->setGeometry(rec);
-            }
-            if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
-                m_webView2->deleteLater();
-                m_webView2 = nullptr;
-            }
-        } else  if (dApp->m_cuurentMode == IdManualSet)
-        {
-            rec = dApp->m_manual;
-            size1.setWidth(dApp->m_manual.width());
-            size1.setHeight(dApp->m_manual.height());
-            this->setGeometry(rec);
-            if (m_mpv) {
-                m_mpv->setGeometry(rec);
-            }
-            if (m_mpv2) {
-                this->layout()->removeWidget(m_mpv2);
-                m_mpv2->deleteLater();
-                m_mpv2 = nullptr;
-            }
-            if (m_webView) {
-                m_webView->setGeometry(rec);
-            }
-            if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
-                m_webView2->deleteLater();
-                m_webView2 = nullptr;
+    dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+    QRect rec;
+    QSize size1(0, 0);
+    rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
+    QRect rec2 = qApp->desktop()->screenGeometry();
+    QRect deskRect = qApp->desktop()->availableGeometry();
+    rec = rec2;
+    if (dApp->m_cuurentMode == IdCopyScreen) {
+        rec = QRect(0, 0, rec.width(), rec.height());
+        size1.setWidth(rec.width());
+        size1.setHeight(rec.height());
+        int twidth = 0;
+        int theight = 0;
+        for (auto screen : qApp->screens()) {
+            twidth += screen->geometry().width();
+            if (screen->geometry().height() > theight) {
+                theight = screen->geometry().height();
             }
         }
-        if (m_iconView)
-        {
-            if (m_mpv) {
-                m_iconView->setGeometry(m_mpv->geometry());
-                m_iconView->setFixedSize(m_mpv->size());
-                m_iconView->setParent(m_mpv);
-            } else if (m_webView) {
-                m_iconView->setGeometry(m_webView->geometry());
-                m_iconView->setFixedSize(m_webView->size());
-                m_iconView->setParent(m_webView);
+
+        this->setGeometry(QRect(0, 0, twidth, theight));
+
+        int i = 1;
+        for (auto screen : qApp->screens()) {
+            dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+            if (i == 1 && m_mpv) {
+                qDebug() << screen->geometry();
+                m_mpv->setGeometry(screen->geometry());
+                i++;
+                continue;
             }
-            m_iconView->show();
-            m_iconView->move(0, 0);
+            if (i == 2 && m_mpv2) {
+                qDebug() << screen->geometry();
+                m_mpv2->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+            if (i == 1 && m_webView) {
+                m_webView->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+            if (i == 2 && m_webView2) {
+                m_webView2->setGeometry(screen->geometry());
+                i++;
+                continue;
+            }
+
         }
-    });
 
+    } else if (dApp->m_cuurentMode == IdlayoutScreen) {
+        rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+        size1.setWidth(rec.width());
+        size1.setHeight(rec.height());
+        this->setGeometry(rec);
 
+        if (m_mpv) {
+            m_mpv->setGeometry(rec);
+        }
+        if (m_mpv2) {
+            this->layout()->removeWidget(m_mpv2);
+            m_mpv2->deleteLater();
+            m_mpv2 = nullptr;
+        }
+        if (m_webView) {
+            m_webView->setGeometry(rec);
+        }
+        if (m_webView2) {
+            this->layout()->removeWidget(m_webView2);
+            m_webView2->deleteLater();
+            m_webView2 = nullptr;
+        }
+    } else  if (dApp->m_cuurentMode == IdManualSet) {
+        rec = dApp->m_manual;
+        size1.setWidth(dApp->m_manual.width());
+        size1.setHeight(dApp->m_manual.height());
+        this->setGeometry(rec);
+        if (m_mpv) {
+            m_mpv->setGeometry(rec);
+        }
+        if (m_mpv2) {
+            this->layout()->removeWidget(m_mpv2);
+            m_mpv2->deleteLater();
+            m_mpv2 = nullptr;
+        }
+        if (m_webView) {
+            m_webView->setGeometry(rec);
+        }
+        if (m_webView2) {
+            this->layout()->removeWidget(m_webView2);
+            m_webView2->deleteLater();
+            m_webView2 = nullptr;
+        }
+    }
+    if (m_iconView) {
+        if (m_mpv) {
+            m_iconView->setGeometry(m_mpv->geometry());
+            m_iconView->setFixedSize(m_mpv->size());
+            m_iconView->setParent(m_mpv);
+        } else if (m_webView) {
+            m_iconView->setGeometry(m_webView->geometry());
+            m_iconView->setFixedSize(m_webView->size());
+            m_iconView->setParent(m_webView);
+        }
+        m_iconView->show();
+        m_iconView->move(0, 0);
+    }
 }
 
 void Wallpaper::slotMouseEvent()
@@ -644,30 +648,67 @@ void Wallpaper::slotMouseEvent()
     if (m_webView) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
+//            qDebug() << m_currentPos;
             m_currentPos = pos;
-            QRect rec2 = qApp->desktop()->screenGeometry();
-            if (pos.x() > rec2.width()) {
-                pos = QPoint(pos.x() - rec2.width(), pos.y());
-            }
+//            QRect rec2 = qApp->desktop()->screenGeometry();
+//            if (pos.x() > rec2.width()) {
+//                pos = QPoint(pos.x() - rec2.width(), pos.y());
+//            }
+//            qDebug() << pos;
             for (QObject *obj : m_webView->children()) {
                 QWidget *wgt = qobject_cast<QWidget *>(obj);
                 if (wgt) {
-                    LeftMouseClick(wgt, pos);
+                    LeftMouseMove(wgt, pos);
                 }
             }
-            if (m_webView2) {
-                for (QObject *obj : m_webView2->children()) {
-                    QWidget *wgt = qobject_cast<QWidget *>(obj);
-                    if (wgt) {
-                        LeftMouseClick(wgt, pos);
-                    }
-                }
-            }
+//            if (m_webView2) {
+//                for (QObject *obj : m_webView2->children()) {
+//                    QWidget *wgt = qobject_cast<QWidget *>(obj);
+//                    if (wgt) {
+//                        LeftMouseClick(wgt, pos);
+//                    }
+//                }
+//            }
         }
 
     }
 }
-void Wallpaper::LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos)
+
+void Wallpaper::slotMouseClick(const int &index)
+{
+    if (m_webView) {
+        QPoint pos = QCursor::pos();
+//        if (m_currentPos != pos) {
+        m_currentPos = pos;
+//        QRect rec2 = qApp->desktop()->screenGeometry();
+//        if (pos.x() > rec2.width()) {
+//            pos = QPoint(pos.x() - rec2.width(), pos.y());
+//        }
+        for (QObject *obj : m_webView->children()) {
+            QWidget *wgt = qobject_cast<QWidget *>(obj);
+            if (wgt) {
+                if (index == 0) {
+                    LeftMousePress(wgt, pos);
+                } else if (index == 1) {
+                    LeftMouseRelease(wgt, pos);
+                }
+
+            }
+        }
+//            if (m_webView2) {
+//                for (QObject *obj : m_webView2->children()) {
+//                    QWidget *wgt = qobject_cast<QWidget *>(obj);
+//                    if (wgt) {
+//                        LeftMouseClick(wgt, pos);
+//                    }
+//                }
+//            }
+    }
+
+}
+
+
+void Wallpaper::LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos)
 {
     QMouseEvent *press = new QMouseEvent(QEvent::MouseMove,
                                          clickPos,
@@ -675,4 +716,26 @@ void Wallpaper::LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos)
                                          Qt::MouseButton::NoButton,
                                          Qt::NoModifier);
     QCoreApplication::postEvent(eventsReciverWidget, press);
+}
+
+void Wallpaper::LeftMouseRelease(QWidget *eventsReciverWidget, QPoint clickPos)
+{
+    QMouseEvent *release = new QMouseEvent(QEvent::MouseButtonRelease,
+                                           clickPos,
+                                           Qt::LeftButton,
+                                           Qt::MouseButton::LeftButton,
+                                           Qt::NoModifier);
+    QCoreApplication::postEvent(eventsReciverWidget, release);
+}
+
+
+void Wallpaper::LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos)
+{
+    QMouseEvent *press = new QMouseEvent(QEvent::MouseButtonPress,
+                                         clickPos,
+                                         Qt::LeftButton,
+                                         Qt::MouseButton::LeftButton,
+                                         Qt::NoModifier);
+    QCoreApplication::postEvent(eventsReciverWidget, press);
+
 }

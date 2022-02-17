@@ -39,6 +39,8 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     //    saveSettings();
 
     ui->setupUi(this);
+    ui->tansparency_slider->hide();
+    ui->label_8->hide();
     /*qApp->*/installEventFilter(this);
     ui->pathEdit->installEventFilter(this);
     ui->pathEdit->setAcceptDrops(true);
@@ -133,9 +135,13 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
         }
     });
 
-    connect(dApp, &Application::sigReadConfig, this, [ = ] {
-        readSettings();
-    });
+    connect(dApp, &Application::sigReadPlayerConfig, this, [ = ] {
+        if (m_voiceVolume >= 0 && m_voiceVolume < 100)
+        {
+            ui->Slider->setValue(m_voiceVolume);
+            on_Slider_valueChanged(m_voiceVolume);
+        }
+    }, Qt::DirectConnection);
 
     ui->bugBtn->hide();
     ui->mainWeb->hide();
@@ -182,6 +188,7 @@ void settingWindow::readSettings()
     QSettings settings(CONFIG_PATH, QSettings::IniFormat);
 
     dApp->m_currentPath = settings.value("WallPaper/CurrentPath").toString();
+    qDebug() << dApp->m_currentPath;
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
     int widthPY = settings.value("WallPaper/widthPY").toInt();
@@ -521,8 +528,8 @@ void settingWindow::on_history_clicked()
 void settingWindow::slotWallPaper(const QString &path)
 {
     if (!path.isEmpty()) {
-        ui->pathEdit->setText(path);
         dApp->m_currentPath = path;
+        ui->pathEdit->setText(path);
         Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
         QPixmap pix = dApp->getThumbnail(path);
         if (!pix.isNull()) {
@@ -533,6 +540,7 @@ void settingWindow::slotWallPaper(const QString &path)
         dApp->m_allPath.push_back(dApp->m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
+        on_Slider_valueChanged(m_voiceVolume);
     }
 }
 
