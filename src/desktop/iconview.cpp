@@ -133,7 +133,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 //    setTextElideMode();
     setSpacing(4);
     setViewMode(QListView::IconMode);
-    setMovement(QListView::Static);
+//    setMovement(QListView::Static);
     selectionModel()->selectedIndexes();
     //setWordWrap(true);
 
@@ -142,33 +142,45 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     QMenu *viewMenu = new QMenu();
     QAction *openAction = new QAction(viewMenu);
-    openAction->setText(tr("open"));
+    openAction->setText(tr("Open"));
     viewMenu->addAction(openAction);
     //TODO: add open with...
     QAction *selectAllAction = new QAction(viewMenu);
     selectAllAction->setText(tr("select all"));
     selectAllAction->setShortcut(QKeySequence("Ctrl+A"));
     viewMenu->addAction(selectAllAction);
+
+    QAction *newFolderAction = new QAction(viewMenu);
+    newFolderAction->setText(tr("New Folder"));
+    newFolderAction->setShortcut(QKeySequence("Ctrl+Shift+A"));
+    viewMenu->addAction(newFolderAction);
+
+    QAction *newTXTction = new QAction(viewMenu);
+    newTXTction->setText(tr("New TXT"));
+    newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
+    viewMenu->addAction(newTXTction);
+
+
     viewMenu->addSeparator();
 
     QAction *copyAction = new QAction(viewMenu);
-    copyAction->setText(tr("copy"));
+    copyAction->setText(tr("Copy"));
     copyAction->setShortcut(QKeySequence("Ctrl+C"));
     viewMenu->addAction(copyAction);
 
 
     QAction *pasteAction = new QAction(viewMenu);
-    pasteAction->setText(tr("paste"));
+    pasteAction->setText(tr("Paste"));
     pasteAction->setShortcut(QKeySequence("Ctrl+V"));
     viewMenu->addAction(pasteAction);
 
     QAction *renameAction = new QAction(viewMenu);
-    renameAction->setText(tr("rename"));
+    renameAction->setText(tr("Rename"));
     renameAction->setShortcut(QKeySequence("F2"));
     viewMenu->addAction(renameAction);
 
     QAction *trashAction = new QAction(viewMenu);
-    trashAction->setText(tr("trash"));
+    trashAction->setText(tr("Trash"));
     trashAction->setShortcut(QKeySequence("Delete"));
 
     viewMenu->addAction(trashAction);
@@ -218,6 +230,10 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(renameAction, &QAction::triggered, this, &IconView::renameFile);
 
     connect(trashAction, &QAction::triggered, this, &IconView::deleteFile);
+
+    connect(newFolderAction, &QAction::triggered, this, &IconView::slotsnewFolder);
+
+    connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
 
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
@@ -328,6 +344,39 @@ void IconView::deleteFile()
 void IconView::renameFile()
 {
     edit(selectedIndexes().first());
+}
+
+void IconView::slotsnewFolder()
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QDir a;
+    int i = 1;
+    while (i < 99) {
+        if (a.mkdir(desktopPath + "/" + tr("New Folder") + QString::number(i))) {
+            i = 100;
+            break;
+        }
+        i++;
+    }
+}
+
+void IconView::slotsnewTxt()
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QFile a;
+    int i = 1;
+    while (i < 99) {
+        if (!a.exists(desktopPath + "/" + tr("New Txt") + QString::number(i) + ".txt")) {
+            a.setFileName(desktopPath + "/" + tr("New Txt") + QString::number(i) + ".txt");
+            if (!a.open(QIODevice::WriteOnly | QIODevice::Text)) {
+                qDebug() << "打开失败";
+            }
+            a.close();
+            i = 100;
+            break;
+        }
+        i++;
+    }
 }
 
 void IconView::paintEvent(QPaintEvent *e)

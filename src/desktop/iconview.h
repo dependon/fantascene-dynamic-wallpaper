@@ -53,6 +53,9 @@ public Q_SLOTS:
     void deleteFile();
     void renameFile();
 
+    void slotsnewFolder();
+    void slotsnewTxt();
+
 protected:
     void paintEvent(QPaintEvent *e) override;
 
