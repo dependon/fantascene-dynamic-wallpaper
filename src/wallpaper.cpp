@@ -540,6 +540,9 @@ void Wallpaper::updateGeometry()
     rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
     QRect rec2 = qApp->desktop()->screenGeometry();
     QRect deskRect = qApp->desktop()->availableGeometry();
+    qDebug() << "543" << rec;
+    qDebug() << "544" << rec2;
+    qDebug() << "545" << deskRect;
     rec = rec2;
     if (dApp->m_cuurentMode == IdCopyScreen) {
         rec = QRect(0, 0, rec.width(), rec.height());
@@ -630,16 +633,15 @@ void Wallpaper::updateGeometry()
     }
     if (m_iconView) {
         if (m_mpv) {
-            m_iconView->setGeometry(m_mpv->geometry());
-            m_iconView->setFixedSize(m_mpv->size());
+            m_iconView->setGeometry(deskRect);
             m_iconView->setParent(m_mpv);
         } else if (m_webView) {
-            m_iconView->setGeometry(m_webView->geometry());
-            m_iconView->setFixedSize(m_webView->size());
+            m_iconView->setGeometry(deskRect);
+
             m_iconView->setParent(m_webView);
         }
         m_iconView->show();
-        m_iconView->move(0, 0);
+        m_iconView->move(deskRect.x(), deskRect.y());
     }
 }
 
