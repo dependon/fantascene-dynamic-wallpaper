@@ -128,7 +128,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     //setViewportMargins(0,10,0,10);
     //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
-    setGridSize(QSize(size * 3, size * 3));
+    setGridSize(QSize(120, 120));
     setIconSize(QSize(65, 65));
 //    setTextElideMode();
     setSpacing(4);

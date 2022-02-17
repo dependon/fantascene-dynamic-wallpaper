@@ -26,7 +26,8 @@
 #include <QMimeDatabase>
 #include <QUrl>
 
-
+#include <QImage>
+#include <QImageReader>
 #include <QDebug>
 
 IconProvider::IconProvider()
@@ -55,7 +56,11 @@ QIcon IconProvider::icon(const QFileInfo &info) const
     QIcon fileIcon;
 
     //image file, return a thumbnail.
-    QPixmap tmpPixmap = QPixmap(info.filePath());
+    QPixmap tmpPixmap;
+    QImageReader reader(info.filePath());
+    if (reader.size().width() <= 4096 && reader.size().height() <= 4096) {
+        tmpPixmap = QPixmap::fromImage(reader.read());
+    }
     if (!tmpPixmap.isNull()) {
         tmpPixmap = tmpPixmap.scaled(mIconSize, mIconSize);
         fileIcon = QIcon(tmpPixmap);
@@ -119,6 +124,7 @@ QIcon IconProvider::icon(const QFileInfo &info) const
 
     g_object_unref(file_info);
     g_object_unref(g_file);
+
     return icon;
     //}
 

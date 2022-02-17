@@ -37,7 +37,7 @@ public:
     QIcon icon(const QFileInfo &info) const;
 
 private:
-    int mIconSize = 40;
+    int mIconSize = 65;
     QMimeDatabase *mimeDatabase = nullptr;
 };
 
