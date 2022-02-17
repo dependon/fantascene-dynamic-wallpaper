@@ -146,7 +146,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     viewMenu->addAction(openAction);
     //TODO: add open with...
     QAction *selectAllAction = new QAction(viewMenu);
-    selectAllAction->setText(tr("select all"));
+    selectAllAction->setText(tr("Select all"));
     selectAllAction->setShortcut(QKeySequence("Ctrl+A"));
     viewMenu->addAction(selectAllAction);
 
@@ -366,8 +366,8 @@ void IconView::slotsnewTxt()
     QFile a;
     int i = 1;
     while (i < 99) {
-        if (!a.exists(desktopPath + "/" + tr("New Txt") + QString::number(i) + ".txt")) {
-            a.setFileName(desktopPath + "/" + tr("New Txt") + QString::number(i) + ".txt");
+        if (!a.exists(desktopPath + "/" + tr("New Txt Files") + QString::number(i) + ".txt")) {
+            a.setFileName(desktopPath + "/" + tr("New Txt Files") + QString::number(i) + ".txt");
             if (!a.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 qDebug() << "打开失败";
             }
