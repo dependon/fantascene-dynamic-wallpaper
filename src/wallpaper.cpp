@@ -119,7 +119,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
     m_iconView->move(0, 0);
 
-    QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
+//    QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
         int index1 = 0;
@@ -154,9 +154,9 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             m_currentPath = QFileInfo(m_currentPath).filePath();
             Q_EMIT dApp->pathChanged(m_currentPath);
         }
-        QTimer::singleShot(100, [ = ] {
-            updateGeometry();
-        });
+//        QTimer::singleShot(100, [ = ] {
+//            updateGeometry();
+//        });
     });
 
     setVolume(0);
@@ -273,7 +273,6 @@ void Wallpaper::setFile(const QString &path)
 
 
         m_webView->show();
-        updateGeometry();
         layout()->addWidget(m_webView);
         pause();
         if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
@@ -295,7 +294,6 @@ void Wallpaper::setFile(const QString &path)
 
                 layout()->addWidget(m_webView2);
             }
-            updateGeometry();
         }
 
     }  else {
@@ -338,14 +336,18 @@ void Wallpaper::setFile(const QString &path)
         if (m_mpv2) {
             m_mpv2->command(QStringList() << "loadfile" << path);
             m_mpv2->setProperty("pause", true);
-            updateGeometry();
         }
-
-//        //发送读取配置文件
-        Q_EMIT dApp->sigReadPlayerConfig();
 
 
     }
+    //        //发送读取配置文件
+    Q_EMIT dApp->sigReadPlayerConfig();
+
+    //暂时调用两次,为保证切换顺利
+    QTimer::singleShot(10, [ = ] {
+        updateGeometry();
+    });
+    updateGeometry();
 }
 
 void Wallpaper::setVolume(const qint32 volume)
@@ -567,6 +569,7 @@ void Wallpaper::updateGeometry()
                 if (i == 1 && m_mpv) {
                     qDebug() << screen->geometry();
                     m_mpv->setGeometry(screen->geometry());
+                    m_mpv->setMinimumWidth(screen->geometry().width());
                     i++;
                     continue;
                 }
@@ -578,6 +581,7 @@ void Wallpaper::updateGeometry()
                 }
                 if (i == 1 && m_webView) {
                     m_webView->setGeometry(screen->geometry());
+                    m_webView->setMinimumWidth(screen->geometry().width());
                     i++;
                     continue;
                 }
