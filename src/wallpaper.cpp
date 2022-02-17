@@ -119,7 +119,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
     m_iconView->move(0, 0);
 
-//    QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
+    QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
         int index1 = 0;
