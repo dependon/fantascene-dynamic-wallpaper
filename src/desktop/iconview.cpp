@@ -387,7 +387,7 @@ void IconView::paintEvent(QPaintEvent *e)
 void IconView::mousePressEvent(QMouseEvent *e)
 {
     mLastPos = e->pos();
-//    Q_EMIT sigMouseClick(0);
+    Q_EMIT sigMouseClick(0);
     //qDebug()<<"press event: "<<mLastPos;
     QListView::mousePressEvent(e);
 }
@@ -401,7 +401,7 @@ void IconView::mouseMoveEvent(QMouseEvent *e)
 
 void IconView::mouseReleaseEvent(QMouseEvent *e)
 {
-//    Q_EMIT sigMouseClick(1);
+    Q_EMIT sigMouseClick(1);
     return QListView::mouseReleaseEvent(e);
 }
 
