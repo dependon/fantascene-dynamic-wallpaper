@@ -23,13 +23,13 @@
 #include <QEvent>
 #include <QMouseEvent>
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+//#include <X11/Xlib.h>
+//#include <X11/Xutil.h>
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
 
-#include <X11/extensions/shape.h>
-#include <X11/extensions/Xrender.h>
+//#include <X11/extensions/shape.h>
+//#include <X11/extensions/Xrender.h>
 
 #include <stdlib.h>
 #include <string.h>

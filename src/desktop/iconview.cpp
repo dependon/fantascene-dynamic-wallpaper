@@ -286,11 +286,17 @@ QString IconView::terminalPath()
 {
     const static QString deepin_default_term = QStringLiteral("/usr/lib/deepin-daemon/default-terminal");
     const static QString debian_x_term_emu = QStringLiteral("/usr/bin/x-terminal-emulator");
+    const static QString kde_term_emu = QStringLiteral("/usr/bin/konsole");
+    const static QString gnome_term_emu = QStringLiteral("/usr/bin/gnome-terminal");
 
     if (QFileInfo::exists(deepin_default_term)) {
         return deepin_default_term;
     } else if (QFileInfo::exists(debian_x_term_emu)) {
         return debian_x_term_emu;
+    } else if (QFileInfo::exists(kde_term_emu)) {
+        return kde_term_emu;
+    } else if (QFileInfo::exists(gnome_term_emu)) {
+        return gnome_term_emu;
     }
 
     return QStandardPaths::findExecutable("xterm");
