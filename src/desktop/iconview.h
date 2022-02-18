@@ -35,6 +35,7 @@ public:
     IconView(int id, QString rootPath, QWidget *parent = nullptr);
     ~IconView() override;
     void copyImageToClipboard(const QStringList &paths);
+    QString terminalPath();
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -55,6 +56,7 @@ public Q_SLOTS:
 
     void slotsnewFolder();
     void slotsnewTxt();
+    void slotsopenTerminal();
 
 protected:
     void paintEvent(QPaintEvent *e) override;

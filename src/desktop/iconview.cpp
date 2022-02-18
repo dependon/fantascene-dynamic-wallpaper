@@ -48,6 +48,7 @@
 #include <QDebug>
 #include <QLineEdit>
 #include <QKeyEvent>
+#include <QProcess>
 
 IconView::IconView(int id, QString rootPath, QWidget *parent)
     : QListView(parent)
@@ -150,6 +151,12 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     selectAllAction->setShortcut(QKeySequence("Ctrl+A"));
     viewMenu->addAction(selectAllAction);
 
+    QAction *terminalAction = new QAction(viewMenu);
+    terminalAction->setText(tr("Open Terminal"));
+    terminalAction->setShortcut(QKeySequence("Ctrl+Alt+T"));
+    viewMenu->addAction(terminalAction);
+
+
     QAction *newFolderAction = new QAction(viewMenu);
     newFolderAction->setText(tr("New Folder"));
     newFolderAction->setShortcut(QKeySequence("Ctrl+Shift+A"));
@@ -235,6 +242,9 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
 
+    connect(terminalAction, &QAction::triggered, this, &IconView::slotsopenTerminal);
+
+
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
@@ -271,6 +281,21 @@ void IconView::copyImageToClipboard(const QStringList &paths)
     // Copy Image Date
     cb->setMimeData(newMimeData, QClipboard::Clipboard);
 }
+
+QString IconView::terminalPath()
+{
+    const static QString deepin_default_term = QStringLiteral("/usr/lib/deepin-daemon/default-terminal");
+    const static QString debian_x_term_emu = QStringLiteral("/usr/bin/x-terminal-emulator");
+
+    if (QFileInfo::exists(deepin_default_term)) {
+        return deepin_default_term;
+    } else if (QFileInfo::exists(debian_x_term_emu)) {
+        return debian_x_term_emu;
+    }
+
+    return QStandardPaths::findExecutable("xterm");
+}
+
 void IconView::copyFile()
 {
     QModelIndexList list = this->selectedIndexes();
@@ -379,6 +404,13 @@ void IconView::slotsnewTxt()
     }
 }
 
+void IconView::slotsopenTerminal()
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QDir::setCurrent(desktopPath);
+    QProcess::startDetached(terminalPath());
+}
+
 void IconView::paintEvent(QPaintEvent *e)
 {
     return QListView::paintEvent(e);
@@ -477,6 +509,10 @@ void IconView::keyPressEvent(QKeyEvent *event)
         copyFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_V) {
         pauseFile();
+    } else if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier) && event->key() == Qt::Key_A) {
+        slotsnewFolder();
+    } else if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier) && event->key() == Qt::Key_B) {
+        slotsnewTxt();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_A) {
         selectAll();
     } else {

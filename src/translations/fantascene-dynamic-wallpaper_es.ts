@@ -39,49 +39,54 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="145"/>
+        <location filename="../desktop/iconview.cpp" line="146"/>
         <source>Open</source>
         <translation>Apertura normal</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="149"/>
+        <location filename="../desktop/iconview.cpp" line="150"/>
         <source>Select all</source>
         <translation>Selección completa</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="154"/>
-        <location filename="../desktop/iconview.cpp" line="355"/>
+        <location filename="../desktop/iconview.cpp" line="155"/>
+        <source>Open Terminal</source>
+        <translation>Terminal abierto</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="161"/>
+        <location filename="../desktop/iconview.cpp" line="380"/>
         <source>New Folder</source>
         <translation>Nueva carpeta</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="159"/>
+        <location filename="../desktop/iconview.cpp" line="166"/>
         <source>New TXT</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="167"/>
+        <location filename="../desktop/iconview.cpp" line="174"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="173"/>
+        <location filename="../desktop/iconview.cpp" line="180"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="178"/>
+        <location filename="../desktop/iconview.cpp" line="185"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="183"/>
+        <location filename="../desktop/iconview.cpp" line="190"/>
         <source>Trash</source>
         <translation>Contenedor de residuos</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="369"/>
-        <location filename="../desktop/iconview.cpp" line="370"/>
+        <location filename="../desktop/iconview.cpp" line="394"/>
+        <location filename="../desktop/iconview.cpp" line="395"/>
         <source>New Txt Files</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
@@ -278,17 +283,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="411"/>
+        <location filename="../wallpaper.cpp" line="413"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="416"/>
+        <location filename="../wallpaper.cpp" line="418"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="421"/>
+        <location filename="../wallpaper.cpp" line="423"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
