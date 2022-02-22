@@ -231,7 +231,6 @@ void Wallpaper::setFile(const QString &path)
 
 
         m_webView->show();
-        updateGeometry();
         layout()->addWidget(m_webView);
         pause();
         if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
@@ -253,7 +252,6 @@ void Wallpaper::setFile(const QString &path)
 
                 layout()->addWidget(m_webView2);
             }
-            updateGeometry();
         }
 
     }  else {
@@ -289,8 +287,7 @@ void Wallpaper::setFile(const QString &path)
                 m_mpv2->show();
                 layout()->addWidget(m_mpv2);
             }
-            //发送读取配置文件
-            emit dApp->sigReadConfig();
+
         }
 
         m_mpv->command(QStringList() << "loadfile" << path);
@@ -300,7 +297,12 @@ void Wallpaper::setFile(const QString &path)
             m_mpv2->setProperty("pause", true);
         }
     }
-
+    //发送读取配置文件
+    emit dApp->sigReadPlayerConfig();
+    //暂时调用两次,为保证切换顺利
+    QTimer::singleShot(10, [ = ] {
+        updateGeometry();
+    });
     updateGeometry();
 }
 
