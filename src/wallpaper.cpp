@@ -501,6 +501,14 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
+    if (event->type() == QEvent::WindowActivate) {
+        for (auto wid : dApp->m_screenWid) {
+            QWindow *window = QWindow::fromWinId(wid);
+            if (window) {
+                window->raise();
+            }
+        }
+    }
     return  QWidget::event(event);
 }
 
