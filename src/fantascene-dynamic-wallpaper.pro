@@ -88,7 +88,10 @@ APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
 translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
 
-INSTALLS += target  icon desktop  translations
+video.path=/opt/durapps/fantascene-dynamic-wallpaper/
+video.files=$$PWD/install/09.mp4
+
+INSTALLS += target  icon desktop  translations video
 
 FORMS += \
     settingwindow.ui \
