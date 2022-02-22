@@ -134,9 +134,13 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
         }
     });
 
-    connect(dApp, &Application::sigReadConfig, this, [ = ] {
-        readSettings();
-    });
+    connect(dApp, &Application::sigReadPlayerConfig, this, [ = ] {
+        if (m_voiceVolume >= 0 && m_voiceVolume < 100)
+        {
+            ui->Slider->setValue(m_voiceVolume);
+            on_Slider_valueChanged(m_voiceVolume);
+        }
+    }, Qt::DirectConnection);
 
     ui->bugBtn->hide();
     ui->mainWeb->hide();
@@ -531,8 +535,8 @@ void settingWindow::on_history_clicked()
 void settingWindow::slotWallPaper(const QString &path)
 {
     if (!path.isEmpty()) {
-        ui->pathEdit->setText(path);
         dApp->m_currentPath = path;
+        ui->pathEdit->setText(path);
         emit dApp->setPlayPath(ui->pathEdit->text());
         QPixmap pix = dApp->getThumbnail(path);
         if (!pix.isNull()) {
@@ -543,6 +547,7 @@ void settingWindow::slotWallPaper(const QString &path)
         dApp->m_allPath.push_back(dApp->m_currentPath);
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
+        on_Slider_valueChanged(m_voiceVolume);
     }
 }
 
