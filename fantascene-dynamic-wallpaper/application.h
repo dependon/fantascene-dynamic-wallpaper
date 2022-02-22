@@ -68,7 +68,8 @@ Q_SIGNALS:
 
     void sigDesktopActive();
 
-    void sigReadConfig();
+    void sigReadPlayerConfig();
+
 
 public:
     QThread *m_startDesktop{nullptr};
