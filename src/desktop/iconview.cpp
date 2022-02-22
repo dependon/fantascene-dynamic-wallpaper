@@ -288,6 +288,10 @@ QString IconView::terminalPath()
     const static QString debian_x_term_emu = QStringLiteral("/usr/bin/x-terminal-emulator");
     const static QString kde_term_emu = QStringLiteral("/usr/bin/konsole");
     const static QString gnome_term_emu = QStringLiteral("/usr/bin/gnome-terminal");
+    const static QString xface_term_emu = QStringLiteral("/usr/bin/xface-terminal");
+    const static QString xface3_term_emu = QStringLiteral("/usr/bin/xface3-terminal");
+    const static QString xface4_term_emu = QStringLiteral("/usr/bin/xface4-terminal");
+    const static QString cutefish_term_emu = QStringLiteral("/usr/bin/cutefish-terminal");
 
     if (QFileInfo::exists(deepin_default_term)) {
         return deepin_default_term;
@@ -297,6 +301,14 @@ QString IconView::terminalPath()
         return kde_term_emu;
     } else if (QFileInfo::exists(gnome_term_emu)) {
         return gnome_term_emu;
+    } else if (QFileInfo::exists(xface_term_emu)) {
+        return xface_term_emu;
+    } else if (QFileInfo::exists(xface3_term_emu)) {
+        return xface3_term_emu;
+    } else if (QFileInfo::exists(xface4_term_emu)) {
+        return xface4_term_emu;
+    } else if (QFileInfo::exists(cutefish_term_emu)) {
+        return cutefish_term_emu;
     }
 
     return QStandardPaths::findExecutable("xterm");
