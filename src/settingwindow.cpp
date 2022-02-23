@@ -351,6 +351,31 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
+QWindowList settingWindow::currentWorkWindow()
+{
+    QVector<quint32> winList;
+    QFunctionPointer wmClientList = Q_NULLPTR;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+    QByteArray function = "_d_getCurrentWorkspaceWindows";
+    wmClientList = qApp->platformFunction(function);
+#endif
+    if (!wmClientList) winList = QVector<quint32>();
+
+    winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
+
+    QWindowList list;
+    for (WId wid : winList) {
+
+//        if (QWindow *w = QWindow::fromWinId(wid)) {
+        QWindow *w = new QWindow();
+        w->setFlags(Qt::ForeignWindow);
+        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
+        w->create();
+        list << w;
+    }
+    return list;
+}
+
 void settingWindow::setScreenMode(const QString &arg)
 {
     Q_EMIT dApp->setScreenMode(arg);
@@ -666,6 +691,67 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
 
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
+    //问题很多
+    if (arg1 == 0) {
+        dApp->m_moreData.isAuto = 0;
+        m_stopx11Thread = true;
+        if (m_x11thread) {
+            //            m_x11thread->wait();
+            //            m_x11thread->quit();
+            //            m_x11thread->terminate();
+            m_x11thread = nullptr;
+        }
+        dApp->m_x11WindowFuscreen.clear();
+        if (dApp->m_isNoMpvPause) {
+            dApp->setMpvPlay();
+        }
+    } else {
+        m_stopx11Thread = false;
+        dApp->m_moreData.isAuto = 1;
+        if (!m_x11thread) {
+            m_x11thread = QThread::create([ = ]() {
+                int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
+                int screenheight = qApp->desktop()->screenGeometry().height() - 150;
+                while (!m_stopx11Thread) {
+                    if (dApp->m_isNoMpvPause) {
+                        int index = 0;
+                        //                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
+                        for (auto window : currentWorkWindow()) {
+                            //                            if (wid == winId()) {
+                            //                                continue;
+                            //                                qDebug() << "this";
+                            //                            }
+
+                            //                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
+                            //                            //判断窗口是否有最大窗口
+
+                            if (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen) {
+                                //            continue;
+
+                                int wwidth = window->frameGeometry().width();
+                                int wheight = window->frameGeometry().height();
+
+                                if (wwidth > screenwidth && wheight > screenheight) {
+
+                                    index++;
+                                }
+
+                            }
+
+                        }
+                        if (0 == index && !dApp->m_currentIsPlay &&  dApp->m_isNoMpvPause) {
+                            dApp->setMpvPlay();
+                        } else if (0 != index &&  dApp->m_currentIsPlay) {
+                            dApp->setMpvpause();
+                        }
+
+                    }
+                    QThread::msleep(2000);
+                }
+            });
+            m_x11thread->start();
+        }
+    }
     saveSettings();
 }
 

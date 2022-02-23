@@ -5,6 +5,7 @@
 #include "application.h"
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QWindow>
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -31,6 +32,7 @@ public:
 
     int isAutoStart();
 
+    QWindowList currentWorkWindow();
 
     void setScreenMode(const QString &arg);
 protected:
