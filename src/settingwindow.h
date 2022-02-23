@@ -32,7 +32,7 @@ public:
 
     int isAutoStart();
 
-    QWindowList currentWorkWindow();
+    QMap<WId, QWindow *> currentWorkWindow();
 
     void setScreenMode(const QString &arg);
 protected:
@@ -125,6 +125,8 @@ private:
 
     QMenu *m_aboutMenu{nullptr};
     MoreSetting *m_moreSetting{nullptr};
+
+    QMap<WId, QWindow *> m_windowList;
 
 };
 

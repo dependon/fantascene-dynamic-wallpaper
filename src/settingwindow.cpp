@@ -351,29 +351,48 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
-QWindowList settingWindow::currentWorkWindow()
+QMap<WId, QWindow *> settingWindow::currentWorkWindow()
 {
+//    QWindowList m_windowList;
+//    for (QWindow *w : m_windowList) {
+//        w->deleteLater();
+//    }
+//    m_windowList.clear();
+    QList<WId> currentApplicationList;
+    const QWindowList &list = qApp->allWindows();
+    currentApplicationList.reserve(list.size());
+    for (auto window : list) {
+        if (window->property("_q_foreignWinId").isValid()) continue;
+
+        currentApplicationList.append(window->winId());
+    }
     QVector<quint32> winList;
     QFunctionPointer wmClientList = Q_NULLPTR;
 #if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
     QByteArray function = "_d_getCurrentWorkspaceWindows";
     wmClientList = qApp->platformFunction(function);
 #endif
-    if (!wmClientList) winList = QVector<quint32>();
+    if (!wmClientList) {
+        winList = QVector<quint32>();
+    }
 
     winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
 
-    QWindowList list;
-    for (WId wid : winList) {
 
-//        if (QWindow *w = QWindow::fromWinId(wid)) {
+    for (WId wid : winList) {
+        if (currentApplicationList.contains(wid)) {
+            continue;
+        }
+        if (m_windowList.keys().contains(wid)) {
+            continue;
+        }
         QWindow *w = new QWindow();
         w->setFlags(Qt::ForeignWindow);
         w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
         w->create();
-        list << w;
+        m_windowList.insert(wid, w);
     }
-    return list;
+    return m_windowList;
 }
 
 void settingWindow::setScreenMode(const QString &arg)
@@ -725,7 +744,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                             //                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
                             //                            //判断窗口是否有最大窗口
 
-                            if (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen) {
+                            if (window && (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen)) {
                                 //            continue;
 
                                 int wwidth = window->frameGeometry().width();
