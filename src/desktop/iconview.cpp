@@ -525,6 +525,8 @@ void IconView::keyPressEvent(QKeyEvent *event)
         deleteFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_C) {
         copyFile();
+    } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_X) {
+        copyFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_V) {
         pauseFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier) && event->key() == Qt::Key_A) {
