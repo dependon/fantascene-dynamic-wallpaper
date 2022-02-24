@@ -1,3 +1,5 @@
+Managed animated wallpaper based on X11 under Linux
+
 ## 1.2.8 
 
 1.add polish translation 
