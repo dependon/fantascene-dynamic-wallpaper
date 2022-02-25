@@ -374,9 +374,11 @@ QMap<WId, QWindow *> settingWindow::currentWorkWindow()
 #endif
     if (!wmClientList) {
         winList = QVector<quint32>();
+    } else {
+        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
     }
 
-    winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
+
 
 
     for (WId wid : winList) {
