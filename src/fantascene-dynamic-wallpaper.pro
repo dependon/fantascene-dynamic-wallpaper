@@ -63,35 +63,28 @@ CONFIG(release, debug|release) {
         system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
     }
 }
-
+#fantacy
 OTHER_FILES+=$$PWD/install/*
 
-unix:!android: target.path = /usr/bin
+target.path=/opt/apps/com.github.fantacy/files/bin/
 
-icon.path=/usr/share/icons
-icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
+icon.path=/opt/apps/com.github.fantacy/entries/icons/
+icon.files= $$PWD/install/fantacy.svg
 
-desktop.path = /usr/share/applications/
-desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
+desktop1.path=/opt/apps/com.github.fantacy/entries/applications
+desktop1.files=$$PWD/install/com.github.fantacy.desktop
 
-#desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
-#desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
+other.path=/opt/apps/com.github.fantacy/files/bin/
+other.files= $$PWD/install/*
 
-DISTFILES += \
-    com.deepin.dde.DreamScene.service
+info.path=/opt/apps/com.github.fantacy/
+info.files= $$PWD/info/*
 
-dbus_service.files += com.deepin.dde.fantascene.service
-dbus_service.path = /usr/share/dbus-1/services
-
-APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
-
-translations.path = $$APPSHAREDIR/translations
+translations.path = /opt/apps/com.github.fantacy/files/bin/translations
 translations.files = $$PWD/translations/*.qm
 
-video.path=/opt/durapps/fantascene-dynamic-wallpaper/
-video.files=$$PWD/install/09.mp4
 
-INSTALLS += target  icon desktop  translations video
+INSTALLS += target  desktop1  translations info other icon
 
 FORMS += \
     settingwindow.ui \

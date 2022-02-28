@@ -1,13 +1,12 @@
-Source: fantascene-dynamic-wallpaper
+Source: com.github.fantacy
 Section: utils
 Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
 Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev ,libx11-xcb-dev , ffmpeg , dpkg-dev ,fakeroot ,qtwebengine5-dev ,libxext-dev ,libxrender-dev ,libqt5x11extras5-dev
-Standards-Version: 0.0-3
-Homepage: http://github.com/dependon
+Standards-Version: 1.3.2
+Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 
-Package: fantascene-dynamic-wallpaper
+Package: com.github.fantacy
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: libqt5libqgtk2, kimageformat-plugins
-Description: video wallpaper for fantascene.
+Description: video wallpaper for fantacy.

@@ -21,7 +21,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define TRANSALTIONPATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+#define TRANSALTIONPATH "/opt/apps/com.github.fantacy/files/bin/translations"
 
 bool checkOnly()
 {
@@ -61,7 +61,6 @@ void cpToTmp()
 int main(int argc, char *argv[])
 {
     cpToTmp();
-//    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
 
     mallopt(M_ARENA_MAX, 1);
 
@@ -99,7 +98,7 @@ int main(int argc, char *argv[])
 //            mainwindw->show();
         }
         mainwindw->setFixedSize(QSize(640, 500));
-        mainwindw->setWindowTitle("动态壁纸");
+        mainwindw->setWindowTitle(QObject::tr("fantascene"));
         mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
         mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
