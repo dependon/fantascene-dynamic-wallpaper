@@ -6,6 +6,9 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QWindow>
+
+#include <QtX11Extras/QX11Info>
+
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -35,6 +38,12 @@ public:
     QMap<WId, QWindow *> currentWorkWindow();
 
     void setScreenMode(const QString &arg);
+
+    QVector<uint> getCurrentWorkspaceWindows();
+    static xcb_atom_t internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists = true);
+    QVector<xcb_window_t> getWindows() const;
+    qint32 getWorkspaceForWindow(quint32 WId);
+
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private Q_SLOTS:
