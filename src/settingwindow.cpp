@@ -25,6 +25,7 @@
 #include "listview/historywidget.h"
 #include "listview/wallpaperengineplugin.h"
 
+#include <xcb/shape.h>
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
@@ -351,6 +352,101 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
+//#include <xcb/xcb_icccm.h>
+
+//#include <X11/cursorfont.h>
+xcb_atom_t settingWindow::internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists)
+{
+    if (!name || *name == 0)
+        return XCB_NONE;
+
+    xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection, only_if_exists, strlen(name), name);
+    xcb_intern_atom_reply_t *reply = xcb_intern_atom_reply(connection, cookie, 0);
+
+    if (!reply)
+        return XCB_NONE;
+
+    xcb_atom_t atom = reply->atom;
+    free(reply);
+
+    return atom;
+}
+
+QVector<xcb_window_t> settingWindow::getWindows() const
+{
+    QVector<xcb_window_t> window_list_stacking;
+    Display *display = QX11Info::display();
+    XDefaultRootWindow(display);
+    xcb_window_t root /*= XDefaultRootWindow(display)->primaryScreen()->root()*/;
+    int offset = 0;
+    int remaining = 0;
+    xcb_connection_t *xcb_connection = QX11Info::connection();
+
+    do {
+        xcb_atom_t atomtt = internAtom(xcb_connection, "_NET_CLIENT_LIST_STACKING");
+        xcb_get_property_cookie_t cookie = xcb_get_property(xcb_connection, false,  XDefaultRootWindow(display),
+                                                            atomtt,
+                                                            XCB_ATOM_WINDOW, offset, 1024);
+        xcb_get_property_reply_t *reply = xcb_get_property_reply(xcb_connection, cookie, NULL);
+        if (!reply)
+            break;
+
+        remaining = 0;
+
+        if (reply->type == XCB_ATOM_WINDOW && reply->format == 32) {
+            int len = xcb_get_property_value_length(reply) / sizeof(xcb_window_t);
+            xcb_window_t *windows = (xcb_window_t *)xcb_get_property_value(reply);
+            int s = window_list_stacking.size();
+            window_list_stacking.resize(s + len);
+            memcpy(window_list_stacking.data() + s, windows, len * sizeof(xcb_window_t));
+
+            remaining = reply->bytes_after;
+            offset += len;
+        }
+
+        free(reply);
+    } while (remaining > 0);
+
+    return window_list_stacking;
+}
+qint32 settingWindow::getWorkspaceForWindow(quint32 WId)
+{
+    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false, WId,
+                                                        internAtom(QX11Info::connection(), "_NET_WM_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
+        xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
+        return *(qint32 *)xcb_get_property_value(reply.data());
+    }
+
+    return 0;
+}
+
+QVector<uint> settingWindow::getCurrentWorkspaceWindows()
+{
+    qint32 current_workspace = 0;
+
+    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false,
+                                                        winId(),
+                                                        internAtom(QX11Info::connection(), "_NET_CURRENT_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
+        xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
+        current_workspace = *(qint32 *)xcb_get_property_value(reply.data());
+    }
+
+    QVector<uint> windows;
+
+    for (uint32_t WId : getWindows()) {
+        qint32 ws = getWorkspaceForWindow(WId);
+
+        if (ws < 0 || ws == current_workspace) {
+            windows << WId;
+        }
+    }
+
+    return windows;
+}
 QMap<WId, QWindow *> settingWindow::currentWorkWindow()
 {
 //    QWindowList m_windowList;
@@ -367,17 +463,17 @@ QMap<WId, QWindow *> settingWindow::currentWorkWindow()
         currentApplicationList.append(window->winId());
     }
     QVector<quint32> winList;
-    QFunctionPointer wmClientList = Q_NULLPTR;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-    QByteArray function = "_d_getCurrentWorkspaceWindows";
-    wmClientList = qApp->platformFunction(function);
-#endif
-    if (!wmClientList) {
-        winList = QVector<quint32>();
-    } else {
-        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
-    }
-
+//    QFunctionPointer wmClientList = Q_NULLPTR;
+//#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+//    QByteArray function = "_d_getCurrentWorkspaceWindows";
+//    wmClientList = qApp->platformFunction(function);
+//#endif
+//    if (!wmClientList) {
+//        winList = QVector<quint32>();
+//    } else {
+//        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
+//    }
+    winList = getCurrentWorkspaceWindows();
 
 
 
