@@ -128,6 +128,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
     connect(dApp, &Application::sigDesktopActive, this, [ = ] {
+        this->show();
         if (m_parentMainWindow)
         {
             m_parentMainWindow->resize(500, 300);
@@ -161,6 +162,8 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
         m_aboutMenu->addAction(aboutMe);
 
     }
+
+    initAtom();
 
 }
 void settingWindow::pathChanged(const QString &path)
@@ -352,7 +355,7 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
-QMap<WId, QWindow *> settingWindow::currentWorkWindow()
+QVector <WId> settingWindow::currentWorkWindow()
 {
 //    QWindowList m_windowList;
 //    for (QWindow *w : m_windowList) {
@@ -383,17 +386,18 @@ QMap<WId, QWindow *> settingWindow::currentWorkWindow()
 
 
     for (WId wid : winList) {
+
         if (currentApplicationList.contains(wid)) {
             continue;
         }
-        if (m_windowList.keys().contains(wid)) {
+        if (m_windowList.contains(wid)) {
             continue;
         }
-        QWindow *w = new QWindow();
-        w->setFlags(Qt::ForeignWindow);
-        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
-        w->create();
-        m_windowList.insert(wid, w);
+//        QWindow *w = new QWindow();
+//        w->setFlags(Qt::ForeignWindow);
+//        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
+//        w->create();
+        m_windowList.push_back(wid);
     }
     return m_windowList;
 }
@@ -738,7 +742,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                     if (dApp->m_isNoMpvPause) {
                         int index = 0;
                         //                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
-                        for (auto window : currentWorkWindow()) {
+                        for (auto wid : currentWorkWindow()) {
                             //                            if (wid == winId()) {
                             //                                continue;
                             //                                qDebug() << "this";
@@ -746,12 +750,14 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
 
                             //                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
                             //                            //判断窗口是否有最大窗口
+                            QRect rect = geometry(wid);
+                            Qt::WindowState state = getWindowState(wid);
 
-                            if (window && (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen)) {
-                                //            continue;
+                            if (state == Qt::WindowState::WindowMaximized || state == Qt::WindowState::WindowFullScreen) {
 
-                                int wwidth = window->frameGeometry().width();
-                                int wheight = window->frameGeometry().height();
+
+                                int wwidth = rect.width();
+                                int wheight = rect.height();
 
                                 if (wwidth > screenwidth && wheight > screenheight) {
 
@@ -802,6 +808,7 @@ void settingWindow::on_pluginBtn_clicked()
 
 void settingWindow::activeWindow()
 {
+    this->show();
     if (m_parentMainWindow) {
         m_parentMainWindow->resize(500, 300);
         m_parentMainWindow->show();
@@ -907,3 +914,98 @@ QVector<uint> settingWindow::getCurrentWorkspaceWindows()
 
     return windows;
 }
+
+QRect settingWindow::geometry(WId id) const
+{
+//    extern Status XGetWindowAttributes(
+//        Display*      /* display */,
+//        Window        /* w */,
+//        XWindowAttributes*    /* window_attributes_return */
+//    );
+
+    //    WindowsMatchingPid match(display, XDefaultRootWindow(display), pid);
+    XWindowAttributes bute;
+    XGetWindowAttributes(QX11Info::display(), id, &bute);
+    QRect rect;
+    if (&bute) {
+        rect.setX(bute.x);
+        rect.setY(bute.y);
+        rect.setWidth(bute.width);
+        rect.setHeight(bute.height);
+    }
+    return rect;
+}
+#include <X11/Xatom.h>
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+#include <xcb/xcb_icccm.h>
+Qt::WindowState settingWindow::getWindowState(WId id)
+{
+
+    xcb_window_t window = id;
+    Qt::WindowState newState = Qt::WindowNoState;
+    const xcb_get_property_cookie_t get_cookie =
+        xcb_get_property(QX11Info::connection(), 0, window, m_ewmh_connection._NET_WM_STATE,
+                         XCB_ATOM_ANY, 0, 1024);
+
+    xcb_get_property_reply_t *reply =
+        xcb_get_property_reply(QX11Info::connection(), get_cookie, NULL);
+
+    if (reply) {
+        const quint32 *data = (const quint32 *)xcb_get_property_value(reply);
+
+        if (reply && reply->format == 32 && reply->type == m_ewmh_connection._NET_WM_STATE) {
+            if (reply->length != 0 && XCB_ICCCM_WM_STATE_ICONIC == data[0]) {
+                newState = Qt::WindowMinimized;
+            }
+        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_FULLSCREEN) {
+            newState = Qt::WindowFullScreen;
+        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_VERT || data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_HORZ) {
+            newState = Qt::WindowMaximized;
+            if (data[2] == m_ewmh_connection._NET_WM_STATE_HIDDEN) {
+                newState = Qt::WindowMinimized;
+            }
+        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_HIDDEN) {
+            newState = Qt::WindowMinimized;
+        }
+    }
+    free(reply);
+
+    return newState;
+}
+
+void settingWindow::initAtom()
+{
+    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+}
+
+
+uint32_t settingWindow::searchWindowType(int wid)
+{
+    uint32_t reId = 0;
+    QMutexLocker locker(&m_mutex);
+//    if (m_cookie) {
+
+    xcb_get_property_cookie_t cooke = xcb_ewmh_get_wm_window_type(&m_ewmh_connection, wid);
+
+    xcb_ewmh_get_atoms_reply_t name;
+    xcb_generic_error_t *error_t = new xcb_generic_error_t;
+
+    xcb_ewmh_get_wm_window_type_reply(&m_ewmh_connection, cooke, &name, &error_t);
+
+    if (error_t) {
+        delete error_t;
+        error_t = NULL;
+        return 381;
+    } else {
+
+    }
+    if (name.atoms && name.atoms_len <= 10) {
+        reId = name.atoms[0];
+    }
+
+    return reId;
+}
+
+

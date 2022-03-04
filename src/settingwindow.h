@@ -8,13 +8,15 @@
 #include <QWindow>
 
 #include <QtX11Extras/QX11Info>
-
+#include <qnamespace.h>
+#include <xcb/xcb_ewmh.h>
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
 class QThread;
 class MoreSetting;
 class wallpaperEnginePlugin;
+
 namespace Ui {
 class settingWindow;
 }
@@ -35,15 +37,24 @@ public:
 
     int isAutoStart();
 
-    QMap<WId, QWindow *> currentWorkWindow();
+    QVector<WId> currentWorkWindow();
 
     void setScreenMode(const QString &arg);
 
+    //获取当前工作的窗口wid
     QVector<uint> getCurrentWorkspaceWindows();
     static xcb_atom_t internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists = true);
     QVector<xcb_window_t> getWindows() const;
     qint32 getWorkspaceForWindow(quint32 WId);
 
+    //通过wid获取窗口尺寸
+    QRect geometry(WId id) const;
+    //通过wid获取桌面状态
+    Qt::WindowState getWindowState(WId id) ;
+    //初始化atom
+    void initAtom();
+    //获得窗口属性,桌面，普通窗口等
+    uint32_t searchWindowType(int wid);
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private Q_SLOTS:
@@ -135,8 +146,11 @@ private:
     QMenu *m_aboutMenu{nullptr};
     MoreSetting *m_moreSetting{nullptr};
 
-    QMap<WId, QWindow *> m_windowList;
+    QVector<WId> m_windowList;
 
+    xcb_ewmh_connection_t m_ewmh_connection;
+
+    QMutex m_mutex;
 };
 
 #endif // SETTINGWINDOW_H
