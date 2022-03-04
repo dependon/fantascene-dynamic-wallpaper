@@ -938,7 +938,6 @@ QRect settingWindow::geometry(WId id) const
 #include <X11/Xatom.h>
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
-#include <xcb/xcb_icccm.h>
 Qt::WindowState settingWindow::getWindowState(WId id)
 {
 
@@ -953,12 +952,7 @@ Qt::WindowState settingWindow::getWindowState(WId id)
 
     if (reply) {
         const quint32 *data = (const quint32 *)xcb_get_property_value(reply);
-
-        if (reply && reply->format == 32 && reply->type == m_ewmh_connection._NET_WM_STATE) {
-            if (reply->length != 0 && XCB_ICCCM_WM_STATE_ICONIC == data[0]) {
-                newState = Qt::WindowMinimized;
-            }
-        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_FULLSCREEN) {
+        if (data[0] == m_ewmh_connection._NET_WM_STATE_FULLSCREEN) {
             newState = Qt::WindowFullScreen;
         } else if (data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_VERT || data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_HORZ) {
             newState = Qt::WindowMaximized;
