@@ -17,11 +17,11 @@ yay -S fantascene-dynamic-wallpaper-git
 
 2.add playlist
 
-## 1.2.5 (Adaptation of special-shaped screen 增加了异形双屏适配)
+## 1.2.5 (Adaptation of special-shaped screen )
 
 [![7juYBn.png](https://s4.ax1x.com/2022/01/27/7juYBn.png)](https://imgtu.com/i/7juYBn)
 
-## 1.2.0 (Fix stuck desktop (修复了会卡死桌面的问题))
+## 1.2.0 (Fix stuck desktop)
 网盘下载:
 
 deepin:
@@ -58,6 +58,8 @@ mpv >=29.0
 
 sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev
 
+sudo apt install libxcb-shape0-dev
+
 git clone https://github.com/dependon/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
@@ -69,7 +71,6 @@ cd build
 qmake ..
 
 make
-
 
 
 ## 1.0.5 new features
