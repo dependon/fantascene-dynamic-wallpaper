@@ -36,6 +36,7 @@ public:
 
     void setPlayListTimer(int s);
     void setisPlayList(bool bRet);
+    const QPixmap getThumbnailText(const QString &path);
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
