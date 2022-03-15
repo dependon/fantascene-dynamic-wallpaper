@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QCryptographicHash>
 #include <QTimer>
+#include <QPainter>
 
 #include "setdesktop.h"
 
@@ -175,6 +176,39 @@ void Application::setisPlayList(bool bRet)
     m_isPlayList = bRet;
 }
 
+const QPixmap Application::getThumbnailText(const QString &path)
+{
+    QString text;
+    if (path.isEmpty()) {
+        text = "ERROR!!";
+    } else if (QFileInfo(path).isFile()) {
+        text = QFileInfo(path).completeBaseName();
+    } else {
+        text = path;
+    }
+    QSize size(256, 144); //指定图片大小;
+    QImage image(size, QImage::Format_RGB32); //以ARGB32格式构造一个QImage,
+    //image.fill(qRgba(0,0,0,100));//填充图片背景,120/250为透明度
+    QPainter painter(&image); //为这个QImage构造一个QPainter
+    painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
+    //设置画刷的组合模式CompositionMode_SourceOut这个模式为目标图像在上。
+    //改变组合模式和上面的填充方式可以画出透明的图片。
+    //改变画笔和字体
+    QPen pen = painter.pen();
+    pen.setColor(Qt::red);
+    QFont font = painter.font();
+    font.setBold(true);//加粗
+    font.setPixelSize(30);//改变字体大小
+    painter.setPen(pen);
+    painter.setFont(font);
+    painter.drawText(image.rect(), Qt::AlignCenter, text);
+    //将Hello写在Image的中心
+//    int n = 100;//这个为图片的压缩度。0/100
+//    image.save("text.png", "PNG", n);
+
+    return QPixmap::fromImage(image);
+}
+
 const QPixmap Application::getThumbnail(const QString &path)
 {
     QMutexLocker locker(&mutex);
@@ -200,7 +234,6 @@ const QPixmap Application::getThumbnail(const QString &path)
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
-//    const QString failEncodePath = cacheP + "/fail/" + md5s + ".png";
 
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
     if (QFileInfo(thumPath).exists()) {
@@ -221,10 +254,14 @@ const QPixmap Application::getThumbnail(const QString &path)
         qDebug() << "Fail-thumbnail exist, won't regenerate: " ;
         setThumbnail(path);
         QPixmap  a(thumPath);
+        if (a.isNull()) {
+            a = getThumbnailText(path);
+            a.save(thumPath);
+        }
         return a;
     }
 
-    return QPixmap();
+    return getThumbnailText(path);
 }
 
 void Application::setDesktopTransparent()
