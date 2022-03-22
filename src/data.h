@@ -10,7 +10,8 @@ enum ScreenMode {
 struct MoreSetData {
     int isAuto = 0;
     int fps = 10;
-    QString hwdec="gpu";
+    QString hwdec = "gpu";
+    bool isShowDesktopIcon = true;
 };
 
 #endif // DATA_H

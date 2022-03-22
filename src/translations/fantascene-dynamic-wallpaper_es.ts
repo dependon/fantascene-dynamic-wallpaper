@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="82"/>
         <location filename="../application.cpp" line="83"/>
+        <location filename="../application.cpp" line="84"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,19 +21,19 @@
         <location filename="../desktop.cpp" line="52"/>
         <location filename="../desktop.cpp" line="60"/>
         <source>New folder</source>
-        <translation type="unfinished">Nueva carpeta</translation>
+        <translation>Nueva carpeta</translation>
     </message>
     <message>
         <location filename="../desktop.cpp" line="73"/>
         <location filename="../desktop.cpp" line="81"/>
         <location filename="../desktop.cpp" line="82"/>
         <source>New Txt Files</source>
-        <translation type="unfinished">Nuevos archivos Txt</translation>
+        <translation>Nuevos archivos Txt</translation>
     </message>
     <message>
         <location filename="../desktop.cpp" line="101"/>
         <source>Refresh</source>
-        <translation type="unfinished">Actualizar</translation>
+        <translation>Actualizar</translation>
     </message>
 </context>
 <context>
@@ -55,7 +55,7 @@
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="161"/>
-        <location filename="../desktop/iconview.cpp" line="380"/>
+        <location filename="../desktop/iconview.cpp" line="398"/>
         <source>New Folder</source>
         <translation>Nueva carpeta</translation>
     </message>
@@ -85,8 +85,8 @@
         <translation>Contenedor de residuos</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="394"/>
-        <location filename="../desktop/iconview.cpp" line="395"/>
+        <location filename="../desktop/iconview.cpp" line="412"/>
+        <location filename="../desktop/iconview.cpp" line="413"/>
         <source>New Txt Files</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
@@ -176,11 +176,27 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
+        <source>Show desktop icon</source>
+        <translation>Mostrar iconos de escritorio</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="165"/>
+        <location filename="../moresetting.cpp" line="77"/>
+        <source>true</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="170"/>
+        <source>false</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="182"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="164"/>
+        <location filename="../moresetting.ui" line="189"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -188,7 +204,7 @@
         <location filename="../moresetting.ui" line="135"/>
         <location filename="../moresetting.cpp" line="44"/>
         <location filename="../moresetting.cpp" line="70"/>
-        <location filename="../moresetting.cpp" line="87"/>
+        <location filename="../moresetting.cpp" line="94"/>
         <source>other</source>
         <translatorcomment>Otros</translatorcomment>
         <translation>Otros</translation>
@@ -283,17 +299,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="413"/>
+        <location filename="../wallpaper.cpp" line="416"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="418"/>
+        <location filename="../wallpaper.cpp" line="421"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="423"/>
+        <location filename="../wallpaper.cpp" line="426"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
@@ -383,7 +399,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="474"/>
+        <location filename="../settingwindow.cpp" line="528"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -405,13 +421,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="163"/>
-        <location filename="../settingwindow.cpp" line="56"/>
+        <location filename="../settingwindow.cpp" line="60"/>
         <source>Play</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="182"/>
-        <location filename="../settingwindow.cpp" line="69"/>
+        <location filename="../settingwindow.cpp" line="73"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
@@ -452,7 +468,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="568"/>
+        <location filename="../settingwindow.cpp" line="622"/>
         <source>default</source>
         <translatorcomment>por defecto</translatorcomment>
         <translation>por defecto</translation>
@@ -484,7 +500,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="580"/>
+        <location filename="../settingwindow.cpp" line="634"/>
         <source>custom</source>
         <translatorcomment>Personalizar</translatorcomment>
         <translation>Personalizar</translation>
@@ -496,7 +512,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="466"/>
-        <location filename="../settingwindow.cpp" line="76"/>
+        <location filename="../settingwindow.cpp" line="80"/>
         <source>Wallpaper History</source>
         <translation>Historia del fondo de pantalla</translation>
     </message>
@@ -561,28 +577,33 @@
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="51"/>
+        <location filename="../settingwindow.cpp" line="55"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="64"/>
+        <location filename="../settingwindow.cpp" line="68"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="80"/>
+        <location filename="../settingwindow.cpp" line="84"/>
         <source>Main View</source>
         <translation>Formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="106"/>
+        <location filename="../settingwindow.cpp" line="95"/>
+        <source>github</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="110"/>
         <source>Double click to open the configuration interface</source>
         <translatorcomment>Haga doble clic para abrir el formulario principal</translatorcomment>
         <translation>Haga doble clic para abrir el formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="155"/>
+        <location filename="../settingwindow.cpp" line="160"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>
