@@ -246,7 +246,10 @@ void Wallpaper::setScreen(const int &index)
 void Wallpaper::setFile(const QString &path)
 {
     dApp->m_currentPath = path;
-    m_iconView->setParent(this);
+    if (m_iconView) {
+        m_iconView->setParent(this);
+    }
+
     malloc_trim(0);
 //    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
@@ -647,7 +650,7 @@ void Wallpaper::updateGeometry()
                 m_webView2 = nullptr;
             }
         }
-        if (m_iconView)
+        if (m_iconView && m_iconView->isVisible())
         {
             if (m_mpv) {
                 m_iconView->setGeometry(deskRect);
@@ -666,7 +669,7 @@ void Wallpaper::updateGeometry()
 
 void Wallpaper::slotMouseEvent()
 {
-    if (m_webView) {
+    if (m_webView && m_iconView->isVisible()) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
 //            qDebug() << m_currentPos;
@@ -759,4 +762,11 @@ void Wallpaper::LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos)
                                          Qt::NoModifier);
     QCoreApplication::postEvent(eventsReciverWidget, press);
 
+}
+
+void Wallpaper::setIconVisble(bool visble)
+{
+    if (m_iconView) {
+        m_iconView->setVisible(visble);
+    }
 }

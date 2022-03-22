@@ -187,7 +187,7 @@ const QPixmap Application::getThumbnailText(const QString &path)
         text = path;
     }
     QSize size(256, 144); //指定图片大小;
-    QImage image(size, QImage::Format_RGB32); //以ARGB32格式构造一个QImage,
+    QImage image(size, QImage::Format_ARGB32); //以ARGB32格式构造一个QImage,
     //image.fill(qRgba(0,0,0,100));//填充图片背景,120/250为透明度
     QPainter painter(&image); //为这个QImage构造一个QPainter
     painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);

@@ -18,10 +18,12 @@
 #include <QMimeData>
 #include <QDebug>
 
+
 #include <QMutexLocker>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <xcb/shape.h>
+
 
 #include "listview/historywidget.h"
 #include "listview/wallpaperengineplugin.h"
@@ -37,6 +39,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)
 {
+    initWallpaperWidget();
     //    saveSettings();
 
     ui->setupUi(this);
@@ -702,6 +705,7 @@ void settingWindow::slotMoreSettingSave()
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
 
     dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
+    slotShowDesktopIcon(dApp->m_moreData.isShowDesktopIcon);
     on_setBtn_clicked();
     saveSettings();
 
@@ -819,6 +823,13 @@ void settingWindow::activeWindow()
 void settingWindow::on_tansparency_slider_valueChanged(int value)
 {
     Q_EMIT dApp->sigSetTransparency(value);
+}
+
+void settingWindow::slotShowDesktopIcon(bool isIcon)
+{
+    if (m_wallpaper) {
+        m_wallpaper->setIconVisble(isIcon);
+    }
 }
 
 
@@ -1000,6 +1011,18 @@ uint32_t settingWindow::searchWindowType(int wid)
     }
 
     return reId;
+}
+
+void settingWindow::initWallpaperWidget()
+{
+    m_wallpaper = new Wallpaper(this->getCurrentPath(), this->getCurrentNumber());
+    dApp->setDesktopTransparent();
+
+    DBusWallpaperService *dbusInter = new DBusWallpaperService(m_wallpaper);
+    Q_UNUSED(dbusInter);
+
+    QDBusConnection::sessionBus().registerService("com.deepin.dde.fantascene");
+    QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", m_wallpaper);
 }
 
 

@@ -10,6 +10,9 @@
 #include <QtX11Extras/QX11Info>
 #include <qnamespace.h>
 #include <xcb/xcb_ewmh.h>
+#include "wallpaper.h"
+
+#include "dbuswallpaperservice.h"
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -55,6 +58,8 @@ public:
     void initAtom();
     //获得窗口属性,桌面，普通窗口等
     uint32_t searchWindowType(int wid);
+
+    void initWallpaperWidget();
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
 private Q_SLOTS:
@@ -119,6 +124,8 @@ private Q_SLOTS:
     void on_pluginBtn_clicked();
     void on_tansparency_slider_valueChanged(int value);
 
+    void slotShowDesktopIcon(bool isIcon);
+
 public Q_SLOTS:
     void activeWindow();
 private:
@@ -151,6 +158,8 @@ private:
     xcb_ewmh_connection_t m_ewmh_connection;
 
     QMutex m_mutex;
+
+    Wallpaper *m_wallpaper{nullptr};
 };
 
 #endif // SETTINGWINDOW_H

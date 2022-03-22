@@ -73,6 +73,13 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
     }
 
+    QString isDesktopIcon = ui->desktopShowCombox->currentText();
+    if (isDesktopIcon.contains(tr("true"))) {
+        dApp->m_moreData.isShowDesktopIcon = true;
+    } else {
+        dApp->m_moreData.isShowDesktopIcon = false;
+    }
+
     Q_EMIT dApp->moreSettingSave();
     close();
 }

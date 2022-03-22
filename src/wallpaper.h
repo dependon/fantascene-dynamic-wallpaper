@@ -21,6 +21,8 @@ public:
     void LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos);
     void LeftMouseRelease(QWidget *eventsReciverWidget, QPoint clickPos);
     void LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos);
+
+    void setIconVisble(bool visble);
 public Q_SLOTS:
     void setFile(const QString &path);
     void setVolume(const qint32 volume);
@@ -36,9 +38,11 @@ public Q_SLOTS:
 
     void slotMouseEvent();
     void slotMouseClick(const int &index);
+
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
+
 private Q_SLOTS:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
 
@@ -60,6 +64,7 @@ private:
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 //    Desktop *de{nullptr};
     IconView *m_iconView{nullptr};
+
 };
 
 #endif // WALLPAPER_H
