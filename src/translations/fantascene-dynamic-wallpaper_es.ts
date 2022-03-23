@@ -183,12 +183,12 @@
         <location filename="../moresetting.ui" line="165"/>
         <location filename="../moresetting.cpp" line="77"/>
         <source>true</source>
-        <translation type="unfinished"></translation>
+        <translation>Sí</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="170"/>
         <source>false</source>
-        <translation type="unfinished"></translation>
+        <translation>Falso</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="182"/>

@@ -34,6 +34,8 @@ public:
 
     void readSettings();
 
+    void executeSettings();
+
     QString getCurrentPath();
 
     int getCurrentNumber();

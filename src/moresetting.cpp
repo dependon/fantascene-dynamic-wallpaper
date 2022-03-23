@@ -45,7 +45,11 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->hwdecEdit->setText(data.hwdec);
     }
 
-
+    if (data.isShowDesktopIcon) {
+        ui->desktopShowCombox->setCurrentText(tr("true"));
+    } else {
+        ui->desktopShowCombox->setCurrentText(tr("false"));
+    }
 
 }
 

@@ -650,6 +650,7 @@ void Wallpaper::updateGeometry()
                 m_webView2 = nullptr;
             }
         }
+        setIconVisble(dApp->m_moreData.isShowDesktopIcon);
         if (m_iconView && m_iconView->isVisible())
         {
             if (m_mpv) {
@@ -672,13 +673,8 @@ void Wallpaper::slotMouseEvent()
     if (m_webView && m_iconView->isVisible()) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
-//            qDebug() << m_currentPos;
             m_currentPos = pos;
-//            QRect rec2 = qApp->desktop()->screenGeometry();
-//            if (pos.x() > rec2.width()) {
-//                pos = QPoint(pos.x() - rec2.width(), pos.y());
-//            }
-//            qDebug() << pos;
+
             for (QObject *obj : m_webView->children()) {
                 QWidget *wgt = qobject_cast<QWidget *>(obj);
                 if (wgt) {
