@@ -39,17 +39,17 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)
 {
-    initWallpaperWidget();
-    //    saveSettings();
-
     ui->setupUi(this);
+    readSettings();
+    initWallpaperWidget();
+
     ui->tansparency_slider->hide();
     ui->label_8->hide();
     /*qApp->*/installEventFilter(this);
     ui->pathEdit->installEventFilter(this);
     ui->pathEdit->setAcceptDrops(true);
     setAcceptDrops(true);
-    readSettings();
+
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText(tr("Exit"));
@@ -168,6 +168,8 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
     initAtom();
 
+    executeSettings();
+
 }
 void settingWindow::pathChanged(const QString &path)
 {
@@ -206,12 +208,15 @@ void settingWindow::readSettings()
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
     m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
+
     dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
     dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
     dApp->m_wallpaperEnginePath = settings.value("WallPaper/wallpaperEnginePath").toString();
     dApp->m_isPlayList = settings.value("WallPaper/isPlayList").toBool();
     dApp->m_PlaylistTimer = settings.value("WallPaper/playlistTimer").toInt();
+    dApp->m_moreData.isShowDesktopIcon = settings.value("WallPaper/desktopShow").toBool();
+
     dApp->setisPlayList(dApp->m_isPlayList);
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);
 
@@ -249,6 +254,11 @@ void settingWindow::readSettings()
 
 
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
+}
+
+void settingWindow::executeSettings()
+{
+
     if (!m_currentMode.isEmpty()) {
         ui->comboBox->setCurrentText(m_currentMode);
         setScreenMode(m_currentMode);
@@ -261,48 +271,42 @@ void settingWindow::readSettings()
         }
     }
 
-    QTimer::singleShot(300, this, [ = ] {
-        ui->widthPY->setText(QString::number(dApp->m_manual.x()));
-        ui->heightPY->setText(QString::number(dApp->m_manual.y()));
-        ui->width->setText(QString::number(dApp->m_manual.width()));
-        ui->height->setText(QString::number(dApp->m_manual.height()));
+    ui->widthPY->setText(QString::number(dApp->m_manual.x()));
+    ui->heightPY->setText(QString::number(dApp->m_manual.y()));
+    ui->width->setText(QString::number(dApp->m_manual.width()));
+    ui->height->setText(QString::number(dApp->m_manual.height()));
 
-        if (m_voiceVolume >= 0 && m_voiceVolume < 100)
-        {
-            ui->Slider->setValue(m_voiceVolume);
-            on_Slider_valueChanged(m_voiceVolume);
-        }
-        if (!m_currentMode.isEmpty())
-        {
-            ui->comboBox->setCurrentText(m_currentMode);
-            setScreenMode(m_currentMode);
-        }
-        if (m_crrenNumber > 1)
-        {
-            //        ui->autoisMScreen->setCheckState(Qt::Checked);
-        }
-        if (m_isAutoStart > 0)
-        {
-            ui->autoStartBox->setCheckState(Qt::Checked);
-        }
+    if (m_voiceVolume >= 0 && m_voiceVolume < 100) {
+        ui->Slider->setValue(m_voiceVolume);
+        on_Slider_valueChanged(m_voiceVolume);
+    }
+    if (!m_currentMode.isEmpty()) {
+        ui->comboBox->setCurrentText(m_currentMode);
+        setScreenMode(m_currentMode);
+    }
+    if (m_crrenNumber > 1) {
+        //        ui->autoisMScreen->setCheckState(Qt::Checked);
+    }
+    if (m_isAutoStart > 0) {
+        ui->autoStartBox->setCheckState(Qt::Checked);
+    }
 
-        on_videoBLCombox_activated(m_videoASpectStr);
+    on_videoBLCombox_activated(m_videoASpectStr);
 
 
-    });
-    QTimer::singleShot(2000, this, [ = ] {
-        if (dApp->m_moreData.isAuto == 1)
-        {
-//            ui->checkBox->setCheckState(Qt::Checked);
-        }
-        if (!dApp->m_moreData.hwdec.isEmpty())
-        {
-            dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
-        }
-        on_checkBox_stateChanged(dApp->m_moreData.isAuto);
-    });
 
-    qDebug() << "x";
+    if (dApp->m_moreData.isAuto == 1) {
+
+    }
+    if (!dApp->m_moreData.hwdec.isEmpty()) {
+        dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
+    }
+    on_checkBox_stateChanged(dApp->m_moreData.isAuto);
+
+    if (m_wallpaper) {
+        m_wallpaper->setIconVisble(dApp->m_moreData.isShowDesktopIcon);
+    }
+
 }
 
 void settingWindow::saveSettings()
@@ -323,6 +327,7 @@ void settingWindow::saveSettings()
     settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
     settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
     settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
+    settings.setValue("WallPaper/desktopShow", dApp->m_moreData.isShowDesktopIcon);
     settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
     settings.setValue("WallPaper/isPlayList", dApp->m_isPlayList);
     settings.setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
@@ -463,8 +468,8 @@ void settingWindow::on_Slider_valueChanged(int value)
 {
     Q_EMIT dApp->setMpvVolume(value);
     m_voiceVolume = value;
-
-//    saveSettings();
+    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
+    settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
 }
 
 void settingWindow::on_startBtn_clicked()
@@ -745,15 +750,9 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                 while (!m_stopx11Thread) {
                     if (dApp->m_isNoMpvPause) {
                         int index = 0;
-                        //                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
-                        for (auto wid : currentWorkWindow()) {
-                            //                            if (wid == winId()) {
-                            //                                continue;
-                            //                                qDebug() << "this";
-                            //                            }
 
-                            //                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
-                            //                            //判断窗口是否有最大窗口
+                        for (auto wid : currentWorkWindow()) {
+
                             QRect rect = geometry(wid);
                             Qt::WindowState state = getWindowState(wid);
 
@@ -928,13 +927,7 @@ QVector<uint> settingWindow::getCurrentWorkspaceWindows()
 
 QRect settingWindow::geometry(WId id) const
 {
-//    extern Status XGetWindowAttributes(
-//        Display*      /* display */,
-//        Window        /* w */,
-//        XWindowAttributes*    /* window_attributes_return */
-//    );
 
-    //    WindowsMatchingPid match(display, XDefaultRootWindow(display), pid);
     XWindowAttributes bute;
     XGetWindowAttributes(QX11Info::display(), id, &bute);
     QRect rect;
