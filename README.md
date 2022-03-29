@@ -59,7 +59,7 @@ liuminghang0821@gmail.com
 
 liuminghang0821@qq.com
 
-## thanks
+## thanks(In no particular order)
 Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support
 
 Thank [taotieren](https://github.com/taotieren) for his help on arch
