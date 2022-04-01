@@ -41,7 +41,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 {
     ui->setupUi(this);
     readSettings();
-    initWallpaperWidget();
+
 
     ui->tansparency_slider->hide();
     ui->label_8->hide();
@@ -168,6 +168,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
     initAtom();
 
+    initWallpaperWidget();
     executeSettings();
 
 }
