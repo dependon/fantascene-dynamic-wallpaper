@@ -1,7 +1,9 @@
 ## What is this ? 
 Managed animated wallpaper based on X11 under Linux
 
-## If you like this toy, Give me a start
+[![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
+
+## If you like this toy, Give me a star
 Detailed instructions will be written to wiki later
 
 ## deepin linux 
@@ -81,6 +83,24 @@ If there is a better way to make dynamic wallpaper, welcome to discuss and share
 github:https://github.com/dependon/fantascene-dynamic-wallpaper
 
 gitee:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
+
+## linux demo show 
+
+manjaro xfce4:
+
+[![biMa9I.gif](https://s4.ax1x.com/2022/02/24/biMa9I.gif)](https://imgtu.com/i/biMa9I)
+
+manjaro kde :
+
+[![biMN4A.gif](https://s4.ax1x.com/2022/02/24/biMN4A.gif)](https://imgtu.com/i/biMN4A)
+
+cutefish :
+
+[![biKHpt.gif](https://s4.ax1x.com/2022/02/24/biKHpt.gif)](https://imgtu.com/i/biKHpt)
+
+ubuntu :
+
+[![biuJKO.gif](https://s4.ax1x.com/2022/02/24/biuJKO.gif)](https://imgtu.com/i/biuJKO)
 
 ## License
 fantascene-dynamic-wallpaper is released under GPLv3+. 
