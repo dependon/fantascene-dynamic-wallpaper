@@ -88,7 +88,7 @@ gitee:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
 manjaro xfce4:
 
-[![biMa9I.gif](https://s4.ax1x.com/2022/02/24/biMa9I.gif)](https://imgtu.com/i/biMa9I)
+[![biMa9I.md.gif](https://s4.ax1x.com/2022/02/24/biMa9I.md.gif)](https://imgtu.com/i/biMa9I)
 
 manjaro kde :
 
