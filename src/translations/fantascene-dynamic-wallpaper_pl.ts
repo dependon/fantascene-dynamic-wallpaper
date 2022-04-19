@@ -346,7 +346,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="91"/>
         <source>Add Playlist</source>
-        <translation>Dodaj playlistę</translation>
+        <translation>Dodaj do playlisty</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="105"/>
@@ -377,7 +377,7 @@
     <message>
         <location filename="../listview/historywidget.cpp" line="120"/>
         <source>Delete all playback ?</source>
-        <translation>Czy chcesz usunąć cały playback?</translation>
+        <translation>Czy chcesz usunąć całą kolejkę odtwarzania?</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="473"/>
-        <source>Wallpaper Engine-plugin</source>
+        <source>Wallpaper Engine-wtyczka</source>
         <translation></translation>
     </message>
     <message>
