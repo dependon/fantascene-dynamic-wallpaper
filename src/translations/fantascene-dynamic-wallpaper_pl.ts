@@ -510,7 +510,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="473"/>
-        <source>Wallpaper Engine-plugin</source>
+        <source>Wallpaper Engine-wtyczka</source>
         <translation></translation>
     </message>
     <message>
