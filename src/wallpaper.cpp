@@ -47,7 +47,6 @@ using namespace std;
 
 #include "application.h"
 
-#include "desktop.h"
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
     , m_currentPath(path)

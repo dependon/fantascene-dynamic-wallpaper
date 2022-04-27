@@ -23,7 +23,6 @@ SOURCES += main.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \
     listview/playlistsettingdialog.cpp \
-    desktop.cpp \
     desktop/filemodel.cpp \
     desktop/fileoperationjob.cpp \
     desktop/iconprovider.cpp \
@@ -45,7 +44,6 @@ HEADERS += \
     listview/wallpaperengineplugin.h \
     webwidget.h \
     listview/playlistsettingdialog.h \
-    desktop.h \
     desktop/filemodel.h \
     desktop/fileoperationjob.h \
     desktop/iconprovider.h \
