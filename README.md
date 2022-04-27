@@ -1,21 +1,59 @@
-## What is this ? 
-Managed animated wallpaper based on X11 under Linux
+# Fantascene-dynamic-wallpaper
+
+### Managed animated wallpaper based on X11 under Linux.
+
+### Give me a star on github page if you like this toy :)
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
-## If you like this toy, Give me a star
-Detailed instructions will be written to wiki later
 
-## deepin linux 
+## License
+```
+COPYRIGHT (C) 2020-2022 LIUMINGHANG <liuminghang0821@gmail.com>
+```
+
+THE PROJECT IS RELEASED UNDER THE：
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
+
+
+## Wiki
+
+Detailed instructions will be written to wiki later.
+
+
+## Installation
+
+fedora and centos stream
+
+Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
+
+deepin
+```
 sudo apt install com.github.fantascene
+```
 
-## manjaro linux (arch)
+uos
+```
+Please download and install the package from release page
+```
+
+manjaro
+```
 yay -S fantascene-dynamic-wallpaper
+```
 
+archlinux
+```
 yay -S fantascene-dynamic-wallpaper-git
+```
 
 
-## build dependencies(ubuntu /deepin / other linux)
+## Build Dependencies
+
+debian/Deepin/Other
+
+```
 qt >=5.8
 
 mpv >=29.0
@@ -23,8 +61,18 @@ mpv >=29.0
 sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev qt5-default
 
 sudo apt install libxcb-shape0-dev
+```
 
-## build
+
+## Build from SCM
+
+debian and ubuntu
+```
+dpkg-buildpackage -b -us -uc
+```
+
+Other Linux variants
+```
 git clone https://github.com/dependon/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
@@ -35,74 +83,39 @@ cd build
 
 qmake ..
 
-make
-
-## Original name
-deepin-dreamscene-ui
-
-## Now it's a dynamic wallpaper demo [video wallpaper demo for deepin/uos]
-The test software package of deepin and UOS system can be downloaded from the right page
-
-## demo video:
-[https://www.bilibili.com/video/BV1bB4y1c7Fq](https://www.bilibili.com/video/BV1bB4y1c7Fq/)
-
-## How to package when the code can be compiled
-
-After modifying the code, open the terminal directly in the main directory of the code and execute 
-
-dpkg-buildpackage - b - us - uc 
-
-to get DEB package
+make all # For debug and release
+```
 
 
-## Contact Me
+## Credit
 
-liuminghang0821@gmail.com
+Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
 
-liuminghang0821@qq.com
+Thank [taotieren](https://github.com/taotieren) for his help on arch.
 
-## thanks(In no particular order)
-Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support
+Thank [gesangtome](https://github.com/gesangtome) for fixing some project bugs.
 
-Thank [taotieren](https://github.com/taotieren) for his help on arch
+Thanks for the Polish translation provided by  [raspin0](https://github.com/raspin0).
 
-Thank [gesangtome](https://github.com/gesangtome) for fixing some project bugs
+Thanks for the Spanish translation provided by [Alvaro samudio](https://github.com/alvarosamudio).
 
-Thanks for the Polish translation provided by  [raspin0](https://github.com/raspin0)
 
-Thanks for the Spanish translation provided by [Alvaro samudio](https://github.com/alvarosamudio)
+## Contribute
+```
+Contributions are always welcome, Please create a new PR or issue if necessary.
+```
 
-Thank you for submitting bugs by email
 
-## other
+## ScreenShot
 
-Unreasonable demands can be mentioned at will
+#### manjaro xfce4
+<img src="https://s4.ax1x.com/2022/02/24/biMa9I.gif" alt="show" />
 
-If there is a better way to make dynamic wallpaper, welcome to discuss and share
+#### manjaro kde
+<img src="https://s4.ax1x.com/2022/02/24/biMN4A.gif" alt="show" />
 
-github:https://github.com/dependon/fantascene-dynamic-wallpaper
+#### cutefish
+<img src="https://s4.ax1x.com/2022/02/24/biKHpt.gif" alt="show" />
 
-gitee:https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
-
-## linux demo show 
-
-manjaro xfce4:
-
-[![biMa9I.gif](https://s4.ax1x.com/2022/02/24/biMa9I.gif)](https://imgtu.com/i/biMa9I)
-
-manjaro kde :
-
-[![biMN4A.gif](https://s4.ax1x.com/2022/02/24/biMN4A.gif)](https://imgtu.com/i/biMN4A)
-
-cutefish :
-
-[![biKHpt.gif](https://s4.ax1x.com/2022/02/24/biKHpt.gif)](https://imgtu.com/i/biKHpt)
-
-ubuntu :
-
-[![biuJKO.gif](https://s4.ax1x.com/2022/02/24/biuJKO.gif)](https://imgtu.com/i/biuJKO)
-
-## License
-fantascene-dynamic-wallpaper is released under GPLv3+. 
-
-Copyright (C) 2020 ~ 2022 LiuMingHang. 
+#### ubuntu
+<img src="https://s4.ax1x.com/2022/02/24/biuJKO.gif" alt="show" />
