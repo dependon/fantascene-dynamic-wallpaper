@@ -23,6 +23,12 @@ include*/
 *.qm
 *.autosave
 
+src/Makefile.fantascene-dynamic-wallpaper
+src/Makefile.fantascene-dynamic-wallpaper.Debug
+src/Makefile.fantascene-dynamic-wallpaper.Release
+src/debug/
+src/release/
+
 vendor/include/*
 vendor/lib/*
 
