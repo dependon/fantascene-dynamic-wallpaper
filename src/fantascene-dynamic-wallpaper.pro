@@ -54,12 +54,13 @@ RESOURCES += \
     qrc.qrc
 
 CONFIG(release, debug|release) {
-    TRANSLATIONS = $$files($$PWD/translations/*.ts)
-    #遍历目录中的ts文件，调用lrelease将其生成为qm文件
-    for(tsfile, TRANSLATIONS) {
-        qmfile = $$replace(tsfile, .ts$, .qm)
-        system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
-    }
+}
+
+# No matter the build type is release or debug, we always need to generate the qm file.
+TRANSLATIONS = $$files($$PWD/translations/*.ts)
+for(tsfile, TRANSLATIONS) {
+    qmfile = $$replace(tsfile, .ts$, .qm)
+    system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
 }
 
 OTHER_FILES+=$$PWD/install/*
