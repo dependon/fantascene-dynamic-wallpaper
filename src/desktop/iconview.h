@@ -31,11 +31,14 @@ class QMenu;
 class IconView : public QListView
 {
     Q_OBJECT
+
 public:
+    QString readSettings(const QString &path, const QString &group, const QString &key);
     IconView(int id, QString rootPath, QWidget *parent = nullptr);
     ~IconView() override;
     void copyImageToClipboard(const QStringList &paths);
     QString terminalPath();
+
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -47,31 +50,27 @@ Q_SIGNALS :
     void sigMouseMove();
     void sigMouseClick(const int &index);
     void sigMouseDclick();
+
 public Q_SLOTS:
     void copyFile();
     void pauseFile();
     void openFile();
     void deleteFile();
     void renameFile();
-
     void slotsnewFolder();
     void slotsnewTxt();
     void slotsopenTerminal();
 
 protected:
     void paintEvent(QPaintEvent *e) override;
-
     void mousePressEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
     void focusOutEvent(QFocusEvent *e) override;
-
     void closeEvent(QCloseEvent *e) override;
-
     void dragEnterEvent(QDragEnterEvent *e) override;
     void dragMoveEvent(QDragMoveEvent *e) override;
     void dropEvent(QDropEvent *e) override;
-
     void keyPressEvent(QKeyEvent *event) override;
 };
 

@@ -32,8 +32,12 @@
 #include <QScrollBar>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QMimeDatabase>
+#include <QSettings>
+#include <QModelIndex>
+#include <QFileInfo>
 
-#include <gio/gdesktopappinfo.h>
+//#include <gio/gdesktopappinfo.h>
 
 #include <QMenu>
 #include <QAction>
@@ -49,6 +53,15 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 #include <QProcess>
+
+QString IconView::readSettings(const QString &path, const QString &group, const QString &key)
+{
+    QSettings settings(path, QSettings::IniFormat);
+    settings.setIniCodec("UTF-8");
+    settings.beginGroup(group);
+    QString value = settings.value(key).toString();
+    return value;
+}
 
 IconView::IconView(int id, QString rootPath, QWidget *parent)
     : QListView(parent)
@@ -227,24 +240,14 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     });
 
     connect(openAction, &QAction::triggered, this, &IconView::openFile);
-
     connect(selectAllAction, &QAction::triggered,  this, &IconView::selectAll);
-
     connect(copyAction, &QAction::triggered, this, &IconView::copyFile);
-
     connect(pasteAction, &QAction::triggered, this, &IconView::pauseFile);
-
     connect(renameAction, &QAction::triggered, this, &IconView::renameFile);
-
     connect(trashAction, &QAction::triggered, this, &IconView::deleteFile);
-
     connect(newFolderAction, &QAction::triggered, this, &IconView::slotsnewFolder);
-
     connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
-
     connect(terminalAction, &QAction::triggered, this, &IconView::slotsopenTerminal);
-
-
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
@@ -345,27 +348,28 @@ void IconView::pauseFile()
 
 void IconView::openFile()
 {
-    QModelIndexList list = selectedIndexes();
-    if (list.count() == 1) {
-        qDebug() << fileModel->filePath(list.at(0));
-        if (!fileModel->filePath(list.at(0)).endsWith(QString(".desktop"))) {
-            QUrl url("file://" + fileModel->filePath(list.at(0)));
-            QDesktopServices::openUrl(url);
+    QProcess *proc = new QProcess;
+    QModelIndexList indexes = selectedIndexes();
+
+    for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+        QString fileName = fileModel->filePath(indexes[i]);
+        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+
+        qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
+        if (MIME == "application/x-desktop") {
+            QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
+            /*
+            * Exception: Do not running when sexec is empty,
+            * this will This can lead to potential problems :(
+            */
+            if (!sexec.isNull())
+                proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
+                proc->start(sexec);
+        } else if (MIME == "application/vnd.appimage") {
+            proc->start(fileName);
         } else {
-            qDebug() << "desktop file";
-            std::string tmp_str = fileModel->filePath(list.at(0)).toStdString();
-            const char *file_path = tmp_str.c_str();
-            GDesktopAppInfo *app_info = g_desktop_app_info_new_from_filename(file_path);
-            g_desktop_app_info_launch_uris_as_manager(app_info,
-                                                      nullptr,
-                                                      nullptr,
-                                                      G_SPAWN_DEFAULT,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr);
-            g_object_unref(app_info);
+            QString Url = QString("file:///") + fileName;
+            QDesktopServices::openUrl(QUrl(Url));
         }
     }
 }
