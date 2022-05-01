@@ -25,15 +25,6 @@
 /* instance lock name */
 #define INSTANCE_LOCK "single"
 
-void cpToTmp()
-{
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    QDir dir(path);
-    if (!dir.exists()) {
-        QDir dir1;
-        dir1.mkpath(path);
-    }
-}
 int main(int argc, char *argv[])
 {
     /*
