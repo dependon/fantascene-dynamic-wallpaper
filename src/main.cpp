@@ -47,41 +47,35 @@ int main(int argc, char *argv[])
 
     setlocale(LC_NUMERIC, "C");
 
-    if (checkOnly()) {
-        bool isShowMainWindow = true;
+    bool isShowMainWindow = true;
 
-        QMainWindow *mainwindw = new QMainWindow();
-        settingWindow *window = new settingWindow(mainwindw, mainwindw);
-        mainwindw->setCentralWidget(window);
-        int index = 0;
-        for (const QString &arg : qApp->arguments()) {
-            if (arg == "min") {
-                index++;
-            }
+    QMainWindow *mainwindw = new QMainWindow();
+    settingWindow *window = new settingWindow(mainwindw, mainwindw);
+    mainwindw->setCentralWidget(window);
+    int index = 0;
+    for (const QString &arg : qApp->arguments()) {
+        if (arg == "min") {
+            index++;
         }
-        if (index == 0 && isShowMainWindow) {
-//            mainwindw->show();
-        }
-        mainwindw->setFixedSize(QSize(640, 500));
-        mainwindw->setWindowTitle("动态壁纸");
-        mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
+    }
+    if (index == 0 && isShowMainWindow) {
+        //mainwindw->show();
+    }
+    mainwindw->setFixedSize(QSize(640, 500));
+    mainwindw->setWindowTitle("动态壁纸");
+    mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
-        mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
+    mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
-        QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
-
-        QByteArray cookie = qgetenv(envName.toUtf8().data());
-        qunsetenv(envName.toUtf8().data());
-
-        if (!cookie.isEmpty()) {
-            QDBusInterface iface("com.deepin.SessionManager",
-                                 "/com/deepin/SessionManager",
-                                 "com.deepin.SessionManager",
-                                 QDBusConnection::sessionBus());
-            iface.asyncCall("Register", QString(cookie));
-        }
-
-
+    QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
+    QByteArray cookie = qgetenv(envName.toUtf8().data());
+    qunsetenv(envName.toUtf8().data());
+    if (!cookie.isEmpty()) {
+        QDBusInterface iface("com.deepin.SessionManager",
+                             "/com/deepin/SessionManager",
+                             "com.deepin.SessionManager",
+                             QDBusConnection::sessionBus());
+        iface.asyncCall("Register", QString(cookie));
     } else {
         QDBusInterface iface("com.deepin.dde.fantascene",
                              "/com/deepin/dde/fantascene",
@@ -90,7 +84,6 @@ int main(int argc, char *argv[])
         iface.asyncCall("activeWindow");
         return 0;
     }
-
     return a.exec();
 }
 
