@@ -16,7 +16,8 @@
 #include <QFile>
 #include <QStandardPaths>
 
-#define TRANSALTIONPATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+/* Translation file path */
+#define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
 
 /* instance lock path */
 #define INSTANCE_LOCK_PATH ".cache/deepin/fantascene"
@@ -46,21 +47,13 @@ int main(int argc, char *argv[])
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
+
     a.setApplicationVersion("1.0.0");
+
 #ifdef Q_OS_LINUX
-    QDir dir(TRANSALTIONPATH);
-    if (dir.exists()) {
-        QDirIterator qmIt(TRANSALTIONPATH, QStringList() << QString("*%1.qm").arg(QLocale::system().name()), QDir::Files);
-        while (qmIt.hasNext()) {
-            qmIt.next();
-            QFileInfo finfo = qmIt.fileInfo();
-            QTranslator *translator = new QTranslator;
-            if (translator->load(finfo.baseName(), finfo.absolutePath())) {
-                qApp->installTranslator(translator);
-            }
-        }
-    }
+    load_translation_files(TRANSALTION_PATH);
 #endif
+
     setlocale(LC_NUMERIC, "C");
 
     if (checkOnly()) {
