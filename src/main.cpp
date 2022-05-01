@@ -1,9 +1,9 @@
 #include <malloc.h>
 
+#include "instance.h"
 #include "application.h"
 #include "wallpaper.h"
 #include "dbuswallpaperservice.h"
-
 #include "settingwindow.h"
 
 #include <QObject>
@@ -16,38 +16,13 @@
 #include <QFile>
 #include <QStandardPaths>
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-
 #define TRANSALTIONPATH "/usr/share/fantascene-dynamic-wallpaper/translations"
 
-bool checkOnly()
-{
-    //single
-    QString userName = QDir::homePath().section("/", -1, -1);
-    std::string path = (QDir::homePath() + "/.cache/deepin/fantascene/").toStdString();
-    QDir tdir(path.c_str());
-    if (!tdir.exists()) {
-        bool ret =  tdir.mkpath(path.c_str());
-        qDebug() << ret ;
-    }
+/* instance lock path */
+#define INSTANCE_LOCK_PATH ".cache/deepin/fantascene"
 
-    path += "single";
-    int fd = open(path.c_str(), O_WRONLY | O_CREAT, 0644);
-    int flock = lockf(fd, F_TLOCK, 0);
-
-    if (fd == -1) {
-        perror("open lockfile/n");
-        return false;
-    }
-    if (flock == -1) {
-        perror("lock file error/n");
-        return false;
-    }
-    return true;
-}
+/* instance lock name */
+#define INSTANCE_LOCK "single"
 
 void cpToTmp()
 {
@@ -60,8 +35,13 @@ void cpToTmp()
 }
 int main(int argc, char *argv[])
 {
-    cpToTmp();
-//    QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
+    /*
+     * Check if there are multiple instances
+     * If there are multiple instances, exit now.
+    */
+    if (!check_instance_status(INSTANCE_LOCK_PATH,INSTANCE_LOCK)) {
+        exit (1);
+    }
 
     mallopt(M_ARENA_MAX, 1);
 
