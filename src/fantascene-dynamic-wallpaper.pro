@@ -27,6 +27,7 @@ LIBS +=-lgio-2.0 -lglib-2.0
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
+    instance.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -46,6 +47,7 @@ SOURCES += main.cpp \
     desktop/delegateicon.cpp
 
 HEADERS += \
+    instance.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \
