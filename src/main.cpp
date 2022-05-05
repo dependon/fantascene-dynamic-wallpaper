@@ -82,6 +82,7 @@ int main(int argc, char *argv[])
                              "com.deepin.dde.fantascene",
                              QDBusConnection::sessionBus());
         iface.asyncCall("activeWindow");
+        return 0;
     }
     return a.exec();
 }
