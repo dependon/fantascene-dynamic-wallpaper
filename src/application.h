@@ -74,9 +74,7 @@ Q_SIGNALS:
     void sigReadPlayerConfig();
 
 public:
-    QThread *m_startDesktop{nullptr};
-    QProcess *m_startDesktopProcess{nullptr};
-    qint64 m_processId{0};
+
     QRect m_manual{0, 0, 0, 0};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
@@ -85,7 +83,6 @@ public:
     QStringList m_playlistPath;
     QMutex mutex;
 
-    QMap <unsigned long, bool>m_x11WindowFuscreen;
     QVector <unsigned long> m_screenWid;
     bool m_isNoMpvPause{true};
     bool m_isPlayList{false};
