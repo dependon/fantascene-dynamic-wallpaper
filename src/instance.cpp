@@ -8,14 +8,40 @@
 
 #include "instance.h"
 
-bool check_instance_status(const QString path, const QString file)
-{
-    const QString lock = QDir::homePath() + "/" + path + file;
-    QLockFile lockFile(lock);
+#include <QDir>
+#include <QDirIterator>
+#include <QLockFile>
+#include <QDebug>
+#include <QApplication>
+#include <QTranslator>
 
-    if (!lockFile.tryLock(300))
-    {
-        qDebug() << "The application is already running!";
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <iostream>
+
+bool check_instance_status(const QString pathFile, const QString file)
+{
+    //single
+    QString userName = QDir::homePath().section("/", -1, -1);
+    std::string path = (QDir::homePath() +pathFile).toStdString();
+    QDir tdir(path.c_str());
+    if (!tdir.exists()) {
+        bool ret =  tdir.mkpath(path.c_str());
+        qDebug() << ret ;
+    }
+
+    path += "single";
+    int fd = open(path.c_str(), O_WRONLY | O_CREAT, 0644);
+    int flock = lockf(fd, F_TLOCK, 0);
+
+    if (fd == -1) {
+        perror("open lockfile/n");
+        return false;
+    }
+    if (flock == -1) {
+        perror("lock file error/n");
         return false;
     }
     return true;

@@ -27,14 +27,6 @@
 
 int main(int argc, char *argv[])
 {
-    /*
-     * Check if there are multiple instances
-     * If there are multiple instances, exit now.
-    */
-    if (!check_instance_status(INSTANCE_LOCK_PATH,INSTANCE_LOCK)) {
-        exit (1);
-    }
-
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
@@ -82,7 +74,13 @@ int main(int argc, char *argv[])
                              "com.deepin.dde.fantascene",
                              QDBusConnection::sessionBus());
         iface.asyncCall("activeWindow");
-        return 0;
+        /*
+         * Check if there are multiple instances
+         * If there are multiple instances, exit now.
+        */
+        if (!check_instance_status(INSTANCE_LOCK_PATH,INSTANCE_LOCK)) {
+            return 0;
+        }
     }
     return a.exec();
 }
