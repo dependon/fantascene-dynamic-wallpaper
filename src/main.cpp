@@ -1,6 +1,6 @@
 #include <malloc.h>
 
-#include "instance.h"
+#include "loadTranslation.h"
 #include "application.h"
 #include "wallpaper.h"
 #include "dbuswallpaperservice.h"
@@ -20,7 +20,7 @@
 #define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
 
 /* instance lock path */
-#define INSTANCE_LOCK_PATH ".cache/deepin/fantascene"
+#define INSTANCE_LOCK_PATH ".cache/fantascene"
 
 /* instance lock name */
 #define INSTANCE_LOCK "single"
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
     QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
     QByteArray cookie = qgetenv(envName.toUtf8().data());
     qunsetenv(envName.toUtf8().data());
-    if (!cookie.isEmpty()) {
+    if (cookie.isEmpty()) {
         QDBusInterface iface("com.deepin.SessionManager",
                              "/com/deepin/SessionManager",
                              "com.deepin.SessionManager",
@@ -74,14 +74,20 @@ int main(int argc, char *argv[])
                              "com.deepin.dde.fantascene",
                              QDBusConnection::sessionBus());
         iface.asyncCall("activeWindow");
-        /*
-         * Check if there are multiple instances
-         * If there are multiple instances, exit now.
-        */
-        if (!check_instance_status(INSTANCE_LOCK_PATH,INSTANCE_LOCK)) {
-            return 0;
-        }
     }
+    /*
+     * Check if there are multiple instances
+     * If there are multiple instances, exit now.
+    */
+    const QString lock = QDir::homePath() + "/" + INSTANCE_LOCK_PATH + INSTANCE_LOCK;
+    QLockFile lockFile(lock);
+
+    if (!lockFile.tryLock(300))
+    {
+        qDebug() << "The application is already running!";
+        return 0;
+    }
+
     return a.exec();
 }
 

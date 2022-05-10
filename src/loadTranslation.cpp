@@ -6,7 +6,7 @@
  * @ Returns true if status checks are successful
  */
 
-#include "instance.h"
+#include "loadTranslation.h"
 
 #include <QDir>
 #include <QDirIterator>
@@ -14,38 +14,6 @@
 #include <QDebug>
 #include <QApplication>
 #include <QTranslator>
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <iostream>
-
-bool check_instance_status(const QString pathFile, const QString file)
-{
-    //single
-    QString userName = QDir::homePath().section("/", -1, -1);
-    std::string path = (QDir::homePath() +pathFile).toStdString();
-    QDir tdir(path.c_str());
-    if (!tdir.exists()) {
-        bool ret =  tdir.mkpath(path.c_str());
-        qDebug() << ret ;
-    }
-
-    path += "single";
-    int fd = open(path.c_str(), O_WRONLY | O_CREAT, 0644);
-    int flock = lockf(fd, F_TLOCK, 0);
-
-    if (fd == -1) {
-        perror("open lockfile/n");
-        return false;
-    }
-    if (flock == -1) {
-        perror("lock file error/n");
-        return false;
-    }
-    return true;
-}
 
 #ifdef Q_OS_LINUX
 /*
