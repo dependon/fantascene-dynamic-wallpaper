@@ -83,26 +83,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         });
         updateGeometry();
     });
-//    connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
-//        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_mpv2 && m_mpv)
-//        {
-//            if (!m_mpv2) {
-//                m_mpv2 = new MpvWidget();
-//            }
-//            layout->addWidget(m_label2);
-//        } else
-//        {
-//            if (m_mpv2) {
-//                layout->removeWidget(m_mpv2);
-//                m_mpv2->deleteLater();
-//                m_mpv2 = nullptr;
-//            }
-//        }
-//        QTimer::singleShot(1000, [ = ] {
-//            updateGeometry();
-//        });
-//        updateGeometry();
-//    });
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -112,8 +92,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
     m_mouseWebEventTimer->start(30);
 
-//    de = new Desktop(this);
     QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
     m_iconView = new IconView(0, paths, this);
     connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
     m_iconView->move(0, 0);
@@ -122,7 +102,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
         int index1 = 0;
-        qDebug() << "ssss" << index1;
         for (const QString &arg : qApp->arguments())
         {
             if (index != 0) {
@@ -130,12 +109,10 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                     setFile(arg);
                     play();
                     index1++;
-                    qDebug() << "ssss1" << index1;
                 }
             }
             index++;
         }
-        qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
             QString playPath = "/opt/durapps/fantascene-dynamic-wallpaper/09.mp4";
@@ -254,7 +231,7 @@ void Wallpaper::setFile(const QString &path)
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_mpv2) {
             layout()->removeWidget(m_mpv2);
-            delete m_mpv2;
+            m_mpv2->deleteLater();
             m_mpv2 = nullptr;
         }
         if (m_mpv) {
@@ -313,11 +290,11 @@ void Wallpaper::setFile(const QString &path)
             m_mpv = new MpvWidget(this);
             m_mpv->setGeometry(geometry());
 
-            layout()->addWidget(m_mpv);
             m_mpv->setProperty("loop", true);
             m_mpv->setProperty("panscan", 1);
             m_mpv->setGeometry(geometry());
             m_mpv->show();
+            layout()->addWidget(m_mpv);
 
 
             if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {

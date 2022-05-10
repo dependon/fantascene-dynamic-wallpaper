@@ -61,7 +61,6 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_x11WindowFuscreen.clear();
     });
 
     QAction *setScreenshotAction = new QAction(m_traymenu);
@@ -477,7 +476,6 @@ void settingWindow::on_startBtn_clicked()
 {
     Q_EMIT dApp->setMpvPlay();
     dApp->m_isNoMpvPause = true;
-    dApp->m_x11WindowFuscreen.clear();
 }
 
 void settingWindow::on_startScreen_clicked()
@@ -737,7 +735,6 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
             //            m_x11thread->terminate();
             m_x11thread = nullptr;
         }
-        dApp->m_x11WindowFuscreen.clear();
         if (dApp->m_isNoMpvPause) {
             dApp->setMpvPlay();
         }
