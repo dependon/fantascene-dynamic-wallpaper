@@ -39,24 +39,30 @@ int main(int argc, char *argv[])
 
     setlocale(LC_NUMERIC, "C");
 
-    bool isShowMainWindow = true;
+    /*
+     * Check if there are multiple instances
+     * If there are multiple instances, exit now.
+    */
+    const QString lock = QDir::homePath() + "/" + INSTANCE_LOCK_PATH + INSTANCE_LOCK;
+    QLockFile lockFile(lock);
+
+    if (!lockFile.tryLock(300))
+    {
+        qDebug() << "The application is already running!";
+        QDBusInterface iface("com.deepin.dde.fantascene",
+                             "/com/deepin/dde/fantascene",
+                             "com.deepin.dde.fantascene",
+                             QDBusConnection::sessionBus());
+        iface.asyncCall("activeWindow");
+        return 0;
+    }
 
     QMainWindow *mainwindw = new QMainWindow();
     settingWindow *window = new settingWindow(mainwindw, mainwindw);
     mainwindw->setCentralWidget(window);
-    int index = 0;
-    for (const QString &arg : qApp->arguments()) {
-        if (arg == "min") {
-            index++;
-        }
-    }
-    if (index == 0 && isShowMainWindow) {
-        //mainwindw->show();
-    }
     mainwindw->setFixedSize(QSize(640, 500));
-    mainwindw->setWindowTitle("动态壁纸");
+    mainwindw->setWindowTitle(QObject::tr("dynamic-wallpaper"));
     mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
-
     mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
     QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
@@ -68,25 +74,8 @@ int main(int argc, char *argv[])
                              "com.deepin.SessionManager",
                              QDBusConnection::sessionBus());
         iface.asyncCall("Register", QString(cookie));
-    } else {
-        QDBusInterface iface("com.deepin.dde.fantascene",
-                             "/com/deepin/dde/fantascene",
-                             "com.deepin.dde.fantascene",
-                             QDBusConnection::sessionBus());
-        iface.asyncCall("activeWindow");
     }
-    /*
-     * Check if there are multiple instances
-     * If there are multiple instances, exit now.
-    */
-    const QString lock = QDir::homePath() + "/" + INSTANCE_LOCK_PATH + INSTANCE_LOCK;
-    QLockFile lockFile(lock);
 
-    if (!lockFile.tryLock(300))
-    {
-        qDebug() << "The application is already running!";
-        return 0;
-    }
 
     return a.exec();
 }
