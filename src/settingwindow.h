@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QWindow>
+#include <QTimer>
 
 #include <QtX11Extras/QX11Info>
 #include <qnamespace.h>
@@ -128,6 +129,8 @@ private Q_SLOTS:
 
     void slotShowDesktopIcon(bool isIcon);
 
+    void slotTimerSaveSettings();
+
 public Q_SLOTS:
     void activeWindow();
 private:
@@ -162,6 +165,7 @@ private:
     QMutex m_mutex;
 
     Wallpaper *m_wallpaper{nullptr};
+    QTimer *m_timerSave{nullptr};
 };
 
 #endif // SETTINGWINDOW_H
