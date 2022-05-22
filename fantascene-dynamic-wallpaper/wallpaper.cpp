@@ -135,20 +135,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         if (qApp->desktop()->screenCount() > 1) {
 
             QString path = dApp->m_currentPath;
-            if (m_webView) {
-                if (!m_webView2) {
-                    m_webView2 = new webWidget(this);
-                    m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
-                }
-                if (QFileInfo(path).isFile()) {
-                    m_webView2->load(QUrl("file://" + path));
-                } else {
-                    m_webView2->load(QUrl(path));
-                }
-
-                m_webView2->show();
-                layout()->addWidget(m_webView2);
-            } else if (nullptr == m_mpv2) {
+            if (nullptr == m_mpv2) {
                 m_mpv2 = new MpvWidget(this);
                 m_mpv2->setVisible(true);
                 m_mpv2->setProperty("loop", true);
@@ -164,11 +151,6 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         break;
     }
     case IdlayoutScreen: {
-        if (!m_webView2) {
-            layout()->removeWidget(m_webView2);
-            delete m_webView2 ;
-            m_webView2 = nullptr;
-        }
         if (nullptr != m_mpv2) {
             layout()->removeWidget(m_mpv2);
             delete m_mpv2 ;
@@ -177,11 +159,6 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         break;
     }
     case IdManualSet: {
-        if (!m_webView2) {
-            layout()->removeWidget(m_webView2);
-            delete m_webView2 ;
-            m_webView2 = nullptr;
-        }
         if (nullptr != m_mpv2) {
             layout()->removeWidget(m_mpv2);
             delete m_mpv2 ;
@@ -218,53 +195,11 @@ void Wallpaper::setFile(const QString &path)
             m_mpv->deleteLater();
             m_mpv = nullptr;
         }
-        if (!m_webView) {
-            m_webView = new webWidget(this);
-            m_webView->setContextMenuPolicy(Qt::NoContextMenu);
-        }
-        //        layout()->addWidget(m_webView);
-        if (QFileInfo(path).isFile()) {
-            m_webView->load(QUrl("file://" + path));
-        } else {
-            m_webView->load(QUrl(path));
-        }
 
-
-        m_webView->show();
-        layout()->addWidget(m_webView);
         pause();
-        if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
-
-            QString path = dApp->m_currentPath;
-            if (m_webView) {
-                if (!m_webView2) {
-                    m_webView2 = new webWidget(this);
-                    m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
-                }
-
-                if (QFileInfo(path).isFile()) {
-                    m_webView2->load(QUrl("file://" + path));
-                } else {
-                    m_webView2->load(QUrl(path));
-                }
-
-                m_webView2->show();
-
-                layout()->addWidget(m_webView2);
-            }
-        }
 
     }  else {
-        if (m_webView) {
-            layout()->removeWidget(m_webView);
-            delete m_webView;
-            m_webView = nullptr;
-        }
-        if (m_webView2) {
-            layout()->removeWidget(m_webView2);
-            delete m_webView2;
-            m_webView2 = nullptr;
-        }
+
         if (!m_mpv) {
             m_mpv = new MpvWidget(this);
             m_mpv->setGeometry(geometry());
@@ -325,7 +260,7 @@ void Wallpaper::clear()
 
 void Wallpaper::play()
 {
-    if (!m_webView && m_mpv) {
+    if (m_mpv) {
         m_mpv->show();
         m_mpv->setProperty("pause", false);
         dApp->m_currentIsPlay = true;
@@ -482,16 +417,6 @@ void Wallpaper::updateGeometry()
                     i++;
                     continue;
                 }
-                if (i == 1 && m_webView) {
-                    m_webView->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
-                if (i == 2 && m_webView2) {
-                    m_webView2->setGeometry(screen->geometry());
-                    i++;
-                    continue;
-                }
 
             }
 
@@ -510,14 +435,6 @@ void Wallpaper::updateGeometry()
                 m_mpv2->deleteLater();
                 m_mpv2 = nullptr;
             }
-            if (m_webView) {
-                m_webView->setGeometry(rec);
-            }
-            if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
-                m_webView2->deleteLater();
-                m_webView2 = nullptr;
-            }
         } else  if (dApp->m_cuurentMode == IdManualSet)
         {
             rec = dApp->m_manual;
@@ -531,14 +448,6 @@ void Wallpaper::updateGeometry()
                 this->layout()->removeWidget(m_mpv2);
                 m_mpv2->deleteLater();
                 m_mpv2 = nullptr;
-            }
-            if (m_webView) {
-                m_webView->setGeometry(rec);
-            }
-            if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
-                m_webView2->deleteLater();
-                m_webView2 = nullptr;
             }
         }
         lower();
@@ -556,31 +465,7 @@ void Wallpaper::updateGeometry()
 #include <QMouseEvent>
 void Wallpaper::slotMouseEvent()
 {
-    if (m_webView) {
-        QPoint pos = QCursor::pos();
-        if (m_currentPos != pos) {
-            m_currentPos = pos;
-            QRect rec2 = qApp->desktop()->screenGeometry();
-            if (pos.x() > rec2.width()) {
-                pos = QPoint(pos.x() - rec2.width(), pos.y());
-            }
-            foreach (QObject *obj, m_webView->children()) {
-                QWidget *wgt = qobject_cast<QWidget *>(obj);
-                if (wgt) {
-                    LeftMouseClick(wgt, pos);
-                }
-            }
-            if (m_webView2) {
-                foreach (QObject *obj, m_webView2->children()) {
-                    QWidget *wgt = qobject_cast<QWidget *>(obj);
-                    if (wgt) {
-                        LeftMouseClick(wgt, pos);
-                    }
-                }
-            }
-        }
 
-    }
 }
 void Wallpaper::LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos)
 {

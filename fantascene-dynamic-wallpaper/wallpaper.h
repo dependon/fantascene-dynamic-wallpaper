@@ -47,8 +47,6 @@ private:
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
 
-    webWidget *m_webView{nullptr};
-    webWidget *m_webView2{nullptr};
     QTimer *m_mouseWebEventTimer{nullptr};
     QPoint m_currentPos{0, 0};
 //    ScreenMode m_cuurentMode{IdCopyScreen};
