@@ -30,12 +30,22 @@ Fedora和CentOS Stream
 
 深度操作系统
 ```
-sudo apt install com.github.fantascene
+https://depend.lanzouj.com/iMrzI05rohwb
+密码:4cfc
+
 ```
 
 统信操作系统
 ```
 Please download and install the package from release page
+
+(带web控件)
+https://depend.lanzouj.com/izwGV052dqif
+密码:d8hx
+
+(不带web控件)
+https://depend.lanzouj.com/ihukx052dpxe
+密码:bkk9
 ```
 
 manjaro
@@ -53,7 +63,7 @@ yay -S fantascene-dynamic-wallpaper-git
 debian/深度操作系统/其他Linux
 
 ```
-qt >=5.8
+qt >=5.10
 
 mpv >=29.0
 
@@ -103,7 +113,9 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 ```
 贡献总是被欢迎的。如有必要，请创建新的合并请求或者问题。
 ```
+## 最简单的例子,可以在较低版本的mpv和qt编译,且代码结构简单(适合嵌入式设备)
 
+[https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
 ## 截图
 

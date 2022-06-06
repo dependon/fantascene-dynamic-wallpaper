@@ -30,12 +30,23 @@ Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/o
 
 deepin
 ```
-sudo apt install com.github.fantascene
+https://depend.lanzouj.com/iMrzI05rohwb
+
+password:4cfc
 ```
 
 uos
 ```
 Please download and install the package from release page
+
+(have web)
+https://depend.lanzouj.com/izwGV052dqif
+password:d8hx
+
+(no web)
+https://depend.lanzouj.com/ihukx052dpxe
+password:bkk9
+
 ```
 
 manjaro
@@ -54,7 +65,7 @@ yay -S fantascene-dynamic-wallpaper-git
 debian/Deepin/Other
 
 ```
-qt >=5.8
+qt >=5.10
 
 mpv >=29.0
 
@@ -63,8 +74,8 @@ sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg 
 sudo apt install libxcb-shape0-dev
 
 sudo apt install build-essential
-```
 
+```
 
 ## Build from SCM
 
@@ -107,6 +118,9 @@ Thanks for the Spanish translation provided by [Alvaro samudio](https://github.c
 Contributions are always welcome, Please create a new PR or issue if necessary.
 ```
 
+## Extremely simple example
+
+[https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
 ## ScreenShot
 
