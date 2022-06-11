@@ -16,6 +16,8 @@
 #include <QDesktopWidget>
 #include <QDropEvent>
 #include <QMimeData>
+#include <QDBusConnection>
+#include <QDBusInterface>
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -503,7 +505,12 @@ void settingWindow::quitApp()
 #endif
     //dbus关闭壁纸透明
 
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+//    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+    QDBusInterface iface("com.deepin.dde.desktop",
+                         "/com/deepin/dde/desktop",
+                         "com.deepin.dde.desktop",
+                         QDBusConnection::sessionBus());
+    iface.asyncCall("EnableBackground", true);
     m_stopx11Thread = true;
     if (m_x11thread) {
         m_x11thread->wait();

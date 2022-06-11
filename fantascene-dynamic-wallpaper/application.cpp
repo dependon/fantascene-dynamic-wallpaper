@@ -6,6 +6,7 @@
 #include <QWindow>
 #include <QCryptographicHash>
 #include <QTimer>
+#include <QDBusInterface>
 
 #include "setdesktop.h"
 
@@ -228,7 +229,12 @@ const QPixmap Application::getThumbnail(const QString &path)
 void Application::setDesktopTransparent()
 {
     //dbus开启壁纸透明
-    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground false");
+//    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground false");
+    QDBusInterface iface("com.deepin.dde.desktop",
+                         "/com/deepin/dde/desktop",
+                         "com.deepin.dde.desktop",
+                         QDBusConnection::sessionBus());
+    iface.asyncCall("EnableBackground", false);
     //设置desktop透明
     char str[12] = "dde-desktop";
     int pid_t[128];
