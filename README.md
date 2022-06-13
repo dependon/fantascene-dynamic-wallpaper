@@ -30,9 +30,8 @@ Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/o
 
 deepin
 ```
-https://depend.lanzouj.com/iMrzI05rohwb
-
-password:4cfc
+[https://depend.lanzouj.com/iVO4o06blv6b](https://depend.lanzouj.com/iVO4o06blv6b)
+password:2zbu
 ```
 
 uos
