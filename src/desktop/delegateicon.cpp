@@ -76,24 +76,8 @@ QString DelegateIcon::displayText(const QVariant &value, const QLocale &locale) 
 
 QWidget *DelegateIcon::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    /*
-    QLabel *lable = new QLabel(parent);
-    lable->setText(index.data().toString());
-    lable->setFixedWidth(108);
-    lable->setStyleSheet("background-color:white;"
-                         "color:black;");
-    lable->setWordWrap(true);
-    //lable->resize(option.rect.size());
-    qDebug()<<option.rect;
-    lable->adjustSize();
-    qDebug()<<lable->rect();
-    lable->setFixedHeight(200);
-    return lable;
-    */
-    //this is not good enough.
+
     QTextEdit *textEdit = new QTextEdit(parent);
-    //textEdit->setWordWrapMode();
-    //textEdit->setAttribute(Qt::WA_TranslucentBackground,false);
     textEdit->setStyleSheet("background-color:white;"
                             "color:black;");
     textEdit->setLineWrapMode(QTextEdit::WidgetWidth);
@@ -101,24 +85,9 @@ QWidget *DelegateIcon::createEditor(QWidget *parent, const QStyleOptionViewItem 
     textEdit->setText(index.data().toString());
     textEdit->setFixedWidth(option.rect.width());
     textEdit->setFixedHeight(150);
-    //textEdit->adjustSize();
-    /*
-    QStaticText text;
-    text.setText(index.data().toString());
-    QTextOption textOption;
-    textOption.setAlignment(Qt::AlignHCenter);
-    textOption.setWrapMode(QTextOption::WordWrap);
-    text.setTextOption(textOption);
-    text.setTextWidth(108);
-    //text.prepare();
-    */
-    //qDebug()<<text.size();
-    //qDebug()<<textEdit->rect()<<option.rect;
+
     connect(textEdit, &QTextEdit::destroyed, [ = ]() {
-        //qDebug()<<"textEdit destroyed";
-        //qDebug()<<index.data();
-        //qDebug()<<textEdit->toPlainText();
-        //qDebug()<<mModel->filePath(mIconView->rootIndex());
+
         if (!textEdit->toPlainText().isEmpty()) {
             QString srcPath = mModel->filePath(mIconView->rootIndex()) + "/" + index.data().toString();
             QString destPath = mModel->filePath(mIconView->rootIndex()) + "/" + textEdit->toPlainText();

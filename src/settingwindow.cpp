@@ -197,7 +197,6 @@ void settingWindow::readSettings()
     QSettings settings(CONFIG_PATH, QSettings::IniFormat);
 
     dApp->m_currentPath = settings.value("WallPaper/CurrentPath").toString();
-    qDebug() << dApp->m_currentPath;
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
     int widthPY = settings.value("WallPaper/widthPY").toInt();

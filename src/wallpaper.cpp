@@ -530,9 +530,6 @@ void Wallpaper::updateGeometry()
         rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
         QRect rec2 = qApp->desktop()->screenGeometry();
         QRect deskRect = qApp->desktop()->availableGeometry();
-        qDebug() << "543" << rec;
-        qDebug() << "544" << rec2;
-        qDebug() << "545" << deskRect;
         rec = rec2;
         if (dApp->m_cuurentMode == IdCopyScreen)
         {
@@ -554,14 +551,12 @@ void Wallpaper::updateGeometry()
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
                 if (i == 1 && m_mpv) {
-                    qDebug() << screen->geometry();
                     m_mpv->setGeometry(screen->geometry());
                     m_mpv->setMinimumWidth(screen->geometry().width());
                     i++;
                     continue;
                 }
                 if (i == 2 && m_mpv2) {
-                    qDebug() << screen->geometry();
                     m_mpv2->setGeometry(screen->geometry());
                     i++;
                     continue;
