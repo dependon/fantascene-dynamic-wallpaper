@@ -210,21 +210,18 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(this, &IconView::customContextMenuRequested, [ = ]() {
-        //qDebug()<<"menu request"<<mLastPos;
         if (!QApplication::clipboard()->mimeData()->hasUrls()) {
             pasteAction->setEnabled(false);
         } else {
             pasteAction->setEnabled(true);
         }
         if (!indexAt(mLastPos).isValid()) {
-            //qDebug()<<"blank";
             clearSelection();
             openAction->setEnabled(false);
             trashAction->setEnabled(false);
             copyAction->setEnabled(false);
             renameAction->setEnabled(false);
         } else {
-            //qDebug()<<"selected";
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
             copyAction->setEnabled(true);
@@ -358,10 +355,6 @@ void IconView::openFile()
         qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
         if (MIME == "application/x-desktop") {
             QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
-            /*
-            * Exception: Do not running when sexec is empty,
-            * this will This can lead to potential problems :(
-            */
             if (!sexec.isNull())
                 proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
                 proc->start(sexec);
@@ -442,14 +435,11 @@ void IconView::mousePressEvent(QMouseEvent *e)
 {
     mLastPos = e->pos();
     Q_EMIT sigMouseClick(0);
-    //qDebug()<<"press event: "<<mLastPos;
     QListView::mousePressEvent(e);
 }
 
 void IconView::mouseMoveEvent(QMouseEvent *e)
 {
-//    Q_EMIT sigMouseMove();
-    //setCursor(Qt::ArrowCursor);
     return QListView::mouseMoveEvent(e);
 }
 
@@ -472,8 +462,6 @@ void IconView::closeEvent(QCloseEvent *e)
 void IconView::dragEnterEvent(QDragEnterEvent *e)
 {
     if (e->mimeData()->hasUrls()) {
-        //QList<QUrl> urls = e->mimeData()->urls();
-        //qDebug()<<urls<<e->mimeData()->formats();
         if (e->source() == this) {
             e->setDropAction(Qt::MoveAction);
             e->accept();
