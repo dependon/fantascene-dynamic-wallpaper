@@ -1,0 +1,18 @@
+[Desktop Entry]
+Categories=Application;
+Comment=yoyo-fantacy
+Comment[zh_CN]=幻梦动态壁纸-yoyo
+Comment[pl]=Tapeta dynamiczna Fantascene
+
+Exec=yoyo-fantacy
+GenericName=yoyo-fantacy
+GenericName[zh_CN]=幻梦动态壁纸-yoyo
+GenericName[pl]=Tapeta dynamiczna Fantascene
+Icon=yoyo-fantacy
+Name=yoyo-fantacy
+Name[zh_CN]=幻梦动态壁纸-yoyo
+Name[pl]=Tapeta dynamiczna Fantascene
+StartupNotify=false
+Terminal=false
+Type=Application
+Version=1.0.0.0
