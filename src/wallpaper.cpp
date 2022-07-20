@@ -115,7 +115,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         }
         if (index1 == 0)
         {
-            QString playPath = "/opt/durapps/fantascene-dynamic-wallpaper/09.mp4";
+            QString playPath = "/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4";
 
             m_currentPath = m_currentPath.replace("file://", "");
             if (!m_currentPath.isEmpty()) {
