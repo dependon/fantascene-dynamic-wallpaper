@@ -28,6 +28,12 @@
 
 class QMenu;
 
+enum CopyOrCut
+{
+    CopyOrCut_COPY,
+    CopyOrCut_CUT
+};
+
 class IconView : public QListView
 {
     Q_OBJECT
@@ -36,7 +42,7 @@ public:
     QString readSettings(const QString &path, const QString &group, const QString &key);
     IconView(int id, QString rootPath, QWidget *parent = nullptr);
     ~IconView() override;
-    void copyImageToClipboard(const QStringList &paths);
+    void copyImageToClipboard(const QStringList &paths , CopyOrCut type = CopyOrCut_COPY);
     QString terminalPath();
 
 private:
@@ -53,6 +59,7 @@ Q_SIGNALS :
 
 public Q_SLOTS:
     void copyFile();
+    void cutFile();
     void pauseFile();
     void openFile();
     void deleteFile();
