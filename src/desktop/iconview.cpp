@@ -188,6 +188,10 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     copyAction->setShortcut(QKeySequence("Ctrl+C"));
     viewMenu->addAction(copyAction);
 
+    QAction *cutAction = new QAction(viewMenu);
+    cutAction->setText(tr("Cut"));
+    cutAction->setShortcut(QKeySequence("Ctrl+X"));
+    viewMenu->addAction(cutAction);
 
     QAction *pasteAction = new QAction(viewMenu);
     pasteAction->setText(tr("Paste"));
@@ -239,6 +243,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(openAction, &QAction::triggered, this, &IconView::openFile);
     connect(selectAllAction, &QAction::triggered,  this, &IconView::selectAll);
     connect(copyAction, &QAction::triggered, this, &IconView::copyFile);
+    connect(cutAction, &QAction::triggered, this, &IconView::cutFile);
     connect(pasteAction, &QAction::triggered, this, &IconView::pauseFile);
     connect(renameAction, &QAction::triggered, this, &IconView::renameFile);
     connect(trashAction, &QAction::triggered, this, &IconView::deleteFile);
@@ -254,7 +259,7 @@ IconView::~IconView()
 {
 
 }
-void IconView::copyImageToClipboard(const QStringList &paths)
+void IconView::copyImageToClipboard(const QStringList &paths ,CopyOrCut type )
 {
     //  Get clipboard
     QClipboard *cb = qApp->clipboard();
@@ -263,7 +268,12 @@ void IconView::copyImageToClipboard(const QStringList &paths)
     QMimeData *newMimeData = new QMimeData();
 
     // Copy file (gnome)
-    QByteArray gnomeFormat = QByteArray("copy\n");
+    QByteArray gnomeFormat;
+    if(type == CopyOrCut_COPY)
+        gnomeFormat = QByteArray("copy\n");
+    else if(type == CopyOrCut_CUT){
+        gnomeFormat = QByteArray("cut\n");
+    }
     QString text;
     QList<QUrl> dataUrls;
     for (QString path : paths) {
@@ -325,14 +335,37 @@ void IconView::copyFile()
     }
 //    QMimeData *selectionMimeData = fileModel->mimeData(list);
 //    QApplication::clipboard()->setMimeData(selectionMimeData);
-    copyImageToClipboard(addlist);
+    copyImageToClipboard(addlist,CopyOrCut_COPY);
+}
+
+void IconView::cutFile()
+{
+    QModelIndexList list = this->selectedIndexes();
+    QStringList addlist;
+    for (QModelIndex index : list) {
+        QString path = index.data().toString();
+        QString addPath = m_rootPath + "/" + path;
+        addlist << addPath;
+    }
+//    QMimeData *selectionMimeData = fileModel->mimeData(list);
+//    QApplication::clipboard()->setMimeData(selectionMimeData);
+    copyImageToClipboard(addlist,CopyOrCut_CUT);
 }
 
 void IconView::pauseFile()
 {
     QList<QUrl> urls = QApplication::clipboard()->mimeData()->urls();
+
     FileOperationJob *fileOpJob = new FileOperationJob;
-    fileOpJob->setOperationFlag(FILE_OPERATION_COPY);
+    QByteArray ba = QApplication::clipboard()->mimeData()->data("x-special/gnome-copied-files");
+    QString tStr(ba);
+    if (tStr.startsWith("cut")) {
+         fileOpJob->setOperationFlag(FILE_OPERATION_MOVE);
+    }
+    if (tStr.startsWith("copy")) {
+        fileOpJob->setOperationFlag(FILE_OPERATION_COPY);
+    }
+
     fileOpJob->setOrigList(urls);
     fileOpJob->setDestDir(fileModel->filePath(rootIndex()));
     QThread *fileOpThread = new QThread;
@@ -518,7 +551,7 @@ void IconView::keyPressEvent(QKeyEvent *event)
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_C) {
         copyFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_X) {
-        copyFile();
+        cutFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_V) {
         pauseFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier) && event->key() == Qt::Key_A) {
