@@ -24,18 +24,17 @@ Detailed instructions will be written to wiki later.
 
 ## Installation
 
-fedora and centos stream
+### fedora and centos stream
 
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
 
-
-deepin
+### deepin
 ```
 [https://depend.lanzouj.com/iVO4o06blv6b](https://depend.lanzouj.com/iVO4o06blv6b)
 password:2zbu
 ```
 
-uos
+### uos
 ```
 Please download and install the package from release page
 
@@ -49,20 +48,14 @@ password:bkk9
 
 ```
 
-manjaro
-```
-yay -S fantascene-dynamic-wallpaper
-```
-
-archlinux
+### archlinux and manjaro
 ```
 yay -S fantascene-dynamic-wallpaper-git
 ```
 
-
 ## Build Dependencies
 
-debian/Deepin/Other
+### debian/Deepin/Other
 
 ```
 qt >=5.10
@@ -75,12 +68,13 @@ sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg 
 
 ## Build from SCM
 
-debian and ubuntu
+debian and ubuntu and deepin
 ```
 dpkg-buildpackage -b -us -uc
+
 ```
 
-Other Linux variants
+### Other Linux variants
 ```
 git clone https://github.com/dependon/fantascene-dynamic-wallpaper
 
@@ -96,7 +90,7 @@ make all # For debug and release
 ```
 
 
-## Credit
+## Thanks
 
 Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
 
