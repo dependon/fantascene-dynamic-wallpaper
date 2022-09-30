@@ -26,13 +26,13 @@ Detailed instructions will be written to wiki later.
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
 
 ### deepin
-```
+
 [https://depend.lanzouj.com/iVO4o06blv6b](https://depend.lanzouj.com/iVO4o06blv6b)
 password:2zbu
-```
+
 
 ### uos
-```
+
 Please download and install the package from release page
 
 (have web)
@@ -43,12 +43,9 @@ password:d8hx
 https://depend.lanzouj.com/ihukx052dpxe
 password:bkk9
 
-```
-
 ### archlinux and manjaro
-```
+
 yay -S fantascene-dynamic-wallpaper-git
-```
 
 ### windows 
 
