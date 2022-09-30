@@ -6,7 +6,6 @@
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
-
 ## License
 ```
 COPYRIGHT (C) 2020-2022 LIUMINGHANG <liuminghang0821@gmail.com>
@@ -16,11 +15,9 @@ THE PROJECT IS RELEASED UNDER THE：
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
 
-
 ## Wiki
 
 Detailed instructions will be written to wiki later.
-
 
 ## Installation
 
@@ -52,6 +49,14 @@ password:bkk9
 ```
 yay -S fantascene-dynamic-wallpaper-git
 ```
+
+### windows 
+
+Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
+
+### ubuntu18.04
+
+Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
 ## Build Dependencies
 
