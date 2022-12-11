@@ -25,11 +25,8 @@ Detailed instructions will be written to wiki later.
 
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
 
-### deepin
-
-[https://depend.lanzouj.com/iVO4o06blv6b](https://depend.lanzouj.com/iVO4o06blv6b)
-password:2zbu
-
+### deepinV20.8
+[deepinv20.8](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_1.4.0_deepinV20.8_amd64.deb)
 
 ### uos
 
