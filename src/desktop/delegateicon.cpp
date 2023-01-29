@@ -121,6 +121,7 @@ void DelegateIcon::updateEditorGeometry(QWidget *editor, const QStyleOptionViewI
 
 QSize DelegateIcon::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    return QStyledItemDelegate::sizeHint(option,index);
     Q_UNUSED(index)
-    return QSize(180, 100);
+    return QSize(option.rect.width(), option.rect.height());
 }
