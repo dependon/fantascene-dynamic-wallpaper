@@ -45,6 +45,7 @@ public:
     void copyImageToClipboard(const QStringList &paths , CopyOrCut type = CopyOrCut_COPY);
     QString terminalPath();
 
+    void setIconTextSize(int size);
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -67,6 +68,9 @@ public Q_SLOTS:
     void slotsnewFolder();
     void slotsnewTxt();
     void slotsopenTerminal();
+    void slotsIconSizeSmall();
+    void slotsIconSizeMedium();
+    void slotsIconSizeBig();
 
 protected:
     void paintEvent(QPaintEvent *e) override;

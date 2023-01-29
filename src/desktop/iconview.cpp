@@ -54,6 +54,10 @@
 #include <QKeyEvent>
 #include <QProcess>
 
+#define ICONSIZE_SMALL 90
+#define ICONSIZE_MEDIUM 140
+#define ICONSIZE_BIG 180
+
 QString IconView::readSettings(const QString &path, const QString &group, const QString &key)
 {
     QSettings settings(path, QSettings::IniFormat);
@@ -142,9 +146,9 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     //setViewportMargins(0,10,0,10);
     //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
-    setGridSize(QSize(120, 120));
-    setIconSize(QSize(65, 65));
-//    setTextElideMode();
+    setGridSize(QSize(90, 90));
+    setIconSize(QSize(45, 45));
+    setUniformItemSizes(true);
     setSpacing(4);
     setViewMode(QListView::IconMode);
 //    setMovement(QListView::Static);
@@ -180,6 +184,23 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
     viewMenu->addAction(newTXTction);
 
+    QMenu *iconSizeMenu = new QMenu(viewMenu);
+    iconSizeMenu->setTitle(tr("Icon Size"));
+//    iconSizeAction->setText(tr("Icon Size"));
+//    iconSizeAction->setShortcut(QKeySequence("Ctrl+C"));
+//    viewMenu->addAction(iconSizeAction);
+    viewMenu->addMenu(iconSizeMenu);
+    QAction *iconSmall = new QAction(iconSizeMenu);
+    iconSmall->setText(tr("Small"));
+    iconSizeMenu->addAction(iconSmall);
+
+    QAction *iconMedium = new QAction(iconSizeMenu);
+    iconMedium->setText(tr("Medium"));
+    iconSizeMenu->addAction(iconMedium);
+
+    QAction *iconBig = new QAction(iconSizeMenu);
+    iconBig->setText(tr("Big"));
+    iconSizeMenu->addAction(iconBig);
 
     viewMenu->addSeparator();
 
@@ -224,11 +245,13 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
             openAction->setEnabled(false);
             trashAction->setEnabled(false);
             copyAction->setEnabled(false);
+            cutAction->setEnabled(false);
             renameAction->setEnabled(false);
         } else {
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
             copyAction->setEnabled(true);
+            cutAction->setEnabled(true);
             renameAction->setEnabled(false);
             if (selectedIndexes().count() == 1) {
                 QString fileName = selectedIndexes().first().data().toString();
@@ -250,6 +273,9 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(newFolderAction, &QAction::triggered, this, &IconView::slotsnewFolder);
     connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
     connect(terminalAction, &QAction::triggered, this, &IconView::slotsopenTerminal);
+    connect(iconSmall, &QAction::triggered, this, &IconView::slotsIconSizeSmall);
+    connect(iconMedium, &QAction::triggered, this, &IconView::slotsIconSizeMedium);
+    connect(iconBig, &QAction::triggered, this, &IconView::slotsIconSizeBig);
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
@@ -322,6 +348,12 @@ QString IconView::terminalPath()
     }
 
     return QStandardPaths::findExecutable("xterm");
+}
+
+void IconView::setIconTextSize(int size)
+{
+    setGridSize(QSize(size, size));
+    setIconSize(QSize(size/2, size/2));
 }
 
 void IconView::copyFile()
@@ -459,6 +491,21 @@ void IconView::slotsopenTerminal()
     QProcess::startDetached(terminalPath());
 }
 
+void IconView::slotsIconSizeSmall()
+{
+    setIconTextSize(ICONSIZE_SMALL);
+}
+
+void IconView::slotsIconSizeMedium()
+{
+    setIconTextSize(ICONSIZE_MEDIUM);
+}
+
+void IconView::slotsIconSizeBig()
+{
+    setIconTextSize(ICONSIZE_BIG);
+}
+
 void IconView::paintEvent(QPaintEvent *e)
 {
     return QListView::paintEvent(e);
@@ -560,7 +607,10 @@ void IconView::keyPressEvent(QKeyEvent *event)
         slotsnewTxt();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_A) {
         selectAll();
-    } else {
+    } else if (event->key() == Qt::Key_Enter ||  event->key() == Qt::Key_Return ) {
+        openFile();
+    }
+    else {
         return QListView::keyPressEvent(event);
     }
 }
