@@ -57,7 +57,7 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
 dowload path:[simple-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/simple-wallpaper_1.0.0_amd64_ubuntu18.04.deb)
-```
+
 
 ## 构建依赖
 
@@ -92,7 +92,7 @@ cd build
 qmake ..
 
 make all # 构建带有调试符号和剥离调试符号的可执行文件
-
+```
 
 
 ## 感谢
