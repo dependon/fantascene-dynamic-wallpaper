@@ -22,40 +22,41 @@
 关于这个软件的项目说明在将来会写到wiki里。
 
 
-## 安装
+## 安装(下载地址主要来自github，链接看运气)
 
-Fedora和CentOS Stream
+### 主版本（程序自己写的简易桌面）
 
-请查看: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
+dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_master_1.4.1_amd64.deb)
 
-深度操作系统
-```
-https://depend.lanzouj.com/iMrzI05rohwb
-密码:4cfc
+### fedora and centos stream
 
-```
+Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
 
-统信操作系统
-```
-Please download and install the package from release page
+### deepinV20.8系统
 
-(带web控件)
-https://depend.lanzouj.com/izwGV052dqif
-密码:d8hx
+dowload path: [deepinv20.8](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_1.4.0_deepinV20.8_amd64.deb)
 
-(不带web控件)
-https://depend.lanzouj.com/ihukx052dpxe
-密码:bkk9
-```
+### uos系统
 
-manjaro
-```
-yay -S fantascene-dynamic-wallpaper
-```
+x86_x64 dowload path: [1.3.7amd64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper-uos_1.3.7_amd64.deb)
 
-archlinux
-```
+arm dowload path: [1.3.7arm64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_normal.deb)
+
+arm(no web) dowload path: [1.3.7arm64_noweb](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_noweb.deb)
+
+### archlinux and manjaro
+
 yay -S fantascene-dynamic-wallpaper-git
+
+### windows 
+
+Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
+
+### ubuntu18.04
+
+Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
+
+dowload path:[simple-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/simple-wallpaper_1.0.0_amd64_ubuntu18.04.deb)
 ```
 
 ## 构建依赖
