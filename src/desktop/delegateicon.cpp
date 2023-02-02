@@ -35,6 +35,9 @@
 
 #include <QThread>
 #include <QDebug>
+#include <QPainter>
+#include <QApplication>
+#include <QFontMetrics>
 
 DelegateIcon::DelegateIcon()
 {
@@ -70,7 +73,6 @@ QString DelegateIcon::displayText(const QVariant &value, const QLocale &locale) 
 
         g_object_unref(desktop_app_info);
     }
-
     return text;
 }
 
@@ -124,4 +126,67 @@ QSize DelegateIcon::sizeHint(const QStyleOptionViewItem &option, const QModelInd
     return QStyledItemDelegate::sizeHint(option,index);
     Q_UNUSED(index)
     return QSize(option.rect.width(), option.rect.height());
+}
+
+void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+//    return QStyledItemDelegate::paint(painter,option,index);
+    if(!index.isValid())
+    {
+        return QStyledItemDelegate::paint(painter,option,index);
+    }
+
+    painter->save();
+
+    qDebug()<<option.state;
+    //选中
+    if(QStyle::State_Selected & option.state)
+    {
+        painter->fillRect(option.rect, option.palette.highlight());
+    }
+    //图标
+    QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
+    QRect iconRect = option.rect;
+
+
+//    qDebug()<<option.rect.width();
+//    qDebug()<<iconRect.width();
+//    qDebug()<<iconRect;
+    iconRect.setX(option.rect.width()/4+option.rect.x());
+    iconRect.setSize(QSize(option.rect.width()/2, option.rect.width()/2));
+//    qDebug()<<iconRect;
+//    iconRect.setX((iconRect.height()-iconRect.x())/2);
+    QIcon::State state;
+    if(option.state == QStyle::State_Open)
+    {
+        state = QIcon::On;
+    }
+    else
+    {
+        state = QIcon::Off;
+    }
+    icon.paint(painter, iconRect, Qt::AlignCenter | Qt::AlignVCenter, QIcon::Selected,state);
+
+    //text
+    QString text = index.data(Qt::DisplayRole).toString();
+    QFontMetrics fontMetrics(qApp->font());
+    int padding = 8;
+//    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.bottom()-iconRect.height()+padding/2,
+//                                             option.rect.width()-padding, option.rect.height()-padding,
+//                                             Qt::AlignHCenter | Qt::AlignBottom | Qt::TextWrapAnywhere,
+//                                             text);
+    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.top()+iconRect.height()+padding/2,
+                                             option.rect.width()-padding, option.rect.height()-padding,
+                                             Qt::AlignHCenter | Qt::AlignTop | Qt::TextWrapAnywhere,
+                                             text);
+
+//    qDebug()<<rect;
+    QColor color = qApp->palette().text().color();
+    color=Qt::white;
+    QPen pen(color);
+    QString caiText = fontMetrics.elidedText(text,Qt::ElideRight,option.rect.width()*2-20);
+    painter->setPen(pen);
+    painter->setFont(qApp->font());
+    painter->drawText(rect, Qt::AlignHCenter | Qt::AlignTop | Qt::TextWrapAnywhere, caiText);
+    painter->restore();
 }
