@@ -21,24 +21,25 @@ Detailed instructions will be written to wiki later.
 
 ## Installation
 
+### debian ubuntu master
+
+dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_master_1.4.1_amd64.deb)
+
 ### fedora and centos stream
 
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
 
 ### deepinV20.8
-[deepinv20.8](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_1.4.0_deepinV20.8_amd64.deb)
+
+dowload path: [deepinv20.8](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_1.4.0_deepinV20.8_amd64.deb)
 
 ### uos
 
-Please download and install the package from release page
+x86_x64 dowload path: [1.3.7amd64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper-uos_1.3.7_amd64.deb)
 
-(have web)
-https://depend.lanzouj.com/izwGV052dqif
-password:d8hx
+arm dowload path: [1.3.7arm64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_normal.deb)
 
-(no web)
-https://depend.lanzouj.com/ihukx052dpxe
-password:bkk9
+arm(no web) dowload path: [1.3.7arm64_noweb](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_noweb.deb)
 
 ### archlinux and manjaro
 
@@ -51,6 +52,8 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 ### ubuntu18.04
 
 Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
+
+dowload path:[simple-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/simple-wallpaper_1.0.0_amd64_ubuntu18.04.deb)
 
 ## Build Dependencies
 
