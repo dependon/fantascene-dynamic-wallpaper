@@ -38,6 +38,9 @@
 #include <QPainter>
 #include <QApplication>
 #include <QFontMetrics>
+#include <QPainterPath>
+#include <QClipboard>
+#include <QMimeData>
 
 DelegateIcon::DelegateIcon()
 {
@@ -130,11 +133,13 @@ QSize DelegateIcon::sizeHint(const QStyleOptionViewItem &option, const QModelInd
 
 void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-//    return QStyledItemDelegate::paint(painter,option,index);
     if(!index.isValid())
     {
         return QStyledItemDelegate::paint(painter,option,index);
     }
+    painter->setRenderHints(QPainter::HighQualityAntialiasing |
+                            QPainter::SmoothPixmapTransform |
+                            QPainter::Antialiasing);
 
     painter->save();
 
@@ -142,20 +147,37 @@ void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     //选中
     if(QStyle::State_Selected & option.state)
     {
-        painter->fillRect(option.rect, option.palette.highlight());
+        QRect backgroundRect = option.rect;
+        QPainterPath backgroundBp;
+        backgroundBp.addRoundedRect(backgroundRect, 12, 12);
+        painter->setClipPath(backgroundBp);
+        painter->fillRect(backgroundRect, option.palette.highlight());
     }
+
+    //是否有剪切
+
+    bool isCut =false ;
+    QByteArray ba = QApplication::clipboard()->mimeData()->data("x-special/gnome-copied-files");
+    QString tStr(ba);
+    if (tStr.startsWith("cut")) {
+        QList<QUrl> urls = QApplication::clipboard()->mimeData()->urls();
+        QString text = index.data(Qt::DisplayRole).toString();
+        QString filePath = mModel->filePath(mIconView->rootIndex()) + "/" + text;
+        for (QUrl url :urls)
+        {
+            QString localPath = url.toLocalFile();
+            if(localPath == filePath)
+            {
+                isCut = true;
+            }
+        }
+    }
+
     //图标
     QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
     QRect iconRect = option.rect;
-
-
-//    qDebug()<<option.rect.width();
-//    qDebug()<<iconRect.width();
-//    qDebug()<<iconRect;
     iconRect.setX(option.rect.width()/4+option.rect.x());
     iconRect.setSize(QSize(option.rect.width()/2, option.rect.width()/2));
-//    qDebug()<<iconRect;
-//    iconRect.setX((iconRect.height()-iconRect.x())/2);
     QIcon::State state;
     if(option.state == QStyle::State_Open)
     {
@@ -165,22 +187,25 @@ void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     {
         state = QIcon::Off;
     }
-    icon.paint(painter, iconRect, Qt::AlignCenter | Qt::AlignVCenter, QIcon::Selected,state);
+    {
+        icon.paint(painter, iconRect, Qt::AlignCenter | Qt::AlignVCenter, QIcon::Active,state);
+    }
+    //是剪切文件且未被选中
+    if(isCut && !(QStyle::State_Selected & option.state))
+    {
+        painter->fillRect(iconRect,QColor(0,0,0,125));
+    }
+
 
     //text
-    QString text = index.data(Qt::DisplayRole).toString();
+    QString text = displayText(index.data(Qt::DisplayRole),QLocale::system());
     QFontMetrics fontMetrics(qApp->font());
     int padding = 8;
-//    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.bottom()-iconRect.height()+padding/2,
-//                                             option.rect.width()-padding, option.rect.height()-padding,
-//                                             Qt::AlignHCenter | Qt::AlignBottom | Qt::TextWrapAnywhere,
-//                                             text);
-    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.top()+iconRect.height()+padding/2,
+    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.top()+iconRect.height(),
                                              option.rect.width()-padding, option.rect.height()-padding,
                                              Qt::AlignHCenter | Qt::AlignTop | Qt::TextWrapAnywhere,
                                              text);
 
-//    qDebug()<<rect;
     QColor color = qApp->palette().text().color();
     color=Qt::white;
     QPen pen(color);

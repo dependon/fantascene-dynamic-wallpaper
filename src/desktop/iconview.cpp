@@ -146,8 +146,8 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     //setViewportMargins(0,10,0,10);
     //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
-    setGridSize(QSize(90, 90));
-    setIconSize(QSize(45, 45));
+    setGridSize(QSize(ICONSIZE_SMALL, ICONSIZE_SMALL));
+    setIconSize(QSize(ICONSIZE_SMALL/2, ICONSIZE_SMALL/2));
     setUniformItemSizes(true);
     setSpacing(4);
     setViewMode(QListView::IconMode);
@@ -328,6 +328,7 @@ QString IconView::terminalPath()
     const static QString xfce3_term_emu = QStringLiteral("/usr/bin/xfce3-terminal");
     const static QString xfce4_term_emu = QStringLiteral("/usr/bin/xfce4-terminal");
     const static QString cutefish_term_emu = QStringLiteral("/usr/bin/cutefish-terminal");
+    const static QString yoyo_term_emu = QStringLiteral("/usr/bin/yoyo-terminal");
 
     if (QFileInfo::exists(deepin_default_term)) {
         return deepin_default_term;
@@ -345,6 +346,8 @@ QString IconView::terminalPath()
         return xfce4_term_emu;
     } else if (QFileInfo::exists(cutefish_term_emu)) {
         return cutefish_term_emu;
+    } else if (QFileInfo::exists(yoyo_term_emu)) {
+        return yoyo_term_emu;
     }
 
     return QStandardPaths::findExecutable("xterm");
