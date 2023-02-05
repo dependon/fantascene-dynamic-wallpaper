@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="83"/>
-        <location filename="../application.cpp" line="84"/>
+        <location filename="../application.cpp" line="103"/>
+        <location filename="../application.cpp" line="104"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -18,75 +18,94 @@
         <translation>Formularz</translation>
     </message>
     <message>
-        <location filename="../desktop.cpp" line="52"/>
-        <location filename="../desktop.cpp" line="60"/>
         <source>New folder</source>
-        <translation>Nowy folder</translation>
+        <translation type="vanished">Nowy folder</translation>
     </message>
     <message>
-        <location filename="../desktop.cpp" line="73"/>
-        <location filename="../desktop.cpp" line="81"/>
-        <location filename="../desktop.cpp" line="82"/>
         <source>New Txt Files</source>
-        <translation>Nowy plik tekstowy</translation>
+        <translation type="vanished">Nowy plik tekstowy</translation>
     </message>
     <message>
-        <location filename="../desktop.cpp" line="101"/>
         <source>Refresh</source>
-        <translation>Odśwież</translation>
+        <translation type="vanished">Odśwież</translation>
     </message>
 </context>
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="146"/>
+        <location filename="../desktop/iconview.cpp" line="163"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="150"/>
+        <location filename="../desktop/iconview.cpp" line="167"/>
         <source>Select all</source>
         <translation>Zaznacz wszystkie</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="155"/>
+        <location filename="../desktop/iconview.cpp" line="172"/>
         <source>Open Terminal</source>
         <translation>Otwórz terminal</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="161"/>
-        <location filename="../desktop/iconview.cpp" line="398"/>
+        <location filename="../desktop/iconview.cpp" line="178"/>
+        <location filename="../desktop/iconview.cpp" line="463"/>
         <source>New Folder</source>
         <translation>Nowy folder</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="166"/>
+        <location filename="../desktop/iconview.cpp" line="183"/>
         <source>New TXT</source>
         <translation>Nowy plik tekstowy</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="174"/>
+        <location filename="../desktop/iconview.cpp" line="188"/>
+        <source>Icon Size</source>
+        <translation>Rozmiar ikony</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="194"/>
+        <source>Small</source>
+        <translation>Małe</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="198"/>
+        <source>Medium</source>
+        <translation>Średnie</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="202"/>
+        <source>Big</source>
+        <translation>Duży</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="208"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="180"/>
+        <location filename="../desktop/iconview.cpp" line="213"/>
+        <source>Cut</source>
+        <translation>ścinanie</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="218"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="185"/>
+        <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Rename</source>
         <translation>Zmień nazwę</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="190"/>
+        <location filename="../desktop/iconview.cpp" line="228"/>
         <source>Trash</source>
         <translation>Śmieci</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="412"/>
-        <location filename="../desktop/iconview.cpp" line="413"/>
+        <location filename="../desktop/iconview.cpp" line="477"/>
+        <location filename="../desktop/iconview.cpp" line="478"/>
         <source>New Txt Files</source>
         <translation>Nowy plik tekstowy</translation>
     </message>
@@ -105,14 +124,14 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
-        <location filename="../moresetting.cpp" line="26"/>
-        <location filename="../moresetting.cpp" line="55"/>
+        <location filename="../moresetting.cpp" line="46"/>
+        <location filename="../moresetting.cpp" line="79"/>
         <source>continue playing</source>
         <translation>kontynuuj nagranie</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
-        <location filename="../moresetting.cpp" line="28"/>
+        <location filename="../moresetting.cpp" line="48"/>
         <source>pause</source>
         <translation>pauza</translation>
     </message>
@@ -123,8 +142,8 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
-        <location filename="../moresetting.cpp" line="33"/>
-        <location filename="../moresetting.cpp" line="63"/>
+        <location filename="../moresetting.cpp" line="53"/>
+        <location filename="../moresetting.cpp" line="87"/>
         <source>default</source>
         <translation>domyślne</translation>
     </message>
@@ -180,12 +199,14 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="165"/>
-        <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.cpp" line="69"/>
+        <location filename="../moresetting.cpp" line="101"/>
         <source>true</source>
         <translation>prawda</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="170"/>
+        <location filename="../moresetting.cpp" line="71"/>
         <source>false</source>
         <translation>fałszywe</translation>
     </message>
@@ -201,9 +222,9 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
-        <location filename="../moresetting.cpp" line="44"/>
-        <location filename="../moresetting.cpp" line="70"/>
+        <location filename="../moresetting.cpp" line="64"/>
         <location filename="../moresetting.cpp" line="94"/>
+        <location filename="../moresetting.cpp" line="118"/>
         <source>other</source>
         <translation>inny</translation>
     </message>
@@ -228,7 +249,7 @@
         <translation>vdpau</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="13"/>
+        <location filename="../moresetting.cpp" line="33"/>
         <source>Advanced Settings</source>
         <translation>Ustawienia zaawansowane</translation>
     </message>
@@ -293,19 +314,27 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../main.cpp" line="84"/>
+        <source>dynamic-wallpaper</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="416"/>
+        <location filename="../wallpaper.cpp" line="412"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="421"/>
+        <location filename="../wallpaper.cpp" line="417"/>
         <source>Extend</source>
         <translation>Rozszerz</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="426"/>
+        <location filename="../wallpaper.cpp" line="422"/>
         <source>Manual</source>
         <translation>Ręcznie</translation>
     </message>
@@ -394,7 +423,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="528"/>
+        <location filename="../settingwindow.cpp" line="527"/>
         <source>Manual</source>
         <translation>Ręcznie</translation>
     </message>
@@ -404,24 +433,19 @@
         <translation>Głośność</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="29"/>
-        <source>/opt/durapps/fantascene-dynamic-wallpaper/09.mp4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settingwindow.ui" line="103"/>
         <source>Transparency</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejrzystość</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="163"/>
-        <location filename="../settingwindow.cpp" line="60"/>
+        <location filename="../settingwindow.cpp" line="80"/>
         <source>Play</source>
         <translation>Odtwórz</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="182"/>
-        <location filename="../settingwindow.cpp" line="73"/>
+        <location filename="../settingwindow.cpp" line="92"/>
         <source>Pause</source>
         <translation>Pauza</translation>
     </message>
@@ -462,7 +486,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="622"/>
+        <location filename="../settingwindow.cpp" line="621"/>
         <source>default</source>
         <translation>domyślne</translation>
     </message>
@@ -493,7 +517,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="634"/>
+        <location filename="../settingwindow.cpp" line="633"/>
         <source>custom</source>
         <translation>niestandardowe</translation>
     </message>
@@ -504,14 +528,14 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="466"/>
-        <location filename="../settingwindow.cpp" line="80"/>
+        <location filename="../settingwindow.cpp" line="99"/>
         <source>Wallpaper History</source>
         <translation>Historia tapet</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="473"/>
-        <source>Wallpaper Engine-wtyczka</source>
-        <translation></translation>
+        <source>Wallpaper Engine-plugin</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="352"/>
@@ -544,6 +568,11 @@
         <translation type="unfinished">1.33</translation>
     </message>
     <message>
+        <location filename="../settingwindow.ui" line="29"/>
+        <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../settingwindow.ui" line="333"/>
         <source>Apply scale</source>
         <translation>Zastosuj</translation>
@@ -569,32 +598,32 @@
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="84"/>
+        <location filename="../settingwindow.cpp" line="103"/>
         <source>Main View</source>
         <translation>Okno Główne</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="55"/>
+        <location filename="../settingwindow.cpp" line="75"/>
         <source>Exit</source>
         <translation>Wyjście</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="68"/>
+        <location filename="../settingwindow.cpp" line="87"/>
         <source>Screenshot</source>
         <translation>Zrzut ekranu</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="95"/>
+        <location filename="../settingwindow.cpp" line="114"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="110"/>
+        <location filename="../settingwindow.cpp" line="129"/>
         <source>Double click to open the configuration interface</source>
         <translation>Kliknij dwukrotnie, aby włączyć ustawienia</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="160"/>
+        <location filename="../settingwindow.cpp" line="179"/>
         <source>Latest version</source>
         <translation>Najnowsze wydanie</translation>
     </message>
@@ -628,17 +657,17 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select Path</source>
-        <translation type="unfinished">Wybierz ścieżkę</translation>
+        <translation>Wybierz ścieżkę</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
         <source>Apply</source>
-        <translation type="unfinished">Zastosuj</translation>
+        <translation>Zastosuj</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
-        <translation>Musisz podać ścieżkę Wallpaper Engine ze Steama. Nie działa on na Linuksie, aczkolwiek wymagana funkcjonalność jest dosępna.</translation>
+        <translation>Musisz podać ścieżkę Wallpaper Engine ze Steama. Nie działa on na Linuksie, aczkolwiek wymagana funkcjonalność jest dosępna</translation>
     </message>
 </context>
 </TS>
