@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "wallpaper.h"
 
 #include <xcb/xcb.h>
@@ -47,7 +67,6 @@ using namespace std;
 
 #include "application.h"
 
-#include "desktop.h"
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
     , m_currentPath(path)
@@ -84,26 +103,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         });
         updateGeometry();
     });
-//    connect(desktopwidget, &QDesktopWidget::screenCountChanged, this, [ = ] {
-//        if (qApp->desktop()->screenCount() > 1 && IdCopyScreen == dApp->m_cuurentMode && !m_mpv2 && m_mpv)
-//        {
-//            if (!m_mpv2) {
-//                m_mpv2 = new MpvWidget();
-//            }
-//            layout->addWidget(m_label2);
-//        } else
-//        {
-//            if (m_mpv2) {
-//                layout->removeWidget(m_mpv2);
-//                m_mpv2->deleteLater();
-//                m_mpv2 = nullptr;
-//            }
-//        }
-//        QTimer::singleShot(1000, [ = ] {
-//            updateGeometry();
-//        });
-//        updateGeometry();
-//    });
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -113,8 +112,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
     m_mouseWebEventTimer->start(30);
 
-//    de = new Desktop(this);
     QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
     m_iconView = new IconView(0, paths, this);
     connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
     m_iconView->move(0, 0);
@@ -123,7 +122,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
         int index1 = 0;
-        qDebug() << "ssss" << index1;
         for (const QString &arg : qApp->arguments())
         {
             if (index != 0) {
@@ -131,12 +129,10 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                     setFile(arg);
                     play();
                     index1++;
-                    qDebug() << "ssss1" << index1;
                 }
             }
             index++;
         }
-        qDebug() << "ssss2" << index1;
         if (index1 == 0)
         {
             QString playPath = "/opt/apps/com.github.fantacy/files/bin/09.mp4";
@@ -246,13 +242,16 @@ void Wallpaper::setScreen(const int &index)
 void Wallpaper::setFile(const QString &path)
 {
     dApp->m_currentPath = path;
-    m_iconView->setParent(this);
+    if (m_iconView) {
+        m_iconView->setParent(this);
+    }
+
     malloc_trim(0);
 //    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_mpv2) {
             layout()->removeWidget(m_mpv2);
-            delete m_mpv2;
+            m_mpv2->deleteLater();
             m_mpv2 = nullptr;
         }
         if (m_mpv) {
@@ -311,11 +310,11 @@ void Wallpaper::setFile(const QString &path)
             m_mpv = new MpvWidget(this);
             m_mpv->setGeometry(geometry());
 
-            layout()->addWidget(m_mpv);
             m_mpv->setProperty("loop", true);
             m_mpv->setProperty("panscan", 1);
             m_mpv->setGeometry(geometry());
             m_mpv->show();
+            layout()->addWidget(m_mpv);
 
 
             if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
@@ -551,9 +550,6 @@ void Wallpaper::updateGeometry()
         rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
         QRect rec2 = qApp->desktop()->screenGeometry();
         QRect deskRect = qApp->desktop()->availableGeometry();
-        qDebug() << "543" << rec;
-        qDebug() << "544" << rec2;
-        qDebug() << "545" << deskRect;
         rec = rec2;
         if (dApp->m_cuurentMode == IdCopyScreen)
         {
@@ -575,14 +571,12 @@ void Wallpaper::updateGeometry()
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
                 if (i == 1 && m_mpv) {
-                    qDebug() << screen->geometry();
                     m_mpv->setGeometry(screen->geometry());
                     m_mpv->setMinimumWidth(screen->geometry().width());
                     i++;
                     continue;
                 }
                 if (i == 2 && m_mpv2) {
-                    qDebug() << screen->geometry();
                     m_mpv2->setGeometry(screen->geometry());
                     i++;
                     continue;
@@ -647,7 +641,8 @@ void Wallpaper::updateGeometry()
                 m_webView2 = nullptr;
             }
         }
-        if (m_iconView)
+        setIconVisble(dApp->m_moreData.isShowDesktopIcon);
+        if (m_iconView && m_iconView->isVisible())
         {
             if (m_mpv) {
                 m_iconView->setGeometry(deskRect);
@@ -666,16 +661,11 @@ void Wallpaper::updateGeometry()
 
 void Wallpaper::slotMouseEvent()
 {
-    if (m_webView) {
+    if (m_webView && m_iconView->isVisible()) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
-//            qDebug() << m_currentPos;
             m_currentPos = pos;
-//            QRect rec2 = qApp->desktop()->screenGeometry();
-//            if (pos.x() > rec2.width()) {
-//                pos = QPoint(pos.x() - rec2.width(), pos.y());
-//            }
-//            qDebug() << pos;
+
             for (QObject *obj : m_webView->children()) {
                 QWidget *wgt = qobject_cast<QWidget *>(obj);
                 if (wgt) {
@@ -759,4 +749,11 @@ void Wallpaper::LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos)
                                          Qt::NoModifier);
     QCoreApplication::postEvent(eventsReciverWidget, press);
 
+}
+
+void Wallpaper::setIconVisble(bool visble)
+{
+    if (m_iconView) {
+        m_iconView->setVisible(visble);
+    }
 }

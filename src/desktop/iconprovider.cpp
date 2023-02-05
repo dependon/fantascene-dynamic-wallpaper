@@ -93,12 +93,6 @@ QIcon IconProvider::icon(const QFileInfo &info) const
         }
         return fileIcon;
     }
-    /*
-        if (mimeDatabase->mimeTypeForUrl(QUrl(info.filePath())).aliases().isEmpty()) {
-            qDebug()<<mimeDatabase->mimeTypeForFile(info).iconName();
-            return QIcon::fromTheme(mimeDatabase->mimeTypeForFile(info).iconName());
-        } else {
-        */
     QString filePath = info.filePath();
     std::string str = filePath.toStdString();
     const char *file_path = str.c_str();

@@ -35,6 +35,12 @@
 
 #include <QThread>
 #include <QDebug>
+#include <QPainter>
+#include <QApplication>
+#include <QFontMetrics>
+#include <QPainterPath>
+#include <QClipboard>
+#include <QMimeData>
 
 DelegateIcon::DelegateIcon()
 {
@@ -70,30 +76,13 @@ QString DelegateIcon::displayText(const QVariant &value, const QLocale &locale) 
 
         g_object_unref(desktop_app_info);
     }
-
     return text;
 }
 
 QWidget *DelegateIcon::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    /*
-    QLabel *lable = new QLabel(parent);
-    lable->setText(index.data().toString());
-    lable->setFixedWidth(108);
-    lable->setStyleSheet("background-color:white;"
-                         "color:black;");
-    lable->setWordWrap(true);
-    //lable->resize(option.rect.size());
-    qDebug()<<option.rect;
-    lable->adjustSize();
-    qDebug()<<lable->rect();
-    lable->setFixedHeight(200);
-    return lable;
-    */
-    //this is not good enough.
+
     QTextEdit *textEdit = new QTextEdit(parent);
-    //textEdit->setWordWrapMode();
-    //textEdit->setAttribute(Qt::WA_TranslucentBackground,false);
     textEdit->setStyleSheet("background-color:white;"
                             "color:black;");
     textEdit->setLineWrapMode(QTextEdit::WidgetWidth);
@@ -101,24 +90,9 @@ QWidget *DelegateIcon::createEditor(QWidget *parent, const QStyleOptionViewItem 
     textEdit->setText(index.data().toString());
     textEdit->setFixedWidth(option.rect.width());
     textEdit->setFixedHeight(150);
-    //textEdit->adjustSize();
-    /*
-    QStaticText text;
-    text.setText(index.data().toString());
-    QTextOption textOption;
-    textOption.setAlignment(Qt::AlignHCenter);
-    textOption.setWrapMode(QTextOption::WordWrap);
-    text.setTextOption(textOption);
-    text.setTextWidth(108);
-    //text.prepare();
-    */
-    //qDebug()<<text.size();
-    //qDebug()<<textEdit->rect()<<option.rect;
+
     connect(textEdit, &QTextEdit::destroyed, [ = ]() {
-        //qDebug()<<"textEdit destroyed";
-        //qDebug()<<index.data();
-        //qDebug()<<textEdit->toPlainText();
-        //qDebug()<<mModel->filePath(mIconView->rootIndex());
+
         if (!textEdit->toPlainText().isEmpty()) {
             QString srcPath = mModel->filePath(mIconView->rootIndex()) + "/" + index.data().toString();
             QString destPath = mModel->filePath(mIconView->rootIndex()) + "/" + textEdit->toPlainText();
@@ -152,6 +126,92 @@ void DelegateIcon::updateEditorGeometry(QWidget *editor, const QStyleOptionViewI
 
 QSize DelegateIcon::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    return QStyledItemDelegate::sizeHint(option,index);
     Q_UNUSED(index)
-    return QSize(180, 100);
+    return QSize(option.rect.width(), option.rect.height());
+}
+
+void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    if(!index.isValid())
+    {
+        return QStyledItemDelegate::paint(painter,option,index);
+    }
+    painter->setRenderHints(QPainter::HighQualityAntialiasing |
+                            QPainter::SmoothPixmapTransform |
+                            QPainter::Antialiasing);
+
+    painter->save();
+
+    qDebug()<<option.state;
+    //选中
+    if(QStyle::State_Selected & option.state)
+    {
+        QRect backgroundRect = option.rect;
+        QPainterPath backgroundBp;
+        backgroundBp.addRoundedRect(backgroundRect, 12, 12);
+        painter->setClipPath(backgroundBp);
+        painter->fillRect(backgroundRect, option.palette.highlight());
+    }
+
+    //是否有剪切
+
+    bool isCut =false ;
+    QByteArray ba = QApplication::clipboard()->mimeData()->data("x-special/gnome-copied-files");
+    QString tStr(ba);
+    if (tStr.startsWith("cut")) {
+        QList<QUrl> urls = QApplication::clipboard()->mimeData()->urls();
+        QString text = index.data(Qt::DisplayRole).toString();
+        QString filePath = mModel->filePath(mIconView->rootIndex()) + "/" + text;
+        for (QUrl url :urls)
+        {
+            QString localPath = url.toLocalFile();
+            if(localPath == filePath)
+            {
+                isCut = true;
+            }
+        }
+    }
+
+    //图标
+    QIcon icon = index.data(Qt::DecorationRole).value<QIcon>();
+    QRect iconRect = option.rect;
+    iconRect.setX(option.rect.width()/4+option.rect.x());
+    iconRect.setSize(QSize(option.rect.width()/2, option.rect.width()/2));
+    QIcon::State state;
+    if(option.state == QStyle::State_Open)
+    {
+        state = QIcon::On;
+    }
+    else
+    {
+        state = QIcon::Off;
+    }
+    {
+        icon.paint(painter, iconRect, Qt::AlignCenter | Qt::AlignVCenter, QIcon::Active,state);
+    }
+    //是剪切文件且未被选中
+    if(isCut && !(QStyle::State_Selected & option.state))
+    {
+        painter->fillRect(iconRect,QColor(0,0,0,125));
+    }
+
+
+    //text
+    QString text = displayText(index.data(Qt::DisplayRole),QLocale::system());
+    QFontMetrics fontMetrics(qApp->font());
+    int padding = 8;
+    QRect rect = fontMetrics.boundingRect(option.rect.left()+padding/2, option.rect.top()+iconRect.height(),
+                                             option.rect.width()-padding, option.rect.height()-padding,
+                                             Qt::AlignHCenter | Qt::AlignTop | Qt::TextWrapAnywhere,
+                                             text);
+
+    QColor color = qApp->palette().text().color();
+    color=Qt::white;
+    QPen pen(color);
+    QString caiText = fontMetrics.elidedText(text,Qt::ElideRight,option.rect.width()*2-20);
+    painter->setPen(pen);
+    painter->setFont(qApp->font());
+    painter->drawText(rect, Qt::AlignHCenter | Qt::AlignTop | Qt::TextWrapAnywhere, caiText);
+    painter->restore();
 }

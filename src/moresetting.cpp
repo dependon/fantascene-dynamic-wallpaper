@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "moresetting.h"
 #include "ui_moresetting.h"
 #include "application.h"
@@ -45,7 +65,11 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->hwdecEdit->setText(data.hwdec);
     }
 
-
+    if (data.isShowDesktopIcon) {
+        ui->desktopShowCombox->setCurrentText(tr("true"));
+    } else {
+        ui->desktopShowCombox->setCurrentText(tr("false"));
+    }
 
 }
 
@@ -71,6 +95,13 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.hwdec = ui->hwdecEdit->text();
     } else {
         dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
+    }
+
+    QString isDesktopIcon = ui->desktopShowCombox->currentText();
+    if (isDesktopIcon.contains(tr("true"))) {
+        dApp->m_moreData.isShowDesktopIcon = true;
+    } else {
+        dApp->m_moreData.isShowDesktopIcon = false;
     }
 
     Q_EMIT dApp->moreSettingSave();

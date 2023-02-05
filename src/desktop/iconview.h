@@ -28,14 +28,24 @@
 
 class QMenu;
 
+enum CopyOrCut
+{
+    CopyOrCut_COPY,
+    CopyOrCut_CUT
+};
+
 class IconView : public QListView
 {
     Q_OBJECT
+
 public:
+    QString readSettings(const QString &path, const QString &group, const QString &key);
     IconView(int id, QString rootPath, QWidget *parent = nullptr);
     ~IconView() override;
-    void copyImageToClipboard(const QStringList &paths);
+    void copyImageToClipboard(const QStringList &paths , CopyOrCut type = CopyOrCut_COPY);
     QString terminalPath();
+
+    void setIconTextSize(int size);
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -47,31 +57,31 @@ Q_SIGNALS :
     void sigMouseMove();
     void sigMouseClick(const int &index);
     void sigMouseDclick();
+
 public Q_SLOTS:
     void copyFile();
+    void cutFile();
     void pauseFile();
     void openFile();
     void deleteFile();
     void renameFile();
-
     void slotsnewFolder();
     void slotsnewTxt();
     void slotsopenTerminal();
+    void slotsIconSizeSmall();
+    void slotsIconSizeMedium();
+    void slotsIconSizeBig();
 
 protected:
     void paintEvent(QPaintEvent *e) override;
-
     void mousePressEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
     void focusOutEvent(QFocusEvent *e) override;
-
     void closeEvent(QCloseEvent *e) override;
-
     void dragEnterEvent(QDragEnterEvent *e) override;
     void dragMoveEvent(QDragMoveEvent *e) override;
     void dropEvent(QDropEvent *e) override;
-
     void keyPressEvent(QKeyEvent *event) override;
 };
 

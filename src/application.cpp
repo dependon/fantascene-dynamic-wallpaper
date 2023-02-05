@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "application.h"
 #include <QIcon>
 #include <QDir>
@@ -7,6 +27,7 @@
 #include <QDebug>
 #include <QCryptographicHash>
 #include <QTimer>
+#include <QPainter>
 
 #include "setdesktop.h"
 
@@ -141,7 +162,6 @@ const QString Application::thumbnailCachePath()
 
 bool Application::setThumbnail(const QString &path)
 {
-//    return false;
     QUrl url;
     if (!path.contains("file://")) {
         url = QUrl::fromLocalFile(path);
@@ -152,13 +172,11 @@ bool Application::setThumbnail(const QString &path)
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
     QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath + " |y";
     qDebug() << commod;
-//    QProcess::execute(commod);
     if (!QFileInfo(thumPath).isFile()) {
         system(commod.toStdString().c_str());
     }
 
     return true;
-    //    system("ffmpeg -i /opt/durapps/fantascene-dynamic-wallpaper/09.mp4 -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' /home/lmh/.config/fantascene-dynamic-wallpaper/.thumbnail/d18420fa260c7eff8fd0f2fac2f7b1cf.png");
 }
 
 void Application::setPlayListTimer(int s)
@@ -173,6 +191,39 @@ void Application::setPlayListTimer(int s)
 void Application::setisPlayList(bool bRet)
 {
     m_isPlayList = bRet;
+}
+
+const QPixmap Application::getThumbnailText(const QString &path)
+{
+    QString text;
+    if (path.isEmpty()) {
+        text = "ERROR!!";
+    } else if (QFileInfo(path).isFile()) {
+        text = QFileInfo(path).completeBaseName();
+    } else {
+        text = path;
+    }
+    QSize size(256, 144); //指定图片大小;
+    QImage image(size, QImage::Format_ARGB32); //以ARGB32格式构造一个QImage,
+    //image.fill(qRgba(0,0,0,100));//填充图片背景,120/250为透明度
+    QPainter painter(&image); //为这个QImage构造一个QPainter
+    painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
+    //设置画刷的组合模式CompositionMode_SourceOut这个模式为目标图像在上。
+    //改变组合模式和上面的填充方式可以画出透明的图片。
+    //改变画笔和字体
+    QPen pen = painter.pen();
+    pen.setColor(Qt::red);
+    QFont font = painter.font();
+    font.setBold(true);//加粗
+    font.setPixelSize(30);//改变字体大小
+    painter.setPen(pen);
+    painter.setFont(font);
+    painter.drawText(image.rect(), Qt::AlignCenter, text);
+    //将Hello写在Image的中心
+//    int n = 100;//这个为图片的压缩度。0/100
+//    image.save("text.png", "PNG", n);
+
+    return QPixmap::fromImage(image);
 }
 
 const QPixmap Application::getThumbnail(const QString &path)
@@ -200,7 +251,6 @@ const QPixmap Application::getThumbnail(const QString &path)
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString encodePath = cacheP + "/large/" + md5s + ".png";
-//    const QString failEncodePath = cacheP + "/fail/" + md5s + ".png";
 
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
     if (QFileInfo(thumPath).exists()) {
@@ -221,10 +271,14 @@ const QPixmap Application::getThumbnail(const QString &path)
         qDebug() << "Fail-thumbnail exist, won't regenerate: " ;
         setThumbnail(path);
         QPixmap  a(thumPath);
+        if (a.isNull()) {
+            a = getThumbnailText(path);
+            a.save(thumPath);
+        }
         return a;
     }
 
-    return QPixmap();
+    return getThumbnailText(path);
 }
 
 void Application::setDesktopTransparent()

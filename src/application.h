@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
@@ -36,6 +56,7 @@ public:
 
     void setPlayListTimer(int s);
     void setisPlayList(bool bRet);
+    const QPixmap getThumbnailText(const QString &path);
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
@@ -73,9 +94,7 @@ Q_SIGNALS:
     void sigReadPlayerConfig();
 
 public:
-    QThread *m_startDesktop{nullptr};
-    QProcess *m_startDesktopProcess{nullptr};
-    qint64 m_processId{0};
+
     QRect m_manual{0, 0, 0, 0};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
@@ -84,7 +103,6 @@ public:
     QStringList m_playlistPath;
     QMutex mutex;
 
-    QMap <unsigned long, bool>m_x11WindowFuscreen;
     QVector <unsigned long> m_screenWid;
     bool m_isNoMpvPause{true};
     bool m_isPlayList{false};

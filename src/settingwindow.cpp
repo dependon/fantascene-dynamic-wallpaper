@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "settingwindow.h"
 
 #include "ui_settingwindow.h"
@@ -18,18 +38,20 @@
 #include <QMimeData>
 #include <QDebug>
 
+
 #include <QMutexLocker>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#include <xcb/shape.h>
+
 
 #include "listview/historywidget.h"
 #include "listview/wallpaperengineplugin.h"
 
-#include <xcb/shape.h>
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/fantascene-dynamic-wallpaper/config.ini";
+        "/.config/fantascene-dynamic-wallpaper/config.ini";
 
 
 settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
@@ -37,16 +59,17 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)
 {
-    //    saveSettings();
-
     ui->setupUi(this);
+    readSettings();
+
+
     ui->tansparency_slider->hide();
     ui->label_8->hide();
     /*qApp->*/installEventFilter(this);
     ui->pathEdit->installEventFilter(this);
     ui->pathEdit->setAcceptDrops(true);
     setAcceptDrops(true);
-    readSettings();
+
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText(tr("Exit"));
@@ -58,7 +81,6 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     connect(setMpvPlayAction, &QAction::triggered, this, [ = ] {
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_x11WindowFuscreen.clear();
     });
 
     QAction *setScreenshotAction = new QAction(m_traymenu);
@@ -128,6 +150,7 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
     connect(dApp, &Application::sigDesktopActive, this, [ = ] {
+        this->show();
         if (m_parentMainWindow)
         {
             m_parentMainWindow->resize(500, 300);
@@ -162,6 +185,11 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
     }
 
+    initAtom();
+
+    initWallpaperWidget();
+    executeSettings();
+
 }
 void settingWindow::pathChanged(const QString &path)
 {
@@ -189,7 +217,6 @@ void settingWindow::readSettings()
     QSettings settings(CONFIG_PATH, QSettings::IniFormat);
 
     dApp->m_currentPath = settings.value("WallPaper/CurrentPath").toString();
-    qDebug() << dApp->m_currentPath;
     m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
     int widthPY = settings.value("WallPaper/widthPY").toInt();
@@ -200,12 +227,19 @@ void settingWindow::readSettings()
     m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
     m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
     m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
+
     dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
     dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
     dApp->m_wallpaperEnginePath = settings.value("WallPaper/wallpaperEnginePath").toString();
-    dApp->m_isPlayList = settings.value("WallPaper/isPlayList").toBool();
+    if(settings.contains("WallPaper/isPlayList")){
+        dApp->m_isPlayList = settings.value("WallPaper/isPlayList").toBool();
+    }
     dApp->m_PlaylistTimer = settings.value("WallPaper/playlistTimer").toInt();
+    if(settings.contains("WallPaper/desktopShow")){
+        dApp->m_moreData.isShowDesktopIcon = settings.value("WallPaper/desktopShow").toBool();
+    }
+
     dApp->setisPlayList(dApp->m_isPlayList);
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);
 
@@ -243,6 +277,11 @@ void settingWindow::readSettings()
 
 
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
+}
+
+void settingWindow::executeSettings()
+{
+
     if (!m_currentMode.isEmpty()) {
         ui->comboBox->setCurrentText(m_currentMode);
         setScreenMode(m_currentMode);
@@ -255,86 +294,52 @@ void settingWindow::readSettings()
         }
     }
 
-    QTimer::singleShot(300, this, [ = ] {
-        ui->widthPY->setText(QString::number(dApp->m_manual.x()));
-        ui->heightPY->setText(QString::number(dApp->m_manual.y()));
-        ui->width->setText(QString::number(dApp->m_manual.width()));
-        ui->height->setText(QString::number(dApp->m_manual.height()));
+    ui->widthPY->setText(QString::number(dApp->m_manual.x()));
+    ui->heightPY->setText(QString::number(dApp->m_manual.y()));
+    ui->width->setText(QString::number(dApp->m_manual.width()));
+    ui->height->setText(QString::number(dApp->m_manual.height()));
 
-        if (m_voiceVolume >= 0 && m_voiceVolume < 100)
-        {
-            ui->Slider->setValue(m_voiceVolume);
-            on_Slider_valueChanged(m_voiceVolume);
-        }
-        if (!m_currentMode.isEmpty())
-        {
-            ui->comboBox->setCurrentText(m_currentMode);
-            setScreenMode(m_currentMode);
-        }
-        if (m_crrenNumber > 1)
-        {
-            //        ui->autoisMScreen->setCheckState(Qt::Checked);
-        }
-        if (m_isAutoStart > 0)
-        {
-            ui->autoStartBox->setCheckState(Qt::Checked);
-        }
+    if (m_voiceVolume >= 0 && m_voiceVolume < 100) {
+        ui->Slider->setValue(m_voiceVolume);
+        on_Slider_valueChanged(m_voiceVolume);
+    }
+    if (!m_currentMode.isEmpty()) {
+        ui->comboBox->setCurrentText(m_currentMode);
+        setScreenMode(m_currentMode);
+    }
+    if (m_crrenNumber > 1) {
+        //        ui->autoisMScreen->setCheckState(Qt::Checked);
+    }
+    if (m_isAutoStart > 0) {
+        ui->autoStartBox->setCheckState(Qt::Checked);
+    }
 
-        on_videoBLCombox_activated(m_videoASpectStr);
+    on_videoBLCombox_activated(m_videoASpectStr);
 
 
-    });
-    QTimer::singleShot(2000, this, [ = ] {
-        if (dApp->m_moreData.isAuto == 1)
-        {
-//            ui->checkBox->setCheckState(Qt::Checked);
-        }
-        if (!dApp->m_moreData.hwdec.isEmpty())
-        {
-            dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
-        }
-        on_checkBox_stateChanged(dApp->m_moreData.isAuto);
-    });
 
-    qDebug() << "x";
+    if (dApp->m_moreData.isAuto == 1) {
+
+    }
+    if (!dApp->m_moreData.hwdec.isEmpty()) {
+        dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
+    }
+    on_checkBox_stateChanged(dApp->m_moreData.isAuto);
+
+    if (m_wallpaper) {
+        m_wallpaper->setIconVisble(dApp->m_moreData.isShowDesktopIcon);
+    }
+
 }
 
 void settingWindow::saveSettings()
 {
-    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
-    settings.clear();
-    settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
-    settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
-    settings.setValue("WallPaper/CurrentPath", dApp->m_currentPath);
-    settings.setValue("WallPaper/Mode", ui->comboBox->currentText());
-    settings.setValue("WallPaper/widthPY", dApp->m_manual.x());
-    settings.setValue("WallPaper/heightPY", dApp->m_manual.y());
-    settings.setValue("WallPaper/width", dApp->m_manual.width());
-    settings.setValue("WallPaper/height", dApp->m_manual.height());
-    settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
-    settings.setValue("WallPaper/videoAspect", m_videoAspect);
-    settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
-    settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
-    settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
-    settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
-    settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
-    settings.setValue("WallPaper/isPlayList", dApp->m_isPlayList);
-    settings.setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
-
-    int indexLocal = 1;
-    //去重
-    dApp->m_allPath = dApp->m_allPath.toSet().toList();
-    for (QString str : dApp->m_allPath) {
-        settings.setValue("Movie/localPath" + QString::number(indexLocal++), str);
+    if(!m_timerSave){
+        m_timerSave=new QTimer(this);
+        connect(m_timerSave,&QTimer::timeout,this,&settingWindow::slotTimerSaveSettings);
     }
-
-    //去重
-    int playlistIndex = 1;
-    dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
-    for (QString str : dApp->m_playlistPath) {
-        settings.setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
-    }
-
+    m_timerSave->setSingleShot(true);
+    m_timerSave->start(1000);
 }
 
 QString settingWindow::getCurrentPath()
@@ -352,108 +357,13 @@ int settingWindow::isAutoStart()
     return m_isAutoStart;
 }
 
-//#include <xcb/xcb_icccm.h>
-
-//#include <X11/cursorfont.h>
-xcb_atom_t settingWindow::internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists)
+QVector <WId> settingWindow::currentWorkWindow()
 {
-    if (!name || *name == 0)
-        return XCB_NONE;
-
-    xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection, only_if_exists, strlen(name), name);
-    xcb_intern_atom_reply_t *reply = xcb_intern_atom_reply(connection, cookie, 0);
-
-    if (!reply)
-        return XCB_NONE;
-
-    xcb_atom_t atom = reply->atom;
-    free(reply);
-
-    return atom;
-}
-
-QVector<xcb_window_t> settingWindow::getWindows() const
-{
-    QVector<xcb_window_t> window_list_stacking;
-    Display *display = QX11Info::display();
-    XDefaultRootWindow(display);
-    xcb_window_t root /*= XDefaultRootWindow(display)->primaryScreen()->root()*/;
-    int offset = 0;
-    int remaining = 0;
-    xcb_connection_t *xcb_connection = QX11Info::connection();
-
-    do {
-        xcb_atom_t atomtt = internAtom(xcb_connection, "_NET_CLIENT_LIST_STACKING");
-        xcb_get_property_cookie_t cookie = xcb_get_property(xcb_connection, false,  XDefaultRootWindow(display),
-                                                            atomtt,
-                                                            XCB_ATOM_WINDOW, offset, 1024);
-        xcb_get_property_reply_t *reply = xcb_get_property_reply(xcb_connection, cookie, NULL);
-        if (!reply)
-            break;
-
-        remaining = 0;
-
-        if (reply->type == XCB_ATOM_WINDOW && reply->format == 32) {
-            int len = xcb_get_property_value_length(reply) / sizeof(xcb_window_t);
-            xcb_window_t *windows = (xcb_window_t *)xcb_get_property_value(reply);
-            int s = window_list_stacking.size();
-            window_list_stacking.resize(s + len);
-            memcpy(window_list_stacking.data() + s, windows, len * sizeof(xcb_window_t));
-
-            remaining = reply->bytes_after;
-            offset += len;
-        }
-
-        free(reply);
-    } while (remaining > 0);
-
-    return window_list_stacking;
-}
-qint32 settingWindow::getWorkspaceForWindow(quint32 WId)
-{
-    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false, WId,
-                                                        internAtom(QX11Info::connection(), "_NET_WM_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
-    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
-        xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
-    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
-        return *(qint32 *)xcb_get_property_value(reply.data());
-    }
-
-    return 0;
-}
-
-QVector<uint> settingWindow::getCurrentWorkspaceWindows()
-{
-    qint32 current_workspace = 0;
-
-    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false,
-                                                        winId(),
-                                                        internAtom(QX11Info::connection(), "_NET_CURRENT_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
-    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
-        xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
-    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
-        current_workspace = *(qint32 *)xcb_get_property_value(reply.data());
-    }
-
-    QVector<uint> windows;
-
-    for (uint32_t WId : getWindows()) {
-        qint32 ws = getWorkspaceForWindow(WId);
-
-        if (ws < 0 || ws == current_workspace) {
-            windows << WId;
-        }
-    }
-
-    return windows;
-}
-QMap<WId, QWindow *> settingWindow::currentWorkWindow()
-{
-//    QWindowList m_windowList;
-//    for (QWindow *w : m_windowList) {
-//        w->deleteLater();
-//    }
-//    m_windowList.clear();
+    //    QWindowList m_windowList;
+    //    for (QWindow *w : m_windowList) {
+    //        w->deleteLater();
+    //    }
+    //    m_windowList.clear();
     QList<WId> currentApplicationList;
     const QWindowList &list = qApp->allWindows();
     currentApplicationList.reserve(list.size());
@@ -463,32 +373,33 @@ QMap<WId, QWindow *> settingWindow::currentWorkWindow()
         currentApplicationList.append(window->winId());
     }
     QVector<quint32> winList;
-//    QFunctionPointer wmClientList = Q_NULLPTR;
-//#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-//    QByteArray function = "_d_getCurrentWorkspaceWindows";
-//    wmClientList = qApp->platformFunction(function);
-//#endif
-//    if (!wmClientList) {
-//        winList = QVector<quint32>();
-//    } else {
-//        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
-//    }
+    //    QFunctionPointer wmClientList = Q_NULLPTR;
+    //#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+    //    QByteArray function = "_d_getCurrentWorkspaceWindows";
+    //    wmClientList = qApp->platformFunction(function);
+    //#endif
+    //    if (!wmClientList) {
+    //        winList = QVector<quint32>();
+    //    } else {
+    //        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
+    //    }
     winList = getCurrentWorkspaceWindows();
 
 
 
     for (WId wid : winList) {
+
         if (currentApplicationList.contains(wid)) {
             continue;
         }
-        if (m_windowList.keys().contains(wid)) {
+        if (m_windowList.contains(wid)) {
             continue;
         }
-        QWindow *w = new QWindow();
-        w->setFlags(Qt::ForeignWindow);
-        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
-        w->create();
-        m_windowList.insert(wid, w);
+        //        QWindow *w = new QWindow();
+        //        w->setFlags(Qt::ForeignWindow);
+        //        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
+        //        w->create();
+        m_windowList.push_back(wid);
     }
     return m_windowList;
 }
@@ -551,15 +462,15 @@ void settingWindow::on_Slider_valueChanged(int value)
 {
     Q_EMIT dApp->setMpvVolume(value);
     m_voiceVolume = value;
-
-//    saveSettings();
+    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
+    settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
+    saveSettings();
 }
 
 void settingWindow::on_startBtn_clicked()
 {
     Q_EMIT dApp->setMpvPlay();
     dApp->m_isNoMpvPause = true;
-    dApp->m_x11WindowFuscreen.clear();
 }
 
 void settingWindow::on_startScreen_clicked()
@@ -578,9 +489,9 @@ void settingWindow::on_startScreen_clicked()
 void settingWindow::on_autoStart_clicked()
 {
 
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop").isFile())
-        QProcess::execute("cp /opt/durapps/fantascene-dynamic-wallpaper/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/";
+    if (!QFileInfo(path + "fantascene-dynamic-wallpaper.desktop").isFile())
+        QProcess::execute("cp /usr/share/applications/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
@@ -623,22 +534,22 @@ void settingWindow::quitApp()
 {
 
 
-//#ifdef QT_NO_DEBUG
-//    QProcess::execute("killall dde-desktop");
-//    if (0 != dApp->m_processId) {
-//        QProcess::execute("kill " + QString::number(dApp->m_processId));
-//    }
-//    QThread *th = QThread::create([ = ]() {
-//        QProcess::execute("dde-desktop");
-//    });
-//    th->start();
-//    saveSettings();
-//#else
+    //#ifdef QT_NO_DEBUG
+    //    QProcess::execute("killall dde-desktop");
+    //    if (0 != dApp->m_processId) {
+    //        QProcess::execute("kill " + QString::number(dApp->m_processId));
+    //    }
+    //    QThread *th = QThread::create([ = ]() {
+    //        QProcess::execute("dde-desktop");
+    //    });
+    //    th->start();
+    //    saveSettings();
+    //#else
     saveSettings();
-//#endif
+    //#endif
     //dbus关闭壁纸透明
 
-//    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
+    //    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground true");
     m_stopx11Thread = true;
     if (m_x11thread) {
         m_x11thread->wait();
@@ -768,8 +679,8 @@ bool settingWindow::eventFilter(QObject *obj, QEvent *event)
         }
 
         if (!paths.isEmpty()) {
-//            ui->mainImageView->openImage(paths.at(0));
-//            ui->basicImageView->openImage(paths.at(0));
+            //            ui->mainImageView->openImage(paths.at(0));
+            //            ui->basicImageView->openImage(paths.at(0));
             ui->pathEdit->setText(paths.at(0));
             QPixmap pix = dApp->getThumbnail(paths.at(0));
             if (!pix.isNull()) {
@@ -793,6 +704,7 @@ void settingWindow::slotMoreSettingSave()
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
 
     dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
+    slotShowDesktopIcon(dApp->m_moreData.isShowDesktopIcon);
     on_setBtn_clicked();
     saveSettings();
 
@@ -818,7 +730,6 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
             //            m_x11thread->terminate();
             m_x11thread = nullptr;
         }
-        dApp->m_x11WindowFuscreen.clear();
         if (dApp->m_isNoMpvPause) {
             dApp->setMpvPlay();
         }
@@ -832,21 +743,17 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                 while (!m_stopx11Thread) {
                     if (dApp->m_isNoMpvPause) {
                         int index = 0;
-                        //                        DWindowManagerHelper::instance()->currentWorkspaceWindowIdList();
-                        for (auto window : currentWorkWindow()) {
-                            //                            if (wid == winId()) {
-                            //                                continue;
-                            //                                qDebug() << "this";
-                            //                            }
 
-                            //                            DForeignWindow *window = DForeignWindow::fromWinId(wid);
-                            //                            //判断窗口是否有最大窗口
+                        for (auto wid : currentWorkWindow()) {
 
-                            if (window && (window->windowState() == Qt::WindowState::WindowMaximized || window->windowState() == Qt::WindowState::WindowFullScreen)) {
-                                //            continue;
+                            QRect rect = geometry(wid);
+                            Qt::WindowState state = getWindowState(wid);
 
-                                int wwidth = window->frameGeometry().width();
-                                int wheight = window->frameGeometry().height();
+                            if (state == Qt::WindowState::WindowMaximized || state == Qt::WindowState::WindowFullScreen) {
+
+
+                                int wwidth = rect.width();
+                                int wheight = rect.height();
 
                                 if (wwidth > screenwidth && wheight > screenheight) {
 
@@ -897,6 +804,7 @@ void settingWindow::on_pluginBtn_clicked()
 
 void settingWindow::activeWindow()
 {
+    this->show();
     if (m_parentMainWindow) {
         m_parentMainWindow->resize(500, 300);
         m_parentMainWindow->show();
@@ -908,3 +816,237 @@ void settingWindow::on_tansparency_slider_valueChanged(int value)
 {
     Q_EMIT dApp->sigSetTransparency(value);
 }
+
+void settingWindow::slotShowDesktopIcon(bool isIcon)
+{
+    if (m_wallpaper) {
+        m_wallpaper->setIconVisble(isIcon);
+    }
+}
+
+void settingWindow::slotTimerSaveSettings()
+{
+    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
+    settings.clear();
+    settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
+    settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
+    settings.setValue("WallPaper/CurrentPath", dApp->m_currentPath);
+    settings.setValue("WallPaper/Mode", ui->comboBox->currentText());
+    settings.setValue("WallPaper/widthPY", dApp->m_manual.x());
+    settings.setValue("WallPaper/heightPY", dApp->m_manual.y());
+    settings.setValue("WallPaper/width", dApp->m_manual.width());
+    settings.setValue("WallPaper/height", dApp->m_manual.height());
+    settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
+    settings.setValue("WallPaper/videoAspect", m_videoAspect);
+    settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
+    settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
+    settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
+    settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
+    settings.setValue("WallPaper/desktopShow", dApp->m_moreData.isShowDesktopIcon);
+    settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+    settings.setValue("WallPaper/isPlayList", dApp->m_isPlayList);
+    settings.setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
+
+    int indexLocal = 1;
+    //去重
+    dApp->m_allPath = dApp->m_allPath.toSet().toList();
+    for (QString str : dApp->m_allPath) {
+        settings.setValue("Movie/localPath" + QString::number(indexLocal++), str);
+    }
+
+    //去重
+    int playlistIndex = 1;
+    dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
+    for (QString str : dApp->m_playlistPath) {
+        settings.setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
+    }
+}
+
+
+xcb_atom_t settingWindow::internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists)
+{
+    if (!name || *name == 0)
+        return XCB_NONE;
+
+    xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection, only_if_exists, strlen(name), name);
+    xcb_intern_atom_reply_t *reply = xcb_intern_atom_reply(connection, cookie, 0);
+
+    if (!reply)
+        return XCB_NONE;
+
+    xcb_atom_t atom = reply->atom;
+    free(reply);
+
+    return atom;
+}
+
+QVector<xcb_window_t> settingWindow::getWindows() const
+{
+    QVector<xcb_window_t> window_list_stacking;
+    Display *display = QX11Info::display();
+    XDefaultRootWindow(display);
+    xcb_window_t root /*= XDefaultRootWindow(display)->primaryScreen()->root()*/;
+    int offset = 0;
+    int remaining = 0;
+    xcb_connection_t *xcb_connection = QX11Info::connection();
+
+    do {
+        xcb_atom_t atomtt = internAtom(xcb_connection, "_NET_CLIENT_LIST_STACKING");
+        xcb_get_property_cookie_t cookie = xcb_get_property(xcb_connection, false,  XDefaultRootWindow(display),
+                                                            atomtt,
+                                                            XCB_ATOM_WINDOW, offset, 1024);
+        xcb_get_property_reply_t *reply = xcb_get_property_reply(xcb_connection, cookie, NULL);
+        if (!reply)
+            break;
+
+        remaining = 0;
+
+        if (reply->type == XCB_ATOM_WINDOW && reply->format == 32) {
+            int len = xcb_get_property_value_length(reply) / sizeof(xcb_window_t);
+            xcb_window_t *windows = (xcb_window_t *)xcb_get_property_value(reply);
+            int s = window_list_stacking.size();
+            window_list_stacking.resize(s + len);
+            memcpy(window_list_stacking.data() + s, windows, len * sizeof(xcb_window_t));
+
+            remaining = reply->bytes_after;
+            offset += len;
+        }
+
+        free(reply);
+    } while (remaining > 0);
+
+    return window_list_stacking;
+}
+qint32 settingWindow::getWorkspaceForWindow(quint32 WId)
+{
+    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false, WId,
+                                                        internAtom(QX11Info::connection(), "_NET_WM_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
+                xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
+        return *(qint32 *)xcb_get_property_value(reply.data());
+    }
+
+    return 0;
+}
+
+QVector<uint> settingWindow::getCurrentWorkspaceWindows()
+{
+    qint32 current_workspace = 0;
+
+    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false,
+                                                        winId(),
+                                                        internAtom(QX11Info::connection(), "_NET_CURRENT_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+    QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
+                xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+    if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
+        current_workspace = *(qint32 *)xcb_get_property_value(reply.data());
+    }
+
+    QVector<uint> windows;
+
+    for (uint32_t WId : getWindows()) {
+        qint32 ws = getWorkspaceForWindow(WId);
+
+        if (ws < 0 || ws == current_workspace) {
+            windows << WId;
+        }
+    }
+
+    return windows;
+}
+
+QRect settingWindow::geometry(WId id) const
+{
+
+    XWindowAttributes bute;
+    XGetWindowAttributes(QX11Info::display(), id, &bute);
+    QRect rect;
+    if (&bute) {
+        rect.setX(bute.x);
+        rect.setY(bute.y);
+        rect.setWidth(bute.width);
+        rect.setHeight(bute.height);
+    }
+    return rect;
+}
+#include <X11/Xatom.h>
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+Qt::WindowState settingWindow::getWindowState(WId id)
+{
+
+    xcb_window_t window = id;
+    Qt::WindowState newState = Qt::WindowNoState;
+    const xcb_get_property_cookie_t get_cookie =
+            xcb_get_property(QX11Info::connection(), 0, window, m_ewmh_connection._NET_WM_STATE,
+                             XCB_ATOM_ANY, 0, 1024);
+
+    xcb_get_property_reply_t *reply =
+            xcb_get_property_reply(QX11Info::connection(), get_cookie, NULL);
+
+    if (reply) {
+        const quint32 *data = (const quint32 *)xcb_get_property_value(reply);
+        if (data[0] == m_ewmh_connection._NET_WM_STATE_FULLSCREEN) {
+            newState = Qt::WindowFullScreen;
+        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_VERT || data[0] == m_ewmh_connection._NET_WM_STATE_MAXIMIZED_HORZ) {
+            newState = Qt::WindowMaximized;
+            if (data[2] == m_ewmh_connection._NET_WM_STATE_HIDDEN) {
+                newState = Qt::WindowMinimized;
+            }
+        } else if (data[0] == m_ewmh_connection._NET_WM_STATE_HIDDEN) {
+            newState = Qt::WindowMinimized;
+        }
+    }
+    free(reply);
+
+    return newState;
+}
+
+void settingWindow::initAtom()
+{
+    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+}
+
+
+uint32_t settingWindow::searchWindowType(int wid)
+{
+    uint32_t reId = 0;
+    QMutexLocker locker(&m_mutex);
+    //    if (m_cookie) {
+
+    xcb_get_property_cookie_t cooke = xcb_ewmh_get_wm_window_type(&m_ewmh_connection, wid);
+
+    xcb_ewmh_get_atoms_reply_t name;
+    xcb_generic_error_t *error_t = new xcb_generic_error_t;
+
+    xcb_ewmh_get_wm_window_type_reply(&m_ewmh_connection, cooke, &name, &error_t);
+
+    if (error_t) {
+        delete error_t;
+        error_t = NULL;
+        return 381;
+    } else {
+
+    }
+    if (name.atoms && name.atoms_len <= 10) {
+        reId = name.atoms[0];
+    }
+
+    return reId;
+}
+
+void settingWindow::initWallpaperWidget()
+{
+    m_wallpaper = new Wallpaper(this->getCurrentPath(), this->getCurrentNumber());
+    dApp->setDesktopTransparent();
+
+    DBusWallpaperService *dbusInter = new DBusWallpaperService(m_wallpaper);
+    Q_UNUSED(dbusInter);
+
+    QDBusConnection::sessionBus().registerService("com.deepin.dde.fantascene");
+    QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", m_wallpaper);
+}
+
+

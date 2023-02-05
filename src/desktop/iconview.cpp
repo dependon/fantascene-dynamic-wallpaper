@@ -32,8 +32,12 @@
 #include <QScrollBar>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QMimeDatabase>
+#include <QSettings>
+#include <QModelIndex>
+#include <QFileInfo>
 
-#include <gio/gdesktopappinfo.h>
+//#include <gio/gdesktopappinfo.h>
 
 #include <QMenu>
 #include <QAction>
@@ -49,6 +53,19 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 #include <QProcess>
+
+#define ICONSIZE_SMALL 90
+#define ICONSIZE_MEDIUM 140
+#define ICONSIZE_BIG 180
+
+QString IconView::readSettings(const QString &path, const QString &group, const QString &key)
+{
+    QSettings settings(path, QSettings::IniFormat);
+    settings.setIniCodec("UTF-8");
+    settings.beginGroup(group);
+    QString value = settings.value(key).toString();
+    return value;
+}
 
 IconView::IconView(int id, QString rootPath, QWidget *parent)
     : QListView(parent)
@@ -129,9 +146,9 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     //setViewportMargins(0,10,0,10);
     //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
-    setGridSize(QSize(120, 120));
-    setIconSize(QSize(65, 65));
-//    setTextElideMode();
+    setGridSize(QSize(ICONSIZE_SMALL, ICONSIZE_SMALL));
+    setIconSize(QSize(ICONSIZE_SMALL/2, ICONSIZE_SMALL/2));
+    setUniformItemSizes(true);
     setSpacing(4);
     setViewMode(QListView::IconMode);
 //    setMovement(QListView::Static);
@@ -167,6 +184,23 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
     viewMenu->addAction(newTXTction);
 
+    QMenu *iconSizeMenu = new QMenu(viewMenu);
+    iconSizeMenu->setTitle(tr("Icon Size"));
+//    iconSizeAction->setText(tr("Icon Size"));
+//    iconSizeAction->setShortcut(QKeySequence("Ctrl+C"));
+//    viewMenu->addAction(iconSizeAction);
+    viewMenu->addMenu(iconSizeMenu);
+    QAction *iconSmall = new QAction(iconSizeMenu);
+    iconSmall->setText(tr("Small"));
+    iconSizeMenu->addAction(iconSmall);
+
+    QAction *iconMedium = new QAction(iconSizeMenu);
+    iconMedium->setText(tr("Medium"));
+    iconSizeMenu->addAction(iconMedium);
+
+    QAction *iconBig = new QAction(iconSizeMenu);
+    iconBig->setText(tr("Big"));
+    iconSizeMenu->addAction(iconBig);
 
     viewMenu->addSeparator();
 
@@ -175,6 +209,10 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     copyAction->setShortcut(QKeySequence("Ctrl+C"));
     viewMenu->addAction(copyAction);
 
+    QAction *cutAction = new QAction(viewMenu);
+    cutAction->setText(tr("Cut"));
+    cutAction->setShortcut(QKeySequence("Ctrl+X"));
+    viewMenu->addAction(cutAction);
 
     QAction *pasteAction = new QAction(viewMenu);
     pasteAction->setText(tr("Paste"));
@@ -197,24 +235,23 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(this, &IconView::customContextMenuRequested, [ = ]() {
-        //qDebug()<<"menu request"<<mLastPos;
         if (!QApplication::clipboard()->mimeData()->hasUrls()) {
             pasteAction->setEnabled(false);
         } else {
             pasteAction->setEnabled(true);
         }
         if (!indexAt(mLastPos).isValid()) {
-            //qDebug()<<"blank";
             clearSelection();
             openAction->setEnabled(false);
             trashAction->setEnabled(false);
             copyAction->setEnabled(false);
+            cutAction->setEnabled(false);
             renameAction->setEnabled(false);
         } else {
-            //qDebug()<<"selected";
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
             copyAction->setEnabled(true);
+            cutAction->setEnabled(true);
             renameAction->setEnabled(false);
             if (selectedIndexes().count() == 1) {
                 QString fileName = selectedIndexes().first().data().toString();
@@ -227,24 +264,18 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     });
 
     connect(openAction, &QAction::triggered, this, &IconView::openFile);
-
     connect(selectAllAction, &QAction::triggered,  this, &IconView::selectAll);
-
     connect(copyAction, &QAction::triggered, this, &IconView::copyFile);
-
+    connect(cutAction, &QAction::triggered, this, &IconView::cutFile);
     connect(pasteAction, &QAction::triggered, this, &IconView::pauseFile);
-
     connect(renameAction, &QAction::triggered, this, &IconView::renameFile);
-
     connect(trashAction, &QAction::triggered, this, &IconView::deleteFile);
-
     connect(newFolderAction, &QAction::triggered, this, &IconView::slotsnewFolder);
-
     connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
-
     connect(terminalAction, &QAction::triggered, this, &IconView::slotsopenTerminal);
-
-
+    connect(iconSmall, &QAction::triggered, this, &IconView::slotsIconSizeSmall);
+    connect(iconMedium, &QAction::triggered, this, &IconView::slotsIconSizeMedium);
+    connect(iconBig, &QAction::triggered, this, &IconView::slotsIconSizeBig);
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
@@ -254,7 +285,7 @@ IconView::~IconView()
 {
 
 }
-void IconView::copyImageToClipboard(const QStringList &paths)
+void IconView::copyImageToClipboard(const QStringList &paths ,CopyOrCut type )
 {
     //  Get clipboard
     QClipboard *cb = qApp->clipboard();
@@ -263,7 +294,12 @@ void IconView::copyImageToClipboard(const QStringList &paths)
     QMimeData *newMimeData = new QMimeData();
 
     // Copy file (gnome)
-    QByteArray gnomeFormat = QByteArray("copy\n");
+    QByteArray gnomeFormat;
+    if(type == CopyOrCut_COPY)
+        gnomeFormat = QByteArray("copy\n");
+    else if(type == CopyOrCut_CUT){
+        gnomeFormat = QByteArray("cut\n");
+    }
     QString text;
     QList<QUrl> dataUrls;
     for (QString path : paths) {
@@ -292,6 +328,7 @@ QString IconView::terminalPath()
     const static QString xfce3_term_emu = QStringLiteral("/usr/bin/xfce3-terminal");
     const static QString xfce4_term_emu = QStringLiteral("/usr/bin/xfce4-terminal");
     const static QString cutefish_term_emu = QStringLiteral("/usr/bin/cutefish-terminal");
+    const static QString yoyo_term_emu = QStringLiteral("/usr/bin/yoyo-terminal");
 
     if (QFileInfo::exists(deepin_default_term)) {
         return deepin_default_term;
@@ -309,9 +346,17 @@ QString IconView::terminalPath()
         return xfce4_term_emu;
     } else if (QFileInfo::exists(cutefish_term_emu)) {
         return cutefish_term_emu;
+    } else if (QFileInfo::exists(yoyo_term_emu)) {
+        return yoyo_term_emu;
     }
 
     return QStandardPaths::findExecutable("xterm");
+}
+
+void IconView::setIconTextSize(int size)
+{
+    setGridSize(QSize(size, size));
+    setIconSize(QSize(size/2, size/2));
 }
 
 void IconView::copyFile()
@@ -325,14 +370,37 @@ void IconView::copyFile()
     }
 //    QMimeData *selectionMimeData = fileModel->mimeData(list);
 //    QApplication::clipboard()->setMimeData(selectionMimeData);
-    copyImageToClipboard(addlist);
+    copyImageToClipboard(addlist,CopyOrCut_COPY);
+}
+
+void IconView::cutFile()
+{
+    QModelIndexList list = this->selectedIndexes();
+    QStringList addlist;
+    for (QModelIndex index : list) {
+        QString path = index.data().toString();
+        QString addPath = m_rootPath + "/" + path;
+        addlist << addPath;
+    }
+//    QMimeData *selectionMimeData = fileModel->mimeData(list);
+//    QApplication::clipboard()->setMimeData(selectionMimeData);
+    copyImageToClipboard(addlist,CopyOrCut_CUT);
 }
 
 void IconView::pauseFile()
 {
     QList<QUrl> urls = QApplication::clipboard()->mimeData()->urls();
+
     FileOperationJob *fileOpJob = new FileOperationJob;
-    fileOpJob->setOperationFlag(FILE_OPERATION_COPY);
+    QByteArray ba = QApplication::clipboard()->mimeData()->data("x-special/gnome-copied-files");
+    QString tStr(ba);
+    if (tStr.startsWith("cut")) {
+         fileOpJob->setOperationFlag(FILE_OPERATION_MOVE);
+    }
+    if (tStr.startsWith("copy")) {
+        fileOpJob->setOperationFlag(FILE_OPERATION_COPY);
+    }
+
     fileOpJob->setOrigList(urls);
     fileOpJob->setDestDir(fileModel->filePath(rootIndex()));
     QThread *fileOpThread = new QThread;
@@ -345,27 +413,24 @@ void IconView::pauseFile()
 
 void IconView::openFile()
 {
-    QModelIndexList list = selectedIndexes();
-    if (list.count() == 1) {
-        qDebug() << fileModel->filePath(list.at(0));
-        if (!fileModel->filePath(list.at(0)).endsWith(QString(".desktop"))) {
-            QUrl url("file://" + fileModel->filePath(list.at(0)));
-            QDesktopServices::openUrl(url);
+    QProcess *proc = new QProcess;
+    QModelIndexList indexes = selectedIndexes();
+
+    for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+        QString fileName = fileModel->filePath(indexes[i]);
+        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+
+        qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
+        if (MIME == "application/x-desktop") {
+            QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
+            if (!sexec.isNull())
+                proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
+                proc->start(sexec);
+        } else if (MIME == "application/vnd.appimage") {
+            proc->start(fileName);
         } else {
-            qDebug() << "desktop file";
-            std::string tmp_str = fileModel->filePath(list.at(0)).toStdString();
-            const char *file_path = tmp_str.c_str();
-            GDesktopAppInfo *app_info = g_desktop_app_info_new_from_filename(file_path);
-            g_desktop_app_info_launch_uris_as_manager(app_info,
-                                                      nullptr,
-                                                      nullptr,
-                                                      G_SPAWN_DEFAULT,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr,
-                                                      nullptr);
-            g_object_unref(app_info);
+            QString Url = QString("file:///") + fileName;
+            QDesktopServices::openUrl(QUrl(Url));
         }
     }
 }
@@ -429,6 +494,21 @@ void IconView::slotsopenTerminal()
     QProcess::startDetached(terminalPath());
 }
 
+void IconView::slotsIconSizeSmall()
+{
+    setIconTextSize(ICONSIZE_SMALL);
+}
+
+void IconView::slotsIconSizeMedium()
+{
+    setIconTextSize(ICONSIZE_MEDIUM);
+}
+
+void IconView::slotsIconSizeBig()
+{
+    setIconTextSize(ICONSIZE_BIG);
+}
+
 void IconView::paintEvent(QPaintEvent *e)
 {
     return QListView::paintEvent(e);
@@ -438,14 +518,11 @@ void IconView::mousePressEvent(QMouseEvent *e)
 {
     mLastPos = e->pos();
     Q_EMIT sigMouseClick(0);
-    //qDebug()<<"press event: "<<mLastPos;
     QListView::mousePressEvent(e);
 }
 
 void IconView::mouseMoveEvent(QMouseEvent *e)
 {
-//    Q_EMIT sigMouseMove();
-    //setCursor(Qt::ArrowCursor);
     return QListView::mouseMoveEvent(e);
 }
 
@@ -468,8 +545,6 @@ void IconView::closeEvent(QCloseEvent *e)
 void IconView::dragEnterEvent(QDragEnterEvent *e)
 {
     if (e->mimeData()->hasUrls()) {
-        //QList<QUrl> urls = e->mimeData()->urls();
-        //qDebug()<<urls<<e->mimeData()->formats();
         if (e->source() == this) {
             e->setDropAction(Qt::MoveAction);
             e->accept();
@@ -526,7 +601,7 @@ void IconView::keyPressEvent(QKeyEvent *event)
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_C) {
         copyFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_X) {
-        copyFile();
+        cutFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_V) {
         pauseFile();
     } else if ((event->modifiers() & Qt::ControlModifier) && (event->modifiers() & Qt::ShiftModifier) && event->key() == Qt::Key_A) {
@@ -535,7 +610,10 @@ void IconView::keyPressEvent(QKeyEvent *event)
         slotsnewTxt();
     } else if ((event->modifiers() & Qt::ControlModifier) && event->key() == Qt::Key_A) {
         selectAll();
-    } else {
+    } else if (event->key() == Qt::Key_Enter ||  event->key() == Qt::Key_Return ) {
+        openFile();
+    }
+    else {
         return QListView::keyPressEvent(event);
     }
 }

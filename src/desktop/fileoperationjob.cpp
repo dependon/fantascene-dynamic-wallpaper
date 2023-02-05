@@ -107,7 +107,6 @@ void FileOperationJob::jobStart()
     case FILE_OPERATION_TRASH:
         //trash
         if (!origList1.isEmpty()) {
-            qDebug() << "isEmpty";
             for (int i = 0; i < origList1.count(); i++) {
                 QString srcPath = origList1.at(i);
 
