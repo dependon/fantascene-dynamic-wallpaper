@@ -128,7 +128,7 @@ HEADERS += \
 RESOURCES +=
 
 # Automating generation .qm files from .ts files
-
+APPNNAME = com.deepin.fantacy
 CONFIG(release, debug|release) {
     !system($$PWD/translate_generation.sh): error("Failed to generate translation")
     !system($$PWD/translate_ts2desktop.sh): error("Failed to generate translation")
@@ -139,6 +139,6 @@ TRANSLATIONS += $$PWD/translations/$${TARGET}.ts \
 
 include($$PWD/development.pri)
 
-target.path=/opt/durapps/fantascene-dynamic-wallpaper
+target.path=/opt/apps/$$APPNNAME/files/bin/
 
 INSTALLS += target

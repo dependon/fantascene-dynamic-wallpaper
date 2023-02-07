@@ -1,2 +1,2 @@
 killall dde-desktop
-/opt/durapps/fantascene-dynamic-wallpaper/dde-desktop
+/opt/apps/com.deepin.fantacy/files/bin/dde-desktop

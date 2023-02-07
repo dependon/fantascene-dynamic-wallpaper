@@ -1,4 +1,4 @@
-Source: fantascene-dynamic-wallpaper
+Source: com.deepin.fantacy
 Version: 1.1.0
 Section: application
 Priority: optional
@@ -68,7 +68,7 @@ Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, li
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
-Package: fantascene-dynamic-wallpaper
+Package: com.deepin.fantacy
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  libpoppler-cpp0v5 (>= 0.48.0),
@@ -85,5 +85,4 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
  libudisks2-qt5 (>=5.0.6),
  libdisomaster (>=5.0.7),
  libgio-qt (>=0.0.11)
-Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for fantascene.

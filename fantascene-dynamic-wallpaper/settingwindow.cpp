@@ -31,7 +31,7 @@ DCORE_USE_NAMESPACE
 
 #define SETTINGPATH "config.ini"
 const QString CONFIG_PATH =   QDir::homePath() +
-                              "/.config/fantascene-dynamic-wallpaper/config.ini";
+                              "/.config/com.deepin.fantacy/config.ini";
 
 
 settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
@@ -445,14 +445,13 @@ void settingWindow::on_startScreen_clicked()
 void settingWindow::on_autoStart_clicked()
 {
 
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop").isFile())
-        QProcess::execute("cp /opt/durapps/fantascene-dynamic-wallpaper/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
+    if (!QFileInfo(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/com.github.fantasceneuos.desktop").isFile())
+        QProcess::execute("cp /opt/apps/com.github.fantascene/entries/applications/com.github.fantasceneuos.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }
 
 void settingWindow::on_noAutoStart_clicked()
 {
-    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/fantascene-dynamic-wallpaper.desktop");
+    QFile::remove(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/com.github.fantasceneuos.desktop");
 }
 
 void settingWindow::on_autoStartBox_stateChanged(int arg1)
