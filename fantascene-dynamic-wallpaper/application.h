@@ -11,7 +11,8 @@
 #include <QRect>
 #include <QMutex>
 #include <QDir>
-
+#include <QDBusInterface>
+#include <QDBusPendingCall>
 #include "data.h"
 
 DWIDGET_USE_NAMESPACE

@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += gui x11extras widgets dbus webengine webenginewidgets
+QT += core gui x11extras widgets dbus webengine webenginewidgets
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += xcb-ewmh dtkwidget mpv x11
 TARGET = fantascene-dynamic-wallpaper
