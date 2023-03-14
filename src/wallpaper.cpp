@@ -568,27 +568,30 @@ void Wallpaper::updateGeometry()
             this->setGeometry(QRect(0, 0, twidth, theight));
 
             int i = 1;
+            int iX =0;
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
                 if (i == 1 && m_mpv) {
                     m_mpv->setGeometry(screen->geometry());
                     m_mpv->setMinimumWidth(screen->geometry().width());
+                    iX = screen->geometry().width();
                     i++;
                     continue;
                 }
                 if (i == 2 && m_mpv2) {
-                    m_mpv2->setGeometry(screen->geometry());
+                    m_mpv2->setGeometry(iX,0,screen->geometry().width(),screen->geometry().height());
                     i++;
                     continue;
                 }
                 if (i == 1 && m_webView) {
                     m_webView->setGeometry(screen->geometry());
                     m_webView->setMinimumWidth(screen->geometry().width());
+                    iX = screen->geometry().width();
                     i++;
                     continue;
                 }
                 if (i == 2 && m_webView2) {
-                    m_webView2->setGeometry(screen->geometry());
+                    m_webView2->setGeometry(iX,0,screen->geometry().width(),screen->geometry().height());
                     i++;
                     continue;
                 }
