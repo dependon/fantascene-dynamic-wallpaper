@@ -31,7 +31,7 @@ Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/o
 
 ### deepinV20.9
 
-dowload path: [deepinv20.9](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.deepin.fantacy_1.4.5_amd64.deb)
+dowload path: [deepinv20.9](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.deepin.fantacy_1.4.6_amd64.deb)
 
 ### uos
 
