@@ -23,7 +23,7 @@ Detailed instructions will be written to wiki later.
 
 ### debian ubuntu master
 
-dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/)
+dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases)
 
 ### fedora and centos stream
 
