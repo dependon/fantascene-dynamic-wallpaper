@@ -433,13 +433,19 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 #define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::registerDesktop()
 {
-    xcb_ewmh_connection_t m_ewmh_connection;
-    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
-    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+    if(QGuiApplication::platformName() == "xcb") {
+        // 是X11环境，可以执行相应代码
+        xcb_ewmh_connection_t m_ewmh_connection;
+        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+        xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
-    xcb_atom_t atoms[1];
-    atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
-    xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
+        xcb_atom_t atoms[1];
+        atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
+        xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
+    } else if(QGuiApplication::platformName() == "wayland") {
+        // 不是X11环境，不执行相应代码
+    }
+
 
     QTimer::singleShot(1, this, [ = ] {
         show();

@@ -75,6 +75,15 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     exitAction->setText(tr("Exit"));
     connect(exitAction, &QAction::triggered, this, &settingWindow::quitApp);
     connect(dApp, &Application::quitApp, this, &settingWindow::quitApp, Qt::DirectConnection);
+    connect(dApp, &Application::sigWallpaperAction, this,[=]
+    {
+        if (m_parentMainWindow)
+        {
+            m_parentMainWindow->resize(500, 300);
+            m_parentMainWindow->show();
+            m_parentMainWindow->activateWindow();
+        }
+    });
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
     setMpvPlayAction->setText(tr("Play"));
@@ -720,6 +729,10 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
 
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
+    // 如果平台不是x11,则退出
+    if ( QGuiApplication::platformName() != QLatin1String("xcb")) {
+        return ;
+    }
     //问题很多
     if (arg1 == 0) {
         dApp->m_moreData.isAuto = 0;
@@ -1005,8 +1018,14 @@ Qt::WindowState settingWindow::getWindowState(WId id)
 
 void settingWindow::initAtom()
 {
-    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
-    xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+    if(QGuiApplication::platformName() == "xcb") {
+        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+        xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
+    }
+    else
+    {
+
+    }
 }
 
 
