@@ -8,7 +8,7 @@
 
 ## License
 ```
-COPYRIGHT (C) 2020-2022 LIUMINGHANG <liuminghang0821@gmail.com>
+COPYRIGHT (C) 2020-2023 LIUMINGHANG <liuminghang0821@gmail.com>
 ```
 
 THE PROJECT IS RELEASED UNDER THE：
