@@ -53,6 +53,9 @@ int main(int argc, char *argv[])
 
     a.setApplicationVersion("1.0.0");
 
+
+    qDebug()<< QGuiApplication::platformName();
+
 #ifdef Q_OS_LINUX
     load_translation_files(TRANSALTION_PATH);
 #endif

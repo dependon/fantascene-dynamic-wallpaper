@@ -20,7 +20,7 @@ UI_DIR = $$DESTDIR/.u
 QT += gui core x11extras widgets dbus webengine webenginewidgets
 CONFIG += c++11 link_pkgconfig no_keywords
 PKGCONFIG += xcb-ewmh mpv x11 xext xrender
-
+#CONFIG += waylandcompositor
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
 LIBS +=-lgio-2.0 -lglib-2.0
 
