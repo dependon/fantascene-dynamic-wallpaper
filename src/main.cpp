@@ -47,6 +47,7 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QPA_PLATFORM", "xcb");
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
