@@ -71,6 +71,7 @@ public Q_SLOTS:
     void slotsIconSizeSmall();
     void slotsIconSizeMedium();
     void slotsIconSizeBig();
+    void slotsWallpaperAction();
 
 protected:
     void paintEvent(QPaintEvent *e) override;

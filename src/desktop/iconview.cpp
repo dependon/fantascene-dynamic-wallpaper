@@ -53,6 +53,7 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 #include <QProcess>
+#include "application.h"
 
 #define ICONSIZE_SMALL 90
 #define ICONSIZE_MEDIUM 140
@@ -230,6 +231,11 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     viewMenu->addAction(trashAction);
 
+    QAction *wallpaperAction = new QAction(viewMenu);
+    wallpaperAction->setText(tr("Set Wallpaper"));
+    wallpaperAction->setShortcut(QKeySequence("F3"));
+    viewMenu->addAction(wallpaperAction);
+
 
     //TODO: add show propertries action
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -276,6 +282,8 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(iconSmall, &QAction::triggered, this, &IconView::slotsIconSizeSmall);
     connect(iconMedium, &QAction::triggered, this, &IconView::slotsIconSizeMedium);
     connect(iconBig, &QAction::triggered, this, &IconView::slotsIconSizeBig);
+
+    connect(wallpaperAction, &QAction::triggered, this, &IconView::slotsWallpaperAction);
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
@@ -507,6 +515,12 @@ void IconView::slotsIconSizeMedium()
 void IconView::slotsIconSizeBig()
 {
     setIconTextSize(ICONSIZE_BIG);
+}
+
+void IconView::slotsWallpaperAction()
+{
+    //设置壁纸
+    Q_EMIT dApp->sigWallpaperAction();
 }
 
 void IconView::paintEvent(QPaintEvent *e)

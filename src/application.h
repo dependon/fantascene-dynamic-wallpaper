@@ -93,6 +93,8 @@ Q_SIGNALS:
 
     void sigReadPlayerConfig();
 
+    void sigWallpaperAction();
+
 public:
 
     QRect m_manual{0, 0, 0, 0};
