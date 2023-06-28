@@ -2,12 +2,33 @@ Source: fantascene-dynamic-wallpaper
 Section: utils
 Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
-Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev ,libx11-xcb-dev , ffmpeg , dpkg-dev ,fakeroot ,qtwebengine5-dev ,libxext-dev ,libxrender-dev ,libqt5x11extras5-dev,libxcb-shape0-dev,g++,build-essential
-Standards-Version: 0.0-3
-Homepage: http://github.com/dependon
+Build-Depends:  debhelper (>= 9),
+				pkg-config, 
+				dpkg-dev, 
+				qt5-qmake, 
+				qtbase5-dev, 
+				libxcb-ewmh-dev,
+				libmpv-dev ,
+				qttools5-dev-tools, 
+				libqt5opengl5-dev, 
+				libglib2.0-dev,
+				libmtdev-dev ,
+				libx11-xcb-dev , 
+				ffmpeg , 
+				dpkg-dev ,
+				fakeroot ,
+				qtwebengine5-dev ,
+				libxext-dev ,
+				libxrender-dev ,
+				libqt5x11extras5-dev,
+				libxcb-shape0-dev,
+				g++,
+				build-essential
+Rules-Requires-Root: no
+Standards-Version: 4.6.0.1
+Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 
 Package: fantascene-dynamic-wallpaper
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} , qdbus-qt5 
-Recommends: libqt5libqgtk2, kimageformat-plugins
+Depends: ${shlibs:Depends}, ${misc:Depends} 
 Description: video wallpaper for fantascene.
