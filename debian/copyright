@@ -1,10 +1,14 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: fantascene-dynamic-wallpaper
-Source: https://github.com/dependon/fantascene-dynamic-wallpaper
-Upstream-Contact: https://github.com/dependon/fantascene-dynamic-wallpaper/issues
+Upstream-Name: simple-image-filter
+Source: https://github.com/dependon/simple-image-filter
+Upstream-Contact: https://github.com/dependon/simple-image-filter/issues
 
 Files: *
-Copyright: 2023 LiuMingHang <liuminghang0821@gmail.com>
+Copyright: 2021 LiuMingHang <liuminghang0821@gmail.com>
+License: GPL-3+
+
+Files: debian/*
+Copyright: 2021 Lu YaNing <dluyaning@.com>
 License: GPL-3+
 
 License: GPL-3+
