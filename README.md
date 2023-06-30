@@ -18,28 +18,31 @@ THE PROJECT IS RELEASED UNDER THE：
 ## Wiki
 
 Detailed instructions will be written to wiki later.
+## 1.5.0 update log
+
+兼容wayland环境
+Compatible with wayland environment
+
+debian10:
+x86:fantascene-dynamic-wallpaper_1.5.0-1_debian10_amd64.deb
+arm:fantascene-dynamic-wallpaper_1.5.0-0_debian10_arm64.deb
+
+debian testing(debian 12):
+fantascene-dynamic-wallpaper_1.5.0-1_debianTesting_amd64
+
+请看清楚安装的包，对应的debian10是使用的qt5.11.3编译， debian12是5.15.1编译
+Please take a clear look at the installed package. The corresponding Debian10 is compiled using QT5.11.3, while Debian12 is compiled using 5.15.1
+1.4.6 ：deepinv20.9 is com.deepin.fantacy_1.4.6_amd64.deb
 
 ## Installation
 
-### debian ubuntu master
+### debian ubuntu master deepinV20.9 uos
 
 dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases)
 
 ### fedora and centos stream
 
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
-
-### deepinV20.9
-
-dowload path: [deepinv20.9](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.deepin.fantacy_1.4.6_amd64.deb)
-
-### uos
-
-x86_x64 dowload path: [1.3.7amd64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper-uos_1.3.7_amd64.deb)
-
-arm dowload path: [1.3.7arm64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_normal.deb)
-
-arm(no web) dowload path: [1.3.7arm64_noweb](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_noweb.deb)
 
 ### archlinux and manjaro
 
@@ -48,12 +51,6 @@ yay -S fantascene-dynamic-wallpaper-git
 ### windows 
 
 Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
-
-### ubuntu18.04
-
-Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
-
-dowload path:[simple-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/simple-wallpaper_1.0.0_amd64_ubuntu18.04.deb)
 
 ## Build Dependencies
 
