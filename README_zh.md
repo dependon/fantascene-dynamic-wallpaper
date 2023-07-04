@@ -2,14 +2,18 @@
 
 ### 在Linux下的基于X11的动态壁纸管理器
 
-### 如果你喜欢这个玩具，请在Github页面给我一个星星。
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
+## 1.5.0 更新通知:
+
+支持了在wayland环境下的运行，兼容wayland环境
+编译了debian10 和debian testing(原则上12可以使用)的x86版本
+编译了debian10 的arm版本
 
 ## 许可
 ```
-版权所有 (C) 2020-2022 LIUMINGHANG <liuminghang0821@gmail.com>
+版权所有 (C) 2020-2023 LIUMINGHANG <liuminghang0821@gmail.com>
 ```
 
 这个项目在GPLv3下发布：
@@ -26,23 +30,11 @@
 
 ### 主版本（程序自己写的简易桌面）
 
-dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_master_1.4.1_amd64.deb)
+dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/)
 
 ### fedora and centos stream
 
 Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
-
-### deepinV20.8系统
-
-dowload path: [deepinv20.8](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper_1.4.0_deepinV20.8_amd64.deb)
-
-### uos系统
-
-x86_x64 dowload path: [1.3.7amd64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/fantascene-dynamic-wallpaper-uos_1.3.7_amd64.deb)
-
-arm dowload path: [1.3.7arm64](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_normal.deb)
-
-arm(no web) dowload path: [1.3.7arm64_noweb](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/com.github.fantacy_1.3.7_arm64.uos_noweb.deb)
 
 ### archlinux and manjaro
 
@@ -56,8 +48,6 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 
 Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
-dowload path:[simple-wallpaper](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/download/1.3.7/simple-wallpaper_1.0.0_amd64_ubuntu18.04.deb)
-
 
 ## 构建依赖
 
@@ -68,7 +58,7 @@ qt >=5.10
 
 mpv >=29.0
 
-sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev qt5-default build-essential g++ libxcb-shape0-dev build-essential
+sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev build-essential g++ libxcb-shape0-dev build-essential
 ```
 
 
