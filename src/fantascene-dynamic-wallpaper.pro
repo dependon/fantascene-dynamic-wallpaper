@@ -44,7 +44,8 @@ SOURCES += main.cpp \
     desktop/iconprovider.cpp \
     desktop/iconview.cpp \
     desktop/delegateicon.cpp \
-    loadTranslation.cpp
+    loadTranslation.cpp \
+    desktop/gioclass.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -66,7 +67,8 @@ HEADERS += \
     desktop/iconprovider.h \
     desktop/iconview.h \
     desktop/delegateicon.h \
-    loadTranslation.h
+    loadTranslation.h \
+    desktop/gioclass.h
 
 RESOURCES += \
     qrc.qrc
