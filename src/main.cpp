@@ -58,7 +58,16 @@ int main(int argc, char *argv[])
     qDebug()<< QGuiApplication::platformName();
 
 #ifdef Q_OS_LINUX
-    load_translation_files(TRANSALTION_PATH);
+    qDebug()<< QApplication::applicationDirPath();
+    QString transPath = QApplication::applicationDirPath() + "/translations";
+    QDir myDir(transPath);
+    if(myDir.exists())
+    {
+        load_translation_files(transPath);
+    }
+    else {
+        load_translation_files(TRANSALTION_PATH);
+    }
 #endif
 
     setlocale(LC_NUMERIC, "C");
@@ -85,7 +94,7 @@ int main(int argc, char *argv[])
     settingWindow *window = new settingWindow(mainwindw, mainwindw);
     mainwindw->setCentralWidget(window);
     mainwindw->setFixedSize(QSize(640, 500));
-    mainwindw->setWindowTitle(QObject::tr("dynamic-wallpaper"));
+    mainwindw->setWindowTitle(QObject::tr("fantacy"));
     mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
     mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 

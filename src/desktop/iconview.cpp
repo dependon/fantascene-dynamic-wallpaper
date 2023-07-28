@@ -54,6 +54,7 @@
 #include <QKeyEvent>
 #include <QProcess>
 #include "application.h"
+#include "inimanager.h"
 
 #define ICONSIZE_SMALL 90
 #define ICONSIZE_MEDIUM 140
@@ -286,6 +287,17 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
     m_rootPath = rootPath;
+
+    if(IniManager::instance()->contains("WallPaper/IconSize"))
+    {
+        int iconSize = IniManager::instance()->value("WallPaper/IconSize").toInt();
+        if(iconSize>10)
+        {
+            setGridSize(QSize(iconSize, iconSize));
+            setIconSize(QSize(iconSize/2, iconSize/2));
+        }
+    }
+
 }
 
 IconView::~IconView()
@@ -504,16 +516,19 @@ void IconView::slotsopenTerminal()
 void IconView::slotsIconSizeSmall()
 {
     setIconTextSize(ICONSIZE_SMALL);
+    IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_SMALL);
 }
 
 void IconView::slotsIconSizeMedium()
 {
     setIconTextSize(ICONSIZE_MEDIUM);
+    IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_MEDIUM);
 }
 
 void IconView::slotsIconSizeBig()
 {
     setIconTextSize(ICONSIZE_BIG);
+    IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_BIG);
 }
 
 void IconView::slotsWallpaperAction()

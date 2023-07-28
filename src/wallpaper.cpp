@@ -69,7 +69,6 @@ using namespace std;
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
-    , m_currentPath(path)
     , m_currentScreen(currentScreen)
 {
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
@@ -135,20 +134,31 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         }
         if (index1 == 0)
         {
-            QString playPath = "/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4";
 
-            m_currentPath = m_currentPath.replace("file://", "");
-            if (!m_currentPath.isEmpty()) {
-                if (QFileInfo(m_currentPath).isFile()) {
-                    playPath = m_currentPath;
-                } else if (path.contains("www") || path.contains("http//") || path.contains("https//")) {
-                    playPath = m_currentPath;
+            QString playPath = QApplication::applicationDirPath()+"/normal.mp4";
+            if(!QFile::exists(playPath))
+            {
+                playPath = "/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4";
+            }
+            dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
+            if (!dApp->m_currentPath.isEmpty()) {
+                if (QFileInfo(dApp->m_currentPath).isFile())
+                {
+                    playPath = dApp->m_currentPath;
+                }
+                else if (path.contains("www") || path.contains("http//") || path.contains("https//"))
+                {
+                    playPath = dApp->m_currentPath;
+                }
+                else
+                {
+
                 }
             }
             setFile(playPath);
             play();
-            m_currentPath = QFileInfo(m_currentPath).filePath();
-            Q_EMIT dApp->pathChanged(m_currentPath);
+            dApp->m_currentPath = QFileInfo(dApp->m_currentPath).filePath();
+            Q_EMIT dApp->pathChanged(dApp->m_currentPath);
         }
 //        QTimer::singleShot(100, [ = ] {
 //            updateGeometry();

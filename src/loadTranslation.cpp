@@ -46,6 +46,7 @@
 void load_translation_files(const QString path)
 {
     QDir dir(path);
+    qDebug()<<"event: "<<QLocale::system().name();
     if (dir.exists())
     {
         QDirIterator qmIt(path, QStringList() << QString("*%1.qm").arg(QLocale::system().name()), QDir::Files);

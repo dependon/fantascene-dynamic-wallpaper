@@ -23,7 +23,7 @@
 #include <QtGui/QOpenGLContext>
 #include <QtCore/QMetaObject>
 #include "application.h"
-
+#include "inimanager.h"
 #include <QDateTime>
 #include <QStandardPaths>
 
@@ -49,15 +49,42 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     if (!mpv)
         throw std::runtime_error("could not create mpv context");
 
-//    mpv_set_option_string(mpv, "terminal", "yes");
+    // 反推版本号
+//    unsigned int major = (MPV_CLIENT_API_VERSION >> 16);
+//    unsigned int minor = (MPV_CLIENT_API_VERSION & 0xFFFF);
+
+
+    mpv_set_option_string(mpv, "terminal", "no");
     mpv_set_option_string(mpv, "msg-level", "all=v");
     if (mpv_initialize(mpv) < 0)
         throw std::runtime_error("could not initialize mpv context");
 
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+#else
+    // Make use of the MPV_SUB_API_OPENGL_CB API.
+    mpv::qt::set_option_variant(mpv, "vo", "opengl-cb");
+#endif
+
     // Request hw decoding, just for testing.
 //    mpv::qt::set_option_variant(mpv, "hwdec", "auto");
-    mpv::qt::set_option_variant(mpv, "hwdec", "gpu");
 
+    if(IniManager::instance()->contains("WallPaper/hwdec"))
+    {
+        dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString();
+        mpv::qt::set_option_variant(mpv, "hwdec", dApp->m_moreData.hwdec);
+    }
+    else {
+        mpv::qt::set_option_variant(mpv, "hwdec", "gpu");
+    }
+
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+#else
+    mpv_gl = (mpv_opengl_cb_context *)mpv_get_sub_api(mpv, MPV_SUB_API_OPENGL_CB);
+    if (!mpv_gl)
+        throw std::runtime_error("OpenGL not compiled in");
+    mpv_opengl_cb_set_update_callback(mpv_gl, MpvWidget::on_update, (void *)this);
+    connect(this, SIGNAL(frameSwapped()), SLOT(swapped()));
+#endif
     mpv_observe_property(mpv, 0, "duration", MPV_FORMAT_DOUBLE);
     mpv_observe_property(mpv, 0, "time-pos", MPV_FORMAT_DOUBLE);
     mpv_set_wakeup_callback(mpv, wakeup, this);
@@ -66,7 +93,22 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     list << "no-correct-pts";
 //    mpv::qt::command_variant(mpv, list);
     mpv::qt::set_property_variant(mpv, "correct-pts", "no");
-    mpv::qt::set_property_variant(mpv, "fps", "0");
+    if(IniManager::instance()->contains("WallPaper/fps"))
+    {
+        dApp->m_moreData.fps = IniManager::instance()->value("WallPaper/fps").toInt();
+        mpv::qt::set_property_variant(mpv, "fps", dApp->m_moreData.fps);
+    }
+    else {
+        mpv::qt::set_property_variant(mpv, "fps", "0");
+    }
+
+    if(IniManager::instance()->contains("WallPaper/voiceVolume"))
+    {
+       int iVulume =  IniManager::instance()->value("WallPaper/voiceVolume").toInt();
+       mpv::qt::set_property_variant(mpv, "volume", iVulume);
+    }
+
+    mpv::qt::set_property_variant(mpv, "loop", "inf");
 
     connect(dApp, &Application::sigscreenshot, this, [ = ] {
         m_bScrrenShot = true;
@@ -77,8 +119,13 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
 MpvWidget::~MpvWidget()
 {
     makeCurrent();
+#if 0
     if (mpv_gl)
         mpv_render_context_free(mpv_gl);
+#else
+    if (mpv_gl)
+        mpv_opengl_cb_set_update_callback(mpv_gl, NULL, NULL);
+#endif
     mpv_terminate_destroy(mpv);
 }
 
@@ -99,6 +146,7 @@ QVariant MpvWidget::getProperty(const QString &name) const
 
 void MpvWidget::initializeGL()
 {
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     mpv_opengl_init_params gl_init_params{get_proc_address, nullptr};
     mpv_render_param params[] {
         {MPV_RENDER_PARAM_API_TYPE, const_cast<char *>(MPV_RENDER_API_TYPE_OPENGL)},
@@ -109,6 +157,13 @@ void MpvWidget::initializeGL()
     if (mpv_render_context_create(&mpv_gl, mpv, params) < 0)
         throw std::runtime_error("failed to initialize mpv GL context");
     mpv_render_context_set_update_callback(mpv_gl, MpvWidget::on_update, reinterpret_cast<void *>(this));
+#else
+    int r = mpv_opengl_cb_init_gl(mpv_gl, NULL, get_proc_address, NULL);
+    if (r < 0)
+        throw std::runtime_error("could not initialize OpenGL");
+
+#endif
+
 }
 
 void MpvWidget::paintGL()
@@ -119,6 +174,7 @@ void MpvWidget::paintGL()
     double dheight = iheight * devicePixelRatioF();
     int deviceiwidth = dwidth;
     int deviceiheight = dheight;
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     mpv_opengl_fbo mpfbo{static_cast<int>(defaultFramebufferObject()), deviceiwidth, deviceiheight, 0};
     int flip_y{1};
 
@@ -130,7 +186,10 @@ void MpvWidget::paintGL()
     // See render_gl.h on what OpenGL environment mpv expects, and
     // other API details.
     mpv_render_context_render(mpv_gl, params);
-
+#else
+//    mpv_opengl_cb_draw(mpv_gl, defaultFramebufferObject(), width(), -height());
+    mpv_opengl_cb_draw(mpv_gl, defaultFramebufferObject(), deviceiwidth, -deviceiheight);
+#endif
     if (m_bScrrenShot) {
         m_bScrrenShot = false;
         QPixmap pix = QPixmap::fromImage(grabFramebuffer());
@@ -143,7 +202,13 @@ void MpvWidget::paintGL()
 //        emit dApp->refreshPix(pix);
 //    }
 }
-
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+#else
+void MpvWidget::swapped()
+{
+    mpv_opengl_cb_report_flip(mpv_gl, 0);
+}
+#endif
 void MpvWidget::on_mpv_events()
 {
     // Process all events, until the event queue is empty.

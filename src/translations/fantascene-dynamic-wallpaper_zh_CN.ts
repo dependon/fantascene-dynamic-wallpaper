@@ -21,79 +21,84 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="163"/>
+        <location filename="../desktop/iconview.cpp" line="164"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="167"/>
+        <location filename="../desktop/iconview.cpp" line="168"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="172"/>
+        <location filename="../desktop/iconview.cpp" line="173"/>
         <source>Open Terminal</source>
         <translation>打开终端</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="178"/>
-        <location filename="../desktop/iconview.cpp" line="463"/>
+        <location filename="../desktop/iconview.cpp" line="179"/>
+        <location filename="../desktop/iconview.cpp" line="470"/>
         <source>New Folder</source>
         <translation>新建文件夹</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="183"/>
+        <location filename="../desktop/iconview.cpp" line="184"/>
         <source>New TXT</source>
         <translation>新建Txt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="188"/>
+        <location filename="../desktop/iconview.cpp" line="189"/>
         <source>Icon Size</source>
         <translation>图标大小</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="194"/>
+        <location filename="../desktop/iconview.cpp" line="195"/>
         <source>Small</source>
         <translation>小</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="198"/>
+        <location filename="../desktop/iconview.cpp" line="199"/>
         <source>Medium</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="202"/>
+        <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Big</source>
         <translation>大</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="208"/>
+        <location filename="../desktop/iconview.cpp" line="209"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="213"/>
+        <location filename="../desktop/iconview.cpp" line="214"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="218"/>
+        <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="223"/>
+        <location filename="../desktop/iconview.cpp" line="224"/>
         <source>Rename</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="228"/>
+        <location filename="../desktop/iconview.cpp" line="229"/>
         <source>Trash</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="477"/>
-        <location filename="../desktop/iconview.cpp" line="478"/>
+        <location filename="../desktop/iconview.cpp" line="234"/>
+        <source>Set Wallpaper</source>
+        <translation>设置壁纸</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="484"/>
+        <location filename="../desktop/iconview.cpp" line="485"/>
         <source>New Txt Files</source>
         <translation>新建TXT</translation>
     </message>
@@ -306,25 +311,25 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="84"/>
-        <source>dynamic-wallpaper</source>
-        <translation type="unfinished"></translation>
+        <location filename="../main.cpp" line="97"/>
+        <source>fantacy</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="412"/>
+        <location filename="../wallpaper.cpp" line="416"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="417"/>
+        <location filename="../wallpaper.cpp" line="421"/>
         <source>Extend</source>
         <translation>扩展</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="422"/>
+        <location filename="../wallpaper.cpp" line="426"/>
         <source>Manual</source>
         <translatorcomment>手动</translatorcomment>
         <translation>手动</translation>
@@ -416,7 +421,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="527"/>
+        <location filename="../settingwindow.cpp" line="526"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -432,13 +437,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="163"/>
-        <location filename="../settingwindow.cpp" line="80"/>
+        <location filename="../settingwindow.cpp" line="83"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="182"/>
-        <location filename="../settingwindow.cpp" line="92"/>
+        <location filename="../settingwindow.cpp" line="95"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
@@ -479,7 +484,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="621"/>
+        <location filename="../settingwindow.cpp" line="620"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
@@ -510,7 +515,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="633"/>
+        <location filename="../settingwindow.cpp" line="632"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
@@ -522,7 +527,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="466"/>
-        <location filename="../settingwindow.cpp" line="99"/>
+        <location filename="../settingwindow.cpp" line="102"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
@@ -596,32 +601,32 @@
         <translation>报告bug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="103"/>
+        <location filename="../settingwindow.cpp" line="106"/>
         <source>Main View</source>
         <translation>主窗体</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="75"/>
+        <location filename="../settingwindow.cpp" line="69"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="87"/>
+        <location filename="../settingwindow.cpp" line="90"/>
         <source>Screenshot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="114"/>
+        <location filename="../settingwindow.cpp" line="117"/>
         <source>github</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="129"/>
+        <location filename="../settingwindow.cpp" line="132"/>
         <source>Double click to open the configuration interface</source>
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="179"/>
+        <location filename="../settingwindow.cpp" line="182"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>

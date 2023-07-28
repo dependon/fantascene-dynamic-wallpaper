@@ -1,7 +1,6 @@
 TEMPLATE = app
 
 TARGET = fantascene-dynamic-wallpaper
-
 # Build binary with debuginfo and REL by default.
 CONFIG += debug_and_release
 
@@ -45,7 +44,8 @@ SOURCES += main.cpp \
     desktop/iconview.cpp \
     desktop/delegateicon.cpp \
     loadTranslation.cpp \
-    desktop/gioclass.cpp
+    desktop/gioclass.cpp \
+    ini/inimanager.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -68,7 +68,8 @@ HEADERS += \
     desktop/iconview.h \
     desktop/delegateicon.h \
     loadTranslation.h \
-    desktop/gioclass.h
+    desktop/gioclass.h \
+    ini/inimanager.h
 
 RESOURCES += \
     qrc.qrc
@@ -81,6 +82,8 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
     QMAKE_CXXFLAG += -O2 -fdata-sections -ffunction-sections
 }
+
+INCLUDEPATH += $$PWD/ini
 
 # No matter the build type is release or debug, we always need to generate the qm file.
 TRANSLATIONS = $$files($$PWD/translations/*.ts)
