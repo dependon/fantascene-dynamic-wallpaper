@@ -33,79 +33,84 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="163"/>
+        <location filename="../desktop/iconview.cpp" line="164"/>
         <source>Open</source>
         <translation>Apertura normal</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="167"/>
+        <location filename="../desktop/iconview.cpp" line="168"/>
         <source>Select all</source>
         <translation>Selección completa</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="172"/>
+        <location filename="../desktop/iconview.cpp" line="173"/>
         <source>Open Terminal</source>
         <translation>Terminal abierto</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="178"/>
-        <location filename="../desktop/iconview.cpp" line="463"/>
+        <location filename="../desktop/iconview.cpp" line="179"/>
+        <location filename="../desktop/iconview.cpp" line="470"/>
         <source>New Folder</source>
         <translation>Nueva carpeta</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="183"/>
+        <location filename="../desktop/iconview.cpp" line="184"/>
         <source>New TXT</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="188"/>
+        <location filename="../desktop/iconview.cpp" line="189"/>
         <source>Icon Size</source>
         <translation>Tamaño del icono</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="194"/>
+        <location filename="../desktop/iconview.cpp" line="195"/>
         <source>Small</source>
         <translation>Pequeño</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="198"/>
+        <location filename="../desktop/iconview.cpp" line="199"/>
         <source>Medium</source>
         <translation>Moderado</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="202"/>
+        <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Big</source>
         <translation>Grande</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="208"/>
+        <location filename="../desktop/iconview.cpp" line="209"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="213"/>
+        <location filename="../desktop/iconview.cpp" line="214"/>
         <source>Cut</source>
         <translation>Cortar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="218"/>
+        <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Paste</source>
         <translation>Pegar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="223"/>
+        <location filename="../desktop/iconview.cpp" line="224"/>
         <source>Rename</source>
         <translation>Renombrar</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="228"/>
+        <location filename="../desktop/iconview.cpp" line="229"/>
         <source>Trash</source>
         <translation>Contenedor de residuos</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="477"/>
-        <location filename="../desktop/iconview.cpp" line="478"/>
+        <location filename="../desktop/iconview.cpp" line="234"/>
+        <source>Set Wallpaper</source>
+        <translation>Configurar fondos de pantalla</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="484"/>
+        <location filename="../desktop/iconview.cpp" line="485"/>
         <source>New Txt Files</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
@@ -320,25 +325,25 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="84"/>
-        <source>dynamic-wallpaper</source>
+        <location filename="../main.cpp" line="97"/>
+        <source>fantacy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="412"/>
+        <location filename="../wallpaper.cpp" line="416"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="417"/>
+        <location filename="../wallpaper.cpp" line="421"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="422"/>
+        <location filename="../wallpaper.cpp" line="426"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
@@ -428,7 +433,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="527"/>
+        <location filename="../settingwindow.cpp" line="526"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -445,13 +450,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="163"/>
-        <location filename="../settingwindow.cpp" line="80"/>
+        <location filename="../settingwindow.cpp" line="83"/>
         <source>Play</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="182"/>
-        <location filename="../settingwindow.cpp" line="92"/>
+        <location filename="../settingwindow.cpp" line="95"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
@@ -492,7 +497,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="621"/>
+        <location filename="../settingwindow.cpp" line="620"/>
         <source>default</source>
         <translatorcomment>por defecto</translatorcomment>
         <translation>por defecto</translation>
@@ -524,7 +529,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="633"/>
+        <location filename="../settingwindow.cpp" line="632"/>
         <source>custom</source>
         <translatorcomment>Personalizar</translatorcomment>
         <translation>Personalizar</translation>
@@ -536,7 +541,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="466"/>
-        <location filename="../settingwindow.cpp" line="99"/>
+        <location filename="../settingwindow.cpp" line="102"/>
         <source>Wallpaper History</source>
         <translation>Historia del fondo de pantalla</translation>
     </message>
@@ -606,33 +611,33 @@
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="75"/>
+        <location filename="../settingwindow.cpp" line="69"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="87"/>
+        <location filename="../settingwindow.cpp" line="90"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="103"/>
+        <location filename="../settingwindow.cpp" line="106"/>
         <source>Main View</source>
         <translation>Formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="114"/>
+        <location filename="../settingwindow.cpp" line="117"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="129"/>
+        <location filename="../settingwindow.cpp" line="132"/>
         <source>Double click to open the configuration interface</source>
         <translatorcomment>Haga doble clic para abrir el formulario principal</translatorcomment>
         <translation>Haga doble clic para abrir el formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="179"/>
+        <location filename="../settingwindow.cpp" line="182"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>

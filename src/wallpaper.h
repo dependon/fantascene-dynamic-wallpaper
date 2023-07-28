@@ -71,7 +71,6 @@ private Q_SLOTS:
     void slotSetTransparency(const int value);
 private:
     QHBoxLayout *mainlayout;
-    QString m_currentPath;
     MpvWidget *m_mpv{nullptr};
     MpvWidget *m_mpv2{nullptr};
     int m_currentScreen{0};

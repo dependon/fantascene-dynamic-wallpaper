@@ -23,10 +23,17 @@
 
 #define protected public
 #include <QtWidgets/QOpenGLWidget>
+#if 0
 #include <mpv/client.h>
 #include <mpv/render_gl.h>
 #include "mympv/qthelper.hpp"
+#else
+#include <mpv/client.h>
+#include <mpv/opengl_cb.h>
+#include <mpv/qthelper.hpp>
+#endif
 #include <QSize>
+
 class MpvWidget Q_DECL_FINAL: public QOpenGLWidget
 {
     Q_OBJECT
@@ -47,12 +54,20 @@ protected:
 private Q_SLOTS:
     void on_mpv_events();
     void maybeUpdate();
+    #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+    #else
+    void swapped();
+    #endif
 private:
     void handle_mpv_event(mpv_event *event);
     static void on_update(void *ctx);
 
     mpv_handle *mpv;
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     mpv_render_context *mpv_gl;
+#else
+    mpv_opengl_cb_context *mpv_gl;
+#endif
     bool m_bScrrenShot{false};
 
 
