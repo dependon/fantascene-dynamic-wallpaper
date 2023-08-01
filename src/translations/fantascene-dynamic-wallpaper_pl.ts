@@ -33,84 +33,99 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="164"/>
+        <location filename="../desktop/iconview.cpp" line="168"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="168"/>
+        <location filename="../desktop/iconview.cpp" line="172"/>
+        <source>Open With</source>
+        <translation>Otwórz z</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="177"/>
         <source>Select all</source>
         <translation>Zaznacz wszystkie</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="173"/>
+        <location filename="../desktop/iconview.cpp" line="182"/>
         <source>Open Terminal</source>
         <translation>Otwórz terminal</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="179"/>
-        <location filename="../desktop/iconview.cpp" line="470"/>
+        <location filename="../desktop/iconview.cpp" line="188"/>
+        <location filename="../desktop/iconview.cpp" line="568"/>
         <source>New Folder</source>
         <translation>Nowy folder</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="184"/>
+        <location filename="../desktop/iconview.cpp" line="193"/>
         <source>New TXT</source>
         <translation>Nowy plik tekstowy</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="189"/>
+        <location filename="../desktop/iconview.cpp" line="198"/>
         <source>Icon Size</source>
         <translation>Rozmiar ikony</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="195"/>
+        <location filename="../desktop/iconview.cpp" line="204"/>
         <source>Small</source>
         <translation>Małe</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="199"/>
+        <location filename="../desktop/iconview.cpp" line="208"/>
         <source>Medium</source>
         <translation>Średnie</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="203"/>
+        <location filename="../desktop/iconview.cpp" line="212"/>
         <source>Big</source>
         <translation>Duży</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="209"/>
+        <location filename="../desktop/iconview.cpp" line="218"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="214"/>
+        <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Cut</source>
         <translation>ścinanie</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="219"/>
+        <location filename="../desktop/iconview.cpp" line="228"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="224"/>
+        <location filename="../desktop/iconview.cpp" line="233"/>
         <source>Rename</source>
         <translation>Zmień nazwę</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="229"/>
+        <location filename="../desktop/iconview.cpp" line="238"/>
         <source>Trash</source>
         <translation>Śmieci</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="234"/>
+        <location filename="../desktop/iconview.cpp" line="243"/>
         <source>Set Wallpaper</source>
         <translation>Ustaw tapetę</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="484"/>
-        <location filename="../desktop/iconview.cpp" line="485"/>
+        <location filename="../desktop/iconview.cpp" line="297"/>
+        <source>Select Other Application</source>
+        <translation>Wybierz inną aplikację</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="367"/>
+        <source>Please Select App</source>
+        <translation>Proszę wybrać aplikację</translation>
+    </message>
+    <message>
+        <location filename="../desktop/iconview.cpp" line="582"/>
+        <location filename="../desktop/iconview.cpp" line="583"/>
         <source>New Txt Files</source>
         <translation>Nowy plik tekstowy</translation>
     </message>
@@ -329,17 +344,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="416"/>
+        <location filename="../wallpaper.cpp" line="422"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="421"/>
+        <location filename="../wallpaper.cpp" line="427"/>
         <source>Extend</source>
         <translation>Rozszerz</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="426"/>
+        <location filename="../wallpaper.cpp" line="432"/>
         <source>Manual</source>
         <translation>Ręcznie</translation>
     </message>
@@ -498,27 +513,27 @@
     <message>
         <location filename="../settingwindow.ui" line="291"/>
         <source>4:3</source>
-        <translation type="unfinished">4:3</translation>
+        <translation>4:3</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="296"/>
         <source>16:9</source>
-        <translation type="unfinished">16:9</translation>
+        <translation>16:9</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="301"/>
         <source>16:10</source>
-        <translation type="unfinished">16:10</translation>
+        <translation>16:10</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="306"/>
         <source>1.85:1</source>
-        <translation type="unfinished">1.85:1</translation>
+        <translation>1.85:1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="311"/>
         <source>2.35:1</source>
-        <translation type="unfinished">2.35:1</translation>
+        <translation>2.35:1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
@@ -540,7 +555,7 @@
     <message>
         <location filename="../settingwindow.ui" line="473"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="352"/>
