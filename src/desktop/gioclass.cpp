@@ -8,6 +8,10 @@
 #include <QDirIterator>
 #include <QDir>
 #include <QStandardPaths>
+#include <QImageReader>
+
+#define ICONSIZE 20
+
 GioClass::GioClass()
 {
 
@@ -61,7 +65,7 @@ bool GioClass::setDefautlApp(const QString &mimeType, const QString &appPath)
     g_list_free(apps);
     if (!app)
     {
-        qDebug() << "没App找到:" << appPath;
+        qDebug() << "App没找到:" << appPath;
         return false;
     }
 
@@ -84,6 +88,7 @@ bool GioClass::setDefautlApp(const QString &mimeType, const QString &appPath)
 
 QStringList GioClass::getCanUseApps(const QMimeType &mimeType)
 {
+    qDebug()<<mimeType.iconName();
     return getCanUseApps(mimeType.iconName());
 }
 
@@ -140,4 +145,108 @@ QStringList GioClass::getAllApplicationsFolders()
     }
 
     return desktopFolders;
+}
+
+QIcon GioClass::getIcon(const QFileInfo &info)
+{
+    QIcon fileIcon;
+    QMimeDatabase mimeDatabase;
+    //image file, return a thumbnail.
+    QPixmap tmpPixmap;
+    QImageReader reader(info.filePath());
+    if (reader.size().width() <= 4096 && reader.size().height() <= 4096) {
+        tmpPixmap = QPixmap::fromImage(reader.read());
+    }
+    if (!tmpPixmap.isNull()) {
+        tmpPixmap = tmpPixmap.scaled(ICONSIZE, ICONSIZE);
+        fileIcon = QIcon(tmpPixmap);
+        return fileIcon;
+    }
+
+    //we need do something special to '*.desktop' file.
+    if (mimeDatabase.mimeTypeForFile(info).iconName() == QString("application-x-desktop")) {
+        std::string tmp_str = info.filePath().toStdString();
+        const char *file_path = tmp_str.c_str();
+        GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
+        if (desktop_app_info != nullptr) {
+            char *tmp_icon_name = g_desktop_app_info_get_string(desktop_app_info, "Icon");
+            QIcon desktopFileIcon = QIcon::fromTheme(QString(tmp_icon_name));
+            if (desktopFileIcon.isNull()) {
+                QPixmap pixmap = QPixmap(QString(tmp_icon_name));
+                if (pixmap.isNull()) {
+                    fileIcon = QIcon::fromTheme("application-x-desktop");
+                } else {
+                    pixmap = pixmap.scaled(ICONSIZE, ICONSIZE);
+                    QIcon pixmapIcon = QIcon(pixmap);
+                    fileIcon = pixmapIcon;
+                }
+            } else {
+                fileIcon = desktopFileIcon;
+            }
+            if (tmp_icon_name != nullptr) {
+                g_free(tmp_icon_name);
+            }
+        }
+        return fileIcon;
+    }
+    QString filePath = info.filePath();
+    std::string str = filePath.toStdString();
+    const char *file_path = str.c_str();
+    GFile *g_file = g_file_new_for_path(file_path);
+    GFileInfo *file_info = g_file_query_info(g_file,
+                                             G_FILE_ATTRIBUTE_STANDARD_ICON,
+                                             G_FILE_QUERY_INFO_NONE,
+                                             nullptr,
+                                             nullptr);
+
+    GIcon *g_icon = g_file_info_get_icon(file_info);
+    const gchar *const *icon_names = g_themed_icon_get_names(G_THEMED_ICON(g_icon));
+    QIcon icon;
+    if (icon_names != nullptr) {
+        QString iconName = QString(*icon_names);
+        while (iconName.contains(".") || iconName.contains("/")) {
+            qDebug() << *icon_names;
+            icon_names++; //we need use second string, first string is not correct some times (for example, a wps-office-doc).
+            iconName = QString(*icon_names);
+        }
+        icon = QIcon::fromTheme(iconName);
+    }
+
+    g_object_unref(file_info);
+    g_object_unref(g_file);
+
+    return icon;
+}
+
+QString GioClass::getDesktop2Name(const QString &strName)
+{
+    QString text = strName;
+    if (!text.endsWith(QString(".desktop"))) {
+        return text;
+    }
+
+    QString keyWord = "Name[" + QLocale::system().name() + "]";
+    std::string tmp_key = keyWord.toStdString();
+
+    QString filePath = strName;
+    std::string tmp_str = filePath.toStdString();
+    const char *file_path = tmp_str.c_str();
+    GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
+
+    if (desktop_app_info != nullptr) {
+        char *tmp_name = g_desktop_app_info_get_string(desktop_app_info, tmp_key.c_str());
+        if (tmp_name != nullptr) {
+            text = QString(tmp_name);
+            g_free(tmp_name);
+        } else {
+            tmp_name = g_desktop_app_info_get_string(desktop_app_info, "Name");
+            if (tmp_name != nullptr) {
+                text = QString(tmp_name);
+                g_free(tmp_name);
+            }
+        }
+
+        g_object_unref(desktop_app_info);
+    }
+    return text;
 }

@@ -73,6 +73,8 @@ public Q_SLOTS:
     void slotsIconSizeBig();
     void slotsWallpaperAction();
 
+    void onActionTriggered();
+    void onSetOhterActionTriggered();
 protected:
     void paintEvent(QPaintEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
@@ -84,6 +86,10 @@ protected:
     void dragMoveEvent(QDragMoveEvent *e) override;
     void dropEvent(QDropEvent *e) override;
     void keyPressEvent(QKeyEvent *event) override;
+
+
+private :
+    QMenu *m_openSelect{nullptr};
 };
 
 #endif // ICONVIEW_H

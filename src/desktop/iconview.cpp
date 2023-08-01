@@ -55,6 +55,9 @@
 #include <QProcess>
 #include "application.h"
 #include "inimanager.h"
+#include "gioclass.h"
+#include <QFileDialog>
+#include <QMessageBox>
 
 #define ICONSIZE_SMALL 90
 #define ICONSIZE_MEDIUM 140
@@ -164,6 +167,11 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     QAction *openAction = new QAction(viewMenu);
     openAction->setText(tr("Open"));
     viewMenu->addAction(openAction);
+
+    m_openSelect = new QMenu(viewMenu);
+    m_openSelect->setTitle(tr("Open With"));
+    viewMenu->addMenu(m_openSelect);
+
     //TODO: add open with...
     QAction *selectAllAction = new QAction(viewMenu);
     selectAllAction->setText(tr("Select all"));
@@ -241,6 +249,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(this, &IconView::customContextMenuRequested, [ = ]() {
+        m_openSelect->clear();
         if (!QApplication::clipboard()->mimeData()->hasUrls()) {
             pasteAction->setEnabled(false);
         } else {
@@ -250,12 +259,14 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
             clearSelection();
             openAction->setEnabled(false);
             trashAction->setEnabled(false);
+            m_openSelect->setEnabled(false);
             copyAction->setEnabled(false);
             cutAction->setEnabled(false);
             renameAction->setEnabled(false);
         } else {
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
+            m_openSelect->setEnabled(true);
             copyAction->setEnabled(true);
             cutAction->setEnabled(true);
             renameAction->setEnabled(false);
@@ -264,7 +275,35 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                 if (!fileName.endsWith(".desktop")) {
                     renameAction->setEnabled(true);
                 }
+
+                QModelIndexList indexes = selectedIndexes();
+
+                for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+                    QString fileName = fileModel->filePath(indexes[i]);
+                    QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+
+                    QStringList canUse = GioClass::getCanUseApps(MIME);
+                    for(QString useFile : canUse)
+                    {
+                        QIcon icon = GioClass::getIcon(useFile);
+                        QString name = GioClass::getDesktop2Name(useFile);
+                        QAction * action =new QAction(icon,name);
+                        action->setData(useFile);
+                        m_openSelect->addAction(action);
+                        connect(action, &QAction::triggered, this, &IconView::onActionTriggered);
+                    }
+
+                    //other
+                    QAction * action =new QAction(tr("Select Other Application"));
+                    m_openSelect->addAction(action);
+                    connect(action, &QAction::triggered, this, &IconView::onSetOhterActionTriggered);
+
+                }
+
             }
+
+
+
         }
         viewMenu->exec(QCursor::pos());
     });
@@ -304,6 +343,53 @@ IconView::~IconView()
 {
 
 }
+
+void IconView::onActionTriggered()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (action) {
+        QString path = action->data().toString();
+        QModelIndexList indexes = selectedIndexes();
+
+        //set Defualt
+        for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+            QString fileName = fileModel->filePath(indexes[i]);
+            QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+            GioClass::setDefautlApp(MIME,path);
+        }
+        //open
+        openFile();
+    }
+}
+
+void IconView::onSetOhterActionTriggered()
+{
+    QString filePath = QFileDialog::getOpenFileName(nullptr,tr("Please Select App"),"/usr/share/application/","*.desktop");
+    if (filePath.isEmpty()) {
+        return;
+    }
+    qDebug()<<"set:" <<filePath;
+    QString path = filePath;
+    QModelIndexList indexes = selectedIndexes();
+
+    bool bsok = false;
+    //set Defualt
+    for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+        QString fileName = fileModel->filePath(indexes[i]);
+        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+        bsok = GioClass::setDefautlApp(MIME,path);
+    }
+    //open
+    if(bsok)
+    {
+        openFile();
+    }
+    else
+    {
+        QMessageBox::information(this,tr(""),tr(""));
+    }
+}
+
 void IconView::copyImageToClipboard(const QStringList &paths ,CopyOrCut type )
 {
     //  Get clipboard

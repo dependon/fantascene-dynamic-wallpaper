@@ -4,6 +4,8 @@
 #include <QString>
 #include <QMimeType>
 #include <QMimeDatabase>
+#include <QFileInfo>
+#include <QIcon>
 
 class GioClass
 {
@@ -18,6 +20,10 @@ public:
     static QStringList getCanUseApps(const QString &mimeType);
     static QStringList getAllDesktopFiles();
     static QStringList getAllApplicationsFolders();
+
+    static QIcon getIcon(const QFileInfo &info);
+
+    static QString getDesktop2Name(const QString &strName);
 };
 
 #endif // GIOCLASS_H
