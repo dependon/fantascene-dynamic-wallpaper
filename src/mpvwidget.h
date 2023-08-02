@@ -23,12 +23,11 @@
 
 #define protected public
 #include <QtWidgets/QOpenGLWidget>
-#if 0
 #include <mpv/client.h>
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
 #include <mpv/render_gl.h>
 #include "mympv/qthelper.hpp"
 #else
-#include <mpv/client.h>
 #include <mpv/opengl_cb.h>
 #include <mpv/qthelper.hpp>
 #endif
