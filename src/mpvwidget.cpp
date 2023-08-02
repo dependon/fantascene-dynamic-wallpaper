@@ -107,6 +107,12 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
        int iVulume =  IniManager::instance()->value("WallPaper/voiceVolume").toInt();
        mpv::qt::set_property_variant(mpv, "volume", iVulume);
     }
+    if(IniManager::instance()->contains("WallPaper/videoAspect"))
+    {
+       double videoAspect = IniManager::instance()->value("WallPaper/videoAspect").toDouble();
+       mpv::qt::set_property_variant(mpv, "video-aspect", videoAspect);
+    }
+
 
     mpv::qt::set_property_variant(mpv, "loop", "inf");
 
