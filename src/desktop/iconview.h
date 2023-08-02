@@ -46,6 +46,8 @@ public:
     QString terminalPath();
 
     void setIconTextSize(int size);
+    //默认判断exe
+    void openExeFile(bool isExe = true);
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;

@@ -358,7 +358,7 @@ void IconView::onActionTriggered()
             GioClass::setDefautlApp(MIME,path);
         }
         //open
-        openFile();
+        openExeFile(false);
     }
 }
 
@@ -382,7 +382,7 @@ void IconView::onSetOhterActionTriggered()
     //open
     if(bsok)
     {
-        openFile();
+        openExeFile(false);
     }
     else
     {
@@ -464,6 +464,30 @@ void IconView::setIconTextSize(int size)
     setIconSize(QSize(size/2, size/2));
 }
 
+void IconView::openExeFile(bool isExe)
+{
+    QProcess *proc = new QProcess;
+    QModelIndexList indexes = selectedIndexes();
+
+    for (int i = 0, imax = indexes.count(); i < imax; ++i) {
+        QString fileName = fileModel->filePath(indexes[i]);
+        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+
+        qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
+        if (MIME == "application/x-desktop" && isExe) {
+            QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
+            if (!sexec.isNull())
+                proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
+                proc->start(sexec);
+        } else if (MIME == "application/vnd.appimage") {
+            proc->start(fileName);
+        } else {
+            QString Url = QString("file:///") + fileName;
+            QDesktopServices::openUrl(QUrl(Url));
+        }
+    }
+}
+
 void IconView::copyFile()
 {
     QModelIndexList list = this->selectedIndexes();
@@ -518,26 +542,7 @@ void IconView::pauseFile()
 
 void IconView::openFile()
 {
-    QProcess *proc = new QProcess;
-    QModelIndexList indexes = selectedIndexes();
-
-    for (int i = 0, imax = indexes.count(); i < imax; ++i) {
-        QString fileName = fileModel->filePath(indexes[i]);
-        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
-
-        qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
-        if (MIME == "application/x-desktop") {
-            QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
-            if (!sexec.isNull())
-                proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
-                proc->start(sexec);
-        } else if (MIME == "application/vnd.appimage") {
-            proc->start(fileName);
-        } else {
-            QString Url = QString("file:///") + fileName;
-            QDesktopServices::openUrl(QUrl(Url));
-        }
-    }
+    openExeFile(true);
 }
 
 void IconView::deleteFile()
