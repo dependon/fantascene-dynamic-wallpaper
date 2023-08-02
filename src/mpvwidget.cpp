@@ -119,7 +119,7 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
 MpvWidget::~MpvWidget()
 {
     makeCurrent();
-#if 0
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     if (mpv_gl)
         mpv_render_context_free(mpv_gl);
 #else
