@@ -37,7 +37,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QDBusConnection>
-#include <QWebEngineView>
+
 #include <QDesktopWidget>
 #include <QGuiApplication>
 #include <QEvent>
@@ -62,6 +62,10 @@
 #include <sys/types.h>
 #include <iostream>
 #include <QStandardPaths>
+
+#ifdef USE_WEBENGINE
+#include <QWebEngineView>
+#endif
 
 using namespace std;
 
@@ -459,6 +463,7 @@ void Wallpaper::registerDesktop()
 
     QTimer::singleShot(1, this, [ = ] {
         show();
+        qDebug()<<this->size();
         lower();
     });
     if (!dApp->m_screenWid.contains(winId())) {
@@ -582,6 +587,12 @@ void Wallpaper::updateGeometry()
             }
 
             this->setGeometry(QRect(0, 0, twidth, theight));
+#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
+            this->hide();
+            this->show();
+            this->raise();
+#endif
+            qDebug()<<this->size();
 
             int i = 1;
             int iX =0;

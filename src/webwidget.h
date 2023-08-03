@@ -20,13 +20,19 @@
  */
 #ifndef WEBWIDGET_H
 #define WEBWIDGET_H
-
+#ifdef USE_WEBENGINE
 #include <QWebEngineView>
 class webWidget : public QWebEngineView
+#else
+#include <QWidget>
+#include <QUrl>
+class webWidget : public QWidget
+#endif
 {
     Q_OBJECT
 public:
     webWidget(QWidget *parent = Q_NULLPTR);
+    void load(const QUrl &url);
 
 };
 

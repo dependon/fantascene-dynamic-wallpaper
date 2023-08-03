@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QThread>
+#include <QtConcurrent/QtConcurrent>
 
 #include "view.h"
 #include "application.h"
@@ -125,6 +126,8 @@ void wallpaperEnginePlugin::showView()
 
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+
     QThread *th = QThread::create([ = ]() {
         FindFile(path);
         for (QString str : m_JasonList) {
@@ -133,7 +136,17 @@ void wallpaperEnginePlugin::refresh(const QString &path)
         showView();
     });
     th->start();
-
+#else
+    QFuture<void> future = QtConcurrent::run([=](){
+        // 并行执行的代码
+        FindFile(path);
+        for (QString str : m_JasonList) {
+            readJson(str);
+        }
+        showView();
+    });
+//    QFuture<void> future = QtConcurrent::run(refreashFuction,path);
+#endif
 }
 
 wallpaperEnginePlugin::~wallpaperEnginePlugin()

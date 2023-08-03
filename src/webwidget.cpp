@@ -21,8 +21,27 @@
 #include "webwidget.h"
 #include <QEvent>
 #include <QMouseEvent>
+#ifdef USE_WEBENGINE
 webWidget::webWidget(QWidget *parent)
     : QWebEngineView(parent)
 {
 
 }
+void webWidget::load(const QUrl &url)
+{
+    QWebEngineView::load(url);
+}
+#else
+webWidget::webWidget(QWidget *parent)
+    : QWidget(parent)
+{
+
+}
+
+void webWidget::load(const QUrl &url)
+{
+    Q_UNUSED(url);
+}
+#endif
+
+

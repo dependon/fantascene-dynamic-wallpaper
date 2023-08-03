@@ -16,7 +16,13 @@ MOC_DIR = $$DESTDIR/.moc
 RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
-QT += gui core x11extras widgets dbus webengine webenginewidgets
+QT += gui core x11extras widgets dbus
+qtHaveModule(webengine){
+   QT += webengine webenginewidgets
+   DEFINES += USE_WEBENGINE
+}
+QT += concurrent
+
 CONFIG += c++11 link_pkgconfig no_keywords
 PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 #CONFIG += waylandcompositor

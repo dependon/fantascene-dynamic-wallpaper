@@ -53,7 +53,6 @@ public:
     void FindFile(const QString &_filePath);
     void readJson(const QString &path);
     void showView();
-
     void refresh(const QString &path);
 private Q_SLOTS:
     void on_setEnginePath_clicked();
