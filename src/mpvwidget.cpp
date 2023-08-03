@@ -83,7 +83,7 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     if (!mpv_gl)
         throw std::runtime_error("OpenGL not compiled in");
     mpv_opengl_cb_set_update_callback(mpv_gl, MpvWidget::on_update, (void *)this);
-    connect(this, SIGNAL(frameSwapped()), SLOT(swapped()));
+    connect(this, SIGNAL(frameSwapped()), this,SLOT(swapped()));
 #endif
     mpv_observe_property(mpv, 0, "duration", MPV_FORMAT_DOUBLE);
     mpv_observe_property(mpv, 0, "time-pos", MPV_FORMAT_DOUBLE);
