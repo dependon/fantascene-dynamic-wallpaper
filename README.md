@@ -36,6 +36,10 @@ Please take a clear look at the installed package. The corresponding Debian10 is
 
 ## Installation
 
+### AppImage 2023-08-02
+
+dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.com/p/2068198)
+
 ### debian ubuntu master deepinV20.9 uos
 
 dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases)
