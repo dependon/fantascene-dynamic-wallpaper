@@ -28,6 +28,10 @@
 
 ## 安装(下载地址主要来自github，链接看运气)
 
+## AppImage
+
+dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.com/p/2068198)
+
 ### 主版本（程序自己写的简易桌面）
 
 dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases/)
