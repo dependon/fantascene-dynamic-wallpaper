@@ -53,10 +53,10 @@ protected:
 private Q_SLOTS:
     void on_mpv_events();
     void maybeUpdate();
-    #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
-    #else
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+#else
     void swapped();
-    #endif
+#endif
 private:
     void handle_mpv_event(mpv_event *event);
     static void on_update(void *ctx);
