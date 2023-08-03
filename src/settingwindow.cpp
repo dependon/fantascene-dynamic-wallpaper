@@ -37,6 +37,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QDebug>
+#include <QtConcurrent>
 #include "inimanager.h"
 
 #include <QMutexLocker>
@@ -720,6 +721,7 @@ void settingWindow::on_pathEdit_textChanged(const QString &arg1)
 
 void settingWindow::on_checkBox_stateChanged(int arg1)
 {
+
     // 如果平台不是x11,则退出
     if ( QGuiApplication::platformName() != QLatin1String("xcb")) {
         return ;
@@ -728,11 +730,10 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
     if (arg1 == 0) {
         dApp->m_moreData.isAuto = 0;
         m_stopx11Thread = true;
-        if (m_x11thread) {
+        if (m_future.isRunning()) {
             //            m_x11thread->wait();
             //            m_x11thread->quit();
             //            m_x11thread->terminate();
-            m_x11thread = nullptr;
         }
         if (dApp->m_isNoMpvPause) {
             dApp->setMpvPlay();
@@ -740,9 +741,9 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
     } else {
         m_stopx11Thread = false;
         dApp->m_moreData.isAuto = 1;
-        if (!m_x11thread) {
-            m_x11thread = QThread::create([ = ]() {
-                int screenwidth = qApp->desktop()->screenGeometry().width() - 10;
+        if (!m_future.isRunning()) {
+            m_future = QtConcurrent::run([=](){
+                int screenwidth = qApp->desktop()->screenGeometry().width() - 150;
                 int screenheight = qApp->desktop()->screenGeometry().height() - 150;
                 while (!m_stopx11Thread) {
                     if (dApp->m_isNoMpvPause) {
@@ -777,7 +778,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
                     QThread::msleep(2000);
                 }
             });
-            m_x11thread->start();
+//            m_x11thread->start();
         }
     }
     saveSettings();

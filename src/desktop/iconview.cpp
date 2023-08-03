@@ -287,14 +287,14 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                     {
                         QIcon icon = GioClass::getIcon(useFile);
                         QString name = GioClass::getDesktop2Name(useFile);
-                        QAction * action =new QAction(icon,name);
+                        QAction * action =new QAction(icon,name,nullptr);
                         action->setData(useFile);
                         m_openSelect->addAction(action);
                         connect(action, &QAction::triggered, this, &IconView::onActionTriggered);
                     }
 
                     //other
-                    QAction * action =new QAction(tr("Select Other Application"));
+                    QAction * action =new QAction(tr("Select Other Application"),nullptr);
                     m_openSelect->addAction(action);
                     connect(action, &QAction::triggered, this, &IconView::onSetOhterActionTriggered);
 

@@ -173,6 +173,7 @@ private:
     double m_videoAspect{1.33};
 
     QThread *m_x11thread{nullptr};
+    QFuture<void> m_future;
     bool m_stopx11Thread{false};
 
     QMenu *m_aboutMenu{nullptr};

@@ -175,9 +175,15 @@ void MpvWidget::initializeGL()
 void MpvWidget::paintGL()
 {
     int iwidth = width();
-    double dwidth = iwidth * devicePixelRatioF();
     int iheight = height();
+#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
+    double dwidth = iwidth * devicePixelRatio();
+    double dheight = iheight * devicePixelRatio();
+#else
+    double dwidth = iwidth * devicePixelRatioF();
     double dheight = iheight * devicePixelRatioF();
+#endif
+
     int deviceiwidth = dwidth;
     int deviceiheight = dheight;
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
