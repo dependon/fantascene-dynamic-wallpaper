@@ -4,6 +4,7 @@
 #include <QtGui/QOpenGLContext>
 #include <QtCore/QMetaObject>
 #include "application.h"
+#include "inimanager.h"
 
 #include <QDateTime>
 #include <QStandardPaths>
@@ -47,7 +48,27 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     list << "no-correct-pts";
 //    mpv::qt::command_variant(mpv, list);
     mpv::qt::set_property_variant(mpv, "correct-pts", "no");
-    mpv::qt::set_property_variant(mpv, "fps", "0");
+    if(IniManager::instance()->contains("WallPaper/fps"))
+    {
+        dApp->m_moreData.fps = IniManager::instance()->value("WallPaper/fps").toInt();
+        mpv::qt::set_property_variant(mpv, "fps", dApp->m_moreData.fps);
+    }
+    else {
+        mpv::qt::set_property_variant(mpv, "fps", "0");
+    }
+
+    if(IniManager::instance()->contains("WallPaper/voiceVolume"))
+    {
+       int iVulume =  IniManager::instance()->value("WallPaper/voiceVolume").toInt();
+       mpv::qt::set_property_variant(mpv, "volume", iVulume);
+    }
+    if(IniManager::instance()->contains("WallPaper/videoAspect"))
+    {
+       double videoAspect = IniManager::instance()->value("WallPaper/videoAspect").toDouble();
+       mpv::qt::set_property_variant(mpv, "video-aspect", videoAspect);
+    }
+
+    mpv::qt::set_property_variant(mpv, "loop", "inf");
 
     connect(dApp, &Application::sigscreenshot, this, [ = ] {
         m_bScrrenShot = true;

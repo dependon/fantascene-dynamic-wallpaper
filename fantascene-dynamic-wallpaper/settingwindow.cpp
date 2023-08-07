@@ -24,6 +24,7 @@
 
 #include "listview/historywidget.h"
 #include "listview/wallpaperengineplugin.h"
+#include "inimanager.h"
 
 #include <DTitlebar>
 
@@ -111,6 +112,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
     //void activated(QSystemTrayIcon::ActivationReason reason);
     connect(m_trayIcon, &QSystemTrayIcon::activated, this, [ = ](QSystemTrayIcon::ActivationReason reason) {
         if (QSystemTrayIcon::Trigger == reason) {
+            this->show();
             if (m_parentMainWindow) {
                 m_parentMainWindow->resize(500, 300);
                 m_parentMainWindow->show();
@@ -128,6 +130,7 @@ settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
 
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
     connect(dApp, &Application::sigDesktopActive, this, [ = ] {
+        this->show();
         if (m_parentMainWindow)
         {
             m_parentMainWindow->resize(500, 300);
@@ -195,25 +198,23 @@ settingWindow::~settingWindow()
 void settingWindow::readSettings()
 {
 
-    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
-
-    dApp->m_currentPath = settings.value("WallPaper/CurrentPath").toString();
-    m_crrenNumber = settings.value("WallPaper/ScrrenNumber").toInt(); //1-2
-    m_isAutoStart = settings.value("WallPaper/isAutoStart").toInt();
-    int widthPY = settings.value("WallPaper/widthPY").toInt();
-    int heightPY = settings.value("WallPaper/heightPY").toInt();
-    int width = settings.value("WallPaper/width").toInt();
-    int height = settings.value("WallPaper/height").toInt();
-    m_currentMode = settings.value("WallPaper/Mode").toString();
-    m_voiceVolume = settings.value("WallPaper/voiceVolume").toInt();
-    m_videoAspect = settings.value("WallPaper/videoAspect").toDouble();
-    m_videoASpectStr = settings.value("WallPaper/videoAspectStr").toString();
-    dApp->m_moreData.isAuto = settings.value("WallPaper/videoAutoMode").toInt();
-    dApp->m_moreData.fps = settings.value("WallPaper/fps").toInt();
-    dApp->m_moreData.hwdec = settings.value("WallPaper/hwdec").toString();
-    dApp->m_wallpaperEnginePath = settings.value("WallPaper/wallpaperEnginePath").toString();
-    dApp->m_isPlayList = settings.value("WallPaper/isPlayList").toBool();
-    dApp->m_PlaylistTimer = settings.value("WallPaper/playlistTimer").toInt();
+    dApp->m_currentPath = IniManager::instance()->value("WallPaper/CurrentPath").toString();
+    m_crrenNumber = IniManager::instance()->value("WallPaper/ScrrenNumber").toInt(); //1-2
+    m_isAutoStart = IniManager::instance()->value("WallPaper/isAutoStart").toInt();
+    int widthPY = IniManager::instance()->value("WallPaper/widthPY").toInt();
+    int heightPY = IniManager::instance()->value("WallPaper/heightPY").toInt();
+    int width = IniManager::instance()->value("WallPaper/width").toInt();
+    int height = IniManager::instance()->value("WallPaper/height").toInt();
+    m_currentMode = IniManager::instance()->value("WallPaper/Mode").toString();
+    m_voiceVolume = IniManager::instance()->value("WallPaper/voiceVolume").toInt();
+    m_videoAspect = IniManager::instance()->value("WallPaper/videoAspect").toDouble();
+    m_videoASpectStr = IniManager::instance()->value("WallPaper/videoAspectStr").toString();
+    dApp->m_moreData.isAuto = IniManager::instance()->value("WallPaper/videoAutoMode").toInt();
+    dApp->m_moreData.fps = IniManager::instance()->value("WallPaper/fps").toInt();
+    dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString();
+    dApp->m_wallpaperEnginePath = IniManager::instance()->value("WallPaper/wallpaperEnginePath").toString();
+    dApp->m_isPlayList = IniManager::instance()->value("WallPaper/isPlayList").toBool();
+    dApp->m_PlaylistTimer = IniManager::instance()->value("WallPaper/playlistTimer").toInt();
     dApp->setisPlayList(dApp->m_isPlayList);
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);
 
@@ -227,7 +228,7 @@ void settingWindow::readSettings()
     QString strLocalPath;
     int localIndex = 1;
     do {
-        strLocalPath = settings.value("Movie/localPath" + QString::number(localIndex++)).toString();
+        strLocalPath = IniManager::instance()->value("Movie/localPath" + QString::number(localIndex++)).toString();
         if (nullptr != strLocalPath) {
             if (!dApp->m_allPath.contains(strLocalPath)) {
                 dApp->m_allPath.push_back(strLocalPath);
@@ -240,7 +241,7 @@ void settingWindow::readSettings()
     QString strPlaylistPath;
     int playlistIndex = 1;
     do {
-        strPlaylistPath = settings.value("Movie/playlistPath" + QString::number(playlistIndex++)).toString();
+        strPlaylistPath = IniManager::instance()->value("Movie/playlistPath" + QString::number(playlistIndex++)).toString();
         if (nullptr != strPlaylistPath) {
             if (!dApp->m_playlistPath.contains(strPlaylistPath)) {
                 dApp->m_playlistPath.push_back(strPlaylistPath);
@@ -309,38 +310,37 @@ void settingWindow::readSettings()
 
 void settingWindow::saveSettings()
 {
-    QSettings settings(CONFIG_PATH, QSettings::IniFormat);
-    settings.clear();
-    settings.setValue("WallPaper/ScrrenNumber", m_crrenNumber);
-    settings.setValue("WallPaper/isAutoStart", m_isAutoStart);
-    settings.setValue("WallPaper/CurrentPath", dApp->m_currentPath);
-    settings.setValue("WallPaper/Mode", ui->comboBox->currentText());
-    settings.setValue("WallPaper/widthPY", dApp->m_manual.x());
-    settings.setValue("WallPaper/heightPY", dApp->m_manual.y());
-    settings.setValue("WallPaper/width", dApp->m_manual.width());
-    settings.setValue("WallPaper/height", dApp->m_manual.height());
-    settings.setValue("WallPaper/voiceVolume", m_voiceVolume);
-    settings.setValue("WallPaper/videoAspect", m_videoAspect);
-    settings.setValue("WallPaper/videoAspectStr", m_videoASpectStr);
-    settings.setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
-    settings.setValue("WallPaper/fps", dApp->m_moreData.fps);
-    settings.setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
-    settings.setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
-    settings.setValue("WallPaper/isPlayList", dApp->m_isPlayList);
-    settings.setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
+    IniManager::instance()->clear();
+    IniManager::instance()->setValue("WallPaper/ScrrenNumber", m_crrenNumber);
+    IniManager::instance()->setValue("WallPaper/isAutoStart", m_isAutoStart);
+    IniManager::instance()->setValue("WallPaper/CurrentPath", dApp->m_currentPath);
+    IniManager::instance()->setValue("WallPaper/Mode", ui->comboBox->currentText());
+    IniManager::instance()->setValue("WallPaper/widthPY", dApp->m_manual.x());
+    IniManager::instance()->setValue("WallPaper/heightPY", dApp->m_manual.y());
+    IniManager::instance()->setValue("WallPaper/width", dApp->m_manual.width());
+    IniManager::instance()->setValue("WallPaper/height", dApp->m_manual.height());
+    IniManager::instance()->setValue("WallPaper/voiceVolume", m_voiceVolume);
+    IniManager::instance()->setValue("WallPaper/videoAspect", m_videoAspect);
+    IniManager::instance()->setValue("WallPaper/videoAspectStr", m_videoASpectStr);
+    IniManager::instance()->setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
+    IniManager::instance()->setValue("WallPaper/fps", dApp->m_moreData.fps);
+    IniManager::instance()->setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
+    IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+    IniManager::instance()->setValue("WallPaper/isPlayList", dApp->m_isPlayList);
+    IniManager::instance()->setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);
 
     int indexLocal = 1;
     //去重
     dApp->m_allPath = dApp->m_allPath.toSet().toList();
     for (QString str : dApp->m_allPath) {
-        settings.setValue("Movie/localPath" + QString::number(indexLocal++), str);
+        IniManager::instance()->setValue("Movie/localPath" + QString::number(indexLocal++), str);
     }
 
     //去重
     int playlistIndex = 1;
     dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
     for (QString str : dApp->m_playlistPath) {
-        settings.setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
+        IniManager::instance()->setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
     }
 
 }

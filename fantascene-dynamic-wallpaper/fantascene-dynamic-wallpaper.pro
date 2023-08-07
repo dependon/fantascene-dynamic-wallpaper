@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     moresetting.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \
-    listview/playlistsettingdialog.cpp
+    listview/playlistsettingdialog.cpp \
+    ini/inimanager.cpp
 
 HEADERS += \
     wallpaper.h \
@@ -37,10 +38,13 @@ HEADERS += \
     moresetting.h \
     listview/wallpaperengineplugin.h \
     webwidget.h \
-    listview/playlistsettingdialog.h
+    listview/playlistsettingdialog.h \
+    ini/inimanager.h
 
 RESOURCES += \
     qrc.qrc
+
+INCLUDEPATH += $$PWD/ini
 
 CONFIG(release, debug|release) {
     TRANSLATIONS = $$files($$PWD/translations/*.ts)

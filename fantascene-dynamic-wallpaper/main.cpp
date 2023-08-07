@@ -16,8 +16,47 @@
 #include <QFile>
 #include <DTitlebar>
 #include <QStandardPaths>
+
 DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
+
+/* Translation file path */
+#define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+
+#ifdef Q_OS_LINUX
+/*
+ * Load translation files
+ *
+ * @ Accepts parameters are : path (const)
+ *
+ * @ Returns no results
+ */
+void load_translation_files(const QString path)
+{
+    QDir dir(path);
+    qDebug()<<"event: "<<QLocale::system().name();
+    if (dir.exists())
+    {
+        QDirIterator qmIt(path, QStringList() << QString("*%1.qm").arg(QLocale::system().name()), QDir::Files);
+        while (qmIt.hasNext())
+        {
+            qmIt.next();
+            QFileInfo finfo = qmIt.fileInfo();
+            QString tr_path = finfo.absolutePath();
+            QString tr_file = finfo.baseName();
+            QTranslator *translator = new QTranslator;
+
+            if (!translator->load(tr_file,tr_path)) {
+                qWarning() << "Failed to load " + tr_path, + "/" + tr_file + " ,fallback to default!";
+            }
+            if (!qApp->installTranslator(translator)) {
+                qWarning() << "Failed to install translation!";
+            }
+        }
+    }
+}
+#endif
+
 void cpToTmp()
 {
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
@@ -29,6 +68,7 @@ void cpToTmp()
 }
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QPA_PLATFORM", "xcb");
     cpToTmp();
     QString path = "/opt/apps/com.deepin.fantacy/files/bin/";
 
@@ -40,19 +80,23 @@ int main(int argc, char *argv[])
 //    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
 
+#ifdef Q_OS_LINUX
+    qDebug()<< QApplication::applicationDirPath();
+    QString transPath = QApplication::applicationDirPath() + "/translations";
+    QDir myDir(transPath);
+    if(myDir.exists())
+    {
+        load_translation_files(transPath);
+    }
+    else {
+        load_translation_files(TRANSALTION_PATH);
+    }
+#endif
+
     if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
         bool isShowMainWindow = true;
 #if 1
         isShowMainWindow = false;
-        if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
-            int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
-            if (iRet != 0) {
-                return 0;
-            }
-            isShowMainWindow = true;
-        } else {
-            qDebug() << "可以启动: " << path + "dde-desktop";
-        }
 
         dApp->m_startDesktop  = QThread::create([ = ]() {
             //打印当前路径
@@ -60,11 +104,20 @@ int main(int argc, char *argv[])
             qDebug() << QCoreApplication::applicationDirPath();
             qDebug() << "打印当前路径2";
 
+            QString desktopPath = "bash " + QApplication::applicationDirPath() + "/startdesktop.sh";
             QProcess pro;
-            QString strPath = "bash /opt/apps/com.deepin.fantacy/files/bin/startdesktop.sh";
-            pro.startDetached(strPath);
+            if (QFileInfo(QApplication::applicationDirPath() + "/startdesktop.sh").isFile())
+            {
+                pro.startDetached("killall dde-desktop");
+                pro.startDetached(QApplication::applicationDirPath() + "/dde-desktop");
+                qDebug() << "启动失败: " << QApplication::applicationDirPath() + "/dde-desktop";
+            }
+            else {
+                QString strPath = "bash /opt/apps/com.deepin.fantacy/files/bin/startdesktop.sh";
+                pro.startDetached(strPath);
+                qDebug() << "启动失败: " << path + "dde-desktop";
+            }
 
-            qDebug() << "启动失败: " << path + "dde-desktop";
         });
         dApp->m_startDesktop->start();
 #endif

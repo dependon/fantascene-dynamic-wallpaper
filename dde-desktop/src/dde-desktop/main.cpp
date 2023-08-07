@@ -110,6 +110,7 @@ static bool registerFileManager1DBus()
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QPA_PLATFORM", "xcb");
     // Fixed the locale codec to utf-8
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("utf-8"));
 
