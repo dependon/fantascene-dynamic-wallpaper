@@ -98,31 +98,35 @@ for(tsfile, TRANSLATIONS) {
     system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
 }
 
+isEmpty(PREFIX){
+    PREFIX = /usr
+}
+
 OTHER_FILES+=$$PWD/install/*
 
-unix:!android: target.path = /usr/bin
+unix:!android: target.path = $${PREFIX}/bin
 
-icon.path=/usr/share/icons
+icon.path=$${PREFIX}/share/icons
 icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
 
-desktop.path = /usr/share/applications/
+desktop.path = $${PREFIX}/share/applications/
 desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
-#desktopleft.path = /usr/share/deepin/dde-file-manager/oem-menuextensions/
+#desktopleft.path = $${PREFIX}/share/deepin/dde-file-manager/oem-menuextensions/
 #desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service
 
 dbus_service.files += com.deepin.dde.fantascene.service
-dbus_service.path = /usr/share/dbus-1/services
+dbus_service.path = $${PREFIX}/share/dbus-1/services
 
-APPSHAREDIR = /usr/share/fantascene-dynamic-wallpaper
+APPSHAREDIR = $${PREFIX}/share/fantascene-dynamic-wallpaper
 
 translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
 
-video.path=/usr/share/fantascene-dynamic-wallpaper/normal/
+video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 video.files=$$PWD/install/normal.mp4
 
 INSTALLS += target  icon desktop  translations video
