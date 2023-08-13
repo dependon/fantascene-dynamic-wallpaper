@@ -44,9 +44,9 @@ dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.co
 
 dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases)
 
-### fedora and centos stream
+### Fedora and OpenSUSE
 
-Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
+Please see: [fantascene-dynamic-wallpaper]([https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper))
 
 ### archlinux and manjaro
 
