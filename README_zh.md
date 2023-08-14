@@ -20,6 +20,11 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
 
+# 最新版本下载 (来自Open Build Service)
+
+涵盖多个发行版，opensuse debian ubuntu fedora等
+
+[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
 ## 维基
 

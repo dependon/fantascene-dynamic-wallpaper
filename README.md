@@ -15,6 +15,10 @@ THE PROJECT IS RELEASED UNDER THE：
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
 
+## Latest version download (Open Build Service)
+
+[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
+
 ## Wiki
 
 Detailed instructions will be written to wiki later.
