@@ -126,7 +126,7 @@ void wallpaperEnginePlugin::showView()
 
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 
     QThread *th = QThread::create([ = ]() {
         FindFile(path);
