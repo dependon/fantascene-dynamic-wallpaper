@@ -34,7 +34,7 @@
         <location filename="../desktop/iconview.cpp" line="182"/>
         <source>New Built</source>
         <translatorcomment>新建</translatorcomment>
-        <translation></translation>
+        <translation>新建</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="187"/>
@@ -61,31 +61,31 @@
         <location filename="../desktop/iconview.cpp" line="208"/>
         <source>Sort Order</source>
         <translatorcomment>文件排序</translatorcomment>
-        <translation></translation>
+        <translation>文件排序</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="212"/>
         <source>Name</source>
         <translatorcomment>名称</translatorcomment>
-        <translation></translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="216"/>
         <source>Change Date</source>
         <translatorcomment>修改时间</translatorcomment>
-        <translation></translation>
+        <translation>修改时间</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="220"/>
         <source>File Size</source>
         <translatorcomment>文件大小</translatorcomment>
-        <translation></translation>
+        <translation>文件大小</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="224"/>
         <source>File Type</source>
         <translatorcomment>文件类型</translatorcomment>
-        <translation></translation>
+        <translation>文件类型</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="228"/>
