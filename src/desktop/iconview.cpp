@@ -25,6 +25,7 @@
 #include "iconprovider.h"
 #include "fileoperationjob.h"
 #include "delegateicon.h"
+#include "customsortfilterproxymodel.h"
 
 #include <QFileSystemModel>
 #include <QPaintEvent>
@@ -126,14 +127,28 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     fileModel = new FileModel;
     fileModel->setRootPath(rootPath);
-    setModel(fileModel);
-    setRootIndex(fileModel->index(rootPath));
-    //setRootIndex(fileModel->index("/home/kylin"));
+
+    m_proxyModel = new CustomSortFilterProxyModel;
+    m_proxyModel->setSourceModel(fileModel);
+    m_proxyModel->sort(0,Qt::AscendingOrder);
+
+//    setModel(fileModel);
+//    setRootIndex(fileModel->index(rootPath));
+
+//    DelegateIcon *deleget = new DelegateIcon;
+//    deleget->setFileModel(fileModel);
+    setModel(m_proxyModel);
+    setRootIndex(m_proxyModel->mapFromSource(fileModel->index(rootPath)));
 
     DelegateIcon *deleget = new DelegateIcon;
     deleget->setFileModel(fileModel);
+    deleget->setPath(rootPath);
     deleget->setIconView(this);
     setItemDelegate(deleget);
+
+    
+//    QItemSelectionModel *selectionModel = new QItemSelectionModel(m_proxyModel, this);
+//    this->setSelectionModel(selectionModel);
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
@@ -198,12 +213,30 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
     viewMenu->addAction(newTXTction);
 
+    QMenu *iconSortMenu = new QMenu(viewMenu);
+    iconSortMenu->setTitle(tr("Sort Order"));
+    viewMenu->addMenu(iconSortMenu);
+
+    QAction *sortName = new QAction(iconSortMenu);
+    sortName->setText(tr("Name"));
+    iconSortMenu->addAction(sortName);
+
+    QAction *sortTime= new QAction(iconSortMenu);
+    sortTime->setText(tr("Change Date"));
+    iconSortMenu->addAction(sortTime);
+
+    QAction *sortFileSize= new QAction(iconSortMenu);
+    sortFileSize->setText(tr("File Size"));
+    iconSortMenu->addAction(sortFileSize);
+
+    QAction *sortFileType= new QAction(iconSortMenu);
+    sortFileType->setText(tr("File Type"));
+    iconSortMenu->addAction(sortFileType);
+
     QMenu *iconSizeMenu = new QMenu(viewMenu);
     iconSizeMenu->setTitle(tr("Icon Size"));
-//    iconSizeAction->setText(tr("Icon Size"));
-//    iconSizeAction->setShortcut(QKeySequence("Ctrl+C"));
-//    viewMenu->addAction(iconSizeAction);
     viewMenu->addMenu(iconSizeMenu);
+
     QAction *iconSmall = new QAction(iconSizeMenu);
     iconSmall->setText(tr("Small"));
     iconSizeMenu->addAction(iconSmall);
@@ -301,27 +334,29 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                 }
 
                 QModelIndexList indexes = selectedIndexes();
-
+                QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
                 for (int i = 0, imax = indexes.count(); i < imax; ++i) {
-                    QString fileName = fileModel->filePath(indexes[i]);
-                    QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+                    if (model) {
+                        QModelIndex sourceIndex = m_proxyModel->mapToSource(indexes[i]);
+                        QString fileName = model->filePath(sourceIndex);
+                        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
 
-                    QStringList canUse = GioClass::getCanUseApps(MIME);
-                    for(QString useFile : canUse)
-                    {
-                        QIcon icon = GioClass::getIcon(useFile);
-                        QString name = GioClass::getDesktop2Name(useFile);
-                        QAction * action =new QAction(icon,name,nullptr);
-                        action->setData(useFile);
+                        QStringList canUse = GioClass::getCanUseApps(MIME);
+                        for(QString useFile : canUse)
+                        {
+                            QIcon icon = GioClass::getIcon(useFile);
+                            QString name = GioClass::getDesktop2Name(useFile);
+                            QAction * action =new QAction(icon,name,nullptr);
+                            action->setData(useFile);
+                            m_openSelect->addAction(action);
+                            connect(action, &QAction::triggered, this, &IconView::onActionTriggered);
+                        }
+
+                        //other
+                        QAction * action =new QAction(tr("Select Other Application"),nullptr);
                         m_openSelect->addAction(action);
-                        connect(action, &QAction::triggered, this, &IconView::onActionTriggered);
+                        connect(action, &QAction::triggered, this, &IconView::onSetOhterActionTriggered);
                     }
-
-                    //other
-                    QAction * action =new QAction(tr("Select Other Application"),nullptr);
-                    m_openSelect->addAction(action);
-                    connect(action, &QAction::triggered, this, &IconView::onSetOhterActionTriggered);
-
                 }
             }
         }
@@ -345,6 +380,16 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(wallpaperAction, &QAction::triggered, this, &IconView::slotsWallpaperAction);
     connect(this, &IconView::doubleClicked, this, &IconView::openFile);
 
+    sortName->setData(Qt::DisplayRole);
+    sortTime->setData(Qt::UserRole + 1);
+    sortFileSize->setData(Qt::UserRole + 2);
+    sortFileType->setData(Qt::UserRole + 3);
+
+    connect(sortName, &QAction::triggered, this, &IconView::slotsSort);
+    connect(sortTime, &QAction::triggered, this, &IconView::slotsSort);
+    connect(sortFileSize, &QAction::triggered, this, &IconView::slotsSort);
+    connect(sortFileType, &QAction::triggered, this, &IconView::slotsSort);
+
     m_rootPath = rootPath;
 
     if(IniManager::instance()->contains("WallPaper/IconSize"))
@@ -355,6 +400,19 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
             setGridSize(QSize(iconSize, iconSize));
             setIconSize(QSize(iconSize/2, iconSize/2));
         }
+    }
+
+    if(IniManager::instance()->contains("WallPaper/SortFilter"))
+    {
+        int iSortFilter = IniManager::instance()->value("WallPaper/SortFilter").toInt();
+        if(iSortFilter>=0)
+        {
+            m_proxyModel->setSortRole(iSortFilter);
+        }
+    }
+    else
+    {
+        m_proxyModel->setSortRole(Qt::UserRole + 1);
     }
 
 }
@@ -384,7 +442,7 @@ void IconView::onActionTriggered()
 
 void IconView::onSetOhterActionTriggered()
 {
-    QString filePath = QFileDialog::getOpenFileName(nullptr,tr("Please Select App"),"/usr/share/application/","*.desktop");
+    QString filePath = QFileDialog::getOpenFileName(nullptr,tr("Please Select App"),"/usr/share/applications/");
     if (filePath.isEmpty()) {
         return;
     }
@@ -394,10 +452,14 @@ void IconView::onSetOhterActionTriggered()
 
     bool bsok = false;
     //set Defualt
+    QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
     for (int i = 0, imax = indexes.count(); i < imax; ++i) {
-        QString fileName = fileModel->filePath(indexes[i]);
-        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
-        bsok = GioClass::setDefautlApp(MIME,path);
+        if (model) {
+            QModelIndex sourceIndex = m_proxyModel->mapToSource(indexes[i]);
+            QString fileName = model->filePath(sourceIndex);
+            QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+            bsok = GioClass::setDefautlApp(MIME,path);
+        }
     }
     //open
     if(bsok)
@@ -514,22 +576,26 @@ void IconView::openExeFile(bool isExe)
 {
     QProcess *proc = new QProcess;
     QModelIndexList indexes = selectedIndexes();
-
+    QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
     for (int i = 0, imax = indexes.count(); i < imax; ++i) {
-        QString fileName = fileModel->filePath(indexes[i]);
-        QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+        if(model)
+        {
+            QModelIndex sourceIndex = m_proxyModel->mapToSource(indexes[i]);
+            QString fileName = model->filePath(sourceIndex);
+            QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
 
-        qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
-        if (MIME == "application/x-desktop" && isExe) {
-            QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
-            if (!sexec.isNull())
-                proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
-                proc->start(sexec);
-        } else if (MIME == "application/vnd.appimage") {
-            proc->start(fileName);
-        } else {
-            QString Url = QString("file:///") + fileName;
-            QDesktopServices::openUrl(QUrl(Url));
+            qDebug() << "Execution file now: " + fileName + ", Mime type is: " + MIME;
+            if (MIME == "application/x-desktop" && isExe) {
+                QString sexec = readSettings(fileName, "Desktop Entry", "Exec");
+                if (!sexec.isNull())
+                    proc->setWorkingDirectory(readSettings(fileName, "Desktop Entry", "Path"));
+                    proc->start(sexec);
+            } else if (MIME == "application/vnd.appimage") {
+                proc->start(fileName);
+            } else {
+                QString Url = QString("file:///") + fileName;
+                QDesktopServices::openUrl(QUrl(Url));
+            }
         }
     }
 }
@@ -577,7 +643,8 @@ void IconView::pauseFile()
     }
 
     fileOpJob->setOrigList(urls);
-    fileOpJob->setDestDir(fileModel->filePath(rootIndex()));
+
+    fileOpJob->setDestDir(m_rootPath);
     QThread *fileOpThread = new QThread;
     fileOpJob->moveToThread(fileOpThread);
     connect(fileOpThread, &QThread::started, fileOpJob, &FileOperationJob::jobStart);
@@ -596,7 +663,8 @@ void IconView::deleteFile()
     QModelIndexList list = this->selectedIndexes();
     FileOperationJob *fileOpJob = new FileOperationJob;
     fileOpJob->setOperationFlag(FILE_OPERATION_TRASH);
-    fileOpJob->setOrigList(fileModel->mimeData(list)->urls());
+    fileOpJob->setOrigList(m_proxyModel->mimeData(list)->urls());
+
     QThread *fileOpThread = new QThread;
     fileOpJob->moveToThread(fileOpThread);
     connect(fileOpThread, &QThread::started, fileOpJob, &FileOperationJob::jobStart);
@@ -674,6 +742,15 @@ void IconView::slotsWallpaperAction()
     Q_EMIT dApp->sigWallpaperAction();
 }
 
+void IconView::slotsSort()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (action) {
+        m_proxyModel->setSortRole(action->data().toInt());
+        IniManager::instance()->setValue("WallPaper/SortFilter",action->data().toInt());
+    }
+}
+
 void IconView::paintEvent(QPaintEvent *e)
 {
     return QListView::paintEvent(e);
@@ -739,7 +816,12 @@ void IconView::dropEvent(QDropEvent *e)
                 FileOperationJob *fileOpJob = new FileOperationJob;
                 fileOpJob->setOperationFlag(FILE_OPERATION_MOVE);
                 fileOpJob->setOrigList(urls);
-                fileOpJob->setDestDir(fileModel->filePath(this->rootIndex()));
+                QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+                if(model)
+                {
+                    QModelIndex sourceIndex = m_proxyModel->mapToSource(this->rootIndex());
+                    fileOpJob->setDestDir(model->filePath(sourceIndex));
+                }
 
                 QThread *fileOpThread = new QThread;
                 fileOpJob->moveToThread(fileOpThread);

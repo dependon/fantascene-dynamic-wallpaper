@@ -32,6 +32,7 @@ LIBS +=-lgio-2.0 -lglib-2.0
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
+    desktop/customsortfilterproxymodel.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -54,6 +55,7 @@ SOURCES += main.cpp \
     ini/inimanager.cpp
 
 HEADERS += \
+    desktop/customsortfilterproxymodel.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \

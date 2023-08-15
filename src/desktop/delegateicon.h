@@ -51,10 +51,13 @@ public:
     // painting
     void paint(QPainter *painter,
                const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
+    void setPath(const QString& path) {m_rootPath = path;}
 private:
     QRect mRect;
     FileModel *mModel = nullptr;
     IconView *mIconView = nullptr;
+    QString m_rootPath;
 };
 
 #endif // DELEGATE_H

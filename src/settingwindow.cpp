@@ -836,6 +836,10 @@ void settingWindow::slotTimerSaveSettings()
     {
         iconSize = IniManager::instance()->value("WallPaper/IconSize").toInt();
     }
+    if(IniManager::instance()->contains("WallPaper/SortFilter"))
+    {
+        iconSize = IniManager::instance()->value("WallPaper/SortFilter").toInt();
+    }
     IniManager::instance()->clear();
     IniManager::instance()->setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     IniManager::instance()->setValue("WallPaper/isAutoStart", m_isAutoStart);
