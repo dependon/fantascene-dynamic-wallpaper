@@ -832,15 +832,18 @@ void settingWindow::slotShowDesktopIcon(bool isIcon)
 void settingWindow::slotTimerSaveSettings()
 {
     int iconSize = 0;
+    int iSort= 0;
+
     if(IniManager::instance()->contains("WallPaper/IconSize"))
     {
         iconSize = IniManager::instance()->value("WallPaper/IconSize").toInt();
     }
     if(IniManager::instance()->contains("WallPaper/SortFilter"))
     {
-        iconSize = IniManager::instance()->value("WallPaper/SortFilter").toInt();
+        iSort = IniManager::instance()->value("WallPaper/SortFilter").toInt();
     }
     IniManager::instance()->clear();
+
     IniManager::instance()->setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     IniManager::instance()->setValue("WallPaper/isAutoStart", m_isAutoStart);
     IniManager::instance()->setValue("WallPaper/CurrentPath", dApp->m_currentPath);
@@ -863,6 +866,10 @@ void settingWindow::slotTimerSaveSettings()
     if(iconSize>0)
     {
         IniManager::instance()->setValue("WallPaper/IconSize", iconSize);
+    }
+    if(iSort>=0)
+    {
+        IniManager::instance()->setValue("WallPaper/SortFilter", iSort);
     }
     int indexLocal = 1;
     //去重
