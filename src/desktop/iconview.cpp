@@ -172,6 +172,10 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     m_openSelect->setTitle(tr("Open With"));
     viewMenu->addMenu(m_openSelect);
 
+    m_createNew = new QMenu(viewMenu);
+    m_createNew->setTitle(tr("New Built"));
+    viewMenu->addMenu(m_createNew);
+
     //TODO: add open with...
     QAction *selectAllAction = new QAction(viewMenu);
     selectAllAction->setText(tr("Select all"));
@@ -250,6 +254,8 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     connect(this, &IconView::customContextMenuRequested, [ = ]() {
         m_openSelect->clear();
+        m_createNew->clear();
+
         if (!QApplication::clipboard()->mimeData()->hasUrls()) {
             pasteAction->setEnabled(false);
         } else {
@@ -263,6 +269,23 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
             copyAction->setEnabled(false);
             cutAction->setEnabled(false);
             renameAction->setEnabled(false);
+            m_createNew->setEnabled(true);
+            //新建
+            {
+                QString path = QDir::homePath()+"/.Templates";
+                QDir directory(path);
+                QStringList files = directory.entryList(QDir::Files);
+                for(QString file : files)
+                {
+                    QString usePath = path +"/"+file;
+
+                    QIcon icon = GioClass::getIcon(usePath);
+                    QAction * action =new QAction(icon,file,nullptr);
+                    action->setData(usePath);
+                    m_createNew->addAction(action);
+                    connect(action, &QAction::triggered, this, &IconView::onNewActionTriggered);
+                }
+            }
         } else {
             openAction->setEnabled(true);
             trashAction->setEnabled(true);
@@ -270,6 +293,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
             copyAction->setEnabled(true);
             cutAction->setEnabled(true);
             renameAction->setEnabled(false);
+            m_createNew->setEnabled(false);
             if (selectedIndexes().count() == 1) {
                 QString fileName = selectedIndexes().first().data().toString();
                 if (!fileName.endsWith(".desktop")) {
@@ -299,11 +323,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                     connect(action, &QAction::triggered, this, &IconView::onSetOhterActionTriggered);
 
                 }
-
             }
-
-
-
         }
         viewMenu->exec(QCursor::pos());
     });
@@ -387,6 +407,32 @@ void IconView::onSetOhterActionTriggered()
     else
     {
         QMessageBox::information(this,tr(""),tr(""));
+    }
+}
+
+void IconView::onNewActionTriggered()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (action) {
+        QString path = action->data().toString();
+        QString apath = action->text();
+        QFileInfo fileInfo (path);
+        QString suffix = fileInfo.completeSuffix();
+        QString baseName = fileInfo.baseName();
+        QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+        QFile a;
+        int i = 1;
+        while (i < 99) {
+            QString copPath = desktopPath + "/" + baseName + QString::number(i) +"." +suffix;
+            if (!a.exists(copPath))
+            {
+                QFile::copy(path,copPath);
+                a.close();
+                i = 100;
+                break;
+            }
+            i++;
+        }
     }
 }
 

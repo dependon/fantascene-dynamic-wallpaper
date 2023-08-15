@@ -77,6 +77,7 @@ public Q_SLOTS:
 
     void onActionTriggered();
     void onSetOhterActionTriggered();
+    void onNewActionTriggered();
 protected:
     void paintEvent(QPaintEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
@@ -92,6 +93,7 @@ protected:
 
 private :
     QMenu *m_openSelect{nullptr};
+    QMenu *m_createNew{nullptr};
 };
 
 #endif // ICONVIEW_H
