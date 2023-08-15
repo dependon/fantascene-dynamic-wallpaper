@@ -27,7 +27,7 @@
 #include <QListView>
 
 class QMenu;
-
+class CustomSortFilterProxyModel;
 enum CopyOrCut
 {
     CopyOrCut_COPY,
@@ -51,6 +51,7 @@ public:
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
+    CustomSortFilterProxyModel * m_proxyModel = nullptr;
 
     QPoint mLastPos = QPoint(0, 0);
     QString m_rootPath;
@@ -74,10 +75,12 @@ public Q_SLOTS:
     void slotsIconSizeMedium();
     void slotsIconSizeBig();
     void slotsWallpaperAction();
+    void slotsSort();
 
     void onActionTriggered();
     void onSetOhterActionTriggered();
     void onNewActionTriggered();
+
 protected:
     void paintEvent(QPaintEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;

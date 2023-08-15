@@ -56,7 +56,7 @@ QString DelegateIcon::displayText(const QVariant &value, const QLocale &locale) 
     QString keyWord = "Name[" + locale.name() + "]";
     std::string tmp_key = keyWord.toStdString();
 
-    QString filePath = mModel->filePath(mIconView->rootIndex()) + "/" + text;
+    QString filePath = m_rootPath + "/" + text;
     std::string tmp_str = filePath.toStdString();
     const char *file_path = tmp_str.c_str();
     GDesktopAppInfo *desktop_app_info = g_desktop_app_info_new_from_filename(file_path);
@@ -94,8 +94,8 @@ QWidget *DelegateIcon::createEditor(QWidget *parent, const QStyleOptionViewItem 
     connect(textEdit, &QTextEdit::destroyed, [ = ]() {
 
         if (!textEdit->toPlainText().isEmpty()) {
-            QString srcPath = mModel->filePath(mIconView->rootIndex()) + "/" + index.data().toString();
-            QString destPath = mModel->filePath(mIconView->rootIndex()) + "/" + textEdit->toPlainText();
+            QString srcPath = m_rootPath + "/" + index.data().toString();
+            QString destPath = m_rootPath + "/" + textEdit->toPlainText();
             QFileInfo info(srcPath);
             if (info.isDir()) {
                 QDir dir;
@@ -162,7 +162,7 @@ void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     if (tStr.startsWith("cut")) {
         QList<QUrl> urls = QApplication::clipboard()->mimeData()->urls();
         QString text = index.data(Qt::DisplayRole).toString();
-        QString filePath = mModel->filePath(mIconView->rootIndex()) + "/" + text;
+        QString filePath = m_rootPath + "/" + text;
         for (QUrl url :urls)
         {
             QString localPath = url.toLocalFile();
