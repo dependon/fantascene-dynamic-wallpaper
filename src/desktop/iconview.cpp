@@ -146,34 +146,25 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     deleget->setIconView(this);
     setItemDelegate(deleget);
 
-    
-//    QItemSelectionModel *selectionModel = new QItemSelectionModel(m_proxyModel, this);
-//    this->setSelectionModel(selectionModel);
-
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     setDragEnabled(true);
     setDropIndicatorShown(true);
     setAcceptDrops(true);
+    setDragDropMode(QAbstractItemView::InternalMove);
+
     setDefaultDropAction(Qt::MoveAction);
 
-    int size = fileModel->getIconProvider()->getIconSize();
-    setIconSize(QSize(size, size));
-
-    //setUniformItemSizes(true); //same size for all items
     setMovement(QListView::Snap); //gird move
-    //setWordWrap(true); //text auto change row
-    //setViewportMargins(0,10,0,10);
-    //setContentsMargins(31,31,31,31);
     setResizeMode(QListView::Adjust); //auto redo layout
     setGridSize(QSize(ICONSIZE_SMALL, ICONSIZE_SMALL));
     setIconSize(QSize(ICONSIZE_SMALL/2, ICONSIZE_SMALL/2));
-    setUniformItemSizes(true);
+    setUniformItemSizes(true); //same size for all items
     setSpacing(4);
     setViewMode(QListView::IconMode);
-//    setMovement(QListView::Static);
     selectionModel()->selectedIndexes();
     //setWordWrap(true);
+
 
     setTextElideMode(Qt::ElideMiddle);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -415,6 +406,8 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
         m_proxyModel->setSortRole(Qt::UserRole + 1);
     }
 
+    restoreLayoutOrder();
+
 }
 
 IconView::~IconView()
@@ -596,6 +589,34 @@ void IconView::openExeFile(bool isExe)
                 QString Url = QString("file:///") + fileName;
                 QDesktopServices::openUrl(QUrl(Url));
             }
+        }
+    }
+}
+
+void IconView::saveLayoutOrder()
+{
+    QSettings settings("./MyApp.ini", QSettings::IniFormat);
+    QStringList layoutOrder;
+    qDebug()<< m_proxyModel->columnCount();
+    qDebug()<< m_proxyModel->rowCount();
+    for (int i = 0; i < m_proxyModel->rowCount(); i++) {
+        QModelIndex index = m_proxyModel->index(i, 0);
+        QString filePath = index.data(Qt::DisplayRole).toString();
+        layoutOrder.append(filePath);
+    }
+    settings.setValue("LayoutOrder", layoutOrder);
+}
+
+void IconView::restoreLayoutOrder()
+{
+    QSettings settings("./MyApp.ini", QSettings::IniFormat);
+    QStringList layoutOrder = settings.value("LayoutOrder").toStringList();
+    for (int i = 0; i < layoutOrder.size(); i++) {
+        QString filePath = layoutOrder.at(i);
+        QModelIndexList indexes = m_proxyModel->match(m_proxyModel->index(0, 0), Qt::DisplayRole, filePath, 1, Qt::MatchExactly);
+        if (!indexes.isEmpty()) {
+            QModelIndex index = indexes.first();
+            m_proxyModel->moveRow(QModelIndex(), index.row(), QModelIndex(), i);
         }
     }
 }
@@ -832,7 +853,8 @@ void IconView::dropEvent(QDropEvent *e)
             }
         }
     } else {
-        e->ignore();
+//        e->ignore();
+        QListView::dropEvent(e);
     }
     //return QListView::dropEvent(e);
 }

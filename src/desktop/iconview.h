@@ -48,6 +48,10 @@ public:
     void setIconTextSize(int size);
     //默认判断exe
     void openExeFile(bool isExe = true);
+
+    void saveLayoutOrder();
+
+    void restoreLayoutOrder();
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
