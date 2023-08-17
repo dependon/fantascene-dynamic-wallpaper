@@ -28,6 +28,8 @@
 
 class QMenu;
 class CustomSortFilterProxyModel;
+class QFileSystemWatcher;
+class QSortFilterProxyModel;
 enum CopyOrCut
 {
     CopyOrCut_COPY,
@@ -49,9 +51,11 @@ public:
     //默认判断exe
     void openExeFile(bool isExe = true);
 
-    void saveLayoutOrder();
+    void saveDragPositions();
 
-    void restoreLayoutOrder();
+    void loadDragPositions();
+
+    void moveFileToPosition(QListView *listView, QSortFilterProxyModel *proxyModel, const QString &filePath, int x, int y);
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -84,6 +88,8 @@ public Q_SLOTS:
     void onActionTriggered();
     void onSetOhterActionTriggered();
     void onNewActionTriggered();
+    void startFileSystemWatcher();
+    void handleDirectoryChanged(const QString &path);
 
 protected:
     void paintEvent(QPaintEvent *e) override;
@@ -101,6 +107,8 @@ protected:
 private :
     QMenu *m_openSelect{nullptr};
     QMenu *m_createNew{nullptr};
+    QMap<QString, QByteArray> dragPositions;
+    QFileSystemWatcher *fileSystemWatcher;
 };
 
 #endif // ICONVIEW_H
