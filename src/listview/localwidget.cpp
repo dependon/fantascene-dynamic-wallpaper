@@ -11,9 +11,9 @@ LocalWidget::LocalWidget(QWidget *parent) :
     ui(new Ui::LocalWidget)
 {
     ui->setupUi(this);
+    ui->playBtn->hide();
     m_viewLocal = new view(this);
     ui->verticalLayout->addWidget(m_viewLocal);
-    QStandardPaths::MoviesLocation;
     m_strLocalPATH = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/";
 
     setWindowTitle(tr("Wallpaper Local"));
@@ -24,6 +24,9 @@ LocalWidget::LocalWidget(QWidget *parent) :
     QObject::connect(m_fileWacher, &QFileSystemWatcher::directoryChanged,this, &LocalWidget::on_directoryChanged);
     watchDirectory(m_strLocalPATH,*m_fileWacher);
 //    QObject::connect(m_fileWacher, &QFileSystemWatcher::fileChanged, this,&LocalWidget::on_fileChanged);
+
+    QString str=tr("Please place the local video on:");
+    ui->label->setText(str+m_strLocalPATH);
 }
 
 LocalWidget::~LocalWidget()
