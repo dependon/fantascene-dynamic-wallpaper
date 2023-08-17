@@ -24,6 +24,7 @@ delegate::delegate(QObject *parent)
 
 void delegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+
     painter->save();
     const ItemData data = itemData(index);
     bool selected = data.isSelected;
@@ -89,6 +90,16 @@ void delegate::paint(QPainter *painter, const QStyleOptionViewItem &option, cons
         painter->drawPixmap(selectedRect, selectedPixmap);
     }
 
+//    // 设置绘制的位置和大小
+//    int imageSize = backgroundRect.height() - 40; // 图像的大小
+//    int textHeight = 20; // 名称的高度
+//    int itemHeight = imageSize + textHeight; // item的总高度
+
+//    // 绘制名称
+//    QRect textRect = QRect(option.rect.x(), option.rect.y() + imageSize, imageSize, textHeight);
+//    painter->setPen(Qt::black);
+//    painter->drawText(textRect, Qt::AlignCenter, data.name);
+
     painter->restore();
 
 
@@ -97,7 +108,7 @@ void delegate::paint(QPainter *painter, const QStyleOptionViewItem &option, cons
 
 QSize delegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    return QSize(100, 100);
+    return QSize(150, 150);
 }
 
 //bool delegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
