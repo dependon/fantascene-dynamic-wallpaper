@@ -18,6 +18,7 @@ public:
 
     QStringList getAllpath();
     void watchDirectory(const QString &path, QFileSystemWatcher &watcher);
+    void searchVideoFiles(const QString &path);
 private Q_SLOTS:
     void on_playBtn_clicked();
     void on_directoryChanged(const QString &path);
