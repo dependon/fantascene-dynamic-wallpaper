@@ -40,6 +40,7 @@ class historyWidget;
 class QThread;
 class MoreSetting;
 class wallpaperEnginePlugin;
+class LocalWidget;
 
 namespace Ui {
 class settingWindow;
@@ -151,6 +152,8 @@ private Q_SLOTS:
 
     void slotTimerSaveSettings();
 
+    void on_localBtn_clicked();
+
 public Q_SLOTS:
     void activeWindow();
 private:
@@ -166,6 +169,7 @@ private:
     int m_voiceVolume{0};
 
     historyWidget *m_history{nullptr};
+    LocalWidget *m_local{nullptr};
 
     wallpaperEnginePlugin *m_wallpaperEnginePlugin{nullptr};
 

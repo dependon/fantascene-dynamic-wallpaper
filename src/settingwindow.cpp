@@ -47,6 +47,7 @@
 
 
 #include "listview/historywidget.h"
+#include "listview/localwidget.h"
 #include "listview/wallpaperengineplugin.h"
 
 settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
@@ -1080,3 +1081,16 @@ void settingWindow::initWallpaperWidget()
 }
 
 
+
+void settingWindow::on_localBtn_clicked()
+{
+    if (!m_local) {
+        m_local = new LocalWidget();
+        m_local->resize(800, 600);
+        m_local->showNormal();
+        m_local->move(qApp->desktop()->screen()->rect().center() - m_local->rect().center());
+    } else {
+        m_local->showNormal();
+        m_local->activateWindow();
+    }
+}
