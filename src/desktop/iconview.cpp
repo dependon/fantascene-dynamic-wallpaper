@@ -59,6 +59,8 @@
 #include "gioclass.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QFileSystemWatcher>
+#include <QTimer>
 
 #define ICONSIZE_SMALL 90
 #define ICONSIZE_MEDIUM 140
@@ -406,7 +408,8 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
         m_proxyModel->setSortRole(Qt::UserRole + 1);
     }
 
-    restoreLayoutOrder();
+//    loadDragPositions();
+//    startFileSystemWatcher();
 
 }
 
@@ -487,6 +490,33 @@ void IconView::onNewActionTriggered()
                 break;
             }
             i++;
+        }
+    }
+}
+
+void IconView::startFileSystemWatcher()
+{
+//    fileSystemWatcher = new QFileSystemWatcher(this);
+//    connect(fileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &IconView::handleDirectoryChanged);
+//    fileSystemWatcher->addPath(m_rootPath);
+}
+
+void IconView::handleDirectoryChanged(const QString &path)
+{
+    QStringList filePaths = dragPositions.keys();
+    for (const QString &filePath : filePaths) {
+        if (filePath.startsWith(path)) {
+            QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+            QModelIndex index = m_proxyModel->mapFromSource(model->index(filePath));
+            if (index.isValid()) {
+                QByteArray dragPositionData = dragPositions.value(filePath);
+                QStringList dragPositionList = QString(dragPositionData).split(',');
+                if (dragPositionList.size() == 2) {
+                    int x = dragPositionList[0].toInt();
+                    int y = dragPositionList[1].toInt();
+                    moveFileToPosition(this,m_proxyModel,m_rootPath,x,y);
+                }
+            }
         }
     }
 }
@@ -593,32 +623,63 @@ void IconView::openExeFile(bool isExe)
     }
 }
 
-void IconView::saveLayoutOrder()
+void IconView::saveDragPositions()
 {
-    QSettings settings("./MyApp.ini", QSettings::IniFormat);
-    QStringList layoutOrder;
-    qDebug()<< m_proxyModel->columnCount();
-    qDebug()<< m_proxyModel->rowCount();
-    for (int i = 0; i < m_proxyModel->rowCount(); i++) {
-        QModelIndex index = m_proxyModel->index(i, 0);
-        QString filePath = index.data(Qt::DisplayRole).toString();
-        layoutOrder.append(filePath);
+    QSettings settings("MyApp", "FileExplorer");
+    for (const QString &filePath : dragPositions.keys()) {
+        settings.setValue(filePath, dragPositions.value(filePath));
     }
-    settings.setValue("LayoutOrder", layoutOrder);
 }
 
-void IconView::restoreLayoutOrder()
+void IconView::loadDragPositions()
 {
-    QSettings settings("./MyApp.ini", QSettings::IniFormat);
-    QStringList layoutOrder = settings.value("LayoutOrder").toStringList();
-    for (int i = 0; i < layoutOrder.size(); i++) {
-        QString filePath = layoutOrder.at(i);
-        QModelIndexList indexes = m_proxyModel->match(m_proxyModel->index(0, 0), Qt::DisplayRole, filePath, 1, Qt::MatchExactly);
-        if (!indexes.isEmpty()) {
-            QModelIndex index = indexes.first();
-            m_proxyModel->moveRow(QModelIndex(), index.row(), QModelIndex(), i);
+    QSettings settings("MyApp", "FileExplorer");
+    QStringList filePaths = dragPositions.keys();
+    for (const QString &filePath : filePaths) {
+        QByteArray dragPositionData = settings.value(filePath).toByteArray();
+        if (!dragPositionData.isEmpty()) {
+            QStringList dragPositionList = QString(dragPositionData).split(',');
+            if (dragPositionList.size() == 2) {
+                int x = dragPositionList[0].toInt();
+                int y = dragPositionList[1].toInt();
+                dragPositions.insert(filePath, QByteArray::number(x) + "," + QByteArray::number(y));
+            }
         }
     }
+}
+
+void IconView::moveFileToPosition(QListView *listView, QSortFilterProxyModel *proxyModel, const QString &filePath, int x, int y)
+{
+    // 获取源模型
+    QFileSystemModel *sourceModel = qobject_cast<QFileSystemModel *>(proxyModel->sourceModel());
+    if (!sourceModel)
+    {
+        return;
+    }
+
+    // 获取文件的源模型索引
+    QModelIndex sourceFileIndex = sourceModel->index(filePath);
+    if (!sourceFileIndex.isValid())
+    {
+        return;
+    }
+
+    // 将文件移动到新位置
+    QModelIndex targetIndex = listView->indexAt(QPoint(x, y));
+    if (!targetIndex.isValid())
+    {
+        targetIndex = proxyModel->index(0, 0);
+    }
+    // 将源模型索引转换为代理模型索引
+    QModelIndex proxySourceFileIndex = proxyModel->mapFromSource(sourceFileIndex);
+
+    // 将文件移动到目标索引位置
+    proxyModel->moveRow(proxySourceFileIndex.parent(), proxySourceFileIndex.row(), targetIndex.parent(), targetIndex.row());
+
+    // 设置当前索引并滚动到指定位置
+    QModelIndex newIndex = proxyModel->mapFromSource(sourceModel->index(targetIndex.row(), targetIndex.column()));
+    listView->setCurrentIndex(newIndex);
+    listView->scrollTo(newIndex);
 }
 
 void IconView::copyFile()
@@ -854,6 +915,19 @@ void IconView::dropEvent(QDropEvent *e)
         }
     } else {
 //        e->ignore();
+        const QMimeData *mimeData = e->mimeData();
+        if (mimeData->hasUrls()) {
+            QPoint dragPosition = e->pos();
+            QByteArray dragPositionData = QByteArray::number(dragPosition.x()) + "," + QByteArray::number(dragPosition.y());
+            QList<QUrl> urlList = mimeData->urls();
+            for (const QUrl &url : urlList) {
+                QString filePath = url.toLocalFile();
+                qDebug() << "Dropped file: " << filePath << " at position: " << dragPosition;
+                dragPositions.insert(filePath, dragPositionData);
+            }
+        }
+        e->acceptProposedAction();
+
         QListView::dropEvent(e);
     }
     //return QListView::dropEvent(e);

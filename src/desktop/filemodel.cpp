@@ -23,11 +23,11 @@
 #include "filemodel.h"
 #include "iconprovider.h"
 
-FileModel::FileModel()
+FileModel::FileModel(QObject *parent)
+    :QFileSystemModel(parent)
 {
     IconProvider *provider = new IconProvider;
     mIconProvider = provider;
     setIconProvider(mIconProvider);
     setReadOnly(false);
-
 }

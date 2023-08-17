@@ -29,7 +29,7 @@ class IconProvider;
 
 class FileModel : public QFileSystemModel {
 public:
-    FileModel();
+    explicit FileModel(QObject *parent = nullptr);
     IconProvider *getIconProvider() {return mIconProvider;}
 
 private:
