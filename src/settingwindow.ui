@@ -461,6 +461,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="localBtn">
+       <property name="text">
+        <string>Wallpaper Local</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="history">
        <property name="text">
         <string>Wallpaper History</string>

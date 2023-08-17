@@ -52,7 +52,8 @@ SOURCES += main.cpp \
     desktop/delegateicon.cpp \
     loadTranslation.cpp \
     desktop/gioclass.cpp \
-    ini/inimanager.cpp
+    ini/inimanager.cpp \
+    listview/localwidget.cpp
 
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
@@ -77,7 +78,8 @@ HEADERS += \
     desktop/delegateicon.h \
     loadTranslation.h \
     desktop/gioclass.h \
-    ini/inimanager.h
+    ini/inimanager.h \
+    listview/localwidget.h
 
 RESOURCES += \
     qrc.qrc
@@ -139,7 +141,8 @@ FORMS += \
     moresetting.ui \
     listview/wallpaperengineplugin.ui \
     listview/playlistsettingdialog.ui \
-    desktop.ui
+    desktop.ui \
+    listview/localwidget.ui
 
 TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \

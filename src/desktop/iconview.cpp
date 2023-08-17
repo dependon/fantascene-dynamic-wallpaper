@@ -780,12 +780,28 @@ void IconView::slotsnewTxt()
     QFile a;
     int i = 1;
     while (i < 99) {
-        if (!a.exists(desktopPath + "/" + tr("New Txt Files") + QString::number(i) + ".txt")) {
-            a.setFileName(desktopPath + "/" + tr("New Txt Files") + QString::number(i) + ".txt");
+        QString name = desktopPath + "/" + tr("New Txt Files") + QString::number(i) + ".txt";
+        if (!a.exists(name)) {
+            a.setFileName(name);
             if (!a.open(QIODevice::WriteOnly | QIODevice::Text)) {
                 qDebug() << "打开失败";
             }
             a.close();
+
+//            // 在新文件夹中选中并显示新建文件夹
+//            QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+//            if (model) {
+//                QModelIndex index = indexAt(QCursor::pos());
+
+//                model->mkdir(index, name);
+//                // 重新设置根目录路径以刷新数据
+//                QString rootPath = model->rootPath();
+//                model->setRootPath(rootPath);
+
+//                QModelIndex sourceIndex = m_proxyModel->mapToSource(model->index(name));
+//                setCurrentIndex(sourceIndex);
+//                scrollTo(sourceIndex);
+//            }
             i = 100;
             break;
         }
