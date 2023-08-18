@@ -21,6 +21,8 @@ qtHaveModule(webengine){
    QT += webengine webenginewidgets
    DEFINES += USE_WEBENGINE
 }
+
+
 QT += concurrent
 
 CONFIG += c++11 link_pkgconfig no_keywords
@@ -102,11 +104,44 @@ for(tsfile, TRANSLATIONS) {
     system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
 }
 
+
+DISTFILES += \
+    com.deepin.dde.DreamScene.service
+
+
+OTHER_FILES+=$$PWD/install/*
+
 isEmpty(PREFIX){
     PREFIX = /usr
 }
+APPSHAREDIR = $${PREFIX}/share/fantascene-dynamic-wallpaper
 
-OTHER_FILES+=$$PWD/install/*
+#DEFINES+= DEEPIN_STORE
+#DEEPIN STORE
+contains(DEFINES,DEEPIN_STORE){
+target.path=/opt/apps/com.github.fantacy/files/bin/
+
+icon.path=$${PREFIX}/share/icons
+icon.files= $$PWD/install/fantacy.svg
+
+desktop1.path=/opt/apps/com.github.fantacy/entries/applications
+desktop1.files=$$PWD/install/com.github.fantacy.desktop
+
+#other.path=/opt/apps/com.github.fantacy/files/bin/
+#other.files= $$PWD/install/*
+
+info.path=/opt/apps/com.github.fantacy/
+info.files= $$PWD/info/*
+
+translations.path = /opt/apps/com.github.fantacy/files/bin/translations
+translations.files = $$PWD/translations/*.qm
+
+video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/deepin/
+video.files=$$PWD/install/normal.mp4
+
+INSTALLS += target  desktop1  translations info other icon video
+
+}else{
 
 unix:!android: target.path = $${PREFIX}/bin
 
@@ -119,13 +154,8 @@ desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 #desktopleft.path = $${PREFIX}/share/deepin/dde-file-manager/oem-menuextensions/
 #desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
-DISTFILES += \
-    com.deepin.dde.DreamScene.service
-
 dbus_service.files += com.deepin.dde.fantascene.service
 dbus_service.path = $${PREFIX}/share/dbus-1/services
-
-APPSHAREDIR = $${PREFIX}/share/fantascene-dynamic-wallpaper
 
 translations.path = $$APPSHAREDIR/translations
 translations.files = $$PWD/translations/*.qm
@@ -134,6 +164,10 @@ video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 video.files=$$PWD/install/normal.mp4
 
 INSTALLS += target  icon desktop  translations video
+}
+
+
+
 
 FORMS += \
     settingwindow.ui \
