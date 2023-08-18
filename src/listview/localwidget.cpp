@@ -26,7 +26,7 @@ LocalWidget::LocalWidget(QWidget *parent) :
     ui->playBtn->hide();
     m_viewLocal = new view(this);
     ui->verticalLayout->addWidget(m_viewLocal);
-    m_strLocalPATH = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/";
+    m_strLocalPATH = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene";
 
     setWindowTitle(tr("Wallpaper Local"));
     searchVideoFiles(m_strLocalPATH);
@@ -65,7 +65,10 @@ QStringList LocalWidget::getAllpath()
 void LocalWidget::searchVideoFiles(const QString& path)
 {
     QDir dir(path);
-
+    if (!dir.exists()) {
+        dir.mkpath(".");
+        return ;
+    }
     // 遍历当前目录下的所有文件和文件夹
     QFileInfoList fileList = dir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
 
