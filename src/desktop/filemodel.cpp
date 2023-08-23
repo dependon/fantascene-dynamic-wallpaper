@@ -30,4 +30,6 @@ FileModel::FileModel(QObject *parent)
     mIconProvider = provider;
     setIconProvider(mIconProvider);
     setReadOnly(false);
+    //可以不更新
+    //setOption(QFileSystemModel::DontWatchForChanges);
 }

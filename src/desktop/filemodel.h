@@ -24,14 +24,13 @@
 #define FILEMODEL_H
 
 #include <QFileSystemModel>
-
 class IconProvider;
 
-class FileModel : public QFileSystemModel {
+class FileModel : public QFileSystemModel
+{
 public:
     explicit FileModel(QObject *parent = nullptr);
     IconProvider *getIconProvider() {return mIconProvider;}
-
 private:
     IconProvider *mIconProvider = nullptr;
 };
