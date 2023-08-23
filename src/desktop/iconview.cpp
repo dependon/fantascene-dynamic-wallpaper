@@ -462,12 +462,16 @@ void IconView::onActionTriggered()
     if (action) {
         QString path = action->data().toString();
         QModelIndexList indexes = selectedIndexes();
-
+        QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
         //set Defualt
         for (int i = 0, imax = indexes.count(); i < imax; ++i) {
-            QString fileName = fileModel->filePath(indexes[i]);
-            QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
-            GioClass::setDefautlApp(MIME,path);
+            if(model)
+            {
+                QModelIndex sourceIndex = m_proxyModel->mapToSource(indexes[i]);
+                QString fileName = model->filePath(sourceIndex);
+                QString MIME = QMimeDatabase().mimeTypeForFile(fileName).name();
+                GioClass::setDefautlApp(MIME,path);
+            }
         }
         //open
         openExeFile(false);
