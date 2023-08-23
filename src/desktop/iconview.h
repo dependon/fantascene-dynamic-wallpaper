@@ -25,6 +25,7 @@
 
 #include "filemodel.h"
 #include <QListView>
+#include <QMutex>
 
 class QMenu;
 class CustomSortFilterProxyModel;
@@ -56,6 +57,10 @@ public:
     void loadDragPositions();
 
     void moveFileToPosition(QListView *listView, QSortFilterProxyModel *proxyModel, const QString &filePath, int x, int y);
+    void doItemsLayout();
+
+    inline int flipX(int x) const;
+    inline QPoint flipX(const QPoint &p) const;
 private:
     int mId = -1;
     FileModel *fileModel = nullptr;
@@ -91,6 +96,8 @@ public Q_SLOTS:
     void startFileSystemWatcher();
     void handleDirectoryChanged(const QString &path);
 
+    void onindexesMoved(const QModelIndexList &indexes);
+    void onIconRefreash();
 protected:
     void paintEvent(QPaintEvent *e) override;
     void mousePressEvent(QMouseEvent *e) override;
@@ -107,8 +114,17 @@ protected:
 private :
     QMenu *m_openSelect{nullptr};
     QMenu *m_createNew{nullptr};
-    QMap<QString, QByteArray> dragPositions;
     QFileSystemWatcher *fileSystemWatcher;
+    bool m_isRefreash =false;
+    QMutex m_mutex;
+    QTimer* m_sinTimer{nullptr};
+    QMap<QString, QByteArray> dragPositions;
+    QModelIndex m_rootIndex;
+    QAction *iconSmall;
+    QAction *iconMedium;
+    QAction *iconBig;
+    QAction *iconRefreash;
+    int m_currentSize = 1;
 };
 
 #endif // ICONVIEW_H

@@ -119,6 +119,7 @@ public:
 
 
     QString m_wallpaperEnginePath;
+
 };
 
 #endif // APPLICATION_H

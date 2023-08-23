@@ -19,6 +19,7 @@
  * Author: Yue Lan<lanyue@kylinos.cn>
  *
  */
+//#define protected public
 
 #include "iconview.h"
 #include "filemodel.h"
@@ -37,6 +38,7 @@
 #include <QSettings>
 #include <QModelIndex>
 #include <QFileInfo>
+#include <QMutexLocker>
 
 //#include <gio/gdesktopappinfo.h>
 
@@ -128,7 +130,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     mId = id;
 
     fileModel = new FileModel;
-    fileModel->setRootPath(rootPath);
+    m_rootIndex = fileModel->setRootPath(rootPath);
 
     m_proxyModel = new CustomSortFilterProxyModel;
     m_proxyModel->setSourceModel(fileModel);
@@ -157,10 +159,13 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
 
     setDefaultDropAction(Qt::MoveAction);
 
+    setSelectionRectVisible(true);
     setMovement(QListView::Snap); //gird move
+    setLayoutMode(QListView::Batched);
     setResizeMode(QListView::Adjust); //auto redo layout
     setGridSize(QSize(ICONSIZE_SMALL, ICONSIZE_SMALL));
     setIconSize(QSize(ICONSIZE_SMALL/2, ICONSIZE_SMALL/2));
+    m_currentSize = ICONSIZE_SMALL;
     setUniformItemSizes(true); //same size for all items
     setSpacing(4);
     setViewMode(QListView::IconMode);
@@ -201,14 +206,13 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     newFolderAction->setShortcut(QKeySequence("Ctrl+Shift+A"));
     viewMenu->addAction(newFolderAction);
 
-    QAction *newTXTction = new QAction(viewMenu);
-    newTXTction->setText(tr("New TXT"));
-    newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
-    viewMenu->addAction(newTXTction);
-
     QMenu *iconSortMenu = new QMenu(viewMenu);
     iconSortMenu->setTitle(tr("Sort Order"));
     viewMenu->addMenu(iconSortMenu);
+
+    iconRefreash = new QAction(viewMenu);
+    iconRefreash->setText(tr("Refresh Sort"));
+    viewMenu->addAction(iconRefreash);
 
     QAction *sortName = new QAction(iconSortMenu);
     sortName->setText(tr("Name"));
@@ -230,15 +234,15 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     iconSizeMenu->setTitle(tr("Icon Size"));
     viewMenu->addMenu(iconSizeMenu);
 
-    QAction *iconSmall = new QAction(iconSizeMenu);
+    iconSmall = new QAction(iconSizeMenu);
     iconSmall->setText(tr("Small"));
     iconSizeMenu->addAction(iconSmall);
 
-    QAction *iconMedium = new QAction(iconSizeMenu);
+    iconMedium = new QAction(iconSizeMenu);
     iconMedium->setText(tr("Medium"));
     iconSizeMenu->addAction(iconMedium);
 
-    QAction *iconBig = new QAction(iconSizeMenu);
+    iconBig = new QAction(iconSizeMenu);
     iconBig->setText(tr("Big"));
     iconSizeMenu->addAction(iconBig);
 
@@ -281,6 +285,12 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(this, &IconView::customContextMenuRequested, [ = ]() {
         m_openSelect->clear();
         m_createNew->clear();
+
+        QAction *newTXTction = new QAction(m_createNew);
+        newTXTction->setText(tr("New TXT"));
+        newTXTction->setShortcut(QKeySequence("Ctrl+Shift+B"));
+        m_createNew->addAction(newTXTction);
+        connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
 
         if (!QApplication::clipboard()->mimeData()->hasUrls()) {
             pasteAction->setEnabled(false);
@@ -364,7 +374,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(renameAction, &QAction::triggered, this, &IconView::renameFile);
     connect(trashAction, &QAction::triggered, this, &IconView::deleteFile);
     connect(newFolderAction, &QAction::triggered, this, &IconView::slotsnewFolder);
-    connect(newTXTction, &QAction::triggered, this, &IconView::slotsnewTxt);
+
     connect(terminalAction, &QAction::triggered, this, &IconView::slotsopenTerminal);
     connect(iconSmall, &QAction::triggered, this, &IconView::slotsIconSizeSmall);
     connect(iconMedium, &QAction::triggered, this, &IconView::slotsIconSizeMedium);
@@ -382,6 +392,14 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     connect(sortTime, &QAction::triggered, this, &IconView::slotsSort);
     connect(sortFileSize, &QAction::triggered, this, &IconView::slotsSort);
     connect(sortFileType, &QAction::triggered, this, &IconView::slotsSort);
+    connect(sortFileType, &QAction::triggered, this, &IconView::slotsSort);
+
+
+    connect(iconRefreash, &QAction::triggered, this, &IconView::onIconRefreash);
+
+    iconSmall->setCheckable(true);
+    iconMedium->setCheckable(true);
+    iconBig->setCheckable(true);
 
     m_rootPath = rootPath;
 
@@ -390,8 +408,24 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
         int iconSize = IniManager::instance()->value("WallPaper/IconSize").toInt();
         if(iconSize>10)
         {
+            if(iconSize == ICONSIZE_SMALL)
+            {
+                iconSmall->setChecked(true);
+                m_currentSize = ICONSIZE_SMALL;
+            }
+            else if(iconSize == ICONSIZE_MEDIUM)
+            {
+                iconMedium->setChecked(true);
+                m_currentSize = ICONSIZE_MEDIUM;
+            }
+            else if(iconSize == ICONSIZE_BIG)
+            {
+                iconBig->setChecked(true);
+                m_currentSize = ICONSIZE_BIG;
+            }
             setGridSize(QSize(iconSize, iconSize));
             setIconSize(QSize(iconSize/2, iconSize/2));
+            m_currentSize = iconSize;
         }
     }
 
@@ -408,8 +442,12 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
         m_proxyModel->setSortRole(Qt::UserRole + 1);
     }
 
-//    loadDragPositions();
-//    startFileSystemWatcher();
+    startFileSystemWatcher();
+
+    connect(this,&QListView::indexesMoved,this,&IconView::onindexesMoved);
+
+    loadDragPositions();
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 }
 
@@ -496,29 +534,59 @@ void IconView::onNewActionTriggered()
 
 void IconView::startFileSystemWatcher()
 {
-//    fileSystemWatcher = new QFileSystemWatcher(this);
-//    connect(fileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &IconView::handleDirectoryChanged);
-//    fileSystemWatcher->addPath(m_rootPath);
+    fileSystemWatcher = new QFileSystemWatcher(this);
+    connect(fileSystemWatcher, &QFileSystemWatcher::directoryChanged, this, &IconView::handleDirectoryChanged);
+    fileSystemWatcher->addPath(m_rootPath);
 }
 
 void IconView::handleDirectoryChanged(const QString &path)
 {
+    return ;
     QStringList filePaths = dragPositions.keys();
     for (const QString &filePath : filePaths) {
         if (filePath.startsWith(path)) {
             QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
             QModelIndex index = m_proxyModel->mapFromSource(model->index(filePath));
+            qDebug() << "515" <<rectForIndex(index) ;
             if (index.isValid()) {
                 QByteArray dragPositionData = dragPositions.value(filePath);
                 QStringList dragPositionList = QString(dragPositionData).split(',');
                 if (dragPositionList.size() == 2) {
                     int x = dragPositionList[0].toInt();
                     int y = dragPositionList[1].toInt();
-                    moveFileToPosition(this,m_proxyModel,m_rootPath,x,y);
+//                    moveFileToPosition(this,m_proxyModel,m_rootPath,x,y);
+                        qDebug()<< "::"<<QPoint(x,y) << flipX(QPoint(x,y));;
+                        qDebug()<< this->gridSize();
+                        m_isRefreash = true;
+                        setPositionForIndex(QPoint(x,y),index);
                 }
             }
         }
     }
+}
+
+void IconView::onindexesMoved(const QModelIndexList &indexes)
+{
+    QMutexLocker locker(&m_mutex);
+    qDebug()<<indexes.size();
+    QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+    for(QModelIndex index : indexes)
+    {
+        QModelIndex sourceIndex = m_proxyModel->mapToSource(index);
+        QString filePath = model->filePath(sourceIndex);
+        QRect rect= rectForIndex(index);
+        qDebug()<<"move:" << rect;
+        QByteArray dragPositionData = QByteArray::number(rect.x()) + "," + QByteArray::number(rect.y());
+        dragPositions.insert(filePath, dragPositionData);
+    }
+    saveDragPositions();
+}
+
+void IconView::onIconRefreash()
+{
+    dragPositions.clear();
+    saveDragPositions();
+    QListView::doItemsLayout();
 }
 
 void IconView::copyImageToClipboard(const QStringList &paths ,CopyOrCut type )
@@ -626,6 +694,7 @@ void IconView::openExeFile(bool isExe)
 void IconView::saveDragPositions()
 {
     QSettings settings("MyApp", "FileExplorer");
+    settings.clear();
     for (const QString &filePath : dragPositions.keys()) {
         settings.setValue(filePath, dragPositions.value(filePath));
     }
@@ -634,52 +703,137 @@ void IconView::saveDragPositions()
 void IconView::loadDragPositions()
 {
     QSettings settings("MyApp", "FileExplorer");
-    QStringList filePaths = dragPositions.keys();
-    for (const QString &filePath : filePaths) {
+    QStringList filePaths = settings.allKeys();
+    for (QString &filePath : filePaths) {
         QByteArray dragPositionData = settings.value(filePath).toByteArray();
         if (!dragPositionData.isEmpty()) {
             QStringList dragPositionList = QString(dragPositionData).split(',');
             if (dragPositionList.size() == 2) {
                 int x = dragPositionList[0].toInt();
                 int y = dragPositionList[1].toInt();
+                if(filePath.at(0)!="/")
+                {
+                    filePath ="/"+filePath;
+                }
                 dragPositions.insert(filePath, QByteArray::number(x) + "," + QByteArray::number(y));
             }
         }
     }
+    doItemsLayout();
 }
 
 void IconView::moveFileToPosition(QListView *listView, QSortFilterProxyModel *proxyModel, const QString &filePath, int x, int y)
 {
-    // 获取源模型
-    QFileSystemModel *sourceModel = qobject_cast<QFileSystemModel *>(proxyModel->sourceModel());
-    if (!sourceModel)
+    QTimer::singleShot(1000,[=]
     {
-        return;
+        // 获取源模型
+        QFileSystemModel *sourceModel = qobject_cast<QFileSystemModel *>(proxyModel->sourceModel());
+        if (!sourceModel)
+        {
+            return;
+        }
+
+        // 获取文件的源模型索引
+        QModelIndex sourceFileIndex = sourceModel->index(filePath);
+        if (!sourceFileIndex.isValid())
+        {
+            return;
+        }
+        qDebug() <<  rectForIndex(sourceFileIndex) ;
+        setPositionForIndex(QPoint(x,y),sourceFileIndex);
+
+        // 将文件移动到新位置
+        QModelIndex targetIndex = listView->indexAt(QPoint(x, y));
+        if (!targetIndex.isValid())
+        {
+            targetIndex = proxyModel->index(0, 0);
+        }
+        // 将源模型索引转换为代理模型索引
+        QModelIndex proxySourceFileIndex = proxyModel->mapFromSource(sourceFileIndex);
+
+        qDebug() <<  rectForIndex(proxySourceFileIndex) ;
+        setPositionForIndex(QPoint(x,y),proxySourceFileIndex);
+
+        // 将文件移动到目标索引位置
+        proxyModel->moveRow(proxySourceFileIndex.parent(), proxySourceFileIndex.row(), targetIndex.parent(), targetIndex.row());
+
+        // 设置当前索引并滚动到指定位置
+        QModelIndex newIndex = proxyModel->mapFromSource(sourceModel->index(targetIndex.row(), targetIndex.column()));
+        listView->setCurrentIndex(newIndex);
+        listView->scrollTo(newIndex);
+    });
+}
+
+void IconView::doItemsLayout()
+{
+    qDebug()<< "refreash";
+    QStringList filePaths = dragPositions.keys();
+//    for(int i =0 ; i< filePaths.count();i++)
+//    {
+//        QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+//        QString filePath = filePaths.at(i);
+//        QModelIndex index = m_proxyModel->mapFromSource(model->index(filePath));
+//        int maxCount = model->rowCount(m_rootIndex);
+//        QModelIndex targetIndex = model->index(maxCount - 1 -i,0,m_rootIndex);
+//        if (targetIndex.isValid() && index.isValid())
+//        {
+//            // 获取当前位置和目标位置的行号和列号
+//            int currentRow = index.row();
+//            int targetRow = targetIndex.row();
+//            if(currentRow != targetRow)
+//            {
+////                // 移动索引
+////                model->beginMoveRows(QModelIndex(), currentRow, currentRow, QModelIndex(), targetRow);
+////                model->endMoveRows();
+////                model->changePersistentIndex(index.parent(),targetIndex.parent());
+////                model->moveRow(index.parent(),currentRow,targetIndex.parent(),targetRow);
+
+//            }
+//        }
+//    }
+
+    QListView::doItemsLayout();
+
+
+    for (const QString &filePath : filePaths) {
+        if (filePath.startsWith(m_rootPath))
+        {
+            QFileSystemModel *model = qobject_cast<QFileSystemModel*>(m_proxyModel->sourceModel());
+            QModelIndex index = m_proxyModel->mapFromSource(model->index(filePath));
+            qDebug() << "515" <<rectForIndex(index) ;
+            if (index.isValid()) {
+                QByteArray dragPositionData = dragPositions.value(filePath);
+                QStringList dragPositionList = QString(dragPositionData).split(',');
+                if (dragPositionList.size() == 2) {
+                    int x = dragPositionList[0].toInt();
+                    int y = dragPositionList[1].toInt();
+                        m_isRefreash = true;
+                        int maxCount = model->rowCount(m_rootIndex);
+                        // 将文件移动到新位置
+                        QModelIndex targetIndex = this->indexAt(QPoint(x, y));
+                        if (targetIndex.isValid())
+                        {
+                            QRect rect = visualRect(index);
+                            setPositionForIndex(QPoint(rect.x(),rect.y()),targetIndex);
+                        }
+                        qDebug()<<"753:"<< model->rowCount(m_rootIndex);
+
+                        setPositionForIndex(QPoint(x,y),index);
+                }
+            }
+        }
     }
+    return ;
+}
 
-    // 获取文件的源模型索引
-    QModelIndex sourceFileIndex = sourceModel->index(filePath);
-    if (!sourceFileIndex.isValid())
-    {
-        return;
-    }
+int IconView::flipX(int x) const
+{
+    return qMax(viewport()->width(), contentsSize().width()) - x;
+}
 
-    // 将文件移动到新位置
-    QModelIndex targetIndex = listView->indexAt(QPoint(x, y));
-    if (!targetIndex.isValid())
-    {
-        targetIndex = proxyModel->index(0, 0);
-    }
-    // 将源模型索引转换为代理模型索引
-    QModelIndex proxySourceFileIndex = proxyModel->mapFromSource(sourceFileIndex);
-
-    // 将文件移动到目标索引位置
-    proxyModel->moveRow(proxySourceFileIndex.parent(), proxySourceFileIndex.row(), targetIndex.parent(), targetIndex.row());
-
-    // 设置当前索引并滚动到指定位置
-    QModelIndex newIndex = proxyModel->mapFromSource(sourceModel->index(targetIndex.row(), targetIndex.column()));
-    listView->setCurrentIndex(newIndex);
-    listView->scrollTo(newIndex);
+QPoint IconView::flipX(const QPoint &p) const
+{
+    return QPoint(flipX(p.x()), p.y());
 }
 
 void IconView::copyFile()
@@ -818,18 +972,96 @@ void IconView::slotsopenTerminal()
 
 void IconView::slotsIconSizeSmall()
 {
+    double b = double(ICONSIZE_SMALL)/double(m_currentSize);
+    m_currentSize = ICONSIZE_SMALL;
+    QStringList filePaths = dragPositions.keys();
+    for (const QString &filePath : filePaths)
+    {
+        QByteArray dragPositionData = dragPositions.value(filePath);
+        QStringList dragPositionList = QString(dragPositionData).split(',');
+        if (dragPositionList.size() == 2) {
+            int x = dragPositionList[0].toInt();
+            int y = dragPositionList[1].toInt();
+            int nX = (double)x * b;
+            int nY = (double)y * b;
+            if(nX>(width()-m_currentSize) || nY>(height()-m_currentSize) )
+            {
+                dragPositions.remove(filePath);
+            }
+            else {
+                dragPositions.insert(filePath, QByteArray::number(nX) + "," + QByteArray::number(nY));
+            }
+
+        }
+    }
+    saveDragPositions();
+
+    iconSmall->setChecked(true);
+    iconMedium->setChecked(false);
+    iconBig->setChecked(false);
     setIconTextSize(ICONSIZE_SMALL);
     IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_SMALL);
 }
 
 void IconView::slotsIconSizeMedium()
 {
+    double b = double(ICONSIZE_MEDIUM)/double(m_currentSize);
+    m_currentSize = ICONSIZE_MEDIUM;
+    QStringList filePaths = dragPositions.keys();
+    for (const QString &filePath : filePaths)
+    {
+        QByteArray dragPositionData = dragPositions.value(filePath);
+        QStringList dragPositionList = QString(dragPositionData).split(',');
+        if (dragPositionList.size() == 2) {
+            int x = dragPositionList[0].toInt();
+            int y = dragPositionList[1].toInt();
+            int nX = (double)x * b;
+            int nY = (double)y * b;
+            if(nX>(width()-m_currentSize) || nY>(height()-m_currentSize) )
+            {
+                dragPositions.remove(filePath);
+            }
+            else {
+                dragPositions.insert(filePath, QByteArray::number(nX) + "," + QByteArray::number(nY));
+            }
+        }
+    }
+    saveDragPositions();
+    iconSmall->setChecked(false);
+    iconMedium->setChecked(true);
+    iconBig->setChecked(false);
     setIconTextSize(ICONSIZE_MEDIUM);
     IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_MEDIUM);
 }
 
 void IconView::slotsIconSizeBig()
 {
+    double b = double(ICONSIZE_BIG)/double(m_currentSize);
+    m_currentSize = ICONSIZE_BIG;
+    QStringList filePaths = dragPositions.keys();
+    for (const QString &filePath : filePaths)
+    {
+        QByteArray dragPositionData = dragPositions.value(filePath);
+        QStringList dragPositionList = QString(dragPositionData).split(',');
+        if (dragPositionList.size() == 2) {
+            int x = dragPositionList[0].toInt();
+            int y = dragPositionList[1].toInt();
+            int nX = (double)x * b;
+            int nY = (double)y * b;
+            if(nX>(width()-m_currentSize) || nY>(height()-m_currentSize) )
+            {
+                dragPositions.remove(filePath);
+            }
+            else {
+                dragPositions.insert(filePath, QByteArray::number(nX) + "," + QByteArray::number(nY));
+            }
+        }
+    }
+    saveDragPositions();
+
+    iconSmall->setChecked(false);
+    iconMedium->setChecked(false);
+    iconBig->setChecked(true);
     setIconTextSize(ICONSIZE_BIG);
     IniManager::instance()->setValue("WallPaper/IconSize",ICONSIZE_BIG);
 }
@@ -842,11 +1074,14 @@ void IconView::slotsWallpaperAction()
 
 void IconView::slotsSort()
 {
+    dragPositions.clear();
+    saveDragPositions();
     QAction* action = qobject_cast<QAction*>(sender());
     if (action) {
         m_proxyModel->setSortRole(action->data().toInt());
         IniManager::instance()->setValue("WallPaper/SortFilter",action->data().toInt());
     }
+
 }
 
 void IconView::paintEvent(QPaintEvent *e)
@@ -939,7 +1174,7 @@ void IconView::dropEvent(QDropEvent *e)
             for (const QUrl &url : urlList) {
                 QString filePath = url.toLocalFile();
                 qDebug() << "Dropped file: " << filePath << " at position: " << dragPosition;
-                dragPositions.insert(filePath, dragPositionData);
+//                dragPositions.insert(filePath, dragPositionData);
             }
         }
         e->acceptProposedAction();
