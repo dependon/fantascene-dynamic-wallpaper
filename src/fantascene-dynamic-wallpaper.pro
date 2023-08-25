@@ -143,7 +143,7 @@ INSTALLS += target  desktop1  translations info other icon video
 
 }else{
 
-unix:!android: target.path = $${PREFIX}/bin
+target.path = $${PREFIX}/bin
 
 icon.path=$${PREFIX}/share/icons
 icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
@@ -180,4 +180,12 @@ FORMS += \
 
 TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \
-    translations/fantascene-dynamic-wallpaper_es.ts
+    translations/fantascene-dynamic-wallpaper_zh_TW.ts \
+    translations/fantascene-dynamic-wallpaper_es.ts \
+    translations/fantascene-dynamic-wallpaper_pl.ts \
+    translations/fantascene-dynamic-wallpaper_ja.ts \
+    translations/fantascene-dynamic-wallpaper_de.ts \
+    translations/fantascene-dynamic-wallpaper_ko.ts \
+    translations/fantascene-dynamic-wallpaper_it.ts \
+    translations/fantascene-dynamic-wallpaper_fr.ts \
+    translations/fantascene-dynamic-wallpaper_ru.ts

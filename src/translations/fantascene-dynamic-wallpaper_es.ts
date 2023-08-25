@@ -59,7 +59,7 @@
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="205"/>
-        <location filename="../desktop/iconview.cpp" line="923"/>
+        <location filename="../desktop/iconview.cpp" line="927"/>
         <source>New Folder</source>
         <translation>Nueva carpeta</translation>
     </message>
@@ -154,12 +154,12 @@
         <translation>Elegir otras aplicaciones</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="479"/>
+        <location filename="../desktop/iconview.cpp" line="483"/>
         <source>Please Select App</source>
         <translation>Por favor, seleccione la aplicación</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="937"/>
+        <location filename="../desktop/iconview.cpp" line="941"/>
         <source>New Txt Files</source>
         <translation>Nuevos archivos Txt</translation>
     </message>
