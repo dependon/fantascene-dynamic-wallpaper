@@ -48,7 +48,7 @@
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="205"/>
-        <location filename="../desktop/iconview.cpp" line="923"/>
+        <location filename="../desktop/iconview.cpp" line="927"/>
         <source>New Folder</source>
         <translation>新建文件夹</translation>
     </message>
@@ -148,12 +148,12 @@
         <translation>选择其他应用</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="479"/>
+        <location filename="../desktop/iconview.cpp" line="483"/>
         <source>Please Select App</source>
         <translation>选择应用</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="937"/>
+        <location filename="../desktop/iconview.cpp" line="941"/>
         <source>New Txt Files</source>
         <translation>新建TXT</translation>
     </message>
