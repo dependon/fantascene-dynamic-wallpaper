@@ -179,13 +179,25 @@ FORMS += \
     listview/localwidget.ui
 
 TRANSLATIONS += \
-    translations/fantascene-dynamic-wallpaper_zh_CN.ts \
-    translations/fantascene-dynamic-wallpaper_zh_TW.ts \
-    translations/fantascene-dynamic-wallpaper_es.ts \
-    translations/fantascene-dynamic-wallpaper_pl.ts \
-    translations/fantascene-dynamic-wallpaper_ja.ts \
-    translations/fantascene-dynamic-wallpaper_de.ts \
-    translations/fantascene-dynamic-wallpaper_ko.ts \
-    translations/fantascene-dynamic-wallpaper_it.ts \
-    translations/fantascene-dynamic-wallpaper_fr.ts \
-    translations/fantascene-dynamic-wallpaper_ru.ts
+    translations/fantascene-dynamic-wallpaper_zh_CN.ts \ #中文
+    translations/fantascene-dynamic-wallpaper_zh_TW.ts \ #中文繁体
+    translations/fantascene-dynamic-wallpaper_es.ts \ #西班牙语
+    translations/fantascene-dynamic-wallpaper_pl.ts \ #波兰语
+    translations/fantascene-dynamic-wallpaper_ja.ts \ #日语
+    translations/fantascene-dynamic-wallpaper_de.ts \ #德语
+    translations/fantascene-dynamic-wallpaper_ko.ts \ #韩语
+    translations/fantascene-dynamic-wallpaper_it.ts \ #意大利语
+    translations/fantascene-dynamic-wallpaper_fr.ts \ #法语
+    translations/fantascene-dynamic-wallpaper_ru.ts \ #俄语
+    translations/fantascene-dynamic-wallpaper_pt.ts \ #葡萄牙语
+    translations/fantascene-dynamic-wallpaper_pt_BR.ts \  #葡萄牙-巴西
+    translations/fantascene-dynamic-wallpaper_fi.ts \ #芬兰语
+    translations/fantascene-dynamic-wallpaper_vi.ts \ #越南
+    translations/fantascene-dynamic-wallpaper_tr.ts \ #土耳其
+    translations/fantascene-dynamic-wallpaper_th.ts \ #泰国
+    translations/fantascene-dynamic-wallpaper_hu.ts \ #匈牙利
+    translations/fantascene-dynamic-wallpaper_sv.ts \ #瑞典
+    translations/fantascene-dynamic-wallpaper_sk.ts \ #斯洛伐克
+    translations/fantascene-dynamic-wallpaper_ro.ts \ #罗马尼亚
+    translations/fantascene-dynamic-wallpaper_ms.ts  #马来
+
