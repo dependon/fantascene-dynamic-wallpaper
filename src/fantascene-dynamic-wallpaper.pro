@@ -55,7 +55,8 @@ SOURCES += main.cpp \
     loadTranslation.cpp \
     desktop/gioclass.cpp \
     ini/inimanager.cpp \
-    listview/localwidget.cpp
+    listview/localwidget.cpp \
+    help/helpdialog.cpp
 
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
@@ -81,7 +82,8 @@ HEADERS += \
     loadTranslation.h \
     desktop/gioclass.h \
     ini/inimanager.h \
-    listview/localwidget.h
+    listview/localwidget.h \
+    help/helpdialog.h
 
 RESOURCES += \
     qrc.qrc
@@ -176,7 +178,8 @@ FORMS += \
     listview/wallpaperengineplugin.ui \
     listview/playlistsettingdialog.ui \
     desktop.ui \
-    listview/localwidget.ui
+    listview/localwidget.ui \
+    help/helpdialog.ui
 
 TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \ #中文

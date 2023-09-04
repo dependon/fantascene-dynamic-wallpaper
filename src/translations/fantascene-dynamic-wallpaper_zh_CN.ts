@@ -19,6 +19,24 @@
     </message>
 </context>
 <context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../help/helpdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../help/helpdialog.ui" line="53"/>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <location filename="../help/helpdialog.cpp" line="9"/>
+        <source>Help</source>
+        <translation>帮助</translation>
+    </message>
+</context>
+<context>
     <name>IconView</name>
     <message>
         <location filename="../desktop/iconview.cpp" line="181"/>
@@ -504,7 +522,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="529"/>
+        <location filename="../settingwindow.cpp" line="545"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -567,7 +585,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="623"/>
+        <location filename="../settingwindow.cpp" line="639"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
@@ -598,7 +616,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="635"/>
+        <location filename="../settingwindow.cpp" line="651"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
@@ -704,17 +722,22 @@
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="119"/>
+        <location filename="../settingwindow.cpp" line="125"/>
+        <source>Help</source>
+        <translation>帮助</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="133"/>
         <source>github</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="134"/>
+        <location filename="../settingwindow.cpp" line="150"/>
         <source>Double click to open the configuration interface</source>
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="185"/>
+        <location filename="../settingwindow.cpp" line="201"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>
