@@ -50,6 +50,7 @@
 #include "listview/localwidget.h"
 #include "listview/wallpaperengineplugin.h"
 
+#include "help/helpdialog.h"
 settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
@@ -57,7 +58,6 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 {
     ui->setupUi(this);
     readSettings();
-
 
     ui->tansparency_slider->hide();
     ui->label_8->hide();
@@ -115,11 +115,27 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
         }
     });
 
-    QAction *maingithub = new QAction(m_traymenu);
-    maingithub->setText(tr("github"));
-    connect(maingithub, &QAction::triggered, this, [ = ] {
-        QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
-    });
+
+    QAction *maingithub;
+    QLocale locale = QLocale::system();
+    QString language = locale.name();
+    if (language == "zh_CN" || language == "zh_TW" || language == "zh_HK") {
+        // 当前语言环境是中文
+        maingithub = new QAction(m_traymenu);
+        maingithub->setText(tr("Help"));
+        connect(maingithub, &QAction::triggered, this, [ = ] {
+            HelpDialog dialog;
+            dialog.exec();
+        });
+    } else {
+        // 当前语言环境不是中文
+        maingithub = new QAction(m_traymenu);
+        maingithub->setText(tr("github"));
+        connect(maingithub, &QAction::triggered, this, [ = ] {
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
+        });
+    }
+
 
     m_traymenu->addAction(setMainViewAction);
     m_traymenu->addAction(setHistoryAction);
