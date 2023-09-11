@@ -1130,4 +1130,5 @@ void settingWindow::on_liveBtn_clicked()
 
     m_downloadWidget->show();
     m_downloadWidget->move(screenWidth/2 - m_downloadWidget->width()/2,screenHeight/2 - m_downloadWidget->height()/2);
+    m_downloadWidget->activateWindow();
 }
