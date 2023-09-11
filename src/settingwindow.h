@@ -41,6 +41,7 @@ class QThread;
 class MoreSetting;
 class wallpaperEnginePlugin;
 class LocalWidget;
+class DownloadWidget;
 
 namespace Ui {
 class settingWindow;
@@ -154,6 +155,8 @@ private Q_SLOTS:
 
     void on_localBtn_clicked();
 
+    void on_liveBtn_clicked();
+
 public Q_SLOTS:
     void activeWindow();
 private:
@@ -191,6 +194,7 @@ private:
 
     Wallpaper *m_wallpaper{nullptr};
     QTimer *m_timerSave{nullptr};
+    DownloadWidget * m_downloadWidget{nullptr};
 };
 
 #endif // SETTINGWINDOW_H

@@ -51,6 +51,7 @@
 #include "listview/wallpaperengineplugin.h"
 
 #include "help/helpdialog.h"
+#include "download/downloadwidget.h"
 settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
@@ -809,7 +810,13 @@ void settingWindow::on_moreSettingBtn_clicked()
         m_moreSetting = new MoreSetting();
     }
     m_moreSetting->setData(dApp->m_moreData);
+
+    QDesktopWidget *desktop = QApplication::desktop();
+    int screenWidth = desktop->width();
+    int screenHeight = desktop->height();
+
     m_moreSetting->show();
+    m_moreSetting->move(screenWidth/2 - m_moreSetting->width()/2,screenHeight/2 - m_moreSetting->height()/2);
 }
 
 void settingWindow::on_pluginBtn_clicked()
@@ -1109,4 +1116,18 @@ void settingWindow::on_localBtn_clicked()
         m_local->showNormal();
         m_local->activateWindow();
     }
+}
+
+void settingWindow::on_liveBtn_clicked()
+{
+    if(!m_downloadWidget)
+    {
+        m_downloadWidget =new DownloadWidget();
+    }
+    QDesktopWidget *desktop = QApplication::desktop();
+    int screenWidth = desktop->width();
+    int screenHeight = desktop->height();
+
+    m_downloadWidget->show();
+    m_downloadWidget->move(screenWidth/2 - m_downloadWidget->width()/2,screenHeight/2 - m_downloadWidget->height()/2);
 }
