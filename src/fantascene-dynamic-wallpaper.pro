@@ -56,7 +56,9 @@ SOURCES += main.cpp \
     desktop/gioclass.cpp \
     ini/inimanager.cpp \
     listview/localwidget.cpp \
-    help/helpdialog.cpp
+    help/helpdialog.cpp \
+    download/downloadwidget.cpp \
+    download/customwebengineview.cpp
 
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
@@ -83,7 +85,9 @@ HEADERS += \
     desktop/gioclass.h \
     ini/inimanager.h \
     listview/localwidget.h \
-    help/helpdialog.h
+    help/helpdialog.h \
+    download/downloadwidget.h \
+    download/customwebengineview.h
 
 RESOURCES += \
     qrc.qrc
@@ -98,6 +102,7 @@ CONFIG(release, debug|release) {
 }
 
 INCLUDEPATH += $$PWD/ini
+INCLUDEPATH += $$PWD/download
 
 # No matter the build type is release or debug, we always need to generate the qm file.
 TRANSLATIONS = $$files($$PWD/translations/*.ts)
@@ -179,7 +184,8 @@ FORMS += \
     listview/playlistsettingdialog.ui \
     desktop.ui \
     listview/localwidget.ui \
-    help/helpdialog.ui
+    help/helpdialog.ui \
+    download/downloadwidget.ui
 
 TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \ #中文
