@@ -1,6 +1,7 @@
 #include "downloadwidget.h"
 #include "ui_downloadwidget.h"
 #include <QDesktopServices>
+#include <QUrl>
 #include <QScreen>
 DownloadWidget::DownloadWidget(QWidget *parent) :
     QWidget(parent),
