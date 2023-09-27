@@ -1,6 +1,5 @@
 #include "downloadwidget.h"
 #include "ui_downloadwidget.h"
-#include <QWebEnginePage>
 #include <QDesktopServices>
 #include <QScreen>
 DownloadWidget::DownloadWidget(QWidget *parent) :
