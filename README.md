@@ -23,6 +23,25 @@ THE PROJECT IS RELEASED UNDER THE：
 
 Detailed instructions will be written to wiki later.
 
+
+## Regarding the issue where ubuntu may display dual icons
+
+Solution: You need to turn off desktop display in more settings (set False)
+
+The reason for the double icon, Essentially, our software adopts the form of setting up a desktop At the bottom level, in some operating systems, icons and wallpapers are mixed together, which means that icons and wallpapers are single form and cannot be separated. However, in some Ubuntu desktops, I am not sure if it is a Mate environment or a Unity environment. The design is similar to Windows, where wallpapers and icons are separated. That is, our software serves as wallpapers, while the icon layer is still on top of us, and our software implements simple desktop functions (This is also one of the reasons why some people believe that dynamic wallpapers like Windows have not been implemented, and one of the reasons why they have been criticized.) We need to choose whether to display desktop in more settings and click "no".)
+
+## Principle:
+
+Set MPV windows and webview managed windows to desktop properties
+
+The wallpaper and icons are separated, which means that we do not need the desktop provided by our software. If it is a kneaded whole, it is necessary, otherwise it cannot be implemented (so if it is a native desktop, it cannot be implemented unless the official interface is provided)
+
+## Experience
+
+The inspiration for the software comes from the deepin desktop dde-desktop. After modifying the source code, we can use dbus to make the wallpaper transparent, achieving our first version of dynamic wallpaper. Later, due to the need to frequently recompile dde-desktop, our mindset was quite explosive, so we chose not to maintain it as the main task in the future. Interested parties can compile the code and deep branch it themselves. We need to install dependencies on the dde-file-manager and deepin-moview to compile and package it for use
+
+Later, I wrote a simple desktop for the general version
+
 ## qq群(及时反馈和分享bug需求等) 2023/08/29
 
 群号:917552088
