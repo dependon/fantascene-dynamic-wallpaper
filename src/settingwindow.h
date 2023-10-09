@@ -28,12 +28,15 @@
 #include <QWindow>
 #include <QTimer>
 
-#include <QtX11Extras/QX11Info>
 #include <qnamespace.h>
-#include <xcb/xcb_ewmh.h>
 #include "wallpaper.h"
-
 #include "dbuswallpaperservice.h"
+
+#ifdef Q_OS_LINUX
+#include <QtX11Extras/QX11Info>
+#include <xcb/xcb_ewmh.h>
+#endif
+
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -69,6 +72,7 @@ public:
 
     void setScreenMode(const QString &arg);
 
+#ifdef Q_OS_LINUX
     //获取当前工作的窗口wid
     QVector<uint> getCurrentWorkspaceWindows();
     static xcb_atom_t internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists = true);
@@ -83,6 +87,7 @@ public:
     void initAtom();
     //获得窗口属性,桌面，普通窗口等
     uint32_t searchWindowType(int wid);
+#endif
 
     void initWallpaperWidget();
 protected:
@@ -187,9 +192,9 @@ private:
     MoreSetting *m_moreSetting{nullptr};
 
     QVector<WId> m_windowList;
-
+#ifdef Q_OS_LINUX
     xcb_ewmh_connection_t m_ewmh_connection;
-
+#endif
     QMutex m_mutex;
 
     Wallpaper *m_wallpaper{nullptr};

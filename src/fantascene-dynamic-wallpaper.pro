@@ -16,7 +16,7 @@ MOC_DIR = $$DESTDIR/.moc
 RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
-QT += gui core x11extras widgets dbus
+QT += gui core widgets dbus
 qtHaveModule(webengine){
    QT += webengine webenginewidgets
    DEFINES += USE_WEBENGINE
@@ -26,10 +26,14 @@ qtHaveModule(webengine){
 QT += concurrent
 
 CONFIG += c++11 link_pkgconfig no_keywords
-PKGCONFIG += xcb-ewmh mpv x11 xext xrender
+unix {
+ QT += x11extras
+ PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 #CONFIG += waylandcompositor
 PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
 LIBS +=-lgio-2.0 -lglib-2.0
+
+}
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -103,14 +107,14 @@ CONFIG(release, debug|release) {
 
 INCLUDEPATH += $$PWD/ini
 INCLUDEPATH += $$PWD/download
-
+unix {
 # No matter the build type is release or debug, we always need to generate the qm file.
 TRANSLATIONS = $$files($$PWD/translations/*.ts)
 for(tsfile, TRANSLATIONS) {
     qmfile = $$replace(tsfile, .ts$, .qm)
     system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
 }
-
+}
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service

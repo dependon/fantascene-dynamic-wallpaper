@@ -41,10 +41,6 @@
 #include "inimanager.h"
 
 #include <QMutexLocker>
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
-#include <xcb/shape.h>
-
 
 #include "listview/historywidget.h"
 #include "listview/localwidget.h"
@@ -52,6 +48,14 @@
 
 #include "help/helpdialog.h"
 #include "download/downloadwidget.h"
+
+#ifdef Q_OS_LINUX
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
+#include <xcb/shape.h>
+#include <xcb/xcb.h>
+#include <xcb/xproto.h>
+#endif
 settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
@@ -207,9 +211,9 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
         m_aboutMenu->addAction(aboutMe);
 
     }
-
+#ifdef Q_OS_LINUX
     initAtom();
-
+#endif
     initWallpaperWidget();
     executeSettings();
 
@@ -376,7 +380,7 @@ int settingWindow::isAutoStart()
 {
     return m_isAutoStart;
 }
-
+#ifdef Q_OS_LINUX
 QVector <WId> settingWindow::currentWorkWindow()
 {
     //    QWindowList m_windowList;
@@ -423,6 +427,7 @@ QVector <WId> settingWindow::currentWorkWindow()
     }
     return m_windowList;
 }
+#endif
 
 void settingWindow::setScreenMode(const QString &arg)
 {
@@ -744,6 +749,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
     if ( QGuiApplication::platformName() != QLatin1String("xcb")) {
         return ;
     }
+#ifdef Q_OS_LINUX
     //问题很多
     if (arg1 == 0) {
         dApp->m_moreData.isAuto = 0;
@@ -800,6 +806,7 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
         }
     }
     saveSettings();
+#endif
 }
 
 
@@ -910,7 +917,7 @@ void settingWindow::slotTimerSaveSettings()
     }
 }
 
-
+#ifdef Q_OS_LINUX
 xcb_atom_t settingWindow::internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists)
 {
     if (!name || *name == 0)
@@ -1018,9 +1025,7 @@ QRect settingWindow::geometry(WId id) const
     }
     return rect;
 }
-#include <X11/Xatom.h>
-#include <xcb/xcb.h>
-#include <xcb/xproto.h>
+
 Qt::WindowState settingWindow::getWindowState(WId id)
 {
 
@@ -1090,7 +1095,7 @@ uint32_t settingWindow::searchWindowType(int wid)
 
     return reId;
 }
-
+#endif
 void settingWindow::initWallpaperWidget()
 {
     m_wallpaper = new Wallpaper(this->getCurrentPath(), this->getCurrentNumber());

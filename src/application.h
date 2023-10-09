@@ -29,8 +29,8 @@
 #include <QProcess>
 #include <QRect>
 #include <QMutex>
-#include <QDir>
 #include <QVector>
+#include <QDir>
 
 #include "data.h"
 
