@@ -47,13 +47,13 @@
 
 int main(int argc, char *argv[])
 {
+
+#ifdef Q_OS_LINUX
     qputenv("QT_QPA_PLATFORM", "xcb");
     mallopt(M_ARENA_MAX, 1);
-
+#endif
     Application a(argc, argv);
-
     a.setApplicationVersion("1.0.0");
-
 
     qDebug()<< QGuiApplication::platformName();
 

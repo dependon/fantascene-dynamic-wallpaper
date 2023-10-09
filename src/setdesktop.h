@@ -28,14 +28,14 @@
 //#include <iostream>
 //#include <list>
 //#include <stdlib.h>
-
+#ifdef Q_OS_LINUX
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <stdlib.h>
 #include <string.h>
-
+#endif
 
 
 //using namespace std;

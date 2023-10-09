@@ -20,14 +20,16 @@
  */
 #include "wallpaper.h"
 
+#ifdef Q_OS_LINUX
 #include <xcb/xcb.h>
 #include <xcb/xcb_ewmh.h>
 #include <malloc.h>
+#endif
 
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QApplication>
-#include <QtX11Extras/QX11Info>
+
 #include <QScreen>
 #include <QApplication>
 #include <QPainter>
@@ -43,14 +45,15 @@
 #include <QEvent>
 #include <QMouseEvent>
 
+#ifdef Q_OS_LINUX
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
+#include <QtX11Extras/QX11Info>
+
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
-
 //#include <X11/extensions/shape.h>
 //#include <X11/extensions/Xrender.h>
-
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
@@ -60,10 +63,13 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#endif
+
 #include <iostream>
 #include <QStandardPaths>
 
 #ifdef USE_WEBENGINE
+
 #include <QWebEngineView>
 #endif
 
@@ -451,6 +457,7 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 #define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::registerDesktop()
 {
+#ifdef Q_OS_LINUX
     if(QGuiApplication::platformName() == "xcb") {
         // 是X11环境，可以执行相应代码
         xcb_ewmh_connection_t m_ewmh_connection;
@@ -473,6 +480,7 @@ void Wallpaper::registerDesktop()
     if (!dApp->m_screenWid.contains(winId())) {
         dApp->m_screenWid.push_back(winId());
     }
+#endif
 
 //    Atom xa = 1247;
 //    if (xa != None) {

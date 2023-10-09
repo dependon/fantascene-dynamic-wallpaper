@@ -30,7 +30,7 @@
 #include <QPainter>
 
 #include "setdesktop.h"
-
+#ifdef Q_OS_LINUX
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
     DIR             *dir;
@@ -90,7 +90,7 @@ int find_pid_by_name1(char *ProcName, int *foundpid)
     return  0;
 
 }
-
+#endif
 
 const QString toMd5(const QByteArray &data)
 {
@@ -219,9 +219,6 @@ const QPixmap Application::getThumbnailText(const QString &path)
     painter.setPen(pen);
     painter.setFont(font);
     painter.drawText(image.rect(), Qt::AlignCenter, text);
-    //将Hello写在Image的中心
-//    int n = 100;//这个为图片的压缩度。0/100
-//    image.save("text.png", "PNG", n);
 
     return QPixmap::fromImage(image);
 }

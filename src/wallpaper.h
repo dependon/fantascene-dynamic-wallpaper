@@ -71,8 +71,10 @@ private Q_SLOTS:
     void slotSetTransparency(const int value);
 private:
     QHBoxLayout *mainlayout;
+
     MpvWidget *m_mpv{nullptr};
     MpvWidget *m_mpv2{nullptr};
+
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
 
