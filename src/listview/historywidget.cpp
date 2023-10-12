@@ -58,13 +58,13 @@ void historyWidget::on_delWallPaper_clicked()
 {
     if (m_viewHistory->m_allItemInfo.size() > m_viewHistory->currentIndex().row() && m_viewHistory->currentIndex().row() >= 0) {
         QString path = m_viewHistory->m_allItemInfo[m_viewHistory->currentIndex().row()].path;
-        dApp->m_allPath.removeOne(path);
+        dApp->removeLocalPaths(QStringList(path));
         m_viewHistory->m_allItemInfo.removeAt(m_viewHistory->currentIndex().row());
         m_viewHistory->refresh();
     }  else if (m_viewHistory->currentIndex().row() < 0 && m_viewHistory->m_allItemInfo.size() > 0) {
         if (QMessageBox::Yes == QMessageBox::information(nullptr, tr("Delete!!"), tr("Delete all history imports ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
             m_viewHistory->m_allItemInfo.clear();
-            dApp->m_allPath.clear();
+            dApp->clearLocalPaths();
             m_viewHistory->refresh();
         }
     }
@@ -76,9 +76,7 @@ void historyWidget::on_importBtn_clicked()
     QStringList list = QFileDialog::getOpenFileNames();
     for (QString path : list) {
         if (!dApp->getThumbnail(path).isNull()) {
-            dApp->m_allPath.push_back(path);
-            //去重
-            dApp->m_allPath = dApp->m_allPath.toSet().toList();
+            dApp->addLocalPaths(QStringList(path));
             m_viewHistory->addPath(path);
         }
     }
@@ -89,7 +87,7 @@ void historyWidget::on_addPlaylistBtn_clicked()
 {
     if (m_viewHistory->m_allItemInfo.size() > m_viewHistory->currentIndex().row() && m_viewHistory->currentIndex().row() >= 0) {
         QString path = m_viewHistory->m_allItemInfo[m_viewHistory->currentIndex().row()].path;
-        dApp->m_playlistPath.push_back(path);
+        dApp->addPlayListaths(QStringList(path));
         dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
         m_viewPlayList->setFiles(dApp->m_playlistPath);
         m_viewPlayList->refresh();
@@ -113,13 +111,13 @@ void historyWidget::on_deletePlaylist_clicked()
 {
     if (m_viewPlayList->m_allItemInfo.size() > m_viewPlayList->currentIndex().row() && m_viewPlayList->currentIndex().row() >= 0) {
         QString path = m_viewPlayList->m_allItemInfo[m_viewPlayList->currentIndex().row()].path;
-        dApp->m_playlistPath.removeOne(path);
+        dApp->removePlayListPaths(QStringList(path));
         m_viewPlayList->m_allItemInfo.removeAt(m_viewPlayList->currentIndex().row());
         m_viewPlayList->refresh();
     } else if (m_viewPlayList->currentIndex().row() < 0 && m_viewPlayList->m_allItemInfo.size() > 0) {
         if (QMessageBox::Yes == QMessageBox::information(nullptr, tr("Delete!!"), tr("Delete all playback ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
             m_viewPlayList->m_allItemInfo.clear();
-            dApp->m_playlistPath.clear();
+            dApp->clearPlayListPaths();
             m_viewPlayList->refresh();
         }
     }

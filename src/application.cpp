@@ -30,6 +30,7 @@
 #include <QPainter>
 
 #include "setdesktop.h"
+#include "db/dbmanager.h"
 #ifdef Q_OS_LINUX
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
@@ -221,6 +222,73 @@ const QPixmap Application::getThumbnailText(const QString &path)
     painter.drawText(image.rect(), Qt::AlignCenter, text);
 
     return QPixmap::fromImage(image);
+}
+
+bool Application::addLocalPaths(QStringList strList)
+{
+    bool bRet =false;
+    QList< WallpaperData >listData;
+    for(QString path : strList)
+    {
+        if(!m_allPath.contains(path))
+        {
+            WallpaperData data;
+            data.path = path;
+            data.name = QFileInfo(path).completeBaseName();
+            listData << data;
+            m_allPath.push_back(path);
+        }
+    }
+    if(listData.size()>0)
+    {
+        bRet = DBManager::instance()->addDatas(listData);
+    }
+    return bRet;
+
+}
+
+bool Application::removeLocalPaths(QStringList strList)
+{
+    for(QString str : strList)
+    {
+        m_allPath.removeOne(str);
+    }
+    return DBManager::instance()->deleteLocalPaths(strList);
+}
+
+bool Application::clearLocalPaths()
+{
+    m_allPath.clear();
+    return DBManager::instance()->clearLocalPaths();
+}
+
+bool Application::addPlayListaths(QStringList strList)
+{
+    QStringList  addlist;
+    for (QString str : strList)
+    {
+        if(!m_playlistPath.contains(str))
+        {
+            m_playlistPath.push_back(str);
+            addlist << str;
+        }
+    }
+    return DBManager::instance()->addPlayList(addlist);
+}
+
+bool Application::removePlayListPaths(QStringList strList)
+{
+    for(QString str : strList)
+    {
+        m_playlistPath.removeOne(str);
+    }
+    return DBManager::instance()->deletePlayList(strList);
+}
+
+bool Application::clearPlayListPaths()
+{
+    m_playlistPath.clear();
+    return DBManager::instance()->clearPlayList();
 }
 
 const QPixmap Application::getThumbnail(const QString &path)

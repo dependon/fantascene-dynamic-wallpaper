@@ -207,13 +207,13 @@ void view::onDoubleClicked(const QModelIndex &index)
             if (QMessageBox::Yes == QMessageBox::information(NULL, tr("Delete!!"), tr("The file does not exist. Do you want to delete it"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
                 if (m_allItemInfo.size() > currentIndex().row() && currentIndex().row() >= 0) {
                     QString path = m_allItemInfo[currentIndex().row()].path;
-                    dApp->m_allPath.removeOne(path);
+                    dApp->removeLocalPaths(QStringList(path));
                     m_allItemInfo.removeAt(currentIndex().row());
                     refresh();
                 } else if (currentIndex().row() < 0 && m_allItemInfo.size() > 0) {
                     if (QMessageBox::Yes == QMessageBox::information(NULL, tr("Delete!!"), tr("Delete all history imports ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
                         m_allItemInfo.clear();
-                        dApp->m_allPath.clear();
+                        dApp->clearLocalPaths();
                         refresh();
                     }
                 }

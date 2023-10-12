@@ -23,15 +23,15 @@ qtHaveModule(webengine){
 }
 
 
-QT += concurrent
+QT += concurrent sql
 
 CONFIG += c++11 link_pkgconfig no_keywords
 unix {
  QT += x11extras
  PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 #CONFIG += waylandcompositor
-PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
-LIBS +=-lgio-2.0 -lglib-2.0
+ PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
+ LIBS +=-lgio-2.0 -lglib-2.0
 
 }
 
@@ -62,7 +62,8 @@ SOURCES += main.cpp \
     listview/localwidget.cpp \
     help/helpdialog.cpp \
     download/downloadwidget.cpp \
-    download/customwebengineview.cpp
+    download/customwebengineview.cpp \
+    db/dbmanager.cpp
 
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
@@ -91,7 +92,8 @@ HEADERS += \
     listview/localwidget.h \
     help/helpdialog.h \
     download/downloadwidget.h \
-    download/customwebengineview.h
+    download/customwebengineview.h \
+    db/dbmanager.h
 
 RESOURCES += \
     qrc.qrc
