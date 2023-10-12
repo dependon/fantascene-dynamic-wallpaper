@@ -45,9 +45,9 @@
 #include "listview/historywidget.h"
 #include "listview/localwidget.h"
 #include "listview/wallpaperengineplugin.h"
-
 #include "help/helpdialog.h"
 #include "download/downloadwidget.h"
+#include "db/dbmanager.h"
 
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>
@@ -273,31 +273,70 @@ void settingWindow::readSettings()
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
 
-    //取值本地地址
-    QString strLocalPath;
-    int localIndex = 1;
-    do {
-        strLocalPath = IniManager::instance()->value("Movie/localPath" + QString::number(localIndex++)).toString();
-        if (nullptr != strLocalPath) {
+    QStringList strList = DBManager::instance()->getAllPath();
+    if(strList.count()>0)
+    {
+        for(QString strLocalPath: strList)
+        {
             if (!dApp->m_allPath.contains(strLocalPath)) {
                 dApp->m_allPath.push_back(strLocalPath);
                 Q_EMIT dApp->addPaperView(strLocalPath);
             }
         }
-    } while (nullptr != strLocalPath);
 
-    //取值本地地址
-    QString strPlaylistPath;
-    int playlistIndex = 1;
-    do {
-        strPlaylistPath = IniManager::instance()->value("Movie/playlistPath" + QString::number(playlistIndex++)).toString();
-        if (nullptr != strPlaylistPath) {
-            if (!dApp->m_playlistPath.contains(strPlaylistPath)) {
+        QStringList playList = DBManager::instance()->getAllPlayList();
+        for(QString strPlaylistPath: playList)
+        {
+            if (!dApp->m_playlistPath.contains(strPlaylistPath))
+            {
                 dApp->m_playlistPath.push_back(strPlaylistPath);
                 Q_EMIT dApp->addplaylist(strPlaylistPath);
             }
         }
-    } while (nullptr != strPlaylistPath);
+    }
+    else
+    {
+        //取值本地地址
+        QString strLocalPath;
+        int localIndex = 1;
+        QList <WallpaperData> listData;
+        do {
+            QString key = "Movie/localPath" + QString::number(localIndex++);
+            strLocalPath = IniManager::instance()->value(key).toString();
+
+            if (nullptr != strLocalPath) {
+                if (!dApp->m_allPath.contains(strLocalPath)) {
+                    dApp->m_allPath.push_back(strLocalPath);
+                    Q_EMIT dApp->addPaperView(strLocalPath);
+                    WallpaperData data;
+                    data.path = strLocalPath;
+                    data.name = QFileInfo(strLocalPath).completeBaseName();
+                    listData << data;
+                }
+            }
+            IniManager::instance()->remove(key);
+        } while (nullptr != strLocalPath);
+        //加入数据库
+        DBManager::instance()->addDatas(listData);
+        //取值本地地址
+        QString strPlaylistPath;
+        int playlistIndex = 1;
+        do {
+            QString key = "Movie/playlistPath" + QString::number(playlistIndex++);
+            strPlaylistPath = IniManager::instance()->value(key).toString();
+            if (nullptr != strPlaylistPath) {
+                if (!dApp->m_playlistPath.contains(strPlaylistPath)) {
+                    dApp->m_playlistPath.push_back(strPlaylistPath);
+                    Q_EMIT dApp->addplaylist(strPlaylistPath);
+                }
+            }
+            IniManager::instance()->remove(key);
+        } while (nullptr != strPlaylistPath);
+
+        //加入数据库
+        DBManager::instance()->addPlayList(dApp->m_playlistPath);
+    }
+
 
 
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
@@ -614,7 +653,7 @@ void settingWindow::slotWallPaper(const QString &path)
         }
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_allPath.push_back(dApp->m_currentPath);
+        dApp->addLocalPaths(QStringList(dApp->m_currentPath));
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
         on_Slider_valueChanged(m_voiceVolume);
@@ -873,7 +912,6 @@ void settingWindow::slotTimerSaveSettings()
     {
         iSort = IniManager::instance()->value("WallPaper/SortFilter").toInt();
     }
-    IniManager::instance()->clear();
 
     IniManager::instance()->setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     IniManager::instance()->setValue("WallPaper/isAutoStart", m_isAutoStart);
@@ -903,18 +941,18 @@ void settingWindow::slotTimerSaveSettings()
         IniManager::instance()->setValue("WallPaper/SortFilter", iSort);
     }
     int indexLocal = 1;
-    //去重
-    dApp->m_allPath = dApp->m_allPath.toSet().toList();
-    for (QString str : dApp->m_allPath) {
-        IniManager::instance()->setValue("Movie/localPath" + QString::number(indexLocal++), str);
-    }
+//    //去重
+//    dApp->m_allPath = dApp->m_allPath.toSet().toList();
+//    for (QString str : dApp->m_allPath) {
+//        IniManager::instance()->setValue("Movie/localPath" + QString::number(indexLocal++), str);
+//    }
 
-    //去重
-    int playlistIndex = 1;
-    dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
-    for (QString str : dApp->m_playlistPath) {
-        IniManager::instance()->setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
-    }
+//    //去重
+//    int playlistIndex = 1;
+//    dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
+//    for (QString str : dApp->m_playlistPath) {
+//        IniManager::instance()->setValue("Movie/playlistPath" + QString::number(playlistIndex++), str);
+//    }
 }
 
 #ifdef Q_OS_LINUX

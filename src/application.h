@@ -57,6 +57,14 @@ public:
     void setPlayListTimer(int s);
     void setisPlayList(bool bRet);
     const QPixmap getThumbnailText(const QString &path);
+
+    bool addLocalPaths(QStringList strList);
+    bool removeLocalPaths(QStringList strList);
+    bool clearLocalPaths();
+    bool addPlayListaths(QStringList strList);
+    bool removePlayListPaths(QStringList strList);
+    bool clearPlayListPaths();
+
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();
