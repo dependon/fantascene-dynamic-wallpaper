@@ -32,6 +32,7 @@ struct MoreSetData {
     int fps = 10;
     QString hwdec = "gpu";
     bool isShowDesktopIcon = true;
+    bool isTop =true;
 };
 
 #endif // DATA_H

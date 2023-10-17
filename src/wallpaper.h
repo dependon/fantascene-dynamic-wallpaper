@@ -59,6 +59,7 @@ public Q_SLOTS:
     void slotMouseEvent();
     void slotMouseClick(const int &index);
 
+    void slotActiveWallpaper(bool bRet);
 private:
     void registerDesktop();
     bool event(QEvent *event) override;

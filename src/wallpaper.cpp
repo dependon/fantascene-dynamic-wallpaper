@@ -104,6 +104,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setMpvValue, this, &Wallpaper::slotSetMpvValue);
 
     connect(dApp, &Application::sigSetTransparency, this, &Wallpaper::slotSetTransparency);
+    connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
 
     QDesktopWidget *desktopwidget = QApplication::desktop();
     connect(desktopwidget, &QDesktopWidget::resized, this, [ = ] {
@@ -173,6 +174,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             play();
             dApp->m_currentPath = QFileInfo(dApp->m_currentPath).filePath();
             Q_EMIT dApp->pathChanged(dApp->m_currentPath);
+
+            slotActiveWallpaper(dApp->m_moreData.isTop);
         }
 //        QTimer::singleShot(100, [ = ] {
 //            updateGeometry();
@@ -533,12 +536,15 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    if (event->type() == QEvent::WindowActivate) {
-        for (auto wid : dApp->m_screenWid) {
-            QWindow *window = QWindow::fromWinId(wid);
-            if (window) {
-                window->raise();
-            }
+    if(dApp->m_moreData.isTop)
+    {
+        if (event->type() == QEvent::WindowActivate) {
+            slotActiveWallpaper(true);
+        }
+    }
+    else {
+        if (event->type() == QEvent::WindowActivate) {
+            slotActiveWallpaper(false);
         }
     }
     return  QWidget::event(event);
@@ -758,6 +764,28 @@ void Wallpaper::slotMouseClick(const int &index)
 //            }
     }
 
+}
+
+void Wallpaper::slotActiveWallpaper(bool bRet)
+{
+    if(bRet)
+    {
+        for (auto wid : dApp->m_screenWid) {
+            QWindow *window = QWindow::fromWinId(wid);
+            if (window) {
+                window->raise();
+            }
+        }
+    }
+    else
+    {
+        for (auto wid : dApp->m_screenWid) {
+            QWindow *window = QWindow::fromWinId(wid);
+            if (window) {
+                window->lower();
+            }
+        }
+    }
 }
 
 

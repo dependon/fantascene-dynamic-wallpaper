@@ -263,6 +263,9 @@ void settingWindow::readSettings()
     if(IniManager::instance()->contains("WallPaper/desktopShow")){
         dApp->m_moreData.isShowDesktopIcon = IniManager::instance()->value("WallPaper/desktopShow").toBool();
     }
+    if(IniManager::instance()->contains("WallPaper/topDefault")){
+        dApp->m_moreData.isTop = IniManager::instance()->value("WallPaper/topDefault").toBool();
+    }
 
     dApp->setisPlayList(dApp->m_isPlayList);
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);
@@ -928,6 +931,7 @@ void settingWindow::slotTimerSaveSettings()
     IniManager::instance()->setValue("WallPaper/fps", dApp->m_moreData.fps);
     IniManager::instance()->setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
     IniManager::instance()->setValue("WallPaper/desktopShow", dApp->m_moreData.isShowDesktopIcon);
+    IniManager::instance()->setValue("WallPaper/topDefault", dApp->m_moreData.isTop);
     IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
     IniManager::instance()->setValue("WallPaper/isPlayList", dApp->m_isPlayList);
     IniManager::instance()->setValue("WallPaper/playlistTimer", dApp->m_PlaylistTimer);

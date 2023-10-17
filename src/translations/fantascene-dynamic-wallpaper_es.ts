@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="103"/>
         <location filename="../application.cpp" line="104"/>
+        <location filename="../application.cpp" line="105"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation>fantacy</translation>
     </message>
@@ -28,6 +28,42 @@
     <message>
         <source>Refresh</source>
         <translation type="vanished">Actualizar</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadWidget</name>
+    <message>
+        <location filename="../download/downloadwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <location filename="../download/downloadwidget.ui" line="25"/>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../download/downloadwidget.cpp" line="11"/>
+        <source>The download address comes from the network and may not be usable</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <location filename="../help/helpdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../help/helpdialog.ui" line="53"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../help/helpdialog.cpp" line="9"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -207,7 +243,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="79"/>
+        <location filename="../moresetting.cpp" line="85"/>
         <source>continue playing</source>
         <translation>Continuar jugando</translation>
     </message>
@@ -225,7 +261,7 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="87"/>
+        <location filename="../moresetting.cpp" line="93"/>
         <source>default</source>
         <translatorcomment>Incumplimiento</translatorcomment>
         <translation>por defecto</translation>
@@ -282,32 +318,42 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="165"/>
+        <location filename="../moresetting.ui" line="190"/>
         <location filename="../moresetting.cpp" line="69"/>
-        <location filename="../moresetting.cpp" line="101"/>
+        <location filename="../moresetting.cpp" line="75"/>
+        <location filename="../moresetting.cpp" line="107"/>
+        <location filename="../moresetting.cpp" line="114"/>
         <source>true</source>
         <translation>Sí</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="170"/>
+        <location filename="../moresetting.ui" line="195"/>
         <location filename="../moresetting.cpp" line="71"/>
+        <location filename="../moresetting.cpp" line="77"/>
         <source>false</source>
         <translation>Falso</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="182"/>
+        <source>Place on top of the original desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="207"/>
         <source>Confirm</source>
         <translation>Confirmar</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="189"/>
+        <location filename="../moresetting.ui" line="214"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
         <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="94"/>
-        <location filename="../moresetting.cpp" line="118"/>
+        <location filename="../moresetting.cpp" line="100"/>
+        <location filename="../moresetting.cpp" line="139"/>
         <source>other</source>
         <translatorcomment>Otros</translatorcomment>
         <translation>Otros</translation>
@@ -406,21 +452,26 @@
         <source>fantacy</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../download/downloadwidget.cpp" line="33"/>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="430"/>
+        <location filename="../wallpaper.cpp" line="439"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="435"/>
+        <location filename="../wallpaper.cpp" line="444"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="440"/>
+        <location filename="../wallpaper.cpp" line="449"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
@@ -481,7 +532,7 @@
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="65"/>
-        <location filename="../listview/historywidget.cpp" line="120"/>
+        <location filename="../listview/historywidget.cpp" line="118"/>
         <source>Delete!!</source>
         <translation>Borrar!!</translation>
     </message>
@@ -491,7 +542,7 @@
         <translation>¿Desea borrar todas las importaciones históricas?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="120"/>
+        <location filename="../listview/historywidget.cpp" line="118"/>
         <source>Delete all playback ?</source>
         <translation>Eliminar la lista de reproducción del bucle?</translation>
     </message>
@@ -504,222 +555,232 @@
         <translation>MainWindow</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
+        <location filename="../settingwindow.ui" line="102"/>
         <source>File</source>
         <translation>Archivo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="253"/>
-        <location filename="../settingwindow.cpp" line="529"/>
+        <location filename="../settingwindow.ui" line="142"/>
+        <location filename="../settingwindow.cpp" line="593"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="130"/>
+        <location filename="../settingwindow.ui" line="81"/>
         <source>Volume</source>
         <translation>Volumen</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="103"/>
+        <location filename="../settingwindow.ui" line="22"/>
         <source>Transparency</source>
         <translation>Transparencia</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="163"/>
-        <location filename="../settingwindow.cpp" line="85"/>
+        <location filename="../settingwindow.ui" line="423"/>
+        <location filename="../settingwindow.cpp" line="90"/>
         <source>Play</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="182"/>
-        <location filename="../settingwindow.cpp" line="97"/>
+        <location filename="../settingwindow.ui" line="442"/>
+        <location filename="../settingwindow.cpp" line="102"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="201"/>
+        <location filename="../settingwindow.ui" line="461"/>
         <source>Set New</source>
         <translation>Establecer nuevo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="220"/>
+        <location filename="../settingwindow.ui" line="480"/>
         <source>Hide</source>
         <translation>Ocultar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="235"/>
+        <location filename="../settingwindow.ui" line="124"/>
         <source>Model</source>
         <translation>Modelo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="243"/>
+        <location filename="../settingwindow.ui" line="132"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="248"/>
+        <location filename="../settingwindow.ui" line="137"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="261"/>
+        <location filename="../settingwindow.ui" line="150"/>
         <source>Add to startup</source>
         <translation>Iniciar automáticamente</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="272"/>
+        <location filename="../settingwindow.ui" line="161"/>
         <source>Video aspect ratio</source>
         <translation>Relación de vídeo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="286"/>
-        <location filename="../settingwindow.cpp" line="623"/>
+        <location filename="../settingwindow.ui" line="175"/>
+        <location filename="../settingwindow.cpp" line="687"/>
         <source>default</source>
         <translatorcomment>por defecto</translatorcomment>
         <translation>por defecto</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="291"/>
+        <location filename="../settingwindow.ui" line="180"/>
         <source>4:3</source>
         <translation>4:3</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="296"/>
+        <location filename="../settingwindow.ui" line="185"/>
         <source>16:9</source>
         <translation>16:9</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="301"/>
+        <location filename="../settingwindow.ui" line="190"/>
         <source>16:10</source>
         <translation>16:10</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="306"/>
+        <location filename="../settingwindow.ui" line="195"/>
         <source>1.85:1</source>
         <translation>1.85.1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="311"/>
+        <location filename="../settingwindow.ui" line="200"/>
         <source>2.35:1</source>
         <translation>2:35:1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="316"/>
-        <location filename="../settingwindow.cpp" line="635"/>
+        <location filename="../settingwindow.ui" line="205"/>
+        <location filename="../settingwindow.cpp" line="699"/>
         <source>custom</source>
         <translatorcomment>Personalizar</translatorcomment>
         <translation>Personalizar</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="459"/>
+        <location filename="../settingwindow.ui" line="489"/>
+        <source>Dowload Wallpaper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="49"/>
         <source>Advanced Settings</source>
         <translation>Ajustes avanzados</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="466"/>
+        <location filename="../settingwindow.ui" line="56"/>
         <source>Wallpaper Local</source>
         <translation>Fondos de pantalla locales</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="473"/>
-        <location filename="../settingwindow.cpp" line="104"/>
+        <location filename="../settingwindow.ui" line="63"/>
+        <location filename="../settingwindow.cpp" line="109"/>
         <source>Wallpaper History</source>
         <translation>Historia del fondo de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="480"/>
+        <location filename="../settingwindow.ui" line="70"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>Complemento-Wallpaper Engine</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="352"/>
+        <location filename="../settingwindow.ui" line="241"/>
         <source>X</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="366"/>
+        <location filename="../settingwindow.ui" line="255"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="427"/>
+        <location filename="../settingwindow.ui" line="366"/>
         <source>githubWeb</source>
         <translation>githubWeb</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="434"/>
+        <location filename="../settingwindow.ui" line="373"/>
         <source>new(gitee)</source>
         <translation>nuevo(gitee)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="441"/>
+        <location filename="../settingwindow.ui" line="380"/>
         <source>new(github)</source>
         <translation>nuevo(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="326"/>
+        <location filename="../settingwindow.ui" line="215"/>
         <source>1.33</source>
         <translation>1.33</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="29"/>
+        <location filename="../settingwindow.ui" line="109"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="333"/>
+        <location filename="../settingwindow.ui" line="222"/>
         <source>Apply scale</source>
         <translation>Establecer escala</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.ui" line="269"/>
         <source>Width</source>
         <translation>Ancho</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="394"/>
+        <location filename="../settingwindow.ui" line="283"/>
         <source>Height</source>
         <translation>Altura</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="408"/>
+        <location filename="../settingwindow.ui" line="297"/>
         <source>Apply Custom Dimensions</source>
         <translation>Aplicar dimensiones personalizadas</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="448"/>
+        <location filename="../settingwindow.ui" line="387"/>
         <source>reprotBug</source>
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="71"/>
+        <location filename="../settingwindow.cpp" line="76"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="92"/>
+        <location filename="../settingwindow.cpp" line="97"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="108"/>
+        <location filename="../settingwindow.cpp" line="113"/>
         <source>Main View</source>
         <translation>Formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="119"/>
+        <location filename="../settingwindow.cpp" line="130"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="138"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="134"/>
+        <location filename="../settingwindow.cpp" line="155"/>
         <source>Double click to open the configuration interface</source>
         <translatorcomment>Haga doble clic para abrir el formulario principal</translatorcomment>
         <translation>Haga doble clic para abrir el formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="185"/>
+        <location filename="../settingwindow.cpp" line="206"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>

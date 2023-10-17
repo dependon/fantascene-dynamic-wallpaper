@@ -103,6 +103,8 @@ Q_SIGNALS:
 
     void sigWallpaperAction();
 
+    void sigWallpaperTopChanged(bool);
+
 public:
 
     QRect m_manual{0, 0, 0, 0};
