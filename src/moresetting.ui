@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>257</height>
+    <width>454</width>
+    <height>359</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,6 +160,31 @@
      </item>
      <item>
       <widget class="QComboBox" name="desktopShowCombox">
+       <item>
+        <property name="text">
+         <string>true</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>false</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Place on top of the original desktop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="topBox">
        <item>
         <property name="text">
          <string>true</string>

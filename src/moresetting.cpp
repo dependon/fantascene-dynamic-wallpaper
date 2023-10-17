@@ -71,6 +71,12 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->desktopShowCombox->setCurrentText(tr("false"));
     }
 
+    if (data.isTop) {
+        ui->topBox->setCurrentText(tr("true"));
+    } else {
+        ui->topBox->setCurrentText(tr("false"));
+    }
+
 }
 
 void MoreSetting::on_okBtn_clicked()
@@ -102,6 +108,21 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.isShowDesktopIcon = true;
     } else {
         dApp->m_moreData.isShowDesktopIcon = false;
+    }
+
+    QString isTop = ui->topBox->currentText();
+    if (isTop.contains(tr("true"))) {
+        if(dApp->m_moreData.isTop!= true)
+        {
+            Q_EMIT dApp->sigWallpaperTopChanged(true);
+        }
+        dApp->m_moreData.isTop = true;
+    } else {
+        if(dApp->m_moreData.isTop!= false)
+        {
+            Q_EMIT dApp->sigWallpaperTopChanged(false);
+        }
+        dApp->m_moreData.isTop = false;
     }
 
     Q_EMIT dApp->moreSettingSave();
