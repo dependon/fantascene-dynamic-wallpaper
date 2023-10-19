@@ -62,6 +62,8 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     ui(new Ui::settingWindow)
 {
     ui->setupUi(this);
+    //读配置之前需要判断是否有可以支持的原生桌面
+    dApp->CheckSystem();
     readSettings();
 
     ui->tansparency_slider->hide();

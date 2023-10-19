@@ -65,6 +65,9 @@ public:
     bool removePlayListPaths(QStringList strList);
     bool clearPlayListPaths();
 
+    //检查配置,寻求最大帮助
+    void CheckSystem();
+
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setMpvPlay();

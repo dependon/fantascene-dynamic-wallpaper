@@ -31,6 +31,7 @@
 
 #include "setdesktop.h"
 #include "db/dbmanager.h"
+
 #ifdef Q_OS_LINUX
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
@@ -289,6 +290,21 @@ bool Application::clearPlayListPaths()
 {
     m_playlistPath.clear();
     return DBManager::instance()->clearPlayList();
+}
+
+void Application::CheckSystem()
+{
+    //如果是nautilus-desktop,可以使用默认桌面
+    char str[17] = "nautilus-desktop";
+    int pid_t[128];
+    find_pid_by_name1(str, pid_t);
+    int pid = pid_t[0];
+    if(pid > 0)
+    {
+        //存在,使用默认桌面
+        m_moreData.isShowDesktopIcon = false ;
+        m_moreData.isTop = false ;
+    }
 }
 
 const QPixmap Application::getThumbnail(const QString &path)
