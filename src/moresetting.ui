@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
-    <height>382</height>
+    <width>489</width>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -262,6 +262,31 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Event penetration</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="eventBox">
+       <item>
+        <property name="text">
+         <string>false</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>true</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

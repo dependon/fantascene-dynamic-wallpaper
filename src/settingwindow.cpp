@@ -275,6 +275,17 @@ void settingWindow::readSettings()
     if (dApp->m_moreData.hwdec.isEmpty()) {
         dApp->m_moreData.hwdec = "gpu";
     }
+    if(IniManager::instance()->contains("WallPaper/DesktopTransparency"))
+    {
+        dApp->m_moreData.m_DesktopTransparency = IniManager::instance()->value("WallPaper/DesktopTransparency").toDouble();
+        dApp->changePidOpacity(dApp->m_moreData.m_DesktopTransparency);
+    }
+    if(IniManager::instance()->contains("WallPaper/WallpaperTransparency"))
+    {
+        dApp->m_moreData.m_WallpaperTransparency = IniManager::instance()->value("WallPaper/WallpaperTransparency").toDouble();
+        dApp->changeMeOpacity(dApp->m_moreData.m_WallpaperTransparency);
+    }
+
     ui->videoBLEdit->setText(QString::number(m_videoAspect));
     ui->videoBLCombox->setCurrentText(m_videoASpectStr);
 
@@ -946,6 +957,8 @@ void settingWindow::slotTimerSaveSettings()
     {
         IniManager::instance()->setValue("WallPaper/SortFilter", iSort);
     }
+
+    IniManager::instance()->setValue("Wallpaper/EventPenetration",dApp->m_moreData.isEventPenetration);
     int indexLocal = 1;
 //    //去重
 //    dApp->m_allPath = dApp->m_allPath.toSet().toList();
