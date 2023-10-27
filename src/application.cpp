@@ -305,6 +305,10 @@ void Application::CheckSystem()
     DesktopList << "nautilus-desktop";
     DesktopList << "yoyo-desktop";
     DesktopList << "cutefish-desktop";
+    DesktopList << "plasmashell";
+    DesktopList << "pcmanfm-qt";
+    DesktopList << "caja";
+    DesktopList << "xfdesktop";
     for(QString desktopStr : DesktopList)
     {
         int pid_t[128];
