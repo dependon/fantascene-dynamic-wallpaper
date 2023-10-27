@@ -202,4 +202,7 @@ private:
     DownloadWidget * m_downloadWidget{nullptr};
 };
 
+
+
+
 #endif // SETTINGWINDOW_H

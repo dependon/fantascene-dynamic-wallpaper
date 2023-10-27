@@ -79,6 +79,14 @@ void MoreSetting::setData(const MoreSetData &data)
 
 }
 
+void MoreSetting::showEvent(QShowEvent *event)
+{
+    ui->label_name->setText(dApp->m_currentDesktopName);
+    ui->desktop_transparency->setValue(dApp->m_desktopTransparent *100);
+    ui->back_transparency->setValue(dApp->m_backgroudTransparent *100);
+    return QWidget::showEvent(event);
+}
+
 void MoreSetting::on_okBtn_clicked()
 {
     dApp->m_moreData.fps = ui->fpsbox->currentText().toInt();
@@ -143,3 +151,15 @@ void MoreSetting::on_hwdecBox_activated(const QString &arg1)
     }
 }
 
+
+void MoreSetting::on_desktop_transparency_valueChanged(int value)
+{
+    double dop = (double)value/100.0;
+    dApp->changePidOpacity(dop);
+}
+
+void MoreSetting::on_back_transparency_valueChanged(int value)
+{
+    double dop = (double)value/100.0;
+    dApp->changeMeOpacity(dop);
+}

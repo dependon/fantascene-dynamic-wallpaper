@@ -1,5 +1,5 @@
-#ifndef DBMANAGER_H
-#define DBMANAGER_H
+#ifndef DBMANAGER1_H
+#define DBMANAGER1_H
 
 #include <QObject>
 #include <QSqlDatabase>
@@ -51,4 +51,4 @@ private:
     QMutex m_mutex;
 };
 
-#endif // DBMANAGER_H
+#endif // DBMANAGER1_H

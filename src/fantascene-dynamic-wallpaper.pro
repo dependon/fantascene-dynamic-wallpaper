@@ -47,6 +47,7 @@ SOURCES += main.cpp \
     listview/delegate.cpp \
     listview/view.cpp \
     listview/historywidget.cpp \
+    setdesktop.cpp \
     moresetting.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \

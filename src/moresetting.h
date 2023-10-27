@@ -36,13 +36,18 @@ public:
     ~MoreSetting();
 
     void setData(const MoreSetData &data);
-
+protected:
+    virtual void showEvent(QShowEvent *event);
 private Q_SLOTS:
     void on_okBtn_clicked();
 
     void on_cancelBtn_clicked();
 
     void on_hwdecBox_activated(const QString &arg1);
+
+    void on_desktop_transparency_valueChanged(int value);
+
+    void on_back_transparency_valueChanged(int value);
 
 private:
     Ui::MoreSetting *ui;
