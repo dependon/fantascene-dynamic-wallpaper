@@ -26,7 +26,7 @@
 #include <QString>
 #include <QObject>
 #include <QThread>
-#include <QProcess>
+
 #include <QRect>
 #include <QMutex>
 #include <QVector>
@@ -35,11 +35,12 @@
 #include "data.h"
 
 
-
 const QString PIC_DIR_PATH =   QDir::homePath() +
                                "/.config/fantascene-dynamic-wallpaper/.thumbnail";
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
+
+
 class Application : public QApplication
 {
     Q_OBJECT
@@ -67,6 +68,12 @@ public:
 
     //检查配置,寻求最大帮助
     void CheckSystem();
+
+    //改变原始的透明度
+    void changePidOpacity(const double &opacity );
+
+    //改变自身进程的透明度
+    void changeMeOpacity(const double &opacity );
 
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
@@ -119,6 +126,7 @@ public:
     QMutex mutex;
 
     QVector <unsigned long> m_screenWid;
+    QVector <unsigned long> m_screenDesktopWid;
     bool m_isNoMpvPause{true};
     bool m_isPlayList{false};
     int m_PlaylistTimer{600}; //s
@@ -132,6 +140,13 @@ public:
 
 
     QString m_wallpaperEnginePath;
+
+    QString m_currentDesktopName;
+
+    QList<QWindow> m_DesktopWindow;
+
+    double m_desktopTransparent{0.99};
+    double m_backgroudTransparent{0.99};
 
 };
 

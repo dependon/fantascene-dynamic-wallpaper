@@ -18,9 +18,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+
 #include "application.h"
+
 #include <QIcon>
-#include <QDir>
 #include <QUrl>
 #include <QMutexLocker>
 #include <QWindow>
@@ -28,11 +30,13 @@
 #include <QCryptographicHash>
 #include <QTimer>
 #include <QPainter>
+#include <QProcess>
+#include <QDateTime>
 
-#include "setdesktop.h"
 #include "db/dbmanager.h"
 
-#ifdef Q_OS_LINUX
+#include "setdesktop.h"
+
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
     DIR             *dir;
@@ -92,7 +96,6 @@ int find_pid_by_name1(char *ProcName, int *foundpid)
     return  0;
 
 }
-#endif
 
 const QString toMd5(const QByteArray &data)
 {
@@ -292,19 +295,75 @@ bool Application::clearPlayListPaths()
     return DBManager::instance()->clearPlayList();
 }
 
+
 void Application::CheckSystem()
 {
-    //如果是nautilus-desktop,可以使用默认桌面
-    char str[17] = "nautilus-desktop";
-    int pid_t[128];
-    find_pid_by_name1(str, pid_t);
-    int pid = pid_t[0];
-    if(pid > 0)
+    qDebug()<< QDateTime::currentMSecsSinceEpoch();
+    QStringList DesktopList;
+    DesktopList << "dde-desktop";
+    DesktopList << "nautilus-desktop";
+    DesktopList << "yoyo-desktop";
+    DesktopList << "cutefish-desktop";
+    for(QString desktopStr : DesktopList)
     {
-        //存在,使用默认桌面
-        m_moreData.isShowDesktopIcon = false ;
-        m_moreData.isTop = false ;
+        int pid_t[128];
+        find_pid_by_name1(desktopStr.toLatin1().data(), pid_t);
+        int pid = pid_t[0];
+        if(pid > 0)
+        {
+            if(desktopStr.contains("nautilus-desktop"))
+            {
+                //存在,使用默认桌面,初始化参数改变,如果后续修改,依配置文件为准
+                m_moreData.isShowDesktopIcon = false ;
+                m_moreData.isTop = false ;
+            }
+            m_currentDesktopName = desktopStr;
+
+            X11MatchingPid match( pid);
+            const std::list<unsigned long> &result = match.result();
+            for (unsigned long id : result) {
+                QWindow *window = QWindow::fromWinId(id);
+                if (window != nullptr) {
+                    window->setOpacity(0.99);
+                }
+                if (!m_screenDesktopWid.contains(id)) {
+                    m_screenDesktopWid.push_back(id);
+                }
+            }
+        }
     }
+    qDebug()<< QDateTime::currentMSecsSinceEpoch();
+}
+
+void Application::changePidOpacity( const double &opacity)
+{
+    if(m_screenDesktopWid.size()>0)
+    {
+        m_desktopTransparent = opacity;
+        for (unsigned long id : m_screenDesktopWid) {
+            QWindow *window = QWindow::fromWinId(id);
+            if (window != nullptr) {
+                window->setOpacity(opacity);
+            }
+        }
+        return ;
+    }
+}
+
+void Application::changeMeOpacity(const double &opacity)
+{
+    if(m_screenDesktopWid.size()>0)
+    {
+        m_backgroudTransparent = opacity;
+        for (unsigned long id : m_screenWid) {
+            QWindow *window = QWindow::fromWinId(id);
+            if (window != nullptr) {
+                window->setOpacity(opacity);
+            }
+        }
+        return ;
+    }
+
 }
 
 const QPixmap Application::getThumbnail(const QString &path)
