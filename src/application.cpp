@@ -135,6 +135,7 @@ Application::Application(int &argc, char **argv)
     m_pplaylistTimer->start(1000 * m_PlaylistTimer);
 
     setQuitOnLastWindowClosed(false);
+
 }
 
 Application::~Application()
@@ -339,7 +340,7 @@ void Application::changePidOpacity( const double &opacity)
 {
     if(m_screenDesktopWid.size()>0)
     {
-        m_desktopTransparent = opacity;
+        m_moreData.m_DesktopTransparency = opacity;
         for (unsigned long id : m_screenDesktopWid) {
             QWindow *window = QWindow::fromWinId(id);
             if (window != nullptr) {
@@ -354,7 +355,7 @@ void Application::changeMeOpacity(const double &opacity)
 {
     if(m_screenDesktopWid.size()>0)
     {
-        m_backgroudTransparent = opacity;
+        m_moreData.m_WallpaperTransparency = opacity;
         for (unsigned long id : m_screenWid) {
             QWindow *window = QWindow::fromWinId(id);
             if (window != nullptr) {

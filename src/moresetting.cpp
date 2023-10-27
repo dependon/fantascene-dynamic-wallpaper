@@ -24,7 +24,7 @@
 
 #include <QTimer>
 #include <QDesktopWidget>
-
+#include "ini/inimanager.h"
 MoreSetting::MoreSetting(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MoreSetting)
@@ -76,15 +76,18 @@ void MoreSetting::setData(const MoreSetData &data)
     } else {
         ui->topBox->setCurrentText(tr("false"));
     }
-
-}
-
-void MoreSetting::showEvent(QShowEvent *event)
-{
+    if(data.isEventPenetration)
+    {
+        ui->eventBox->setCurrentText(tr("true"));
+    }
+    else
+    {
+        ui->eventBox->setCurrentText(tr("false"));
+    }
     ui->label_name->setText(dApp->m_currentDesktopName);
-    ui->desktop_transparency->setValue(dApp->m_desktopTransparent *100);
-    ui->back_transparency->setValue(dApp->m_backgroudTransparent *100);
-    return QWidget::showEvent(event);
+    ui->desktop_transparency->setValue(dApp->m_moreData.m_DesktopTransparency *100.0);
+    ui->back_transparency->setValue(dApp->m_moreData.m_WallpaperTransparency *100.0);
+
 }
 
 void MoreSetting::on_okBtn_clicked()
@@ -132,6 +135,20 @@ void MoreSetting::on_okBtn_clicked()
         }
         dApp->m_moreData.isTop = false;
     }
+    QString isEvent = ui->eventBox->currentText();
+    if (isEvent.contains(tr("true"))) {
+        if(dApp->m_moreData.isEventPenetration!= true)
+        {
+            Q_EMIT dApp->sigWallpaperEventChanged(true);
+        }
+        dApp->m_moreData.isEventPenetration = true;
+    } else {
+        if(dApp->m_moreData.isEventPenetration!= false)
+        {
+            Q_EMIT dApp->sigWallpaperEventChanged(false);
+        }
+        dApp->m_moreData.isEventPenetration = false;
+    }
 
     Q_EMIT dApp->moreSettingSave();
     close();
@@ -156,10 +173,15 @@ void MoreSetting::on_desktop_transparency_valueChanged(int value)
 {
     double dop = (double)value/100.0;
     dApp->changePidOpacity(dop);
+    dApp->m_moreData.m_DesktopTransparency = dop;
+    IniManager::instance()->setValue("WallPaper/DesktopTransparency",QString::number(dop));
+
 }
 
 void MoreSetting::on_back_transparency_valueChanged(int value)
 {
     double dop = (double)value/100.0;
     dApp->changeMeOpacity(dop);
+    dApp->m_moreData.m_WallpaperTransparency = dop;
+    IniManager::instance()->setValue("WallPaper/WallpaperTransparency",QString::number(dop));
 }

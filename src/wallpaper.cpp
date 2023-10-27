@@ -44,7 +44,7 @@
 #include <QGuiApplication>
 #include <QEvent>
 #include <QMouseEvent>
-
+#include "ini/inimanager.h"
 #ifdef Q_OS_LINUX
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
@@ -105,6 +105,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
     connect(dApp, &Application::sigSetTransparency, this, &Wallpaper::slotSetTransparency);
     connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
+    connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
 
     QDesktopWidget *desktopwidget = QApplication::desktop();
     connect(desktopwidget, &QDesktopWidget::resized, this, [ = ] {
@@ -183,9 +184,14 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     });
 
     setVolume(0);
-
-
-
+    if(IniManager::instance()->contains("Wallpaper/EventPenetration"))
+    {
+        bool bEvent = IniManager::instance()->value("Wallpaper/EventPenetration").toBool();
+        if(bEvent)
+        {
+            slotWallpaperEventChanged(bEvent);
+        }
+    }
 
 
 }
@@ -482,6 +488,11 @@ void Wallpaper::registerDesktop()
     });
     if (!dApp->m_screenWid.contains(winId())) {
         dApp->m_screenWid.push_back(winId());
+        QWindow *window = QWindow::fromWinId(winId());
+        if(window)
+        {
+            window->setOpacity(dApp->m_moreData.m_WallpaperTransparency);
+        }
     }
 #endif
 
@@ -765,7 +776,10 @@ void Wallpaper::slotMouseClick(const int &index)
     }
 
 }
+#include <X11/extensions/shape.h>
+#include <X11/extensions/Xrender.h>
 
+#define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::slotActiveWallpaper(bool bRet)
 {
     if(bRet)
@@ -788,6 +802,59 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
     }
 }
 
+void Wallpaper::slotWallpaperEventChanged(bool bRet)
+{
+    Atom xa = 1247;
+    if (xa != None) {
+        long prop = 0;
+
+        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+                        PropModeAppend, (unsigned char *) &prop, 1);
+    }
+
+    xa = 355;
+    if (xa != None) {
+        Atom xa_prop = 357;
+
+        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+                        PropModeAppend, (unsigned char *) &xa_prop, 1);
+    }
+    QWindow *window = QWindow::fromWinId(winId());
+    if (window) {
+        window->setOpacity(0.99);
+    }
+
+    if (1) {
+        xa = ATOM(_WIN_LAYER);
+        if (xa != None) {
+            long prop = 0;
+
+            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+                            PropModeAppend, (unsigned char *) &prop, 1);
+        }
+
+        xa = ATOM(_NET_WM_STATE);
+        if (xa != None) {
+            Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
+
+            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+                            PropModeAppend, (unsigned char *) &xa_prop, 1);
+        }
+    }
+
+    //是否事件穿透
+    Region region;
+
+    region = XCreateRegion();
+    if (region && bRet) {
+        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
+    }
+    else
+    {
+        XShapeCombineMask(QX11Info::display(), winId(), ShapeInput, 0, 0, None, ShapeSet);
+    }
+    dApp->changeMeOpacity(dApp->m_moreData.m_WallpaperTransparency);
+}
 
 void Wallpaper::LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos)
 {

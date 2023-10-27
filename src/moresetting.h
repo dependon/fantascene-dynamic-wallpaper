@@ -36,8 +36,7 @@ public:
     ~MoreSetting();
 
     void setData(const MoreSetData &data);
-protected:
-    virtual void showEvent(QShowEvent *event);
+
 private Q_SLOTS:
     void on_okBtn_clicked();
 

@@ -115,6 +115,8 @@ Q_SIGNALS:
 
     void sigWallpaperTopChanged(bool);
 
+    void sigWallpaperEventChanged(bool);
+
 public:
 
     QRect m_manual{0, 0, 0, 0};
@@ -144,9 +146,6 @@ public:
     QString m_currentDesktopName;
 
     QList<QWindow> m_DesktopWindow;
-
-    double m_desktopTransparent{0.99};
-    double m_backgroudTransparent{0.99};
 
 };
 
