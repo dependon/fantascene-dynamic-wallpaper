@@ -67,7 +67,7 @@
 
 #include <iostream>
 #include <QStandardPaths>
-
+#include <QScreen>
 #ifdef USE_WEBENGINE
 
 #include <QWebEngineView>
@@ -625,34 +625,45 @@ void Wallpaper::updateGeometry()
 
             int i = 1;
             int iX =0;
+            QScreen * priScreen = QGuiApplication::screenAt(QPoint(0,0));
+            qDebug()<< "prj: "<<priScreen->name();
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
-                if (i == 1 && m_mpv) {
+                qDebug()<<"screen->name() "<<screen->name() ;
+                if(screen->name() == priScreen->name() && m_mpv)
+                {
                     m_mpv->setGeometry(screen->geometry());
                     m_mpv->setMinimumWidth(screen->geometry().width());
                     iX = screen->geometry().width();
+                    qDebug()<<"Main : "<< screen->geometry();
                     i++;
                     continue;
                 }
-                if (i == 2 && m_mpv2) {
-                    m_mpv2->setGeometry(iX,0,screen->geometry().width(),screen->geometry().height());
-                    i++;
-                    continue;
-                }
-                if (i == 1 && m_webView) {
+                if (screen->name() == priScreen->name()&& m_webView) {
                     m_webView->setGeometry(screen->geometry());
                     m_webView->setMinimumWidth(screen->geometry().width());
                     iX = screen->geometry().width();
                     i++;
                     continue;
                 }
-                if (i == 2 && m_webView2) {
+            }
+
+            for (auto screen : qApp->screens()) {
+                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                qDebug()<<"screen->name() "<<screen->name() << screen->geometry().y() ;
+                if(screen->name() != priScreen->name() && m_mpv2){
+                    m_mpv2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
+                    i++;
+                     qDebug()<<"Main2 : "<< screen->geometry();
+                    continue;
+                }
+                if (screen->name() != priScreen->name() && m_webView2) {
                     m_webView2->setGeometry(iX,0,screen->geometry().width(),screen->geometry().height());
                     i++;
                     continue;
                 }
-
             }
+
 
         } else if (dApp->m_cuurentMode == IdlayoutScreen)
         {
