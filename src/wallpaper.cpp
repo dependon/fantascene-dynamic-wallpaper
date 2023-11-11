@@ -620,12 +620,14 @@ void Wallpaper::updateGeometry()
             this->hide();
             this->show();
             this->raise();
+            QScreen * priScreen = QGuiApplication::primaryScreen();
+#else
+            QScreen * priScreen = QGuiApplication::screenAt(QPoint(0,0));
 #endif
             qDebug()<<this->size();
 
             int i = 1;
             int iX =0;
-            QScreen * priScreen = QGuiApplication::screenAt(QPoint(0,0));
             qDebug()<< "prj: "<<priScreen->name();
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
