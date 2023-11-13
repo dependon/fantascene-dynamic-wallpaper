@@ -1,5 +1,5 @@
 #include "customwebengineview.h"
-
+#ifdef USE_WEBENGINE
 CustomWebEngineView::CustomWebEngineView(QWidget *parent)
     : QWebEngineView(parent)
 {
@@ -15,3 +15,4 @@ QWebEngineView *CustomWebEngineView::createWindow(QWebEnginePage::WebWindowType 
 //    newWebView->resize(this->size());
 //    return newWebView;
 }
+#endif
