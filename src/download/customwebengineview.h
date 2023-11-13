@@ -1,6 +1,6 @@
 #ifndef CUSTOMWEBENGINEVIEW_H
 #define CUSTOMWEBENGINEVIEW_H
-
+#ifdef USE_WEBENGINE
 #include <QWebEngineView>
 #include <QWebEnginePage>
 class CustomWebEngineView : public QWebEngineView
@@ -12,5 +12,5 @@ public:
 protected:
     QWebEngineView* createWindow(QWebEnginePage::WebWindowType _type) override;
 };
-
+#endif
 #endif // CUSTOMWEBENGINEVIEW_H
