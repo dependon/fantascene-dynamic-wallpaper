@@ -51,6 +51,8 @@ private Q_SLOTS:
 
     void on_deletePlaylist_clicked();
 
+    void on_setWallPaper2_clicked();
+
 private:
     Ui::historyWidget *ui;
     view *m_viewHistory{nullptr};

@@ -43,8 +43,10 @@ public:
     void LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos);
 
     void setIconVisble(bool visble);
+    void refreashLayout();
 public Q_SLOTS:
     void setFile(const QString &path);
+    void setFile2(const QString &path);
     void setVolume(const qint32 volume);
     void setScreen(const int &index);
     void clear();

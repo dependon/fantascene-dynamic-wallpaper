@@ -32,6 +32,7 @@
 #include <QPainter>
 #include <QProcess>
 #include <QDateTime>
+#include <QDesktopWidget>
 
 #include "db/dbmanager.h"
 
@@ -119,7 +120,7 @@ Application::Application(int &argc, char **argv)
 //    this->setProductIcon(QIcon(":/install/wallpaper.png"));
     this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
-
+    m_currentScreenNum = desktop()->screenCount();
     m_pplaylistTimer = new QTimer(this);
     connect(m_pplaylistTimer, &QTimer::timeout, this, [ = ] {
         if (m_isPlayList && m_playlistPath.contains(m_currentPath))

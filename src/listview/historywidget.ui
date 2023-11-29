@@ -46,6 +46,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="setWallPaper2">
+       <property name="text">
+        <string>Set Wallpaper 2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="delWallPaper">
        <property name="text">
         <string>Delete</string>

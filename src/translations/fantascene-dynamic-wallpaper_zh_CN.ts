@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="108"/>
         <location filename="../application.cpp" line="109"/>
+        <location filename="../application.cpp" line="110"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation></translation>
     </message>
@@ -41,7 +41,7 @@
     <message>
         <location filename="../help/helpdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../help/helpdialog.ui" line="53"/>
@@ -478,17 +478,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="445"/>
+        <location filename="../wallpaper.cpp" line="433"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="450"/>
+        <location filename="../wallpaper.cpp" line="438"/>
         <source>Extend</source>
         <translation>扩展</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="455"/>
+        <location filename="../wallpaper.cpp" line="443"/>
         <source>Manual</source>
         <translatorcomment>手动</translatorcomment>
         <translation>手动</translation>
@@ -513,33 +513,38 @@
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="51"/>
-        <location filename="../listview/historywidget.ui" line="98"/>
+        <source>Set Wallpaper 2</source>
+        <translation>设置壁纸</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="105"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Import</source>
         <translatorcomment>导入</translatorcomment>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="79"/>
+        <location filename="../listview/historywidget.ui" line="86"/>
         <source>Playlist</source>
         <translation>循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="91"/>
+        <location filename="../listview/historywidget.ui" line="98"/>
         <source>Add Playlist</source>
         <translation>加入循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="105"/>
+        <location filename="../listview/historywidget.ui" line="112"/>
         <source>Loop play</source>
         <translation>是否循环播放</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="112"/>
+        <location filename="../listview/historywidget.ui" line="119"/>
         <source>Loop playback settings</source>
         <translation>循环播放设置</translation>
     </message>
@@ -549,18 +554,18 @@
         <translation>历史壁纸</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete!!</source>
         <translation>删除!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
         <source>Delete all history imports ?</source>
         <translation>是否删除所有?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete all playback ?</source>
         <translation>删除所有循环播放列表?</translation>
     </message>
@@ -574,233 +579,245 @@
         <translation>主窗体</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="102"/>
+        <location filename="../settingwindow.ui" line="24"/>
+        <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
         <translation>选择文件</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="142"/>
-        <location filename="../settingwindow.cpp" line="606"/>
+        <location filename="../settingwindow.ui" line="317"/>
+        <location filename="../settingwindow.cpp" line="659"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="81"/>
+        <location filename="../settingwindow.ui" line="181"/>
         <source>Volume</source>
         <translation>音量</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
+        <location filename="../settingwindow.ui" line="145"/>
+        <source>Screen 2 independent playback</source>
+        <translation>屏幕2独立壁纸</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="154"/>
         <source>Transparency</source>
         <translation>透明度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="423"/>
-        <location filename="../settingwindow.cpp" line="92"/>
+        <location filename="../settingwindow.ui" line="214"/>
+        <location filename="../settingwindow.cpp" line="100"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="442"/>
-        <location filename="../settingwindow.cpp" line="104"/>
+        <location filename="../settingwindow.ui" line="233"/>
+        <location filename="../settingwindow.cpp" line="112"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="461"/>
+        <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
         <translation>设置新壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="480"/>
+        <location filename="../settingwindow.ui" line="265"/>
+        <source>Set New 2</source>
+        <translation>设置新壁纸2</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="284"/>
         <source>Hide</source>
         <translation>隐藏窗口</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="124"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Model</source>
         <translation>模式</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="132"/>
+        <location filename="../settingwindow.ui" line="307"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="137"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Extend</source>
         <translation>扩展</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="150"/>
+        <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
         <translation>开机自启动</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="161"/>
+        <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
         <translation>视频比例</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="175"/>
-        <location filename="../settingwindow.cpp" line="700"/>
+        <location filename="../settingwindow.ui" line="350"/>
+        <location filename="../settingwindow.cpp" line="781"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="180"/>
+        <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="185"/>
+        <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="190"/>
+        <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="195"/>
+        <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="200"/>
+        <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="205"/>
-        <location filename="../settingwindow.cpp" line="712"/>
+        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.cpp" line="793"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="489"/>
+        <location filename="../settingwindow.ui" line="521"/>
         <source>Dowload Wallpaper</source>
         <translation>下载壁纸(来自网络)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="49"/>
+        <location filename="../settingwindow.ui" line="530"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="56"/>
+        <location filename="../settingwindow.ui" line="537"/>
         <source>Wallpaper Local</source>
         <translation>本地壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="63"/>
-        <location filename="../settingwindow.cpp" line="111"/>
+        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.cpp" line="119"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="70"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Wallpaper Engine-plugin</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="241"/>
+        <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
         <translatorcomment>横向偏移</translatorcomment>
         <translation>横向偏移</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="255"/>
+        <location filename="../settingwindow.ui" line="430"/>
         <source>Y</source>
         <translatorcomment>纵向偏移</translatorcomment>
         <translation>纵向偏移</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="366"/>
+        <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
         <translation>github主页</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="373"/>
+        <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
         <translatorcomment>新版本(gitee)</translatorcomment>
         <translation>新版本(gitee)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
         <translatorcomment>新版本(github)</translatorcomment>
         <translation>新版本(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="215"/>
+        <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="109"/>
+        <location filename="../settingwindow.ui" line="31"/>
+        <location filename="../settingwindow.ui" line="49"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="222"/>
+        <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
         <translation>执行比例</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="269"/>
+        <location filename="../settingwindow.ui" line="444"/>
         <source>Width</source>
         <translation>宽度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="283"/>
+        <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
         <translation>高度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="297"/>
+        <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
         <translation>执行自定义尺寸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="387"/>
+        <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
         <translation>报告bug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="115"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Main View</source>
         <translation>主窗体</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="78"/>
+        <location filename="../settingwindow.cpp" line="86"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="99"/>
+        <location filename="../settingwindow.cpp" line="107"/>
         <source>Screenshot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="132"/>
+        <location filename="../settingwindow.cpp" line="140"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="140"/>
+        <location filename="../settingwindow.cpp" line="148"/>
         <source>github</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="157"/>
+        <location filename="../settingwindow.cpp" line="165"/>
         <source>Double click to open the configuration interface</source>
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="208"/>
+        <location filename="../settingwindow.cpp" line="218"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>

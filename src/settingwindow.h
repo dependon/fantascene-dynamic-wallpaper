@@ -121,6 +121,8 @@ private Q_SLOTS:
     void on_autoStartBox_stateChanged(int arg1);
 
     void pathChanged(const QString &path);
+    void pathChanged2(const QString &path);
+
     void on_comboBox_activated(const QString &arg1);
 
     void on_setManual_clicked();
@@ -132,7 +134,7 @@ private Q_SLOTS:
     void on_history_clicked();
 
     void slotWallPaper(const QString &path);
-
+    void slotWallPaper2(const QString &path);
 
     void on_giteeWeb_clicked();
 
@@ -161,6 +163,15 @@ private Q_SLOTS:
     void on_localBtn_clicked();
 
     void on_liveBtn_clicked();
+
+    void on_checkBox2Inde_stateChanged(int arg1);
+
+    void on_pathBtn2_clicked();
+
+    void on_pathEdit2_textChanged(const QString &arg1);
+
+    void on_setBtn2_clicked();
+
 
 public Q_SLOTS:
     void activeWindow();

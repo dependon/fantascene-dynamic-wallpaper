@@ -73,6 +73,14 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     ui->pathEdit->setAcceptDrops(true);
     setAcceptDrops(true);
 
+    bool isPath2 = dApp->m_isPath2 && qApp->desktop()->screenCount() > 1;
+    ui->pathBtn2->setVisible(isPath2);
+    ui->pathEdit2->setVisible(isPath2);
+    ui->pixThumbnail2->setVisible(isPath2);
+    ui->setBtn2->setVisible(isPath2);
+    ui->checkBox2Inde->setVisible(qApp->desktop()->screenCount() > 1);
+
+
     m_traymenu = new QMenu();
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText(tr("Exit"));
@@ -171,7 +179,9 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     });
 
     connect(dApp, &Application::pathChanged, this, &settingWindow::pathChanged);
+    connect(dApp, &Application::pathChanged2, this, &settingWindow::pathChanged2);
     connect(dApp, &Application::setWallPaper, this, &settingWindow::slotWallPaper);
+    connect(dApp, &Application::setWallPaper2, this, &settingWindow::slotWallPaper2);
 
     connect(dApp, &Application::saveSetting, this, &settingWindow::saveSettings);
 
@@ -231,6 +241,19 @@ void settingWindow::pathChanged(const QString &path)
         }
     }
 }
+
+void settingWindow::pathChanged2(const QString &path)
+{
+    dApp->m_currentPath2 = path;
+    if (!dApp->m_currentPath2.isEmpty()) {
+        ui->pathEdit2->setText(dApp->m_currentPath2);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath2);
+        if (!pix.isNull()) {
+            ui->pixThumbnail2->setPixmap(pix);
+        }
+    }
+}
+
 settingWindow::~settingWindow()
 {
     if (m_history) {
@@ -243,6 +266,8 @@ settingWindow::~settingWindow()
 void settingWindow::readSettings()
 {
     dApp->m_currentPath = IniManager::instance()->value("WallPaper/CurrentPath").toString();
+    dApp->m_isPath2 = IniManager::instance()->value("WallPaper/IsPath2").toBool();
+    dApp->m_currentPath2 = IniManager::instance()->value("WallPaper/CurrentPath2").toString();
     m_crrenNumber = IniManager::instance()->value("WallPaper/ScrrenNumber").toInt(); //1-2
     m_isAutoStart = IniManager::instance()->value("WallPaper/isAutoStart").toInt();
     int widthPY = IniManager::instance()->value("WallPaper/widthPY").toInt();
@@ -352,6 +377,22 @@ void settingWindow::readSettings()
         //加入数据库
         DBManager::instance()->addPlayList(dApp->m_playlistPath);
     }
+    if(dApp->m_isPath2 && dApp->m_currentScreenNum > 1)
+    {
+        ui->checkBox2Inde->setChecked(true);
+        ui->pathBtn2->setVisible(true);
+        ui->pathEdit2->setVisible(true);
+        ui->pixThumbnail2->setVisible(true);
+        ui->setBtn2->setVisible(true);
+    }
+    else
+    {
+        ui->checkBox2Inde->setChecked(false);
+        ui->pathBtn2->setVisible(false);
+        ui->pathEdit2->setVisible(false);
+        ui->pixThumbnail2->setVisible(false);
+        ui->setBtn2->setVisible(false);
+    }
 
 
 
@@ -370,6 +411,13 @@ void settingWindow::executeSettings()
         QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
+        }
+    }
+    if (!dApp->m_currentPath2.isEmpty()) {
+        ui->pathEdit2->setText(dApp->m_currentPath2);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath2);
+        if (!pix.isNull()) {
+            ui->pixThumbnail2->setPixmap(pix);
         }
     }
 
@@ -507,6 +555,10 @@ void settingWindow::on_setBtn_clicked()
         dApp->m_currentPath = ui->pathEdit->text();
         dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
         Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
+        if(qApp->desktop()->screenCount() > 1 && !dApp->m_isPath2)
+        {
+            Q_EMIT dApp->setPlayPath2(ui->pathEdit->text());
+        }
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->m_allPath.push_back(dApp->m_currentPath);
@@ -561,6 +613,7 @@ void settingWindow::on_startScreen_clicked()
     }
     Q_EMIT dApp->setScreen(index);
     on_setBtn_clicked();
+    on_setBtn2_clicked();
     on_startBtn_clicked();
 
 }
@@ -663,6 +716,10 @@ void settingWindow::slotWallPaper(const QString &path)
         dApp->m_currentPath = path;
         ui->pathEdit->setText(path);
         Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
+        if(qApp->desktop()->screenCount() > 1 && !dApp->m_isPath2)
+        {
+            Q_EMIT dApp->setPlayPath2(ui->pathEdit->text());
+        }
         QPixmap pix = dApp->getThumbnail(path);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
@@ -673,6 +730,30 @@ void settingWindow::slotWallPaper(const QString &path)
         dApp->m_allPath = dApp->m_allPath.toSet().toList();
         saveSettings();
         on_Slider_valueChanged(m_voiceVolume);
+    }
+}
+void settingWindow::slotWallPaper2(const QString &path)
+{
+    if (!path.isEmpty()) {
+        dApp->m_currentPath2 = path;
+        ui->pathEdit2->setText(path);
+        Q_EMIT dApp->setPlayPath2(ui->pathEdit2->text());
+        QPixmap pix = dApp->getThumbnail(path);
+        if (!pix.isNull()) {
+            ui->pixThumbnail2->setPixmap(pix);
+        }
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+        dApp->addLocalPaths(QStringList(dApp->m_currentPath2));
+        dApp->m_allPath = dApp->m_allPath.toSet().toList();
+        saveSettings();
+        on_Slider_valueChanged(m_voiceVolume);
+
+        ui->checkBox2Inde->setChecked(true);
+        ui->pathBtn2->setVisible(true);
+        ui->pathEdit2->setVisible(true);
+        ui->pixThumbnail2->setVisible(true);
+        ui->setBtn2->setVisible(true);
     }
 }
 
@@ -785,6 +866,7 @@ void settingWindow::slotMoreSettingSave()
     dApp->setMpvValue("hwdec", dApp->m_moreData.hwdec);
     slotShowDesktopIcon(dApp->m_moreData.isShowDesktopIcon);
     on_setBtn_clicked();
+    on_setBtn2_clicked();
     saveSettings();
 
 }
@@ -931,7 +1013,11 @@ void settingWindow::slotTimerSaveSettings()
 
     IniManager::instance()->setValue("WallPaper/ScrrenNumber", m_crrenNumber);
     IniManager::instance()->setValue("WallPaper/isAutoStart", m_isAutoStart);
+
     IniManager::instance()->setValue("WallPaper/CurrentPath", dApp->m_currentPath);
+    IniManager::instance()->setValue("WallPaper/IsPath2", dApp->m_isPath2);
+    IniManager::instance()->setValue("WallPaper/CurrentPath2", dApp->m_currentPath2);
+
     IniManager::instance()->setValue("WallPaper/Mode", ui->comboBox->currentText());
     IniManager::instance()->setValue("WallPaper/widthPY", dApp->m_manual.x());
     IniManager::instance()->setValue("WallPaper/heightPY", dApp->m_manual.y());
@@ -1193,4 +1279,61 @@ void settingWindow::on_liveBtn_clicked()
     m_downloadWidget->show();
     m_downloadWidget->move(screenWidth/2 - m_downloadWidget->width()/2,screenHeight/2 - m_downloadWidget->height()/2);
     m_downloadWidget->activateWindow();
+}
+
+void settingWindow::on_checkBox2Inde_stateChanged(int arg1)
+{
+    ui->pathBtn2->setVisible(arg1);
+    ui->pathEdit2->setVisible(arg1);
+    ui->pixThumbnail2->setVisible(arg1);
+    ui->setBtn2->setVisible(arg1);
+
+    dApp->m_isPath2 = arg1 ;
+    IniManager::instance()->setValue("WallPaper/IsPath2", dApp->m_isPath2);
+    if(dApp->m_isPath2 && !dApp->m_currentPath2.isEmpty())
+    {
+        Q_EMIT dApp->setPlayPath2(ui->pathEdit2->text());
+    }
+    else
+    {
+        Q_EMIT dApp->setPlayPath2(ui->pathEdit->text());
+    }
+}
+
+void settingWindow::on_pathBtn2_clicked()
+{
+    QString path = QFileDialog::getOpenFileName();
+    if (!path.isEmpty()) {
+        ui->pathEdit2->setText(path);
+        QPixmap pix = dApp->getThumbnail(path);
+        if (!pix.isNull()) {
+            ui->pixThumbnail2->setPixmap(pix);
+        }
+    }
+}
+
+void settingWindow::on_pathEdit2_textChanged(const QString &arg1)
+{
+    QPixmap pix = dApp->getThumbnail(arg1);
+    if (!pix.isNull()) {
+        ui->pixThumbnail2->setPixmap(pix);
+    }
+}
+
+void settingWindow::on_setBtn2_clicked()
+{
+    if (ui->pathEdit2->text() != nullptr) {
+        dApp->m_currentPath2 = ui->pathEdit2->text();
+        dApp->m_currentPath2 = dApp->m_currentPath2.replace("file://", "");
+        Q_EMIT dApp->setPlayPath2(ui->pathEdit2->text());
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+        dApp->m_allPath.push_back(dApp->m_currentPath2);
+        saveSettings();
+        Q_EMIT dApp->addPaperView(dApp->m_currentPath2);
+        QPixmap pix = dApp->getThumbnail(dApp->m_currentPath2);
+        if (!pix.isNull()) {
+            ui->pixThumbnail2->setPixmap(pix);
+        }
+    }
 }

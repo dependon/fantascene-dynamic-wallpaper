@@ -29,6 +29,11 @@ historyWidget::historyWidget(QWidget *parent) :
     m_viewPlayList->setFiles(dApp->m_playlistPath);
     ui->loopBox->setChecked(dApp->m_isPlayList);
 
+    if(dApp->m_currentScreenNum > 1)
+    {
+        ui->setWallPaper2->setVisible(true);
+    }
+
 }
 
 historyWidget::~historyWidget()
@@ -120,6 +125,15 @@ void historyWidget::on_deletePlaylist_clicked()
             dApp->clearPlayListPaths();
             m_viewPlayList->refresh();
         }
+    }
+    Q_EMIT dApp->saveSetting();
+}
+
+void historyWidget::on_setWallPaper2_clicked()
+{
+    if (m_viewHistory->m_allItemInfo.size() > m_viewHistory->currentIndex().row() && m_viewHistory->currentIndex().row() >= 0) {
+        QString path = m_viewHistory->m_allItemInfo[m_viewHistory->currentIndex().row()].path;
+        dApp->setWallPaper2(path);
     }
     Q_EMIT dApp->saveSetting();
 }
