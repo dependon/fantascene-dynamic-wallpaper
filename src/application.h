@@ -77,6 +77,7 @@ public:
 
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
+    void setPlayPath2(const QString &PATH);
     void setMpvPlay();
     void setMpvpause();
     void setMpvstop();
@@ -85,12 +86,14 @@ Q_SIGNALS:
 
     void setScreen(const int &index);
     void pathChanged(const QString &);
+    void pathChanged2(const QString &);
     void refreshPix(const QPixmap &);
     void setScreenMode(const QString &);
     void sigupdateGeometry();
     void quitApp();
 
     void setWallPaper(const QString &path);
+    void setWallPaper2(const QString &path);
     void saveSetting();
 
     void addPaperView(const QString &path);//加入全部播放列表
@@ -136,7 +139,9 @@ public:
 
     MoreSetData m_moreData;
 //    int m_isAutoMode{0};
-    QString m_currentPath;
+    QString m_currentPath; //主屏壁纸
+    bool m_isPath2{false};  //是否副屏显示其他壁纸
+    QString m_currentPath2; //副屏壁纸
 
     bool m_currentIsPlay{false};
 

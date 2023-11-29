@@ -95,6 +95,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
     connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
     connect(dApp, &Application::setPlayPath, this, &Wallpaper::setFile);
+    connect(dApp, &Application::setPlayPath2, this, &Wallpaper::setFile2);
     connect(dApp, &Application::setMpvPlay, this, &Wallpaper::play);
     connect(dApp, &Application::setMpvpause, this, &Wallpaper::pause);
     connect(dApp, &Application::setMpvstop, this, &Wallpaper::stop);
@@ -138,6 +139,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             if (index != 0) {
                 if (QFileInfo(arg).isFile()) {
                     setFile(arg);
+                    setFile2(arg);
                     play();
                     index1++;
                 }
@@ -172,6 +174,26 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                 }
             }
             setFile(playPath);
+            if(qApp->desktop()->screenCount() > 1 && !dApp->m_currentPath2.isEmpty() && dApp->m_isPath2)
+            {
+                QString playPath2;
+                dApp->m_currentPath2 = dApp->m_currentPath2.replace("file://", "");
+                if (!dApp->m_currentPath2.isEmpty()) {
+                    if (QFileInfo(dApp->m_currentPath2).isFile())
+                    {
+                        playPath2 = dApp->m_currentPath2;
+                    }
+                    else if (path.contains("www") || path.contains("http//") || path.contains("https//"))
+                    {
+                        playPath2 = dApp->m_currentPath2;
+                    }
+                }
+                setFile2(playPath2);
+            }
+            else if (qApp->desktop()->screenCount() > 1)
+            {
+                setFile2(playPath);
+            }
             play();
             dApp->m_currentPath = QFileInfo(dApp->m_currentPath).filePath();
             Q_EMIT dApp->pathChanged(dApp->m_currentPath);
@@ -201,38 +223,17 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
     switch (mode) {
     case IdCopyScreen: {
         if (qApp->desktop()->screenCount() > 1) {
-
             QString path = dApp->m_currentPath;
-            if (m_webView) {
-                if (!m_webView2) {
-                    m_webView2 = new webWidget(this);
-                    m_webView2->setContextMenuPolicy(Qt::NoContextMenu);
-                }
-                if (QFileInfo(path).isFile()) {
-                    m_webView2->load(QUrl("file://" + path));
-                } else {
-                    m_webView2->load(QUrl(path));
-                }
-
-                m_webView2->show();
-                layout()->addWidget(m_webView2);
-            } else if (nullptr == m_mpv2) {
-                m_mpv2 = new MpvWidget(this);
-                m_mpv2->setVisible(true);
-                m_mpv2->setProperty("loop", true);
-                m_mpv2->setProperty("panscan", 1);
-                m_mpv2->command(QStringList() << "loadfile" << path);
-                m_mpv2->setProperty("pause", true);
-                m_mpv2->setProperty("volume", 0);
-                layout()->addWidget(m_mpv2);
-
+            if(dApp->m_isPath2)
+            {
+                path = dApp->m_currentPath2;
             }
-
+            setFile2(path);
         }
         break;
     }
     case IdlayoutScreen: {
-        if (!m_webView2) {
+        if (nullptr != m_webView2) {
             layout()->removeWidget(m_webView2);
             delete m_webView2 ;
             m_webView2 = nullptr;
@@ -245,7 +246,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
         break;
     }
     case IdManualSet: {
-        if (!m_webView2) {
+        if (nullptr != m_webView2) {
             layout()->removeWidget(m_webView2);
             delete m_webView2 ;
             m_webView2 = nullptr;
@@ -280,13 +281,7 @@ void Wallpaper::setFile(const QString &path)
     }
 
     malloc_trim(0);
-//    de->setParent(this);
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
-        if (m_mpv2) {
-            layout()->removeWidget(m_mpv2);
-            m_mpv2->deleteLater();
-            m_mpv2 = nullptr;
-        }
         if (m_mpv) {
             layout()->removeWidget(m_mpv);
             m_mpv->deleteLater();
@@ -303,10 +298,36 @@ void Wallpaper::setFile(const QString &path)
             m_webView->load(QUrl(path));
         }
 
-
         m_webView->show();
-        layout()->addWidget(m_webView);
         pause();
+    }  else {
+        if (m_webView) {
+            layout()->removeWidget(m_webView);
+            delete m_webView;
+            m_webView = nullptr;
+        }
+        if (!m_mpv) {
+            m_mpv = new MpvWidget(this);
+            m_mpv->setGeometry(geometry());
+
+            m_mpv->setProperty("loop", true);
+            m_mpv->setProperty("panscan", 1);
+            m_mpv->setGeometry(geometry());
+            m_mpv->show();
+        }
+
+        m_mpv->command(QStringList() << "loadfile" << path);
+        m_mpv->setProperty("pause", true);
+    }
+    //        //发送读取配置文件
+    Q_EMIT dApp->sigReadPlayerConfig();
+
+    refreashLayout();
+}
+
+void Wallpaper::setFile2(const QString &path)
+{
+    if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
 
             QString path = dApp->m_currentPath;
@@ -321,65 +342,32 @@ void Wallpaper::setFile(const QString &path)
                 } else {
                     m_webView2->load(QUrl(path));
                 }
-
                 m_webView2->show();
-
-                layout()->addWidget(m_webView2);
             }
         }
-
     }  else {
-        if (m_webView) {
-            layout()->removeWidget(m_webView);
-            delete m_webView;
-            m_webView = nullptr;
-        }
         if (m_webView2) {
             layout()->removeWidget(m_webView2);
             delete m_webView2;
             m_webView2 = nullptr;
         }
-        if (!m_mpv) {
-            m_mpv = new MpvWidget(this);
-            m_mpv->setGeometry(geometry());
-
-            m_mpv->setProperty("loop", true);
-            m_mpv->setProperty("panscan", 1);
-            m_mpv->setGeometry(geometry());
-            m_mpv->show();
-            layout()->addWidget(m_mpv);
-
-
-            if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
-                if (!m_mpv2) {
-                    m_mpv2 = new MpvWidget(this);
-                }
-                m_mpv2->setProperty("loop", true);
-                m_mpv2->setProperty("panscan", 1);
-                m_mpv2->setGeometry(geometry());
-                m_mpv2->setProperty("volume", 0);
-                m_mpv2->show();
-                layout()->addWidget(m_mpv2);
+        if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
+            if (!m_mpv2) {
+                m_mpv2 = new MpvWidget(this);
             }
+            m_mpv2->setProperty("loop", true);
+            m_mpv2->setProperty("panscan", 1);
+            m_mpv2->setGeometry(geometry());
+            m_mpv2->setProperty("volume", 0);
+            m_mpv2->show();
         }
-
-        m_mpv->command(QStringList() << "loadfile" << path);
-        m_mpv->setProperty("pause", true);
         if (m_mpv2) {
             m_mpv2->command(QStringList() << "loadfile" << path);
-            m_mpv2->setProperty("pause", true);
+//            m_mpv2->setProperty("pause", true);
         }
-
-
     }
-    //        //发送读取配置文件
-    Q_EMIT dApp->sigReadPlayerConfig();
 
-    //暂时调用两次,为保证切换顺利
-    QTimer::singleShot(10, [ = ] {
-        updateGeometry();
-    });
-    updateGeometry();
+    refreashLayout();
 }
 
 void Wallpaper::setVolume(const qint32 volume)
@@ -906,4 +894,45 @@ void Wallpaper::setIconVisble(bool visble)
     if (m_iconView) {
         m_iconView->setVisible(visble);
     }
+}
+
+void Wallpaper::refreashLayout()
+{
+    if(m_mpv)
+    {
+        layout()->removeWidget(m_mpv);
+    }
+    if(m_webView)
+    {
+        layout()->removeWidget(m_webView);
+    }
+    if(m_mpv2)
+    {
+        layout()->removeWidget(m_mpv2);
+    }
+    if(m_webView2)
+    {
+        layout()->removeWidget(m_webView2);
+    }
+    if(m_mpv)
+    {
+        layout()->addWidget(m_mpv);
+    }
+    if(m_webView)
+    {
+        layout()->addWidget(m_webView);
+    }
+    if(m_mpv2)
+    {
+        layout()->addWidget(m_mpv2);
+    }
+    if(m_webView2)
+    {
+        layout()->addWidget(m_webView2);
+    }
+    //暂时调用两次,为保证切换顺利
+    QTimer::singleShot(10, [ = ] {
+        updateGeometry();
+    });
+    updateGeometry();
 }
