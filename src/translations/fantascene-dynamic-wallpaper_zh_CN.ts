@@ -514,7 +514,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="51"/>
         <source>Set Wallpaper 2</source>
-        <translation>设置壁纸</translation>
+        <translation>设置壁纸2</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="58"/>
