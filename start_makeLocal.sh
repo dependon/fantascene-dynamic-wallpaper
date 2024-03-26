@@ -2,6 +2,7 @@ sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg 
 sudo apt install qtwebengine5-dev
 sudo apt install libqt5opengl5-dev
 sudo apt install qt5-default
+sudo apt install qtdeclarative5-dev-tools
 mkdir build
 cd build
 qmake ..
