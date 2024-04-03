@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="104"/>
-        <location filename="../application.cpp" line="105"/>
+        <location filename="../application.cpp" line="109"/>
+        <location filename="../application.cpp" line="110"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation>fantasene-dynamic-wallpaper</translation>
     </message>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="96"/>
         <source>continue playing</source>
         <translation>Jatka soittamista</translation>
     </message>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="93"/>
+        <location filename="../moresetting.cpp" line="104"/>
         <source>default</source>
         <translation>oletusarvo</translation>
     </message>
@@ -321,8 +321,8 @@
     <message>
         <location filename="../moresetting.ui" line="135"/>
         <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="100"/>
-        <location filename="../moresetting.cpp" line="139"/>
+        <location filename="../moresetting.cpp" line="111"/>
+        <location filename="../moresetting.cpp" line="164"/>
         <source>other</source>
         <translation>muut</translation>
     </message>
@@ -334,18 +334,23 @@
     <message>
         <location filename="../moresetting.ui" line="165"/>
         <location filename="../moresetting.ui" line="190"/>
+        <location filename="../moresetting.ui" line="287"/>
         <location filename="../moresetting.cpp" line="69"/>
         <location filename="../moresetting.cpp" line="75"/>
-        <location filename="../moresetting.cpp" line="107"/>
-        <location filename="../moresetting.cpp" line="114"/>
+        <location filename="../moresetting.cpp" line="81"/>
+        <location filename="../moresetting.cpp" line="118"/>
+        <location filename="../moresetting.cpp" line="125"/>
+        <location filename="../moresetting.cpp" line="139"/>
         <source>true</source>
         <translation>true</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="170"/>
         <location filename="../moresetting.ui" line="195"/>
+        <location filename="../moresetting.ui" line="282"/>
         <location filename="../moresetting.cpp" line="71"/>
         <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.cpp" line="85"/>
         <source>false</source>
         <translation>false</translation>
     </message>
@@ -356,11 +361,31 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
+        <source>Desktop transparency </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="214"/>
+        <source>xx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="244"/>
+        <source>Wallpaper transparency </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="274"/>
+        <source>Event penetration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="299"/>
         <source>Confirm</source>
         <translation>Vahvista</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="214"/>
+        <location filename="../moresetting.ui" line="306"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
@@ -445,17 +470,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="439"/>
+        <location filename="../wallpaper.cpp" line="433"/>
         <source>Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="444"/>
+        <location filename="../wallpaper.cpp" line="438"/>
         <source>Extend</source>
         <translation>Laajenna</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="449"/>
+        <location filename="../wallpaper.cpp" line="443"/>
         <source>Manual</source>
         <translation>Käsikirja</translation>
     </message>
@@ -479,32 +504,37 @@
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="51"/>
-        <location filename="../listview/historywidget.ui" line="98"/>
+        <source>Set Wallpaper 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="105"/>
         <source>Delete</source>
         <translation>Poista</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Import</source>
         <translation>Tuo</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="79"/>
+        <location filename="../listview/historywidget.ui" line="86"/>
         <source>Playlist</source>
         <translation>Soittoluettelo</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="91"/>
+        <location filename="../listview/historywidget.ui" line="98"/>
         <source>Add Playlist</source>
         <translation>Lisää soittolista</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="105"/>
+        <location filename="../listview/historywidget.ui" line="112"/>
         <source>Loop play</source>
         <translation>Loop play</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="112"/>
+        <location filename="../listview/historywidget.ui" line="119"/>
         <source>Loop playback settings</source>
         <translation>Silmukka toistoasetukset</translation>
     </message>
@@ -514,18 +544,18 @@
         <translation>Taustakuvien historia</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete!!</source>
         <translation>Poista!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
         <source>Delete all history imports ?</source>
         <translation>Poistetaanko kaikki historiatiedot?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete all playback ?</source>
         <translation>Poistetaanko kaikki toisto?</translation>
     </message>
@@ -538,228 +568,240 @@
         <translation>Pääikkuna</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="102"/>
+        <location filename="../settingwindow.ui" line="24"/>
+        <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
         <translation>Tiedosto</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="109"/>
+        <location filename="../settingwindow.ui" line="31"/>
+        <location filename="../settingwindow.ui" line="49"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
         <translation>/usr/share/fantastinen-dynaaminen-taustakuva/normaali/normaali.mp4</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
+        <location filename="../settingwindow.ui" line="145"/>
+        <source>Screen 2 independent playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="154"/>
         <source>Transparency</source>
         <translation>Avoimuus</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="81"/>
+        <location filename="../settingwindow.ui" line="181"/>
         <source>Volume</source>
         <translation>Tilavuus</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="423"/>
-        <location filename="../settingwindow.cpp" line="90"/>
+        <location filename="../settingwindow.ui" line="214"/>
+        <location filename="../settingwindow.cpp" line="100"/>
         <source>Play</source>
         <translation>Toista</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="442"/>
-        <location filename="../settingwindow.cpp" line="102"/>
+        <location filename="../settingwindow.ui" line="233"/>
+        <location filename="../settingwindow.cpp" line="112"/>
         <source>Pause</source>
         <translation>Keskeytä</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="461"/>
+        <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
         <translation>Aseta uusi</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="480"/>
+        <location filename="../settingwindow.ui" line="265"/>
+        <source>Set New 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="284"/>
         <source>Hide</source>
         <translation>Piilota</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="124"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Model</source>
         <translation>Malli</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="132"/>
+        <location filename="../settingwindow.ui" line="307"/>
         <source>Copy</source>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="137"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Extend</source>
         <translation>Laajenna</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="142"/>
-        <location filename="../settingwindow.cpp" line="593"/>
+        <location filename="../settingwindow.ui" line="317"/>
+        <location filename="../settingwindow.cpp" line="659"/>
         <source>Manual</source>
         <translation>Käsikirja</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="150"/>
+        <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
         <translation>Lisää käynnistykseen</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="161"/>
+        <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
         <translation>Videon kuvasuhde</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="175"/>
-        <location filename="../settingwindow.cpp" line="687"/>
+        <location filename="../settingwindow.ui" line="350"/>
+        <location filename="../settingwindow.cpp" line="781"/>
         <source>default</source>
         <translation>oletusarvo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="180"/>
+        <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
         <translation>4:3</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="185"/>
+        <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
         <translation>16:9</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="190"/>
+        <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
         <translation>16:10</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="195"/>
+        <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
         <translation>1.85:1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="200"/>
+        <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
         <translation>2.35:1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="205"/>
-        <location filename="../settingwindow.cpp" line="699"/>
+        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.cpp" line="793"/>
         <source>custom</source>
         <translation>custom</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="215"/>
+        <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
         <translation>1.33</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="222"/>
+        <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
         <translation>Käytä skaalaa</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="241"/>
+        <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
         <translation>X</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="255"/>
+        <location filename="../settingwindow.ui" line="430"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="269"/>
+        <location filename="../settingwindow.ui" line="444"/>
         <source>Width</source>
         <translation>Leveys</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="283"/>
+        <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
         <translation>Korkeus</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="297"/>
+        <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
         <translation>Käytä mukautettuja ulottuvuuksia</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="366"/>
+        <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
         <translation>githubWeb</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="373"/>
+        <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
         <translation>new( gitee)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
         <translation>new( github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="387"/>
+        <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="489"/>
+        <location filename="../settingwindow.ui" line="521"/>
         <source>Dowload Wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="49"/>
+        <location filename="../settingwindow.ui" line="530"/>
         <source>Advanced Settings</source>
         <translation>Lisäasetukset</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="56"/>
+        <location filename="../settingwindow.ui" line="537"/>
         <source>Wallpaper Local</source>
         <translation>Paikallinen taustakuva</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="63"/>
-        <location filename="../settingwindow.cpp" line="109"/>
+        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.cpp" line="119"/>
         <source>Wallpaper History</source>
         <translation>Taustakuvien historia</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="70"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>Taustakuvikoneliitännäinen</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="76"/>
+        <location filename="../settingwindow.cpp" line="86"/>
         <source>Exit</source>
         <translation>Poistu</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="97"/>
+        <location filename="../settingwindow.cpp" line="107"/>
         <source>Screenshot</source>
         <translation>Kuvakaappaus</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="113"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Main View</source>
         <translation>Päänäkymä</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="130"/>
+        <location filename="../settingwindow.cpp" line="140"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="138"/>
+        <location filename="../settingwindow.cpp" line="148"/>
         <source>github</source>
         <translation>github</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="155"/>
+        <location filename="../settingwindow.cpp" line="165"/>
         <source>Double click to open the configuration interface</source>
         <translation>Kaksoisnapsauta asetusliittymän avaamiseksi</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="206"/>
+        <location filename="../settingwindow.cpp" line="218"/>
         <source>Latest version</source>
         <translation>Viimeisin versio</translation>
     </message>
