@@ -27,25 +27,18 @@ Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, li
  libxcb-ewmh-dev,
  libxcb-shape0-dev,
  libdframeworkdbus-dev,
- libxcb-util0-dev,
  qtdeclarative5-dev,
- deepin-gettext-tools,
  libkf5codecs-dev,
  libdtkcore-dev,
  libdtkcore5-bin,
  libdmr-dev,
- dh-systemd,
  deepin-anything-dev[i386 amd64],
- deepin-anything-server-dev[i386 amd64],
  libudisks2-qt5-dev(>=5.0.6),
  libxrender-dev,
  libmtdev-dev,
  libfontconfig1-dev,
- libfreetype6-dev,
- libegl1-mesa-dev,
  libglibmm-2.4-dev,
  libgio-qt-dev(>=0.0.11),
- libdisomaster-dev(>=5.0.7),
  libssl-dev,
  libmediainfo-dev,
  libqt5xdg-dev,
@@ -57,33 +50,13 @@ Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, li
  libhtmlcxx-dev,
  libxml2-dev,
  libmimetic-dev,
- libboost-date-time-dev,
  libboost-filesystem-dev,
- libboost-iostreams-dev,
- libboost-regex-dev,
- libboost-system-dev,
- libboost-test-dev,
- libboost-thread-dev,
  deepin-desktop-base | deepin-desktop-server | deepin-desktop-device
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
 Package: fantascene-dynamic-wallpaper
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends},
- libpoppler-cpp0v5 (>= 0.48.0),
- gvfs-backends(>=1.27.3),
- cryptsetup,
- libkf5codecs5,
- deepin-anything-libs[i386 amd64],
- liblucene++-dev,
- libgsf-1-dev,
- libglib2.0-dev,
- libhtmlcxx-dev,
- libxml2-dev,
- libmimetic-dev,
- libudisks2-qt5 (>=5.0.6),
- libdisomaster (>=5.0.7),
- libgio-qt (>=0.0.11)
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for fantascene.
