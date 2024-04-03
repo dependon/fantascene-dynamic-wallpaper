@@ -51,7 +51,8 @@ void DFMLogManager::initFilterAppender()
                 "%{time}{yyyy-MM-dd, HH:mm:ss.zzz} [%{type:-7}] [%{file:-20} %{function:-35} %{line}] %{message}\n");
     m_filterAppender->setLogFilesLimit(5);
     m_filterAppender->setDatePattern(FilterAppender::DailyRollover);
-    logger->registerAppender(m_filterAppender);
+
+    getLogger()->registerAppender(m_filterAppender);
 }
 
 FilterAppender *DFMLogManager::filterAppender()

@@ -30,6 +30,7 @@
 #include <QMenu>
 #include <QPainter>
 #include <QToolTip>
+#include <QTimer>
 
 #include <danchors.h>
 #include <DTextEdit>
@@ -267,7 +268,6 @@ void FileIconItem::showAlertMessage(const QString &text, int duration)
         d->tooltip->setBackgroundColor(palette().color(backgroundRole()));
         d->tooltip->setArrowX(15);
         d->tooltip->setArrowHeight(5);
-
         QTimer::singleShot(duration, d->tooltip, [d] {
             d->tooltip->deleteLater();
             d->tooltip = Q_NULLPTR;

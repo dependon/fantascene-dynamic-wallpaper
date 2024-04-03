@@ -2855,7 +2855,7 @@ void DFileView::switchViewMode(DFileView::ViewMode mode)
                     d->headerViewHolder->setFixedHeight(d->headerView->height());
                 });
                 connect(d->headerView, &DFMHeaderView::sectionResized, d->headerView, &DFMHeaderView::adjustSize);
-                connect(d->headerView, SIGNAL(sectionHandleDoubleClicked(int)), this, SLOT(_q_onSectionHandleDoubleClicked(int)));
+                //connect(d->headerView, SIGNAL(sectionHandleDoubleClicked(int)), this, SLOT(_q_onSectionHandleDoubleClicked(int)));
             } else {
                 d->headerView = new DFMHeaderView(Qt::Horizontal, this);
                 d->headerViewHolder = d->headerView;
@@ -3708,4 +3708,4 @@ void DFileViewPrivate::_q_onSectionHandleDoubleClicked(int logicalIndex)
     headerView->resizeSection(logicalIndex, column_max_width);
 }
 
-#include "moc_dfileview.cpp"
+//#include "moc_dfileview.cpp"

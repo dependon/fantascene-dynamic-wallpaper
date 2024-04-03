@@ -1,12 +1,38 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef PLAYERWINDOW_H
 #define PLAYERWINDOW_H
 
 #define protected public
 #include <QtWidgets/QOpenGLWidget>
 #include <mpv/client.h>
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
 #include <mpv/render_gl.h>
 #include "mympv/qthelper.hpp"
+#else
+#include <mpv/opengl_cb.h>
+#include <mpv/qthelper.hpp>
+#endif
 #include <QSize>
+
 class MpvWidget Q_DECL_FINAL: public QOpenGLWidget
 {
     Q_OBJECT
@@ -27,12 +53,20 @@ protected:
 private Q_SLOTS:
     void on_mpv_events();
     void maybeUpdate();
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+#else
+    void swapped();
+#endif
 private:
     void handle_mpv_event(mpv_event *event);
     static void on_update(void *ctx);
 
     mpv_handle *mpv;
+#if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     mpv_render_context *mpv_gl;
+#else
+    mpv_opengl_cb_context *mpv_gl;
+#endif
     bool m_bScrrenShot{false};
 
 

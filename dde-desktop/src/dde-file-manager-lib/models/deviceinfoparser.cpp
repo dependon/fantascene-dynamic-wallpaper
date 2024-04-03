@@ -131,7 +131,7 @@ bool DeviceInfoParser::loadLshwDatabase()
         startIndex = i + 1;
 
         if (line.trimmed().isEmpty()) {
-            dWarning("DeviceInfoParser::loadLshwDatabase lshw output contains empty line!");
+            //dWarning("DeviceInfoParser::loadLshwDatabase lshw output contains empty line!");
             continue;
         }
 

@@ -8,6 +8,7 @@ TARGET = fantascene-dynamic-wallpaper
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
+    ini/inimanager.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -23,6 +24,7 @@ SOURCES += main.cpp \
     listview/playlistsettingdialog.cpp
 
 HEADERS += \
+    ini/inimanager.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \

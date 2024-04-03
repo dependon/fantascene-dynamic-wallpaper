@@ -37,7 +37,7 @@
 
 #include <DDesktopServices>
 
-DWIDGET_USE_NAMESPACE
+DGUI_USE_NAMESPACE
 
 using namespace std;
 static int getProcIdByName(const string &procName)
