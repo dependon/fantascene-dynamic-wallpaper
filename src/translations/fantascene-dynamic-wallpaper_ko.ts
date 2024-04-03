@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="104"/>
-        <location filename="../application.cpp" line="105"/>
+        <location filename="../application.cpp" line="109"/>
+        <location filename="../application.cpp" line="110"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="96"/>
         <source>continue playing</source>
         <translation>계속 재생</translation>
     </message>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="93"/>
+        <location filename="../moresetting.cpp" line="104"/>
         <source>default</source>
         <translation>기본</translation>
     </message>
@@ -321,8 +321,8 @@
     <message>
         <location filename="../moresetting.ui" line="135"/>
         <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="100"/>
-        <location filename="../moresetting.cpp" line="139"/>
+        <location filename="../moresetting.cpp" line="111"/>
+        <location filename="../moresetting.cpp" line="164"/>
         <source>other</source>
         <translation>기타</translation>
     </message>
@@ -334,18 +334,23 @@
     <message>
         <location filename="../moresetting.ui" line="165"/>
         <location filename="../moresetting.ui" line="190"/>
+        <location filename="../moresetting.ui" line="287"/>
         <location filename="../moresetting.cpp" line="69"/>
         <location filename="../moresetting.cpp" line="75"/>
-        <location filename="../moresetting.cpp" line="107"/>
-        <location filename="../moresetting.cpp" line="114"/>
+        <location filename="../moresetting.cpp" line="81"/>
+        <location filename="../moresetting.cpp" line="118"/>
+        <location filename="../moresetting.cpp" line="125"/>
+        <location filename="../moresetting.cpp" line="139"/>
         <source>true</source>
         <translation>예</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="170"/>
         <location filename="../moresetting.ui" line="195"/>
+        <location filename="../moresetting.ui" line="282"/>
         <location filename="../moresetting.cpp" line="71"/>
         <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.cpp" line="85"/>
         <source>false</source>
         <translation>아니오</translation>
     </message>
@@ -356,11 +361,31 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
+        <source>Desktop transparency </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="214"/>
+        <source>xx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="244"/>
+        <source>Wallpaper transparency </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="274"/>
+        <source>Event penetration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="299"/>
         <source>Confirm</source>
         <translation>확인</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="214"/>
+        <location filename="../moresetting.ui" line="306"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
@@ -445,17 +470,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="439"/>
+        <location filename="../wallpaper.cpp" line="433"/>
         <source>Copy</source>
         <translation>복제</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="444"/>
+        <location filename="../wallpaper.cpp" line="438"/>
         <source>Extend</source>
         <translation>확장</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="449"/>
+        <location filename="../wallpaper.cpp" line="443"/>
         <source>Manual</source>
         <translation>수동</translation>
     </message>
@@ -479,32 +504,37 @@
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="51"/>
-        <location filename="../listview/historywidget.ui" line="98"/>
+        <source>Set Wallpaper 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="105"/>
         <source>Delete</source>
         <translation>삭제</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="58"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Import</source>
         <translation>가져오기</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="79"/>
+        <location filename="../listview/historywidget.ui" line="86"/>
         <source>Playlist</source>
         <translation>반복 재생 목록</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="91"/>
+        <location filename="../listview/historywidget.ui" line="98"/>
         <source>Add Playlist</source>
         <translation>반복 재생 목록 추가하기</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="105"/>
+        <location filename="../listview/historywidget.ui" line="112"/>
         <source>Loop play</source>
         <translation>반복 재생 여부</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="112"/>
+        <location filename="../listview/historywidget.ui" line="119"/>
         <source>Loop playback settings</source>
         <translation>반복 재생 설정</translation>
     </message>
@@ -514,18 +544,18 @@
         <translation>역사 벽지</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete!!</source>
         <translation>삭제!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="65"/>
+        <location filename="../listview/historywidget.cpp" line="70"/>
         <source>Delete all history imports ?</source>
         <translation>모두 삭제하시겠습니까?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="118"/>
+        <location filename="../listview/historywidget.cpp" line="123"/>
         <source>Delete all playback ?</source>
         <translation>모든 반복 재생 목록을 삭제하시겠습니까?</translation>
     </message>
@@ -538,228 +568,240 @@
         <translation>홈 창</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="102"/>
+        <location filename="../settingwindow.ui" line="24"/>
+        <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
         <translation>파일 선택</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="109"/>
+        <location filename="../settingwindow.ui" line="31"/>
+        <location filename="../settingwindow.ui" line="49"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="22"/>
+        <location filename="../settingwindow.ui" line="145"/>
+        <source>Screen 2 independent playback</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="154"/>
         <source>Transparency</source>
         <translation>투명도</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="81"/>
+        <location filename="../settingwindow.ui" line="181"/>
         <source>Volume</source>
         <translation>볼륨</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="423"/>
-        <location filename="../settingwindow.cpp" line="90"/>
+        <location filename="../settingwindow.ui" line="214"/>
+        <location filename="../settingwindow.cpp" line="100"/>
         <source>Play</source>
         <translation>재생</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="442"/>
-        <location filename="../settingwindow.cpp" line="102"/>
+        <location filename="../settingwindow.ui" line="233"/>
+        <location filename="../settingwindow.cpp" line="112"/>
         <source>Pause</source>
         <translation>일시 중지</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="461"/>
+        <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
         <translation>새 배경 그림 설정</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="480"/>
+        <location filename="../settingwindow.ui" line="265"/>
+        <source>Set New 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="284"/>
         <source>Hide</source>
         <translation>창 숨기기</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="124"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Model</source>
         <translation>모드</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="132"/>
+        <location filename="../settingwindow.ui" line="307"/>
         <source>Copy</source>
         <translation>복제</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="137"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Extend</source>
         <translation>확장</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="142"/>
-        <location filename="../settingwindow.cpp" line="593"/>
+        <location filename="../settingwindow.ui" line="317"/>
+        <location filename="../settingwindow.cpp" line="659"/>
         <source>Manual</source>
         <translation>수동</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="150"/>
+        <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
         <translation>전원 켜기 자동 시작</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="161"/>
+        <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
         <translation>비디오 비율</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="175"/>
-        <location filename="../settingwindow.cpp" line="687"/>
+        <location filename="../settingwindow.ui" line="350"/>
+        <location filename="../settingwindow.cpp" line="781"/>
         <source>default</source>
         <translation>기본</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="180"/>
+        <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="185"/>
+        <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="190"/>
+        <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="195"/>
+        <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="200"/>
+        <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="205"/>
-        <location filename="../settingwindow.cpp" line="699"/>
+        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.cpp" line="793"/>
         <source>custom</source>
         <translation>사용자 지정</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="215"/>
+        <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="222"/>
+        <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
         <translation>실행 배율</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="241"/>
+        <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
         <translation>가로 간격띄우기</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="255"/>
+        <location filename="../settingwindow.ui" line="430"/>
         <source>Y</source>
         <translation>세로 오프셋</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="269"/>
+        <location filename="../settingwindow.ui" line="444"/>
         <source>Width</source>
         <translation>너비</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="283"/>
+        <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
         <translation>높이</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="297"/>
+        <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
         <translation>사용자 정의 치수 실행</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="366"/>
+        <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="373"/>
+        <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="380"/>
+        <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="387"/>
+        <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
         <translation>보고서 버그</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="489"/>
+        <location filename="../settingwindow.ui" line="521"/>
         <source>Dowload Wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="49"/>
+        <location filename="../settingwindow.ui" line="530"/>
         <source>Advanced Settings</source>
         <translation>추가 설정 인터페이스</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="56"/>
+        <location filename="../settingwindow.ui" line="537"/>
         <source>Wallpaper Local</source>
         <translation>로컬 배경 화면</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="63"/>
-        <location filename="../settingwindow.cpp" line="109"/>
+        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.cpp" line="119"/>
         <source>Wallpaper History</source>
         <translation>역사 벽지</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="70"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>Wallpaper Engine-plugin</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="76"/>
+        <location filename="../settingwindow.cpp" line="86"/>
         <source>Exit</source>
         <translation>종료</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="97"/>
+        <location filename="../settingwindow.cpp" line="107"/>
         <source>Screenshot</source>
         <translation>캡처</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="113"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Main View</source>
         <translation>홈 창</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="130"/>
+        <location filename="../settingwindow.cpp" line="140"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="138"/>
+        <location filename="../settingwindow.cpp" line="148"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="155"/>
+        <location filename="../settingwindow.cpp" line="165"/>
         <source>Double click to open the configuration interface</source>
         <translation>두 번 클릭하여 인터페이스 열기</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="206"/>
+        <location filename="../settingwindow.cpp" line="218"/>
         <source>Latest version</source>
         <translation>최신 버전</translation>
     </message>
