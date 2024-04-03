@@ -56,6 +56,32 @@ DWIDGET_USE_NAMESPACE
 DCORE_USE_NAMESPACE
 DFM_USE_NAMESPACE
 
+#define TRANSALTION_PATH "/opt/durapps/fantascene-dynamic-wallpaper/translations"
+void load_translation_files(const QString path)
+{
+    QDir dir(path);
+    qDebug()<<"event: "<<QLocale::system().name();
+    if (dir.exists())
+    {
+        QDirIterator qmIt(path, QStringList() << QString("*%1.qm").arg(QLocale::system().name()), QDir::Files);
+        while (qmIt.hasNext())
+        {
+            qmIt.next();
+            QFileInfo finfo = qmIt.fileInfo();
+            QString tr_path = finfo.absolutePath();
+            QString tr_file = finfo.baseName();
+            QTranslator *translator = new QTranslator;
+
+            if (!translator->load(tr_file,tr_path)) {
+                qWarning() << "Failed to load " + tr_path, + "/" + tr_file + " ,fallback to default!";
+            }
+            if (!qApp->installTranslator(translator)) {
+                qWarning() << "Failed to install translation!";
+            }
+        }
+    }
+}
+
 static bool registerDialogDBus()
 {
     if (!QDBusConnection::sessionBus().isConnected()) {
@@ -159,11 +185,24 @@ int main(int argc, char *argv[])
 //    }
 
     app.setQuitOnLastWindowClosed(false);
-    app.loadTranslator();
+    //app.loadTranslator();
     app.setOrganizationName("deepin");
     app.setApplicationDisplayName(app.translate("DesktopMain", "Desktop"));
     app.setApplicationVersion(DApplication::buildVersion((GIT_VERSION)));
     app.setAttribute(Qt::AA_UseHighDpiPixmaps);
+
+#ifdef Q_OS_LINUX
+    qDebug()<< QApplication::applicationDirPath();
+    QString transPath = QApplication::applicationDirPath() + "/translations";
+    QDir myDir(transPath);
+    if(myDir.exists())
+    {
+        load_translation_files(transPath);
+    }
+    else {
+        load_translation_files(TRANSALTION_PATH);
+    }
+#endif
 
     const QString logFormat = "%{time}{yyyyMMdd.HH:mm:ss.zzz}[%{type:1}][%{function:-35} %{line:-4} %{threadid} ] %{message}\n";
     DFMLogManager::setLogFormat(logFormat);

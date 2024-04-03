@@ -41,20 +41,14 @@ DESTDIR     = $$BUILD_DIST
 CONFIG      += c++11 link_pkgconfig
 PKGCONFIG   += xcb xcb-ewmh xcb-shape dframeworkdbus gio-qt x11
 
-#INCLUDEPATH += $$PWD/../dde-file-manager-lib\
-#               $$PWD/../utils \
-#              $$PWD/../dde-file-manager-lib/interfaces \
-#                $$PWD/../dde-file-manager-lib/interfaces/plugins \
-#                $$PWD/../dde-file-manager-lib/io
-
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../dde-file-manager-lib/release -ldde-file-manager
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../dde-file-manager-lib/debug -ldde-file-manager
-#else:unix: LIBS += -L$$OUT_PWD/../dde-file-manager-lib -ldde-file-manager
-
-#CONFIG(debug, debug|release) {
-#    DEPENDPATH += $$PWD/../dde-file-manager-lib
-#    unix:QMAKE_RPATHDIR += $$OUT_PWD/../dde-file-manager-lib
-#}
+CONFIG(release, debug|release) {
+    TRANSLATIONS = $$files($$PWD/translations/*.ts)
+    #遍历目录中的ts文件，调用lrelease将其生成为qm文件
+    for(tsfile, TRANSLATIONS) {
+        qmfile = $$replace(tsfile, .ts$, .qm)
+        system(lrelease $$tsfile -qm $$qmfile) | error("Failed to lrelease")
+    }
+}
 
 SOURCES += \
     main.cpp \
@@ -141,4 +135,7 @@ include($$PWD/development.pri)
 
 target.path=/opt/durapps/fantascene-dynamic-wallpaper
 
-INSTALLS += target
+translations.path = /opt/durapps/fantascene-dynamic-wallpaper/translations
+translations.files = $$PWD/translations/*.qm
+
+INSTALLS += target translations
