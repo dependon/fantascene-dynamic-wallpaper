@@ -6,7 +6,7 @@
 #include "settings.h"
 #include <malloc.h>
 #include "settingwindow.h"
-#include <DMainWindow>
+#include <QMainWindow>
 #include <QProcess>
 #include <QThread>
 #include <QDesktopWidget>
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 #endif
 
         QTimer::singleShot(1000, [ = ] {
-            DMainWindow *mainwindw = new DMainWindow();
+            QMainWindow *mainwindw = new QMainWindow();
             settingWindow *window = new settingWindow(mainwindw, mainwindw);
             mainwindw->setCentralWidget(window);
             int index = 0;
@@ -85,8 +85,8 @@ int main(int argc, char *argv[])
             mainwindw->setFixedSize(QSize(640, 500));
             mainwindw->setWindowTitle("动态壁纸");
             mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
-            mainwindw->titlebar()->setIcon(QIcon(":/install/wallpaper.png"));
-            mainwindw->titlebar()->setWindowTitle("动态壁纸");
+            // mainwindw->titlebar()->setIcon(QIcon(":/install/wallpaper.png"));
+            // mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
             mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 

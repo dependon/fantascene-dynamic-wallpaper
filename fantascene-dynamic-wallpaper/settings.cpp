@@ -25,10 +25,9 @@
 #include <QJsonArray>
 
 Settings::Settings(QWidget *parent)
-    : DMainWindow(parent)
+    : QMainWindow(parent)
     , m_layout(new QVBoxLayout(this))
     , m_listView(new QListWidget)
-    , m_videoSwitchBtn(new DSwitchButton)
 {
 
     setMinimumSize(800, 600);

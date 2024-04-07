@@ -19,14 +19,13 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <DMainWindow>
+#include <QMainWindow>
 #include <QVBoxLayout>
 #include <QListWidget>
 #include <dswitchbutton.h>
 
-DWIDGET_USE_NAMESPACE
 
-class Settings : public DMainWindow
+class Settings : public QMainWindow
 {
     Q_OBJECT
 public:
@@ -51,7 +50,6 @@ private:
     QVBoxLayout *m_layout;
     QListWidget *m_listView;
     QStringList m_list;
-    DSwitchButton *m_videoSwitchBtn;
 };
 
 #endif // SETTINGS_H

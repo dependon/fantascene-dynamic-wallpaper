@@ -4,7 +4,7 @@ QT += gui x11extras widgets dbus webengine webenginewidgets sql
 QT += concurrent
 QT += sql
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += xcb-ewmh dtkwidget mpv x11
+PKGCONFIG += xcb-ewmh dtkwidget mpv x11 xext
 TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS

@@ -56,7 +56,7 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 #endif
-settingWindow::settingWindow(QWidget *parent, DMainWindow *mainWindow) :
+settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     QWidget(parent),
     m_parentMainWindow(mainWindow),
     ui(new Ui::settingWindow)

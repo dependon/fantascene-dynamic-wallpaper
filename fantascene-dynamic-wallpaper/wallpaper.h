@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2020 ~ 2022 LiuMingHang.
+ *
+ * Author:     LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * Maintainer: LiuMingHang <liuminghang0821@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #ifndef WALLPAPER_H
 #define WALLPAPER_H
 
@@ -10,6 +30,7 @@
 #include "webwidget.h"
 
 class QLabel;
+//class Desktop;
 class Wallpaper : public QWidget
 {
     Q_OBJECT
@@ -17,9 +38,15 @@ public:
     explicit Wallpaper(QString path = nullptr, int currentScreen = 0, QWidget *parent = nullptr);
 
     void changeScreenMode(ScreenMode mode);
-    void LeftMouseClick(QWidget *eventsReciverWidget, QPoint clickPos);
-public slots:
+    void LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos);
+    void LeftMouseRelease(QWidget *eventsReciverWidget, QPoint clickPos);
+    void LeftMousePress(QWidget *eventsReciverWidget, QPoint clickPos);
+
+    void setIconVisble(bool visble);
+    void refreashLayout();
+public Q_SLOTS:
     void setFile(const QString &path);
+    void setFile2(const QString &path);
     void setVolume(const qint32 volume);
     void setScreen(const int &index);
     void clear();
@@ -32,24 +59,37 @@ public slots:
     void updateGeometry();
 
     void slotMouseEvent();
+    void slotMouseClick(const int &index);
+
+    void slotActiveWallpaper(bool bRet);
+    void slotWallpaperEventChanged(bool bRet);
+
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
-private slots:
+
+private Q_SLOTS:
     void onSysLockState(QString, QVariantMap key2value, QStringList);
 
     void slotSetMpvValue(const QString &key, const QString &value);
+
+    void slotSetTransparency(const int value);
 private:
     QHBoxLayout *mainlayout;
-    QString m_currentPath;
+
     MpvWidget *m_mpv{nullptr};
     MpvWidget *m_mpv2{nullptr};
+
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};
 
+    webWidget *m_webView{nullptr};
+    webWidget *m_webView2{nullptr};
     QTimer *m_mouseWebEventTimer{nullptr};
     QPoint m_currentPos{0, 0};
-//    ScreenMode m_cuurentMode{IdCopyScreen};
+    //    ScreenMode m_cuurentMode{IdCopyScreen};
+    //    Desktop *de{nullptr};
+
 };
 
 #endif // WALLPAPER_H
