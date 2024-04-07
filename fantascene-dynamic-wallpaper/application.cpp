@@ -10,8 +10,6 @@
 #include <QDesktopWidget>
 #include "setdesktop.h"
 #include "db/dbmanager.h"
-#include "X11/Xlib.h"
-#include "setdesktop.h"
 
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
@@ -294,7 +292,9 @@ const QPixmap Application::getThumbnail(const QString &path)
 
     return QPixmap();
 }
-
+#include <QtDBus>
+#include "X11/Xlib.h"
+#include "setdesktop.h"
 void Application::setDesktopTransparent()
 {
     //dbus开启壁纸透明

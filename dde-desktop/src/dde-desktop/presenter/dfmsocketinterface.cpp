@@ -30,6 +30,11 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <DDesktopServices>
+#include <DtkGuis>
+
+DGUI_USE_NAMESPACE
+DWIDGET_USE_NAMESPACE
 
 class DFMSocketInterfacePrivate
 {

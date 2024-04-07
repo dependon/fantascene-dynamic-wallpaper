@@ -37,8 +37,6 @@
 
 #include <DDesktopServices>
 
-DGUI_USE_NAMESPACE
-
 using namespace std;
 static int getProcIdByName(const string &procName)
 {

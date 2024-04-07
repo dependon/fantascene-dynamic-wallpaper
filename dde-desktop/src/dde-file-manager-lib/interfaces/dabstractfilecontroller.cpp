@@ -28,6 +28,7 @@
 #include <DDesktopServices>
 #include <QProcess>
 #include <DWidget>
+#include <DtkGuis>
 
 DGUI_USE_NAMESPACE
 DWIDGET_USE_NAMESPACE
