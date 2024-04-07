@@ -589,7 +589,7 @@
     <message>
         <location filename="../settingwindow.ui" line="521"/>
         <source>Dowload Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>下载壁纸</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="530"/>
@@ -599,7 +599,7 @@
     <message>
         <location filename="../settingwindow.ui" line="537"/>
         <source>Wallpaper Local</source>
-        <translation type="unfinished"></translation>
+        <translation>本地壁纸</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="544"/>
@@ -654,12 +654,12 @@
     <message>
         <location filename="../settingwindow.ui" line="444"/>
         <source>Width</source>
-        <translation type="unfinished"></translation>
+        <translation>宽</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
-        <translation type="unfinished"></translation>
+        <translation>高</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="472"/>
@@ -713,7 +713,7 @@
     <message>
         <location filename="../settingwindow.cpp" line="143"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>帮助</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="151"/>
