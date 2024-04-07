@@ -1,6 +1,8 @@
 TEMPLATE = app
 
-QT += gui x11extras widgets dbus webengine webenginewidgets
+QT += gui x11extras widgets dbus webengine webenginewidgets sql
+QT += concurrent
+QT += sql
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += xcb-ewmh dtkwidget mpv x11
 TARGET = fantascene-dynamic-wallpaper
@@ -8,7 +10,13 @@ TARGET = fantascene-dynamic-wallpaper
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
+    db/dbmanager.cpp \
+    download/customwebengineview.cpp \
+    download/downloadwidget.cpp \
+    help/helpdialog.cpp \
     ini/inimanager.cpp \
+    listview/localwidget.cpp \
+    setdesktop.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -24,7 +32,12 @@ SOURCES += main.cpp \
     listview/playlistsettingdialog.cpp
 
 HEADERS += \
+    db/dbmanager.h \
+    download/customwebengineview.h \
+    download/downloadwidget.h \
+    help/helpdialog.h \
     ini/inimanager.h \
+    listview/localwidget.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \
@@ -55,7 +68,8 @@ CONFIG(release, debug|release) {
 
 OTHER_FILES+=$$PWD/install/*
 
-
+INCLUDEPATH += $$PWD/ini
+INCLUDEPATH += $$PWD/download
 
 DISTFILES += \
     com.deepin.dde.DreamScene.service
@@ -85,6 +99,9 @@ icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
 INSTALLS += target  other desktop translations icon
 
 FORMS += \
+    download/downloadwidget.ui \
+    help/helpdialog.ui \
+    listview/localwidget.ui \
     settingwindow.ui \
     listview/historywidget.ui \
     moresetting.ui \
