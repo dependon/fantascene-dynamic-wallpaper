@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 
             mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
-            Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
+            //Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
             dApp->setDesktopTransparent();
             QTimer::singleShot(1000, [ = ] {
                 dApp->setDesktopTransparent();
@@ -99,11 +99,11 @@ int main(int argc, char *argv[])
     //        qDebug() << qApp->desktop()->primaryScreen();
     //        qDebug() << qApp->desktop()->screenCount();
 
-            DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
+            //DBusWallpaperService *dbusInter = new DBusWallpaperService(w);
     //        Q_UNUSED(dbusInter);
 
             QDBusConnection::sessionBus().registerService("com.deepin.dde.fantascene");
-            QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", w);
+            //QDBusConnection::sessionBus().registerObject("/com/deepin/dde/fantascene", "com.deepin.dde.fantascene", w);
 
             QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
 

@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += gui x11extras widgets dbus webengine webenginewidgets sql
+QT += gui x11extras widgets dbus webengine webenginewidgets
 QT += concurrent
 QT += sql
 CONFIG += c++11 link_pkgconfig

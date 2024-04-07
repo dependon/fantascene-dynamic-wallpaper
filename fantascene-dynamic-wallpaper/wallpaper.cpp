@@ -81,7 +81,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
     , m_currentScreen(currentScreen)
 {
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
+    // this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout;

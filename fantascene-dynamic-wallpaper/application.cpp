@@ -10,6 +10,8 @@
 #include <QDesktopWidget>
 #include "setdesktop.h"
 #include "db/dbmanager.h"
+#include "X11/Xlib.h"
+#include "setdesktop.h"
 
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
@@ -308,8 +310,8 @@ void Application::setDesktopTransparent()
     find_pid_by_name1(str, pid_t);
     int pid = pid_t[0];
     Display *display = XOpenDisplay(0);
-    WindowsMatchingPid match(display, XDefaultRootWindow(display), pid);
-    const list<Window> &result = match.result();
+    X11MatchingPid match( pid);
+    const std::list<Window> &result = match.result();
     for (Window id : result) {
         QWindow *window = QWindow::fromWinId((unsigned long)id);
         if (window != nullptr) {
