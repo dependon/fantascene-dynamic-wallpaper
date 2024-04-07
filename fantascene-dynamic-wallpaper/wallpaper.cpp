@@ -529,7 +529,8 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    if(dApp->m_moreData.isTop)
+    // if(dApp->m_moreData.isTop)
+    if(1)
     {
         if (event->type() == QEvent::WindowActivate) {
             slotActiveWallpaper(true);

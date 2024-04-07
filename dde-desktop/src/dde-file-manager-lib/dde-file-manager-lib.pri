@@ -176,16 +176,6 @@ mimetypeAssociations.path = $$APPSHAREDIR/mimetypeassociations
 mimetypeAssociations.files += \
     mimetypeassociations/mimetypeassociations.json
 
-TRANSLATIONS += $$PWD/translations/$${TARGET}.ts \
-    $$PWD/translations/$${TARGET}_zh_CN.ts
-
-# Automating generation .qm files from .ts files
-CONFIG(release, debug|release) {
-    !system($$PWD/generate_translations.sh): error("Failed to generate translation")
-    !system($$PWD/update_translations.sh): error("Failed to generate translation")
-#    DEFINES += QT_NO_DEBUG_OUTPUT
-}
-
 #translations.path = $$APPSHAREDIR/translations
 #translations.files = translations/*.qm
 
