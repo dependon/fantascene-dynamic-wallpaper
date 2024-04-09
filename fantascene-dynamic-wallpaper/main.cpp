@@ -60,8 +60,10 @@ int main(int argc, char *argv[])
             qDebug() << QCoreApplication::applicationDirPath();
             qDebug() << "打印当前路径2";
 
+            QProcess::execute("killall dde-desktop");
+
             QProcess pro;
-            QString strPath = "bash /opt/durapps/fantascene-dynamic-wallpaper/startdesktop.sh";
+            QString strPath = path + QString("dde-desktop");
             pro.startDetached(strPath);
 
             qDebug() << "启动失败: " << path + "dde-desktop";

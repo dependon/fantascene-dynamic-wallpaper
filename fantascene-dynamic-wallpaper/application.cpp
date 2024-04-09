@@ -113,6 +113,7 @@ Application::Application(int &argc, char **argv)
 
 Application::~Application()
 {
+    setDesktopNoTransparent();
     emit quitApp();
 }
 
@@ -321,4 +322,13 @@ void Application::setDesktopTransparent()
             m_screenWid.push_back(id);
         }
     }
+}
+
+void Application::setDesktopNoTransparent()
+{
+    QDBusInterface iface("com.deepin.dde.desktop",
+                         "/com/deepin/dde/desktop",
+                         "com.deepin.dde.desktop",
+                         QDBusConnection::sessionBus());
+    iface.asyncCall("EnableBackground", true);
 }

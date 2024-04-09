@@ -31,6 +31,7 @@ public:
     const QPixmap getThumbnail(const QString &path);
 
     void setDesktopTransparent();
+    void setDesktopNoTransparent();
 
     bool setThumbnail(const QString &path);
 
