@@ -47,6 +47,21 @@ Later, I wrote a simple desktop for the general version
 群号:917552088
  请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
 
+## 特殊版本deepinv23(2024/4/11)：
+
+https://depend.lanzouw.com/ioqv21ugmhyb
+密码:fmzn
+
+## 特殊版本deepinv20(2024/4/11)：
+
+https://depend.lanzouw.com/izqx21uksx2f
+密码:1b9q
+
+## 特殊版本uos家庭版(2024/4/11)：
+
+https://depend.lanzouw.com/iwenK1uksy0j
+密码:bwhz
+
 ## 1.5.0 update log
 
 兼容wayland环境
