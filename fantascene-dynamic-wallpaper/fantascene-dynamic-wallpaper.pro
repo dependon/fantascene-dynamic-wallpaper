@@ -8,7 +8,7 @@ PKGCONFIG += xcb-ewmh dtkwidget mpv x11 xext
 TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS
-
+DEFINES += MY_V23SUPER
 SOURCES += main.cpp \
     db/dbmanager.cpp \
     download/customwebengineview.cpp \

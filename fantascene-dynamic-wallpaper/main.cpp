@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
     if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
         bool isShowMainWindow = true;
 #if 1
+#ifndef MY_V23SUPER
         isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
@@ -53,17 +54,27 @@ int main(int argc, char *argv[])
         } else {
             qDebug() << "可以启动: " << path + "dde-desktop";
         }
-
+#endif
         dApp->m_startDesktop  = QThread::create([ = ]() {
             //打印当前路径
             qDebug() << "打印当前路径1";
             qDebug() << QCoreApplication::applicationDirPath();
             qDebug() << "打印当前路径2";
+            QStringList arguments;
+            arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[\"ddplugin-background\"]";
 
+            QProcess process;
+            process.start("dde-dconfig", arguments);
+            process.waitForFinished(-1);
             QProcess::execute("killall dde-desktop");
 
             QProcess pro;
+#ifndef MY_V23SUPER
             QString strPath = path + QString("dde-desktop");
+#else
+            QString strPath = QString("dde-desktop");
+            qDebug()<<"yuansheng qi dong ";
+#endif
             pro.startDetached(strPath);
 
             qDebug() << "启动失败: " << path + "dde-desktop";

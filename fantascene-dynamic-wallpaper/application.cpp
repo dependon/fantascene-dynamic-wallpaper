@@ -326,9 +326,28 @@ void Application::setDesktopTransparent()
 
 void Application::setDesktopNoTransparent()
 {
+#ifndef MY_V23SUPER
     QDBusInterface iface("com.deepin.dde.desktop",
                          "/com/deepin/dde/desktop",
                          "com.deepin.dde.desktop",
                          QDBusConnection::sessionBus());
     iface.asyncCall("EnableBackground", true);
+#else
+    //dde-dconfig --set -a org.deepin.dde.file-manager -r org.deepin.dde.file-manager.plugins -k desktop.blackList -v "[]"
+    QStringList arguments;
+    arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[]";
+    QProcess process;
+    process.start("dde-dconfig", arguments);
+    process.waitForFinished(-1);
+    qDebug()<<"dde-dconfig end";
+
+    QThread * thread = QThread::create([ = ]() {
+        QProcess::execute("killall dde-desktop");
+        QString strPath = QString("dde-desktop");
+        QProcess pro;
+        pro.startDetached(strPath);
+        qDebug() << "启动失败: " ;
+    });
+    thread->start();
+#endif
 }
