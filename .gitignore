@@ -23,6 +23,9 @@ include*/
 *.qm
 *.autosave
 
+.qmake.stash
+
+
 vendor/include/*
 vendor/lib/*
 
