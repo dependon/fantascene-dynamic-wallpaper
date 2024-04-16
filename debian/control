@@ -55,7 +55,7 @@ Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, li
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
-Package: fantascene-dynamic-wallpaper-v23
+Package: fantascene-v23
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libqt5libqgtk2, kimageformat-plugins
