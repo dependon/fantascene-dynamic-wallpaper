@@ -54,7 +54,17 @@ int main(int argc, char *argv[])
         } else {
             qDebug() << "可以启动: " << path + "dde-desktop";
         }
-#endif
+#endif \
+    // 检测 dde-desktop 进程是否在运行中
+        QProcess process;
+        process.start("pgrep", QStringList() << "-x" << "dde-desktop");
+        process.waitForFinished();
+        QByteArray result = process.readAllStandardOutput();
+        if (result.isEmpty())
+        {
+            qDebug() << "dde-desktop 未找到，等待五秒后继续检测";
+            QThread::sleep(5);
+        }
         dApp->m_startDesktop  = QThread::create([ = ]() {
             //打印当前路径
             qDebug() << "打印当前路径1";
@@ -93,7 +103,7 @@ int main(int argc, char *argv[])
                 }
             }
             if (index == 0 && isShowMainWindow) {
-              //  mainwindw->show();
+                //mainwindw->show();
             }
             mainwindw->setFixedSize(QSize(640, 500));
             mainwindw->setWindowTitle("动态壁纸");
@@ -102,7 +112,7 @@ int main(int argc, char *argv[])
             // mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
             mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
-            //mainwindw->close();
+
             //Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
             dApp->setDesktopTransparent();
             QTimer::singleShot(1000, [ = ] {
