@@ -93,7 +93,7 @@ int main(int argc, char *argv[])
                 }
             }
             if (index == 0 && isShowMainWindow) {
-                mainwindw->show();
+              //  mainwindw->show();
             }
             mainwindw->setFixedSize(QSize(640, 500));
             mainwindw->setWindowTitle("动态壁纸");
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
             // mainwindw->titlebar()->setWindowTitle("动态壁纸");
 
             mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
-
+            //mainwindw->close();
             //Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
             dApp->setDesktopTransparent();
             QTimer::singleShot(1000, [ = ] {
