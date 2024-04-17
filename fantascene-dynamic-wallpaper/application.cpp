@@ -113,7 +113,10 @@ Application::Application(int &argc, char **argv)
 
 Application::~Application()
 {
-    setDesktopNoTransparent();
+    if(m_bexitDesktop)
+    {
+        setDesktopNoTransparent();
+    }
     emit quitApp();
 }
 
@@ -340,7 +343,6 @@ void Application::setDesktopNoTransparent()
     process.start("dde-dconfig", arguments);
     process.waitForFinished(-1);
     qDebug()<<"dde-dconfig end";
-
     QThread * thread = QThread::create([ = ]() {
         QProcess::execute("killall dde-desktop");
         QString strPath = QString("dde-desktop");

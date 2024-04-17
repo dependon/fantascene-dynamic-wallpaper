@@ -111,6 +111,8 @@ public:
     bool m_currentIsPlay{false};
 
     QString m_wallpaperEnginePath;
+
+    bool m_bexitDesktop = true;
 };
 
 #endif // APPLICATION_H
