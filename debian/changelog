@@ -1,3 +1,9 @@
+fantascene-v23 (1.6.9) UNRELEASED; urgency=low
+
+  * Avtive window dont kill dde-desktop
+  * 
+ -- Deepin Packages Builder <liuminghang0821@gmail.com>  Mon, 17 Feb 2024 14:32:34 +0800
+ 
 fantascene-v23 (1.6.8) UNRELEASED; urgency=medium
 
   * Now start with no window
