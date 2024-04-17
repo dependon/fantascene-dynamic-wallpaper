@@ -57,6 +57,6 @@ Homepage: http://github.com/dependon
 
 Package: fantascene-v23
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends} ,dde-dconfig-editor
 Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for fantascene.
