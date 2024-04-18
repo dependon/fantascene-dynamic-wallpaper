@@ -22,7 +22,6 @@
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QListWidget>
-#include <dswitchbutton.h>
 
 
 class Settings : public QMainWindow

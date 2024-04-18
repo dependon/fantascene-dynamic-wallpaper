@@ -4,11 +4,13 @@ QT += gui x11extras widgets dbus webengine webenginewidgets
 QT += concurrent
 QT += sql
 CONFIG += c++11 link_pkgconfig
-PKGCONFIG += xcb-ewmh dtkwidget mpv x11 xext
+PKGCONFIG += xcb-ewmh mpv x11 xext
 TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += MY_V23SUPER
+#DEFINES += DEEPINV20
+#DEFINES += GXDE_V15
 SOURCES += main.cpp \
     db/dbmanager.cpp \
     download/customwebengineview.cpp \
@@ -16,6 +18,7 @@ SOURCES += main.cpp \
     help/helpdialog.cpp \
     ini/inimanager.cpp \
     listview/localwidget.cpp \
+    loadTranslation.cpp \
     setdesktop.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
@@ -38,6 +41,7 @@ HEADERS += \
     help/helpdialog.h \
     ini/inimanager.h \
     listview/localwidget.h \
+    loadTranslation.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \

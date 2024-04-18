@@ -12,38 +12,65 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QCoreApplication>
-#include <DDesktopEntry>
 #include <QFile>
-#include <DTitlebar>
 #include <QStandardPaths>
-DWIDGET_USE_NAMESPACE
-DCORE_USE_NAMESPACE
-void cpToTmp()
-{
-    QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/deepin-dreamscene/";
-    QDir dir(path);
-    if (!dir.exists()) {
-        QDir dir1;
-        dir1.mkpath(path);
-    }
-}
+#include "loadTranslation.h"
+
+/* Translation file path */
+#define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+
+/* instance lock path */
+#define INSTANCE_LOCK_PATH ".cache/fantascene"
+
+/* instance lock name */
+#define INSTANCE_LOCK "single"
+
 int main(int argc, char *argv[])
 {
-    cpToTmp();
+#ifdef Q_OS_LINUX
+    qputenv("QT_QPA_PLATFORM", "xcb");
+    mallopt(M_ARENA_MAX, 1);
+#endif
     QString path = "/opt/durapps/fantascene-dynamic-wallpaper/";
 
     mallopt(M_ARENA_MAX, 1);
 
     Application a(argc, argv);
-    a.loadTranslator();
-    a.setApplicationVersion(DApplication::buildVersion("1.0.0"));
+    a.setApplicationVersion("1.0.0");
+#ifdef Q_OS_LINUX
+    qDebug()<< QApplication::applicationDirPath();
+    QString transPath = QApplication::applicationDirPath() + "/translations";
+    QDir myDir(transPath);
+    if(myDir.exists())
+    {
+        load_translation_files(transPath);
+    }
+    else {
+        load_translation_files(TRANSALTION_PATH);
+    }
+#endif
 //    a.setTheme("light");
     setlocale(LC_NUMERIC, "C");
+    /*
+     * Check if there are multiple instances
+     * If there are multiple instances, exit now.
+    */
+    const QString lock = QDir::homePath() + "/" + INSTANCE_LOCK_PATH + INSTANCE_LOCK;
+    QLockFile lockFile(lock);
 
-    if (a.setSingleInstance("fantascene-dynamic-wallpaper")) {
+    if (lockFile.tryLock(300)) {
         bool isShowMainWindow = true;
-#if 1
-#ifndef MY_V23SUPER
+        // 检测 dde-desktop 进程是否在运行中
+        QProcess process;
+        process.start("pgrep", QStringList() << "-x" << "dde-desktop");
+        process.waitForFinished();
+        QByteArray result = process.readAllStandardOutput();
+        if (result.isEmpty())
+        {
+            qDebug() << "dde-desktop 未找到，等待五秒后继续检测";
+            QThread::sleep(5);
+        }
+#ifdef DEEPINV20
         isShowMainWindow = false;
         if (QFileInfo(path + "dde-desktop").isFile() && !QFileInfo(path + "dde-desktop").isExecutable()) {
             int iRet = QProcess::execute("pkexec chmod 777 " + path + "dde-desktop " + path + "config.ini");
@@ -54,18 +81,11 @@ int main(int argc, char *argv[])
         } else {
             qDebug() << "可以启动: " << path + "dde-desktop";
         }
-#endif \
-    // 检测 dde-desktop 进程是否在运行中
-        QProcess process;
-        process.start("pgrep", QStringList() << "-x" << "dde-desktop");
-        process.waitForFinished();
-        QByteArray result = process.readAllStandardOutput();
-        if (result.isEmpty())
-        {
-            qDebug() << "dde-desktop 未找到，等待五秒后继续检测";
-            QThread::sleep(5);
-        }
+#endif
+
+
         dApp->m_startDesktop  = QThread::create([ = ]() {
+#ifdef MY_V23SUPER
             //打印当前路径
             qDebug() << "打印当前路径1";
             qDebug() << QCoreApplication::applicationDirPath();
@@ -79,18 +99,26 @@ int main(int argc, char *argv[])
             QProcess::execute("killall dde-desktop");
 
             QProcess pro;
-#ifndef MY_V23SUPER
-            QString strPath = path + QString("dde-desktop");
-#else
             QString strPath = QString("dde-desktop");
             qDebug()<<"yuansheng qi dong ";
-#endif
             pro.startDetached(strPath);
+#endif
+
+
+
+#ifdef DEEPINV20
+            QProcess process;
+            process.start("dde-dconfig", arguments);
+            process.waitForFinished(-1);
+            QProcess::execute("killall dde-desktop");
+            QProcess pro;
+            QString strPath = path + QString("dde-desktop");
+            pro.startDetached(strPath);
+#endif
 
             qDebug() << "启动失败: " << path + "dde-desktop";
         });
         dApp->m_startDesktop->start();
-#endif
 
         QTimer::singleShot(1000, [ = ] {
             QMainWindow *mainwindw = new QMainWindow();
