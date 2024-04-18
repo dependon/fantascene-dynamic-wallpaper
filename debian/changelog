@@ -1,17 +1,17 @@
-fantascene-v23 (1.6.9) UNRELEASED; urgency=low
+fantascene-gxde (1.6.9) UNRELEASED; urgency=low
 
   * Avtive window dont kill dde-desktop
   * 
  -- Deepin Packages Builder <liuminghang0821@gmail.com>  Mon, 17 Feb 2024 14:32:34 +0800
  
-fantascene-v23 (1.6.8) UNRELEASED; urgency=medium
+fantascene-gxde (1.6.8) UNRELEASED; urgency=medium
 
   * Now start with no window
   * 
 
  -- Deepin Packages Builder <shenmo-ikun@shenmo-ikun-PC>  Wed, 17 Apr 2024 11:27:28 +0800
 
-fantascene-v23 (1.6.7) unstable; urgency=low
+fantascene-gxde (1.6.7) unstable; urgency=low
 
   * Initial release.
 

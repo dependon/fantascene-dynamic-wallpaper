@@ -1,62 +1,15 @@
-Source: fantascene-v23
+Source: fantascene-gxde
 Version: 1.1.0
 Section: application
 Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
-Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libdtkwidget-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev,libx11-xcb-dev,ffmpeg,qtwebengine5-dev,libxext-dev,libxrender-dev,libqt5x11extras5-dev,
- qtbase5-private-dev,
- libqt5x11extras5-dev,
- libjemalloc-dev,
- libqt5svg5-dev,
- libmagic-dev,
- libsecret-1-dev,
- libpoppler-cpp-dev,
- libpolkit-agent-1-dev,
- libpolkit-qt5-1-dev,
- qtmultimedia5-dev,
- libffmpegthumbnailer-dev,
- libtag1-dev,
- libdtkwidget-dev,
- libdtkgui-dev,
- libxcb1-dev,
- x11proto-core-dev,
- libx11-dev,
- qttools5-dev-tools,
- libglib2.0-dev,
- dde-dock-dev(>=4.8.4.1),
- libxcb-ewmh-dev,
- libxcb-shape0-dev,
- libdframeworkdbus-dev,
- qtdeclarative5-dev,
- libkf5codecs-dev,
- libdtkcore-dev,
- libdtkcore5-bin,
- libdmr-dev,
- deepin-anything-dev[i386 amd64],
- libudisks2-qt5-dev(>=5.0.6),
- libxrender-dev,
- libmtdev-dev,
- libfontconfig1-dev,
- libglibmm-2.4-dev,
- libgio-qt-dev(>=0.0.11),
- libssl-dev,
- libmediainfo-dev,
- libqt5xdg-dev,
- libtag1-dev,
- libicu-dev,
- liblucene++-dev,
- libgsf-1-dev,
- libglib2.0-dev,
- libhtmlcxx-dev,
- libxml2-dev,
- libmimetic-dev,
- libboost-filesystem-dev,
- deepin-desktop-base | deepin-desktop-server | deepin-desktop-device
+Build-Depends: debhelper (>= 9),pkg-config, dpkg-dev, qt5-qmake, qtbase5-dev, libxcb-ewmh-dev, libmpv-dev ,qttools5-dev-tools, libqt5opengl5-dev, libglib2.0-dev,libmtdev-dev,libx11-xcb-dev,ffmpeg,qtwebengine5-dev,libxext-dev,libxrender-dev,
+ libqt5x11extras5-dev
 Standards-Version: 0.0-3
 Homepage: http://github.com/dependon
 
-Package: fantascene-v23
+Package: fantascene-gxde
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} ,dde-dconfig-editor
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for fantascene.
