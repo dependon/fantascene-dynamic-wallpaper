@@ -195,7 +195,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
             dApp->m_currentPath = QFileInfo(dApp->m_currentPath).filePath();
             Q_EMIT dApp->pathChanged(dApp->m_currentPath);
 
-            slotActiveWallpaper(dApp->m_moreData.isTop);
+            slotActiveWallpaper(true);
         }
         //        QTimer::singleShot(100, [ = ] {
         //            updateGeometry();
@@ -767,18 +767,32 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
     if(bRet)
     {
         for (auto wid : dApp->m_screenWid) {
-            QWindow *window = QWindow::fromWinId(wid);
-            if (window) {
-                window->raise();
+            if(wid == this->winId())
+            {
+                this->lower();
+            }
+            else
+            {
+                QWindow *window = QWindow::fromWinId(wid);
+                if (window) {
+                    window->raise();
+                }
             }
         }
     }
     else
     {
         for (auto wid : dApp->m_screenWid) {
-            QWindow *window = QWindow::fromWinId(wid);
-            if (window) {
-                window->lower();
+            if(wid == this->winId())
+            {
+                this->raise();
+            }
+            else
+            {
+                QWindow *window = QWindow::fromWinId(wid);
+                if (window) {
+                    window->lower();
+                }
             }
         }
     }

@@ -28,7 +28,7 @@ public:
     const QString thumbnailCachePath();
     const QPixmap getThumbnail(const QString &path);
 
-    void setDesktopTransparent();
+    bool setDesktopTransparent();
     void setDesktopNoTransparent();
 
     bool setThumbnail(const QString &path);

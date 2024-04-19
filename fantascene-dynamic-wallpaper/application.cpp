@@ -299,8 +299,9 @@ const QPixmap Application::getThumbnail(const QString &path)
 #include <QtDBus>
 #include "X11/Xlib.h"
 #include "setdesktop.h"
-void Application::setDesktopTransparent()
+bool Application::setDesktopTransparent()
 {
+    bool bRet = false;
     //dbus开启壁纸透明
 //    system("qdbus --literal com.deepin.dde.desktop /com/deepin/dde/desktop com.deepin.dde.desktop.EnableBackground false");
     QDBusInterface iface("com.deepin.dde.desktop",
@@ -320,11 +321,14 @@ void Application::setDesktopTransparent()
         QWindow *window = QWindow::fromWinId((unsigned long)id);
         if (window != nullptr) {
             window->setOpacity(0.99);
+            window->raise();
+            bRet = true;
         }
         if (!m_screenWid.contains(id)) {
             m_screenWid.push_back(id);
         }
     }
+    return bRet;
 }
 
 void Application::setDesktopNoTransparent()
