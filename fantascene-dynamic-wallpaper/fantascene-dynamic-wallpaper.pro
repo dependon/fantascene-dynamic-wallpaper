@@ -8,7 +8,7 @@ PKGCONFIG += xcb-ewmh mpv x11 xext
 TARGET = fantascene-dynamic-wallpaper
 
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += MY_V23SUPER
+#DEFINES += MY_V23SUPER
 #DEFINES += DEEPINV20
 #DEFINES += GXDE_V15
 SOURCES += main.cpp \

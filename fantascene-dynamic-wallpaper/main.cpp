@@ -142,10 +142,18 @@ int main(int argc, char *argv[])
             mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
 
             //Wallpaper *w = new Wallpaper(window->getCurrentPath(), window->getCurrentNumber());
-            dApp->setDesktopTransparent();
-            QTimer::singleShot(1000, [ = ] {
-                dApp->setDesktopTransparent();
-            });
+            if(!dApp->setDesktopTransparent())
+            {
+                QTimer::singleShot(2000,[=]
+                {
+                    dApp->m_startDesktop->start();
+                });
+                QTimer::singleShot(5000, [ = ]
+                {
+                    dApp->setDesktopTransparent();
+                });
+            }
+
     //        qDebug() << qApp->desktop()->screenNumber();
     //        qDebug() << qApp->desktop()->primaryScreen();
     //        qDebug() << qApp->desktop()->screenCount();
