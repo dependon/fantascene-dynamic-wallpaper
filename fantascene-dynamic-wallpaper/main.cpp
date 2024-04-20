@@ -107,9 +107,6 @@ int main(int argc, char *argv[])
 
 
 #ifdef DEEPINV20
-            QProcess process;
-            process.start("dde-dconfig", arguments);
-            process.waitForFinished(-1);
             QProcess::execute("killall dde-desktop");
             QProcess pro;
             QString strPath = path + QString("dde-desktop");
