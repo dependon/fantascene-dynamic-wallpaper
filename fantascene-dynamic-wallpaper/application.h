@@ -10,7 +10,7 @@
 #include <QRect>
 #include <QMutex>
 #include <QDir>
-
+#include <QVector>
 #include "data.h"
 
 

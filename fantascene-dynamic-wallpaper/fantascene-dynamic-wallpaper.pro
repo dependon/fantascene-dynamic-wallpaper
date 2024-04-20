@@ -1,8 +1,13 @@
 TEMPLATE = app
 
-QT += gui x11extras widgets dbus webengine webenginewidgets
+QT += gui x11extras widgets dbus
 QT += concurrent
 QT += sql
+qtHaveModule(webengine){
+   QT += webengine webenginewidgets
+   DEFINES += USE_WEBENGINE
+}
+
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += xcb-ewmh mpv x11 xext
 TARGET = fantascene-dynamic-wallpaper
