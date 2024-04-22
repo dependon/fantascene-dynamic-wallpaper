@@ -10,6 +10,6 @@ Homepage: http://github.com/dependon
 
 Package: fantascene-gxde
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends} ,dde-desktop(>=4.8.8.3)
 Recommends: libqt5libqgtk2, kimageformat-plugins
 Description: video wallpaper for fantascene.
