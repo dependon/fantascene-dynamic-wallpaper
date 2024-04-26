@@ -398,8 +398,14 @@ void settingWindow::readSettings()
         ui->setBtn2->setVisible(false);
     }
 
-
-
+    if(width <= 0)
+    {
+        width = 1;
+    }
+    if(height <= 0)
+    {
+        height = 1;
+    }
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
 }
 
@@ -660,6 +666,14 @@ void settingWindow::on_setManual_clicked()
     int heightPY = ui->heightPY->text().toInt();
     int width = ui->width->text().toInt();
     int height = ui->height->text().toInt();
+	if(width <= 0)
+    {
+        width = 1;
+    }
+    if(height <= 0)
+    {
+        height = 1;
+    }
     dApp->m_manual.setRect(widthPY, heightPY, width, height);
     if (ui->comboBox->currentText() == tr("Manual")) {
         Q_EMIT dApp->sigupdateGeometry();
