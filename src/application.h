@@ -122,7 +122,7 @@ Q_SIGNALS:
 
 public:
 
-    QRect m_manual{0, 0, 0, 0};
+    QRect m_manual{0, 0, 1, 1};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
 
