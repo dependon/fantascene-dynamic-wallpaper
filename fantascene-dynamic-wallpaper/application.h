@@ -87,7 +87,7 @@ public:
     QThread *m_startDesktop{nullptr};
     QProcess *m_startDesktopProcess{nullptr};
     qint64 m_processId{0};
-    QRect m_manual{0, 0, 0, 0};
+    QRect m_manual{0, 0, 1, 1};
     ScreenMode m_cuurentMode{IdCopyScreen};
     int m_currentScreenNum{0};
 
