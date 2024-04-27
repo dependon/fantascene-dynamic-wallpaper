@@ -783,9 +783,23 @@ void Wallpaper::slotMouseClick(const int &index)
 #define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
 void Wallpaper::slotActiveWallpaper(bool bRet)
 {
-    if(bRet)
+    if(!bRet)
     {
         for (auto wid : dApp->m_screenWid) {
+            if(wid == this->winId())
+            {
+                this->lower();
+            }
+            else
+            {
+                QWindow *window = QWindow::fromWinId(wid);
+                if (window) {
+                    window->raise();
+                }
+            }
+        }
+        for(auto wid : dApp->m_screenDesktopWid)
+        {
             if(wid == this->winId())
             {
                 this->lower();
@@ -802,6 +816,20 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
     else
     {
         for (auto wid : dApp->m_screenWid) {
+            if(wid == this->winId())
+            {
+                this->raise();
+            }
+            else
+            {
+                QWindow *window = QWindow::fromWinId(wid);
+                if (window) {
+                    window->lower();
+                }
+            }
+        }
+        for(auto wid : dApp->m_screenDesktopWid)
+        {
             if(wid == this->winId())
             {
                 this->raise();
