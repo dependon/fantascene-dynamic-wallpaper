@@ -302,6 +302,7 @@ void Application::CheckSystem()
 {
     qDebug()<< QDateTime::currentMSecsSinceEpoch();
     QStringList DesktopList;
+    DesktopList << "peony-qt-desktop";
     DesktopList << "dde-desktop";
     DesktopList << "nautilus-desktop";
     DesktopList << "yoyo-desktop";
