@@ -300,6 +300,7 @@ bool Application::clearPlayListPaths()
 
 void Application::CheckSystem()
 {
+    std::vector<WindowInfo>  list = getAllDesktopWindows();
     qDebug()<< QDateTime::currentMSecsSinceEpoch();
     QStringList DesktopList;
     DesktopList << "peony-qt-desktop";

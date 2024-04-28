@@ -37,8 +37,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-class _XDisplay;
+struct WindowInfo {
+    unsigned long  wid;
+    std::string name;
+    pid_t pid;
+};
 
+std::vector<WindowInfo> getAllDesktopWindows();
+class _XDisplay;
 class X11MatchingPid
 {
 

@@ -21,6 +21,83 @@
 #include <setdesktop.h>
 #include <X11/Xlib.h>
 
+Atom getAtom(Display* display, const char* atomName) {
+    return XInternAtom(display, atomName, False);
+}
+
+std::vector<Window> getChildren(Display* display, Window parent) {
+    std::vector<Window> children;
+    Window child, root, *childList;
+    unsigned int numChildren;
+
+    XQueryTree(display, parent, &root, &parent, &childList, &numChildren);
+    for (unsigned int i = 0; i < numChildren; ++i) {
+        children.push_back(childList[i]);
+    }
+    XFree(childList);
+    return children;
+}
+
+void traverseWindows(Display* display, Window parent, std::vector<WindowInfo>& desktopWindows) {
+    Atom netWmWindowType = getAtom(display, "_NET_WM_WINDOW_TYPE");
+    Atom netWmWindowTypeDesktop = getAtom(display, "_NET_WM_WINDOW_TYPE_DESKTOP");
+    Atom wmName = getAtom(display, "_NET_WM_NAME");
+    Atom utf8String = getAtom(display, "UTF8_STRING");
+
+    std::vector<Window> children = getChildren(display, parent);
+    for (Window child : children) {
+        Atom type;
+        int format;
+        unsigned long nitems, bytesAfter;
+        unsigned char *prop = nullptr;
+
+        if (XGetWindowProperty(display, child, netWmWindowType, 0, 4, False, XA_ATOM, &type, &format, &nitems, &bytesAfter, &prop) == Success) {
+            if (type == XA_ATOM && format == 32 && nitems > 0) {
+                Atom* atoms = reinterpret_cast<Atom*>(prop);
+                for (unsigned long j = 0; j < nitems; ++j) {
+                    if (atoms[j] == netWmWindowTypeDesktop) {
+                        // Got a desktop window, now get its name
+                        if (XGetWindowProperty(display, child, wmName, 0, LONG_MAX, False, AnyPropertyType, &type, &format, &nitems, &bytesAfter, &prop) == Success) {
+                            if (format == 8) { // Assuming UTF-8 string
+                                std::string name(reinterpret_cast<char*>(prop), nitems);
+
+                                // You can add logic here to get the PID if needed
+                                pid_t pid = 0; // PID retrieval is not straightforward with X11
+
+                                desktopWindows.push_back({child, name, pid});
+                            }
+                            if(prop)
+                            {
+                                XFree(prop); // Always free the prop after usage
+                                prop = nullptr;
+                            }
+                        }
+                        break; // No need to check further atoms for this window
+                    }
+                }
+                if(prop)
+                {
+                    XFree(prop); // Always free the prop after usage
+                    prop = nullptr;
+                }
+
+            }
+        }
+
+        // Recursively traverse child windows
+        traverseWindows(display, child, desktopWindows);
+    }
+}
+
+std::vector<WindowInfo> getAllDesktopWindows() {
+    Display*  display = XOpenDisplay(0);
+    std::vector<WindowInfo> desktopWindows;
+    Window root = DefaultRootWindow(display);
+    traverseWindows(display, root, desktopWindows);
+    return desktopWindows;
+}
+
+
 X11MatchingPid::X11MatchingPid(unsigned long pid)
     : _pid(pid)
 {
@@ -74,3 +151,5 @@ void X11MatchingPid::search(unsigned long w)
             search(wChild[i]);
     }
 }
+
+
