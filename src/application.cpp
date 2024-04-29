@@ -301,46 +301,70 @@ bool Application::clearPlayListPaths()
 void Application::CheckSystem()
 {
     std::vector<WindowInfo>  list = getAllDesktopWindows();
-    qDebug()<< QDateTime::currentMSecsSinceEpoch();
-    QStringList DesktopList;
-    DesktopList << "peony-qt-desktop";
-    DesktopList << "dde-desktop";
-    DesktopList << "nautilus-desktop";
-    DesktopList << "yoyo-desktop";
-    DesktopList << "cutefish-desktop";
-    DesktopList << "plasmashell";
-    DesktopList << "pcmanfm-qt";
-    DesktopList << "caja";
-    DesktopList << "xfdesktop";
-    for(QString desktopStr : DesktopList)
+    if(list.size()>0)
     {
-        int pid_t[128];
-        find_pid_by_name1(desktopStr.toLatin1().data(), pid_t);
-        int pid = pid_t[0];
-        if(pid > 0)
+        for(WindowInfo info : list)
         {
-            if(desktopStr.contains("nautilus-desktop"))
+            if(m_currentDesktopName.length() == 0)
             {
-                //存在,使用默认桌面,初始化参数改变,如果后续修改,依配置文件为准
-                m_moreData.isShowDesktopIcon = false ;
-                m_moreData.isTop = false ;
+                m_currentDesktopName = info.name.c_str();
             }
-            m_currentDesktopName = desktopStr;
-
-            X11MatchingPid match( pid);
-            const std::list<unsigned long> &result = match.result();
-            for (unsigned long id : result) {
-                QWindow *window = QWindow::fromWinId(id);
-                if (window != nullptr) {
-                    window->setOpacity(0.99);
-                }
-                if (!m_screenDesktopWid.contains(id)) {
-                    m_screenDesktopWid.push_back(id);
-                }
+            else if ( m_currentDesktopName.length() < info.name.length())
+            {
+                m_currentDesktopName = info.name.c_str();
+            }
+            QWindow *window = QWindow::fromWinId(info.wid);
+            if (window != nullptr) {
+                window->setOpacity(0.99);
+            }
+            if (!m_screenDesktopWid.contains(info.wid)) {
+                m_screenDesktopWid.push_back(info.wid);
             }
         }
     }
-    qDebug()<< QDateTime::currentMSecsSinceEpoch();
+    else
+    {
+        qDebug()<< QDateTime::currentMSecsSinceEpoch();
+        QStringList DesktopList;
+        DesktopList << "peony-qt-desktop";
+        DesktopList << "dde-desktop";
+        DesktopList << "nautilus-desktop";
+        DesktopList << "yoyo-desktop";
+        DesktopList << "cutefish-desktop";
+        DesktopList << "plasmashell";
+        DesktopList << "pcmanfm-qt";
+        DesktopList << "caja";
+        DesktopList << "xfdesktop";
+        for(QString desktopStr : DesktopList)
+        {
+            int pid_t[128];
+            find_pid_by_name1(desktopStr.toLatin1().data(), pid_t);
+            int pid = pid_t[0];
+            if(pid > 0)
+            {
+                if(desktopStr.contains("nautilus-desktop"))
+                {
+                    //存在,使用默认桌面,初始化参数改变,如果后续修改,依配置文件为准
+                    m_moreData.isShowDesktopIcon = false ;
+                    m_moreData.isTop = false ;
+                }
+                m_currentDesktopName = desktopStr;
+
+                X11MatchingPid match( pid);
+                const std::list<unsigned long> &result = match.result();
+                for (unsigned long id : result) {
+                    QWindow *window = QWindow::fromWinId(id);
+                    if (window != nullptr) {
+                        window->setOpacity(0.99);
+                    }
+                    if (!m_screenDesktopWid.contains(id)) {
+                        m_screenDesktopWid.push_back(id);
+                    }
+                }
+            }
+        }
+        qDebug()<< QDateTime::currentMSecsSinceEpoch();
+    }
 }
 
 void Application::changePidOpacity( const double &opacity)
