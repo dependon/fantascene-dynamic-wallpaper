@@ -65,6 +65,19 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->hwdecEdit->setText(data.hwdec);
     }
 
+    if (data.vo.contains("livmpv")  ||
+        data.vo.contains("")  ||
+        data.vo.contains("opengl")  ||
+        data.vo.contains("opengl-cb")
+        ) {
+        ui->voEdit->hide();
+        ui->voBox->setCurrentText(data.hwdec);
+    } else {
+        ui->voBox->setCurrentText(tr("other"));
+        ui->voEdit->setText(data.hwdec);
+    }
+
+
     if (data.isShowDesktopIcon) {
         ui->desktopShowCombox->setCurrentText(tr("true"));
     } else {
@@ -112,6 +125,13 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.hwdec = ui->hwdecEdit->text();
     } else {
         dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
+    }
+
+    QString voBoxStr = ui->voBox->currentText();
+    if (voBoxStr.contains(tr("other"))) {
+        dApp->m_moreData.vo = ui->voEdit->text();
+    } else {
+        dApp->m_moreData.vo = ui->voBox->currentText();
     }
 
     QString isDesktopIcon = ui->desktopShowCombox->currentText();
@@ -185,3 +205,13 @@ void MoreSetting::on_back_transparency_valueChanged(int value)
     dApp->m_moreData.m_WallpaperTransparency = dop;
     IniManager::instance()->setValue("WallPaper/WallpaperTransparency",QString::number(dop));
 }
+
+void MoreSetting::on_voBox_currentTextChanged(const QString &arg1)
+{
+    if (arg1.contains(tr("other"))) {
+        ui->voEdit->show();
+    } else {
+        ui->voEdit->hide();
+    }
+}
+

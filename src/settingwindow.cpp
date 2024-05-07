@@ -282,6 +282,7 @@ void settingWindow::readSettings()
     dApp->m_moreData.isAuto = IniManager::instance()->value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = IniManager::instance()->value("WallPaper/fps").toInt();
     dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString();
+    dApp->m_moreData.vo = IniManager::instance()->value("WallPaper/vo").toString();
     dApp->m_wallpaperEnginePath = IniManager::instance()->value("WallPaper/wallpaperEnginePath").toString();
     if(IniManager::instance()->contains("WallPaper/isPlayList")){
         dApp->m_isPlayList = IniManager::instance()->value("WallPaper/isPlayList").toBool();
@@ -1043,6 +1044,7 @@ void settingWindow::slotTimerSaveSettings()
     IniManager::instance()->setValue("WallPaper/videoAutoMode", dApp->m_moreData.isAuto);
     IniManager::instance()->setValue("WallPaper/fps", dApp->m_moreData.fps);
     IniManager::instance()->setValue("WallPaper/hwdec", dApp->m_moreData.hwdec);
+    IniManager::instance()->setValue("WallPaper/vo", dApp->m_moreData.vo);
     IniManager::instance()->setValue("WallPaper/desktopShow", dApp->m_moreData.isShowDesktopIcon);
     IniManager::instance()->setValue("WallPaper/topDefault", dApp->m_moreData.isTop);
     IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);

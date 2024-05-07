@@ -60,6 +60,14 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
         throw std::runtime_error("could not initialize mpv context");
 
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+    if(IniManager::instance()->contains("WallPaper/vo"))
+    {
+        dApp->m_moreData.vo = IniManager::instance()->value("WallPaper/vo").toString();
+        if(dApp->m_moreData.vo.length() > 0)
+        {
+            mpv::qt::set_option_variant(mpv, "vo",dApp->m_moreData.vo);
+        }
+    }
 #else
     // Make use of the MPV_SUB_API_OPENGL_CB API.
     mpv::qt::set_option_variant(mpv, "vo", "opengl-cb");
