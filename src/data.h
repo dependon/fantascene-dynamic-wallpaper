@@ -30,6 +30,7 @@ enum ScreenMode {
 struct MoreSetData {
     int isAuto = 0;
     int fps = 10;
+    QString vo = "";
     QString hwdec = "gpu";
     bool isShowDesktopIcon = true;
     bool isTop = true;

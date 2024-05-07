@@ -48,6 +48,8 @@ private Q_SLOTS:
 
     void on_back_transparency_valueChanged(int value);
 
+    void on_voBox_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MoreSetting *ui;
 };
