@@ -63,8 +63,10 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     if(IniManager::instance()->contains("WallPaper/vo"))
     {
         dApp->m_moreData.vo = IniManager::instance()->value("WallPaper/vo").toString();
+        QString ss;
         if(dApp->m_moreData.vo.length() > 0)
         {
+            ss = dApp->m_moreData.vo ;
             mpv::qt::set_option_variant(mpv, "vo",dApp->m_moreData.vo);
         }
     }

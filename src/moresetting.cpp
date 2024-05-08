@@ -66,15 +66,15 @@ void MoreSetting::setData(const MoreSetData &data)
     }
 
     if (data.vo.contains("livmpv")  ||
-        data.vo.contains("")  ||
+        data.vo == ""  ||
         data.vo.contains("opengl")  ||
         data.vo.contains("opengl-cb")
         ) {
         ui->voEdit->hide();
-        ui->voBox->setCurrentText(data.hwdec);
+        ui->voBox->setCurrentText(data.vo);
     } else {
         ui->voBox->setCurrentText(tr("other"));
-        ui->voEdit->setText(data.hwdec);
+        ui->voEdit->setText(data.vo);
     }
 
 
