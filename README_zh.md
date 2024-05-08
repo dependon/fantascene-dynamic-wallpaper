@@ -2,8 +2,28 @@
 
 ### 在Linux下的基于X11的动态壁纸管理器
 
-
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
+
+## 最新版本下载，来自obs打包，覆盖debian10-testing ubuntu 18+ fedora openfuse等(Open Build Service)
+
+[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
+
+## qq群(及时反馈和分享bug需求等) 2023/08/29
+
+群号:917552088
+ 请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
+
+## 特殊版本deepinv23(2024/4/11)：
+
+## 特殊版本deepinv20(2024/4/11)：
+
+## 特殊版本uos家庭版(2024/4/11)：
+
+都在星火商店下载最新的
+
+## 1.7.3 更新通知:
+
+默认的视频vo改为了libmpv，因为部分机型会出现窗口化mpv窗口
 
 ## 1.5.0 更新通知:
 
@@ -39,12 +59,6 @@
 
 后来写了一个简单的桌面用作通用版
 
-# 最新版本下载 (来自Open Build Service)
-
-涵盖多个发行版，opensuse debian ubuntu fedora等
-
-[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
-
 ## 维基
 
 关于这个软件的项目说明在将来会写到wiki里。
@@ -66,7 +80,7 @@ dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/
 
 ### fedora and centos stream
 
-Please see: [fantascene-dynamic-wallpaper](https://linux-opensource.cn/git-web/opensource/fantascene-dynamic-wallpaper)
+Please see: [https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
 ### archlinux and manjaro
 
@@ -86,7 +100,7 @@ Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/de
 debian/深度操作系统/其他Linux
 
 ```
-qt >=5.10
+qt >=5.6
 
 mpv >=29.0
 

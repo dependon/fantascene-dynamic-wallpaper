@@ -49,18 +49,15 @@ Later, I wrote a simple desktop for the general version
 
 ## 特殊版本deepinv23(2024/4/11)：
 
-https://depend.lanzouw.com/ioqv21ugmhyb
-密码:fmzn
-
 ## 特殊版本deepinv20(2024/4/11)：
-
-https://depend.lanzouw.com/izqx21uksx2f
-密码:1b9q
 
 ## 特殊版本uos家庭版(2024/4/11)：
 
-https://depend.lanzouw.com/iwenK1uksy0j
-密码:bwhz
+都在星火商店下载最新的
+
+## 1.7.3 update log
+
+custom mpv vo change libmpv
 
 ## 1.5.0 update log
 
