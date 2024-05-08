@@ -68,6 +68,11 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
             mpv::qt::set_option_variant(mpv, "vo",dApp->m_moreData.vo);
         }
     }
+	else
+	{
+		//默认改为libmpv
+		mpv::qt::set_option_variant(mpv, "vo","libmpv");
+	}
 #else
     // Make use of the MPV_SUB_API_OPENGL_CB API.
     mpv::qt::set_option_variant(mpv, "vo", "opengl-cb");
