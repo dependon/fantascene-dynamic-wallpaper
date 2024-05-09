@@ -65,11 +65,12 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->hwdecEdit->setText(data.hwdec);
     }
 
-    if (data.vo.contains("livmpv")  ||
+    if (data.vo == "libmpv"  ||
         data.vo == ""  ||
-        data.vo.contains("opengl")  ||
-        data.vo.contains("opengl-cb")
-        ) {
+        data.vo == "opengl"  ||
+        data.vo == "opengl-cb"
+        ) 
+	{
         ui->voEdit->hide();
         ui->voBox->setCurrentText(data.vo);
     } else {
