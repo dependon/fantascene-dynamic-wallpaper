@@ -162,12 +162,12 @@
       <widget class="QComboBox" name="voBox">
        <item>
         <property name="text">
-         <string/>
+         <string>libmpv</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>libmpv</string>
+         <string/>
         </property>
        </item>
        <item>
