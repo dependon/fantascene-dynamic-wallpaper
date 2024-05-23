@@ -60,6 +60,7 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
         throw std::runtime_error("could not initialize mpv context");
 
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
+    mpv::qt::set_option_variant(mpv, "vo", "libmpv");
 #else
     // Make use of the MPV_SUB_API_OPENGL_CB API.
     mpv::qt::set_option_variant(mpv, "vo", "opengl-cb");

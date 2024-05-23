@@ -61,14 +61,29 @@ int main(int argc, char *argv[])
     if (lockFile.tryLock(300)) {
         bool isShowMainWindow = true;
         // 检测 dde-desktop 进程是否在运行中
-        QProcess process;
-        process.start("pgrep", QStringList() << "-x" << "dde-desktop");
-        process.waitForFinished();
-        QByteArray result = process.readAllStandardOutput();
-        if (result.isEmpty())
+        bool findDDe = false;
+        int findCount = 0;
+        while(!findDDe)
         {
-            qDebug() << "dde-desktop 未找到，等待五秒后继续检测";
-            QThread::sleep(5);
+            QProcess process;
+            process.start("pgrep", QStringList() << "-x" << "dde-desktop");
+            process.waitForFinished();
+            QByteArray result = process.readAllStandardOutput();
+
+            if (result.isEmpty())
+            {
+                qDebug() << "dde-desktop 未找到，等待1秒后继续检测";
+                QThread::sleep(1);
+                findCount++;
+            }
+            else
+            {
+                findDDe = true;
+            }
+            if(findCount > 10 )
+            {
+                findDDe = true;
+            }
         }
 #ifdef DEEPINV20
         isShowMainWindow = false;
