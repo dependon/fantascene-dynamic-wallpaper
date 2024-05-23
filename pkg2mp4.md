@@ -7,7 +7,7 @@
 下载解包工具：
 
 ```
-git clone
+git clone git clone git@github.com:M0rtzz/RePKG-GUI.git
 ```
 
 找到所需壁纸的`.pkg`文件：
