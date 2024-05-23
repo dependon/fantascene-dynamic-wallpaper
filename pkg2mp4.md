@@ -6,7 +6,7 @@
 
 下载解包工具：
 
-```
+```sh
 git clone https://github.com/M0rtzz/RePKG-GUI.git
 ```
 
