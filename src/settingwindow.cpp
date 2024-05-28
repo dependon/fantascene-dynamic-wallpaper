@@ -548,7 +548,7 @@ void settingWindow::setScreenMode(const QString &arg)
 
 void settingWindow::on_pathBtn_clicked()
 {
-    QString path = QFileDialog::getOpenFileName();
+    QString path = QFileDialog::getOpenFileUrl().toLocalFile();
     if (!path.isEmpty()) {
         ui->pathEdit->setText(path);
         QPixmap pix = dApp->getThumbnail(path);
@@ -1356,7 +1356,7 @@ void settingWindow::on_checkBox2Inde_stateChanged(int arg1)
 
 void settingWindow::on_pathBtn2_clicked()
 {
-    QString path = QFileDialog::getOpenFileName();
+    QString path = QFileDialog::getOpenFileUrl().toLocalFile();
     if (!path.isEmpty()) {
         ui->pathEdit2->setText(path);
         QPixmap pix = dApp->getThumbnail(path);
