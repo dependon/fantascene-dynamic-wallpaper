@@ -242,6 +242,7 @@ void Application::setSpecialDesktop()
                     findDDe = true;
                 }
             }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
             dApp->m_startDesktop  = QThread::create([ = ]()
             {
                 QStringList argumentsGet;
@@ -278,6 +279,8 @@ void Application::setSpecialDesktop()
                 qDebug()<<"dde no background start!";
                 pro.startDetached(strPath);
             });
+            dApp->m_startDesktop->start();
+#endif
         }
     }
 }

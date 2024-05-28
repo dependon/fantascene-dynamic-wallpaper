@@ -727,6 +727,7 @@ void settingWindow::quitApp()
                 process.start("dde-dconfig", arguments);
                 process.waitForFinished(-1);
                 qDebug()<<"dde-dconfig end";
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
                 QThread * thread = QThread::create([ = ]() {
                     QProcess::execute("killall dde-desktop");
                     QString strPath = QString("dde-desktop");
@@ -735,6 +736,7 @@ void settingWindow::quitApp()
                     qDebug() << "启动失败: " ;
                 });
                 thread->start();
+#endif
             }
         }
     }
