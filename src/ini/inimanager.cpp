@@ -33,23 +33,23 @@ IniManager::IniManager(QObject *parent)
 
     QFile file(CONFIG_PATH);
     if (desktop.contains("MATE", Qt::CaseInsensitive)
-            || desktop.contains("UKUI", Qt::CaseInsensitive)
             || desktop.contains("GNOME", Qt::CaseInsensitive))
     {
-        dApp->m_moreData.isShowDesktopIcon =false;
-        dApp->m_moreData.isTop =false;
+        dApp->m_moreData.isShowDesktopIcon = false;
+        dApp->m_moreData.isTop = false;
     }
     else if(desktop.contains("DDE", Qt::CaseInsensitive))
     {
         QString versionId = getOsVersionId();
-        bool isGreater = false;
         versionId.remove("\"");
         QStringList versionParts = versionId.split(".");
         if(versionParts.size() > 0)
         {
             double version = versionParts.at(0).toDouble();
             if (version >= 23) {
-                isGreater = true;
+                dApp->m_isDDE23 = true;
+                dApp->m_moreData.isShowDesktopIcon = false;
+                dApp->m_moreData.isTop = false;
             }
         }
     }
@@ -57,6 +57,8 @@ IniManager::IniManager(QObject *parent)
     if(desktop.contains("UKUI", Qt::CaseInsensitive))
     {
         dApp->m_isUKUI = true;
+        dApp->m_moreData.isShowDesktopIcon = false;
+        dApp->m_moreData.isTop = false;
     }
 
     m_settings =new QSettings(CONFIG_PATH, QSettings::IniFormat);
