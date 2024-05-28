@@ -32,8 +32,7 @@ IniManager::IniManager(QObject *parent)
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
 
     QFile file(CONFIG_PATH);
-    if (desktop.contains("MATE", Qt::CaseInsensitive)
-            || desktop.contains("GNOME", Qt::CaseInsensitive))
+    if (desktop.contains("GNOME", Qt::CaseInsensitive))
     {
         dApp->m_moreData.isShowDesktopIcon = false;
         dApp->m_moreData.isTop = false;
