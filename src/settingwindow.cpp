@@ -295,63 +295,7 @@ void settingWindow::readSettings()
         dApp->m_moreData.isTop = IniManager::instance()->value("WallPaper/topDefault").toBool();
     }
 
-    if(!dApp->m_moreData.isShowDesktopIcon && !dApp->m_moreData.isTop )
-    {
-        if(dApp->m_isUKUI)
-        {
-           QString command1 = "gsettings set org.mate.background picture-filename ''";
-           QProcess process1;
-           process1.start(command1);
-           process1.waitForFinished(-1);  // 等待进程执行完成
-           QString command2 = "gsettings set org.mate.background picture-filename 'none'";
-           QProcess process2;
-           process2.start(command2);
-           process2.waitForFinished(-1);  // 等待进程执行完成
-        }
-        else if(dApp->m_isDDE23)
-        {
-            // 检测 dde-desktop 进程是否在运行中
-            bool findDDe = false;
-            int findCount = 0;
-            while(!findDDe)
-            {
-                QProcess process;
-                process.start("pgrep", QStringList() << "-x" << "dde-desktop");
-                process.waitForFinished();
-                QByteArray result = process.readAllStandardOutput();
-
-                if (result.isEmpty())
-                {
-                    qDebug() << "dde-desktop no find ,wait 1s continue find";
-                    QThread::sleep(1);
-                    findCount++;
-                }
-                else
-                {
-                    findDDe = true;
-                }
-                if(findCount > 5 )
-                {
-                    findDDe = true;
-                }
-            }
-            dApp->m_startDesktop  = QThread::create([ = ]()
-            {
-                QStringList arguments;
-                arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[\"ddplugin-background\"]";
-
-                QProcess process;
-                process.start("dde-dconfig", arguments);
-                process.waitForFinished(-1);
-                QProcess::execute("killall dde-desktop");
-
-                QProcess pro;
-                QString strPath = QString("dde-desktop");
-                qDebug()<<"dde no background start!";
-                pro.startDetached(strPath);
-            });
-        }
-    }
+    dApp->setSpecialDesktop();
 
     dApp->setisPlayList(dApp->m_isPlayList);
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);

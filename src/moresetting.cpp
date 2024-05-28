@@ -172,6 +172,9 @@ void MoreSetting::on_okBtn_clicked()
     }
 
     Q_EMIT dApp->moreSettingSave();
+
+    dApp->setSpecialDesktop();
+
     close();
 }
 
