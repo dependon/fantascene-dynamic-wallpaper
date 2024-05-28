@@ -1,11 +1,64 @@
 #include "inimanager.h"
 #include <QDir>
+#include <QTextStream>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
+#include "application.h"
 const QString CONFIG_PATH =   QDir::homePath() +
         "/.config/fantascene-dynamic-wallpaper/config.ini";
+
+QString getOsVersionId() {
+    QFile file("/etc/os-release");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return QString();
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (line.startsWith("VERSION_ID=")) {
+            file.close();
+            return line.mid(11, line.length() - 12);  // 从 VERSION_ID=" 开始截取到倒数第二个字符
+        }
+    }
+
+    file.close();
+    return QString();
+}
 
 IniManager::IniManager(QObject *parent)
     :QObject(parent)
 {
+    QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
+
+    QFile file(CONFIG_PATH);
+    if (desktop.contains("MATE", Qt::CaseInsensitive)
+            || desktop.contains("UKUI", Qt::CaseInsensitive)
+            || desktop.contains("GNOME", Qt::CaseInsensitive))
+    {
+        dApp->m_moreData.isShowDesktopIcon =false;
+        dApp->m_moreData.isTop =false;
+    }
+    else if(desktop.contains("DDE", Qt::CaseInsensitive))
+    {
+        QString versionId = getOsVersionId();
+        bool isGreater = false;
+        versionId.remove("\"");
+        QStringList versionParts = versionId.split(".");
+        if(versionParts.size() > 0)
+        {
+            double version = versionParts.at(0).toDouble();
+            if (version >= 23) {
+                isGreater = true;
+            }
+        }
+    }
+
+    if(desktop.contains("UKUI", Qt::CaseInsensitive))
+    {
+        dApp->m_isUKUI = true;
+    }
+
     m_settings =new QSettings(CONFIG_PATH, QSettings::IniFormat);
 }
 

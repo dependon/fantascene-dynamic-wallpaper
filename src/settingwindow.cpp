@@ -291,8 +291,23 @@ void settingWindow::readSettings()
     if(IniManager::instance()->contains("WallPaper/desktopShow")){
         dApp->m_moreData.isShowDesktopIcon = IniManager::instance()->value("WallPaper/desktopShow").toBool();
     }
-    if(IniManager::instance()->contains("WallPaper/topDefault")){
+    if(IniManager::instance()->contains("WallPaper/topDisTopefault")){
         dApp->m_moreData.isTop = IniManager::instance()->value("WallPaper/topDefault").toBool();
+    }
+
+    if(!dApp->m_moreData.isShowDesktopIcon && !dApp->m_moreData.isTop )
+    {
+        if(dApp->m_isUKUI)
+        {
+           QString command1 = "gsettings set org.mate.background picture-filename ''";
+           QProcess process1;
+           process1.start(command1);
+           process1.waitForFinished(-1);  // 等待进程执行完成
+           QString command2 = "gsettings set org.mate.background picture-filename 'none'";
+           QProcess process2;
+           process2.start(command2);
+           process2.waitForFinished(-1);  // 等待进程执行完成
+        }
     }
 
     dApp->setisPlayList(dApp->m_isPlayList);
@@ -692,7 +707,7 @@ void settingWindow::quitApp()
     //    th->start();
     //    saveSettings();
     //#else
-    saveSettings();
+    slotTimerSaveSettings();
     //#endif
     //dbus关闭壁纸透明
 
@@ -701,6 +716,17 @@ void settingWindow::quitApp()
     if (m_x11thread) {
         m_x11thread->wait();
         m_x11thread->quit();
+    }
+
+    if(!dApp->m_moreData.isShowDesktopIcon && !dApp->m_moreData.isTop )
+    {
+        if(dApp->m_isUKUI)
+        {
+           QString command1 = "gsettings set org.mate.background picture-filename ''";
+           QProcess process1;
+           process1.start(command1);
+           process1.waitForFinished(-1);  // 等待进程执行完成
+        }
     }
     dApp->exit();
 }

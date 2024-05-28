@@ -152,6 +152,9 @@ public:
 
     QList<QWindow> m_DesktopWindow;
 
+    bool m_isUKUI =false;//是否是ukui
+    bool m_isDDE23 =false;//是否是dde23
+
 };
 
 #endif // APPLICATION_H
