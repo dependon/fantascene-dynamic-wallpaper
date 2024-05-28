@@ -57,6 +57,10 @@ public:
 
     void setPlayListTimer(int s);
     void setisPlayList(bool bRet);
+
+    //特殊桌面的处理
+    void setSpecialDesktop();
+
     const QPixmap getThumbnailText(const QString &path);
 
     bool addLocalPaths(QStringList strList);
