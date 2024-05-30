@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 
     qDebug()<< QGuiApplication::platformName();
 
+
 #ifdef Q_OS_LINUX
     qDebug()<< QApplication::applicationDirPath();
     QString transPath = QApplication::applicationDirPath() + "/translations";
