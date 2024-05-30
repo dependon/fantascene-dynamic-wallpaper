@@ -33,6 +33,7 @@
 #include <QProcess>
 #include <QDateTime>
 #include <QDesktopWidget>
+#include <QStyleFactory>
 
 #include "db/dbmanager.h"
 
@@ -106,6 +107,34 @@ const QString toMd5(const QByteArray &data)
 Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
+    //设置界面风格，qt默认存在Fusion Windows等
+//    QStringList styleKeys = QStyleFactory::keys();
+//    qDebug() << "Available styles:";
+//    for ( QString key : styleKeys) {
+//        qDebug() << key;
+//    }
+//    QString styleName = "Fusion";
+
+//    // 检查该样式是否存在
+//    if (QStyleFactory::keys().contains(styleName)) {
+//        // 设置应用程序的样式
+//        qApp->setStyle(QStyleFactory::create(styleName));
+//    } else {
+//        qDebug() << "Style" << styleName << "is not available.";
+//    }
+
+    // 从外部文件加载QSS样式表
+    QFile styleFile(":/style/MainQss.qss");
+    if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        // 处理文件无法打开的错误
+        qDebug() << "无法打开样式表文件";
+        QTextStream styleStream(&styleFile);
+        QString styleSheet = styleStream.readAll();
+        styleFile.close();
+        qApp->setStyleSheet(styleSheet);
+    }
+
+
     this->setApplicationName(tr("fantascene-dynamic-wallpaper"));
     this->setApplicationDisplayName(tr("fantascene-dynamic-wallpaper"));
 //    this->setApplicationDescription(
@@ -281,6 +310,17 @@ void Application::setSpecialDesktop()
             });
             dApp->m_startDesktop->start();
 #endif
+        }
+    }
+    else
+    {
+        //kylin os quit!
+        if(dApp->m_isUKUI)
+        {
+           QString command1 = "gsettings set org.mate.background picture-filename ''";
+           QProcess process1;
+           process1.start(command1);
+           process1.waitForFinished(-1);  // 等待进程执行完成
         }
     }
 }

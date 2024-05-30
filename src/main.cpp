@@ -35,6 +35,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QStandardPaths>
+#include <QStyleFactory>
 
 /* Translation file path */
 #define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
