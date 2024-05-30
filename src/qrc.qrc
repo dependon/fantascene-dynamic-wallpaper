@@ -3,5 +3,6 @@
         <file>tray.ico</file>
         <file>select_active.svg</file>
         <file>install/wallpaper.png</file>
+        <file>style/MainQss.qss</file>
     </qresource>
 </RCC>

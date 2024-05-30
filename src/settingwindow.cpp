@@ -82,8 +82,8 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
 
 
     m_traymenu = new QMenu();
-    m_traymenu->setWindowFlags(Qt::FramelessWindowHint);
     m_traymenu->setAttribute(Qt::WA_TranslucentBackground);
+
     QAction *exitAction = new QAction(m_traymenu);
     exitAction->setText(tr("Exit"));
     connect(exitAction, &QAction::triggered, this, &settingWindow::quitApp);

@@ -177,8 +177,6 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QMenu *viewMenu = new QMenu();
-
-    viewMenu->setWindowFlags(Qt::FramelessWindowHint);
     viewMenu->setAttribute(Qt::WA_TranslucentBackground);
 
     QAction *openAction = new QAction(viewMenu);
@@ -186,10 +184,12 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     viewMenu->addAction(openAction);
 
     m_openSelect = new QMenu(viewMenu);
+    m_openSelect->setAttribute(Qt::WA_TranslucentBackground);
     m_openSelect->setTitle(tr("Open With"));
     viewMenu->addMenu(m_openSelect);
 
     m_createNew = new QMenu(viewMenu);
+    m_createNew->setAttribute(Qt::WA_TranslucentBackground);
     m_createNew->setTitle(tr("New Built"));
     viewMenu->addMenu(m_createNew);
 
@@ -211,6 +211,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     viewMenu->addAction(newFolderAction);
 
     QMenu *iconSortMenu = new QMenu(viewMenu);
+    iconSortMenu->setAttribute(Qt::WA_TranslucentBackground);
     iconSortMenu->setTitle(tr("Sort Order"));
     viewMenu->addMenu(iconSortMenu);
 
@@ -235,6 +236,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     iconSortMenu->addAction(sortFileType);
 
     QMenu *iconSizeMenu = new QMenu(viewMenu);
+    iconSizeMenu->setAttribute(Qt::WA_TranslucentBackground);
     iconSizeMenu->setTitle(tr("Icon Size"));
     viewMenu->addMenu(iconSizeMenu);
 
