@@ -177,6 +177,10 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QMenu *viewMenu = new QMenu();
+
+    viewMenu->setWindowFlags(Qt::FramelessWindowHint);
+    viewMenu->setAttribute(Qt::WA_TranslucentBackground);
+
     QAction *openAction = new QAction(viewMenu);
     openAction->setText(tr("Open"));
     viewMenu->addAction(openAction);
