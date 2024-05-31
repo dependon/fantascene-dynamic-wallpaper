@@ -633,6 +633,14 @@ void settingWindow::on_autoStart_clicked()
 {
 
     QString path = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/";
+    QDir folder(path);
+    if (!folder.exists()) {
+        if (folder.mkpath(path)) {
+            qDebug() << "Folder created successfully";
+        } else {
+            qDebug() << "Failed to create folder";
+        }
+    }
     if (!QFileInfo(path + "fantascene-dynamic-wallpaper.desktop").isFile())
         QProcess::execute("cp /usr/share/applications/fantascene-dynamic-wallpaper.desktop " + QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.config/autostart/");
 }

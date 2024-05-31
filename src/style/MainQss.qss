@@ -60,3 +60,110 @@ QPushButton:pressed:checked {
 }
 
 
+
+QSlider::groove:horizontal {
+    border: 1px solid #bbb; /* 设置滑块轨道的边框 */
+    background: white; /* 设置滑块轨道的背景颜色 */
+    height: 8px; /* 设置滑块轨道的高度 */
+    margin: 2px 0; /* 设置滑块轨道与滑块的间距 */
+    border-radius: 4px; /* 设置滑块轨道的圆角 */
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc); /* 设置滑块的背景渐变色 */
+    border: 1px solid #777; /* 设置滑块的边框 */
+    width: 14px; /* 设置滑块的宽度 */
+    margin: -2px 0; /* 设置滑块的边距 */
+    border-radius: 7px; /* 设置滑块的圆角 */
+}
+
+QSlider::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd); /* 设置鼠标悬停时滑块的背景渐变色 */
+    border: 1px solid #888; /* 设置鼠标悬停时滑块的边框 */
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #b9d6ff, stop:1 #add6ff); /* 设置已选择的部分的背景渐变色 */
+    border: 1px solid #999; /* 设置已选择的部分的边框 */
+    height: 8px; /* 设置已选择的部分的高度 */
+    border-radius: 4px; /* 设置已选择的部分的圆角 */
+}
+
+QSlider::add-page:horizontal {
+    background: #f0f0f0; /* 设置未选择的部分的背景颜色 */
+    border: 1px solid #999; /* 设置未选择的部分的边框 */
+    height: 8px; /* 设置未选择的部分的高度 */
+    border-radius: 4px; /* 设置未选择的部分的圆角 */
+}
+
+QComboBox {
+    border-radius: 5px; /* 设置圆角 */
+    border: 1px solid #c0c0c0; /* 设置边框 */
+    padding: 5px; /* 设置内边距 */
+    background-color: #f0f0f0; /* 设置背景颜色 */
+}
+
+QComboBox::drop-down {
+    border-top-right-radius: 5px; /* 设置下拉箭头右上角的圆角 */
+    border-bottom-right-radius: 5px; /* 设置下拉箭头右下角的圆角 */
+    border-left: 1px solid #c0c0c0; /* 设置下拉箭头左边的边框 */
+    background-color: #f0f0f0; /* 设置下拉箭头背景色 */
+}
+
+QComboBox::down-arrow:on {
+    top: 1px; /* 设置下拉箭头悬停时的位置 */
+    left: 1px; /* 设置下拉箭头悬停时的位置 */
+}
+
+QComboBox::down-arrow:on {
+    top: 1px;
+    left: 1px;
+}
+
+QComboBox::item:selected {
+    background-color: rgb(55,144,250); /* 设置选中项的背景色为蓝色 */
+    color: white; /* 设置选中项的文本颜色为白色 */
+    padding-left:0px; /* 设置选项的左边距 */
+    text-align: center; /* 将选项居中显示 */
+    border-radius: 5px; /* 设置圆角 */
+}
+QComboBox QAbstractItemView {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+QLineEdit {
+    border: 1px solid #c0c0c0; /* 设置边框 */
+    border-radius: 5px; /* 设置边框的圆角半径 */
+    padding: 3px; /* 设置内边距 */
+    background-color: #f0f0f0; /* 设置背景颜色 */
+    selection-color: white; /* 设置选中文本的颜色 */
+    selection-background-color: blue; /* 设置选中文本的背景色 */
+}
+
+QLineEdit:focus {
+    border: 2px solid #0078d7; /* 设置获取焦点时的边框颜色 */
+}
+
+
+QCheckBox::indicator {
+    width: 15px; /* 设置复选框的宽度 */
+    height: 15px; /* 设置复选框的高度 */
+}
+
+QCheckBox {
+    spacing: 5px; /* 设置复选框和文本之间的间距 */
+}
+
+QCheckBox::indicator::unchecked {
+    border: 2px solid #c0c0c0; /* 设置未选中时的边框样式 */
+    border-radius: 5px; /* 设置未选中时的边框圆角 */
+}
+
+QCheckBox::indicator::checked {
+    border: 2px solid #0078d7; /* 设置选中时的边框样式 */
+    background-color: #0078d7; /* 设置选中时的背景颜色 */
+    border-radius: 5px; /* 设置未选中时的边框圆角 */
+}
+
+
