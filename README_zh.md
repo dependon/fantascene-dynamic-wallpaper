@@ -4,6 +4,12 @@
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
+## 更新日志
+
+[English](UpdateLog.md)
+
+[中文](UpdateLog_zh.md)
+
 ## 最新版本下载，来自obs打包，覆盖debian10-testing ubuntu 18+ fedora openfuse等(Open Build Service)
 
 [https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
