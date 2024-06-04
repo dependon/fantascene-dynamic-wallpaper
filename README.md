@@ -9,7 +9,32 @@
 
 [中文项目介绍](README_zh.md)
 
+## Settings for Gnome or Kylin os or Deepin V23
+
+If your Gnome desktop environment has a desktop-file-utils plugin     (Kylin and Deepin V23 are the same way)
+
+Open More Settings Button
+
+Set Show desktop icon to false
+
+Set Place on top of the original desktop to false.
+
+Principle properties:
+
+Because the desktop of Kylin OS also has transparency properties with desktop file utils after setting up transparent wallpapers, it is now possible to use the native desktop on both Kylin OS and gnome desktops, which is relatively simple
+
+Processing of Deepin V23: The same settings as before, two no's, will be set to disable the DDE wallpaper plugin after saving, and then restart the DDE desktop to make it transparent with only icons
+
+When closing the program (not killing), it will determine the current environment, actively restore Kylin's wallpaper and v23's wallpaper plugin, restart the DDE desktop, and other operations
+
+DDE will involve restarting DDE
+
+Kylin and Gnome desktop environments do not require a desktop restart
+
+The above operations are all completed by the program (1.7.5 and above, to achieve this function)
+
 ## Update Log
+
 [English](UpdateLog.md)
 
 [中文日志](UpdateLog_zh.md)
