@@ -6,9 +6,42 @@
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
+
+[中文项目介绍](README_zh.md)
+
+## Settings for Gnome or Kylin os or Deepin V23
+
+If your Gnome desktop environment has a desktop-file-utils plugin     (Kylin and Deepin V23 are the same way)
+
+Open More Settings Button
+
+Set Show desktop icon to false
+
+Set Place on top of the original desktop to false.
+
+Principle properties:
+
+Because the desktop of Kylin OS also has transparency properties with desktop file utils after setting up transparent wallpapers, it is now possible to use the native desktop on both Kylin OS and gnome desktops, which is relatively simple
+
+Processing of Deepin V23: The same settings as before, two no's, will be set to disable the DDE wallpaper plugin after saving, and then restart the DDE desktop to make it transparent with only icons
+
+When closing the program (not killing), it will determine the current environment, actively restore Kylin's wallpaper and v23's wallpaper plugin, restart the DDE desktop, and other operations
+
+DDE will involve restarting DDE
+
+Kylin and Gnome desktop environments do not require a desktop restart
+
+The above operations are all completed by the program (1.7.5 and above, to achieve this function)
+
+## Update Log
+
+[English](UpdateLog.md)
+
+[中文日志](UpdateLog_zh.md)
+
 ## License
 ```
-COPYRIGHT (C) 2020-2023 LIUMINGHANG <liuminghang0821@gmail.com>
+COPYRIGHT (C) 2020-2024 LIUMINGHANG <liuminghang0821@gmail.com>
 ```
 
 THE PROJECT IS RELEASED UNDER THE：
@@ -55,25 +88,6 @@ Later, I wrote a simple desktop for the general version
 
 都在星火商店下载最新的
 
-## 1.7.3 update log
-
-custom mpv vo change libmpv
-
-## 1.5.0 update log
-
-兼容wayland环境
-Compatible with wayland environment
-
-debian10:
-x86:fantascene-dynamic-wallpaper_1.5.0-1_debian10_amd64.deb
-arm:fantascene-dynamic-wallpaper_1.5.0-0_debian10_arm64.deb
-
-debian testing(debian 12):
-fantascene-dynamic-wallpaper_1.5.0-1_debianTesting_amd64
-
-请看清楚安装的包，对应的debian10是使用的qt5.11.3编译， debian12是5.15.1编译
-Please take a clear look at the installed package. The corresponding Debian10 is compiled using QT5.11.3, while Debian12 is compiled using 5.15.1
-1.4.6 ：deepinv20.9 is com.deepin.fantacy_1.4.6_amd64.deb
 
 ## Installation
 
@@ -81,9 +95,6 @@ Please take a clear look at the installed package. The corresponding Debian10 is
 
 dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.com/p/2068198)
 
-### debian ubuntu master deepinV20.9 uos
-
-dowload path: [master](https://github.com/dependon/fantascene-dynamic-wallpaper/releases)
 
 ### Fedora and OpenSUSE
 [![build result](https://build.opensuse.org/projects/home:liuminghang/packages/fantascene-dynamic-wallpaper/badge.svg?type=default)](https://build.opensuse.org/package/show/home:liuminghang/fantascene-dynamic-wallpaper)
@@ -105,7 +116,7 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 ### debian/Deepin/Other
 
 ```
-qt >=5.10
+qt >=5.8
 
 mpv >=29.0
 
@@ -149,6 +160,7 @@ Thanks for the Polish translation provided by  [raspin0](https://github.com/rasp
 
 Thanks for the Spanish translation provided by [Alvaro samudio](https://github.com/alvarosamudio).
 
+Thanks for the pkg2mp4.md provided by [M0rtzz](https://github.com/M0rtzz).
 
 ## Contribute
 ```

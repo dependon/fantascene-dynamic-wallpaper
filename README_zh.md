@@ -4,6 +4,37 @@
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
+## gnome桌面环境（如ubuntu os）和kylin os或deepin v23 环境的配置(使用本来的原生桌面，不改变右键菜单和桌面图标布局)
+
+如果你的gnome桌面环境有 desktop-file-utils 插件（如ubuntu）【kylin和deepin v23 是相同的设置】
+
+在更多设置中设置如下并保存即可
+
+设置显示桌面图标为否(这个桌面图标指的是本软件的绘制桌面图标)
+
+设置壁纸置于桌面上层为否(就是把壁纸放到插件或者说叫原生桌面下边层)
+
+原理性质:
+
+因为kylin os的桌面在设置了透明壁纸后也同样和desktop-file-utils具备透明属性，所以现在可以在kylin os和gnome两个桌面下使用原生桌面，相对比较简单
+
+deepin V23的处理:同样的设置和前面相同，两个否，保存后会设置禁用DDE的壁纸插件，然后重新启动DDE桌面就是透明仅仅只有图标的桌面
+
+关闭程序的时候(非杀死)会判断当前的环境，主动恢复kylin的壁纸和v23的壁纸插件，重启dde桌面等操作
+
+dde会涉及重启dde
+
+kylin和gnome的桌面环境不需要重启桌面
+
+以上的操作均由程序完成(1.7.5及往上，实现该功能)
+
+
+## 更新日志
+
+[English](UpdateLog.md)
+
+[中文](UpdateLog_zh.md)
+
 ## 最新版本下载，来自obs打包，覆盖debian10-testing ubuntu 18+ fedora openfuse等(Open Build Service)
 
 [https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
