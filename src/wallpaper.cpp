@@ -608,15 +608,39 @@ void Wallpaper::updateGeometry()
             this->hide();
             this->show();
             this->raise();
-            QScreen * priScreen = QGuiApplication::primaryScreen();
-#else
-            QScreen * priScreen = QGuiApplication::screenAt(QPoint(0,0));
 #endif
+            QScreen * priScreen = nullptr;
             qDebug()<<this->size();
 
+            QList<QScreen*> screens = QApplication::screens();
+
+            if (screens.size() >= 2) {
+                QScreen *leftScreen = nullptr;
+                QScreen *rightScreen = nullptr;
+
+                for (QScreen *screen : screens) {
+                    QRect geometry = screen->geometry();
+                    int xPos = geometry.x();
+
+                    if (leftScreen == nullptr || xPos < leftScreen->geometry().x()) {
+                        leftScreen = screen;
+                    }
+
+                    if (rightScreen == nullptr || xPos > rightScreen->geometry().x()) {
+                        rightScreen = screen;
+                    }
+                }
+                priScreen = leftScreen;
+                qDebug()<<"left :" <<priScreen->name();
+            }
+            else if(screens.size() >= 1)
+            {
+                priScreen = screens.at(0);
+                qDebug()<<"left :" <<priScreen->name();
+            }
             int i = 1;
             int iX =0;
-            qDebug()<< "prj: "<<priScreen->name();
+
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = dApp->desktop()->screenCount();
                 qDebug()<<"screen->name() "<<screen->name() ;
