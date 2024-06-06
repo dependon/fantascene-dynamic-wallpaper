@@ -6,7 +6,6 @@
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
-
 [中文项目介绍](README_zh.md)
 
 ## Settings for Gnome or Kylin os or Deepin V23
