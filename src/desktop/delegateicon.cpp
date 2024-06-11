@@ -137,8 +137,7 @@ void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, 
     {
         return QStyledItemDelegate::paint(painter,option,index);
     }
-    painter->setRenderHints(QPainter::HighQualityAntialiasing |
-                            QPainter::SmoothPixmapTransform |
+    painter->setRenderHints(QPainter::SmoothPixmapTransform |
                             QPainter::Antialiasing);
 
     painter->save();

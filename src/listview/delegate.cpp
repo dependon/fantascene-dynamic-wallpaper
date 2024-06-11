@@ -32,8 +32,7 @@ void delegate::paint(QPainter *painter, const QStyleOptionViewItem &option, cons
         (option.state & QStyle::State_Selected) != 0) {
         selected = true;
     }
-    painter->setRenderHints(QPainter::HighQualityAntialiasing |
-                            QPainter::SmoothPixmapTransform |
+    painter->setRenderHints(QPainter::SmoothPixmapTransform |
                             QPainter::Antialiasing);
     QRect backgroundRect = option.rect;
 

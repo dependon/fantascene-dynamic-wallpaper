@@ -39,6 +39,7 @@
 #include <QModelIndex>
 #include <QFileInfo>
 #include <QMutexLocker>
+#include <QStandardPaths>
 
 //#include <gio/gdesktopappinfo.h>
 
@@ -71,7 +72,6 @@
 QString IconView::readSettings(const QString &path, const QString &group, const QString &key)
 {
     QSettings settings(path, QSettings::IniFormat);
-    settings.setIniCodec("UTF-8");
     settings.beginGroup(group);
     QString value = settings.value(key).toString();
     return value;
@@ -321,7 +321,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                 {
                     QString usePath = path +"/"+file;
 
-                    QIcon icon = GioClass::getIcon(usePath);
+                    QIcon icon = GioClass::getIcon(QFileInfo(usePath));
                     QAction * action =new QAction(icon,file,nullptr);
                     action->setData(usePath);
                     m_createNew->addAction(action);
@@ -353,7 +353,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
                         QStringList canUse = GioClass::getCanUseApps(MIME);
                         for(QString useFile : canUse)
                         {
-                            QIcon icon = GioClass::getIcon(useFile);
+                            QIcon icon = GioClass::getIcon(QFileInfo(useFile));
                             QString name = GioClass::getDesktop2Name(useFile);
                             QAction * action =new QAction(icon,name,nullptr);
                             action->setData(useFile);
@@ -721,7 +721,7 @@ void IconView::loadDragPositions()
             if (dragPositionList.size() == 2) {
                 int x = dragPositionList[0].toInt();
                 int y = dragPositionList[1].toInt();
-                if(filePath.at(0)!="/")
+                if (!filePath.startsWith("/"))
                 {
                     filePath ="/"+filePath;
                 }

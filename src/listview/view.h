@@ -42,7 +42,6 @@ public:
 
         friend bool operator== (const ItemInfo &left, const ItemInfo &right)
         {
-#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
             if (left.image.isNull() && left.image.isNull()) {
                 return false;
             } else if (left.image.toImage() == left.image.toImage()) {
@@ -51,12 +50,6 @@ public:
                 return false;
             }
             return false;
-#else
-            if (left.image == right.image)
-                return true;
-            return false;
-#endif
-
         }
     };
     explicit view(QWidget *parent = nullptr);
