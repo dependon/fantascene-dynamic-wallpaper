@@ -6,7 +6,7 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
-
+#include <QSet>
 
 historyWidget::historyWidget(QWidget *parent) :
     QWidget(parent),
@@ -93,7 +93,7 @@ void historyWidget::on_addPlaylistBtn_clicked()
     if (m_viewHistory->m_allItemInfo.size() > m_viewHistory->currentIndex().row() && m_viewHistory->currentIndex().row() >= 0) {
         QString path = m_viewHistory->m_allItemInfo[m_viewHistory->currentIndex().row()].path;
         dApp->addPlayListaths(QStringList(path));
-        dApp->m_playlistPath = dApp->m_playlistPath.toSet().toList();
+        dApp->m_playlistPath = dApp->convertQStringListToSet( dApp->m_allPath).values();
         m_viewPlayList->setFiles(dApp->m_playlistPath);
         m_viewPlayList->refresh();
     }

@@ -20,7 +20,7 @@
  */
 #include <setdesktop.h>
 #include <X11/Xlib.h>
-
+#include <limits.h>
 Atom getAtom(Display* display, const char* atomName) {
     return XInternAtom(display, atomName, False);
 }

@@ -34,12 +34,12 @@
 
 #include "data.h"
 
-
 const QString PIC_DIR_PATH =   QDir::homePath() +
                                "/.config/fantascene-dynamic-wallpaper/.thumbnail";
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
 
+class xcb_connection_t;
 
 class Application : public QApplication
 {
@@ -78,6 +78,11 @@ public:
 
     //改变自身进程的透明度
     void changeMeOpacity(const double &opacity );
+
+    QSet<QString> convertQStringListToSet(const QStringList &list);
+
+    xcb_connection_t *getXcb_connection_t();
+    void  *getDisplay();
 
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);

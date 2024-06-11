@@ -33,7 +33,6 @@
 #include "dbuswallpaperservice.h"
 
 #ifdef Q_OS_LINUX
-#include <QtX11Extras/QX11Info>
 #include <xcb/xcb_ewmh.h>
 #endif
 
@@ -77,7 +76,7 @@ public:
     QVector<uint> getCurrentWorkspaceWindows();
     static xcb_atom_t internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists = true);
     QVector<xcb_window_t> getWindows() const;
-    qint32 getWorkspaceForWindow(quint32 WId);
+    qint32 getWorkspaceForWindow(quint32 WId,xcb_connection_t *connection);
 
     //通过wid获取窗口尺寸
     QRect geometry(WId id) const;

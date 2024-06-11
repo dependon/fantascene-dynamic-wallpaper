@@ -32,13 +32,19 @@
 #include <QPainter>
 #include <QProcess>
 #include <QDateTime>
-#include <QDesktopWidget>
+#include <QScreen>
+
 #include <QStyleFactory>
 
 #include "db/dbmanager.h"
 
 #include "setdesktop.h"
 
+#include <X11/Xlib.h>
+#include <xcb/xcb.h>
+
+Display *display = nullptr;
+xcb_connection_t *connection = nullptr;
 int find_pid_by_name1(char *ProcName, int *foundpid)
 {
     DIR             *dir;
@@ -149,7 +155,7 @@ Application::Application(int &argc, char **argv)
 //    this->setProductIcon(QIcon(":/install/wallpaper.png"));
     this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
-    m_currentScreenNum = desktop()->screenCount();
+    m_currentScreenNum = screens().size();
     m_pplaylistTimer = new QTimer(this);
     connect(m_pplaylistTimer, &QTimer::timeout, this, [ = ] {
         if (m_isPlayList && m_playlistPath.contains(m_currentPath))
@@ -521,6 +527,28 @@ void Application::changeMeOpacity(const double &opacity)
         return ;
     }
 
+}
+
+QSet<QString> Application::convertQStringListToSet(const QStringList &list) {
+    return QSet<QString>(list.begin(), list.end());
+}
+
+xcb_connection_t *Application::getXcb_connection_t()
+{
+    if(!connection)
+    {
+        connection = xcb_connect(NULL, NULL);
+    }
+    return connection;
+}
+
+void *Application::getDisplay()
+{
+    if(!display)
+    {
+        display = XOpenDisplay(NULL);
+    }
+    return display;
 }
 
 const QPixmap Application::getThumbnail(const QString &path)

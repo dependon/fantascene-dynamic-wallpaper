@@ -30,12 +30,13 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QThread>
-#include <QDesktopWidget>
+
 #include <QDebug>
 #include <QCoreApplication>
 #include <QFile>
 #include <QStandardPaths>
 #include <QStyleFactory>
+#include <QScreen>
 
 /* Translation file path */
 #define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
@@ -98,7 +99,7 @@ int main(int argc, char *argv[])
     mainwindw->setFixedSize(QSize(800, 600));
     mainwindw->setWindowTitle(QObject::tr("fantacy"));
     mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
-    mainwindw->move(qApp->desktop()->screen()->rect().center() - mainwindw->rect().center());
+    mainwindw->move(QGuiApplication::primaryScreen()->geometry().center() - mainwindw->rect().center());
 
     QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
     QByteArray cookie = qgetenv(envName.toUtf8().data());

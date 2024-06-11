@@ -23,7 +23,7 @@
 #include "application.h"
 
 #include <QTimer>
-#include <QDesktopWidget>
+
 #include "ini/inimanager.h"
 MoreSetting::MoreSetting(QWidget *parent) :
     QWidget(parent),
