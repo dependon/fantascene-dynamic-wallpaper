@@ -35,12 +35,11 @@
 #include <QPainter>
 #include <QTimer>
 #include <QGraphicsOpacityEffect>
-#include <QDesktopWidget>
+
 #include <QDebug>
 #include <QLabel>
 #include <QDBusConnection>
 
-#include <QDesktopWidget>
 #include <QGuiApplication>
 #include <QEvent>
 #include <QMouseEvent>
@@ -48,7 +47,6 @@
 #ifdef Q_OS_LINUX
 //#include <X11/Xlib.h>
 //#include <X11/Xutil.h>
-#include <QtX11Extras/QX11Info>
 
 #include <X11/Xatom.h>
 #include <X11/Xproto.h>
@@ -86,14 +84,14 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
     QHBoxLayout *layout = new QHBoxLayout;
     layout->setSpacing(0);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     setLayout(layout);
 
     registerDesktop();
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
-    connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
+ //   connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
     connect(dApp, &Application::setPlayPath, this, &Wallpaper::setFile);
     connect(dApp, &Application::setPlayPath2, this, &Wallpaper::setFile2);
     connect(dApp, &Application::setMpvPlay, this, &Wallpaper::play);
@@ -108,13 +106,15 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
     connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
 
-    QDesktopWidget *desktopwidget = QApplication::desktop();
-    connect(desktopwidget, &QDesktopWidget::resized, this, [ = ] {
+    QScreen *primaryScreen = QGuiApplication::primaryScreen();
+    // 监听屏幕大小变化信号
+    QObject::connect(primaryScreen, &QScreen::geometryChanged, [=]() {
         QTimer::singleShot(1000, [ = ]{
             updateGeometry();
         });
         updateGeometry();
     });
+
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -174,7 +174,11 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                 }
             }
             setFile(playPath);
-            if(qApp->desktop()->screenCount() > 1 && !dApp->m_currentPath2.isEmpty() && dApp->m_isPath2)
+
+            // 获取屏幕列表
+            QList<QScreen*> screens = QGuiApplication::screens();
+
+            if(screens.size() > 1 && !dApp->m_currentPath2.isEmpty() && dApp->m_isPath2)
             {
                 QString playPath2;
                 dApp->m_currentPath2 = dApp->m_currentPath2.replace("file://", "");
@@ -190,7 +194,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
                 }
                 setFile2(playPath2);
             }
-            else if (qApp->desktop()->screenCount() > 1)
+            else if (screens.size() > 1)
             {
                 setFile2(playPath);
             }
@@ -222,7 +226,7 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
 {
     switch (mode) {
     case IdCopyScreen: {
-        if (qApp->desktop()->screenCount() > 1) {
+        if (QGuiApplication::screens().size() > 1) {
             QString path = dApp->m_currentPath;
             if(dApp->m_isPath2)
             {
@@ -451,14 +455,18 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 }
 
 #include <QWindow>
-#define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
+#define ATOM(a) XInternAtom(static_cast<Display *>(dApp->getDisplay()), #a, False)
 void Wallpaper::registerDesktop()
 {
 #ifdef Q_OS_LINUX
     if(QGuiApplication::platformName() == "xcb") {
         // 是X11环境，可以执行相应代码
         xcb_ewmh_connection_t m_ewmh_connection;
-        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+
+        // 建立与X服务器的连接
+        xcb_connection_t *connection = xcb_connect(nullptr, nullptr);
+
+        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(connection, &m_ewmh_connection);
         xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
         xcb_atom_t atoms[1];
@@ -488,7 +496,7 @@ void Wallpaper::registerDesktop()
 //    if (xa != None) {
 //        long prop = 0;
 
-//        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+//        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
 //                        PropModeAppend, (unsigned char *) &prop, 1);
 //    }
 
@@ -496,7 +504,7 @@ void Wallpaper::registerDesktop()
 //    if (xa != None) {
 //        Atom xa_prop = 357;
 
-//        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+//        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
 //                        PropModeAppend, (unsigned char *) &xa_prop, 1);
 //    }
 //    QWindow *window = QWindow::fromWinId(winId());
@@ -509,7 +517,7 @@ void Wallpaper::registerDesktop()
 //        if (xa != None) {
 //            long prop = 0;
 
-//            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+//            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
 //                            PropModeAppend, (unsigned char *) &prop, 1);
 //        }
 
@@ -517,7 +525,7 @@ void Wallpaper::registerDesktop()
 //        if (xa != None) {
 //            Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
 
-//            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+//            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
 //                            PropModeAppend, (unsigned char *) &xa_prop, 1);
 //        }
 //    }
@@ -527,7 +535,7 @@ void Wallpaper::registerDesktop()
 
 //    region = XCreateRegion();
 //    if (region) {
-//        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
+//        XShapeCombineRegion(static_cast<Display *>(dApp->getDisplay()), winId(), ShapeInput, 0, 0, region, ShapeSet);
 //        XDestroyRegion(region);
 //    }
 
@@ -582,12 +590,16 @@ void Wallpaper::slotSetTransparency(const int value)
 void Wallpaper::updateGeometry()
 {
     QTimer::singleShot(100, [ = ] {
-        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+
+        dApp->m_currentScreenNum = QGuiApplication::screens().size();
         QRect rec;
         QSize size1(0, 0);
-        rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-        QRect rec2 = qApp->desktop()->screenGeometry();
-        QRect deskRect = qApp->desktop()->availableGeometry();
+        // 获取主屏幕
+        QScreen *primaryScreen = QGuiApplication::primaryScreen();
+
+        rec = primaryScreen->geometry();
+        QRect rec2 = primaryScreen->geometry();
+        QRect deskRect = primaryScreen->availableGeometry();
         rec = rec2;
         if (dApp->m_cuurentMode == IdCopyScreen)
         {
@@ -642,7 +654,7 @@ void Wallpaper::updateGeometry()
             int iX =0;
 
             for (auto screen : qApp->screens()) {
-                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() ;
                 if(screen->name() == priScreen->name() && m_mpv)
                 {
@@ -663,7 +675,7 @@ void Wallpaper::updateGeometry()
             }
 
             for (auto screen : qApp->screens()) {
-                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() << screen->geometry().y() ;
                 if(screen->name() != priScreen->name() && m_mpv2){
                     m_mpv2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
@@ -681,7 +693,7 @@ void Wallpaper::updateGeometry()
 
         } else if (dApp->m_cuurentMode == IdlayoutScreen)
         {
-            rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+            rec = QRect(0, 0, rec.width() * QGuiApplication::screens().size(), rec.height());
             size1.setWidth(rec.width());
             size1.setHeight(rec.height());
             this->setGeometry(rec);
@@ -804,7 +816,7 @@ void Wallpaper::slotMouseClick(const int &index)
 #include <X11/extensions/shape.h>
 #include <X11/extensions/Xrender.h>
 
-#define ATOM(a) XInternAtom(QX11Info::display(), #a, False)
+#define ATOM(a) XInternAtom(static_cast<Display *>(dApp->getDisplay()), #a, False)
 void Wallpaper::slotActiveWallpaper(bool bRet)
 {
     if(!bRet)
@@ -875,7 +887,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
     if (xa != None) {
         long prop = 0;
 
-        XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
                         PropModeAppend, (unsigned char *) &prop, 1);
     }
 
@@ -883,7 +895,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
     if (xa != None) {
         Atom xa_prop = 357;
 
-        XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
                         PropModeAppend, (unsigned char *) &xa_prop, 1);
     }
     QWindow *window = QWindow::fromWinId(winId());
@@ -896,7 +908,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
         if (xa != None) {
             long prop = 0;
 
-            XChangeProperty(QX11Info::display(), winId(), xa, XA_CARDINAL, 32,
+            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
                             PropModeAppend, (unsigned char *) &prop, 1);
         }
 
@@ -904,7 +916,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
         if (xa != None) {
             Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
 
-            XChangeProperty(QX11Info::display(), winId(), xa, XA_ATOM, 32,
+            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
                             PropModeAppend, (unsigned char *) &xa_prop, 1);
         }
     }
@@ -914,11 +926,11 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
 
     region = XCreateRegion();
     if (region && bRet) {
-        XShapeCombineRegion(QX11Info::display(), winId(), ShapeInput, 0, 0, region, ShapeSet);
+        XShapeCombineRegion(static_cast<Display *>(dApp->getDisplay()), winId(), ShapeInput, 0, 0, region, ShapeSet);
     }
     else
     {
-        XShapeCombineMask(QX11Info::display(), winId(), ShapeInput, 0, 0, None, ShapeSet);
+        XShapeCombineMask(static_cast<Display *>(dApp->getDisplay()), winId(), ShapeInput, 0, 0, None, ShapeSet);
     }
     dApp->changeMeOpacity(dApp->m_moreData.m_WallpaperTransparency);
 }

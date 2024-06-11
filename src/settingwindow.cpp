@@ -33,11 +33,13 @@
 #include <QStandardPaths>
 #include <QTimer>
 #include <QDesktopServices>
-#include <QDesktopWidget>
+#include <QStringList>
+
 #include <QDropEvent>
 #include <QMimeData>
 #include <QDebug>
 #include <QtConcurrent>
+#include <QScreen>
 #include "inimanager.h"
 
 #include <QMutexLocker>
@@ -73,12 +75,12 @@ settingWindow::settingWindow(QWidget *parent, QMainWindow *mainWindow) :
     ui->pathEdit->setAcceptDrops(true);
     setAcceptDrops(true);
 
-    bool isPath2 = dApp->m_isPath2 && qApp->desktop()->screenCount() > 1;
+    bool isPath2 = dApp->m_isPath2 && QGuiApplication::screens().size() > 1;
     ui->pathBtn2->setVisible(isPath2);
     ui->pathEdit2->setVisible(isPath2);
     ui->pixThumbnail2->setVisible(isPath2);
     ui->setBtn2->setVisible(isPath2);
-    ui->checkBox2Inde->setVisible(qApp->desktop()->screenCount() > 1);
+    ui->checkBox2Inde->setVisible(QGuiApplication::screens().size() > 1);
 
 
     m_traymenu = new QMenu();
@@ -497,11 +499,6 @@ int settingWindow::isAutoStart()
 #ifdef Q_OS_LINUX
 QVector <WId> settingWindow::currentWorkWindow()
 {
-    //    QWindowList m_windowList;
-    //    for (QWindow *w : m_windowList) {
-    //        w->deleteLater();
-    //    }
-    //    m_windowList.clear();
     QList<WId> currentApplicationList;
     const QWindowList &list = qApp->allWindows();
     currentApplicationList.reserve(list.size());
@@ -511,32 +508,15 @@ QVector <WId> settingWindow::currentWorkWindow()
         currentApplicationList.append(window->winId());
     }
     QVector<quint32> winList;
-    //    QFunctionPointer wmClientList = Q_NULLPTR;
-    //#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
-    //    QByteArray function = "_d_getCurrentWorkspaceWindows";
-    //    wmClientList = qApp->platformFunction(function);
-    //#endif
-    //    if (!wmClientList) {
-    //        winList = QVector<quint32>();
-    //    } else {
-    //        winList = reinterpret_cast<QVector<quint32>(*)()>(wmClientList)();
-    //    }
     winList = getCurrentWorkspaceWindows();
 
-
-
     for (WId wid : winList) {
-
         if (currentApplicationList.contains(wid)) {
             continue;
         }
         if (m_windowList.contains(wid)) {
             continue;
         }
-        //        QWindow *w = new QWindow();
-        //        w->setFlags(Qt::ForeignWindow);
-        //        w->setProperty("_q_foreignWinId", QVariant::fromValue(wid));
-        //        w->create();
         m_windowList.push_back(wid);
     }
     return m_windowList;
@@ -567,7 +547,7 @@ void settingWindow::on_setBtn_clicked()
         dApp->m_currentPath = ui->pathEdit->text();
         dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
         Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
-        if(qApp->desktop()->screenCount() > 1 && !dApp->m_isPath2)
+        if(QGuiApplication::screens().size() > 1 && !dApp->m_isPath2)
         {
             Q_EMIT dApp->setPlayPath2(ui->pathEdit->text());
         }
@@ -767,7 +747,7 @@ void settingWindow::on_history_clicked()
         m_history = new historyWidget();
         m_history->resize(800, 600);
         m_history->showNormal();
-        m_history->move(qApp->desktop()->screen()->rect().center() - m_history->rect().center());
+        m_history->move(QGuiApplication::primaryScreen()->geometry().center() - m_history->rect().center());
     } else {
         m_history->showNormal();
         m_history->activateWindow();
@@ -780,7 +760,7 @@ void settingWindow::slotWallPaper(const QString &path)
         dApp->m_currentPath = path;
         ui->pathEdit->setText(path);
         Q_EMIT dApp->setPlayPath(ui->pathEdit->text());
-        if(qApp->desktop()->screenCount() > 1 && !dApp->m_isPath2)
+        if(QGuiApplication::screens().size() > 1 && !dApp->m_isPath2)
         {
             Q_EMIT dApp->setPlayPath2(ui->pathEdit->text());
         }
@@ -791,7 +771,8 @@ void settingWindow::slotWallPaper(const QString &path)
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->addLocalPaths(QStringList(dApp->m_currentPath));
-        dApp->m_allPath = dApp->m_allPath.toSet().toList();
+        dApp->m_allPath = dApp->convertQStringListToSet( dApp->m_allPath).values();
+
         saveSettings();
         on_Slider_valueChanged(m_voiceVolume);
     }
@@ -809,7 +790,7 @@ void settingWindow::slotWallPaper2(const QString &path)
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
         dApp->addLocalPaths(QStringList(dApp->m_currentPath2));
-        dApp->m_allPath = dApp->m_allPath.toSet().toList();
+        dApp->m_allPath = dApp->convertQStringListToSet( dApp->m_allPath).values();
         saveSettings();
         on_Slider_valueChanged(m_voiceVolume);
 
@@ -968,8 +949,8 @@ void settingWindow::on_checkBox_stateChanged(int arg1)
         dApp->m_moreData.isAuto = 1;
         if (!m_future.isRunning()) {
             m_future = QtConcurrent::run([=](){
-                int screenwidth = qApp->desktop()->screenGeometry().width() - 150;
-                int screenheight = qApp->desktop()->screenGeometry().height() - 150;
+                int screenwidth = QGuiApplication::primaryScreen()->geometry().width() - 150;
+                int screenheight = QGuiApplication::primaryScreen()->geometry().height() - 150;
                 while (!m_stopx11Thread) {
                     if (dApp->m_isNoMpvPause) {
                         int index = 0;
@@ -1019,9 +1000,8 @@ void settingWindow::on_moreSettingBtn_clicked()
     }
     m_moreSetting->setData(dApp->m_moreData);
 
-    QDesktopWidget *desktop = QApplication::desktop();
-    int screenWidth = desktop->width();
-    int screenHeight = desktop->height();
+    int screenWidth = QGuiApplication::primaryScreen()->geometry().width();
+    int screenHeight = QGuiApplication::primaryScreen()->geometry().height();
 
     m_moreSetting->show();
     m_moreSetting->move(screenWidth/2 - m_moreSetting->width()/2,screenHeight/2 - m_moreSetting->height()/2);
@@ -1032,7 +1012,7 @@ void settingWindow::on_pluginBtn_clicked()
     if (!m_wallpaperEnginePlugin) {
         m_wallpaperEnginePlugin = new wallpaperEnginePlugin();
         m_wallpaperEnginePlugin->showNormal();
-        m_wallpaperEnginePlugin->move(qApp->desktop()->screen()->rect().center() - m_wallpaperEnginePlugin->rect().center());
+        m_wallpaperEnginePlugin->move(QGuiApplication::primaryScreen()->geometry().center() - m_wallpaperEnginePlugin->rect().center());
     } else {
         m_wallpaperEnginePlugin->showNormal();
         m_wallpaperEnginePlugin->activateWindow();
@@ -1112,7 +1092,7 @@ void settingWindow::slotTimerSaveSettings()
     IniManager::instance()->setValue("Wallpaper/EventPenetration",dApp->m_moreData.isEventPenetration);
     int indexLocal = 1;
 //    //去重
-//    dApp->m_allPath = dApp->m_allPath.toSet().toList();
+//    dApp->m_allPath = dApp->convertQStringListToSet( dApp->m_allPath).values();
 //    for (QString str : dApp->m_allPath) {
 //        IniManager::instance()->setValue("Movie/localPath" + QString::number(indexLocal++), str);
 //    }
@@ -1146,19 +1126,18 @@ xcb_atom_t settingWindow::internAtom(xcb_connection_t *connection, const char *n
 QVector<xcb_window_t> settingWindow::getWindows() const
 {
     QVector<xcb_window_t> window_list_stacking;
-    Display *display = QX11Info::display();
-    XDefaultRootWindow(display);
+    XDefaultRootWindow(static_cast<Display *>(dApp->getDisplay()));
+
     xcb_window_t root /*= XDefaultRootWindow(display)->primaryScreen()->root()*/;
     int offset = 0;
     int remaining = 0;
-    xcb_connection_t *xcb_connection = QX11Info::connection();
 
     do {
-        xcb_atom_t atomtt = internAtom(xcb_connection, "_NET_CLIENT_LIST_STACKING");
-        xcb_get_property_cookie_t cookie = xcb_get_property(xcb_connection, false,  XDefaultRootWindow(display),
+        xcb_atom_t atomtt = internAtom(dApp->getXcb_connection_t(), "_NET_CLIENT_LIST_STACKING");
+        xcb_get_property_cookie_t cookie = xcb_get_property(dApp->getXcb_connection_t(), false,  XDefaultRootWindow(static_cast<Display *>(dApp->getDisplay())),
                                                             atomtt,
                                                             XCB_ATOM_WINDOW, offset, 1024);
-        xcb_get_property_reply_t *reply = xcb_get_property_reply(xcb_connection, cookie, NULL);
+        xcb_get_property_reply_t *reply = xcb_get_property_reply(dApp->getXcb_connection_t(), cookie, NULL);
         if (!reply)
             break;
 
@@ -1180,12 +1159,12 @@ QVector<xcb_window_t> settingWindow::getWindows() const
 
     return window_list_stacking;
 }
-qint32 settingWindow::getWorkspaceForWindow(quint32 WId)
+qint32 settingWindow::getWorkspaceForWindow(quint32 WId, xcb_connection_t *connection)
 {
-    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false, WId,
-                                                        internAtom(QX11Info::connection(), "_NET_WM_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+    xcb_get_property_cookie_t cookie = xcb_get_property(connection, false, WId,
+                                                        internAtom(connection, "_NET_WM_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
     QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
-                xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+                xcb_get_property_reply(connection, cookie, NULL));
     if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
         return *(qint32 *)xcb_get_property_value(reply.data());
     }
@@ -1195,13 +1174,14 @@ qint32 settingWindow::getWorkspaceForWindow(quint32 WId)
 
 QVector<uint> settingWindow::getCurrentWorkspaceWindows()
 {
+
     qint32 current_workspace = 0;
 
-    xcb_get_property_cookie_t cookie = xcb_get_property(QX11Info::connection(), false,
+    xcb_get_property_cookie_t cookie = xcb_get_property(dApp->getXcb_connection_t(), false,
                                                         winId(),
-                                                        internAtom(QX11Info::connection(), "_NET_CURRENT_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
+                                                        internAtom(dApp->getXcb_connection_t(), "_NET_CURRENT_DESKTOP"), XCB_ATOM_CARDINAL, 0, 1);
     QScopedPointer<xcb_get_property_reply_t, QScopedPointerPodDeleter> reply(
-                xcb_get_property_reply(QX11Info::connection(), cookie, NULL));
+                xcb_get_property_reply(dApp->getXcb_connection_t(), cookie, NULL));
     if (reply && reply->type == XCB_ATOM_CARDINAL && reply->format == 32 && reply->value_len == 1) {
         current_workspace = *(qint32 *)xcb_get_property_value(reply.data());
     }
@@ -1209,7 +1189,7 @@ QVector<uint> settingWindow::getCurrentWorkspaceWindows()
     QVector<uint> windows;
 
     for (uint32_t WId : getWindows()) {
-        qint32 ws = getWorkspaceForWindow(WId);
+        qint32 ws = getWorkspaceForWindow(WId,dApp->getXcb_connection_t());
 
         if (ws < 0 || ws == current_workspace) {
             windows << WId;
@@ -1221,9 +1201,8 @@ QVector<uint> settingWindow::getCurrentWorkspaceWindows()
 
 QRect settingWindow::geometry(WId id) const
 {
-
     XWindowAttributes bute;
-    XGetWindowAttributes(QX11Info::display(), id, &bute);
+    XGetWindowAttributes(static_cast<Display *>(dApp->getDisplay()), id, &bute);
     QRect rect;
     if (&bute) {
         rect.setX(bute.x);
@@ -1236,15 +1215,14 @@ QRect settingWindow::geometry(WId id) const
 
 Qt::WindowState settingWindow::getWindowState(WId id)
 {
-
     xcb_window_t window = id;
     Qt::WindowState newState = Qt::WindowNoState;
     const xcb_get_property_cookie_t get_cookie =
-            xcb_get_property(QX11Info::connection(), 0, window, m_ewmh_connection._NET_WM_STATE,
+            xcb_get_property(dApp->getXcb_connection_t(), 0, window, m_ewmh_connection._NET_WM_STATE,
                              XCB_ATOM_ANY, 0, 1024);
 
     xcb_get_property_reply_t *reply =
-            xcb_get_property_reply(QX11Info::connection(), get_cookie, NULL);
+            xcb_get_property_reply(dApp->getXcb_connection_t(), get_cookie, NULL);
 
     if (reply) {
         const quint32 *data = (const quint32 *)xcb_get_property_value(reply);
@@ -1267,7 +1245,7 @@ Qt::WindowState settingWindow::getWindowState(WId id)
 void settingWindow::initAtom()
 {
     if(QGuiApplication::platformName() == "xcb") {
-        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+        xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(dApp->getXcb_connection_t(), &m_ewmh_connection);
         xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
     }
     else
@@ -1324,7 +1302,7 @@ void settingWindow::on_localBtn_clicked()
         m_local = new LocalWidget();
         m_local->resize(800, 600);
         m_local->showNormal();
-        m_local->move(qApp->desktop()->screen()->rect().center() - m_local->rect().center());
+        m_local->move(QGuiApplication::primaryScreen()->geometry().center() - m_local->rect().center());
     } else {
         m_local->showNormal();
         m_local->activateWindow();
@@ -1337,9 +1315,8 @@ void settingWindow::on_liveBtn_clicked()
     {
         m_downloadWidget =new DownloadWidget();
     }
-    QDesktopWidget *desktop = QApplication::desktop();
-    int screenWidth = desktop->width();
-    int screenHeight = desktop->height();
+    int screenWidth = QGuiApplication::primaryScreen()->geometry().width();
+    int screenHeight = QGuiApplication::primaryScreen()->geometry().height();
 
     m_downloadWidget->show();
     m_downloadWidget->move(screenWidth/2 - m_downloadWidget->width()/2,screenHeight/2 - m_downloadWidget->height()/2);
