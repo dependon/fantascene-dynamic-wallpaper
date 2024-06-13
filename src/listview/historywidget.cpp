@@ -33,6 +33,10 @@ historyWidget::historyWidget(QWidget *parent) :
     {
         ui->setWallPaper2->setVisible(true);
     }
+    else
+    {
+        ui->setWallPaper2->setVisible(false);
+    }
 
 }
 
@@ -43,9 +47,6 @@ historyWidget::~historyWidget()
 
 void historyWidget::showEvent(QShowEvent *event)
 {
-//    if (m_view && m_view->m_allItemInfo.size() != dApp->m_allPath.size()) {
-
-//    }
     return QWidget::showEvent(event);
 }
 

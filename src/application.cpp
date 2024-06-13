@@ -351,22 +351,19 @@ const QPixmap Application::getThumbnailText(const QString &path)
     } else {
         text = path;
     }
-    QSize size(256, 144); //指定图片大小;
-    QImage image(size, QImage::Format_ARGB32); //以ARGB32格式构造一个QImage,
-    //image.fill(qRgba(0,0,0,100));//填充图片背景,120/250为透明度
+    // 创建一个 256x144 的 QImage，白色底色
+    QImage image(256, 144, QImage::Format_RGB32);
+    image.fill(Qt::white);
+
     QPainter painter(&image); //为这个QImage构造一个QPainter
-    painter.setCompositionMode(QPainter::CompositionMode_DestinationOver);
-    //设置画刷的组合模式CompositionMode_SourceOut这个模式为目标图像在上。
-    //改变组合模式和上面的填充方式可以画出透明的图片。
-    //改变画笔和字体
-    QPen pen = painter.pen();
-    pen.setColor(Qt::red);
-    QFont font = painter.font();
-    font.setBold(true);//加粗
-    font.setPixelSize(30);//改变字体大小
-    painter.setPen(pen);
+    QFont font("Arial", 20); // 字体设置为 Arial，大小为 20
     painter.setFont(font);
-    painter.drawText(image.rect(), Qt::AlignCenter, text);
+    painter.setPen(QColor(255, 0, 0)); // 红色笔刷
+    painter.setRenderHint(QPainter::Antialiasing); // 开启抗锯齿
+
+    QRect textRect = QRect(0, 0, 256, 144); // 图像的整个区域
+    int flags = Qt::AlignCenter | Qt::TextWordWrap; // 设置文字对齐方式并开启自动换行
+    painter.drawText(textRect, flags, text);
 
     return QPixmap::fromImage(image);
 }
@@ -612,8 +609,9 @@ const QPixmap Application::getThumbnail(const QString &path)
         }
         return a;
     }
-
-    return getThumbnailText(path);
+    QPixmap  tmpA = getThumbnailText(path);
+    tmpA.save(thumPath);
+    return tmpA;
 }
 
 void Application::setDesktopTransparent()
