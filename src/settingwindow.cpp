@@ -655,7 +655,7 @@ void settingWindow::on_setManual_clicked()
     int heightPY = ui->heightPY->text().toInt();
     int width = ui->width->text().toInt();
     int height = ui->height->text().toInt();
-	if(width <= 0)
+    if(width <= 0)
     {
         width = 1;
     }

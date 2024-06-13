@@ -176,6 +176,16 @@ Application::Application(int &argc, char **argv)
 
 Application::~Application()
 {
+    if(display)
+    {
+        XCloseDisplay(display);
+        display = nullptr;
+    }
+    if(connection)
+    {
+        xcb_disconnect(connection);
+        connection = nullptr;
+    }
     Q_EMIT quitApp();
 }
 

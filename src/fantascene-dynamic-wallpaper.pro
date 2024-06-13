@@ -29,7 +29,7 @@ QT += concurrent sql
 
 CONFIG += c++11 link_pkgconfig no_keywords
 unix {
-# QT += x11extras
+ #QT += x11extras
  PKGCONFIG += xcb-ewmh mpv x11 xext xrender
 #CONFIG += waylandcompositor
  PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
