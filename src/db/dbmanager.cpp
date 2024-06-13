@@ -1,6 +1,7 @@
 #include "dbmanager.h"
 #include <QDir>
 #include <QMutexLocker>
+
 const QString SQL_PATH =   QDir::homePath() +
                            "/.config/fantascene-dynamic-wallpaper/fantascene.db";
 const QString SQL_DIR =   QDir::homePath() +

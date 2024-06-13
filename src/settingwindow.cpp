@@ -553,13 +553,13 @@ void settingWindow::on_setBtn_clicked()
         }
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_allPath.push_back(dApp->m_currentPath);
         saveSettings();
         Q_EMIT dApp->addPaperView(dApp->m_currentPath);
         QPixmap pix = dApp->getThumbnail(dApp->m_currentPath);
         if (!pix.isNull()) {
             ui->pixThumbnail->setPixmap(pix);
         }
+        dApp->addLocalPaths(QStringList(dApp->m_currentPath));
     }
 }
 
@@ -1371,12 +1371,12 @@ void settingWindow::on_setBtn2_clicked()
         Q_EMIT dApp->setPlayPath2(ui->pathEdit2->text());
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
-        dApp->m_allPath.push_back(dApp->m_currentPath2);
         saveSettings();
         Q_EMIT dApp->addPaperView(dApp->m_currentPath2);
         QPixmap pix = dApp->getThumbnail(dApp->m_currentPath2);
         if (!pix.isNull()) {
             ui->pixThumbnail2->setPixmap(pix);
         }
+        dApp->addLocalPaths(QStringList(dApp->m_currentPath2));
     }
 }
