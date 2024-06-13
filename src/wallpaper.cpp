@@ -35,7 +35,7 @@
 #include <QPainter>
 #include <QTimer>
 #include <QGraphicsOpacityEffect>
-#include <QDesktopWidget>
+
 #include <QDebug>
 #include <QLabel>
 #include <QDBusConnection>
@@ -91,7 +91,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
     connect(dApp, &Application::setScreenMode, this, &Wallpaper::slotsetScreenMode);
-//    connect(qApp->desktop(), &QDesktopWidget::resized, this, &Wallpaper::updateGeometry);
+
     connect(dApp, &Application::setPlayPath, this, &Wallpaper::setFile);
     connect(dApp, &Application::setPlayPath2, this, &Wallpaper::setFile2);
     connect(dApp, &Application::setMpvPlay, this, &Wallpaper::play);
@@ -585,16 +585,15 @@ void Wallpaper::slotSetTransparency(const int value)
 void Wallpaper::updateGeometry()
 {
     QTimer::singleShot(100, [ = ] {
-        dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+        dApp->m_currentScreenNum = QGuiApplication::screens().size();
 
         QRect rec;
         QSize size1(0, 0);
-        rec = qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen());
-        QRect rec2 = qApp->desktop()->screenGeometry();
-        QRect deskRect = qApp->desktop()->availableGeometry();
-
-
-
+        // 获取主屏幕
+        QScreen *primaryScreen = QGuiApplication::primaryScreen();
+        rec = primaryScreen->geometry();
+        QRect rec2 = primaryScreen->geometry();
+        QRect deskRect = primaryScreen->availableGeometry();
         rec = rec2;
         if (dApp->m_cuurentMode == IdCopyScreen)
         {
@@ -649,7 +648,7 @@ void Wallpaper::updateGeometry()
             int iX =0;
 
             for (auto screen : qApp->screens()) {
-                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() ;
                 if(screen->name() == priScreen->name() && m_mpv)
                 {
@@ -670,7 +669,7 @@ void Wallpaper::updateGeometry()
             }
 
             for (auto screen : qApp->screens()) {
-                dApp->m_currentScreenNum = dApp->desktop()->screenCount();
+                dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() << screen->geometry().y() ;
                 if(screen->name() != priScreen->name() && m_mpv2){
                     m_mpv2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
@@ -688,7 +687,7 @@ void Wallpaper::updateGeometry()
 
         } else if (dApp->m_cuurentMode == IdlayoutScreen)
         {
-            rec = QRect(0, 0, rec.width() * dApp->desktop()->screenCount(), rec.height());
+            rec = QRect(0, 0, rec.width() * QGuiApplication::screens().size(), rec.height());
             size1.setWidth(rec.width());
             size1.setHeight(rec.height());
             this->setGeometry(rec);
