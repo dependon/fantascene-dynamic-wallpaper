@@ -50,6 +50,10 @@ public:
 
     const QString thumbnailCachePath();
     const QPixmap getThumbnail(const QString &path);
+    const QPixmap reloadThumbnail(const QString &path);
+    const QPixmap setNewThumbnail(const QString &path,const QString &thumbnailPath);
+    QString getThumbnailPath(const QString &path);
+    const QPixmap getThumbnailText(const QString &path);
 
     void setDesktopTransparent();
 
@@ -60,8 +64,6 @@ public:
 
     //特殊桌面的处理
     void setSpecialDesktop();
-
-    const QPixmap getThumbnailText(const QString &path);
 
     bool addLocalPaths(QStringList strList);
     bool removeLocalPaths(QStringList strList);

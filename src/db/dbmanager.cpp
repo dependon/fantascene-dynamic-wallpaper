@@ -98,6 +98,33 @@ QList<WallpaperData> DBManager::getAllData()
     return list;
 }
 
+WallpaperData DBManager::getData(const QString &path)
+{
+    WallpaperData tmpData;
+    QList <WallpaperData> list;
+    if (m_db.isValid()) {
+        QSqlQuery query(m_db);
+        QString strSql = QString("select * from WallpaperData where path = '%1';").arg(path);
+        query.exec(strSql);
+
+        while (query.next()) { //一行一行遍历
+            //取出当前行的内容
+            //以列为单位的     //第0列
+            WallpaperData data;
+            data.path = query.value("path").toString();
+            data.name = query.value("name").toString();
+            data.iconPath = query.value("iconPath").toString();
+            data.type = query.value("type").toString();
+            list << data;
+        }
+    }
+    if(list.size() > 0)
+    {
+        tmpData = list.at(0);
+    }
+    return tmpData;
+}
+
 int DBManager::getAllCount()
 {
     int i=0;

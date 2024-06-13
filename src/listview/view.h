@@ -68,6 +68,8 @@ public:
     int m_iBaseHeight = 100;
     int rowSizeHint = 0;
     QList<ItemInfo> m_allItemLeft;//所有待处理的
+Q_SIGNALS:
+    void sigClickedChange(const QString & path);
 
 public Q_SLOTS:
     void setBaseHeight(int a);

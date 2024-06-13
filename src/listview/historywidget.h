@@ -53,6 +53,11 @@ private Q_SLOTS:
 
     void on_setWallPaper2_clicked();
 
+    void on_clickedChange(const QString &path);
+    void on_btn_reload_clicked();
+
+    void on_btn_select_clicked();
+
 private:
     Ui::historyWidget *ui;
     view *m_viewHistory{nullptr};

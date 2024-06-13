@@ -203,7 +203,13 @@ void view::onDoubleClicked(const QModelIndex &index)
         if (fileInfo.isFile()) {
             dApp->setWallPaper(str);
             dApp->saveSetting();
-        } else {
+        }
+        else if (str.contains("www") || str.contains("http//") || str.contains("https//"))
+        {
+            dApp->setWallPaper(str);
+            dApp->saveSetting();
+        }
+        else {
             if (QMessageBox::Yes == QMessageBox::information(NULL, tr("Delete!!"), tr("The file does not exist. Do you want to delete it"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes)) {
                 if (m_allItemInfo.size() > currentIndex().row() && currentIndex().row() >= 0) {
                     QString path = m_allItemInfo[currentIndex().row()].path;
@@ -229,6 +235,7 @@ void view::onClicked(const QModelIndex &index)
 {
     qDebug() << index.row();
     m_currentModelIndex = index.row();
+    sigClickedChange(m_allItemInfo.at(m_currentModelIndex).path);
 }
 
 void view::keyPressEvent(QKeyEvent *event)

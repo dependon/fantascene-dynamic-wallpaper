@@ -27,6 +27,8 @@ public:
 
     QStringList getAllPath();
     QList <WallpaperData> getAllData();
+    WallpaperData getData(const QString &path);
+
     int getAllCount();
     QString getCurrentPath();
     bool setCurrentPath(const QString &path);

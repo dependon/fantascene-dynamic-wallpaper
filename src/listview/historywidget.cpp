@@ -3,10 +3,11 @@
 #include "view.h"
 #include "application.h"
 #include "playlistsettingdialog.h"
-
+#include "db/dbmanager.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSet>
+#include <QDebug>
 
 historyWidget::historyWidget(QWidget *parent) :
     QWidget(parent),
@@ -37,6 +38,12 @@ historyWidget::historyWidget(QWidget *parent) :
     {
         ui->setWallPaper2->setVisible(false);
     }
+
+    connect(m_viewHistory,&view::sigClickedChange,this,&historyWidget::on_clickedChange,Qt::QueuedConnection);
+
+    ui->lbl_Name->setWordWrap(true);
+    ui->lbl_Path->setWordWrap(true);
+    ui->lbl_thumbPath->setWordWrap(true);
 
 }
 
@@ -79,7 +86,16 @@ void historyWidget::on_delWallPaper_clicked()
 
 void historyWidget::on_importBtn_clicked()
 {
-    QStringList list = QFileDialog::getOpenFileNames();
+    QStringList list ;
+    if(dApp->m_isNoMpvPause)
+    {
+        Q_EMIT dApp->setMpvpause();
+        dApp->m_isNoMpvPause = false;
+        list = QFileDialog::getOpenFileNames();
+
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+    }
     for (QString path : list) {
         if (!dApp->getThumbnail(path).isNull()) {
             dApp->addLocalPaths(QStringList(path));
@@ -138,3 +154,56 @@ void historyWidget::on_setWallPaper2_clicked()
     }
     Q_EMIT dApp->saveSetting();
 }
+
+void historyWidget::on_clickedChange(const QString &path)
+{
+    WallpaperData wallpaperData = DBManager::instance()->getData(path);
+    QString thumbnail = dApp->getThumbnailPath(path);
+    ui->lbl_Name->setText(wallpaperData.name);
+    ui->lbl_Path->setText(wallpaperData.path);
+    ui->lbl_thumbPath->setText(thumbnail);
+    ui->lbl_thumb->setPixmap(dApp->getThumbnail(path));
+}
+
+void historyWidget::on_btn_reload_clicked()
+{
+    QString path = ui->lbl_Path->text();
+    QPixmap pix = dApp->reloadThumbnail(path);
+    for(int i =0 ; i< m_viewHistory->m_allItemInfo.size();i++)
+    {
+        if(m_viewHistory->m_allItemInfo.at(i).path == path)
+        {
+            m_viewHistory->m_allItemInfo[i].image = pix;
+        }
+    }
+    m_viewHistory->refresh();
+    ui->lbl_thumb->setPixmap(pix);
+}
+
+
+void historyWidget::on_btn_select_clicked()
+{
+    QString str;
+    if(dApp->m_isNoMpvPause)
+    {
+        Q_EMIT dApp->setMpvpause();
+        dApp->m_isNoMpvPause = false;
+        str = QFileDialog::getOpenFileName();
+
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+    }
+    QString path = ui->lbl_Path->text();
+    QPixmap pix = dApp->setNewThumbnail(path,str);
+    for(int i =0 ; i< m_viewHistory->m_allItemInfo.size();i++)
+    {
+        if(m_viewHistory->m_allItemInfo.at(i).path == path)
+        {
+            m_viewHistory->m_allItemInfo[i].image = pix;
+        }
+    }
+    m_viewHistory->refresh();
+    ui->lbl_thumb->setPixmap(pix);
+
+}
+

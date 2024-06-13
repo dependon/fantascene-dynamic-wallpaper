@@ -530,8 +530,17 @@ void settingWindow::setScreenMode(const QString &arg)
 
 void settingWindow::on_pathBtn_clicked()
 {
-    on_pauseBtn_clicked();
-    QString path = QFileDialog::getOpenFileUrl().toLocalFile();
+    QString path ;
+    if(dApp->m_isNoMpvPause)
+    {
+        Q_EMIT dApp->setMpvpause();
+        dApp->m_isNoMpvPause = false;
+        path = QFileDialog::getOpenFileUrl().toLocalFile();
+
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+    }
+
     if (!path.isEmpty()) {
         ui->pathEdit->setText(path);
         QPixmap pix = dApp->getThumbnail(path);
@@ -1344,8 +1353,16 @@ void settingWindow::on_checkBox2Inde_stateChanged(int arg1)
 
 void settingWindow::on_pathBtn2_clicked()
 {
-    on_pauseBtn_clicked();
-    QString path = QFileDialog::getOpenFileUrl().toLocalFile();
+    QString path ;
+    if(dApp->m_isNoMpvPause)
+    {
+        Q_EMIT dApp->setMpvpause();
+        dApp->m_isNoMpvPause = false;
+        path = QFileDialog::getOpenFileUrl().toLocalFile();
+
+        Q_EMIT dApp->setMpvPlay();
+        dApp->m_isNoMpvPause = true;
+    }
     if (!path.isEmpty()) {
         ui->pathEdit2->setText(path);
         QPixmap pix = dApp->getThumbnail(path);

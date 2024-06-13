@@ -614,6 +614,91 @@ const QPixmap Application::getThumbnail(const QString &path)
     return tmpA;
 }
 
+const QPixmap Application::reloadThumbnail(const QString &path)
+{
+    QFileInfo info(path);
+    //mkdir PIC_DIR_PATH
+    QDir dir(PIC_DIR_PATH);
+    if (!dir.exists()) {
+        QDir dir;
+        dir.mkdir(PIC_DIR_PATH);
+    }
+
+    const QString cacheP = thumbnailCachePath();
+    QUrl url;
+    if (!path.contains("file://")) {
+        url = QUrl::fromLocalFile(path);
+    } else {
+        url = QUrl(path);
+    }
+    const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
+    const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
+    QFileInfo thumbInfo(thumPath);
+    if (thumbInfo.exists())
+    {
+        QFile::remove(thumPath);
+    }
+    return getThumbnail(path);
+}
+
+const QPixmap Application::setNewThumbnail(const QString &path, const QString &thumbnailPath)
+{
+    QMutexLocker locker(&mutex);
+    QPixmap pix(thumbnailPath);
+    QPixmap pixRe;
+    if (!pix.isNull())
+    {
+        pixRe = pix.scaled(256, 144);
+        QUrl url;
+        if (!path.contains("file://")) {
+            url = QUrl::fromLocalFile(path);
+        } else {
+            url = QUrl(path);
+        }
+        const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
+        const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
+        QFileInfo thumbInfo(thumPath);
+        if (thumbInfo.exists())
+        {
+            QFile::remove(thumPath);
+        }
+        pixRe.save(thumPath);
+
+    }
+    return pixRe;
+}
+
+QString Application::getThumbnailPath(const QString &path)
+{
+    QMutexLocker locker(&mutex);
+    QFileInfo info(path);
+    //mkdir PIC_DIR_PATH
+    QDir dir(PIC_DIR_PATH);
+    if (!dir.exists()) {
+        QDir dir;
+        dir.mkdir(PIC_DIR_PATH);
+    }
+
+    const QString cacheP = thumbnailCachePath();
+    QUrl url;
+    if (!path.contains("file://")) {
+        url = QUrl::fromLocalFile(path);
+    } else {
+        url = QUrl(path);
+    }
+
+    QPixmap  wallPix(QFileInfo(path).path() + "/" + "preview.jpg");
+    if (!wallPix.isNull()) {
+        return QFileInfo(path).path() + "/" + "preview.jpg";
+    }
+    else
+    {
+        const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
+        const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
+        return  thumPath;
+    }
+}
+
 void Application::setDesktopTransparent()
 {
 //    //dbus开启壁纸透明
