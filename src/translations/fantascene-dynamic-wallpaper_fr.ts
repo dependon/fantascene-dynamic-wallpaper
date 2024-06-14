@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="109"/>
-        <location filename="../application.cpp" line="110"/>
+        <location filename="../application.cpp" line="144"/>
+        <location filename="../application.cpp" line="145"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -57,133 +57,133 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="181"/>
+        <location filename="../desktop/iconview.cpp" line="183"/>
         <source>Open</source>
         <translation>aperto</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="185"/>
+        <location filename="../desktop/iconview.cpp" line="188"/>
         <source>Open With</source>
         <translation>Apri con</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="189"/>
+        <location filename="../desktop/iconview.cpp" line="193"/>
         <source>New Built</source>
         <translation>Nuovo</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="194"/>
+        <location filename="../desktop/iconview.cpp" line="198"/>
         <source>Select all</source>
         <translation>Seleziona tutto</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="199"/>
+        <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Open Terminal</source>
         <translation>Apri terminale</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="205"/>
-        <location filename="../desktop/iconview.cpp" line="927"/>
+        <location filename="../desktop/iconview.cpp" line="209"/>
+        <location filename="../desktop/iconview.cpp" line="933"/>
         <source>New Folder</source>
         <translation>Nuova cartella</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="210"/>
+        <location filename="../desktop/iconview.cpp" line="215"/>
         <source>Sort Order</source>
         <translation>Ordinamento file</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="214"/>
+        <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Refresh Sort</source>
         <translation>Aggiorna ordinamento</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="218"/>
+        <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Name</source>
         <translation>nome</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="222"/>
+        <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Change Date</source>
         <translation>Tempo di modifica</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="226"/>
+        <location filename="../desktop/iconview.cpp" line="231"/>
         <source>File Size</source>
         <translation>dimensione file</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="230"/>
+        <location filename="../desktop/iconview.cpp" line="235"/>
         <source>File Type</source>
         <translation>tipo di file</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="234"/>
+        <location filename="../desktop/iconview.cpp" line="240"/>
         <source>Icon Size</source>
         <translation>Dimensione icona</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="238"/>
+        <location filename="../desktop/iconview.cpp" line="244"/>
         <source>Small</source>
         <translation>piccolo</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="242"/>
+        <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Medium</source>
         <translation>in</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="246"/>
+        <location filename="../desktop/iconview.cpp" line="252"/>
         <source>Big</source>
         <translation>grande</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="252"/>
+        <location filename="../desktop/iconview.cpp" line="258"/>
         <source>Copy</source>
         <translation>copia</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="257"/>
+        <location filename="../desktop/iconview.cpp" line="263"/>
         <source>Cut</source>
         <translation>taglio</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="262"/>
+        <location filename="../desktop/iconview.cpp" line="268"/>
         <source>Paste</source>
         <translation>pasta</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="267"/>
+        <location filename="../desktop/iconview.cpp" line="273"/>
         <source>Rename</source>
         <translation>rinomina</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="272"/>
+        <location filename="../desktop/iconview.cpp" line="278"/>
         <source>Trash</source>
         <translation>elimina</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="277"/>
+        <location filename="../desktop/iconview.cpp" line="283"/>
         <source>Set Wallpaper</source>
         <translation>imposta sfondo</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="290"/>
+        <location filename="../desktop/iconview.cpp" line="296"/>
         <source>New TXT</source>
         <translation>Nuovo Txt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="359"/>
+        <location filename="../desktop/iconview.cpp" line="365"/>
         <source>Select Other Application</source>
         <translation>Scegli un&apos;altra applicazione</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="483"/>
+        <location filename="../desktop/iconview.cpp" line="489"/>
         <source>Please Select App</source>
         <translation>Seleziona un&apos;applicazione</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="941"/>
+        <location filename="../desktop/iconview.cpp" line="947"/>
         <source>New Txt Files</source>
         <translation>Nuovo TXT</translation>
     </message>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="96"/>
+        <location filename="../moresetting.cpp" line="110"/>
         <source>continue playing</source>
         <translation>Continuer à jouer</translation>
     </message>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="104"/>
+        <location filename="../moresetting.cpp" line="118"/>
         <source>default</source>
         <translation>Par défaut</translation>
     </message>
@@ -320,72 +320,96 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
+        <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="111"/>
-        <location filename="../moresetting.cpp" line="164"/>
+        <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.cpp" line="125"/>
+        <location filename="../moresetting.cpp" line="132"/>
+        <location filename="../moresetting.cpp" line="188"/>
+        <location filename="../moresetting.cpp" line="215"/>
         <source>other</source>
         <translation>Autres</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
-        <source>Show desktop icon</source>
-        <translation>Visualizza icona del desktop</translation>
+        <source>VO</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="165"/>
-        <location filename="../moresetting.ui" line="190"/>
-        <location filename="../moresetting.ui" line="287"/>
-        <location filename="../moresetting.cpp" line="69"/>
-        <location filename="../moresetting.cpp" line="75"/>
-        <location filename="../moresetting.cpp" line="81"/>
-        <location filename="../moresetting.cpp" line="118"/>
-        <location filename="../moresetting.cpp" line="125"/>
-        <location filename="../moresetting.cpp" line="139"/>
-        <source>true</source>
-        <translation>Oui</translation>
+        <source>libmpv</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="170"/>
-        <location filename="../moresetting.ui" line="195"/>
-        <location filename="../moresetting.ui" line="282"/>
-        <location filename="../moresetting.cpp" line="71"/>
-        <location filename="../moresetting.cpp" line="77"/>
-        <location filename="../moresetting.cpp" line="85"/>
-        <source>false</source>
-        <translation>Non</translation>
+        <location filename="../moresetting.ui" line="175"/>
+        <source>opengl</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="182"/>
-        <source>Place on top of the original desktop</source>
+        <location filename="../moresetting.ui" line="180"/>
+        <source>opengl-cb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
+        <source>Show desktop icon</source>
+        <translation>Visualizza icona del desktop</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="215"/>
+        <location filename="../moresetting.ui" line="240"/>
+        <location filename="../moresetting.ui" line="337"/>
+        <location filename="../moresetting.cpp" line="83"/>
+        <location filename="../moresetting.cpp" line="89"/>
+        <location filename="../moresetting.cpp" line="95"/>
+        <location filename="../moresetting.cpp" line="139"/>
+        <location filename="../moresetting.cpp" line="146"/>
+        <location filename="../moresetting.cpp" line="160"/>
+        <source>true</source>
+        <translation>Oui</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="220"/>
+        <location filename="../moresetting.ui" line="245"/>
+        <location filename="../moresetting.ui" line="332"/>
+        <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="91"/>
+        <location filename="../moresetting.cpp" line="99"/>
+        <source>false</source>
+        <translation>Non</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="232"/>
+        <source>Place on top of the original desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="257"/>
         <source>Desktop transparency </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="214"/>
+        <location filename="../moresetting.ui" line="264"/>
         <source>xx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="244"/>
+        <location filename="../moresetting.ui" line="294"/>
         <source>Wallpaper transparency </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="274"/>
+        <location filename="../moresetting.ui" line="324"/>
         <source>Event penetration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="299"/>
+        <location filename="../moresetting.ui" line="349"/>
         <source>Confirm</source>
         <translation>conferma</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="306"/>
+        <location filename="../moresetting.ui" line="356"/>
         <source>Cancel</source>
         <translation>annulla</translation>
     </message>
@@ -457,7 +481,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="100"/>
         <source>fantacy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -493,69 +517,94 @@
         <translation>finestra</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="32"/>
+        <location filename="../listview/historywidget.ui" line="34"/>
         <source>History</source>
         <translation>storia</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="44"/>
+        <location filename="../listview/historywidget.ui" line="46"/>
         <source>Set Wallpaper</source>
         <translation>imposta sfondo</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="51"/>
+        <location filename="../listview/historywidget.ui" line="53"/>
         <source>Set Wallpaper 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="58"/>
-        <location filename="../listview/historywidget.ui" line="105"/>
+        <location filename="../listview/historywidget.ui" line="60"/>
+        <location filename="../listview/historywidget.ui" line="107"/>
         <source>Delete</source>
         <translation>elimina</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="65"/>
+        <location filename="../listview/historywidget.ui" line="67"/>
         <source>Import</source>
         <translation>Importa</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="86"/>
+        <location filename="../listview/historywidget.ui" line="88"/>
         <source>Playlist</source>
         <translation>Playlist loop</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="98"/>
+        <location filename="../listview/historywidget.ui" line="100"/>
         <source>Add Playlist</source>
         <translation>Join looping playlist</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="112"/>
+        <location filename="../listview/historywidget.ui" line="114"/>
         <source>Loop play</source>
         <translation>Indica se giocare in loop</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="119"/>
+        <location filename="../listview/historywidget.ui" line="121"/>
         <source>Loop playback settings</source>
         <translation>Impostazioni di riproduzione loop</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="18"/>
+        <location filename="../listview/historywidget.ui" line="212"/>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="254"/>
+        <source>Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="290"/>
+        <source>Thumbnail Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="345"/>
+        <source>Reload images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="352"/>
+        <source>Select image as thumbnail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
         <translation>Sfondo storico</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="70"/>
-        <location filename="../listview/historywidget.cpp" line="123"/>
+        <location filename="../listview/historywidget.cpp" line="78"/>
+        <location filename="../listview/historywidget.cpp" line="140"/>
         <source>Delete!!</source>
         <translation>Elimina!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="70"/>
+        <location filename="../listview/historywidget.cpp" line="78"/>
         <source>Delete all history imports ?</source>
         <translation>Vuoi eliminare tutto?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="123"/>
+        <location filename="../listview/historywidget.cpp" line="140"/>
         <source>Delete all playback ?</source>
         <translation>Eliminare tutte le playlist in loop?</translation>
     </message>
@@ -596,13 +645,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="100"/>
+        <location filename="../settingwindow.cpp" line="104"/>
         <source>Play</source>
         <translation>gioca</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="112"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Pause</source>
         <translation>sospendere</translation>
     </message>
@@ -638,7 +687,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="659"/>
+        <location filename="../settingwindow.cpp" line="676"/>
         <source>Manual</source>
         <translation>Manuale</translation>
     </message>
@@ -654,7 +703,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="781"/>
+        <location filename="../settingwindow.cpp" line="835"/>
         <source>default</source>
         <translation>Par défaut</translation>
     </message>
@@ -685,7 +734,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="793"/>
+        <location filename="../settingwindow.cpp" line="847"/>
         <source>custom</source>
         <translation>Personnalisation</translation>
     </message>
@@ -761,7 +810,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="544"/>
-        <location filename="../settingwindow.cpp" line="119"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Wallpaper History</source>
         <translation>Sfondo storico</translation>
     </message>
@@ -771,37 +820,37 @@
         <translation>Estensione motore di sfondo</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="86"/>
+        <location filename="../settingwindow.cpp" line="90"/>
         <source>Exit</source>
         <translation>quit</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="107"/>
+        <location filename="../settingwindow.cpp" line="111"/>
         <source>Screenshot</source>
         <translation>screenshot</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="123"/>
+        <location filename="../settingwindow.cpp" line="127"/>
         <source>Main View</source>
         <translation>Modulo principale</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="140"/>
+        <location filename="../settingwindow.cpp" line="144"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="148"/>
+        <location filename="../settingwindow.cpp" line="152"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="165"/>
+        <location filename="../settingwindow.cpp" line="169"/>
         <source>Double click to open the configuration interface</source>
         <translation>Fare doppio clic per aprire l&apos;interfaccia</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="218"/>
+        <location filename="../settingwindow.cpp" line="222"/>
         <source>Latest version</source>
         <translation>Ultima versione</translation>
     </message>
@@ -809,18 +858,18 @@
 <context>
     <name>view</name>
     <message>
-        <location filename="../listview/view.cpp" line="207"/>
-        <location filename="../listview/view.cpp" line="214"/>
+        <location filename="../listview/view.cpp" line="213"/>
+        <location filename="../listview/view.cpp" line="220"/>
         <source>Delete!!</source>
         <translation>Elimina!!</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="207"/>
+        <location filename="../listview/view.cpp" line="213"/>
         <source>The file does not exist. Do you want to delete it</source>
         <translation>Il file non esiste. Vuoi eliminarlo</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="214"/>
+        <location filename="../listview/view.cpp" line="220"/>
         <source>Delete all history imports ?</source>
         <translation>Vuoi eliminare tutto?</translation>
     </message>

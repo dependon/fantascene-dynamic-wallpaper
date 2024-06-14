@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="109"/>
-        <location filename="../application.cpp" line="110"/>
+        <location filename="../application.cpp" line="144"/>
+        <location filename="../application.cpp" line="145"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation></translation>
     </message>
@@ -57,139 +57,139 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="181"/>
+        <location filename="../desktop/iconview.cpp" line="183"/>
         <source>Open</source>
         <translation>打开</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="185"/>
+        <location filename="../desktop/iconview.cpp" line="188"/>
         <source>Open With</source>
         <translation>打开方式</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="189"/>
+        <location filename="../desktop/iconview.cpp" line="193"/>
         <source>New Built</source>
         <translatorcomment>新建</translatorcomment>
         <translation>新建</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="194"/>
+        <location filename="../desktop/iconview.cpp" line="198"/>
         <source>Select all</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="199"/>
+        <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Open Terminal</source>
         <translation>打开终端</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="205"/>
-        <location filename="../desktop/iconview.cpp" line="927"/>
+        <location filename="../desktop/iconview.cpp" line="209"/>
+        <location filename="../desktop/iconview.cpp" line="933"/>
         <source>New Folder</source>
         <translation>新建文件夹</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="290"/>
+        <location filename="../desktop/iconview.cpp" line="296"/>
         <source>New TXT</source>
         <translation>新建Txt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="210"/>
+        <location filename="../desktop/iconview.cpp" line="215"/>
         <source>Sort Order</source>
         <translatorcomment>文件排序</translatorcomment>
         <translation>文件排序</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="214"/>
+        <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Refresh Sort</source>
         <translation>刷新排序</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="218"/>
+        <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Name</source>
         <translatorcomment>名称</translatorcomment>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="222"/>
+        <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Change Date</source>
         <translatorcomment>修改时间</translatorcomment>
         <translation>修改时间</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="226"/>
+        <location filename="../desktop/iconview.cpp" line="231"/>
         <source>File Size</source>
         <translatorcomment>文件大小</translatorcomment>
         <translation>文件大小</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="230"/>
+        <location filename="../desktop/iconview.cpp" line="235"/>
         <source>File Type</source>
         <translatorcomment>文件类型</translatorcomment>
         <translation>文件类型</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="234"/>
+        <location filename="../desktop/iconview.cpp" line="240"/>
         <source>Icon Size</source>
         <translation>图标大小</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="238"/>
+        <location filename="../desktop/iconview.cpp" line="244"/>
         <source>Small</source>
         <translation>小</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="242"/>
+        <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Medium</source>
         <translation>中</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="246"/>
+        <location filename="../desktop/iconview.cpp" line="252"/>
         <source>Big</source>
         <translation>大</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="252"/>
+        <location filename="../desktop/iconview.cpp" line="258"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="257"/>
+        <location filename="../desktop/iconview.cpp" line="263"/>
         <source>Cut</source>
         <translation>剪切</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="262"/>
+        <location filename="../desktop/iconview.cpp" line="268"/>
         <source>Paste</source>
         <translation>粘贴</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="267"/>
+        <location filename="../desktop/iconview.cpp" line="273"/>
         <source>Rename</source>
         <translation>重命名</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="272"/>
+        <location filename="../desktop/iconview.cpp" line="278"/>
         <source>Trash</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="277"/>
+        <location filename="../desktop/iconview.cpp" line="283"/>
         <source>Set Wallpaper</source>
         <translation>设置壁纸</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="359"/>
+        <location filename="../desktop/iconview.cpp" line="365"/>
         <source>Select Other Application</source>
         <translation>选择其他应用</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="483"/>
+        <location filename="../desktop/iconview.cpp" line="489"/>
         <source>Please Select App</source>
         <translation>选择应用</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="941"/>
+        <location filename="../desktop/iconview.cpp" line="947"/>
         <source>New Txt Files</source>
         <translation>新建TXT</translation>
     </message>
@@ -238,7 +238,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="96"/>
+        <location filename="../moresetting.cpp" line="110"/>
         <source>continue playing</source>
         <translation>继续播放</translation>
     </message>
@@ -256,7 +256,7 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="104"/>
+        <location filename="../moresetting.cpp" line="118"/>
         <source>default</source>
         <translatorcomment>默认</translatorcomment>
         <translation>默认</translation>
@@ -308,72 +308,96 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
+        <source>VO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="165"/>
+        <source>libmpv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="175"/>
+        <source>opengl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="180"/>
+        <source>opengl-cb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="207"/>
         <source>Show desktop icon</source>
         <translation>是否显示桌面图标</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="165"/>
-        <location filename="../moresetting.ui" line="190"/>
-        <location filename="../moresetting.ui" line="287"/>
-        <location filename="../moresetting.cpp" line="69"/>
-        <location filename="../moresetting.cpp" line="75"/>
-        <location filename="../moresetting.cpp" line="81"/>
-        <location filename="../moresetting.cpp" line="118"/>
-        <location filename="../moresetting.cpp" line="125"/>
+        <location filename="../moresetting.ui" line="215"/>
+        <location filename="../moresetting.ui" line="240"/>
+        <location filename="../moresetting.ui" line="337"/>
+        <location filename="../moresetting.cpp" line="83"/>
+        <location filename="../moresetting.cpp" line="89"/>
+        <location filename="../moresetting.cpp" line="95"/>
         <location filename="../moresetting.cpp" line="139"/>
+        <location filename="../moresetting.cpp" line="146"/>
+        <location filename="../moresetting.cpp" line="160"/>
         <source>true</source>
         <translation>是</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="170"/>
-        <location filename="../moresetting.ui" line="195"/>
-        <location filename="../moresetting.ui" line="282"/>
-        <location filename="../moresetting.cpp" line="71"/>
-        <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.ui" line="220"/>
+        <location filename="../moresetting.ui" line="245"/>
+        <location filename="../moresetting.ui" line="332"/>
         <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="91"/>
+        <location filename="../moresetting.cpp" line="99"/>
         <source>false</source>
         <translation>否</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="182"/>
+        <location filename="../moresetting.ui" line="232"/>
         <source>Place on top of the original desktop</source>
         <translation>是否置于原始桌面之上(可能需要重启)</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="207"/>
+        <location filename="../moresetting.ui" line="257"/>
         <source>Desktop transparency </source>
         <translation>桌面透明度 </translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="214"/>
+        <location filename="../moresetting.ui" line="264"/>
         <source>xx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="244"/>
+        <location filename="../moresetting.ui" line="294"/>
         <source>Wallpaper transparency </source>
         <translation>壁纸透明度 </translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="274"/>
+        <location filename="../moresetting.ui" line="324"/>
         <source>Event penetration</source>
         <translation>事件穿透</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="299"/>
+        <location filename="../moresetting.ui" line="349"/>
         <source>Confirm</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="306"/>
+        <location filename="../moresetting.ui" line="356"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
+        <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="111"/>
-        <location filename="../moresetting.cpp" line="164"/>
+        <location filename="../moresetting.cpp" line="77"/>
+        <location filename="../moresetting.cpp" line="125"/>
+        <location filename="../moresetting.cpp" line="132"/>
+        <location filename="../moresetting.cpp" line="188"/>
+        <location filename="../moresetting.cpp" line="215"/>
         <source>other</source>
         <translation>其他</translation>
     </message>
@@ -465,7 +489,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="97"/>
+        <location filename="../main.cpp" line="100"/>
         <source>fantacy</source>
         <translation></translation>
     </message>
@@ -502,70 +526,95 @@
         <translation>窗口</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="32"/>
+        <location filename="../listview/historywidget.ui" line="34"/>
         <source>History</source>
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="44"/>
+        <location filename="../listview/historywidget.ui" line="46"/>
         <source>Set Wallpaper</source>
         <translation>设置壁纸</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="51"/>
+        <location filename="../listview/historywidget.ui" line="53"/>
         <source>Set Wallpaper 2</source>
         <translation>设置壁纸2</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="58"/>
-        <location filename="../listview/historywidget.ui" line="105"/>
+        <location filename="../listview/historywidget.ui" line="60"/>
+        <location filename="../listview/historywidget.ui" line="107"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="65"/>
+        <location filename="../listview/historywidget.ui" line="67"/>
         <source>Import</source>
         <translatorcomment>导入</translatorcomment>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="86"/>
+        <location filename="../listview/historywidget.ui" line="88"/>
         <source>Playlist</source>
         <translation>循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="98"/>
+        <location filename="../listview/historywidget.ui" line="100"/>
         <source>Add Playlist</source>
         <translation>加入循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="112"/>
+        <location filename="../listview/historywidget.ui" line="114"/>
         <source>Loop play</source>
         <translation>是否循环播放</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="119"/>
+        <location filename="../listview/historywidget.ui" line="121"/>
         <source>Loop playback settings</source>
         <translation>循环播放设置</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="18"/>
+        <location filename="../listview/historywidget.ui" line="212"/>
+        <source>Name:</source>
+        <translation>名称:</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="254"/>
+        <source>Path:</source>
+        <translation>地址:</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="290"/>
+        <source>Thumbnail Path:</source>
+        <translation>缩略图地址:</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="345"/>
+        <source>Reload images</source>
+        <translation>重新加载缩略图</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="352"/>
+        <source>Select image as thumbnail</source>
+        <translation>选择其他图片作为缩略图</translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="70"/>
-        <location filename="../listview/historywidget.cpp" line="123"/>
+        <location filename="../listview/historywidget.cpp" line="78"/>
+        <location filename="../listview/historywidget.cpp" line="140"/>
         <source>Delete!!</source>
         <translation>删除!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="70"/>
+        <location filename="../listview/historywidget.cpp" line="78"/>
         <source>Delete all history imports ?</source>
         <translation>是否删除所有?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="123"/>
+        <location filename="../listview/historywidget.cpp" line="140"/>
         <source>Delete all playback ?</source>
         <translation>删除所有循环播放列表?</translation>
     </message>
@@ -586,7 +635,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="659"/>
+        <location filename="../settingwindow.cpp" line="676"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -607,13 +656,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="100"/>
+        <location filename="../settingwindow.cpp" line="104"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="112"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
@@ -659,7 +708,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="781"/>
+        <location filename="../settingwindow.cpp" line="835"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
@@ -690,7 +739,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="793"/>
+        <location filename="../settingwindow.cpp" line="847"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
@@ -712,7 +761,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="544"/>
-        <location filename="../settingwindow.cpp" line="119"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
@@ -787,37 +836,37 @@
         <translation>报告bug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="123"/>
+        <location filename="../settingwindow.cpp" line="127"/>
         <source>Main View</source>
         <translation>主窗体</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="86"/>
+        <location filename="../settingwindow.cpp" line="90"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="107"/>
+        <location filename="../settingwindow.cpp" line="111"/>
         <source>Screenshot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="140"/>
+        <location filename="../settingwindow.cpp" line="144"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="148"/>
+        <location filename="../settingwindow.cpp" line="152"/>
         <source>github</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="165"/>
+        <location filename="../settingwindow.cpp" line="169"/>
         <source>Double click to open the configuration interface</source>
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="218"/>
+        <location filename="../settingwindow.cpp" line="222"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>
@@ -826,18 +875,18 @@
 <context>
     <name>view</name>
     <message>
-        <location filename="../listview/view.cpp" line="207"/>
-        <location filename="../listview/view.cpp" line="214"/>
+        <location filename="../listview/view.cpp" line="213"/>
+        <location filename="../listview/view.cpp" line="220"/>
         <source>Delete!!</source>
         <translation>删除!!</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="207"/>
+        <location filename="../listview/view.cpp" line="213"/>
         <source>The file does not exist. Do you want to delete it</source>
         <translation>该文件不存在，是否删除它</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="214"/>
+        <location filename="../listview/view.cpp" line="220"/>
         <source>Delete all history imports ?</source>
         <translation>是否删除所有?</translation>
     </message>
