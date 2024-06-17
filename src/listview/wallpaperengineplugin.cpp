@@ -45,11 +45,12 @@ void wallpaperEnginePlugin::FindFile(const QString &_filePath)
 {
     QDir folder(_filePath);
     QStringList files = folder.entryList(QStringList() << "*.json", QDir::Files);
-
+    qDebug()<< _filePath;
     // 遍历当前文件夹下的所有json文件
     for (const QString& file : files) {
         if (file == "project.json") {
             qDebug() << folder.filePath(file);
+            m_JasonList << folder.filePath(file);
         }
     }
 
@@ -116,6 +117,7 @@ void wallpaperEnginePlugin::showView()
 
 void wallpaperEnginePlugin::refresh(const QString &path)
 {
+    m_JasonList.clear();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 
     QThread *th = QThread::create([ = ]() {
