@@ -8,9 +8,11 @@
 #include <QJsonObject>
 #include <QThread>
 #include <QtConcurrent/QtConcurrent>
+#include <QMessageBox>
 
 #include "view.h"
 #include "application.h"
+#include "inimanager.h"
 
 wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
     QWidget(parent),
@@ -27,6 +29,13 @@ wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
         path = dApp->m_wallpaperEnginePath;
     } else {
         dApp->m_wallpaperEnginePath = path;
+        QDir folder(path);
+        if (folder.exists()) {
+            qDebug() << "文件夹存在";
+            IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+        } else {
+            qDebug() << "文件夹不存在";
+        }
     }
     ui->enginePath->setText(path);
     refresh(path);
@@ -34,41 +43,22 @@ wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
 
 void wallpaperEnginePlugin::FindFile(const QString &_filePath)
 {
-    QDir dir(_filePath);
-    if (!dir.exists()) {
-        return ;
+    QDir folder(_filePath);
+    QStringList files = folder.entryList(QStringList() << "*.json", QDir::Files);
+
+    // 遍历当前文件夹下的所有json文件
+    for (const QString& file : files) {
+        if (file == "project.json") {
+            qDebug() << folder.filePath(file);
+        }
     }
 
-    //取到所有的文件和文件名，但是去掉.和..的文件夹（这是QT默认有的）
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoDotAndDotDot);
-
-    //文件夹优先
-    dir.setSorting(QDir::DirsFirst);
-
-    //转化成一个list
-    QFileInfoList list = dir.entryInfoList();
-    if (list.size() < 1) {
-        return ;
+    // 遍历当前文件夹下的所有子文件夹
+    QStringList folders = folder.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+    for (const QString& subfolder : folders) {
+        QString subfolderPath = folder.filePath(subfolder);
+        FindFile(subfolderPath); // 递归调用，查找子文件夹中的project.json文件
     }
-    int i = 0;
-
-    //递归算法的核心部分
-    do {
-        QFileInfo fileInfo = list.at(i);
-        //如果是文件夹，递归
-        bool bisDir = fileInfo.isDir();
-        if (bisDir) {
-            FindFile(fileInfo.filePath());
-        } else {
-            //bool isDll = fileInfo.fileName().endsWith(".dll");
-            qDebug() << fileInfo.filePath() << ":" << fileInfo.fileName();
-            if (fileInfo.fileName().contains("project.json")) {
-                m_JasonList.push_back(fileInfo.filePath());
-            };
-        }//end else
-        i++;
-    } while (i < list.size());
-    return;
 }
 
 void wallpaperEnginePlugin::readJson(const QString &path)
@@ -157,16 +147,25 @@ wallpaperEnginePlugin::~wallpaperEnginePlugin()
 void wallpaperEnginePlugin::on_setEnginePath_clicked()
 {
     QString path = QFileDialog::getExistingDirectory();
-    if (!path.isEmpty() && path.contains("Steam")) {
+    if (!path.isEmpty() && path.toLower().contains("steam")) {
         ui->enginePath->setText(path);
+    }
+    else
+    {
+       QMessageBox::information(nullptr, tr("Error"), tr("Not containing the word steam!"));
     }
 }
 
 void wallpaperEnginePlugin::on_setBtn_clicked()
 {
     QString path = ui->enginePath->text();
-    if (!path.isNull() && path.contains("Steam")) {
+    if (!path.isNull() && path.toLower().contains("steam")) {
         refresh(ui->enginePath->text());
         dApp->m_wallpaperEnginePath = ui->enginePath->text();
+        IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
+    }
+    else
+    {
+       QMessageBox::information(nullptr, tr("Error"), tr("Not containing the word steam!"));
     }
 }
