@@ -537,7 +537,11 @@ void Application::changeMeOpacity(const double &opacity)
 }
 
 QSet<QString> Application::convertQStringListToSet(const QStringList &list) {
-    return QSet<QString>(list.begin(), list.end());
+    QSet<QString> set;
+    for (const QString &str: list) {
+        set.insert(str);
+    }
+    return set;
 }
 
 xcb_connection_t *Application::getXcb_connection_t()
