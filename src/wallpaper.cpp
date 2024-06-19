@@ -874,11 +874,12 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet)
 {
+    Display * display = XOpenDisplay(NULL);
     Atom xa = 1247;
     if (xa != None) {
         long prop = 0;
 
-        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
+        XChangeProperty(display, winId(), xa, XA_CARDINAL, 32,
                         PropModeAppend, (unsigned char *) &prop, 1);
     }
 
@@ -886,7 +887,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
     if (xa != None) {
         Atom xa_prop = 357;
 
-        XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
+        XChangeProperty(display, winId(), xa, XA_ATOM, 32,
                         PropModeAppend, (unsigned char *) &xa_prop, 1);
     }
     QWindow *window = QWindow::fromWinId(winId());
@@ -899,7 +900,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
         if (xa != None) {
             long prop = 0;
 
-            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_CARDINAL, 32,
+            XChangeProperty(display, winId(), xa, XA_CARDINAL, 32,
                             PropModeAppend, (unsigned char *) &prop, 1);
         }
 
@@ -907,7 +908,7 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
         if (xa != None) {
             Atom xa_prop = ATOM(_NET_WM_STATE_BELOW);
 
-            XChangeProperty(static_cast<Display *>(dApp->getDisplay()), winId(), xa, XA_ATOM, 32,
+            XChangeProperty(display, winId(), xa, XA_ATOM, 32,
                             PropModeAppend, (unsigned char *) &xa_prop, 1);
         }
     }
@@ -917,13 +918,15 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
 
     region = XCreateRegion();
     if (region && bRet) {
-        XShapeCombineRegion(static_cast<Display *>(dApp->getDisplay()), winId(), ShapeInput, 0, 0, region, ShapeSet);
+        XShapeCombineRegion(display, winId(), ShapeInput, 0, 0, region, ShapeSet);
     }
     else
     {
-        XShapeCombineMask(static_cast<Display *>(dApp->getDisplay()), winId(), ShapeInput, 0, 0, None, ShapeSet);
+        XShapeCombineMask(display, winId(), ShapeInput, 0, 0, None, ShapeSet);
     }
     dApp->changeMeOpacity(dApp->m_moreData.m_WallpaperTransparency);
+
+    XCloseDisplay(display);
 }
 
 void Wallpaper::LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos)

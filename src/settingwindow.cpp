@@ -298,6 +298,10 @@ void settingWindow::readSettings()
     if(IniManager::instance()->contains("WallPaper/topDefault")){
         dApp->m_moreData.isTop = IniManager::instance()->value("WallPaper/topDefault").toBool();
     }
+    if(IniManager::instance()->contains("Wallpaper/EventPenetration"))
+    {
+        dApp->m_moreData.isEventPenetration = IniManager::instance()->value("Wallpaper/EventPenetration").toBool();
+    }
 
     dApp->setSpecialDesktop();
 
