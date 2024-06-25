@@ -193,6 +193,14 @@ void historyWidget::on_btn_select_clicked()
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
     }
+    else
+    {
+        str = QFileDialog::getOpenFileName();
+    }
+    if(str.length() < 0)
+    {
+        return ;
+    }
     QString path = ui->lbl_Path->text();
     QPixmap pix = dApp->setNewThumbnail(path,str);
     for(int i =0 ; i< m_viewHistory->m_allItemInfo.size();i++)
