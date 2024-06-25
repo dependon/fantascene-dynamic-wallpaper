@@ -179,7 +179,10 @@ translations.files = $$PWD/translations/*.qm
 video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 video.files=$$PWD/install/normal.mp4
 
-INSTALLS += target  icon desktop  translations video
+touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
+touming.files=$$PWD/install/touming.png
+
+INSTALLS += target  icon desktop  translations video touming
 }
 
 

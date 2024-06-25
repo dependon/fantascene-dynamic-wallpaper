@@ -251,14 +251,24 @@ void Application::setSpecialDesktop()
     {
         if(dApp->m_isUKUI)
         {
-           QString command1 = "gsettings set org.mate.background picture-filename ''";
-           QProcess process1;
-           process1.start(command1);
-           process1.waitForFinished(-1);  // 等待进程执行完成
-           QString command2 = "gsettings set org.mate.background picture-filename 'none'";
-           QProcess process2;
-           process2.start(command2);
-           process2.waitForFinished(-1);  // 等待进程执行完成
+           if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
+           {
+               QString command1 = "gsettings set org.mate.background picture-filename 'usr/share/fantascene-dynamic-wallpaper/normal/touming.png'";
+               QProcess process1;
+               process1.start(command1);
+               process1.waitForFinished(-1);  // 等待进程执行完成
+           }
+           else
+           {
+               QString command1 = "gsettings set org.mate.background picture-filename ''";
+               QProcess process1;
+               process1.start(command1);
+               process1.waitForFinished(-1);  // 等待进程执行完成
+               QString command2 = "gsettings set org.mate.background picture-filename 'none'";
+               QProcess process2;
+               process2.start(command2);
+               process2.waitForFinished(-1);  // 等待进程执行完成
+           }
         }
         else if(dApp->m_isDDE23)
         {
