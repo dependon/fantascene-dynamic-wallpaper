@@ -428,6 +428,81 @@
     </message>
 </context>
 <context>
+    <name>OnlineClient</name>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="14"/>
+        <source>Form</source>
+        <translation>窗口</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="37"/>
+        <source>Recommend</source>
+        <translation>推荐</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="51"/>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="83"/>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="102"/>
+        <location filename="../listview/onlineclient.ui" line="144"/>
+        <location filename="../listview/onlineclient.ui" line="186"/>
+        <location filename="../listview/onlineclient.ui" line="228"/>
+        <location filename="../listview/onlineclient.ui" line="270"/>
+        <source>TextLabel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="125"/>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="167"/>
+        <source>Category</source>
+        <translation>分类</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="209"/>
+        <source>Author</source>
+        <translation>作者</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="251"/>
+        <source>Download Count</source>
+        <translation>下载次数</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="296"/>
+        <source>Download</source>
+        <translation>下载</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Dowlaod Error!</source>
+        <translation>下载错误！</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <source>File Exists!</source>
+        <translation>文件已存在！</translation>
+    </message>
+</context>
+<context>
     <name>PlaylistSettingDialog</name>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
@@ -635,7 +710,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="676"/>
+        <location filename="../settingwindow.cpp" line="680"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -708,7 +783,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="835"/>
+        <location filename="../settingwindow.cpp" line="839"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
@@ -739,7 +814,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="847"/>
+        <location filename="../settingwindow.cpp" line="851"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
@@ -875,18 +950,18 @@
 <context>
     <name>view</name>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="244"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
         <translation>删除!!</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
+        <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
         <translation>该文件不存在，是否删除它</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
         <translation>是否删除所有?</translation>
     </message>
@@ -912,6 +987,18 @@
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
         <translation>你需要在steam中安装wallpaper engine，否则就没用了。如果你在Linux下安装它，你不能打开它，但是你可以遍历视频</translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Not containing the word steam!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -435,6 +435,81 @@
     </message>
 </context>
 <context>
+    <name>OnlineClient</name>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="37"/>
+        <source>Recommend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="51"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="83"/>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="102"/>
+        <location filename="../listview/onlineclient.ui" line="144"/>
+        <location filename="../listview/onlineclient.ui" line="186"/>
+        <location filename="../listview/onlineclient.ui" line="228"/>
+        <location filename="../listview/onlineclient.ui" line="270"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="125"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="167"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="209"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="251"/>
+        <source>Download Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="296"/>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Dowlaod Error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <source>File Exists!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PlaylistSettingDialog</name>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
@@ -641,7 +716,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="676"/>
+        <location filename="../settingwindow.cpp" line="680"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -715,7 +790,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="835"/>
+        <location filename="../settingwindow.cpp" line="839"/>
         <source>default</source>
         <translatorcomment>por defecto</translatorcomment>
         <translation>por defecto</translation>
@@ -747,7 +822,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="847"/>
+        <location filename="../settingwindow.cpp" line="851"/>
         <source>custom</source>
         <translatorcomment>Personalizar</translatorcomment>
         <translation>Personalizar</translation>
@@ -880,18 +955,18 @@
 <context>
     <name>view</name>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="244"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
         <translation>Borrar!!</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
+        <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
         <translation>El archivo no existe.¿Quieres borrarlo?</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
         <translation>¿Desea borrar todo el histórial?</translation>
     </message>
@@ -917,6 +992,18 @@
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
         <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Not containing the word steam!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

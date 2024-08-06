@@ -420,6 +420,81 @@
     </message>
 </context>
 <context>
+    <name>OnlineClient</name>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">視窗</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="37"/>
+        <source>Recommend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="51"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="83"/>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="102"/>
+        <location filename="../listview/onlineclient.ui" line="144"/>
+        <location filename="../listview/onlineclient.ui" line="186"/>
+        <location filename="../listview/onlineclient.ui" line="228"/>
+        <location filename="../listview/onlineclient.ui" line="270"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="125"/>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="167"/>
+        <source>Category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="209"/>
+        <source>Author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="251"/>
+        <source>Download Count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="296"/>
+        <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="88"/>
+        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <source>Dowlaod Error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <source>File Exists!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PlaylistSettingDialog</name>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
@@ -687,7 +762,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="676"/>
+        <location filename="../settingwindow.cpp" line="680"/>
         <source>Manual</source>
         <translation>手動</translation>
     </message>
@@ -703,7 +778,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="835"/>
+        <location filename="../settingwindow.cpp" line="839"/>
         <source>default</source>
         <translation>默認</translation>
     </message>
@@ -734,7 +809,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="847"/>
+        <location filename="../settingwindow.cpp" line="851"/>
         <source>custom</source>
         <translation>自定義</translation>
     </message>
@@ -858,18 +933,18 @@
 <context>
     <name>view</name>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="244"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
         <translation>删除！！</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="213"/>
+        <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
         <translation>該檔案不存在，是否删除它</translation>
     </message>
     <message>
-        <location filename="../listview/view.cpp" line="220"/>
+        <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
         <translation>是否删除所有？</translation>
     </message>
@@ -895,6 +970,18 @@
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
         <translation>你需要在steam中安裝wallpaper engine，否則就沒用了。 如果你在Linux下安裝它，你不能打開它，但是你可以遍歷視頻</translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <source>Not containing the word steam!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
