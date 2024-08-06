@@ -28,6 +28,7 @@
 #include <QPointer>
 #include <QListView>
 #include "delegate.h"
+#include "data.h"
 
 class view: public QListView
 {
@@ -54,6 +55,7 @@ public:
     };
     explicit view(QWidget *parent = nullptr);
     void setFiles(const QStringList &pathlist);
+    void setOnlienData(const QList<VideoData> &datalist);
     ~view() override;
 
     void modifyAllPic(ItemInfo &info);
@@ -70,6 +72,7 @@ public:
     QList<ItemInfo> m_allItemLeft;//所有待处理的
 Q_SIGNALS:
     void sigClickedChange(const QString & path);
+    void sigDoubleClicked(const QString & path);
 
 public Q_SLOTS:
     void setBaseHeight(int a);
@@ -84,6 +87,7 @@ protected:
 
 private:
     int m_currentModelIndex{0};
+    bool m_isOnline{false};
 };
 
 #endif // VIEW_H

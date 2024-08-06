@@ -1321,9 +1321,21 @@ void settingWindow::on_localBtn_clicked()
         m_local->activateWindow();
     }
 }
-
+#include "listview/onlineclient.h"
 void settingWindow::on_liveBtn_clicked()
 {
+#if 0
+    if(!m_onlineWidget)
+    {
+        m_onlineWidget = new OnlineClient();
+    }
+    int screenWidth = QGuiApplication::primaryScreen()->geometry().width();
+    int screenHeight = QGuiApplication::primaryScreen()->geometry().height();
+
+    m_onlineWidget->show();
+    m_onlineWidget->move(screenWidth/2 - m_onlineWidget->width()/2,screenHeight/2 - m_onlineWidget->height()/2);
+    m_onlineWidget->activateWindow();
+#else
     if(!m_downloadWidget)
     {
         m_downloadWidget =new DownloadWidget();
@@ -1334,6 +1346,7 @@ void settingWindow::on_liveBtn_clicked()
     m_downloadWidget->show();
     m_downloadWidget->move(screenWidth/2 - m_downloadWidget->width()/2,screenHeight/2 - m_downloadWidget->height()/2);
     m_downloadWidget->activateWindow();
+#endif
 }
 
 void settingWindow::on_checkBox2Inde_stateChanged(int arg1)

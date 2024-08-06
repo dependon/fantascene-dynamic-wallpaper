@@ -44,6 +44,7 @@ class MoreSetting;
 class wallpaperEnginePlugin;
 class LocalWidget;
 class DownloadWidget;
+class OnlineClient;
 
 namespace Ui {
 class settingWindow;
@@ -210,6 +211,7 @@ private:
     Wallpaper *m_wallpaper{nullptr};
     QTimer *m_timerSave{nullptr};
     DownloadWidget * m_downloadWidget{nullptr};
+    OnlineClient * m_onlineWidget{nullptr};
 };
 
 

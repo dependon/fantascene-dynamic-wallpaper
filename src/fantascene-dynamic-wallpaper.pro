@@ -41,6 +41,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     desktop/customsortfilterproxymodel.cpp \
+    download/tcpclient.cpp \
+    listview/onlineclient.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -70,6 +72,8 @@ SOURCES += main.cpp \
 
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
+    download/tcpclient.h \
+    listview/onlineclient.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \
@@ -189,6 +193,7 @@ INSTALLS += target  icon desktop  translations video touming
 
 
 FORMS += \
+    listview/onlineclient.ui \
     settingwindow.ui \
     listview/historywidget.ui \
     moresetting.ui \

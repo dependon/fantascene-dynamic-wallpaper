@@ -62,6 +62,31 @@ void view::setFiles(const QStringList &pathlist)
     }
 }
 
+void view::setOnlienData(const QList<VideoData> &datalist)
+{
+    m_isOnline = true;
+    m_allItemInfo.clear();
+    //文件
+    for (VideoData data : datalist) {
+        ItemInfo item;
+        item.name = data.name;
+        item.path = data.md5;
+        QImage a = QImage::fromData(data.picture);
+        if(a.isNull())
+        {
+            item.image = dApp->getThumbnailText(item.name);
+        }
+        else
+        {
+            item.image = QPixmap::fromImage(a);
+        }
+
+        modifyAllPic(item);
+        cutPixmap(item);
+        m_allItemInfo << item;
+    }
+}
+
 view::~view()
 {
 }
@@ -194,6 +219,12 @@ void view::setBaseHeight(int a)
 
 void view::onDoubleClicked(const QModelIndex &index)
 {
+    if(m_isOnline)
+    {
+        m_currentModelIndex = index.row();
+        Q_EMIT sigDoubleClicked(m_allItemInfo.at(m_currentModelIndex).path);
+        return ;
+    }
     int i = index.row();
     if (m_allItemInfo.size() > 0) {
         ItemInfo info = m_allItemInfo.at(i);

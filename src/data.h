@@ -39,4 +39,19 @@ struct MoreSetData {
     double m_WallpaperTransparency = 0.99;
 };
 
+struct VideoData {
+    QString md5;
+    QString name;
+    QString description;
+    QString category;
+    QString author;
+    QString fileName;
+    QString downloadPath;
+    int downloadCount;
+    qint64 filesize;
+    int width;
+    int height;
+    QByteArray picture; // Assuming picture is stored as a binary object
+};
+
 #endif // DATA_H
