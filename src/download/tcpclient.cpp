@@ -27,8 +27,12 @@ QByteArray extractBetweenMarkers(const QByteArray &data, const QByteArray &start
 }
 
 TcpClient::TcpClient(const QString& host, quint16 port, QObject* parent)
-    : QThread(parent), host(host), port(port), running(false)
+    : QObject(parent), host(host), port(port), running(false)
 {
+    QThread * thread =new QThread();
+    this->moveToThread(thread);
+    thread->start();
+
     socket = new QTcpSocket(this);
 
     connect(socket, &QTcpSocket::readyRead, this, &TcpClient::onReadyRead);
@@ -36,17 +40,19 @@ TcpClient::TcpClient(const QString& host, quint16 port, QObject* parent)
 
     qRegisterMetaType<VideoData>("VideoData");
     qRegisterMetaType<QList<VideoData>>("QList<VideoData>");
-
 }
 
 TcpClient::~TcpClient()
 {
     stop();
     delete socket;
+    socket = nullptr;
 }
 
 void TcpClient::run()
 {
+
+
     running = true;
     socket->connectToHost(host, port);
     if (socket->waitForConnected(5000)) {
@@ -56,9 +62,6 @@ void TcpClient::run()
         Q_EMIT errorOccurred(socket->errorString());
         return;
     }
-
-//    sendData(u8"GET_VIDEO_LIST||1");
-
 //    QFuture<void> future = QtConcurrent::run([=](){
 //        while (running) {
 //            queueMutex.lock();
@@ -83,7 +86,6 @@ void TcpClient::run()
 //            Q_EMIT disconnected();
 //        }
 //    });
-//    sendData(u8"GET_VIDEO_RECOMMEND|1");
     sendData(u8"GET_VIDEO_RECOMMEND|1");
 }
 
@@ -91,7 +93,6 @@ void TcpClient::stop()
 {
     running = false;
     queueNotEmpty.wakeAll();
-    //wait();
 }
 
 void TcpClient::sendData(const QByteArray& data)
@@ -137,10 +138,16 @@ void TcpClient::parseData(const QByteArray &data)
         // 将分割后的数据添加到结果列表中
         result.append(currentLine);
     }
+    int count = 0;
     for(QStringList list : result)
     {
         VideoData data;
-        if(list.size() >= 12)
+        if(list.size() == 2)
+        {
+            count = list.at(1).toInt();
+            Q_EMIT sigSearchTotalCount(count);
+        }
+        else if(list.size() >= 12)
         {
             data.md5 = list.at(0);
             data.name = list.at(1);
@@ -154,12 +161,18 @@ void TcpClient::parseData(const QByteArray &data)
             data.width = list.at(9).toInt();
             data.height = list.at(10).toInt();
             data.picture = QByteArray::fromHex(list.at(11).toLatin1()); // Assuming picture is stored as a binary object
-
         }
         datas << data;
     }
-    sigShowData(datas);
+    Q_EMIT sigShowData(datas);
 
+
+
+}
+
+void TcpClient::slotStart()
+{
+    run();
 }
 
 void TcpClient::onReadyRead()

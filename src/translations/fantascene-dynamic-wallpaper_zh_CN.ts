@@ -435,69 +435,142 @@
         <translation>窗口</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="37"/>
+        <location filename="../listview/onlineclient.ui" line="27"/>
         <source>Recommend</source>
         <translation>推荐</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="51"/>
+        <location filename="../listview/onlineclient.ui" line="54"/>
         <source>Search</source>
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="83"/>
+        <location filename="../listview/onlineclient.ui" line="72"/>
+        <source>Page</source>
+        <translation>页</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="91"/>
+        <location filename="../listview/onlineclient.ui" line="129"/>
+        <source>0</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="110"/>
+        <source>/</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="142"/>
+        <source>&lt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="155"/>
+        <source>&gt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="177"/>
+        <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
+        <translation>如需上传壁纸文件或任何其他支持方面的帮助，请发送电子邮件至liuminghang0821@gmail.com或523633637@qq.com.</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="184"/>
+        <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
+        <translation>以上内容来源于互联网。如果任何内容侵犯了您的权利，请发送电子邮件至liuminghang0821@gmail.com或523633637@qq.com请求删除。对于给您带来的不便，我们深表歉意。</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="214"/>
         <source>Name</source>
         <translation>名称</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="102"/>
-        <location filename="../listview/onlineclient.ui" line="144"/>
-        <location filename="../listview/onlineclient.ui" line="186"/>
-        <location filename="../listview/onlineclient.ui" line="228"/>
-        <location filename="../listview/onlineclient.ui" line="270"/>
-        <source>TextLabel</source>
-        <translation></translation>
+        <location filename="../listview/onlineclient.ui" line="233"/>
+        <location filename="../listview/onlineclient.ui" line="275"/>
+        <location filename="../listview/onlineclient.ui" line="317"/>
+        <location filename="../listview/onlineclient.ui" line="359"/>
+        <location filename="../listview/onlineclient.ui" line="401"/>
+        <location filename="../listview/onlineclient.ui" line="443"/>
+        <location filename="../listview/onlineclient.ui" line="485"/>
+        <location filename="../listview/onlineclient.ui" line="527"/>
+        <location filename="../listview/onlineclient.ui" line="569"/>
+        <source>Unknown</source>
+        <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="125"/>
+        <location filename="../listview/onlineclient.ui" line="256"/>
         <source>Description</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="167"/>
+        <location filename="../listview/onlineclient.ui" line="298"/>
         <source>Category</source>
         <translation>分类</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="209"/>
+        <location filename="../listview/onlineclient.ui" line="340"/>
         <source>Author</source>
         <translation>作者</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="251"/>
+        <location filename="../listview/onlineclient.ui" line="382"/>
         <source>Download Count</source>
         <translation>下载次数</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="296"/>
+        <location filename="../listview/onlineclient.ui" line="424"/>
+        <source>File Name</source>
+        <translation>文件名称</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="466"/>
+        <source>File Size</source>
+        <translation>文件大小</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="508"/>
+        <source>Width</source>
+        <translation>宽度</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="550"/>
+        <source>Height</source>
+        <translation>高度</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="615"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="88"/>
-        <location filename="../listview/onlineclient.cpp" line="94"/>
-        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <location filename="../listview/onlineclient.cpp" line="18"/>
+        <source>Fantascene Hub</source>
+        <translation>幻梦仓库</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="87"/>
+        <location filename="../listview/onlineclient.cpp" line="142"/>
+        <source>Dowload Ing.....</source>
+        <translation>下载中......</translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="101"/>
+        <location filename="../listview/onlineclient.cpp" line="107"/>
+        <location filename="../listview/onlineclient.cpp" line="157"/>
+        <location filename="../listview/onlineclient.cpp" line="163"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="88"/>
-        <location filename="../listview/onlineclient.cpp" line="134"/>
+        <location filename="../listview/onlineclient.cpp" line="101"/>
+        <location filename="../listview/onlineclient.cpp" line="157"/>
         <source>Dowlaod Error!</source>
         <translation>下载错误！</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="94"/>
+        <location filename="../listview/onlineclient.cpp" line="107"/>
+        <location filename="../listview/onlineclient.cpp" line="163"/>
         <source>File Exists!</source>
         <translation>文件已存在！</translation>
     </message>
@@ -820,28 +893,33 @@
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="521"/>
+        <location filename="../settingwindow.ui" line="535"/>
+        <source>Fantascene-Hub(Test)</source>
+        <translation>幻梦仓库(测试)</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="542"/>
         <source>Dowload Wallpaper</source>
         <translation>下载壁纸(来自网络)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="530"/>
+        <location filename="../settingwindow.ui" line="553"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="537"/>
+        <location filename="../settingwindow.ui" line="560"/>
         <source>Wallpaper Local</source>
         <translation>本地壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.ui" line="567"/>
         <location filename="../settingwindow.cpp" line="123"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="551"/>
+        <location filename="../settingwindow.ui" line="574"/>
         <source>Wallpaper Engine-plugin</source>
         <translation></translation>
     </message>
@@ -992,13 +1070,13 @@
         <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
         <source>Not containing the word steam!</source>
-        <translation type="unfinished"></translation>
+        <translation>不包含“steam”这个词！</translation>
     </message>
 </context>
 </TS>

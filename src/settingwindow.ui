@@ -516,11 +516,34 @@
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="liveBtn">
-     <property name="text">
-      <string>Dowload Wallpaper</string>
+    <layout class="QHBoxLayout" name="horizontalLayout_13">
+     <property name="leftMargin">
+      <number>0</number>
      </property>
-    </widget>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="downBtn">
+       <property name="text">
+        <string>Fantascene-Hub(Test)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="liveBtn">
+       <property name="text">
+        <string>Dowload Wallpaper</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">

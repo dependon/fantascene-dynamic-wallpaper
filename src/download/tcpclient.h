@@ -7,7 +7,7 @@
 #include <QMutex>
 #include <QWaitCondition>
 #include "data.h"
-class TcpClient : public QThread
+class TcpClient : public QObject
 {
     Q_OBJECT
 
@@ -15,9 +15,8 @@ public:
     TcpClient(const QString& host, quint16 port, QObject* parent = nullptr);
     ~TcpClient();
 
-    void run() override;
+    void run() ;
     void stop();
-    void sendData(const QByteArray& data);
 
     bool isCompleteDataPacket();
 
@@ -29,11 +28,13 @@ Q_SIGNALS:
     void dataReceived(const QByteArray& data);
     void errorOccurred(const QString& errorString);
     void sigShowData(const QList<VideoData>& datas);
+    void sigSearchTotalCount(const int & count);
 public Q_SLOTS:
+    void slotStart();
     void onReadyRead();
     void onDisconnected();
-
     void onErrorOccurred(QAbstractSocket::SocketError socketError);
+    void sendData(const QByteArray& data);
 
 private:
     QTcpSocket* socket;

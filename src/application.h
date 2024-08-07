@@ -167,6 +167,8 @@ public:
     bool m_isDDE23 =false;//是否是dde23
     QThread * m_startDesktop = nullptr;
 
+    int m_onlineCount{0};//当前搜索的总个数
+
 };
 
 #endif // APPLICATION_H

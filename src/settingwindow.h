@@ -173,6 +173,8 @@ private Q_SLOTS:
     void on_setBtn2_clicked();
 
 
+    void on_downBtn_clicked();
+
 public Q_SLOTS:
     void activeWindow();
 private:
