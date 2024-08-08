@@ -21,6 +21,7 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     m_client = new TcpClient("bj.frp.one",26667);
     //m_client = new TcpClient("192.168.40.48",26667);
+
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
     connect(this,&OnlineClient::sigSendData,m_client,&TcpClient::sendData,Qt::QueuedConnection);
     Q_EMIT sigStart();
@@ -49,9 +50,21 @@ OnlineClient::~OnlineClient()
     delete ui;
 }
 
-bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outputFilePath) {
+bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outputFilePath, const QString &extraPath) {
+
     // 构建curl命令
     QString command = "curl -o " + outputFilePath + " " + url;
+
+    if(outputFilePath.contains(".html"))
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+extraPath;
+        // 构建wget命令
+        if (url.endsWith('/')) {
+            command = "wget -r -np -nH --cut-dirs=3 -P " + path + " " + url;
+        } else {
+            command = "wget -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
+        }
+    }
 
     // 创建QProcess对象
     QProcess process;
@@ -120,9 +133,19 @@ void OnlineClient::on_btn_download_clicked()
         if(!isExists)
         {
             ui->btn_download->setEnabled(false);
+            QString strExtra;
+            if(saveFile.contains(".html"))
+            {
+                strExtra = m_currentMd5;
+            }
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
-                                              saveFile);
+                                              saveFile,strExtra);
             if(bDown && QFileInfo(saveFile).exists())
+            {
+                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
+                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+            }
+            else if(QFileInfo(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
             {
                 ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
@@ -175,8 +198,13 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
         if(!isExists)
         {
             ui->btn_download->setEnabled(false);
+            QString strExtra;
+            if(saveFile.contains(".html"))
+            {
+                strExtra = m_currentMd5;
+            }
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
-                                              saveFile);
+                                              saveFile,strExtra);
             if(bDown && QFileInfo(saveFile).exists())
             {
                 QString newPath = removeZipSuffix(saveFile);
@@ -194,6 +222,12 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                 {
                     dApp->setWallPaper(newPath);
                 }
+                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
+                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+            }
+            else if(QFileInfo(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
+            {
+                dApp->setWallPaper(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName);
                 ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
