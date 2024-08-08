@@ -21,6 +21,8 @@ public:
 
     static bool downloadFileWithCurl(const QString &url, const QString &outputFilePath);
 
+    QString fileSizeToMString(const qint64 &fileNameSize);
+    QString removeZipSuffix(const QString &str);
 Q_SIGNALS:
     void sigStart();
     void sigSendData(const QByteArray& data);

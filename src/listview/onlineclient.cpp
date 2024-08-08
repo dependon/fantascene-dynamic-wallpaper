@@ -19,7 +19,8 @@ OnlineClient::OnlineClient(QWidget *parent) :
     m_viewDowload = new view(this);
     ui->verticalLayout->addWidget(m_viewDowload);
 
-    m_client = new TcpClient("192.168.40.48",26667);
+    m_client = new TcpClient("bj.frp.one",26667);
+    //m_client = new TcpClient("192.168.40.48",26667);
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
     connect(this,&OnlineClient::sigSendData,m_client,&TcpClient::sendData,Qt::QueuedConnection);
     Q_EMIT sigStart();
@@ -68,11 +69,41 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
     // 检查命令执行结果
     if (process.exitStatus() == QProcess::NormalExit && process.exitCode() == 0) {
         qDebug() << "Download finished successfully.";
+        QFileInfo fileInfo(outputFilePath);
+        QString suffix = fileInfo.suffix();
+        if(suffix == "zip")
+        {
+            QProcess processUnzip;
+            QString str ="unzip -o "+outputFilePath + " -d "+fileInfo.path()+"/";
+            processUnzip.start(str);
+            if (!processUnzip.waitForStarted()) {
+                return false;
+            }
+
+            if (!processUnzip.waitForFinished(-1)) {
+                return false;
+            }
+        }
     } else {
         qDebug() << "Download failed with exit code: " + QString::number(process.exitCode());
         return false;
     }
+
     return true;
+}
+
+QString OnlineClient::fileSizeToMString(const qint64  &fileNameSize)
+{
+    qint64 size = fileNameSize;
+    double sizeInM = static_cast<double>(size) / (1024 * 1024);
+    return QString::number(sizeInM, 'f', 2) + " M";
+}
+
+QString OnlineClient::removeZipSuffix(const QString &str) {
+    if (str.endsWith(".zip")) {
+        return str.left(str.length() - 4);
+    }
+    return str;
 }
 
 void OnlineClient::on_btn_download_clicked()
@@ -124,7 +155,7 @@ void OnlineClient::slotClickedChange(const QString &md5)
         ui->label_Author->setText(data.author);
         ui->label_Count->setText(QString::number(data.downloadCount));
         ui->label_FileName->setText(data.fileName);
-        ui->label_FileSize->setText(QString::number(data.filesize));
+        ui->label_FileSize->setText(fileSizeToMString(data.filesize));
         ui->label_Width->setText(QString::number(data.width));
         ui->label_Height->setText(QString::number(data.height));
     }
@@ -148,7 +179,21 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                                               saveFile);
             if(bDown && QFileInfo(saveFile).exists())
             {
-                dApp->setWallPaper(saveFile);
+                QString newPath = removeZipSuffix(saveFile);
+                QString newPathMp4 = newPath+".mp4";
+                QString newPathHtml= newPath+"/"+QFileInfo(saveFile).baseName()+".html";
+                if(QFileInfo(newPathMp4).exists())
+                {
+                    dApp->setWallPaper(newPathMp4);
+                }
+                else if(QFileInfo(newPathHtml).exists())
+                {
+                    dApp->setWallPaper(newPathHtml);
+                }
+                else
+                {
+                    dApp->setWallPaper(newPath);
+                }
                 ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
@@ -160,7 +205,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
         }
         else
         {
-            QMessageBox::information(nullptr, tr("Error"), tr("File Exists!"));
+            dApp->setWallPaper(saveFile);
         }
         ui->label_DTip->setText("");
     });

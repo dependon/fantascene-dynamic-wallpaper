@@ -161,8 +161,9 @@ void TcpClient::parseData(const QByteArray &data)
             data.width = list.at(9).toInt();
             data.height = list.at(10).toInt();
             data.picture = QByteArray::fromHex(list.at(11).toLatin1()); // Assuming picture is stored as a binary object
+            datas << data;
         }
-        datas << data;
+
     }
     Q_EMIT sigShowData(datas);
 
