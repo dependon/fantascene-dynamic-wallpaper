@@ -19,7 +19,7 @@ public:
     explicit OnlineClient(QWidget *parent = nullptr);
     ~OnlineClient();
 
-    static bool downloadFileWithCurl(const QString &url, const QString &outputFilePath,const QString& extraPath = "");
+     bool downloadFileWithCurl(const QString &url, const QString &outputFilePath,const QString& extraPath = "");
 
     QString fileSizeToMString(const qint64 &fileNameSize);
     QString removeZipSuffix(const QString &str);
@@ -41,6 +41,7 @@ private Q_SLOTS:
 
     void on_btn_Left_clicked();
 
+    void readProgressFile();
 private:
     Ui::OnlineClient *ui;
     view *m_viewDowload{nullptr};
@@ -50,6 +51,8 @@ private:
     bool m_isRecommd{true};
     QString m_searchString;
     QMutex m_downloadMutex;
+
+    QTimer * m_timer{nullptr};
 };
 
 #endif // ONLINECLIENT_H

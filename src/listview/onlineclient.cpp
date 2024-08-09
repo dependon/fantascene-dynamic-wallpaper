@@ -9,6 +9,8 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 #include "application.h"
+const QString downlog = QDir::homePath() +
+        "/.config/fantascene-dynamic-wallpaper/downlog.txt";
 
 OnlineClient::OnlineClient(QWidget *parent) :
     QWidget(parent),
@@ -43,6 +45,10 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     ui->label_tip1->setWordWrap(true);
     ui->label_tip2->setWordWrap(true);
+
+    m_timer = new QTimer(this);
+    connect(m_timer, &QTimer::timeout, this, &OnlineClient::readProgressFile);
+    m_timer->start(1000);
 }
 
 OnlineClient::~OnlineClient()
@@ -53,16 +59,30 @@ OnlineClient::~OnlineClient()
 bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outputFilePath, const QString &extraPath) {
 
     // 构建curl命令
-    QString command = "curl -o " + outputFilePath + " " + url;
+    QString command = "wget -o "+downlog +" -O " + outputFilePath + " " + url;
+    if (url.endsWith(".mp4", Qt::CaseInsensitive)) {
+        int slashIndex = url.lastIndexOf('/');
+        if (slashIndex!= -1) {
+            QString part1 = url.left(slashIndex);
+            QString part2 = url.mid(slashIndex + 1);
+            QString encodedFilename = QUrl::toPercentEncoding(part2);
+            command = "wget -o "+downlog +" -O " + outputFilePath + " " + part1+"/"+encodedFilename;
+        } else {
+            qDebug() << "未找到'/'";
+        }
+    } else {
+        qDebug() << "字符串后缀不是.mp4";
+    }
+
 
     if(outputFilePath.contains(".html"))
     {
         QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+extraPath;
         // 构建wget命令
-        if (url.endsWith('/')) {
-            command = "wget -r -np -nH --cut-dirs=3 -P " + path + " " + url;
+        if (url.endsWith('/') || url.endsWith("mp4") || url.endsWith("webm")) {
+            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url;
         } else {
-            command = "wget -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
+            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
         }
     }
 
@@ -75,9 +95,9 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
         qDebug() << "Failed to start process: " + process.errorString();
         return false;
     }
-
     // 等待命令执行完成
-    process.waitForFinished();
+    process.waitForFinished(600000);//10min
+
 
     // 检查命令执行结果
     if (process.exitStatus() == QProcess::NormalExit && process.exitCode() == 0) {
@@ -134,10 +154,7 @@ void OnlineClient::on_btn_download_clicked()
         {
             ui->btn_download->setEnabled(false);
             QString strExtra;
-            if(saveFile.contains(".html"))
-            {
-                strExtra = m_currentMd5;
-            }
+            strExtra = m_currentMd5;
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
                                               saveFile,strExtra);
             if(bDown && QFileInfo(saveFile).exists())
@@ -199,10 +216,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
         {
             ui->btn_download->setEnabled(false);
             QString strExtra;
-            if(saveFile.contains(".html"))
-            {
-                strExtra = m_currentMd5;
-            }
+            strExtra = m_currentMd5;
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
                                               saveFile,strExtra);
             if(bDown && QFileInfo(saveFile).exists())
@@ -327,5 +341,29 @@ void OnlineClient::on_btn_Left_clicked()
         Q_EMIT sigSendData(str);
     }
     ui->label_CurrentCount->setText(QString::number(current));
+}
+
+void OnlineClient::readProgressFile()
+{
+    QFile file(downlog);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QStringList lines;
+        while (!in.atEnd()) {
+            lines.append(in.readLine());
+        }
+        file.close();
+
+        if (lines.size() >= 2) {
+            ui->label_downStatus ->setText(lines[lines.size() - 2].remove(".."));
+
+            QFile fileTruncate(downlog);
+            if (fileTruncate.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                fileTruncate.close();
+            }
+        } else {
+            ui->label_downStatus ->setText("");
+        }
+    }
 }
 
