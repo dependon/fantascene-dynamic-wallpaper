@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1871</width>
-    <height>636</height>
+    <width>1008</width>
+    <height>488</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -173,6 +173,18 @@
      </item>
      <item>
       <widget class="QLabel" name="label_tip1">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>9999</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</string>
        </property>
@@ -180,6 +192,18 @@
      </item>
      <item>
       <widget class="QLabel" name="label_tip2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>9999</width>
+         <height>9999</height>
+        </size>
+       </property>
        <property name="text">
         <string>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</string>
        </property>

@@ -20,9 +20,14 @@ OnlineClient::OnlineClient(QWidget *parent) :
     setWindowTitle(tr("Fantascene Hub"));
     m_viewDowload = new view(this);
     ui->verticalLayout->addWidget(m_viewDowload);
+    this->setMaximumWidth(940);
+    this->setMinimumWidth(938);
 
-    m_client = new TcpClient("bj.frp.one",26667);
-    //m_client = new TcpClient("192.168.40.48",26667);
+    this->setMaximumHeight(700);
+    this->setMinimumHeight(698);
+
+    //m_client = new TcpClient("bj.frp.one",26667);
+    m_client = new TcpClient("192.168.40.48",26667);
 
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
     connect(this,&OnlineClient::sigSendData,m_client,&TcpClient::sendData,Qt::QueuedConnection);
