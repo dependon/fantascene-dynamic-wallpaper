@@ -41,7 +41,7 @@ TcpClient::TcpClient(const QString& host, quint16 port, QObject* parent)
     qRegisterMetaType<VideoData>("VideoData");
     qRegisterMetaType<QList<VideoData>>("QList<VideoData>");
 }
-
+#include <QHostInfo>
 TcpClient::~TcpClient()
 {
     stop();
@@ -54,14 +54,20 @@ void TcpClient::run()
 
 
     running = true;
-    socket->connectToHost(host, port);
-    if (socket->waitForConnected(5000)) {
-        Q_EMIT connected();
-        qDebug() << "Connected to server";
-    } else {
-        Q_EMIT errorOccurred(socket->errorString());
-        return;
+    QHostInfo info = QHostInfo::fromName(host);
+    if(info.addresses().size()> 0)
+    {
+        socket->connectToHost(info.addresses().last(), port);
+        if (socket->waitForConnected(5000)) {
+            Q_EMIT connected();
+            qDebug() << "Connected to server";
+        } else {
+            Q_EMIT errorOccurred(socket->errorString());
+            return;
+        }
+        sendData(u8"GET_VIDEO_RECOMMEND|1");
     }
+
 //    QFuture<void> future = QtConcurrent::run([=](){
 //        while (running) {
 //            queueMutex.lock();
@@ -86,7 +92,7 @@ void TcpClient::run()
 //            Q_EMIT disconnected();
 //        }
 //    });
-    sendData(u8"GET_VIDEO_RECOMMEND|1");
+
 }
 
 void TcpClient::stop()

@@ -25,7 +25,7 @@ contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
 }
 
-QT += concurrent sql
+QT += concurrent sql network
 
 CONFIG += c++11 link_pkgconfig no_keywords
 unix {

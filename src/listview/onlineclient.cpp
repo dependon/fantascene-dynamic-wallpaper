@@ -21,13 +21,14 @@ OnlineClient::OnlineClient(QWidget *parent) :
     m_viewDowload = new view(this);
     ui->verticalLayout->addWidget(m_viewDowload);
     this->setMaximumWidth(1090);
-    this->setMinimumWidth(1088);
+    this->setMinimumWidth(1090);
 
     this->setMaximumHeight(700);
-    this->setMinimumHeight(698);
+    this->setMinimumHeight(700);
 
     //m_client = new TcpClient("bj.frp.one",26667);
-    m_client = new TcpClient("192.168.40.48",26667);
+    //m_client = new TcpClient("192.168.40.48",26667);
+    m_client = new TcpClient("server.fantacy.online",26667);
 
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
     connect(this,&OnlineClient::sigSendData,m_client,&TcpClient::sendData,Qt::QueuedConnection);
@@ -284,8 +285,11 @@ void OnlineClient::slotShowData(const QList<VideoData> &datas)
     m_viewDowload->setOnlienData(datas);
     int width = this->width();
     int height = this->height();
+    this->setFixedSize(QSize(width+1,height+1));
     this->resize(width+1,height+1);
     this->resize(width,height);
+
+    this->setFixedSize(QSize(width,height));
 }
 
 
