@@ -20,8 +20,8 @@ OnlineClient::OnlineClient(QWidget *parent) :
     setWindowTitle(tr("Fantascene Hub"));
     m_viewDowload = new view(this);
     ui->verticalLayout->addWidget(m_viewDowload);
-    this->setMaximumWidth(940);
-    this->setMinimumWidth(938);
+    this->setMaximumWidth(1090);
+    this->setMinimumWidth(1088);
 
     this->setMaximumHeight(700);
     this->setMinimumHeight(698);

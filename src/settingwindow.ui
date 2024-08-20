@@ -532,7 +532,7 @@
      <item>
       <widget class="QPushButton" name="downBtn">
        <property name="text">
-        <string>Fantascene-Hub(Test)</string>
+        <string>Spark-Hub(Test)</string>
        </property>
       </widget>
      </item>
