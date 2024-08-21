@@ -12,11 +12,13 @@ Build-Depends:  debhelper (>= 9),
 				libglib2.0-dev,
 				libmtdev-dev ,
 				libx11-xcb-dev , 
+				ffmpeg ,
 				fakeroot ,
 				qtwebengine5-dev ,
 				libxext-dev ,
 				libxrender-dev ,
 				libxcb-shape0-dev
+				
 
 Rules-Requires-Root: no
 Standards-Version: 4.6.0.1
