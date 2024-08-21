@@ -55,17 +55,20 @@ void TcpClient::run()
 
     running = true;
     QHostInfo info = QHostInfo::fromName(host);
-    if(info.addresses().size()> 0)
+    qDebug()<< info.addresses().size();
+    for(QHostAddress hostName : info.addresses())
     {
-        socket->connectToHost(info.addresses().last(), port);
-        if (socket->waitForConnected(5000)) {
+        socket->connectToHost(hostName, port);
+        if (socket->waitForConnected(1000)) {
             Q_EMIT connected();
             qDebug() << "Connected to server";
+            sendData(u8"GET_VIDEO_RECOMMEND|1");
+            return ;
         } else {
+            qDebug() << "Dis Connected to server";
             Q_EMIT errorOccurred(socket->errorString());
-            return;
         }
-        sendData(u8"GET_VIDEO_RECOMMEND|1");
+
     }
 
 //    QFuture<void> future = QtConcurrent::run([=](){

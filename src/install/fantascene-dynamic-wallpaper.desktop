@@ -1,16 +1,16 @@
 [Desktop Entry]
 Categories=System;
 Comment=fantascene-dynamic-wallpaper
-Comment[zh_CN]=幻梦动态壁纸
+Comment[zh_CN]=星火动态壁纸
 Comment[pl]=Tapeta dynamiczna Fantascene
 
 Exec=fantascene-dynamic-wallpaper --platform xcb
 GenericName=fantascene-dynamic-wallpaper
-GenericName[zh_CN]=幻梦动态壁纸
+GenericName[zh_CN]=星火动态壁纸
 GenericName[pl]=Tapeta dynamiczna Fantascene
 Icon=fantascene-dynamic-wallpaper
 Name=fantascene-dynamic-wallpaper
-Name[zh_CN]=幻梦动态壁纸
+Name[zh_CN]=星火动态壁纸
 Name[pl]=Tapeta dynamiczna Fantascene
 StartupNotify=false
 Terminal=false
