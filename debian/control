@@ -12,7 +12,6 @@ Build-Depends:  debhelper (>= 9),
 				libglib2.0-dev,
 				libmtdev-dev ,
 				libx11-xcb-dev , 
-				ffmpeg , 
 				fakeroot ,
 				qtwebengine5-dev ,
 				libxext-dev ,
@@ -24,5 +23,5 @@ Standards-Version: 4.6.0.1
 Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 Package: fantascene-dynamic-wallpaper
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} ,wget
+Depends: ${shlibs:Depends}, ${misc:Depends} ,wget, ffmpeg
 Description: video wallpaper for fantascene.
