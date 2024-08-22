@@ -1,4 +1,14 @@
-# 幻梦动态壁纸
+# 星火动态壁纸
+
+官网:
+[https://www.fantacy.online/](https://www.fantacy.online/)
+
+## 1.8.3版本重要更新:
+
+由幻梦改名星火(1.8.3版本开始)
+
+新增壁纸仓库spark-hub，在线下载(试运行)
+
 
 ### 在Linux下的基于X11的动态壁纸管理器
 
@@ -163,6 +173,8 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 
 
 ## 感谢
+
+感谢[shenmo](https://gitee.com/spark-store-project)的大力支持。
 
 感谢[Akiba illusion](https://github.com/AkibaIllusionLinux)的大力支持。
 
