@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1008</width>
+    <width>1871</width>
     <height>488</height>
    </rect>
   </property>
@@ -25,6 +25,27 @@
         <widget class="QPushButton" name="btn_Recommend">
          <property name="text">
           <string>Recommend</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Status:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lbl_status">
+         <property name="text">
+          <string>Not Online</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_try">
+         <property name="text">
+          <string>Try Connected</string>
          </property>
         </widget>
        </item>
@@ -153,6 +174,23 @@
          </property>
          <property name="text">
           <string>&gt;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="edit_currentPage">
+         <property name="maximumSize">
+          <size>
+           <width>80</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_to">
+         <property name="text">
+          <string>To</string>
          </property>
         </widget>
        </item>

@@ -432,138 +432,162 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="54"/>
+        <location filename="../listview/onlineclient.ui" line="34"/>
+        <source>Status:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="48"/>
+        <source>Try Connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="75"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="72"/>
+        <location filename="../listview/onlineclient.ui" line="93"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="91"/>
-        <location filename="../listview/onlineclient.ui" line="129"/>
+        <location filename="../listview/onlineclient.ui" line="112"/>
+        <location filename="../listview/onlineclient.ui" line="150"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="110"/>
+        <location filename="../listview/onlineclient.ui" line="131"/>
         <source>/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="142"/>
+        <location filename="../listview/onlineclient.ui" line="163"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="155"/>
+        <location filename="../listview/onlineclient.ui" line="176"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="177"/>
+        <location filename="../listview/onlineclient.ui" line="193"/>
+        <source>To</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="227"/>
         <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="184"/>
+        <location filename="../listview/onlineclient.ui" line="246"/>
         <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="214"/>
+        <location filename="../listview/onlineclient.ui" line="276"/>
         <source>Name</source>
         <translation type="unfinished">이름</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="233"/>
-        <location filename="../listview/onlineclient.ui" line="275"/>
-        <location filename="../listview/onlineclient.ui" line="317"/>
-        <location filename="../listview/onlineclient.ui" line="359"/>
-        <location filename="../listview/onlineclient.ui" line="401"/>
-        <location filename="../listview/onlineclient.ui" line="443"/>
-        <location filename="../listview/onlineclient.ui" line="485"/>
-        <location filename="../listview/onlineclient.ui" line="527"/>
-        <location filename="../listview/onlineclient.ui" line="569"/>
+        <location filename="../listview/onlineclient.ui" line="295"/>
+        <location filename="../listview/onlineclient.ui" line="337"/>
+        <location filename="../listview/onlineclient.ui" line="379"/>
+        <location filename="../listview/onlineclient.ui" line="421"/>
+        <location filename="../listview/onlineclient.ui" line="463"/>
+        <location filename="../listview/onlineclient.ui" line="505"/>
+        <location filename="../listview/onlineclient.ui" line="547"/>
+        <location filename="../listview/onlineclient.ui" line="589"/>
+        <location filename="../listview/onlineclient.ui" line="631"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="256"/>
+        <location filename="../listview/onlineclient.ui" line="318"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="298"/>
+        <location filename="../listview/onlineclient.ui" line="360"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="340"/>
+        <location filename="../listview/onlineclient.ui" line="402"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="382"/>
+        <location filename="../listview/onlineclient.ui" line="444"/>
         <source>Download Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="424"/>
+        <location filename="../listview/onlineclient.ui" line="486"/>
         <source>File Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="466"/>
+        <location filename="../listview/onlineclient.ui" line="528"/>
         <source>File Size</source>
         <translation type="unfinished">파일 크기</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="508"/>
+        <location filename="../listview/onlineclient.ui" line="570"/>
         <source>Width</source>
         <translation type="unfinished">너비</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="550"/>
+        <location filename="../listview/onlineclient.ui" line="612"/>
         <source>Height</source>
         <translation type="unfinished">높이</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="615"/>
+        <location filename="../listview/onlineclient.ui" line="696"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="18"/>
+        <location filename="../listview/onlineclient.cpp" line="20"/>
         <source>Fantascene Hub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="87"/>
-        <location filename="../listview/onlineclient.cpp" line="142"/>
+        <location filename="../listview/onlineclient.cpp" line="163"/>
+        <location filename="../listview/onlineclient.cpp" line="226"/>
         <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="101"/>
-        <location filename="../listview/onlineclient.cpp" line="107"/>
-        <location filename="../listview/onlineclient.cpp" line="157"/>
-        <location filename="../listview/onlineclient.cpp" line="163"/>
+        <location filename="../listview/onlineclient.cpp" line="184"/>
+        <location filename="../listview/onlineclient.cpp" line="190"/>
+        <location filename="../listview/onlineclient.cpp" line="264"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="101"/>
-        <location filename="../listview/onlineclient.cpp" line="157"/>
+        <location filename="../listview/onlineclient.cpp" line="184"/>
+        <location filename="../listview/onlineclient.cpp" line="264"/>
         <source>Dowlaod Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="107"/>
-        <location filename="../listview/onlineclient.cpp" line="163"/>
+        <location filename="../listview/onlineclient.cpp" line="190"/>
         <source>File Exists!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="418"/>
+        <source>Online</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="41"/>
+        <location filename="../listview/onlineclient.cpp" line="424"/>
+        <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -943,7 +967,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="535"/>
-        <source>Fantascene-Hub(Test)</source>
+        <source>Spark-Hub(Test)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

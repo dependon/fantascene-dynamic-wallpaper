@@ -32,6 +32,10 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
     connect(this,&OnlineClient::sigSendData,m_client,&TcpClient::sendData,Qt::QueuedConnection);
+
+    connect(m_client,&TcpClient::connected,this,&OnlineClient::slotConnected,Qt::QueuedConnection);
+    connect(m_client,&TcpClient::disconnected,this,&OnlineClient::slotDisconnected,Qt::QueuedConnection);
+
     Q_EMIT sigStart();
 
     QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene";
@@ -66,7 +70,21 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
 
     // 构建curl命令
     QString command = "wget -o "+downlog +" -O " + outputFilePath + " " + url;
-    if (url.endsWith(".mp4", Qt::CaseInsensitive)) {
+
+
+
+    if(outputFilePath.contains(".html"))
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+extraPath;
+        // 构建wget命令
+        if (url.endsWith('/') || url.endsWith("mp4") || url.endsWith("webm") || url.endsWith("mkv")) {
+            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url;
+        } else {
+            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
+        }
+    }
+
+    if (url.endsWith(".mp4", Qt::CaseInsensitive) || url.endsWith(".mkv", Qt::CaseInsensitive) || url.endsWith(".webm", Qt::CaseInsensitive)) {
         int slashIndex = url.lastIndexOf('/');
         if (slashIndex!= -1) {
             QString part1 = url.left(slashIndex);
@@ -77,19 +95,7 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
             qDebug() << "未找到'/'";
         }
     } else {
-        qDebug() << "字符串后缀不是.mp4";
-    }
-
-
-    if(outputFilePath.contains(".html"))
-    {
-        QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+extraPath;
-        // 构建wget命令
-        if (url.endsWith('/') || url.endsWith("mp4") || url.endsWith("webm")) {
-            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url;
-        } else {
-            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
-        }
+        qDebug() << "字符串后缀不是.mp4 mkv webm";
     }
 
     // 创建QProcess对象
@@ -102,7 +108,7 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
         return false;
     }
     // 等待命令执行完成
-    process.waitForFinished(600000);//10min
+    process.waitForFinished(900000);//15min
 
 
     // 检查命令执行结果
@@ -213,12 +219,14 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
     QString name = m_datas.value(m_currentMd5).fileName;
     QString newName = name.replace(QRegExp("\\s+"), "");
     QString saveFile = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+newName;
+    QString saveHtml = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+newName;
     QFuture<void> future = QtConcurrent::run([=]()
     {
         QMutexLocker locker(&m_downloadMutex);
         ui->label_DTip->setText(tr("Dowload Ing....."));
         bool isExists = QFileInfo(saveFile).exists();
-        if(!isExists)
+        bool isExistsHtml = QFileInfo(saveHtml).exists();
+        if(!isExists && !isExistsHtml)
         {
             ui->btn_download->setEnabled(false);
             QString strExtra;
@@ -256,6 +264,10 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                 QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
             }
             ui->btn_download->setEnabled(true);
+        }
+        else if(isExistsHtml)
+        {
+            dApp->setWallPaper(saveHtml);
         }
         else
         {
@@ -303,6 +315,7 @@ void OnlineClient::slotSearchTotalCount(const int &count)
     int totalPage = count/20+1;
     ui->label_Total->setText(QString::number(totalPage));
     ui->label_CurrentCount->setText(QString::number(1));
+    ui->edit_currentPage->setText(QString::number(1));
 }
 
 
@@ -326,6 +339,7 @@ void OnlineClient::on_btn_Right_clicked()
         Q_EMIT sigSendData(str);
     }
     ui->label_CurrentCount->setText(QString::number(current));
+    ui->edit_currentPage->setText(QString::number(current));
 }
 
 
@@ -350,6 +364,7 @@ void OnlineClient::on_btn_Left_clicked()
         Q_EMIT sigSendData(str);
     }
     ui->label_CurrentCount->setText(QString::number(current));
+    ui->edit_currentPage->setText(QString::number(current));
 }
 
 void OnlineClient::readProgressFile()
@@ -376,3 +391,41 @@ void OnlineClient::readProgressFile()
     }
 }
 
+
+void OnlineClient::on_btn_to_clicked()
+{
+    int page = ui->edit_currentPage->text().toInt();
+    int total = ui->label_Total->text().toInt();
+    if(page <= total && page > 0)
+    {
+        if(m_isRecommd)
+        {
+            QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(page).toUtf8();
+            Q_EMIT sigSendData(str);
+        }
+        else
+        {
+            QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(page).toUtf8();
+            Q_EMIT sigSendData(str);
+        }
+        ui->label_CurrentCount->setText(QString::number(page));
+    }
+
+}
+
+void OnlineClient::slotConnected()
+{
+    ui->lbl_status->setText(tr("Online"));
+    ui->btn_try->setEnabled(false);
+}
+
+void OnlineClient::slotDisconnected()
+{
+    ui->lbl_status->setText(tr("Not Online"));
+    ui->btn_try->setEnabled(true);
+}
+
+void OnlineClient::on_btn_try_clicked()
+{
+    Q_EMIT sigStart();
+}

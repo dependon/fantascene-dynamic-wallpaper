@@ -42,6 +42,13 @@ private Q_SLOTS:
     void on_btn_Left_clicked();
 
     void readProgressFile();
+    void on_btn_to_clicked();
+
+    void slotConnected();
+    void slotDisconnected();
+
+    void on_btn_try_clicked();
+
 private:
     Ui::OnlineClient *ui;
     view *m_viewDowload{nullptr};
