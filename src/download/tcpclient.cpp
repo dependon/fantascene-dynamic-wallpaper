@@ -148,13 +148,16 @@ void TcpClient::parseData(const QByteArray &data)
         result.append(currentLine);
     }
     int count = 0;
+    QStringList strList;
     for(QStringList list : result)
     {
         VideoData data;
-        if(list.size() == 2)
+
+        if(list.size() == 2 && list.at(0) == "COUNT")
         {
             count = list.at(1).toInt();
             Q_EMIT sigSearchTotalCount(count);
+            continue;
         }
         else if(list.size() >= 12)
         {
@@ -171,6 +174,42 @@ void TcpClient::parseData(const QByteArray &data)
             data.height = list.at(10).toInt();
             data.picture = QByteArray::fromHex(list.at(11).toLatin1()); // Assuming picture is stored as a binary object
             datas << data;
+        }
+        else
+        {
+            int i =0 ;
+            for(int i =0 ; i< list.size() ;i++)
+            {
+                if(strList.size() == 0)
+                {
+                    strList.push_back(list.at(i));
+                }
+                else if (i == 0)
+                {
+                    strList.last() = strList.last() + list.at(0);
+                }
+                else
+                {
+                    strList.push_back(list.at(i));
+                }
+            }
+            if(strList.size() >= 12)
+            {
+                data.md5 = strList.at(0);
+                data.name = strList.at(1);
+                data.description = strList.at(2);
+                data.category = strList.at(3);
+                data.author = strList.at(4);
+                data.fileName = strList.at(5);
+                data.downloadPath = strList.at(6);
+                data.downloadCount = strList.at(7).toInt();
+                data.filesize = strList.at(8).toLongLong();
+                data.width = strList.at(9).toInt();
+                data.height = strList.at(10).toInt();
+                data.picture = QByteArray::fromHex(strList.at(11).toLatin1()); // Assuming picture is stored as a binary object
+                datas << data;
+                strList.clear();
+            }
         }
 
     }

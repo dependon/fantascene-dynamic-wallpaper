@@ -226,6 +226,25 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
         ui->label_DTip->setText(tr("Dowload Ing....."));
         bool isExists = QFileInfo(saveFile).exists();
         bool isExistsHtml = QFileInfo(saveHtml).exists();
+        if(!isExists )
+        {
+            if(QFileInfo(saveFile).size() <10)
+            {
+                QFile(saveFile).remove();
+                isExists = false;
+            }
+        }
+
+        if(!isExistsHtml )
+        {
+            if(QFileInfo(saveHtml).size() <10)
+            {
+                QFile(saveHtml).remove();
+                isExists = false;
+            }
+        }
+
+
         if(!isExists && !isExistsHtml)
         {
             ui->btn_download->setEnabled(false);
