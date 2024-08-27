@@ -49,6 +49,7 @@ private Q_SLOTS:
 
     void on_btn_try_clicked();
 
+    void delayedPageFunction();
 private:
     Ui::OnlineClient *ui;
     view *m_viewDowload{nullptr};
@@ -60,6 +61,8 @@ private:
     QMutex m_downloadMutex;
 
     QTimer * m_timer{nullptr};
+    QTimer * m_timerFunction{nullptr};
+    int m_currentPage{0};
 };
 
 #endif // ONLINECLIENT_H

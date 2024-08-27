@@ -9,6 +9,9 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 #include "application.h"
+
+#define DelayCount 500
+
 const QString downlog = QDir::homePath() +
         "/.config/fantascene-dynamic-wallpaper/downlog.txt";
 
@@ -55,10 +58,17 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     ui->label_tip1->setWordWrap(true);
     ui->label_tip2->setWordWrap(true);
+    ui->label_Description->setWordWrap(true);
+    ui->label_Name->setWordWrap(true);
 
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, this, &OnlineClient::readProgressFile);
     m_timer->start(1000);
+
+    m_timerFunction = new QTimer(this);
+    connect(m_timerFunction, &QTimer::timeout, this, &OnlineClient::delayedPageFunction);
+    m_timerFunction->setSingleShot(true);
+    m_timerFunction->setInterval(DelayCount);
 }
 
 OnlineClient::~OnlineClient()
@@ -347,18 +357,10 @@ void OnlineClient::on_btn_Right_clicked()
     {
         return ;
     }
-    if(m_isRecommd)
-    {
-        QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(current).toUtf8();
-        Q_EMIT sigSendData(str);
-    }
-    else
-    {
-        QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(current).toUtf8();
-        Q_EMIT sigSendData(str);
-    }
-    ui->label_CurrentCount->setText(QString::number(current));
-    ui->edit_currentPage->setText(QString::number(current));
+    m_currentPage = current;
+    ui->label_CurrentCount->setText(QString::number(m_currentPage));
+    ui->edit_currentPage->setText(QString::number(m_currentPage));
+    m_timerFunction->start();
 }
 
 
@@ -371,19 +373,10 @@ void OnlineClient::on_btn_Left_clicked()
     {
         return ;
     }
-
-    if(m_isRecommd)
-    {
-        QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(current).toUtf8();
-        Q_EMIT sigSendData(str);
-    }
-    else
-    {
-        QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(current).toUtf8();
-        Q_EMIT sigSendData(str);
-    }
-    ui->label_CurrentCount->setText(QString::number(current));
-    ui->edit_currentPage->setText(QString::number(current));
+    m_currentPage = current;
+    ui->label_CurrentCount->setText(QString::number(m_currentPage));
+    ui->edit_currentPage->setText(QString::number(m_currentPage));
+    m_timerFunction->start();
 }
 
 void OnlineClient::readProgressFile()
@@ -447,4 +440,18 @@ void OnlineClient::slotDisconnected()
 void OnlineClient::on_btn_try_clicked()
 {
     Q_EMIT sigStart();
+}
+
+void OnlineClient::delayedPageFunction()
+{
+    if(m_isRecommd)
+    {
+        QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(m_currentPage).toUtf8();
+        Q_EMIT sigSendData(str);
+    }
+    else
+    {
+        QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(m_currentPage).toUtf8();
+        Q_EMIT sigSendData(str);
+    }
 }
