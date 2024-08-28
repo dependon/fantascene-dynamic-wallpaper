@@ -33,7 +33,7 @@
 #include <QProcess>
 #include <QDateTime>
 #include <QScreen>
-
+#include <QDBusInterface>
 #include <QStyleFactory>
 
 #include "db/dbmanager.h"
@@ -269,6 +269,32 @@ void Application::setSpecialDesktop()
                process2.start(command2);
                process2.waitForFinished(-1);  // 等待进程执行完成
            }
+        }
+        else if(dApp->m_isGXDE)
+        {
+            QDBusInterface iface("com.deepin.dde.desktop",
+                                 "/com/deepin/dde/desktop",
+                                 "com.deepin.dde.desktop",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("EnableBackground", false);
+            //设置desktop透明
+            char str[12] = "dde-desktop";
+            int pid_t[128];
+            find_pid_by_name1(str, pid_t);
+            int pid = pid_t[0];
+            Display *display = XOpenDisplay(0);
+            X11MatchingPid match( pid);
+            const std::list<Window> &result = match.result();
+            for (Window id : result) {
+                QWindow *window = QWindow::fromWinId((unsigned long)id);
+                if (window != nullptr) {
+                    window->setOpacity(0.99);
+                    window->raise();
+                }
+                if (!m_screenWid.contains(id)) {
+                    m_screenWid.push_back(id);
+                }
+            }
         }
         else if(dApp->m_isDDE23)
         {

@@ -719,8 +719,16 @@ void settingWindow::quitApp()
            process1.start(command1);
            process1.waitForFinished(-1);  // 等待进程执行完成
         }
+        else if(dApp->m_isGXDE)
+        {
+            QDBusInterface iface("com.deepin.dde.desktop",
+                                 "/com/deepin/dde/desktop",
+                                 "com.deepin.dde.desktop",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("EnableBackground", true);
+        }
         //deepinv23 quit!
-        if(dApp->m_isDDE23)
+        else if(dApp->m_isDDE23)
         {
             if(dApp->m_startDesktop)
             {

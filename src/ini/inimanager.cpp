@@ -26,14 +26,40 @@ QString getOsVersionId() {
     return QString();
 }
 
+QString getOsName() {
+    QFile file("/etc/os-release");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return QString();
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        if (line.startsWith("NAME=")) {
+            file.close();
+            return line.mid(5, line.length() - 6);  // 从 NAME=" 开始截取到倒数第二个字符
+        }
+    }
+
+    file.close();
+    return QString();
+}
+
+
 IniManager::IniManager(QObject *parent)
     :QObject(parent)
 {
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
-
+    QString strOsName = getOsName();
     QFile file(CONFIG_PATH);
     if (desktop.contains("GNOME", Qt::CaseInsensitive))
     {
+        dApp->m_moreData.isShowDesktopIcon = false;
+        dApp->m_moreData.isTop = false;
+    }
+    else if (strOsName.contains("GXDE", Qt::CaseInsensitive))
+    {
+        dApp->m_isGXDE = true;
         dApp->m_moreData.isShowDesktopIcon = false;
         dApp->m_moreData.isTop = false;
     }
