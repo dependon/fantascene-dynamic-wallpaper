@@ -34,6 +34,7 @@
 #include <QDateTime>
 #include <QScreen>
 #include <QDBusInterface>
+#include <QDBusPendingCall>
 #include <QStyleFactory>
 
 #include "db/dbmanager.h"

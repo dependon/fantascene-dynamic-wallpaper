@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="1,0">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,1,0,0,0">
+    <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,1,0,0,0">
      <property name="bottomMargin">
       <number>20</number>
      </property>
@@ -50,13 +50,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>If unable to download, please check if 'wget' is installed on the command line.</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -70,6 +63,13 @@
         </spacer>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>If unable to download, please check if 'wget' is installed on the command line.</string>
+       </property>
+      </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
