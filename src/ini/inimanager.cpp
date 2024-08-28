@@ -1,5 +1,6 @@
 #include "inimanager.h"
 #include <QDir>
+#include <QDebug>
 #include <QTextStream>
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
@@ -51,6 +52,7 @@ IniManager::IniManager(QObject *parent)
 {
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
     QString strOsName = getOsName();
+    qDebug()<< strOsName;
     QFile file(CONFIG_PATH);
     if (desktop.contains("GNOME", Qt::CaseInsensitive))
     {
