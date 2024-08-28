@@ -29,8 +29,6 @@ OnlineClient::OnlineClient(QWidget *parent) :
     this->setMaximumHeight(700);
     this->setMinimumHeight(700);
 
-    //m_client = new TcpClient("bj.frp.one",26667);
-    //m_client = new TcpClient("192.168.40.48",26667);
     m_client = new TcpClient("server.fantacy.online",26667);
 
     connect(this,&OnlineClient::sigStart,m_client,&TcpClient::slotStart,Qt::QueuedConnection);
