@@ -284,8 +284,13 @@ void Wallpaper::setFile(const QString &path)
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_mpv) {
             layout()->removeWidget(m_mpv);
-            m_mpv->deleteLater();
-            m_mpv = nullptr;
+            m_mpv->setProperty("pause", true);
+            QTimer::singleShot(200,[=]
+            {
+                delete m_mpv;
+                m_mpv = nullptr;
+            });
+
         }
         if (!m_webView) {
             m_webView = new webWidget(this);

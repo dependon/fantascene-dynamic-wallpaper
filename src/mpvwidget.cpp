@@ -143,11 +143,15 @@ MpvWidget::~MpvWidget()
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     if (mpv_gl)
         mpv_render_context_free(mpv_gl);
+
+    //opengl cb crash boom!!!!
+    mpv_terminate_destroy(mpv);
 #else
     if (mpv_gl)
         mpv_opengl_cb_set_update_callback(mpv_gl, NULL, NULL);
 #endif
-    mpv_terminate_destroy(mpv);
+
+
 }
 
 void MpvWidget::command(const QVariant &params)
