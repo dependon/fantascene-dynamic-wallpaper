@@ -285,11 +285,8 @@ void Wallpaper::setFile(const QString &path)
         if (m_mpv) {
             layout()->removeWidget(m_mpv);
             m_mpv->setProperty("pause", true);
-            QTimer::singleShot(200,[=]
-            {
-                delete m_mpv;
-                m_mpv = nullptr;
-            });
+            delete m_mpv;
+            m_mpv = nullptr;
 
         }
         if (!m_webView) {
