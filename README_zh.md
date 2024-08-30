@@ -205,7 +205,7 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 
 [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
-##一种可能的`scene.pkg`解包为`.mp4`方案
+## 一种可能的`scene.pkg`解包为`.mp4`方案
 
 [方案步骤](pkg2mp4.md)
 
