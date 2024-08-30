@@ -1,3 +1,18 @@
+## 1.8.4
+
+Compatible with GXDE OS (native desktop)
+
+Fixed the issue where some wallpapers in the warehouse were not displayed
+
+## 1.8.3
+
+New wallpaper repository Spark Hub, available for online download (trial run)
+
+## 1.8.0
+
+Removed libqt5x11extras5 dev module
+
+
 ## 1.7.7
 
 When selecting files, a pause will be executed (to solve the problem of folder lag when opening, as MPV running can affect folder opening, which is a bit outrageous, but only Ubuntu is the most severe)
@@ -85,5 +100,7 @@ Added local wallpaper folder function
 
 Equipped with self drawn desktop functionality
 
+
 ## 1.5.0
+
 Compatible with wayland environment

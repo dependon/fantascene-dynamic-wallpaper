@@ -1,14 +1,34 @@
-# Fantascene-dynamic-wallpaper
+# Fantascene-dynamic-wallpaper(Spark-dynamic-wallpaper)
 
 ### Managed animated wallpaper based on X11 under Linux.
 
+### Chinese official website
+
+[https://www.fantacy.online](https://www.fantacy.online)
+
+## Latest version download (Open Build Service)
+
+[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
+
+AppImage: 1.8.4， Packaged in Ubuntu 16.04, compatible with most versions, but the MPV version is very old and the probability of crashing when video switching web wallpapers is high. If you can use deb, try to use the deb package as much as possible
+
+DownloadPath: https://www.fantacy.online/fantascene-dynamic-wallpaper-1.8.4_x86_64.AppImage
+
+## 1.8.4
+
+Fixed the issue where some wallpapers in the warehouse were not displayed.
+
+##Important update for version 1.8.3:
+
+New wallpaper repository Spark Hub, available for online download (Testing).
+ 
 ### Give me a star on github page if you like this toy :)
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
 [中文项目介绍](README_zh.md)
 
-## Settings for Gnome or Kylin os or Deepin V23
+## Settings for Gnome or Kylin os or Deepin V23 
 
 If your Gnome desktop environment has a desktop-file-utils plugin     (Kylin and Deepin V23 are the same way)
 
@@ -46,10 +66,6 @@ COPYRIGHT (C) 2020-2024 LIUMINGHANG <liuminghang0821@gmail.com>
 THE PROJECT IS RELEASED UNDER THE：
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
-
-## Latest version download (Open Build Service)
-
-[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
 ## Wiki
 

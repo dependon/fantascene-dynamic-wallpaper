@@ -1,7 +1,14 @@
 # 星火动态壁纸
 
 官网:
+
 [https://www.fantacy.online/](https://www.fantacy.online/)
+
+
+## 1.8.4 
+
+适配gxde os(原生桌面)
+修复了壁纸仓库部分接收到不显示的问题
 
 ## 1.8.3版本重要更新:
 
@@ -13,6 +20,14 @@
 ### 在Linux下的基于X11的动态壁纸管理器
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
+
+## 最新版本下载，来自obs打包，覆盖debian10-testing ubuntu 18+ fedora openfuse等(Open Build Service)
+
+[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
+
+AppImage:1.8.4，在ubuntu16.04打包，兼容大部分版本，但是mpv版本为很旧版本，并且视频壁纸切换web壁纸概率崩溃，能够使用deb，尽量使用deb包(该问题在debian10和ubuntu20.04以上版本似乎就没了)
+
+下载地址 https://www.fantacy.online/fantascene-dynamic-wallpaper-1.8.4_x86_64.AppImage
 
 ## gnome桌面环境（如ubuntu os）和kylin os或deepin v23 环境的配置(使用本来的原生桌面，不改变右键菜单和桌面图标布局)
 
@@ -45,9 +60,6 @@ kylin和gnome的桌面环境不需要重启桌面
 
 [中文](UpdateLog_zh.md)
 
-## 最新版本下载，来自obs打包，覆盖debian10-testing ubuntu 18+ fedora openfuse等(Open Build Service)
-
-[https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
 ## qq群(及时反馈和分享bug需求等) 2023/08/29
 
@@ -107,11 +119,12 @@ kylin和gnome的桌面环境不需要重启桌面
 ## qq群(及时反馈和分享bug需求等) 2023/08/29
 
 群号:917552088 
+
 请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
 
 ## 安装(下载地址主要来自github，链接看运气)
 
-## AppImage
+## AppImageHub
 
 dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.com/p/2068198)
 
@@ -176,6 +189,8 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 
 感谢[shenmo](https://gitee.com/spark-store-project)的大力支持。
 
+感谢[M0rtzz](https://gitee.com/spark-store-project)的提供pkg转化mp4教程。
+
 感谢[Akiba illusion](https://github.com/AkibaIllusionLinux)的大力支持。
 
 感谢[taotieren](https://github.com/taotieren)对ARCH的帮助
@@ -194,6 +209,10 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 ## 最简单的例子,可以在较低版本的mpv和qt编译,且代码结构简单(适合嵌入式设备)
 
 [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
+
+##一种可能的`scene.pkg`解包为`.mp4`方案
+
+[方案步骤](pkg2mp4.md)
 
 ## 截图
 
