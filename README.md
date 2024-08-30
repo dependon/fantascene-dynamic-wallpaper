@@ -106,10 +106,6 @@ Later, I wrote a simple desktop for the general version
 
 ## Installation
 
-### AppImage 2023-08-02
-
-dowload path: [https://www.appimagehub.com/p/2068198](https://www.appimagehub.com/p/2068198)
-
 
 ### Fedora and OpenSUSE
 [![build result](https://build.opensuse.org/projects/home:liuminghang/packages/fantascene-dynamic-wallpaper/badge.svg?type=default)](https://build.opensuse.org/package/show/home:liuminghang/fantascene-dynamic-wallpaper)
@@ -122,7 +118,7 @@ Please see: [fantascene-dynamic-wallpaper](https://software.opensuse.org//downlo
 
 yay -S fantascene-dynamic-wallpaper-git
 
-### windows 
+### windows demo
 
 Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
 
@@ -165,11 +161,13 @@ make all # For debug and release
 
 ## Thanks
 
-Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
+Thank [shenmo](https://gitee.com/spark-store-project) its great support.
 
 Thank [taotieren](https://github.com/taotieren) for his help on arch.
 
 Thank [gesangtome](https://github.com/gesangtome) for fixing some project bugs.
+
+Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
 
 Thanks for the Polish translation provided by  [raspin0](https://github.com/raspin0).
 

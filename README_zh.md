@@ -140,14 +140,9 @@ Please see: [https://software.opensuse.org//download.html?project=home%3Aliuming
 
 yay -S fantascene-dynamic-wallpaper-git
 
-### windows 
+### windows 简易demo
 
 Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
-
-### ubuntu18.04
-
-Please see: [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
-
 
 ## 构建依赖
 
@@ -189,7 +184,7 @@ make all # 构建带有调试符号和剥离调试符号的可执行文件
 
 感谢[shenmo](https://gitee.com/spark-store-project)的大力支持。
 
-感谢[M0rtzz](https://gitee.com/spark-store-project)的提供pkg转化mp4教程。
+感谢[M0rtzz](https://github.com/M0rtzz)的提供pkg转化mp4教程。
 
 感谢[Akiba illusion](https://github.com/AkibaIllusionLinux)的大力支持。
 
