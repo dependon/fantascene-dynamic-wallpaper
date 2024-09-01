@@ -69,6 +69,11 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
             ss = dApp->m_moreData.vo ;
             mpv::qt::set_option_variant(mpv, "vo",dApp->m_moreData.vo);
         }
+        else
+        {
+            //默认改为libmpv
+            mpv::qt::set_option_variant(mpv, "vo","libmpv");
+        }
     }
 	else
 	{
