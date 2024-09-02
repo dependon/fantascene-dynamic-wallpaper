@@ -218,6 +218,9 @@ void OnlineClient::slotClickedChange(const QString &md5)
         ui->label_FileSize->setText(fileSizeToMString(data.filesize));
         ui->label_Width->setText(QString::number(data.width));
         ui->label_Height->setText(QString::number(data.height));
+
+        QImage a = QImage::fromData(data.picture);
+        ui->label_picPreview->setPixmap(QPixmap::fromImage(a));
     }
 }
 
