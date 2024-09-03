@@ -206,7 +206,7 @@ void DelegateIcon::paint(QPainter *painter, const QStyleOptionViewItem &option, 
                                              text);
 
     QColor color = qApp->palette().text().color();
-    color=Qt::white;
+
     QPen pen(color);
     QString caiText = fontMetrics.elidedText(text,Qt::ElideRight,option.rect.width()*2-20);
     painter->setPen(pen);

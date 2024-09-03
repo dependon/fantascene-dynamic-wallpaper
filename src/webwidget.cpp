@@ -31,6 +31,18 @@ void webWidget::load(const QUrl &url)
 {
     QWebEngineView::load(url);
 }
+#elif defined(USE_WEBKIT)
+
+webWidget::webWidget(QWidget *parent)
+    : QWebView(parent)
+{
+
+}
+void webWidget::load(const QUrl &url)
+{
+    QWebView::load(url);
+}
+
 #else
 webWidget::webWidget(QWidget *parent)
     : QWidget(parent)

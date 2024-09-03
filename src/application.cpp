@@ -36,6 +36,7 @@
 #include <QDBusInterface>
 #include <QDBusPendingCall>
 #include <QStyleFactory>
+#include <QPalette>
 
 #include "db/dbmanager.h"
 
@@ -598,6 +599,91 @@ void *Application::getDisplay()
         display = XOpenDisplay(NULL);
     }
     return display;
+}
+
+void Application::setAppColor(const QString &strColor)
+{
+    // 设置文本颜色为红色
+    QPalette palette = qApp->palette();
+
+    if(strColor.contains("default"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkGray);
+    }
+    else if (strColor.contains("white"))
+    {
+        palette.setColor(QPalette::Text, Qt::white);
+    }
+    else if (strColor.contains("black"))
+    {
+        palette.setColor(QPalette::Text, Qt::black);
+    }
+    else if (strColor.contains("darkGray"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkGray);
+    }
+    else if (strColor.contains("gray"))
+    {
+        palette.setColor(QPalette::Text, Qt::gray);
+    }
+    else if (strColor.contains("lightGray"))
+    {
+        palette.setColor(QPalette::Text, Qt::lightGray);
+    }
+    else if (strColor.contains("red"))
+    {
+        palette.setColor(QPalette::Text, Qt::red);
+    }
+    else if (strColor.contains("green"))
+    {
+        palette.setColor(QPalette::Text, Qt::green);
+    }
+    else if (strColor.contains("blue"))
+    {
+        palette.setColor(QPalette::Text, Qt::blue);
+    }
+    else if (strColor.contains("cyan"))
+    {
+        palette.setColor(QPalette::Text, Qt::cyan);
+    }
+    else if (strColor.contains("magenta"))
+    {
+        palette.setColor(QPalette::Text, Qt::magenta);
+    }
+    else if (strColor.contains("yellow"))
+    {
+        palette.setColor(QPalette::Text, Qt::yellow);
+    }
+    else if (strColor.contains("darkRed"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkRed);
+    }
+    else if (strColor.contains("darkGreen"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkGreen);
+    }
+    else if (strColor.contains("darkBlue"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkBlue);
+    }
+    else if (strColor.contains("darkCyan"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkCyan);
+    }
+    else if (strColor.contains("darkMagenta"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkMagenta);
+    }
+    else if (strColor.contains("darkYellow"))
+    {
+        palette.setColor(QPalette::Text, Qt::darkYellow);
+    }
+    else if (strColor.contains("transparent"))
+    {
+        palette.setColor(QPalette::Text, QColor(0, 0, 0, 0));
+    }
+
+    qApp->setPalette(palette);
 }
 
 const QPixmap Application::getThumbnail(const QString &path)

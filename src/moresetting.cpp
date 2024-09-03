@@ -102,6 +102,8 @@ void MoreSetting::setData(const MoreSetData &data)
     ui->desktop_transparency->setValue(dApp->m_moreData.m_DesktopTransparency *100.0);
     ui->back_transparency->setValue(dApp->m_moreData.m_WallpaperTransparency *100.0);
 
+    ui->fontBox->setCurrentText(dApp->m_moreData.fontColor);
+
 }
 
 void MoreSetting::on_okBtn_clicked()
@@ -170,6 +172,7 @@ void MoreSetting::on_okBtn_clicked()
         }
         dApp->m_moreData.isEventPenetration = false;
     }
+    dApp->m_moreData.fontColor = ui->fontBox->currentText();
 
     Q_EMIT dApp->moreSettingSave();
 

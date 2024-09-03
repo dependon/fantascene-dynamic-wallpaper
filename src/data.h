@@ -37,6 +37,7 @@ struct MoreSetData {
     bool isEventPenetration = false;
     double m_DesktopTransparency = 0.99;
     double m_WallpaperTransparency = 0.99;
+    QString fontColor ="default";
 };
 
 struct VideoData {

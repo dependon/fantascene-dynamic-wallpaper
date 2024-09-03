@@ -342,6 +342,111 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Spark Desktop font color</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="fontBox">
+       <item>
+        <property name="text">
+         <string>default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>white</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>black</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>blue</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>yellow</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkGray</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>lightGray</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>gray</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>green</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>cyan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>magenta</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>transparent</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkRed</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkGreen</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkBlue</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkCyan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkMagenta</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>darkYellow</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="okBtn">

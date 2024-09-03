@@ -86,6 +86,9 @@ public:
     xcb_connection_t *getXcb_connection_t();
     void  *getDisplay();
 
+    //set app color
+    void setAppColor(const QString & strColor);
+
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
     void setPlayPath2(const QString &PATH);

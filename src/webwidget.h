@@ -20,12 +20,17 @@
  */
 #ifndef WEBWIDGET_H
 #define WEBWIDGET_H
+
+#include <QUrl>
+
 #ifdef USE_WEBENGINE
 #include <QWebEngineView>
 class webWidget : public QWebEngineView
+#elif defined(USE_WEBKIT)
+#include <QWebView>
+class webWidget : public QWebView
 #else
 #include <QWidget>
-#include <QUrl>
 class webWidget : public QWidget
 #endif
 {

@@ -17,10 +17,19 @@ RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
 QT += gui core widgets dbus
+
 qtHaveModule(webengine){
    QT += webengine webenginewidgets
    DEFINES += USE_WEBENGINE
 }
+
+!qtHaveModule(webengine) {
+    qtHaveModule(webkit) {
+        QT += webkit webkitwidgets
+        DEFINES += USE_WEBKIT
+    }
+}
+
 contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
 }
