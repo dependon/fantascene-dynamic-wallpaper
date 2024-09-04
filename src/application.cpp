@@ -297,7 +297,11 @@ void Application::setSpecialDesktop()
                     m_screenWid.push_back(id);
                 }
             }
-            system("deepin-kwin --replace");
+
+            QTimer::singleShot(500, []() {
+                system("deepin-kwin --replace &");
+            });
+
         }
         else if(dApp->m_isDDE23)
         {
