@@ -53,7 +53,7 @@ IniManager::IniManager(QObject *parent)
     QString desktop = qgetenv("XDG_CURRENT_DESKTOP");
     QString strOsName = getOsName();
     qDebug()<< strOsName;
-    QFile file(CONFIG_PATH);
+    //QFile file(CONFIG_PATH);
     if (desktop.contains("GNOME", Qt::CaseInsensitive))
     {
         dApp->m_moreData.isShowDesktopIcon = false;
@@ -80,10 +80,15 @@ IniManager::IniManager(QObject *parent)
             }
         }
     }
-
-    if(desktop.contains("UKUI", Qt::CaseInsensitive))
+    else if(desktop.contains("UKUI", Qt::CaseInsensitive))
     {
         dApp->m_isUKUI = true;
+        dApp->m_moreData.isShowDesktopIcon = false;
+        dApp->m_moreData.isTop = false;
+    }
+    else if(desktop.contains("Lingmo", Qt::CaseInsensitive))
+    {
+        dApp->m_isLingMo = true;
         dApp->m_moreData.isShowDesktopIcon = false;
         dApp->m_moreData.isTop = false;
     }

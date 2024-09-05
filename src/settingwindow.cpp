@@ -733,6 +733,14 @@ void settingWindow::quitApp()
                                  QDBusConnection::sessionBus());
             iface.asyncCall("EnableBackground", true);
         }
+        else if(dApp->m_isLingMo)
+        {
+            QDBusInterface iface("com.lingmo.Settings",
+                                 "/Theme",
+                                 "com.lingmo.Theme",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("setBackgroundVisible", true);
+        }
         //deepinv23 quit!
         else if(dApp->m_isDDE23)
         {

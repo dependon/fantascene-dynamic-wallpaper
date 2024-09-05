@@ -303,6 +303,14 @@ void Application::setSpecialDesktop()
             });
 
         }
+        else if(dApp->m_isLingMo)
+        {
+            QDBusInterface iface("com.lingmo.Settings",
+                                 "/Theme",
+                                 "com.lingmo.Theme",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("setBackgroundVisible", false);
+        }
         else if(dApp->m_isDDE23)
         {
             // 检测 dde-desktop 进程是否在运行中
