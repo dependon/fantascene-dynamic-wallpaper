@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="144"/>
-        <location filename="../application.cpp" line="145"/>
+        <location filename="../application.cpp" line="146"/>
+        <location filename="../application.cpp" line="147"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation>fantasceneダイナミック壁紙</translation>
     </message>
@@ -231,7 +231,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="110"/>
+        <location filename="../moresetting.cpp" line="112"/>
         <source>continue playing</source>
         <translation>再生を続行</translation>
     </message>
@@ -248,8 +248,9 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
+        <location filename="../moresetting.ui" line="357"/>
         <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="118"/>
+        <location filename="../moresetting.cpp" line="120"/>
         <source>default</source>
         <translation>約束を破る</translation>
     </message>
@@ -323,10 +324,10 @@
         <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="64"/>
         <location filename="../moresetting.cpp" line="77"/>
-        <location filename="../moresetting.cpp" line="125"/>
-        <location filename="../moresetting.cpp" line="132"/>
-        <location filename="../moresetting.cpp" line="188"/>
-        <location filename="../moresetting.cpp" line="215"/>
+        <location filename="../moresetting.cpp" line="127"/>
+        <location filename="../moresetting.cpp" line="134"/>
+        <location filename="../moresetting.cpp" line="191"/>
+        <location filename="../moresetting.cpp" line="218"/>
         <source>other</source>
         <translation>さらに</translation>
     </message>
@@ -362,9 +363,9 @@
         <location filename="../moresetting.cpp" line="83"/>
         <location filename="../moresetting.cpp" line="89"/>
         <location filename="../moresetting.cpp" line="95"/>
-        <location filename="../moresetting.cpp" line="139"/>
-        <location filename="../moresetting.cpp" line="146"/>
-        <location filename="../moresetting.cpp" line="160"/>
+        <location filename="../moresetting.cpp" line="141"/>
+        <location filename="../moresetting.cpp" line="148"/>
+        <location filename="../moresetting.cpp" line="162"/>
         <source>true</source>
         <translation>本当に</translation>
     </message>
@@ -405,11 +406,101 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="349"/>
+        <source>Spark Desktop font color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="362"/>
+        <source>white</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="367"/>
+        <source>black</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="372"/>
+        <source>blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="377"/>
+        <source>yellow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="382"/>
+        <source>darkGray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="387"/>
+        <source>lightGray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="392"/>
+        <source>gray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="397"/>
+        <source>green</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="402"/>
+        <source>cyan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="407"/>
+        <source>magenta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="412"/>
+        <source>transparent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="417"/>
+        <source>darkRed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="422"/>
+        <source>darkGreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="427"/>
+        <source>darkBlue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="432"/>
+        <source>darkCyan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="437"/>
+        <source>darkMagenta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="442"/>
+        <source>darkYellow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="454"/>
         <source>Confirm</source>
         <translation>を選択して、</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="356"/>
+        <location filename="../moresetting.ui" line="461"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
@@ -442,151 +533,156 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="75"/>
+        <location filename="../listview/onlineclient.ui" line="70"/>
+        <source>If unable to download, please check if &apos;wget&apos; is installed on the command line.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="82"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="93"/>
+        <location filename="../listview/onlineclient.ui" line="100"/>
         <source>Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="112"/>
-        <location filename="../listview/onlineclient.ui" line="150"/>
+        <location filename="../listview/onlineclient.ui" line="119"/>
+        <location filename="../listview/onlineclient.ui" line="157"/>
         <source>0</source>
         <translation type="unfinished">0</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="131"/>
+        <location filename="../listview/onlineclient.ui" line="138"/>
         <source>/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="163"/>
+        <location filename="../listview/onlineclient.ui" line="170"/>
         <source>&lt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="176"/>
+        <location filename="../listview/onlineclient.ui" line="183"/>
         <source>&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="193"/>
+        <location filename="../listview/onlineclient.ui" line="200"/>
         <source>To</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="227"/>
+        <location filename="../listview/onlineclient.ui" line="234"/>
         <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="246"/>
+        <location filename="../listview/onlineclient.ui" line="253"/>
         <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="276"/>
+        <location filename="../listview/onlineclient.ui" line="286"/>
         <source>Name</source>
         <translation type="unfinished">の名前をあげる</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="295"/>
-        <location filename="../listview/onlineclient.ui" line="337"/>
-        <location filename="../listview/onlineclient.ui" line="379"/>
-        <location filename="../listview/onlineclient.ui" line="421"/>
-        <location filename="../listview/onlineclient.ui" line="463"/>
-        <location filename="../listview/onlineclient.ui" line="505"/>
-        <location filename="../listview/onlineclient.ui" line="547"/>
-        <location filename="../listview/onlineclient.ui" line="589"/>
-        <location filename="../listview/onlineclient.ui" line="631"/>
+        <location filename="../listview/onlineclient.ui" line="308"/>
+        <location filename="../listview/onlineclient.ui" line="353"/>
+        <location filename="../listview/onlineclient.ui" line="395"/>
+        <location filename="../listview/onlineclient.ui" line="437"/>
+        <location filename="../listview/onlineclient.ui" line="479"/>
+        <location filename="../listview/onlineclient.ui" line="521"/>
+        <location filename="../listview/onlineclient.ui" line="563"/>
+        <location filename="../listview/onlineclient.ui" line="605"/>
+        <location filename="../listview/onlineclient.ui" line="647"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="318"/>
+        <location filename="../listview/onlineclient.ui" line="331"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="360"/>
+        <location filename="../listview/onlineclient.ui" line="376"/>
         <source>Category</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="402"/>
+        <location filename="../listview/onlineclient.ui" line="418"/>
         <source>Author</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="444"/>
+        <location filename="../listview/onlineclient.ui" line="460"/>
         <source>Download Count</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="486"/>
+        <location filename="../listview/onlineclient.ui" line="502"/>
         <source>File Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="528"/>
+        <location filename="../listview/onlineclient.ui" line="544"/>
         <source>File Size</source>
         <translation type="unfinished">ファイルサイズ</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="570"/>
+        <location filename="../listview/onlineclient.ui" line="586"/>
         <source>Width</source>
         <translation type="unfinished">幅</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="612"/>
+        <location filename="../listview/onlineclient.ui" line="628"/>
         <source>Height</source>
         <translation type="unfinished">身長</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="696"/>
+        <location filename="../listview/onlineclient.ui" line="731"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="20"/>
+        <location filename="../listview/onlineclient.cpp" line="23"/>
         <source>Fantascene Hub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="163"/>
-        <location filename="../listview/onlineclient.cpp" line="226"/>
+        <location filename="../listview/onlineclient.cpp" line="171"/>
+        <location filename="../listview/onlineclient.cpp" line="237"/>
         <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="184"/>
-        <location filename="../listview/onlineclient.cpp" line="190"/>
-        <location filename="../listview/onlineclient.cpp" line="264"/>
+        <location filename="../listview/onlineclient.cpp" line="192"/>
+        <location filename="../listview/onlineclient.cpp" line="198"/>
+        <location filename="../listview/onlineclient.cpp" line="294"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="184"/>
-        <location filename="../listview/onlineclient.cpp" line="264"/>
+        <location filename="../listview/onlineclient.cpp" line="192"/>
+        <location filename="../listview/onlineclient.cpp" line="294"/>
         <source>Dowlaod Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="190"/>
+        <location filename="../listview/onlineclient.cpp" line="198"/>
         <source>File Exists!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="418"/>
+        <location filename="../listview/onlineclient.cpp" line="431"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
-        <location filename="../listview/onlineclient.cpp" line="424"/>
+        <location filename="../listview/onlineclient.cpp" line="437"/>
         <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
@@ -666,17 +762,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="433"/>
+        <location filename="../wallpaper.cpp" line="435"/>
         <source>Copy</source>
         <translation>レプリケーション</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="438"/>
+        <location filename="../wallpaper.cpp" line="440"/>
         <source>Extend</source>
         <translation>延長</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="443"/>
+        <location filename="../wallpaper.cpp" line="445"/>
         <source>Manual</source>
         <translation>マニュアル</translation>
     </message>
@@ -859,7 +955,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="680"/>
+        <location filename="../settingwindow.cpp" line="686"/>
         <source>Manual</source>
         <translation>マニュアル</translation>
     </message>
@@ -875,7 +971,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="839"/>
+        <location filename="../settingwindow.cpp" line="861"/>
         <source>default</source>
         <translation>約束を破る</translation>
     </message>
@@ -906,7 +1002,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="851"/>
+        <location filename="../settingwindow.cpp" line="873"/>
         <source>custom</source>
         <translation>風俗</translation>
     </message>
