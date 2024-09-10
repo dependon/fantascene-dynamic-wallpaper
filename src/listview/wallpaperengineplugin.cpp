@@ -31,10 +31,10 @@ wallpaperEnginePlugin::wallpaperEnginePlugin(QWidget *parent) :
         dApp->m_wallpaperEnginePath = path;
         QDir folder(path);
         if (folder.exists()) {
-            qDebug() << "文件夹存在";
+            qDebug() << "file dir exit!";
             IniManager::instance()->setValue("WallPaper/wallpaperEnginePath", dApp->m_wallpaperEnginePath);
         } else {
-            qDebug() << "文件夹不存在";
+            qDebug() << "file dir no exit";
         }
     }
     ui->enginePath->setText(path);

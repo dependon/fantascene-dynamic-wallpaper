@@ -67,6 +67,11 @@ OnlineClient::OnlineClient(QWidget *parent) :
     connect(m_timerFunction, &QTimer::timeout, this, &OnlineClient::delayedPageFunction);
     m_timerFunction->setSingleShot(true);
     m_timerFunction->setInterval(DelayCount);
+
+    connect(dApp,&Application::sigSetDownloadIng,ui->btn_download,&QPushButton::setEnabled);
+    connect(dApp,&Application::sigDownloadError,this,[=]{
+        QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
+    });
 }
 
 OnlineClient::~OnlineClient()
@@ -258,7 +263,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
 
         if(!isExists && !isExistsHtml)
         {
-            ui->btn_download->setEnabled(false);
+            emit dApp->sigSetDownloadIng(false);
             QString strExtra;
             strExtra = m_currentMd5;
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
@@ -280,20 +285,21 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                 {
                     dApp->setWallPaper(newPath);
                 }
-                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
+                //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
             else if(QFileInfo(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
             {
                 dApp->setWallPaper(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName);
-                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
+
+                //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
             else
             {
-                QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
+                emit dApp->sigDownloadError();
             }
-            ui->btn_download->setEnabled(true);
+            emit dApp->sigSetDownloadIng(true);
         }
         else if(isExistsHtml)
         {

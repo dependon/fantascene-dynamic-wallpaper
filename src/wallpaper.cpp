@@ -71,8 +71,6 @@
 #include <QWebEngineView>
 #endif
 
-using namespace std;
-
 #include "application.h"
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
@@ -125,11 +123,11 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     m_mouseWebEventTimer->start(30);
 
     QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-
+#ifdef Q_OS_LINUX
     m_iconView = new IconView(0, paths, this);
     connect(m_iconView, &IconView::sigMouseClick, this, &Wallpaper::slotMouseClick);
     m_iconView->move(0, 0);
-
+#endif
     QTimer::singleShot(1, this, &Wallpaper::updateGeometry);
     QTimer::singleShot(1000, this, [ = ] {
         int index = 0;
@@ -279,8 +277,9 @@ void Wallpaper::setFile(const QString &path)
     if (m_iconView) {
         m_iconView->setParent(this);
     }
-
+#ifdef Q_OS_LINUX
     malloc_trim(0);
+#endif
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_mpv) {
             layout()->removeWidget(m_mpv);
@@ -453,8 +452,51 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 }
 
 #include <QWindow>
+#ifdef Q_OS_LINUX
 #include <X11/extensions/shape.h>
 #include <X11/extensions/Xrender.h>
+#endif
+
+#ifdef Q_OS_WINDOWS
+#include <Windows.h>
+#include <QDesktopWidget>
+WId viewId;
+
+LRESULT CALLBACK HookShoot(_In_ int nCode, _In_ WPARAM wParam,LPARAM lParam){
+    if(wParam == WM_MOUSEMOVE || wParam == WM_NCMOUSEMOVE){
+         MOUSEHOOKSTRUCT * mshook = (MOUSEHOOKSTRUCT *)lParam;
+         PostMessage((HWND)viewId,WM_MOUSEMOVE,0,MAKELPARAM(mshook->pt.x,mshook->pt.y));
+    };
+    return CallNextHookEx(NULL, nCode, wParam, lParam);
+}
+
+HWND _WORKERW = nullptr;
+
+inline BOOL CALLBACK EnumWindowsProc(_In_ HWND tophandle, _In_ LPARAM topparamhandle)
+{
+    HWND defview = FindWindowEx(tophandle, 0, L"SHELLDLL_DefView", nullptr);
+    if (defview != nullptr)
+    {
+        _WORKERW = FindWindowEx(0, tophandle, L"WorkerW", 0);
+    }
+    return true;
+}
+
+
+
+HWND GetWorkerDesktop(){
+    int result;
+    HWND windowHandle = FindWindow(L"Progman", nullptr);
+    //使用 0x3e8 命令分割出两个 WorkerW
+    SendMessageTimeout(windowHandle, 0x052c, 0 ,0, SMTO_NORMAL, 0x3e8,(PDWORD_PTR)&result);
+    //遍历窗体获得窗口句柄
+    EnumWindows(EnumWindowsProc,(LPARAM)nullptr);
+    // 显示WorkerW
+    ShowWindow(_WORKERW,SW_HIDE);
+    return windowHandle;
+}
+#endif
+
 #define ATOM(a) XInternAtom(static_cast<Display *>(dApp->getDisplay()), #a, False)
 void Wallpaper::registerDesktop()
 {
@@ -487,6 +529,29 @@ void Wallpaper::registerDesktop()
             window->setOpacity(dApp->m_moreData.m_WallpaperTransparency);
         }
     }
+#else
+    workerW =  GetWorkerDesktop();
+
+    if(this){
+        viewId = this->winId();
+        // 返回workerW窗口句柄
+
+        //设置窗口样式
+        GetWindowLongA((HWND)viewId, GWL_STYLE);
+        //设置壁纸窗体的父窗体
+        SetParent((HWND)viewId,workerW);
+        SetWindowPos((HWND)viewId,HWND_TOP,0,0,0,0,WS_EX_LEFT|WS_EX_LTRREADING|WS_EX_RIGHTSCROLLBAR|WS_EX_NOACTIVATE);
+        // 设置全局鼠标事件钩子
+//        hook = SetWindowsHookEx(WH_MOUSE_LL,HookShoot,GetModuleHandle(NULL),0);
+
+        QDesktopWidget *desktop = QApplication::desktop();
+        this->move(QPoint(0,0));
+        int height = desktop->height();
+        int width = desktop->width();
+        this->resize(QSize(width,height));
+        this->showFullScreen();
+    }
+
 #endif
 
 //    Atom xa = 1247;
@@ -876,6 +941,7 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet)
 {
+#ifdef Q_OS_LINUX
     Display * display = XOpenDisplay(NULL);
     Atom xa = 1247;
     if (xa != None) {
@@ -929,6 +995,9 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
     dApp->changeMeOpacity(dApp->m_moreData.m_WallpaperTransparency);
 
     XCloseDisplay(display);
+#else
+    Q_UNUSED(bRet);
+#endif
 }
 
 void Wallpaper::LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos)

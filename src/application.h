@@ -83,9 +83,10 @@ public:
 
     QSet<QString> convertQStringListToSet(const QStringList &list);
 
+#ifndef Q_OS_WIN
     xcb_connection_t *getXcb_connection_t();
     void  *getDisplay();
-
+#endif
     //set app color
     void setAppColor(const QString & strColor);
 
@@ -134,6 +135,9 @@ Q_SIGNALS:
 
     void sigWallpaperEventChanged(bool);
 
+    void sigSetDownloadIng(bool bRet);
+
+    void sigDownloadError();
 public:
 
     QRect m_manual{0, 0, 1, 1};

@@ -23,7 +23,6 @@
 
 #include <QWidget>
 #include "application.h"
-#include <QMainWindow>
 #include <QFileDialog>
 #include <QWindow>
 #include <QTimer>
@@ -55,7 +54,7 @@ class settingWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit settingWindow(QWidget *parent = nullptr, QMainWindow *mainWindow = nullptr);
+    explicit settingWindow(QWidget *parent = nullptr, QWidget *mainWindow = nullptr);
     ~settingWindow();
 
     void readSettings();
@@ -68,11 +67,11 @@ public:
 
     int isAutoStart();
 
-    QVector<WId> currentWorkWindow();
-
     void setScreenMode(const QString &arg);
 
 #ifdef Q_OS_LINUX
+
+    QVector<WId> currentWorkWindow();
     //获取当前工作的窗口wid
     QVector<uint> getCurrentWorkspaceWindows();
     static xcb_atom_t internAtom(xcb_connection_t *connection, const char *name, bool only_if_exists = true);
@@ -181,7 +180,7 @@ private:
     Ui::settingWindow *ui;
     QSystemTrayIcon *m_trayIcon{nullptr};
     QMenu *m_traymenu{nullptr};
-    QMainWindow *m_parentMainWindow{nullptr};
+    QWidget *m_parentMainWindow{nullptr};
     int index = 1;
 
     int m_crrenNumber{0};

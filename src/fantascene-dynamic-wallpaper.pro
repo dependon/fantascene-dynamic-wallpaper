@@ -16,7 +16,7 @@ MOC_DIR = $$DESTDIR/.moc
 RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
-QT += gui core widgets dbus
+QT += gui core widgets dbus concurrent sql network
 
 qtHaveModule(webengine){
    QT += webengine webenginewidgets
@@ -34,22 +34,40 @@ contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
 }
 
-QT += concurrent sql network
-
-CONFIG += c++11 link_pkgconfig no_keywords
+CONFIG += c++11
 unix {
- #QT += x11extras
+    CONFIG += link_pkgconfig
  PKGCONFIG += xcb-ewmh mpv x11 xext xrender
-#CONFIG += waylandcompositor
  PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
  LIBS +=-lgio-2.0 -lglib-2.0
 
+SOURCES +=  \
+    desktop/customsortfilterproxymodel.cpp \
+    desktop/filemodel.cpp \
+    desktop/fileoperationjob.cpp \
+    desktop/iconprovider.cpp \
+    desktop/iconview.cpp \
+    desktop/delegateicon.cpp \
+    desktop/gioclass.cpp
+HEADERS += \
+    desktop/customsortfilterproxymodel.h \
+    desktop/filemodel.h \
+    desktop/fileoperationjob.h \
+    desktop/iconprovider.h \
+    desktop/iconview.h \
+    desktop/delegateicon.h \
+    desktop/gioclass.h
+}
+win32 {
+    INCLUDEPATH += $$PWD/../3rd/include/
+    INCLUDEPATH += $$PWD/../3rd/include/mpv/
+    LIBS +=$$PWD/../3rd/libmpv.dll.a
+    LIBS+=-luser32
 }
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
-    desktop/customsortfilterproxymodel.cpp \
     download/tcpclient.cpp \
     listview/onlineclient.cpp \
     wallpaper.cpp \
@@ -65,13 +83,7 @@ SOURCES += main.cpp \
     listview/wallpaperengineplugin.cpp \
     webwidget.cpp \
     listview/playlistsettingdialog.cpp \
-    desktop/filemodel.cpp \
-    desktop/fileoperationjob.cpp \
-    desktop/iconprovider.cpp \
-    desktop/iconview.cpp \
-    desktop/delegateicon.cpp \
     loadTranslation.cpp \
-    desktop/gioclass.cpp \
     ini/inimanager.cpp \
     listview/localwidget.cpp \
     help/helpdialog.cpp \
@@ -80,7 +92,6 @@ SOURCES += main.cpp \
     db/dbmanager.cpp
 
 HEADERS += \
-    desktop/customsortfilterproxymodel.h \
     download/tcpclient.h \
     listview/onlineclient.h \
     wallpaper.h \
@@ -97,13 +108,7 @@ HEADERS += \
     listview/wallpaperengineplugin.h \
     webwidget.h \
     listview/playlistsettingdialog.h \
-    desktop/filemodel.h \
-    desktop/fileoperationjob.h \
-    desktop/iconprovider.h \
-    desktop/iconview.h \
-    desktop/delegateicon.h \
     loadTranslation.h \
-    desktop/gioclass.h \
     ini/inimanager.h \
     listview/localwidget.h \
     help/helpdialog.h \

@@ -30,6 +30,9 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QThread>
+#include <QLockFile>
+#include <QDBusInterface>
+#include <QDBusPendingCall>
 
 #include <QDebug>
 #include <QCoreApplication>

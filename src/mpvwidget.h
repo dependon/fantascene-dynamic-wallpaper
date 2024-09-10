@@ -20,7 +20,13 @@
  */
 #ifndef PLAYERWINDOW_H
 #define PLAYERWINDOW_H
-
+#include <QOpenGLWidget>
+#ifdef Q_OS_WIN
+//#define protected public
+#include "mpv/client.h"
+#include "mpv/render_gl.h"
+#include "mpv/qthelper.hpp"
+#else
 #define protected public
 #include <QOpenGLWidget>
 #include <mpv/client.h>
@@ -30,6 +36,7 @@
 #else
 #include <mpv/opengl_cb.h>
 #include <mpv/qthelper.hpp>
+#endif
 #endif
 #include <QSize>
 

@@ -24,11 +24,17 @@
 #include "mpvwidget.h"
 #include "data.h"
 
+#include <QTimer>
 #include <QWidget>
 #include <QHBoxLayout>
 
 #include "webwidget.h"
 #include "desktop/iconview.h"
+
+#ifdef Q_OS_WINDOWS
+#include <Windows.h>
+#endif
+
 class QLabel;
 //class Desktop;
 class Wallpaper : public QWidget
@@ -90,7 +96,10 @@ private:
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 //    Desktop *de{nullptr};
     IconView *m_iconView{nullptr};
-
+#ifdef Q_OS_WINDOWS
+    HHOOK hook;
+    HWND workerW;
+#endif
 };
 
 #endif // WALLPAPER_H

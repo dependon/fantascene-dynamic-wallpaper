@@ -19,8 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <setdesktop.h>
+#ifndef Q_OS_WIN
 #include <X11/Xlib.h>
 #include <limits.h>
+
 Atom getAtom(Display* display, const char* atomName) {
     return XInternAtom(display, atomName, False);
 }
@@ -151,5 +153,5 @@ void X11MatchingPid::search(unsigned long w)
             search(wChild[i]);
     }
 }
-
+#endif
 

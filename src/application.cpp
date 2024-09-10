@@ -42,6 +42,7 @@
 
 #include "setdesktop.h"
 
+#ifndef Q_OS_WIN
 #include <X11/Xlib.h>
 #include <xcb/xcb.h>
 
@@ -106,6 +107,7 @@ int find_pid_by_name1(char *ProcName, int *foundpid)
     return  0;
 
 }
+#endif
 
 const QString toMd5(const QByteArray &data)
 {
@@ -135,7 +137,7 @@ Application::Application(int &argc, char **argv)
     QFile styleFile(":/style/MainQss.qss");
     if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         // 处理文件无法打开的错误
-        qDebug() << "无法打开样式表文件";
+        qDebug() << "no qss";
         QTextStream styleStream(&styleFile);
         QString styleSheet = styleStream.readAll();
         styleFile.close();
@@ -178,6 +180,7 @@ Application::Application(int &argc, char **argv)
 
 Application::~Application()
 {
+#ifndef Q_OS_WIN
     if(display)
     {
         XCloseDisplay(display);
@@ -188,6 +191,7 @@ Application::~Application()
         xcb_disconnect(connection);
         connection = nullptr;
     }
+#endif
     Q_EMIT quitApp();
 }
 
@@ -249,6 +253,7 @@ void Application::setisPlayList(bool bRet)
 
 void Application::setSpecialDesktop()
 {
+#ifndef Q_OS_WIN
     if(!dApp->m_moreData.isShowDesktopIcon && !dApp->m_moreData.isTop )
     {
         if(dApp->m_isUKUI)
@@ -390,6 +395,7 @@ void Application::setSpecialDesktop()
            process1.waitForFinished(-1);  // 等待进程执行完成
         }
     }
+#endif
 }
 
 const QPixmap Application::getThumbnailText(const QString &path)
@@ -489,6 +495,7 @@ bool Application::clearPlayListPaths()
 
 void Application::CheckSystem()
 {
+#ifndef Q_OS_WIN
     std::vector<WindowInfo>  list = getAllDesktopWindows();
     if(list.size()>0)
     {
@@ -554,6 +561,7 @@ void Application::CheckSystem()
         }
         qDebug()<< QDateTime::currentMSecsSinceEpoch();
     }
+#endif
 }
 
 void Application::changePidOpacity( const double &opacity)
@@ -595,6 +603,7 @@ QSet<QString> Application::convertQStringListToSet(const QStringList &list) {
     return set;
 }
 
+#ifndef Q_OS_WIN
 xcb_connection_t *Application::getXcb_connection_t()
 {
     if(!connection)
@@ -612,6 +621,7 @@ void *Application::getDisplay()
     }
     return display;
 }
+#endif
 
 void Application::setAppColor(const QString &strColor)
 {
