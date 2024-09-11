@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="146"/>
-        <location filename="../application.cpp" line="147"/>
+        <location filename="../application.cpp" line="148"/>
+        <location filename="../application.cpp" line="149"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation>fantacy</translation>
     </message>
@@ -667,37 +667,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="171"/>
-        <location filename="../listview/onlineclient.cpp" line="237"/>
+        <location filename="../listview/onlineclient.cpp" line="176"/>
+        <location filename="../listview/onlineclient.cpp" line="242"/>
         <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="192"/>
-        <location filename="../listview/onlineclient.cpp" line="198"/>
-        <location filename="../listview/onlineclient.cpp" line="294"/>
+        <location filename="../listview/onlineclient.cpp" line="73"/>
+        <location filename="../listview/onlineclient.cpp" line="197"/>
+        <location filename="../listview/onlineclient.cpp" line="203"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="192"/>
-        <location filename="../listview/onlineclient.cpp" line="294"/>
+        <location filename="../listview/onlineclient.cpp" line="73"/>
+        <location filename="../listview/onlineclient.cpp" line="197"/>
         <source>Dowlaod Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="198"/>
+        <location filename="../listview/onlineclient.cpp" line="203"/>
         <source>File Exists!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="431"/>
+        <location filename="../listview/onlineclient.cpp" line="437"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
-        <location filename="../listview/onlineclient.cpp" line="437"/>
+        <location filename="../listview/onlineclient.cpp" line="443"/>
         <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
@@ -765,7 +765,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="101"/>
         <source>fantacy</source>
         <translation></translation>
     </message>
@@ -778,17 +778,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="435"/>
+        <location filename="../wallpaper.cpp" line="434"/>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="440"/>
+        <location filename="../wallpaper.cpp" line="439"/>
         <source>Extend</source>
         <translation>Extensión</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="445"/>
+        <location filename="../wallpaper.cpp" line="444"/>
         <source>Manual</source>
         <translation>Manual</translation>
     </message>
@@ -909,7 +909,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="686"/>
+        <location filename="../settingwindow.cpp" line="687"/>
         <source>Manual</source>
         <translatorcomment>Manual</translatorcomment>
         <translation>Manual</translation>
@@ -931,13 +931,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="104"/>
+        <location filename="../settingwindow.cpp" line="105"/>
         <source>Play</source>
         <translation>Ejecutar</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="116"/>
+        <location filename="../settingwindow.cpp" line="117"/>
         <source>Pause</source>
         <translation>Pausa</translation>
     </message>
@@ -983,7 +983,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="861"/>
+        <location filename="../settingwindow.cpp" line="862"/>
         <source>default</source>
         <translatorcomment>por defecto</translatorcomment>
         <translation>por defecto</translation>
@@ -1015,7 +1015,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="873"/>
+        <location filename="../settingwindow.cpp" line="874"/>
         <source>custom</source>
         <translatorcomment>Personalizar</translatorcomment>
         <translation>Personalizar</translation>
@@ -1042,7 +1042,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="567"/>
-        <location filename="../settingwindow.cpp" line="123"/>
+        <location filename="../settingwindow.cpp" line="124"/>
         <source>Wallpaper History</source>
         <translation>Historia del fondo de pantalla</translation>
     </message>
@@ -1113,38 +1113,38 @@
         <translation>reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="90"/>
+        <location filename="../settingwindow.cpp" line="91"/>
         <source>Exit</source>
         <translation>Salir</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="111"/>
+        <location filename="../settingwindow.cpp" line="112"/>
         <source>Screenshot</source>
         <translation>Captura de pantalla</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="127"/>
+        <location filename="../settingwindow.cpp" line="128"/>
         <source>Main View</source>
         <translation>Formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="144"/>
+        <location filename="../settingwindow.cpp" line="145"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="152"/>
+        <location filename="../settingwindow.cpp" line="153"/>
         <source>github</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="169"/>
+        <location filename="../settingwindow.cpp" line="170"/>
         <source>Double click to open the configuration interface</source>
         <translatorcomment>Haga doble clic para abrir el formulario principal</translatorcomment>
         <translation>Haga doble clic para abrir el formulario principal</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="222"/>
+        <location filename="../settingwindow.cpp" line="223"/>
         <source>Latest version</source>
         <translatorcomment>Última versión</translatorcomment>
         <translation>Última versión</translation>
