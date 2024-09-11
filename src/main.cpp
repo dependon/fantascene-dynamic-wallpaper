@@ -63,7 +63,6 @@ int main(int argc, char *argv[])
     qDebug()<< QGuiApplication::platformName();
 
 
-#ifdef Q_OS_LINUX
     qDebug()<< QApplication::applicationDirPath();
     QString transPath = QApplication::applicationDirPath() + "/translations";
     QDir myDir(transPath);
@@ -74,7 +73,6 @@ int main(int argc, char *argv[])
     else {
         load_translation_files(TRANSALTION_PATH);
     }
-#endif
 
     setlocale(LC_NUMERIC, "C");
 

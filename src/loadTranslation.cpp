@@ -35,7 +35,6 @@
 #include <QApplication>
 #include <QTranslator>
 
-#ifdef Q_OS_LINUX
 /*
  * Load translation files
  *
@@ -67,4 +66,3 @@ void load_translation_files(const QString path)
         }
     }
 }
-#endif
