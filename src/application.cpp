@@ -228,10 +228,26 @@ bool Application::setThumbnail(const QString &path)
     }
     const QString md5s = toMd5(url.toString(QUrl::FullyEncoded).toLocal8Bit());
     const QString thumPath = PIC_DIR_PATH + "/" + md5s + ".png";
-    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath + " |y";
+
+#ifdef Q_OS_WIN
+    QString commod = QCoreApplication::applicationDirPath() +"/ffmpeg.exe -i " + path + " -ss 00:00:00.000 -vframes 1 -vf scale=256:144 " + thumPath ;
+#else
+    QString commod = "ffmpeg -i " + path + " -ss 00:00:00.000 -vframes 1 -vf 'scale=256:144' " + thumPath ;
+#endif
     qDebug() << commod;
     if (!QFileInfo(thumPath).isFile()) {
-        system(commod.toStdString().c_str());
+
+       // system(commod.toStdString().c_str());
+        // 创建QProcess对象
+        QProcess process;
+
+        // 启动进程并执行命令
+        process.start(commod);
+        if (!process.waitForStarted()) {
+            qDebug() << "Failed to start process: " + process.errorString();
+            return false;
+        }
+        process.waitForFinished(10000);
     }
 
     return true;
