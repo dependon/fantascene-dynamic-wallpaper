@@ -263,7 +263,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
 
         if(!isExists && !isExistsHtml)
         {
-            emit dApp->sigSetDownloadIng(false);
+            Q_EMIT dApp->sigSetDownloadIng(false);
             QString strExtra;
             strExtra = m_currentMd5;
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
@@ -297,9 +297,9 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
             }
             else
             {
-                emit dApp->sigDownloadError();
+                Q_EMIT dApp->sigDownloadError();
             }
-            emit dApp->sigSetDownloadIng(true);
+            Q_EMIT dApp->sigSetDownloadIng(true);
         }
         else if(isExistsHtml)
         {

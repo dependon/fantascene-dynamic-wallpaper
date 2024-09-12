@@ -39,7 +39,7 @@ MOC_DIR = $$DESTDIR/.moc
 RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
-    CONFIG += link_pkgconfig
+    CONFIG += link_pkgconfig no_keywords
  PKGCONFIG += xcb-ewmh mpv x11 xext xrender
  PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
  LIBS +=-lgio-2.0 -lglib-2.0

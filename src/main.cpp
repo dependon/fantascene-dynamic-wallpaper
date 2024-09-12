@@ -73,11 +73,17 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
     }
 
     QString timestamp = QDateTime::currentDateTime().toString("yyyy_MM_dd");
+#ifdef Q_OS_LINUX
+    QString logFolder = QDir::homePath() + "/"+INSTANCE_LOCK_PATH +"/log";
+    QDir().mkpath(logFolder); // 创建log文件夹
+
+    QString logFileName = QString("%1/log/log_%2.txt").arg(QDir::homePath() + "/"+INSTANCE_LOCK_PATH ).arg(timestamp);
+#else
     QString logFolder = "log";
     QDir().mkpath(logFolder); // 创建log文件夹
 
     QString logFileName = QString("%1/log/log_%2.txt").arg(QCoreApplication::applicationDirPath()).arg(timestamp);
-
+#endif
     QFile outFile(logFileName);
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream textStream(&outFile);
@@ -90,7 +96,7 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
     logDir.setNameFilters(filters);
 
     QFileInfoList fileList = logDir.entryInfoList();
-    foreach (QFileInfo fileInfo, fileList) {
+    for (QFileInfo fileInfo: fileList) {
         QDateTime fileTime = fileInfo.created();
         if (fileTime.daysTo(QDateTime::currentDateTime()) > 10) {
             QFile::remove(fileInfo.absoluteFilePath());
