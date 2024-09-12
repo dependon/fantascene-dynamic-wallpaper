@@ -1,20 +1,7 @@
 TEMPLATE = app
 
 TARGET = fantascene-dynamic-wallpaper
-# Build binary with debuginfo and REL by default.
-CONFIG += debug_and_release
 
-CONFIG(debug, debug|release) {
-    DESTDIR = debug
-}
-CONFIG(release, debug|release) {
-    DESTDIR = release
-}
-
-OBJECTS_DIR = $$DESTDIR/.obj
-MOC_DIR = $$DESTDIR/.moc
-RCC_DIR = $$DESTDIR/.qrc
-UI_DIR = $$DESTDIR/.u
 
 QT += gui core widgets dbus concurrent sql network
 
@@ -36,6 +23,22 @@ contains(QT_MAJOR_VERSION, 6) {
 
 CONFIG += c++11
 unix {
+
+# Build binary with debuginfo and REL by default.
+CONFIG += debug_and_release
+
+CONFIG(debug, debug|release) {
+    DESTDIR = debug
+}
+CONFIG(release, debug|release) {
+    DESTDIR = release
+}
+
+OBJECTS_DIR = $$DESTDIR/.obj
+MOC_DIR = $$DESTDIR/.moc
+RCC_DIR = $$DESTDIR/.qrc
+UI_DIR = $$DESTDIR/.u
+
     CONFIG += link_pkgconfig
  PKGCONFIG += xcb-ewmh mpv x11 xext xrender
  PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
@@ -63,6 +66,8 @@ win32 {
     INCLUDEPATH += $$PWD/../3rd/include/mpv/
     LIBS +=$$PWD/../3rd/libmpv.dll.a
     LIBS+=-luser32
+    TEMPLATE = app
+    DESTDIR += $$PWD/../bin/
 }
 
 DEFINES += QT_DEPRECATED_WARNINGS

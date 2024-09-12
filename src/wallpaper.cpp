@@ -460,6 +460,8 @@ void Wallpaper::slotsetScreenMode(const QString &mode)
 #ifdef Q_OS_WINDOWS
 #include <Windows.h>
 #include <QDesktopWidget>
+#include "basetsd.h"
+#include "WinUser.h"
 WId viewId;
 
 LRESULT CALLBACK HookShoot(_In_ int nCode, _In_ WPARAM wParam,LPARAM lParam){
@@ -483,6 +485,29 @@ inline BOOL CALLBACK EnumWindowsProc(_In_ HWND tophandle, _In_ LPARAM topparamha
 }
 
 
+BOOL sws_WindowHelpers_EnsureWallpaperHWND()
+{
+    // See: https://github.com/valinet/ExplorerPatcher/issues/525
+    HWND progman = GetShellWindow();
+    if (progman)
+    {
+        int res0 = -1 , res1 = -1, res2 = -1, res3 = -1 ;
+        // Call CDesktopBrowser::_IsDesktopWallpaperInitialized
+        SendMessageTimeoutW(progman, 0x052C, 0xA, 0, SMTO_NORMAL, 1000, (PDWORD_PTR)&res0);
+        if (FAILED(res0))
+        {
+            return FALSE;
+        }
+        // Prepare to generate wallpaper window
+        SendMessageTimeoutW(progman, 0x052C, 0xD, 0, SMTO_NORMAL, 1000, (PDWORD_PTR)&res1);
+        SendMessageTimeoutW(progman, 0x052C, 0XD, 1, SMTO_NORMAL, 1000, (PDWORD_PTR)&res2);
+        // "Animate desktop", which will make sure the wallpaper window is there
+        SendMessageTimeoutW(progman, 0x052C, 0, 0, SMTO_NORMAL, 1000, (PDWORD_PTR)&res3);  // 0 参数是必须的，对于早期系统(win7) 0xD 参数会导致处理失败。
+        //printf("[sws] Wallpaper results: %d %d %d\n", res1, res2, res3);
+        return !res1 && !res2 && !res3;
+    }
+    return FALSE;
+}
 
 HWND GetWorkerDesktop(){
     int result;
@@ -494,6 +519,43 @@ HWND GetWorkerDesktop(){
     // 显示WorkerW
     ShowWindow(_WORKERW,SW_HIDE);
     return windowHandle;
+
+    //背景窗体没有窗体名，但是知道它的类名是workerW，且有父窗体Program Maneger，所以只要
+    //遍历所有workW类型的窗体，逐一比较它的父窗体是不是Program Manager就可以找到背景窗体
+//    HWND hwnd = FindWindowA("progman", "Program Manager");
+//    HWND worker = NULL;
+//    do {
+//        worker = FindWindowExA(NULL, worker, "workerW", NULL);
+//        if (worker != NULL) {
+//            char buff[200] = {0};
+//            int ret = GetClassNameA(worker, (PCHAR) buff, sizeof(buff) * 2);
+//            if (ret == 0) {
+//                return NULL;
+//            }
+//        }
+//        if (GetParent(worker) == hwnd) {
+//            return worker;//返回结果
+//        }
+//    } while (worker != NULL);
+//    //没有找到
+//    //发送消息生成一个WorkerW窗体
+//    SendMessage(hwnd,0x052C,0,0);
+//    //重复上面步骤
+//    do {
+//        worker = FindWindowExA(NULL, worker, "workerW", NULL);
+//        if (worker != NULL) {
+//            char buff[200] = {0};
+//            int ret = GetClassNameA(worker, (PCHAR) buff, sizeof(buff) * 2);
+//            if (ret == 0) {
+//                return NULL;
+//            }
+//        }
+//        if (GetParent(worker) == hwnd) {
+//            return worker;//返回结果
+//        }
+//    } while (worker != NULL);
+//    return NULL;
+
 }
 #endif
 
@@ -530,9 +592,19 @@ void Wallpaper::registerDesktop()
         }
     }
 #else
-    workerW =  GetWorkerDesktop();
 
-    if(this){
+//    HWND desktopHandle = FindWindow(L"Progman", nullptr);
+//    HWND workerHandle = FindWindowEx(desktopHandle, nullptr, L"WorkerW", nullptr);
+//    SetParent((HWND)winId(), workerHandle);
+
+    bool bb = sws_WindowHelpers_EnsureWallpaperHWND();
+    qDebug()<< bb;
+
+    QTimer::singleShot(200,[=]
+    {
+        workerW =  GetWorkerDesktop();
+
+
         viewId = this->winId();
         // 返回workerW窗口句柄
 
@@ -542,7 +614,7 @@ void Wallpaper::registerDesktop()
         SetParent((HWND)viewId,workerW);
         SetWindowPos((HWND)viewId,HWND_TOP,0,0,0,0,WS_EX_LEFT|WS_EX_LTRREADING|WS_EX_RIGHTSCROLLBAR|WS_EX_NOACTIVATE);
         // 设置全局鼠标事件钩子
-//        hook = SetWindowsHookEx(WH_MOUSE_LL,HookShoot,GetModuleHandle(NULL),0);
+        //hook = SetWindowsHookEx(WH_MOUSE_LL,HookShoot,GetModuleHandle(NULL),0);
 
         QDesktopWidget *desktop = QApplication::desktop();
         this->move(QPoint(0,0));
@@ -550,7 +622,7 @@ void Wallpaper::registerDesktop()
         int width = desktop->width();
         this->resize(QSize(width,height));
         this->showFullScreen();
-    }
+    });
 
 #endif
 

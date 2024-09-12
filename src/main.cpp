@@ -50,6 +50,54 @@
 /* instance lock name */
 #define INSTANCE_LOCK "single"
 
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QString txt;
+    QString timestampS = QDateTime::currentDateTime().toString("yyyy_MM_dd_hh:mm:ss");
+    switch (type) {
+    case QtDebugMsg:
+        txt = timestampS + QString(" Debug: %1").arg(msg);
+        break;
+    case QtInfoMsg:
+        txt = timestampS + QString(" Info: %1").arg(msg);
+        break;
+    case QtWarningMsg:
+        txt = timestampS + QString(" Warning: %1").arg(msg);
+        break;
+    case QtCriticalMsg:
+        txt = timestampS + QString(" Critical: %1").arg(msg);
+        break;
+    case QtFatalMsg:
+        txt = timestampS + QString(" Fatal: %1").arg(msg);
+        break;
+    }
+
+    QString timestamp = QDateTime::currentDateTime().toString("yyyy_MM_dd");
+    QString logFolder = "log";
+    QDir().mkpath(logFolder); // 创建log文件夹
+
+    QString logFileName = QString("%1/log/log_%2.txt").arg(QCoreApplication::applicationDirPath()).arg(timestamp);
+
+    QFile outFile(logFileName);
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream textStream(&outFile);
+    textStream << txt << endl;
+
+    // 删除10天前的日志文件
+    QDir logDir(logFolder);
+    QStringList filters;
+    filters << "log_*.txt";
+    logDir.setNameFilters(filters);
+
+    QFileInfoList fileList = logDir.entryInfoList();
+    foreach (QFileInfo fileInfo, fileList) {
+        QDateTime fileTime = fileInfo.created();
+        if (fileTime.daysTo(QDateTime::currentDateTime()) > 10) {
+            QFile::remove(fileInfo.absoluteFilePath());
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -59,9 +107,10 @@ int main(int argc, char *argv[])
 #endif
     Application a(argc, argv);
     a.setApplicationVersion("1.0.0");
+    // 安装自定义的消息处理程序
+    qInstallMessageHandler(customMessageHandler);
 
-    qDebug()<< QGuiApplication::platformName();
-
+    qDebug()<<"start " <<QGuiApplication::platformName();
 
     qDebug()<< QApplication::applicationDirPath();
     QString transPath = QApplication::applicationDirPath() + "/translations";
@@ -76,11 +125,19 @@ int main(int argc, char *argv[])
 
     setlocale(LC_NUMERIC, "C");
 
+
+
+
+
     /*
      * Check if there are multiple instances
      * If there are multiple instances, exit now.
     */
+#ifdef Q_OS_WIN
+    const QString lock = QApplication::applicationDirPath() + "/"+INSTANCE_LOCK;
+#else
     const QString lock = QDir::homePath() + "/" + INSTANCE_LOCK_PATH + INSTANCE_LOCK;
+#endif
     QLockFile lockFile(lock);
 
     if (!lockFile.tryLock(300))
