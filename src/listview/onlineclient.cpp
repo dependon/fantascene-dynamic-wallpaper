@@ -12,6 +12,7 @@
 
 #define DelayCount 500
 
+
 const QString downlog = QDir::homePath() +
         "/.config/fantascene-dynamic-wallpaper/downlog.txt";
 
@@ -39,7 +40,7 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     Q_EMIT sigStart();
 
-    QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene";
+    QString path = saveDir+"/fantascene";
 
     if (!QDir(path).exists()) {
         // 路径不存在，尝试创建路径
@@ -72,6 +73,12 @@ OnlineClient::OnlineClient(QWidget *parent) :
     connect(dApp,&Application::sigDownloadError,this,[=]{
         QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
     });
+
+#ifdef Q_OS_WIN
+     saveDir = QApplication::applicationDirPath();
+#else
+     saveDir = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+#endif
 }
 
 OnlineClient::~OnlineClient()
@@ -82,18 +89,24 @@ OnlineClient::~OnlineClient()
 bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outputFilePath, const QString &extraPath) {
 
     // 构建curl命令
-    QString command = "wget -o "+downlog +" -O " + outputFilePath + " " + url;
+#ifdef Q_OS_WIN
+    QString strWget = QApplication::applicationDirPath()+"/wget.exe ";
+#else
+    QString strWget = "wget ";
+#endif
+    QString command = strWget + " -o "+downlog +" -O " + outputFilePath + " " + url;
 
 
 
     if(outputFilePath.contains(".html"))
     {
-        QString path = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+extraPath;
+        QString path = saveDir+"/fantascene/"+extraPath;
+
         // 构建wget命令
         if (url.endsWith('/') || url.endsWith("mp4") || url.endsWith("webm") || url.endsWith("mkv")) {
-            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url;
+            command = strWget + " -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url;
         } else {
-            command = "wget -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
+            command = strWget + " -o "+downlog +" -r -np -nH --cut-dirs=3 -P " + path + " " + url+"/";
         }
     }
 
@@ -103,7 +116,7 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
             QString part1 = url.left(slashIndex);
             QString part2 = url.mid(slashIndex + 1);
             QString encodedFilename = QUrl::toPercentEncoding(part2);
-            command = "wget -o "+downlog +" -O " + outputFilePath + " " + part1+"/"+encodedFilename;
+            command = strWget + " -o "+downlog +" -O " + outputFilePath + " " + part1+"/"+encodedFilename;
         } else {
             qDebug() << "未找到'/'";
         }
@@ -168,7 +181,8 @@ void OnlineClient::on_btn_download_clicked()
 {
     QString name = m_datas.value(m_currentMd5).fileName;
     QString newName = name.replace(QRegExp("\\s+"), "");
-    QString saveFile = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+newName;
+
+    QString saveFile = saveDir+"/fantascene/"+newName;
 
     QFuture<void> future = QtConcurrent::run([=]()
     {
@@ -187,7 +201,7 @@ void OnlineClient::on_btn_download_clicked()
                 ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
-            else if(QFileInfo(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
+            else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
             {
                 ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
@@ -234,8 +248,8 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
     slotClickedChange(md5);
     QString name = m_datas.value(m_currentMd5).fileName;
     QString newName = name.replace(QRegExp("\\s+"), "");
-    QString saveFile = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+newName;
-    QString saveHtml = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+newName;
+    QString saveFile = saveDir+"/fantascene/"+newName;
+    QString saveHtml = saveDir+"/fantascene/"+m_currentMd5+"/"+newName;
     QFuture<void> future = QtConcurrent::run([=]()
     {
         QMutexLocker locker(&m_downloadMutex);
@@ -288,9 +302,9 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                 //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
-            else if(QFileInfo(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
+            else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
             {
-                dApp->setWallPaper(QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene/"+m_currentMd5+"/"+ newName);
+                dApp->setWallPaper(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName);
 
                 //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
                 Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());

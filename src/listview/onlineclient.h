@@ -63,6 +63,7 @@ private:
     QTimer * m_timer{nullptr};
     QTimer * m_timerFunction{nullptr};
     int m_currentPage{0};
+    QString saveDir;
 };
 
 #endif // ONLINECLIENT_H

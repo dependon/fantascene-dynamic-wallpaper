@@ -26,8 +26,11 @@ LocalWidget::LocalWidget(QWidget *parent) :
     ui->playBtn->hide();
     m_viewLocal = new view(this);
     ui->verticalLayout->addWidget(m_viewLocal);
+#ifdef Q_OS_WIN
+    m_strLocalPATH = QApplication::applicationDirPath()+"/fantascene";
+#else
     m_strLocalPATH = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)+"/fantascene";
-
+#endif
     setWindowTitle(tr("Wallpaper Local"));
     searchVideoFiles(m_strLocalPATH);
     m_viewLocal->setFiles(m_allPath);

@@ -890,7 +890,7 @@ void Wallpaper::updateGeometry()
 
 void Wallpaper::slotMouseEvent()
 {
-    if (m_webView && m_iconView->isVisible()) {
+    if (m_webView && m_iconView && m_iconView->isVisible()) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
             m_currentPos = pos;
