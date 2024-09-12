@@ -27,7 +27,7 @@
 
 AppImage:1.8.4，在ubuntu16.04打包，兼容大部分版本，但是mpv版本为很旧版本，并且视频壁纸切换web壁纸概率崩溃，能够使用deb，尽量使用deb包(该问题在debian10和ubuntu20.04以上版本似乎就没了)
 
-下载地址 https://www.fantacy.online/Spark-Wallpaper-1.8.6_x86_64.AppImage
+下载地址 https://www.fantacy.online/fantascene-dynamic-wallpaper-1.8.6_x86_64.AppImage 
 
 Windows:1.8.6
 
