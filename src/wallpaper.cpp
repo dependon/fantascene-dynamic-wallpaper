@@ -616,12 +616,6 @@ void Wallpaper::registerDesktop()
         // 设置全局鼠标事件钩子
         //hook = SetWindowsHookEx(WH_MOUSE_LL,HookShoot,GetModuleHandle(NULL),0);
 
-        QDesktopWidget *desktop = QApplication::desktop();
-        this->move(QPoint(0,0));
-        int height = desktop->height();
-        int width = desktop->width();
-        this->resize(QSize(width,height));
-        this->showFullScreen();
     });
 
 #endif

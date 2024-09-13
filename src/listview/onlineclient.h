@@ -7,6 +7,7 @@
 #include "data.h"
 class TcpClient;
 class view;
+class DownloadManager;
 namespace Ui {
 class OnlineClient;
 }
@@ -50,6 +51,11 @@ private Q_SLOTS:
     void on_btn_try_clicked();
 
     void delayedPageFunction();
+
+    void downloadStarted(const DownloadInfo &data);
+    void downloadFinished(const DownloadInfo &data);
+    void downloadError(const DownloadInfo &data, const QString &errorMessage);
+
 private:
     Ui::OnlineClient *ui;
     view *m_viewDowload{nullptr};
@@ -64,6 +70,9 @@ private:
     QTimer * m_timerFunction{nullptr};
     int m_currentPage{0};
     QString saveDir;
+    DownloadManager * m_downloadManger{nullptr};
+
+    DownloadInfo m_downlaodData;
 };
 
 #endif // ONLINECLIENT_H

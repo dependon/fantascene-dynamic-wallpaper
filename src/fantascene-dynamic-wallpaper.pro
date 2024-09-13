@@ -73,6 +73,7 @@ win32 {
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
+    download/downloadmanager.cpp \
     download/tcpclient.cpp \
     listview/onlineclient.cpp \
     wallpaper.cpp \
@@ -97,6 +98,7 @@ SOURCES += main.cpp \
     db/dbmanager.cpp
 
 HEADERS += \
+    download/downloadmanager.h \
     download/tcpclient.h \
     listview/onlineclient.h \
     wallpaper.h \

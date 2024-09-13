@@ -55,4 +55,14 @@ struct VideoData {
     QByteArray picture; // Assuming picture is stored as a binary object
 };
 
+struct DownloadInfo
+{
+    QString url; //原始下载地址
+    QString outputFilePath; //保存名称
+    QString extraPath; //额外信息
+    QString dowloadCode; //下载指令
+    int downloadIngTaskCount = 0; //正在下载的任务数量
+    bool bDownloaded = false; //下载成功与否
+};
+
 #endif // DATA_H

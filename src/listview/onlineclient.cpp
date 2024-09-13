@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 #include "application.h"
+#include "downloadmanager.h"
 
 #define DelayCount 500
 
@@ -79,6 +80,11 @@ OnlineClient::OnlineClient(QWidget *parent) :
 #else
      saveDir = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
 #endif
+
+     m_downloadManger = new DownloadManager();
+     connect(m_downloadManger,&DownloadManager::downloadStarted,this,&OnlineClient::downloadStarted);
+     connect(m_downloadManger,&DownloadManager::downloadFinished,this,&OnlineClient::downloadFinished);
+     connect(m_downloadManger,&DownloadManager::downloadError,this,&OnlineClient::downloadError);
 }
 
 OnlineClient::~OnlineClient()
@@ -123,7 +129,7 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
     } else {
         qDebug() << "字符串后缀不是.mp4 mkv webm";
     }
-
+#if 0
     // 创建QProcess对象
     QProcess process;
 
@@ -159,7 +165,14 @@ bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outpu
         qDebug() << "Download failed with exit code: " + QString::number(process.exitCode());
         return false;
     }
-
+#else
+    DownloadInfo info;
+    info.url = url;
+    info.outputFilePath = outputFilePath;
+    info.extraPath = extraPath;
+    info.dowloadCode = command;
+    m_downloadManger->addDownload(info);
+#endif
     return true;
 }
 
@@ -277,11 +290,13 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
 
         if(!isExists && !isExistsHtml)
         {
-            Q_EMIT dApp->sigSetDownloadIng(false);
+
+            //Q_EMIT dApp->sigSetDownloadIng(false);
             QString strExtra;
             strExtra = m_currentMd5;
             bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
                                               saveFile,strExtra);
+#if 0
             if(bDown && QFileInfo(saveFile).exists())
             {
                 QString newPath = removeZipSuffix(saveFile);
@@ -314,6 +329,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                 Q_EMIT dApp->sigDownloadError();
             }
             Q_EMIT dApp->sigSetDownloadIng(true);
+#endif
         }
         else if(isExistsHtml)
         {
@@ -402,26 +418,51 @@ void OnlineClient::on_btn_Left_clicked()
 
 void OnlineClient::readProgressFile()
 {
-    QFile file(downlog);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        QStringList lines;
-        while (!in.atEnd()) {
-            lines.append(in.readLine());
-        }
-        file.close();
+    QFile dfile(m_downlaodData.outputFilePath);
+    bool isFile =false;
+    if(dfile.size() > 0)
+    {
+        m_downlaodData.extraPath;
+        if(m_datas.contains(m_downlaodData.extraPath))
+        {
+            VideoData data = m_datas.value(m_downlaodData.extraPath);
+            double dd  = 100 * (double)dfile.size() / (double)data.filesize;
 
-        if (lines.size() >= 2) {
-            ui->label_downStatus ->setText(lines[lines.size() - 2].remove(".."));
-
-            QFile fileTruncate(downlog);
-            if (fileTruncate.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-                fileTruncate.close();
+            QString str = tr("Name :")+ data.name + "\n";
+            str + QString("Downloading %1%").arg(QString::number(dd));
+            ui->label_downStatus ->setText(str);
+            isFile = true;
+            if(dfile.size() == data.filesize)
+            {
+                ui->label_downStatus ->setText("");
             }
-        } else {
-            ui->label_downStatus ->setText("");
+        }
+
+    }
+    if(!isFile)
+    {
+        QFile file(downlog);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&file);
+            QStringList lines;
+            while (!in.atEnd()) {
+                lines.append(in.readLine());
+            }
+            file.close();
+
+            if (lines.size() >= 2) {
+                ui->label_downStatus ->setText(lines[lines.size() - 2].remove(".."));
+
+                QFile fileTruncate(downlog);
+                if (fileTruncate.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                    fileTruncate.close();
+                }
+            } else {
+                ui->label_downStatus ->setText("");
+            }
         }
     }
+
 }
 
 
@@ -475,4 +516,56 @@ void OnlineClient::delayedPageFunction()
         QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(m_currentPage).toUtf8();
         Q_EMIT sigSendData(str);
     }
+}
+
+void OnlineClient::downloadStarted(const DownloadInfo &data)
+{
+    ui->label_DownloadCount->setText(QString::number(data.downloadIngTaskCount));
+    m_downlaodData = data;
+}
+
+void OnlineClient::downloadFinished(const DownloadInfo &data)
+{
+    //Q_EMIT dApp->sigSetDownloadIng(false);
+    QString strExtra;
+    strExtra = data.extraPath;
+    QString name = m_datas.value(strExtra).fileName;
+    QString newName = name.replace(QRegExp("\\s+"), "");
+
+    if(data.bDownloaded && QFileInfo(data.outputFilePath).exists())
+    {
+        QString newPath = removeZipSuffix(data.outputFilePath);
+        QString newPathMp4 = newPath+".mp4";
+        QString newPathHtml= newPath+"/"+QFileInfo(data.outputFilePath).baseName()+".html";
+        if(QFileInfo(newPathMp4).exists())
+        {
+            dApp->setWallPaper(newPathMp4);
+        }
+        else if(QFileInfo(newPathHtml).exists())
+        {
+            dApp->setWallPaper(newPathHtml);
+        }
+        else
+        {
+            dApp->setWallPaper(newPath);
+        }
+        Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+strExtra.toLatin1());
+    }
+    else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
+    {
+        dApp->setWallPaper(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName);
+        Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+    }
+    else
+    {
+        Q_EMIT dApp->sigDownloadError();
+    }
+    ui->label_DownloadCount->setText(QString::number(data.downloadIngTaskCount));
+    //Q_EMIT dApp->sigSetDownloadIng(true);
+}
+
+void OnlineClient::downloadError(const DownloadInfo &data, const QString &errorMessage)
+{
+    Q_EMIT dApp->sigDownloadError();
+    ui->label_DownloadCount->setText(QString::number(data.downloadIngTaskCount));
 }
