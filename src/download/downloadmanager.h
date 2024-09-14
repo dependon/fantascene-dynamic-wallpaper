@@ -14,12 +14,12 @@ class DownloadManager : public QObject
 public:
     explicit DownloadManager(QObject *parent = nullptr);
 
-signals:
+Q_SIGNALS:
     void downloadStarted(const DownloadInfo &data);
     void downloadFinished(const DownloadInfo &data);
     void downloadError(const DownloadInfo &data, const QString &errorMessage);
 
-public slots:
+public Q_SLOTS:
     void addDownload(const DownloadInfo &data);
     void processDownloadQueue();
 

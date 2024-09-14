@@ -418,27 +418,27 @@ void OnlineClient::on_btn_Left_clicked()
 
 void OnlineClient::readProgressFile()
 {
-    QFile dfile(m_downlaodData.outputFilePath);
+ //   QFile dfile(m_downlaodData.outputFilePath);
     bool isFile =false;
-    if(dfile.size() > 0)
-    {
-        m_downlaodData.extraPath;
-        if(m_datas.contains(m_downlaodData.extraPath))
-        {
-            VideoData data = m_datas.value(m_downlaodData.extraPath);
-            double dd  = 100 * (double)dfile.size() / (double)data.filesize;
+//    if(dfile.size() > 0)
+//    {
+//        m_downlaodData.extraPath;
+//        if(m_datas.contains(m_downlaodData.extraPath))
+//        {
+//            VideoData data = m_datas.value(m_downlaodData.extraPath);
+//            double dd  = 100 * (double)dfile.size() / (double)data.filesize;
 
-            QString str = tr("Name :")+ data.name + "\n";
-            str + QString("Downloading %1%").arg(QString::number(dd));
-            ui->label_downStatus ->setText(str);
-            isFile = true;
-            if(dfile.size() == data.filesize)
-            {
-                ui->label_downStatus ->setText("");
-            }
-        }
+//            QString str = tr("Name :")+ data.name + "\n";
+//            str + QString("Downloading %1%").arg(QString::number(dd));
+//            ui->label_downStatus ->setText(str);
+//            isFile = true;
+//            if(dfile.size() == data.filesize)
+//            {
+//                ui->label_downStatus ->setText("");
+//            }
+//        }
 
-    }
+//    }
     if(!isFile)
     {
         QFile file(downlog);

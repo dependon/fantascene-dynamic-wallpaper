@@ -120,7 +120,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
     m_mouseWebEventTimer = new QTimer(this);
     connect(m_mouseWebEventTimer, SIGNAL(timeout()), this, SLOT(slotMouseEvent()));
-    m_mouseWebEventTimer->start(30);
+    m_mouseWebEventTimer->start(50);
 
     QString paths = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
 #ifdef Q_OS_LINUX
@@ -884,7 +884,7 @@ void Wallpaper::updateGeometry()
 
 void Wallpaper::slotMouseEvent()
 {
-    if (m_webView && m_iconView && m_iconView->isVisible()) {
+    if (m_webView ) {
         QPoint pos = QCursor::pos();
         if (m_currentPos != pos) {
             m_currentPos = pos;
