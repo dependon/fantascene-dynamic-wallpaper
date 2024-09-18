@@ -16,6 +16,14 @@ void DownloadManager::addDownload(const DownloadInfo &data)
     {
         isNull =true;
     }
+    for(DownloadInfo info :downloadQueue)
+    {
+        //存在相同，则不重复
+        if(info.outputFilePath == data.outputFilePath)
+        {
+            return ;
+        }
+    }
     downloadQueue.append(data);
     qDebug() << "Added download:" << data.outputFilePath;
 

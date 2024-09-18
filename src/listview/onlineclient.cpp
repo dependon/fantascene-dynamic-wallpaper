@@ -17,6 +17,22 @@
 const QString downlog = QDir::homePath() +
         "/.config/fantascene-dynamic-wallpaper/downlog.txt";
 
+QString replaceIfExists(const QString &input)
+{
+    QString result = input;
+    QLocale locale = QLocale::system();
+    QString language = locale.name();
+    //if (language == "zh_CN" ) {
+        if (result.contains("http://download.fantacy.online/")) {
+            result.replace("http://download.fantacy.online/", "http://server.fantacy.online:26668/");
+        }
+        else if (result.contains("https://download.fantacy.online/")) {
+            result.replace("https://download.fantacy.online/", "http://server.fantacy.online:26668/");
+        }
+    //}
+    return result;
+}
+
 OnlineClient::OnlineClient(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OnlineClient)
@@ -92,8 +108,10 @@ OnlineClient::~OnlineClient()
     delete ui;
 }
 
-bool OnlineClient::downloadFileWithCurl(const QString &url, const QString &outputFilePath, const QString &extraPath) {
-
+bool OnlineClient::downloadFileWithCurl(const QString &oldurl, const QString &outputFilePath, const QString &extraPath)
+{
+    QString url = replaceIfExists(oldurl);
+    qDebug()<< url;
     // 构建curl命令
 #ifdef Q_OS_WIN
     QString strWget = QApplication::applicationDirPath()+"/wget.exe ";
@@ -192,45 +210,7 @@ QString OnlineClient::removeZipSuffix(const QString &str) {
 
 void OnlineClient::on_btn_download_clicked()
 {
-    QString name = m_datas.value(m_currentMd5).fileName;
-    QString newName = name.replace(QRegExp("\\s+"), "");
-
-    QString saveFile = saveDir+"/fantascene/"+newName;
-
-    QFuture<void> future = QtConcurrent::run([=]()
-    {
-        QMutexLocker locker(&m_downloadMutex);
-        ui->label_DTip->setText(tr("Dowload Ing....."));
-        bool isExists = QFileInfo(saveFile).exists();
-        if(!isExists)
-        {
-            ui->btn_download->setEnabled(false);
-            QString strExtra;
-            strExtra = m_currentMd5;
-            bool bDown = downloadFileWithCurl(m_datas.value(m_currentMd5).downloadPath,
-                                              saveFile,strExtra);
-            if(bDown && QFileInfo(saveFile).exists())
-            {
-                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
-                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
-            }
-            else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
-            {
-                ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
-                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
-            }
-            else
-            {
-                QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
-            }
-            ui->btn_download->setEnabled(true);
-        }
-        else
-        {
-            QMessageBox::information(nullptr, tr("Error"), tr("File Exists!"));
-        }
-        ui->label_DTip->setText("");
-    });
+    slotDoubleClickedChange(m_currentMd5);
 }
 
 void OnlineClient::slotClickedChange(const QString &md5)
@@ -258,6 +238,7 @@ void OnlineClient::slotClickedChange(const QString &md5)
 
 void OnlineClient::slotDoubleClickedChange(const QString &md5)
 {
+    ui->label_DownloadCount->setText(QString::number(ui->label_DownloadCount->text().toInt()+1));
     slotClickedChange(md5);
     QString name = m_datas.value(m_currentMd5).fileName;
     QString newName = name.replace(QRegExp("\\s+"), "");

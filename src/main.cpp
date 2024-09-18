@@ -50,6 +50,8 @@
 /* instance lock name */
 #define INSTANCE_LOCK "single"
 
+#include <QHostAddress>
+
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QString txt;
@@ -130,8 +132,6 @@ int main(int argc, char *argv[])
     }
 
     setlocale(LC_NUMERIC, "C");
-
-
 
 
 
