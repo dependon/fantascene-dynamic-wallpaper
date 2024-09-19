@@ -31,6 +31,19 @@
     </message>
 </context>
 <context>
+    <name>DownloadManager</name>
+    <message>
+        <location filename="../download/downloadmanager.cpp" line="48"/>
+        <source>Failed to start wget.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../download/downloadmanager.cpp" line="53"/>
+        <source>Download failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DownloadWidget</name>
     <message>
         <location filename="../download/downloadwidget.ui" line="14"/>
@@ -218,12 +231,12 @@
         <translation>grać</translation>
     </message>
     <message>
-        <location filename="../listview/localwidget.cpp" line="31"/>
+        <location filename="../listview/localwidget.cpp" line="34"/>
         <source>Wallpaper Local</source>
         <translation>Tapeta lokalna</translation>
     </message>
     <message>
-        <location filename="../listview/localwidget.cpp" line="40"/>
+        <location filename="../listview/localwidget.cpp" line="43"/>
         <source>Please place the local video on:</source>
         <translation>Proszę umieścić lokalny film na:</translation>
     </message>
@@ -610,6 +623,7 @@
         <location filename="../listview/onlineclient.ui" line="563"/>
         <location filename="../listview/onlineclient.ui" line="605"/>
         <location filename="../listview/onlineclient.ui" line="647"/>
+        <location filename="../listview/onlineclient.ui" line="689"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -654,47 +668,43 @@
         <translation type="unfinished">Wysokość</translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="731"/>
+        <location filename="../listview/onlineclient.ui" line="670"/>
+        <source>Wait Download Task</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="849"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="23"/>
+        <location filename="../listview/onlineclient.cpp" line="41"/>
         <source>Fantascene Hub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="176"/>
-        <location filename="../listview/onlineclient.cpp" line="242"/>
+        <location filename="../listview/onlineclient.cpp" line="250"/>
         <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="73"/>
-        <location filename="../listview/onlineclient.cpp" line="197"/>
-        <location filename="../listview/onlineclient.cpp" line="203"/>
+        <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="73"/>
-        <location filename="../listview/onlineclient.cpp" line="197"/>
+        <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Dowlaod Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="203"/>
-        <source>File Exists!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/onlineclient.cpp" line="437"/>
+        <location filename="../listview/onlineclient.cpp" line="473"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
-        <location filename="../listview/onlineclient.cpp" line="443"/>
+        <location filename="../listview/onlineclient.cpp" line="479"/>
         <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
@@ -761,7 +771,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="101"/>
+        <location filename="../main.cpp" line="164"/>
         <source>fantacy</source>
         <translation></translation>
     </message>

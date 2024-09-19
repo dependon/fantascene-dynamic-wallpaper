@@ -57,6 +57,12 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     Q_EMIT sigStart();
 
+#ifdef Q_OS_WIN
+     saveDir = QApplication::applicationDirPath();
+#else
+     saveDir = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+#endif
+
     QString path = saveDir+"/fantascene";
 
     if (!QDir(path).exists()) {
@@ -90,12 +96,6 @@ OnlineClient::OnlineClient(QWidget *parent) :
     connect(dApp,&Application::sigDownloadError,this,[=]{
         QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
     });
-
-#ifdef Q_OS_WIN
-     saveDir = QApplication::applicationDirPath();
-#else
-     saveDir = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
-#endif
 
      m_downloadManger = new DownloadManager();
      connect(m_downloadManger,&DownloadManager::downloadStarted,this,&OnlineClient::downloadStarted);
