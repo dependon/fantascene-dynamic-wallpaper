@@ -730,6 +730,7 @@ void Application::setAppColor(const QString &strColor)
 
 void Application::load_translation_sys_files(const QString path)
 {
+    m_moreData.language = QLocale::system().name();
     load_translation_files(path,QLocale::system().name());
 }
 
