@@ -19,6 +19,8 @@ public:
     QStringList getAllpath();
     void watchDirectory(const QString &path, QFileSystemWatcher &watcher);
     void searchVideoFiles(const QString &path);
+protected:
+    void changeEvent(QEvent *event);
 private Q_SLOTS:
     void on_playBtn_clicked();
     void on_directoryChanged(const QString &path);

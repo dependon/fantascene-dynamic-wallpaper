@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 ~ 2022 LiuMingHang.
  *
  * Author:     LiuMingHang <liuminghang0821@gmail.com>
@@ -31,8 +31,31 @@ MoreSetting::MoreSetting(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle(tr("Advanced Settings"));
-//    ui->label->hide();
-//    ui->autoBox->hide();
+
+    m_languageMap["en"] = u8"English";
+    m_languageMap["zh_CN"] = u8"中文";
+    m_languageMap["zh_TW"] = u8"繁體中文";
+    m_languageMap["es"] = u8"Español";
+    m_languageMap["pl"] = u8"Polski";
+    m_languageMap["ja"] = u8"日本語";
+    m_languageMap["de"] = u8"Deutsch";
+    m_languageMap["ko"] = u8"한국어";
+    m_languageMap["it"] = u8"Italiano";
+    m_languageMap["fr"] = u8"Français";
+    m_languageMap["ru"] = u8"Русский";
+    m_languageMap["pt"] = u8"Português";
+    m_languageMap["pt_BR"] = u8"Português (Brasil)";
+    m_languageMap["fi"] = u8"Suomi";
+    m_languageMap["vi"] = u8"Tiếng Việt";
+    m_languageMap["tr"] = u8"Türkçe";
+    m_languageMap["th"] = u8"ภาษาไทย";
+    m_languageMap["hu"] = u8"Magyar";
+    m_languageMap["sv"] = u8"Svenska";
+    m_languageMap["sk"] = u8"Slovenčina";
+    m_languageMap["ro"] = u8"Română";
+    m_languageMap["ms"] = u8"Bahasa Melayu";
+
+    setLanguageCombox();
 }
 
 MoreSetting::~MoreSetting()
@@ -103,7 +126,24 @@ void MoreSetting::setData(const MoreSetData &data)
     ui->back_transparency->setValue(dApp->m_moreData.m_WallpaperTransparency *100.0);
 
     ui->fontBox->setCurrentText(dApp->m_moreData.fontColor);
+    ui->langbox->setCurrentText(m_languageMap.value(dApp->m_moreData.language));
 
+}
+
+void MoreSetting::setLanguageCombox()
+{
+
+    for (const QString &file : m_languageMap) {
+        ui->langbox->addItem(file);
+    }
+}
+
+void MoreSetting::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
 }
 
 void MoreSetting::on_okBtn_clicked()
@@ -173,6 +213,7 @@ void MoreSetting::on_okBtn_clicked()
         dApp->m_moreData.isEventPenetration = false;
     }
     dApp->m_moreData.fontColor = ui->fontBox->currentText();
+    dApp->m_moreData.language  = m_languageMap.key(ui->langbox->currentText());
 
     Q_EMIT dApp->moreSettingSave();
 

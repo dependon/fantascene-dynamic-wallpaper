@@ -141,6 +141,14 @@ void wallpaperEnginePlugin::refresh(const QString &path)
 #endif
 }
 
+void wallpaperEnginePlugin::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 wallpaperEnginePlugin::~wallpaperEnginePlugin()
 {
     delete ui;

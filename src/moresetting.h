@@ -22,6 +22,7 @@
 #define MORESETTING_H
 
 #include <QWidget>
+#include <QMap>
 #include "data.h"
 namespace Ui {
 class MoreSetting;
@@ -37,6 +38,10 @@ public:
 
     void setData(const MoreSetData &data);
 
+    void setLanguageCombox();
+
+protected:
+    void changeEvent(QEvent *event);
 private Q_SLOTS:
     void on_okBtn_clicked();
 
@@ -52,6 +57,7 @@ private Q_SLOTS:
 
 private:
     Ui::MoreSetting *ui;
+    QMap<QString, QString> m_languageMap;
 };
 
 #endif // MORESETTING_H

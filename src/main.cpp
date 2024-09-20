@@ -41,8 +41,6 @@
 #include <QStyleFactory>
 #include <QScreen>
 
-/* Translation file path */
-#define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
 
 /* instance lock path */
 #define INSTANCE_LOCK_PATH ".cache/fantascene"
@@ -125,15 +123,13 @@ int main(int argc, char *argv[])
     QDir myDir(transPath);
     if(myDir.exists())
     {
-        load_translation_files(transPath);
+        a.load_translation_sys_files(transPath);
     }
     else {
-        load_translation_files(TRANSALTION_PATH);
+        a.load_translation_sys_files(TRANSALTION_PATH);
     }
 
     setlocale(LC_NUMERIC, "C");
-
-
 
     /*
      * Check if there are multiple instances

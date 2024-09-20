@@ -208,6 +208,14 @@ QString OnlineClient::removeZipSuffix(const QString &str) {
     return str;
 }
 
+void OnlineClient::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 void OnlineClient::on_btn_download_clicked()
 {
     slotDoubleClickedChange(m_currentMd5);

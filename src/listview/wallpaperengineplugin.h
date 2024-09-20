@@ -54,6 +54,8 @@ public:
     void readJson(const QString &path);
     void showView();
     void refresh(const QString &path);
+protected:
+    void changeEvent(QEvent *event);
 private Q_SLOTS:
     void on_setEnginePath_clicked();
 

@@ -309,6 +309,22 @@ void settingWindow::readSettings()
         dApp->setAppColor(dApp->m_moreData.fontColor);
     }
 
+    if(IniManager::instance()->contains("Wallpaper/Language"))
+    {
+        dApp->m_moreData.language =IniManager::instance()->value("Wallpaper/Language").toString();
+        QString transPath = QApplication::applicationDirPath() + "/translations";
+        QDir myDir(transPath);
+        if(myDir.exists())
+        {
+            dApp->load_translation_files(transPath,dApp->m_moreData.language);
+        }
+        else {
+            dApp->load_translation_files(TRANSALTION_PATH,dApp->m_moreData.language);
+        }
+    }
+
+
+
 
     dApp->setSpecialDesktop();
 
@@ -940,6 +956,14 @@ bool settingWindow::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+void settingWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 void settingWindow::slotMoreSettingSave()
 {
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
@@ -1129,6 +1153,17 @@ void settingWindow::slotTimerSaveSettings()
 
     IniManager::instance()->setValue("Wallpaper/DesktopFontColor",dApp->m_moreData.fontColor);
     dApp->setAppColor(dApp->m_moreData.fontColor);
+
+    IniManager::instance()->setValue("Wallpaper/Language",dApp->m_moreData.language);
+    QString transPath = QApplication::applicationDirPath() + "/translations";
+    QDir myDir(transPath);
+    if(myDir.exists())
+    {
+        dApp->load_translation_files(transPath,dApp->m_moreData.language);
+    }
+    else {
+        dApp->load_translation_files(TRANSALTION_PATH,dApp->m_moreData.language);
+    }
 
     int indexLocal = 1;
 //    //去重

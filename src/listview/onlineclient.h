@@ -24,7 +24,8 @@ public:
 
     QString fileSizeToMString(const qint64 &fileNameSize);
     QString removeZipSuffix(const QString &str);
-
+protected:
+    void changeEvent(QEvent *event);
 Q_SIGNALS:
     void sigStart();
     void sigSendData(const QByteArray& data);

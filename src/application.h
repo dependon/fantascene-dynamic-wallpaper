@@ -37,6 +37,9 @@
 const QString PIC_DIR_PATH =   QDir::homePath() +
                                "/.config/fantascene-dynamic-wallpaper/.thumbnail";
 
+/* Translation file path */
+#define TRANSALTION_PATH "/usr/share/fantascene-dynamic-wallpaper/translations"
+
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
 
 class xcb_connection_t;
@@ -89,6 +92,12 @@ public:
 #endif
     //set app color
     void setAppColor(const QString & strColor);
+
+
+
+    void load_translation_sys_files(const QString path);
+
+    void load_translation_files(const QString path,const QString code);
 
 Q_SIGNALS:
     void setPlayPath(const QString &PATH);
@@ -177,6 +186,8 @@ public:
     QThread * m_startDesktop = nullptr;
 
     int m_onlineCount{0};//当前搜索的总个数
+
+    QTranslator *m_translator{nullptr};
 
 };
 

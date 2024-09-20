@@ -34,7 +34,8 @@ class PlaylistSettingDialog : public QDialog
 public:
     explicit PlaylistSettingDialog(QWidget *parent = nullptr);
     ~PlaylistSettingDialog();
-
+protected:
+    void changeEvent(QEvent *event);
 private Q_SLOTS:
     void on_timeCombox_currentTextChanged(const QString &arg1);
 

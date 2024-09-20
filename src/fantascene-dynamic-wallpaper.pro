@@ -226,6 +226,7 @@ FORMS += \
     download/downloadwidget.ui
 
 TRANSLATIONS += \
+    translations/fantascene-dynamic-wallpaper_en.ts \ #English
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \ #中文
     translations/fantascene-dynamic-wallpaper_zh_TW.ts \ #中文繁体
     translations/fantascene-dynamic-wallpaper_es.ts \ #西班牙语

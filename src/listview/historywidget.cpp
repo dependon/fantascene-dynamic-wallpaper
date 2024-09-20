@@ -57,6 +57,14 @@ void historyWidget::showEvent(QShowEvent *event)
     return QWidget::showEvent(event);
 }
 
+void historyWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 void historyWidget::on_setWallPaper_clicked()
 {
     if (m_viewHistory->m_allItemInfo.size() > m_viewHistory->currentIndex().row() && m_viewHistory->currentIndex().row() >= 0) {

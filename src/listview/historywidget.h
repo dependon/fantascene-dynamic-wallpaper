@@ -36,6 +36,8 @@ public:
     ~historyWidget();
 protected:
     void showEvent(QShowEvent *event) override;
+
+    void changeEvent(QEvent *event) override;
 private Q_SLOTS:
     void on_setWallPaper_clicked();
 

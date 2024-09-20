@@ -22,6 +22,14 @@ PlaylistSettingDialog::~PlaylistSettingDialog()
     delete ui;
 }
 
+void PlaylistSettingDialog::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 void PlaylistSettingDialog::on_timeCombox_currentTextChanged(const QString &arg1)
 {
     if (!ui->timeCombox->currentText().contains(tr("other"))) {

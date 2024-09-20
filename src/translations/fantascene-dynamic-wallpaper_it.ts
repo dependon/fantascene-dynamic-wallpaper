@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="148"/>
-        <location filename="../application.cpp" line="149"/>
+        <location filename="../application.cpp" line="152"/>
+        <location filename="../application.cpp" line="153"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
@@ -243,14 +243,14 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
-        <location filename="../moresetting.cpp" line="46"/>
-        <location filename="../moresetting.cpp" line="112"/>
+        <location filename="../moresetting.cpp" line="69"/>
+        <location filename="../moresetting.cpp" line="152"/>
         <source>continue playing</source>
         <translation>Continua a giocare</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
-        <location filename="../moresetting.cpp" line="48"/>
+        <location filename="../moresetting.cpp" line="71"/>
         <source>pause</source>
         <translation>sospendere</translation>
     </message>
@@ -262,8 +262,8 @@
     <message>
         <location filename="../moresetting.ui" line="55"/>
         <location filename="../moresetting.ui" line="357"/>
-        <location filename="../moresetting.cpp" line="53"/>
-        <location filename="../moresetting.cpp" line="120"/>
+        <location filename="../moresetting.cpp" line="76"/>
+        <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
         <translation>default</translation>
     </message>
@@ -335,12 +335,12 @@
     <message>
         <location filename="../moresetting.ui" line="135"/>
         <location filename="../moresetting.ui" line="185"/>
-        <location filename="../moresetting.cpp" line="64"/>
-        <location filename="../moresetting.cpp" line="77"/>
-        <location filename="../moresetting.cpp" line="127"/>
-        <location filename="../moresetting.cpp" line="134"/>
-        <location filename="../moresetting.cpp" line="191"/>
-        <location filename="../moresetting.cpp" line="218"/>
+        <location filename="../moresetting.cpp" line="87"/>
+        <location filename="../moresetting.cpp" line="100"/>
+        <location filename="../moresetting.cpp" line="167"/>
+        <location filename="../moresetting.cpp" line="174"/>
+        <location filename="../moresetting.cpp" line="232"/>
+        <location filename="../moresetting.cpp" line="259"/>
         <source>other</source>
         <translation>altro</translation>
     </message>
@@ -373,12 +373,12 @@
         <location filename="../moresetting.ui" line="215"/>
         <location filename="../moresetting.ui" line="240"/>
         <location filename="../moresetting.ui" line="337"/>
-        <location filename="../moresetting.cpp" line="83"/>
-        <location filename="../moresetting.cpp" line="89"/>
-        <location filename="../moresetting.cpp" line="95"/>
-        <location filename="../moresetting.cpp" line="141"/>
-        <location filename="../moresetting.cpp" line="148"/>
-        <location filename="../moresetting.cpp" line="162"/>
+        <location filename="../moresetting.cpp" line="106"/>
+        <location filename="../moresetting.cpp" line="112"/>
+        <location filename="../moresetting.cpp" line="118"/>
+        <location filename="../moresetting.cpp" line="181"/>
+        <location filename="../moresetting.cpp" line="188"/>
+        <location filename="../moresetting.cpp" line="202"/>
         <source>true</source>
         <translation>sì</translation>
     </message>
@@ -386,9 +386,9 @@
         <location filename="../moresetting.ui" line="220"/>
         <location filename="../moresetting.ui" line="245"/>
         <location filename="../moresetting.ui" line="332"/>
-        <location filename="../moresetting.cpp" line="85"/>
-        <location filename="../moresetting.cpp" line="91"/>
-        <location filename="../moresetting.cpp" line="99"/>
+        <location filename="../moresetting.cpp" line="108"/>
+        <location filename="../moresetting.cpp" line="114"/>
+        <location filename="../moresetting.cpp" line="122"/>
         <source>false</source>
         <translation>no</translation>
     </message>
@@ -509,11 +509,16 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="454"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="468"/>
         <source>Confirm</source>
         <translation>conferma</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="461"/>
+        <location filename="../moresetting.ui" line="475"/>
         <source>Cancel</source>
         <translation>annulla</translation>
     </message>
@@ -671,7 +676,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="250"/>
+        <location filename="../listview/onlineclient.cpp" line="258"/>
         <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
@@ -686,13 +691,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="473"/>
+        <location filename="../listview/onlineclient.cpp" line="481"/>
         <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
-        <location filename="../listview/onlineclient.cpp" line="479"/>
+        <location filename="../listview/onlineclient.cpp" line="487"/>
         <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
@@ -740,8 +745,8 @@
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
         <location filename="../listview/playlistsettingdialog.cpp" line="11"/>
         <location filename="../listview/playlistsettingdialog.cpp" line="15"/>
-        <location filename="../listview/playlistsettingdialog.cpp" line="27"/>
-        <location filename="../listview/playlistsettingdialog.cpp" line="30"/>
+        <location filename="../listview/playlistsettingdialog.cpp" line="35"/>
+        <location filename="../listview/playlistsettingdialog.cpp" line="38"/>
         <source>other</source>
         <translation>altro</translation>
     </message>
@@ -759,7 +764,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="164"/>
+        <location filename="../main.cpp" line="160"/>
         <source>fantacy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -871,18 +876,18 @@
         <translation>Sfondo storico</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="78"/>
-        <location filename="../listview/historywidget.cpp" line="140"/>
+        <location filename="../listview/historywidget.cpp" line="86"/>
+        <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete!!</source>
         <translation>Elimina!!</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="78"/>
+        <location filename="../listview/historywidget.cpp" line="86"/>
         <source>Delete all history imports ?</source>
         <translation>Vuoi eliminare tutto?</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.cpp" line="140"/>
+        <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete all playback ?</source>
         <translation>Eliminare tutte le playlist in loop?</translation>
     </message>
@@ -965,7 +970,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="687"/>
+        <location filename="../settingwindow.cpp" line="703"/>
         <source>Manual</source>
         <translation>Manuale</translation>
     </message>
@@ -981,7 +986,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="862"/>
+        <location filename="../settingwindow.cpp" line="878"/>
         <source>default</source>
         <translation>default</translation>
     </message>
@@ -1012,7 +1017,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="874"/>
+        <location filename="../settingwindow.cpp" line="890"/>
         <source>custom</source>
         <translation>personalizzato</translation>
     </message>
@@ -1180,14 +1185,14 @@
         <translation>È necessario installare il motore di carta da parati in Steam, altrimenti sarà inutile. Se lo installi sotto Linux, non puoi aprirlo, ma puoi attraversare il video</translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
-        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/wallpaperengineplugin.cpp" line="157"/>
-        <location filename="../listview/wallpaperengineplugin.cpp" line="171"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
+        <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Not containing the word steam!</source>
         <translation type="unfinished"></translation>
     </message>

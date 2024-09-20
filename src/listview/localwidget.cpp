@@ -90,6 +90,14 @@ void LocalWidget::searchVideoFiles(const QString& path)
     }
 }
 
+void LocalWidget::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::LanguageChange) {
+        ui->retranslateUi(this);
+    }
+    QWidget::changeEvent(event);
+}
+
 void LocalWidget::on_playBtn_clicked()
 {
 

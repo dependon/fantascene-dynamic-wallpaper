@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="vi_VN">
+<TS version="2.1" language="en_US">
 <context>
     <name>Application</name>
     <message>
         <location filename="../application.cpp" line="152"/>
         <location filename="../application.cpp" line="153"/>
         <source>fantascene-dynamic-wallpaper</source>
-        <translation>fantascene hình nền sống</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -15,7 +15,7 @@
     <message>
         <location filename="../desktop.ui" line="14"/>
         <source>Form</source>
-        <translation>Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -36,7 +36,7 @@
     <message>
         <location filename="../download/downloadwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.ui" line="25"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../help/helpdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Đối thoại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../help/helpdialog.ui" line="53"/>
@@ -72,133 +72,133 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="183"/>
         <source>Open</source>
-        <translation>Mở</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="188"/>
         <source>Open With</source>
-        <translation>Cách mở</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="193"/>
         <source>New Built</source>
-        <translation>Mới</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="198"/>
         <source>Select all</source>
-        <translation>Chọn tất cả</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Open Terminal</source>
-        <translation>Mở Terminal</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="209"/>
         <location filename="../desktop/iconview.cpp" line="933"/>
         <source>New Folder</source>
-        <translation>Thư mục mới</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="215"/>
         <source>Sort Order</source>
-        <translation>Thứ tự sắp xếp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Refresh Sort</source>
-        <translation>Làm mới sắp xếp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Name</source>
-        <translation>Tên</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Change Date</source>
-        <translation>Đổi ngày</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="231"/>
         <source>File Size</source>
-        <translation>Cỡ tập tin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="235"/>
         <source>File Type</source>
-        <translation>Kiểu tập tin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="240"/>
         <source>Icon Size</source>
-        <translation>Cỡ biểu tượng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="244"/>
         <source>Small</source>
-        <translation>Nhỏ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Medium</source>
-        <translation>Trung bình</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="252"/>
         <source>Big</source>
-        <translation>Lớn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="258"/>
         <source>Copy</source>
-        <translation>Sao chép</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="263"/>
         <source>Cut</source>
-        <translation>Cắt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="268"/>
         <source>Paste</source>
-        <translation>Dán</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="273"/>
         <source>Rename</source>
-        <translation>Thay tên</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="278"/>
         <source>Trash</source>
-        <translation>Chất thải</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="283"/>
         <source>Set Wallpaper</source>
-        <translation>Đặt hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="296"/>
         <source>New TXT</source>
-        <translation>TXT mới</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="365"/>
         <source>Select Other Application</source>
-        <translation>Chọn ứng dụng khác</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="489"/>
         <source>Please Select App</source>
-        <translation>Vui lòng chọn ứng dụng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="947"/>
         <source>New Txt Files</source>
-        <translation>Tập tin Txt mới</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -206,27 +206,27 @@
     <message>
         <location filename="../listview/localwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="20"/>
         <source>Local</source>
-        <translation>Địa phương</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="45"/>
         <source>Play</source>
-        <translation>Chơi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="34"/>
         <source>Wallpaper Local</source>
-        <translation>Wallpaper địa phương</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="43"/>
         <source>Please place the local video on:</source>
-        <translation>Vui lòng đặt video địa phương tại:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -234,30 +234,30 @@
     <message>
         <location filename="../moresetting.ui" line="14"/>
         <source>Form</source>
-        <translation>Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="22"/>
         <source>When desktop is hidden</source>
-        <translation>Khi màn hình nền bị ẩn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="69"/>
         <location filename="../moresetting.cpp" line="152"/>
         <source>continue playing</source>
-        <translation>Tiếp tục chơi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
         <location filename="../moresetting.cpp" line="71"/>
         <source>pause</source>
-        <translation>Tạm dừng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="47"/>
         <source>Video FPS</source>
-        <translation>Video FPS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="55"/>
@@ -265,72 +265,72 @@
         <location filename="../moresetting.cpp" line="76"/>
         <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
-        <translation>Mặc định</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="60"/>
         <source>10</source>
-        <translation>10</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="65"/>
         <source>15</source>
-        <translation>15</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="70"/>
         <source>20</source>
-        <translation>20</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="75"/>
         <source>24</source>
-        <translation>24</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="80"/>
         <source>25</source>
-        <translation>25</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="85"/>
         <source>30</source>
-        <translation>30</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="90"/>
         <source>60</source>
-        <translation>60</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
         <source>Decoder</source>
-        <translation>Bộ giải mã</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="110"/>
         <source>auto</source>
-        <translation>Xe hơi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="115"/>
         <source>gpu</source>
-        <translation>gpu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="120"/>
         <source>vaapi</source>
-        <translation>vaapi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="125"/>
         <source>vdpau</source>
-        <translation>vdpau</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="130"/>
         <source>none</source>
-        <translation>Không một</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="135"/>
@@ -342,7 +342,7 @@
         <location filename="../moresetting.cpp" line="232"/>
         <location filename="../moresetting.cpp" line="259"/>
         <source>other</source>
-        <translation>Thêm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
@@ -367,7 +367,7 @@
     <message>
         <location filename="../moresetting.ui" line="207"/>
         <source>Show desktop icon</source>
-        <translation>Hiện biểu tượng màn hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="215"/>
@@ -380,7 +380,7 @@
         <location filename="../moresetting.cpp" line="188"/>
         <location filename="../moresetting.cpp" line="202"/>
         <source>true</source>
-        <translation>Thật đấy.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="220"/>
@@ -390,7 +390,7 @@
         <location filename="../moresetting.cpp" line="114"/>
         <location filename="../moresetting.cpp" line="122"/>
         <source>false</source>
-        <translation>giả mạo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="232"/>
@@ -515,17 +515,17 @@
     <message>
         <location filename="../moresetting.ui" line="468"/>
         <source>Confirm</source>
-        <translation>Xác nhận</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="475"/>
         <source>Cancel</source>
-        <translation>Hủy bỏ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="33"/>
         <source>Advanced Settings</source>
-        <translation>Cài đặt nâng cao</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="27"/>
@@ -543,6 +543,12 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="34"/>
         <source>Status:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.ui" line="41"/>
+        <location filename="../listview/onlineclient.cpp" line="487"/>
+        <source>Not Online</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -569,7 +575,7 @@
         <location filename="../listview/onlineclient.ui" line="119"/>
         <location filename="../listview/onlineclient.ui" line="157"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="138"/>
@@ -604,7 +610,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="286"/>
         <source>Name</source>
-        <translation type="unfinished">Tên</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="308"/>
@@ -648,17 +654,17 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="544"/>
         <source>File Size</source>
-        <translation type="unfinished">Cỡ tập tin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="586"/>
         <source>Width</source>
-        <translation type="unfinished">Chiều rộng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="628"/>
         <source>Height</source>
-        <translation type="unfinished">Chiều cao</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="670"/>
@@ -676,11 +682,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="258"/>
-        <source>Dowload Ing.....</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -691,14 +692,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.cpp" line="481"/>
-        <source>Online</source>
+        <location filename="../listview/onlineclient.cpp" line="258"/>
+        <source>Dowload Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/onlineclient.ui" line="41"/>
-        <location filename="../listview/onlineclient.cpp" line="487"/>
-        <source>Not Online</source>
+        <location filename="../listview/onlineclient.cpp" line="481"/>
+        <source>Online</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -707,39 +707,39 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Đối thoại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="22"/>
         <source>Timer(second)</source>
-        <translation>Hẹn giờ (giây)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <location filename="../listview/playlistsettingdialog.ui" line="45"/>
         <location filename="../listview/playlistsettingdialog.ui" line="71"/>
         <source>600</source>
-        <translation>600</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="35"/>
         <source>60</source>
-        <translation>60</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="40"/>
         <source>300</source>
-        <translation>300</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="50"/>
         <source>1800</source>
-        <translation>1800</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="55"/>
         <source>3600</source>
-        <translation>3600</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -748,29 +748,29 @@
         <location filename="../listview/playlistsettingdialog.cpp" line="35"/>
         <location filename="../listview/playlistsettingdialog.cpp" line="38"/>
         <source>other</source>
-        <translation>Thêm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="84"/>
         <source>Ok</source>
-        <translation>Được rồi.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="91"/>
         <source>Cancel</source>
-        <translation>Hủy bỏ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="160"/>
-        <source>fantacy</source>
-        <translation>tưởng tượng</translation>
-    </message>
-    <message>
         <location filename="../download/downloadwidget.cpp" line="33"/>
         <source>Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="160"/>
+        <source>fantacy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -779,17 +779,17 @@
     <message>
         <location filename="../wallpaper.cpp" line="434"/>
         <source>Copy</source>
-        <translation>Sao chép</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="439"/>
         <source>Extend</source>
-        <translation>Mở rộng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="444"/>
         <source>Manual</source>
-        <translation>Hướng dẫn sử dụng</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -797,17 +797,17 @@
     <message>
         <location filename="../listview/historywidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="34"/>
         <source>History</source>
-        <translation>Lịch sử</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="46"/>
         <source>Set Wallpaper</source>
-        <translation>Đặt hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="53"/>
@@ -818,32 +818,32 @@
         <location filename="../listview/historywidget.ui" line="60"/>
         <location filename="../listview/historywidget.ui" line="107"/>
         <source>Delete</source>
-        <translation>Xóa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="67"/>
         <source>Import</source>
-        <translation>Nhập khẩu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="88"/>
         <source>Playlist</source>
-        <translation>Danh sách phát</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="100"/>
         <source>Add Playlist</source>
-        <translation>Thêm danh sách phát</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="114"/>
         <source>Loop play</source>
-        <translation>Phát lại vòng lặp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="121"/>
         <source>Loop playback settings</source>
-        <translation>Thiết lập phát lại vòng lặp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="212"/>
@@ -873,23 +873,23 @@
     <message>
         <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
-        <translation>Lịch sử hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete!!</source>
-        <translation>Xóa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <source>Delete all history imports ?</source>
-        <translation>Xóa tất cả nhập lịch sử?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete all playback ?</source>
-        <translation>Xóa tất cả nội dung chơi?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -897,19 +897,19 @@
     <message>
         <location filename="../settingwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>Cửa sổ chính</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="24"/>
         <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
-        <translation>Tài liệu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="31"/>
         <location filename="../settingwindow.ui" line="49"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
-        <translation>/usr/share/ffantascene Hình nền động/normal/normal.mp4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="145"/>
@@ -919,29 +919,29 @@
     <message>
         <location filename="../settingwindow.ui" line="154"/>
         <source>Transparency</source>
-        <translation>Độ trong suốt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="181"/>
         <source>Volume</source>
-        <translation>Khối lượng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
         <location filename="../settingwindow.cpp" line="105"/>
         <source>Play</source>
-        <translation>Chơi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
         <location filename="../settingwindow.cpp" line="117"/>
         <source>Pause</source>
-        <translation>Tạm dừng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
-        <translation>Thiết lập mới</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="265"/>
@@ -951,130 +951,130 @@
     <message>
         <location filename="../settingwindow.ui" line="284"/>
         <source>Hide</source>
-        <translation>Ẩn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="299"/>
         <source>Model</source>
-        <translation>Mô hình</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="307"/>
         <source>Copy</source>
-        <translation>Sao chép</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="312"/>
         <source>Extend</source>
-        <translation>Mở rộng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
         <location filename="../settingwindow.cpp" line="703"/>
         <source>Manual</source>
-        <translation>Hướng dẫn sử dụng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
-        <translation>Thêm vào Startup</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
-        <translation>Tỷ lệ khung hình video</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
         <location filename="../settingwindow.cpp" line="878"/>
         <source>default</source>
-        <translation>Mặc định</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
-        <translation>4:3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
-        <translation>16:9</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
-        <translation>16:10</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
-        <translation>1.85:1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
-        <translation>2.35:1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
         <location filename="../settingwindow.cpp" line="890"/>
         <source>custom</source>
-        <translation>Trang chủ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
-        <translation>1.33</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
-        <translation>Tỷ lệ ứng dụng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
-        <translation>Mười.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="430"/>
         <source>Y</source>
-        <translation>Y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="444"/>
         <source>Width</source>
-        <translation>Chiều rộng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
-        <translation>Chiều cao</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
-        <translation>Áp dụng các kích thước tùy chỉnh</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
-        <translation>githubWeb</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
-        <translation>Tạo mới (gitee)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
-        <translation>Tạo mới (github)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
-        <translation>repotBug</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="535"/>
@@ -1089,38 +1089,38 @@
     <message>
         <location filename="../settingwindow.ui" line="553"/>
         <source>Advanced Settings</source>
-        <translation>Cài đặt nâng cao</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="560"/>
         <source>Wallpaper Local</source>
-        <translation>Wallpaper địa phương</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="567"/>
         <location filename="../settingwindow.cpp" line="124"/>
         <source>Wallpaper History</source>
-        <translation>Lịch sử hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="574"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation>Plugin động cơ hình nền</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="91"/>
         <source>Exit</source>
-        <translation>Xuất khẩu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="112"/>
         <source>Screenshot</source>
-        <translation>Ảnh chụp màn hình</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="128"/>
         <source>Main View</source>
-        <translation>Xem chính</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="145"/>
@@ -1130,17 +1130,17 @@
     <message>
         <location filename="../settingwindow.cpp" line="153"/>
         <source>github</source>
-        <translation>github</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="170"/>
         <source>Double click to open the configuration interface</source>
-        <translation>Nhấp đúp để mở giao diện cấu hình</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="223"/>
         <source>Latest version</source>
-        <translation>Phiên bản mới nhất</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1149,17 +1149,17 @@
         <location filename="../listview/view.cpp" line="244"/>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
-        <translation>Xóa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
-        <translation>File không tồn tại. Có muốn xóa hay không</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
-        <translation>Xóa tất cả nhập lịch sử?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1167,22 +1167,22 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="14"/>
         <source>Form</source>
-        <translation>Loại</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select Path</source>
-        <translation>Chọn đường dẫn</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
         <source>Apply</source>
-        <translation>Ứng dụng</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
-        <translation>Bạn phải cung cấp động cơ hình nền từ đường dẫn của hơi nước. Nó không hoạt động trên Linux, nhưng có các tính năng cần thiết</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>

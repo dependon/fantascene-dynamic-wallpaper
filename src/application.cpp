@@ -37,6 +37,10 @@
 #include <QDBusPendingCall>
 #include <QStyleFactory>
 #include <QPalette>
+#include <QDir>
+#include <QDirIterator>
+#include <QLockFile>
+#include <QTranslator>
 
 #include "db/dbmanager.h"
 
@@ -722,6 +726,42 @@ void Application::setAppColor(const QString &strColor)
     }
 
     qApp->setPalette(palette);
+}
+
+void Application::load_translation_sys_files(const QString path)
+{
+    load_translation_files(path,QLocale::system().name());
+}
+
+void Application::load_translation_files(const QString path, const QString code)
+{
+    QDir dir(path);
+    qDebug()<<"event: "<<code;
+    if (dir.exists())
+    {
+        QDirIterator qmIt(path, QStringList() << QString("*%1.qm").arg(code), QDir::Files);
+        while (qmIt.hasNext())
+        {
+            qmIt.next();
+            QFileInfo finfo = qmIt.fileInfo();
+            QString tr_path = finfo.absolutePath();
+            QString tr_file = finfo.baseName();
+            if(m_translator)
+            {
+                qApp->removeTranslator(m_translator);
+                delete m_translator;
+                m_translator = nullptr;
+            }
+            m_translator = new QTranslator;
+
+            if (!m_translator->load(tr_file,tr_path)) {
+                qWarning() << "Failed to load " + tr_path, + "/" + tr_file + " ,fallback to default!";
+            }
+            if (!qApp->installTranslator(m_translator)) {
+                qWarning() << "Failed to install translation!";
+            }
+        }
+    }
 }
 
 const QPixmap Application::getThumbnail(const QString &path)

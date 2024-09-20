@@ -91,6 +91,9 @@ public:
     void initWallpaperWidget();
 protected:
     bool eventFilter(QObject *obj, QEvent *event);
+
+    void changeEvent(QEvent *event);
+
 private Q_SLOTS:
 
     void slotMoreSettingSave();
