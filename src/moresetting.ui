@@ -52,42 +52,42 @@
       <widget class="QComboBox" name="fpsbox">
        <item>
         <property name="text">
-         <string>default</string>
+         <string notr="true">default</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>10</string>
+         <string notr="true">10</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>15</string>
+         <string notr="true">15</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>20</string>
+         <string notr="true">20</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>24</string>
+         <string notr="true">24</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>25</string>
+         <string notr="true">25</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>30</string>
+         <string notr="true">30</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>60</string>
+         <string notr="true">60</string>
         </property>
        </item>
       </widget>
@@ -107,32 +107,32 @@
       <widget class="QComboBox" name="hwdecBox">
        <item>
         <property name="text">
-         <string>auto</string>
+         <string notr="true">auto</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>gpu</string>
+         <string notr="true">gpu</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>vaapi</string>
+         <string notr="true">vaapi</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>vdpau</string>
+         <string notr="true">vdpau</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>none</string>
+         <string notr="true">none</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>other</string>
+         <string notr="true">other</string>
         </property>
        </item>
       </widget>
@@ -162,27 +162,27 @@
       <widget class="QComboBox" name="voBox">
        <item>
         <property name="text">
-         <string>libmpv</string>
+         <string notr="true">libmpv</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string/>
+         <string notr="true"/>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>opengl</string>
+         <string notr="true">opengl</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>opengl-cb</string>
+         <string notr="true">opengl-cb</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>other</string>
+         <string notr="true">other</string>
         </property>
        </item>
       </widget>
@@ -354,92 +354,92 @@
       <widget class="QComboBox" name="fontBox">
        <item>
         <property name="text">
-         <string>default</string>
+         <string notr="true">default</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>white</string>
+         <string notr="true">white</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>black</string>
+         <string notr="true">black</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>blue</string>
+         <string notr="true">blue</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>yellow</string>
+         <string notr="true">yellow</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkGray</string>
+         <string notr="true">darkGray</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>lightGray</string>
+         <string notr="true">lightGray</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>gray</string>
+         <string notr="true">gray</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>green</string>
+         <string notr="true">green</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>cyan</string>
+         <string notr="true">cyan</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>magenta</string>
+         <string notr="true">magenta</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>transparent</string>
+         <string notr="true">transparent</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkRed</string>
+         <string notr="true">darkRed</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkGreen</string>
+         <string notr="true">darkGreen</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkBlue</string>
+         <string notr="true">darkBlue</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkCyan</string>
+         <string notr="true">darkCyan</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkMagenta</string>
+         <string notr="true">darkMagenta</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>darkYellow</string>
+         <string notr="true">darkYellow</string>
         </property>
        </item>
       </widget>

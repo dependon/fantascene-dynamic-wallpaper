@@ -22,14 +22,14 @@ QString replaceIfExists(const QString &input)
     QString result = input;
     QLocale locale = QLocale::system();
     QString language = locale.name();
-    //if (language == "zh_CN" ) {
+    if (language == "zh_CN" ) {
         if (result.contains("http://download.fantacy.online/")) {
             result.replace("http://download.fantacy.online/", "http://server.fantacy.online:26668/");
         }
         else if (result.contains("https://download.fantacy.online/")) {
             result.replace("https://download.fantacy.online/", "http://server.fantacy.online:26668/");
         }
-    //}
+    }
     return result;
 }
 
@@ -38,7 +38,7 @@ OnlineClient::OnlineClient(QWidget *parent) :
     ui(new Ui::OnlineClient)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("Fantascene Hub"));
+    setWindowTitle(tr("Spark-Hub"));
     m_viewDowload = new view(this);
     ui->verticalLayout->addWidget(m_viewDowload);
     this->setMaximumWidth(1090);
@@ -94,7 +94,7 @@ OnlineClient::OnlineClient(QWidget *parent) :
 
     connect(dApp,&Application::sigSetDownloadIng,ui->btn_download,&QPushButton::setEnabled);
     connect(dApp,&Application::sigDownloadError,this,[=]{
-        QMessageBox::information(nullptr, tr("Error"), tr("Dowlaod Error!"));
+        QMessageBox::information(nullptr, tr("Error"), tr("Downlaod Error!"));
     });
 
      m_downloadManger = new DownloadManager();
@@ -255,7 +255,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
     QFuture<void> future = QtConcurrent::run([=]()
     {
         QMutexLocker locker(&m_downloadMutex);
-        ui->label_DTip->setText(tr("Dowload Ing....."));
+        ui->label_DTip->setText(tr("Download Ing....."));
         bool isExists = QFileInfo(saveFile).exists();
         bool isExistsHtml = QFileInfo(saveHtml).exists();
         if(!isExists )

@@ -28,7 +28,7 @@
        <item>
         <widget class="QLineEdit" name="pathEdit">
          <property name="text">
-          <string>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
+          <string notr="true">/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
          </property>
         </widget>
        </item>
@@ -46,7 +46,7 @@
        <item>
         <widget class="QLineEdit" name="pathEdit2">
          <property name="text">
-          <string>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
+          <string notr="true">/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
          </property>
         </widget>
        </item>
@@ -352,27 +352,27 @@
            </item>
            <item>
             <property name="text">
-             <string>4:3</string>
+             <string notr="true">4:3</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>16:9</string>
+             <string notr="true">16:9</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>16:10</string>
+             <string notr="true">16:10</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>1.85:1</string>
+             <string notr="true">1.85:1</string>
             </property>
            </item>
            <item>
             <property name="text">
-             <string>2.35:1</string>
+             <string notr="true">2.35:1</string>
             </property>
            </item>
            <item>
@@ -387,7 +387,7 @@
            <item>
             <widget class="QLineEdit" name="videoBLEdit">
              <property name="text">
-              <string>1.33</string>
+              <string notr="true">1.33</string>
              </property>
             </widget>
            </item>
@@ -539,7 +539,7 @@
      <item>
       <widget class="QPushButton" name="liveBtn">
        <property name="text">
-        <string>Dowload Wallpaper</string>
+        <string>Download Wallpaper</string>
        </property>
       </widget>
      </item>

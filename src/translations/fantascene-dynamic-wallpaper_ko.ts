@@ -512,12 +512,7 @@
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="41"/>
-        <source>Fantascene Hub</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/onlineclient.cpp" line="258"/>
-        <source>Dowload Ing.....</source>
+        <source>Spark-Hub</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -527,7 +522,12 @@
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
-        <source>Dowlaod Error!</source>
+        <source>Downlaod Error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/onlineclient.cpp" line="258"/>
+        <source>Download Ing.....</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -865,7 +865,7 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="542"/>
-        <source>Dowload Wallpaper</source>
+        <source>Download Wallpaper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
