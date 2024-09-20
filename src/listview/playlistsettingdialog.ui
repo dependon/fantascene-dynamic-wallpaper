@@ -28,31 +28,31 @@
        <item>
         <widget class="QComboBox" name="timeCombox">
          <property name="currentText">
-          <string>600</string>
+          <string>60</string>
          </property>
          <item>
           <property name="text">
-           <string>60</string>
+           <string notr="true">60</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>300</string>
+           <string notr="true">300</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>600</string>
+           <string notr="true">600</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>1800</string>
+           <string notr="true">1800</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>3600</string>
+           <string notr="true">3600</string>
           </property>
          </item>
          <item>
@@ -68,7 +68,7 @@
           <bool>true</bool>
          </property>
          <property name="text">
-          <string>600</string>
+          <string notr="true">600</string>
          </property>
         </widget>
        </item>

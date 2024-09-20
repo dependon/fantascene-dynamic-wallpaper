@@ -260,47 +260,10 @@
         <translation>프레임 속도</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="55"/>
-        <location filename="../moresetting.ui" line="357"/>
         <location filename="../moresetting.cpp" line="76"/>
         <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
         <translation>기본</translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="60"/>
-        <source>10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="65"/>
-        <source>15</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="70"/>
-        <source>20</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="75"/>
-        <source>24</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="80"/>
-        <source>25</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="85"/>
-        <source>30</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="90"/>
-        <source>60</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
@@ -308,33 +271,10 @@
         <translation>디코딩</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="110"/>
         <source>auto</source>
-        <translation>auto</translation>
+        <translation type="vanished">auto</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="115"/>
-        <source>gpu</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="120"/>
-        <source>vaapi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="125"/>
-        <source>vdpau</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="130"/>
-        <source>none</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="135"/>
-        <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="87"/>
         <location filename="../moresetting.cpp" line="100"/>
         <location filename="../moresetting.cpp" line="167"/>
@@ -347,21 +287,6 @@
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="165"/>
-        <source>libmpv</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="175"/>
-        <source>opengl</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="180"/>
-        <source>opengl-cb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -420,91 +345,6 @@
     <message>
         <location filename="../moresetting.ui" line="349"/>
         <source>Spark Desktop font color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="362"/>
-        <source>white</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="367"/>
-        <source>black</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="372"/>
-        <source>blue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="377"/>
-        <source>yellow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="382"/>
-        <source>darkGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="387"/>
-        <source>lightGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="392"/>
-        <source>gray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="397"/>
-        <source>green</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="402"/>
-        <source>cyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="407"/>
-        <source>magenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="412"/>
-        <source>transparent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="417"/>
-        <source>darkRed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="422"/>
-        <source>darkGreen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="427"/>
-        <source>darkBlue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="432"/>
-        <source>darkCyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="437"/>
-        <source>darkMagenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="442"/>
-        <source>darkYellow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -716,29 +556,7 @@
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="45"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="71"/>
-        <source>600</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="35"/>
         <source>60</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="40"/>
-        <source>300</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="50"/>
-        <source>1800</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="55"/>
-        <source>3600</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -906,12 +724,6 @@
         <translation>파일 선택</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="31"/>
-        <location filename="../settingwindow.ui" line="49"/>
-        <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settingwindow.ui" line="145"/>
         <source>Screen 2 independent playback</source>
         <translation type="unfinished"></translation>
@@ -991,40 +803,10 @@
         <translation>기본</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
-        <source>4:3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="360"/>
-        <source>16:9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="365"/>
-        <source>16:10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="370"/>
-        <source>1.85:1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="375"/>
-        <source>2.35:1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../settingwindow.ui" line="380"/>
         <location filename="../settingwindow.cpp" line="890"/>
         <source>custom</source>
         <translation>사용자 지정</translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="390"/>
-        <source>1.33</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>

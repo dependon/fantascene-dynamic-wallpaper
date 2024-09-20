@@ -260,47 +260,38 @@
         <translation>Video FPS</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="55"/>
-        <location filename="../moresetting.ui" line="357"/>
         <location filename="../moresetting.cpp" line="76"/>
         <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
         <translation>alapértelmezés</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="60"/>
         <source>10</source>
-        <translation>tíz</translation>
+        <translation type="vanished">tíz</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="65"/>
         <source>15</source>
-        <translation>tizenöt</translation>
+        <translation type="vanished">tizenöt</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="70"/>
         <source>20</source>
-        <translation>húsz</translation>
+        <translation type="vanished">húsz</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="75"/>
         <source>24</source>
-        <translation>huszonnégy</translation>
+        <translation type="vanished">huszonnégy</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="80"/>
         <source>25</source>
-        <translation>huszonöt</translation>
+        <translation type="vanished">huszonöt</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="85"/>
         <source>30</source>
-        <translation>harminc</translation>
+        <translation type="vanished">harminc</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="90"/>
         <source>60</source>
-        <translation>hatvan</translation>
+        <translation type="vanished">hatvan</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
@@ -308,33 +299,26 @@
         <translation>Dekódoló</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="110"/>
         <source>auto</source>
-        <translation>automatikus</translation>
+        <translation type="vanished">automatikus</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="115"/>
         <source>gpu</source>
-        <translation>gpu</translation>
+        <translation type="vanished">gpu</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="120"/>
         <source>vaapi</source>
-        <translation>vaapi</translation>
+        <translation type="vanished">vaapi</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="125"/>
         <source>vdpau</source>
-        <translation>vdpau</translation>
+        <translation type="vanished">vdpau</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="130"/>
         <source>none</source>
-        <translation>nincs</translation>
+        <translation type="vanished">nincs</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="135"/>
-        <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="87"/>
         <location filename="../moresetting.cpp" line="100"/>
         <location filename="../moresetting.cpp" line="167"/>
@@ -347,21 +331,6 @@
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="165"/>
-        <source>libmpv</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="175"/>
-        <source>opengl</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="180"/>
-        <source>opengl-cb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -420,91 +389,6 @@
     <message>
         <location filename="../moresetting.ui" line="349"/>
         <source>Spark Desktop font color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="362"/>
-        <source>white</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="367"/>
-        <source>black</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="372"/>
-        <source>blue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="377"/>
-        <source>yellow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="382"/>
-        <source>darkGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="387"/>
-        <source>lightGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="392"/>
-        <source>gray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="397"/>
-        <source>green</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="402"/>
-        <source>cyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="407"/>
-        <source>magenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="412"/>
-        <source>transparent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="417"/>
-        <source>darkRed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="422"/>
-        <source>darkGreen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="427"/>
-        <source>darkBlue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="432"/>
-        <source>darkCyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="437"/>
-        <source>darkMagenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="442"/>
-        <source>darkYellow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -715,31 +599,25 @@
         <translation>Időzítő( másodperc)</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="31"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="45"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="71"/>
         <source>600</source>
-        <translation>hatszáz</translation>
+        <translation type="vanished">hatszáz</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="35"/>
+        <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
         <translation>hatvan</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="40"/>
         <source>300</source>
-        <translation>háromszáz</translation>
+        <translation type="vanished">háromszáz</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="50"/>
         <source>1800</source>
-        <translation>ezernyolcszáz</translation>
+        <translation type="vanished">ezernyolcszáz</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="55"/>
         <source>3600</source>
-        <translation>háromezer hatszáz</translation>
+        <translation type="vanished">háromezer hatszáz</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -906,10 +784,8 @@
         <translation>Fájl</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="31"/>
-        <location filename="../settingwindow.ui" line="49"/>
         <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
-        <translation>/usr/share/fantaszcene-dynamic-wallpaper/normal/normal.mp4</translation>
+        <translation type="vanished">/usr/share/fantaszcene-dynamic-wallpaper/normal/normal.mp4</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="145"/>
@@ -991,29 +867,24 @@
         <translation>alapértelmezés</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
-        <translation>4: 3</translation>
+        <translation type="vanished">4: 3</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
-        <translation>16: 9</translation>
+        <translation type="vanished">16: 9</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
-        <translation>16:10</translation>
+        <translation type="vanished">16:10</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
-        <translation>1.85:1</translation>
+        <translation type="vanished">1.85:1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
-        <translation>2.35:1</translation>
+        <translation type="vanished">2.35:1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
@@ -1022,9 +893,8 @@
         <translation>egyéni</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
-        <translation>egy pont három három</translation>
+        <translation type="vanished">egy pont három három</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>

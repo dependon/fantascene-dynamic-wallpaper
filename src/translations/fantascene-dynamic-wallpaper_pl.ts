@@ -272,47 +272,38 @@
         <translation>Wideo FPS</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="55"/>
-        <location filename="../moresetting.ui" line="357"/>
         <location filename="../moresetting.cpp" line="76"/>
         <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
         <translation>domyślne</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="60"/>
         <source>10</source>
-        <translation>10</translation>
+        <translation type="vanished">10</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="65"/>
         <source>15</source>
-        <translation>15</translation>
+        <translation type="vanished">15</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="70"/>
         <source>20</source>
-        <translation>20</translation>
+        <translation type="vanished">20</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="75"/>
         <source>24</source>
-        <translation>24</translation>
+        <translation type="vanished">24</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="80"/>
         <source>25</source>
-        <translation>25</translation>
+        <translation type="vanished">25</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="85"/>
         <source>30</source>
-        <translation>30</translation>
+        <translation type="vanished">30</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="90"/>
         <source>60</source>
-        <translation>60</translation>
+        <translation type="vanished">60</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
@@ -320,28 +311,12 @@
         <translation>Dekoder</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="130"/>
         <source>none</source>
-        <translation>none</translation>
+        <translation type="vanished">none</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="165"/>
-        <source>libmpv</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="175"/>
-        <source>opengl</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="180"/>
-        <source>opengl-cb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -403,91 +378,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="362"/>
-        <source>white</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="367"/>
-        <source>black</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="372"/>
-        <source>blue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="377"/>
-        <source>yellow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="382"/>
-        <source>darkGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="387"/>
-        <source>lightGray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="392"/>
-        <source>gray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="397"/>
-        <source>green</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="402"/>
-        <source>cyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="407"/>
-        <source>magenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="412"/>
-        <source>transparent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="417"/>
-        <source>darkRed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="422"/>
-        <source>darkGreen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="427"/>
-        <source>darkBlue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="432"/>
-        <source>darkCyan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="437"/>
-        <source>darkMagenta</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../moresetting.ui" line="442"/>
-        <source>darkYellow</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../moresetting.ui" line="454"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
@@ -503,8 +393,6 @@
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="135"/>
-        <location filename="../moresetting.ui" line="185"/>
         <location filename="../moresetting.cpp" line="87"/>
         <location filename="../moresetting.cpp" line="100"/>
         <location filename="../moresetting.cpp" line="167"/>
@@ -515,24 +403,20 @@
         <translation>inny</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="110"/>
         <source>auto</source>
-        <translation>automatycznie</translation>
+        <translation type="vanished">automatycznie</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="115"/>
         <source>gpu</source>
-        <translation>gpu</translation>
+        <translation type="vanished">gpu</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="120"/>
         <source>vaapi</source>
-        <translation>vaapi</translation>
+        <translation type="vanished">vaapi</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="125"/>
         <source>vdpau</source>
-        <translation>vdpau</translation>
+        <translation type="vanished">vdpau</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="33"/>
@@ -727,31 +611,25 @@
         <translation>Stoper(sekundy)</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="31"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="45"/>
-        <location filename="../listview/playlistsettingdialog.ui" line="71"/>
         <source>600</source>
-        <translation>600</translation>
+        <translation type="vanished">600</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="35"/>
+        <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
         <translation>60</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="40"/>
         <source>300</source>
-        <translation>300</translation>
+        <translation type="vanished">300</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="50"/>
         <source>1800</source>
-        <translation>1800</translation>
+        <translation type="vanished">1800</translation>
     </message>
     <message>
-        <location filename="../listview/playlistsettingdialog.ui" line="55"/>
         <source>3600</source>
-        <translation>3600</translation>
+        <translation type="vanished">3600</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -997,29 +875,24 @@
         <translation>domyślne</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
         <source>4:3</source>
-        <translation>4:3</translation>
+        <translation type="vanished">4:3</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="360"/>
         <source>16:9</source>
-        <translation>16:9</translation>
+        <translation type="vanished">16:9</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="365"/>
         <source>16:10</source>
-        <translation>16:10</translation>
+        <translation type="vanished">16:10</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="370"/>
         <source>1.85:1</source>
-        <translation>1.85:1</translation>
+        <translation type="vanished">1.85:1</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="375"/>
         <source>2.35:1</source>
-        <translation>2.35:1</translation>
+        <translation type="vanished">2.35:1</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
@@ -1084,15 +957,8 @@
         <translation>nowe(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="390"/>
         <source>1.33</source>
-        <translation>1.33</translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="31"/>
-        <location filename="../settingwindow.ui" line="49"/>
-        <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">1.33</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>
