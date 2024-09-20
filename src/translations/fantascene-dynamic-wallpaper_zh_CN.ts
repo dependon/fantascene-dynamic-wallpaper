@@ -390,10 +390,6 @@
         <translation>状态:</translation>
     </message>
     <message>
-        <source>Not online</source>
-        <translation type="vanished">不在线</translation>
-    </message>
-    <message>
         <location filename="../listview/onlineclient.ui" line="48"/>
         <source>Try Connected</source>
         <translation>尝试连接</translation>
@@ -519,14 +515,6 @@
         <translation>下载</translation>
     </message>
     <message>
-        <source>Fantascene Hub</source>
-        <translation type="vanished">幻梦仓库</translation>
-    </message>
-    <message>
-        <source>Dowload Ing.....</source>
-        <translation type="vanished">下载中......</translation>
-    </message>
-    <message>
         <location filename="../listview/onlineclient.cpp" line="41"/>
         <source>Spark-Hub</source>
         <translation type="unfinished"></translation>
@@ -545,14 +533,6 @@
         <location filename="../listview/onlineclient.cpp" line="258"/>
         <source>Download Ing.....</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dowlaod Error!</source>
-        <translation type="vanished">下载错误！</translation>
-    </message>
-    <message>
-        <source>File Exists!</source>
-        <translation type="vanished">文件已存在！</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="481"/>
@@ -845,14 +825,6 @@
         <location filename="../settingwindow.ui" line="542"/>
         <source>Download Wallpaper</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fantascene-Hub(Test)</source>
-        <translation type="vanished">幻梦仓库(测试)</translation>
-    </message>
-    <message>
-        <source>Dowload Wallpaper</source>
-        <translation type="vanished">下载壁纸(来自网络)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="553"/>

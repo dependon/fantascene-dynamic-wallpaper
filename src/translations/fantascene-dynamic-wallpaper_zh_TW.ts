@@ -7,7 +7,7 @@
         <location filename="../application.cpp" line="152"/>
         <location filename="../application.cpp" line="153"/>
         <source>fantascene-dynamic-wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>fantascene動態桌面</translation>
     </message>
 </context>
 <context>
@@ -15,7 +15,7 @@
     <message>
         <location filename="../desktop.ui" line="14"/>
         <source>Form</source>
-        <translation>視窗</translation>
+        <translation>表格</translation>
     </message>
 </context>
 <context>
@@ -23,12 +23,12 @@
     <message>
         <location filename="../download/downloadmanager.cpp" line="48"/>
         <source>Failed to start wget.</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動wget失敗。</translation>
     </message>
     <message>
         <location filename="../download/downloadmanager.cpp" line="53"/>
         <source>Download failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>下載失敗。</translation>
     </message>
 </context>
 <context>
@@ -36,17 +36,17 @@
     <message>
         <location filename="../download/downloadwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.ui" line="25"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>負載</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.cpp" line="11"/>
         <source>The download address comes from the network and may not be usable</source>
-        <translation type="unfinished"></translation>
+        <translation>下載地址來自網絡，可能無法使用</translation>
     </message>
 </context>
 <context>
@@ -54,17 +54,17 @@
     <message>
         <location filename="../help/helpdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">視窗</translation>
+        <translation>對話框</translation>
     </message>
     <message>
         <location filename="../help/helpdialog.ui" line="53"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <location filename="../help/helpdialog.cpp" line="9"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>幫助</translation>
     </message>
 </context>
 <context>
@@ -72,7 +72,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="183"/>
         <source>Open</source>
-        <translation>打開</translation>
+        <translation>正常開放</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="188"/>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="203"/>
         <source>Open Terminal</source>
-        <translation>打開終端</translation>
+        <translation>開放式終端</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="209"/>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="215"/>
         <source>Sort Order</source>
-        <translation>檔案排序</translation>
+        <translation>排序順序</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="219"/>
@@ -113,12 +113,12 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Name</source>
-        <translation>名稱</translation>
+        <translation>姓名</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Change Date</source>
-        <translation>修改時間</translation>
+        <translation>更改日期</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="231"/>
@@ -143,7 +143,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Medium</source>
-        <translation>中</translation>
+        <translation>中等</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="252"/>
@@ -173,7 +173,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="278"/>
         <source>Trash</source>
-        <translation>删除</translation>
+        <translation>廢物箱</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="283"/>
@@ -183,22 +183,22 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="296"/>
         <source>New TXT</source>
-        <translation>新建Txt</translation>
+        <translation>新建TXT</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="365"/>
         <source>Select Other Application</source>
-        <translation>選擇其他應用</translation>
+        <translation>選擇其他應用程序</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="489"/>
         <source>Please Select App</source>
-        <translation>選擇應用</translation>
+        <translation>請選擇應用程序</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="947"/>
         <source>New Txt Files</source>
-        <translation>新建TXT</translation>
+        <translation>新建Txt檔案</translation>
     </message>
 </context>
 <context>
@@ -206,7 +206,7 @@
     <message>
         <location filename="../listview/localwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="20"/>
@@ -221,12 +221,12 @@
     <message>
         <location filename="../listview/localwidget.cpp" line="34"/>
         <source>Wallpaper Local</source>
-        <translation>本地桌面</translation>
+        <translation>桌面本地</translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="43"/>
         <source>Please place the local video on:</source>
-        <translation>請將本地桌面放置在該地址：</translation>
+        <translation>請將本地視頻放在：</translation>
     </message>
 </context>
 <context>
@@ -234,19 +234,19 @@
     <message>
         <location filename="../moresetting.ui" line="14"/>
         <source>Form</source>
-        <translation>視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="22"/>
         <source>When desktop is hidden</source>
-        <translation>當案頭被隱藏</translation>
+        <translation>當案頭隱藏時</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="69"/>
         <location filename="../moresetting.cpp" line="152"/>
         <source>continue playing</source>
-        <translation>繼續播放</translation>
+        <translation>繼續玩</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
@@ -257,22 +257,18 @@
     <message>
         <location filename="../moresetting.ui" line="47"/>
         <source>Video FPS</source>
-        <translation>幀率</translation>
+        <translation>視頻FPS</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="76"/>
         <location filename="../moresetting.cpp" line="160"/>
         <source>default</source>
-        <translation>默認</translation>
+        <translation>違約</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
         <source>Decoder</source>
-        <translation>解碼</translation>
-    </message>
-    <message>
-        <source>auto</source>
-        <translation type="vanished">auto</translation>
+        <translation>解碼器</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="87"/>
@@ -287,12 +283,12 @@
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation type="unfinished"></translation>
+        <translation>VO</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
         <source>Show desktop icon</source>
-        <translation>是否顯示桌面圖示</translation>
+        <translation>顯示桌面圖示</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="215"/>
@@ -320,42 +316,42 @@
     <message>
         <location filename="../moresetting.ui" line="232"/>
         <source>Place on top of the original desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>放置在原始案頭的頂部</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="257"/>
         <source>Desktop transparency </source>
-        <translation type="unfinished"></translation>
+        <translation>案頭透明度</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="264"/>
         <source>xx</source>
-        <translation type="unfinished"></translation>
+        <translation>xx</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="294"/>
         <source>Wallpaper transparency </source>
-        <translation type="unfinished"></translation>
+        <translation>桌面透明度</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="324"/>
         <source>Event penetration</source>
-        <translation type="unfinished"></translation>
+        <translation>事件滲透</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="349"/>
         <source>Spark Desktop font color</source>
-        <translation type="unfinished"></translation>
+        <translation>Spark案頭字體顏色</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="454"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>語言</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="468"/>
         <source>Confirm</source>
-        <translation>確定</translation>
+        <translation>確認</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="475"/>
@@ -365,7 +361,7 @@
     <message>
         <location filename="../moresetting.cpp" line="33"/>
         <source>Advanced Settings</source>
-        <translation>更多設定介面</translation>
+        <translation>高級設定</translation>
     </message>
 </context>
 <context>
@@ -373,78 +369,78 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="27"/>
         <source>Recommend</source>
-        <translation type="unfinished"></translation>
+        <translation>推薦</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="34"/>
         <source>Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>狀態：</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="48"/>
         <source>Try Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>嘗試連接</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="70"/>
         <source>If unable to download, please check if &apos;wget&apos; is installed on the command line.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果無法下載，請檢查命令列上是否安裝了“wget”。</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="82"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>蒐索</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="100"/>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>第頁</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="119"/>
         <location filename="../listview/onlineclient.ui" line="157"/>
         <source>0</source>
-        <translation type="unfinished"></translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="138"/>
         <source>/</source>
-        <translation type="unfinished"></translation>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="170"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="183"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="200"/>
         <source>To</source>
-        <translation type="unfinished"></translation>
+        <translation>致</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="234"/>
         <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
-        <translation type="unfinished"></translation>
+        <translation>如需上傳桌面檔案或任何其他支持方面的幫助，請發送電子郵件至 liuminghang0821@gmail.com 或 523633637@qq.com.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="253"/>
         <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
-        <translation type="unfinished"></translation>
+        <translation>以上內容來源於互聯網。 如果任何內容侵犯了您的權利，請發送電子郵件至 liuminghang0821@gmail.com 或 523633637@qq.com 請求删除。 對於給您帶來的不便，我們深表歉意。</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="286"/>
         <source>Name</source>
-        <translation type="unfinished">名稱</translation>
+        <translation>姓名</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="308"/>
@@ -458,88 +454,88 @@
         <location filename="../listview/onlineclient.ui" line="647"/>
         <location filename="../listview/onlineclient.ui" line="689"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>未知</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="331"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>說明</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="376"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>類別</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="418"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>作者</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="460"/>
         <source>Download Count</source>
-        <translation type="unfinished"></translation>
+        <translation>下載計數</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="502"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>檔名</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="544"/>
         <source>File Size</source>
-        <translation type="unfinished">文件大小</translation>
+        <translation>文件大小</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="586"/>
         <source>Width</source>
-        <translation type="unfinished">寬度</translation>
+        <translation>寬度</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="628"/>
         <source>Height</source>
-        <translation type="unfinished">高度</translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="670"/>
         <source>Wait Download Task</source>
-        <translation type="unfinished"></translation>
+        <translation>等待下載任務</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="849"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下載</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="41"/>
         <source>Spark-Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>Spark Hub</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Downlaod Error!</source>
-        <translation type="unfinished"></translation>
+        <translation>下載錯誤！</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="258"/>
         <source>Download Ing.....</source>
-        <translation type="unfinished"></translation>
+        <translation>下載Ing。。。。。</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="481"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>線上的</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
         <location filename="../listview/onlineclient.cpp" line="487"/>
         <source>Not Online</source>
-        <translation type="unfinished"></translation>
+        <translation>不線上</translation>
     </message>
 </context>
 <context>
@@ -547,17 +543,17 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>視窗</translation>
+        <translation>對話框</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="22"/>
         <source>Timer(second)</source>
-        <translation>時間（秒）</translation>
+        <translation>計时器（秒）</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
-        <translation type="unfinished"></translation>
+        <translation>60</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -571,7 +567,7 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="84"/>
         <source>Ok</source>
-        <translation>確定</translation>
+        <translation>好啊</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="91"/>
@@ -584,12 +580,12 @@
     <message>
         <location filename="../main.cpp" line="160"/>
         <source>fantacy</source>
-        <translation type="unfinished"></translation>
+        <translation>幻想</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.cpp" line="33"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下載</translation>
     </message>
 </context>
 <context>
@@ -607,7 +603,7 @@
     <message>
         <location filename="../wallpaper.cpp" line="444"/>
         <source>Manual</source>
-        <translation>手動</translation>
+        <translation>手册</translation>
     </message>
 </context>
 <context>
@@ -615,7 +611,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="14"/>
         <source>Form</source>
-        <translation>視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="34"/>
@@ -630,7 +626,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="53"/>
         <source>Set Wallpaper 2</source>
-        <translation type="unfinished"></translation>
+        <translation>設定桌面2</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="60"/>
@@ -641,22 +637,22 @@
     <message>
         <location filename="../listview/historywidget.ui" line="67"/>
         <source>Import</source>
-        <translation>導入</translation>
+        <translation>進口</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="88"/>
         <source>Playlist</source>
-        <translation>迴圈播放清單</translation>
+        <translation>播放清單</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="100"/>
         <source>Add Playlist</source>
-        <translation>加入迴圈播放清單</translation>
+        <translation>添加播放清單</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="114"/>
         <source>Loop play</source>
-        <translation>是否迴圈播放</translation>
+        <translation>迴圈播放</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="121"/>
@@ -666,32 +662,32 @@
     <message>
         <location filename="../listview/historywidget.ui" line="212"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>姓名：</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="254"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>路徑：</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="290"/>
         <source>Thumbnail Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>縮略圖路徑：</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="345"/>
         <source>Reload images</source>
-        <translation type="unfinished"></translation>
+        <translation>重新加載影像</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="352"/>
         <source>Select image as thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇影像作為縮略圖</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
-        <translation>歷史桌面</translation>
+        <translation>桌面歷史</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
@@ -702,12 +698,12 @@
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <source>Delete all history imports ?</source>
-        <translation>是否删除所有？</translation>
+        <translation>删除所有歷史導入？</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete all playback ?</source>
-        <translation>删除所有迴圈播放清單？</translation>
+        <translation>删除所有播放？</translation>
     </message>
 </context>
 <context>
@@ -715,18 +711,18 @@
     <message>
         <location filename="../settingwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>主表單</translation>
+        <translation>主視窗</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="24"/>
         <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
-        <translation>選擇檔案</translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="145"/>
         <source>Screen 2 independent playback</source>
-        <translation type="unfinished"></translation>
+        <translation>荧幕2獨立播放</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="154"/>
@@ -753,22 +749,22 @@
     <message>
         <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
-        <translation>設定新桌面</translation>
+        <translation>設定新</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="265"/>
         <source>Set New 2</source>
-        <translation type="unfinished"></translation>
+        <translation>設定新2</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="284"/>
         <source>Hide</source>
-        <translation>隱藏視窗</translation>
+        <translation>隱藏</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="299"/>
         <source>Model</source>
-        <translation>模式</translation>
+        <translation>模型</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="307"/>
@@ -784,44 +780,44 @@
         <location filename="../settingwindow.ui" line="317"/>
         <location filename="../settingwindow.cpp" line="703"/>
         <source>Manual</source>
-        <translation>手動</translation>
+        <translation>手册</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
-        <translation>開機自啟動</translation>
+        <translation>添加到啟動</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
-        <translation>視頻比例</translation>
+        <translation>視頻寬高比</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
         <location filename="../settingwindow.cpp" line="878"/>
         <source>default</source>
-        <translation>默認</translation>
+        <translation>違約</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
         <location filename="../settingwindow.cpp" line="890"/>
         <source>custom</source>
-        <translation>自定義</translation>
+        <translation>習俗</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
-        <translation>執行比例</translation>
+        <translation>應用規模</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
-        <translation>橫向偏移</translation>
+        <translation>十、</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="430"/>
         <source>Y</source>
-        <translation>縱向偏移</translation>
+        <translation>Y</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="444"/>
@@ -831,68 +827,68 @@
     <message>
         <location filename="../settingwindow.ui" line="458"/>
         <source>Height</source>
-        <translation>高度</translation>
+        <translation>身高</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
-        <translation>執行自定義尺寸</translation>
+        <translation>應用自定義尺寸</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
-        <translation>githubWeb</translation>
+        <translation>github網站</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
-        <translation>new(gitee)</translation>
+        <translation>新（gitee）</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
-        <translation>new(github)</translation>
+        <translation>新建（github）</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
-        <translation>報告bug</translation>
+        <translation>reprotBug</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="535"/>
         <source>Spark-Hub(Test)</source>
-        <translation type="unfinished"></translation>
+        <translation>火花輪轂（測試）</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="542"/>
         <source>Download Wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>下載桌面</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="553"/>
         <source>Advanced Settings</source>
-        <translation>更多設定介面</translation>
+        <translation>高級設定</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="560"/>
         <source>Wallpaper Local</source>
-        <translation>本地桌面</translation>
+        <translation>桌面本地</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="567"/>
         <location filename="../settingwindow.cpp" line="124"/>
         <source>Wallpaper History</source>
-        <translation>歷史桌面</translation>
+        <translation>桌面歷史</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="574"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation>Wallpaper Engine-plugin</translation>
+        <translation>桌面引擎挿件</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="91"/>
         <source>Exit</source>
-        <translation>退出</translation>
+        <translation>出口</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="112"/>
@@ -902,22 +898,22 @@
     <message>
         <location filename="../settingwindow.cpp" line="128"/>
         <source>Main View</source>
-        <translation>主表單</translation>
+        <translation>主視圖</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="145"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>幫助</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="153"/>
         <source>github</source>
-        <translation type="unfinished"></translation>
+        <translation>github</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="170"/>
         <source>Double click to open the configuration interface</source>
-        <translation>按兩下打開介面</translation>
+        <translation>按兩下打開配寘介面</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="223"/>
@@ -936,12 +932,12 @@
     <message>
         <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
-        <translation>該檔案不存在，是否删除它</translation>
+        <translation>檔案不存在。 您想删除它嗎</translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
-        <translation>是否删除所有？</translation>
+        <translation>删除所有歷史導入？</translation>
     </message>
 </context>
 <context>
@@ -949,7 +945,7 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="14"/>
         <source>Form</source>
-        <translation>視窗</translation>
+        <translation>表格</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
@@ -959,24 +955,24 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
         <source>Apply</source>
-        <translation>執行</translation>
+        <translation>申請</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
-        <translation>你需要在steam中安裝wallpaper engine，否則就沒用了。 如果你在Linux下安裝它，你不能打開它，但是你可以遍歷視頻</translation>
+        <translation>您必須從Steam提供桌面引擎的路徑。 它在Linux上不起作用，但存在所需的功能</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Not containing the word steam!</source>
-        <translation type="unfinished"></translation>
+        <translation>不包含“蒸汽”這個詞！</translation>
     </message>
 </context>
 </TS>

@@ -7,7 +7,7 @@
         <location filename="../application.cpp" line="152"/>
         <location filename="../application.cpp" line="153"/>
         <source>fantascene-dynamic-wallpaper</source>
-        <translation>fantacy</translation>
+        <translation>Fondo de pantalla dinámico de fantacene</translation>
     </message>
 </context>
 <context>
@@ -15,19 +15,7 @@
     <message>
         <location filename="../desktop.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
-    </message>
-    <message>
-        <source>New folder</source>
-        <translation type="vanished">Nueva carpeta</translation>
-    </message>
-    <message>
-        <source>New Txt Files</source>
-        <translation type="vanished">Nuevos archivos Txt</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="vanished">Actualizar</translation>
+        <translation>Formulario</translation>
     </message>
 </context>
 <context>
@@ -35,12 +23,12 @@
     <message>
         <location filename="../download/downloadmanager.cpp" line="48"/>
         <source>Failed to start wget.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falló el arranque de wget.</translation>
     </message>
     <message>
         <location filename="../download/downloadmanager.cpp" line="53"/>
         <source>Download failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>La descarga falló.</translation>
     </message>
 </context>
 <context>
@@ -48,17 +36,17 @@
     <message>
         <location filename="../download/downloadwidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.ui" line="25"/>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Carga</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.cpp" line="11"/>
         <source>The download address comes from the network and may not be usable</source>
-        <translation type="unfinished"></translation>
+        <translation>La Dirección de descarga proviene de la red y puede que no esté disponible</translation>
     </message>
 </context>
 <context>
@@ -66,17 +54,17 @@
     <message>
         <location filename="../help/helpdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../help/helpdialog.ui" line="53"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Cierre</translation>
     </message>
     <message>
         <location filename="../help/helpdialog.cpp" line="9"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayudar</translation>
     </message>
 </context>
 <context>
@@ -115,12 +103,12 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="296"/>
         <source>New TXT</source>
-        <translation>Nuevos archivos Txt</translation>
+        <translation>Nuevo txt</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="215"/>
         <source>Sort Order</source>
-        <translation>Clasificación de iconos</translation>
+        <translation>Orden de clasificación</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="219"/>
@@ -135,7 +123,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Change Date</source>
-        <translation>Última modificación</translation>
+        <translation>Cambiar la fecha</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="231"/>
@@ -160,7 +148,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Medium</source>
-        <translation>Moderado</translation>
+        <translation>Medio</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="252"/>
@@ -175,7 +163,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="263"/>
         <source>Cut</source>
-        <translation>Cortar</translation>
+        <translation>Corte</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="268"/>
@@ -185,7 +173,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="273"/>
         <source>Rename</source>
-        <translation>Renombrar</translation>
+        <translation>Cambiar el nombre</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="278"/>
@@ -195,7 +183,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="283"/>
         <source>Set Wallpaper</source>
-        <translation>Configurar fondos de pantalla</translation>
+        <translation>Establecer fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="365"/>
@@ -210,7 +198,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="947"/>
         <source>New Txt Files</source>
-        <translation>Nuevos archivos Txt</translation>
+        <translation>Nuevo archivo txt</translation>
     </message>
 </context>
 <context>
@@ -218,17 +206,17 @@
     <message>
         <location filename="../listview/localwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="20"/>
         <source>Local</source>
-        <translation></translation>
+        <translation>Local</translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="45"/>
         <source>Play</source>
-        <translation>Ejecutar</translation>
+        <translation>Reproducción</translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="34"/>
@@ -246,7 +234,7 @@
     <message>
         <location filename="../moresetting.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="22"/>
@@ -258,18 +246,18 @@
         <location filename="../moresetting.cpp" line="69"/>
         <location filename="../moresetting.cpp" line="152"/>
         <source>continue playing</source>
-        <translation>Continuar jugando</translation>
+        <translation>Sigue jugando</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
         <location filename="../moresetting.cpp" line="71"/>
         <source>pause</source>
-        <translation>Pausa</translation>
+        <translation>Suspensión</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="47"/>
         <source>Video FPS</source>
-        <translation>FPS Video</translation>
+        <translation>Video FPS</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="76"/>
@@ -279,46 +267,14 @@
         <translation>por defecto</translation>
     </message>
     <message>
-        <source>10</source>
-        <translation type="vanished">10</translation>
-    </message>
-    <message>
-        <source>15</source>
-        <translation type="vanished">15</translation>
-    </message>
-    <message>
-        <source>20</source>
-        <translation type="vanished">20</translation>
-    </message>
-    <message>
-        <source>24</source>
-        <translation type="vanished">24</translation>
-    </message>
-    <message>
-        <source>25</source>
-        <translation type="vanished">25</translation>
-    </message>
-    <message>
-        <source>30</source>
-        <translation type="vanished">30</translation>
-    </message>
-    <message>
-        <source>60</source>
-        <translation type="vanished">60</translation>
-    </message>
-    <message>
         <location filename="../moresetting.ui" line="102"/>
         <source>Decoder</source>
-        <translation>Decodificar</translation>
-    </message>
-    <message>
-        <source>none</source>
-        <translation type="vanished">nada</translation>
+        <translation>Decodificador</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation type="unfinished"></translation>
+        <translation>Vo</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
@@ -336,7 +292,7 @@
         <location filename="../moresetting.cpp" line="188"/>
         <location filename="../moresetting.cpp" line="202"/>
         <source>true</source>
-        <translation>Sí</translation>
+        <translation>Realmente</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="220"/>
@@ -346,52 +302,52 @@
         <location filename="../moresetting.cpp" line="114"/>
         <location filename="../moresetting.cpp" line="122"/>
         <source>false</source>
-        <translation>Falso</translation>
+        <translation>Incorrecto</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="232"/>
         <source>Place on top of the original desktop</source>
-        <translation type="unfinished"></translation>
+        <translation>Colocar en la parte superior del escritorio original</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="257"/>
         <source>Desktop transparency </source>
-        <translation type="unfinished"></translation>
+        <translation>Transparencia de escritorio</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="264"/>
         <source>xx</source>
-        <translation type="unfinished"></translation>
+        <translation>XX</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="294"/>
         <source>Wallpaper transparency </source>
-        <translation type="unfinished"></translation>
+        <translation>Transparencia del Fondo de pantalla</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="324"/>
         <source>Event penetration</source>
-        <translation type="unfinished"></translation>
+        <translation>Infiltración de eventos</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="349"/>
         <source>Spark Desktop font color</source>
-        <translation type="unfinished"></translation>
+        <translation>Color de la fuente del escritorio spark</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="454"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Idiomas</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="468"/>
         <source>Confirm</source>
-        <translation>Confirmar</translation>
+        <translation>Confirmación</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="475"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>Cancelación</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="87"/>
@@ -405,26 +361,9 @@
         <translation>Otros</translation>
     </message>
     <message>
-        <source>auto</source>
-        <translatorcomment>Automático</translatorcomment>
-        <translation type="vanished">Automático</translation>
-    </message>
-    <message>
-        <source>gpu</source>
-        <translation type="vanished">gpu</translation>
-    </message>
-    <message>
-        <source>vaapi</source>
-        <translation type="vanished">vaapi</translation>
-    </message>
-    <message>
-        <source>vdpau</source>
-        <translation type="vanished">vdpau</translation>
-    </message>
-    <message>
         <location filename="../moresetting.cpp" line="33"/>
         <source>Advanced Settings</source>
-        <translation>Más ajustes</translation>
+        <translation>Configuración avanzada</translation>
     </message>
 </context>
 <context>
@@ -432,78 +371,78 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="27"/>
         <source>Recommend</source>
-        <translation type="unfinished"></translation>
+        <translation>Recomendación</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="34"/>
         <source>Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Estado:</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="48"/>
         <source>Try Connected</source>
-        <translation type="unfinished"></translation>
+        <translation>Intenta conectarse</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="70"/>
         <source>If unable to download, please check if &apos;wget&apos; is installed on the command line.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si no se puede descargar, verifique si &quot;wget&quot; está instalado en la línea de órdenes.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="82"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Buscar</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="100"/>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Página</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="119"/>
         <location filename="../listview/onlineclient.ui" line="157"/>
         <source>0</source>
-        <translation type="unfinished">0</translation>
+        <translation>0</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="138"/>
         <source>/</source>
-        <translation type="unfinished"></translation>
+        <translation>/.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="170"/>
         <source>&lt;</source>
-        <translation type="unfinished"></translation>
+        <translation>(...).</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="183"/>
         <source>&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="200"/>
         <source>To</source>
-        <translation type="unfinished"></translation>
+        <translation>A</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="234"/>
         <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
-        <translation type="unfinished"></translation>
+        <translation>Para subir un archivo de fondo de pantalla o cualquier otra ayuda de soporte, envíe un correo electrónico a liuminghang0821@gmail.com O 523633637@qq.com.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="253"/>
         <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo anterior proviene de Internet. Si algún contenido viola sus derechos, envíe un correo electrónico a liuminghang0821@gmail.com O 523633637@qq.com Solicitud de eliminación. Pedimos disculpas por las molestias que le han causado.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="286"/>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="308"/>
@@ -517,88 +456,88 @@
         <location filename="../listview/onlineclient.ui" line="647"/>
         <location filename="../listview/onlineclient.ui" line="689"/>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Desconocido</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="331"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Explicación</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="376"/>
         <source>Category</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoría</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="418"/>
         <source>Author</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="460"/>
         <source>Download Count</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuenta de descargas</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="502"/>
         <source>File Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre del archivo</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="544"/>
         <source>File Size</source>
-        <translation type="unfinished">Tamaño del archivo</translation>
+        <translation>Tamaño del archivo</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="586"/>
         <source>Width</source>
-        <translation type="unfinished">Ancho</translation>
+        <translation>Ancho</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="628"/>
         <source>Height</source>
-        <translation type="unfinished">Altura</translation>
+        <translation>Altura</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="670"/>
         <source>Wait Download Task</source>
-        <translation type="unfinished"></translation>
+        <translation>Esperando la tarea de descarga</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="849"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargar</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="41"/>
         <source>Spark-Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>SPARK Hub</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Downlaod Error!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡Error de descarga!</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="258"/>
         <source>Download Ing.....</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargar ing....</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="481"/>
         <source>Online</source>
-        <translation type="unfinished"></translation>
+        <translation>Online</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
         <location filename="../listview/onlineclient.cpp" line="487"/>
         <source>Not Online</source>
-        <translation type="unfinished"></translation>
+        <translation>No en línea</translation>
     </message>
 </context>
 <context>
@@ -606,33 +545,17 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation></translation>
+        <translation>Diálogo</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="22"/>
         <source>Timer(second)</source>
-        <translation>Tiempo (segundos)</translation>
-    </message>
-    <message>
-        <source>600</source>
-        <translation type="vanished">600</translation>
+        <translation>Cronómetro (segundos)</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
         <translation>60</translation>
-    </message>
-    <message>
-        <source>300</source>
-        <translation type="vanished">300</translation>
-    </message>
-    <message>
-        <source>1800</source>
-        <translation type="vanished">1800</translation>
-    </message>
-    <message>
-        <source>3600</source>
-        <translation type="vanished">3600</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -646,7 +569,7 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="84"/>
         <source>Ok</source>
-        <translation>Determinar</translation>
+        <translation>Está bien.</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="91"/>
@@ -660,12 +583,12 @@
     <message>
         <location filename="../main.cpp" line="160"/>
         <source>fantacy</source>
-        <translation></translation>
+        <translation>Fantasía</translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.cpp" line="33"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Descargar</translation>
     </message>
 </context>
 <context>
@@ -678,7 +601,7 @@
     <message>
         <location filename="../wallpaper.cpp" line="439"/>
         <source>Extend</source>
-        <translation>Extensión</translation>
+        <translation>Expansión</translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="444"/>
@@ -691,7 +614,7 @@
     <message>
         <location filename="../listview/historywidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="34"/>
@@ -701,18 +624,18 @@
     <message>
         <location filename="../listview/historywidget.ui" line="46"/>
         <source>Set Wallpaper</source>
-        <translation>Configurar fondos de pantalla</translation>
+        <translation>Establecer fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="53"/>
         <source>Set Wallpaper 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Configuración del Fondo de pantalla 2</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="60"/>
         <location filename="../listview/historywidget.ui" line="107"/>
         <source>Delete</source>
-        <translation>Borrar</translation>
+        <translation>Eliminar</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="67"/>
@@ -728,63 +651,63 @@
     <message>
         <location filename="../listview/historywidget.ui" line="100"/>
         <source>Add Playlist</source>
-        <translation>Añadir lista de reproducción de bucle</translation>
+        <translation>Añadir lista de reproducción</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="114"/>
         <source>Loop play</source>
-        <translation>Reproducir o no</translation>
+        <translation>Reproducción circular</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="121"/>
         <source>Loop playback settings</source>
-        <translation>Configuración del bucle</translation>
+        <translation>Configuración de reproducción circular</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="212"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre:</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="254"/>
         <source>Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta:</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="290"/>
         <source>Thumbnail Path:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruta de la miniatura:</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="345"/>
         <source>Reload images</source>
-        <translation type="unfinished"></translation>
+        <translation>Recargar la imagen</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="352"/>
         <source>Select image as thumbnail</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleccionar imagen como miniaturas</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
-        <translation>Historia del fondo de pantalla</translation>
+        <translation>Historia del papel pintado</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete!!</source>
-        <translation>Borrar!!</translation>
+        <translation>¡Eliminar!!!</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <source>Delete all history imports ?</source>
-        <translation>¿Desea borrar todas las importaciones históricas?</translation>
+        <translation>¿Eliminar todas las importaciones históricas?</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete all playback ?</source>
-        <translation>Eliminar la lista de reproducción del bucle?</translation>
+        <translation>¿Eliminar todas las reproducciones?</translation>
     </message>
 </context>
 <context>
@@ -792,13 +715,13 @@
     <message>
         <location filename="../settingwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>MainWindow</translation>
+        <translation>Ventana principal</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="24"/>
         <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>Documentos</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="317"/>
@@ -815,7 +738,7 @@
     <message>
         <location filename="../settingwindow.ui" line="145"/>
         <source>Screen 2 independent playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Pantalla 2 reproducción independiente</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="154"/>
@@ -826,13 +749,13 @@
         <location filename="../settingwindow.ui" line="214"/>
         <location filename="../settingwindow.cpp" line="105"/>
         <source>Play</source>
-        <translation>Ejecutar</translation>
+        <translation>Reproducción</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
         <location filename="../settingwindow.cpp" line="117"/>
         <source>Pause</source>
-        <translation>Pausa</translation>
+        <translation>Suspensión</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="252"/>
@@ -842,7 +765,7 @@
     <message>
         <location filename="../settingwindow.ui" line="265"/>
         <source>Set New 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Establecer nuevo 2</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="284"/>
@@ -862,17 +785,17 @@
     <message>
         <location filename="../settingwindow.ui" line="312"/>
         <source>Extend</source>
-        <translation>Extensión</translation>
+        <translation>Expansión</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="325"/>
         <source>Add to startup</source>
-        <translation>Iniciar automáticamente</translation>
+        <translation>Añadir al inicio</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="336"/>
         <source>Video aspect ratio</source>
-        <translation>Relación de vídeo</translation>
+        <translation>Relación de aspecto del vídeo</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
@@ -884,27 +807,7 @@
     <message>
         <location filename="../settingwindow.ui" line="542"/>
         <source>Download Wallpaper</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>4:3</source>
-        <translation type="vanished">4:3</translation>
-    </message>
-    <message>
-        <source>16:9</source>
-        <translation type="vanished">16:9</translation>
-    </message>
-    <message>
-        <source>16:10</source>
-        <translation type="vanished">16:10</translation>
-    </message>
-    <message>
-        <source>1.85:1</source>
-        <translation type="vanished">1.85.1</translation>
-    </message>
-    <message>
-        <source>2.35:1</source>
-        <translation type="vanished">2:35:1</translation>
+        <translation>Descargar fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
@@ -916,12 +819,12 @@
     <message>
         <location filename="../settingwindow.ui" line="535"/>
         <source>Spark-Hub(Test)</source>
-        <translation type="unfinished"></translation>
+        <translation>Cubo de chispas (prueba)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="553"/>
         <source>Advanced Settings</source>
-        <translation>Ajustes avanzados</translation>
+        <translation>Configuración avanzada</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="560"/>
@@ -932,17 +835,17 @@
         <location filename="../settingwindow.ui" line="567"/>
         <location filename="../settingwindow.cpp" line="124"/>
         <source>Wallpaper History</source>
-        <translation>Historia del fondo de pantalla</translation>
+        <translation>Historia del papel pintado</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="574"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation>Complemento-Wallpaper Engine</translation>
+        <translation>Plug - in del motor de fondos de pantalla</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="416"/>
         <source>X</source>
-        <translation>X</translation>
+        <translation>Diez,</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="430"/>
@@ -952,26 +855,22 @@
     <message>
         <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
-        <translation>githubWeb</translation>
+        <translation>Sitio web github</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
-        <translation>nuevo(gitee)</translation>
+        <translation>Nuevo (gitee)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
-        <translation>nuevo(github)</translation>
-    </message>
-    <message>
-        <source>1.33</source>
-        <translation type="vanished">1.33</translation>
+        <translation>Nuevo (github)</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>
         <source>Apply scale</source>
-        <translation>Establecer escala</translation>
+        <translation>Escala de aplicación</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="444"/>
@@ -986,17 +885,17 @@
     <message>
         <location filename="../settingwindow.ui" line="472"/>
         <source>Apply Custom Dimensions</source>
-        <translation>Aplicar dimensiones personalizadas</translation>
+        <translation>Aplicar tamaño personalizado</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
-        <translation>reprotBug</translation>
+        <translation>Repretbug</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="91"/>
         <source>Exit</source>
-        <translation>Salir</translation>
+        <translation>Exportaciones</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="112"/>
@@ -1006,17 +905,17 @@
     <message>
         <location filename="../settingwindow.cpp" line="128"/>
         <source>Main View</source>
-        <translation>Formulario principal</translation>
+        <translation>Vista principal</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="145"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayudar</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="153"/>
         <source>github</source>
-        <translation type="unfinished"></translation>
+        <translation>Github</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="170"/>
@@ -1037,17 +936,17 @@
         <location filename="../listview/view.cpp" line="244"/>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
-        <translation>Borrar!!</translation>
+        <translation>¡Eliminar!!!</translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
-        <translation>El archivo no existe.¿Quieres borrarlo?</translation>
+        <translation>El archivo no existe. ¿¿ quiere eliminarlo?</translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
-        <translation>¿Desea borrar todo el histórial?</translation>
+        <translation>¿Eliminar todas las importaciones históricas?</translation>
     </message>
 </context>
 <context>
@@ -1055,34 +954,34 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select Path</source>
-        <translation>Seleccione la ruta</translation>
+        <translation>Elegir el camino</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
         <source>Apply</source>
-        <translation>Aplicar</translation>
+        <translation>Solicitud</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
-        <translation>Tienes que instalar wallpaper engine en linux, de lo contrario no funcionará.Si lo instala bajo linux, no puede abrirlo, pero puede atravesar el vídeo</translation>
+        <translation>Debe proporcionar el camino del motor de fondos de pantalla desde steam. No funciona en linux, pero hay funciones necesarias</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Not containing the word steam!</source>
-        <translation type="unfinished"></translation>
+        <translation>¡¡ no contiene la palabra &quot;vapor&quot;!</translation>
     </message>
 </context>
 </TS>

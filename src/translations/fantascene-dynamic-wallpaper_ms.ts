@@ -266,57 +266,9 @@
         <translation>default</translation>
     </message>
     <message>
-        <source>10</source>
-        <translation type="vanished">10</translation>
-    </message>
-    <message>
-        <source>15</source>
-        <translation type="vanished">15</translation>
-    </message>
-    <message>
-        <source>20</source>
-        <translation type="vanished">20</translation>
-    </message>
-    <message>
-        <source>24</source>
-        <translation type="vanished">24</translation>
-    </message>
-    <message>
-        <source>25</source>
-        <translation type="vanished">25</translation>
-    </message>
-    <message>
-        <source>30</source>
-        <translation type="vanished">30</translation>
-    </message>
-    <message>
-        <source>60</source>
-        <translation type="vanished">60</translation>
-    </message>
-    <message>
         <location filename="../moresetting.ui" line="102"/>
         <source>Decoder</source>
         <translation>Pengkod</translation>
-    </message>
-    <message>
-        <source>auto</source>
-        <translation type="vanished">Auto</translation>
-    </message>
-    <message>
-        <source>gpu</source>
-        <translation type="vanished">gpu</translation>
-    </message>
-    <message>
-        <source>vaapi</source>
-        <translation type="vanished">vaapi</translation>
-    </message>
-    <message>
-        <source>vdpau</source>
-        <translation type="vanished">vdpau</translation>
-    </message>
-    <message>
-        <source>none</source>
-        <translation type="vanished">tiada</translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="87"/>
@@ -599,25 +551,9 @@
         <translation>Pemasa( kedua)</translation>
     </message>
     <message>
-        <source>600</source>
-        <translation type="vanished">600</translation>
-    </message>
-    <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
         <translation>60</translation>
-    </message>
-    <message>
-        <source>300</source>
-        <translation type="vanished">300</translation>
-    </message>
-    <message>
-        <source>1800</source>
-        <translation type="vanished">1800</translation>
-    </message>
-    <message>
-        <source>3600</source>
-        <translation type="vanished">3600</translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -784,10 +720,6 @@
         <translation>Fail</translation>
     </message>
     <message>
-        <source>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</source>
-        <translation type="vanished">/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</translation>
-    </message>
-    <message>
         <location filename="../settingwindow.ui" line="145"/>
         <source>Screen 2 independent playback</source>
         <translation type="unfinished"></translation>
@@ -872,34 +804,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>4:3</source>
-        <translation type="vanished">0.16875</translation>
-    </message>
-    <message>
-        <source>16:9</source>
-        <translation type="vanished">0.672916666666667</translation>
-    </message>
-    <message>
-        <source>16:10</source>
-        <translation type="vanished">0.673611111111111</translation>
-    </message>
-    <message>
-        <source>1.85:1</source>
-        <translation type="vanished">1. 85: 1</translation>
-    </message>
-    <message>
-        <source>2.35:1</source>
-        <translation type="vanished">2.35:1</translation>
-    </message>
-    <message>
         <location filename="../settingwindow.ui" line="380"/>
         <location filename="../settingwindow.cpp" line="890"/>
         <source>custom</source>
         <translation>suai</translation>
-    </message>
-    <message>
-        <source>1.33</source>
-        <translation type="vanished">1. 33</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="397"/>
