@@ -85,6 +85,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
 
 
     m_traymenu = new QMenu();
+    m_traymenu->setWindowFlags(m_traymenu->windowFlags() | Qt::FramelessWindowHint);
     m_traymenu->setAttribute(Qt::WA_TranslucentBackground);
 
     QAction *exitAction = new QAction(m_traymenu);
