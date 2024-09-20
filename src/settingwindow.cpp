@@ -965,6 +965,18 @@ void settingWindow::changeEvent(QEvent *event)
     QWidget::changeEvent(event);
 }
 
+void settingWindow::showEvent(QShowEvent *event)
+{
+    if(m_parentMainWindow)
+    {
+        m_parentMainWindow->setFixedSize(QSize(801, 600));
+        repaint();
+        m_parentMainWindow->setFixedSize(QSize(800, 600));
+    }
+
+    QWidget::showEvent(event);
+}
+
 void settingWindow::slotMoreSettingSave()
 {
     on_checkBox_stateChanged(dApp->m_moreData.isAuto);
