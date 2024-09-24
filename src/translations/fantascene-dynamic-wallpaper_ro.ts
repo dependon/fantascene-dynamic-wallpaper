@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE TS>
-<TS language="ro_RO" version="2.1">
+<TS version="2.1" language="ro_RO">
     <context>
         <name>Application</name>
         <message>
@@ -23,12 +23,12 @@
         <message>
             <location line="48" filename="../download/downloadmanager.cpp"/>
             <source>Failed to start wget.</source>
-            <translation type="unfinished"/>
+            <translation>Nu a reușit să pornească wget.</translation>
         </message>
         <message>
             <location line="53" filename="../download/downloadmanager.cpp"/>
             <source>Download failed.</source>
-            <translation type="unfinished"/>
+            <translation>Descărcare eșuată.</translation>
         </message>
     </context>
     <context>
@@ -41,12 +41,12 @@
         <message>
             <location line="25" filename="../download/downloadwidget.ui"/>
             <source>Load</source>
-            <translation type="unfinished"/>
+            <translation>Sarcină</translation>
         </message>
         <message>
             <location line="11" filename="../download/downloadwidget.cpp"/>
             <source>The download address comes from the network and may not be usable</source>
-            <translation type="unfinished"/>
+            <translation>Adresa de descărcare provine din rețea și este posibil să nu fie utilizabilă</translation>
         </message>
     </context>
     <context>
@@ -59,12 +59,12 @@
         <message>
             <location line="53" filename="../help/helpdialog.ui"/>
             <source>Close</source>
-            <translation type="unfinished"/>
+            <translation>Închide</translation>
         </message>
         <message>
             <location line="9" filename="../help/helpdialog.cpp"/>
             <source>Help</source>
-            <translation type="unfinished"/>
+            <translation>Ajutor</translation>
         </message>
     </context>
     <context>
@@ -283,7 +283,7 @@
         <message>
             <location line="157" filename="../moresetting.ui"/>
             <source>VO</source>
-            <translation type="unfinished"/>
+            <translation>O</translation>
         </message>
         <message>
             <location line="207" filename="../moresetting.ui"/>
@@ -316,37 +316,37 @@
         <message>
             <location line="232" filename="../moresetting.ui"/>
             <source>Place on top of the original desktop</source>
-            <translation type="unfinished"/>
+            <translation>Plasează deasupra biroului original</translation>
         </message>
         <message>
             <location line="257" filename="../moresetting.ui"/>
             <source>Desktop transparency </source>
-            <translation type="unfinished"/>
+            <translation>Transparență biroului</translation>
         </message>
         <message>
             <location line="264" filename="../moresetting.ui"/>
             <source>xx</source>
-            <translation type="unfinished"/>
+            <translation>xx</translation>
         </message>
         <message>
             <location line="294" filename="../moresetting.ui"/>
             <source>Wallpaper transparency </source>
-            <translation type="unfinished"/>
+            <translation>Transparența imaginii de fundal</translation>
         </message>
         <message>
             <location line="324" filename="../moresetting.ui"/>
             <source>Event penetration</source>
-            <translation type="unfinished"/>
+            <translation>Penetrarea evenimentelor</translation>
         </message>
         <message>
             <location line="349" filename="../moresetting.ui"/>
             <source>Spark Desktop font color</source>
-            <translation type="unfinished"/>
+            <translation>Culoarea fontului Spark Desktop</translation>
         </message>
         <message>
             <location line="454" filename="../moresetting.ui"/>
             <source>Language</source>
-            <translation type="unfinished"/>
+            <translation>Limba</translation>
         </message>
         <message>
             <location line="468" filename="../moresetting.ui"/>
@@ -374,32 +374,32 @@
         <message>
             <location line="27" filename="../listview/onlineclient.ui"/>
             <source>Recommend</source>
-            <translation type="unfinished"/>
+            <translation>Recomandă</translation>
         </message>
         <message>
             <location line="34" filename="../listview/onlineclient.ui"/>
             <source>Status:</source>
-            <translation type="unfinished"/>
+            <translation>Stare:</translation>
         </message>
         <message>
             <location line="48" filename="../listview/onlineclient.ui"/>
             <source>Try Connected</source>
-            <translation type="unfinished"/>
+            <translation>Încearcă conectat</translation>
         </message>
         <message>
             <location line="70" filename="../listview/onlineclient.ui"/>
             <source>If unable to download, please check if 'wget' is installed on the command line.</source>
-            <translation type="unfinished"/>
+            <translation>Dacă nu se poate descărca, verificați dacă 'wget' este instalat pe linia de comandă.</translation>
         </message>
         <message>
             <location line="82" filename="../listview/onlineclient.ui"/>
             <source>Search</source>
-            <translation type="unfinished"/>
+            <translation>Caută</translation>
         </message>
         <message>
             <location line="100" filename="../listview/onlineclient.ui"/>
             <source>Page</source>
-            <translation type="unfinished"/>
+            <translation>Pagină</translation>
         </message>
         <message>
             <location line="119" filename="../listview/onlineclient.ui"/>
@@ -410,32 +410,32 @@
         <message>
             <location line="138" filename="../listview/onlineclient.ui"/>
             <source>/</source>
-            <translation type="unfinished"/>
+            <translation>/</translation>
         </message>
         <message>
             <location line="170" filename="../listview/onlineclient.ui"/>
             <source>&lt;</source>
-            <translation type="unfinished"/>
+            <translation>&lt;</translation>
         </message>
         <message>
             <location line="183" filename="../listview/onlineclient.ui"/>
             <source>></source>
-            <translation type="unfinished"/>
+            <translation>></translation>
         </message>
         <message>
             <location line="200" filename="../listview/onlineclient.ui"/>
             <source>To</source>
-            <translation type="unfinished"/>
+            <translation>Pentru</translation>
         </message>
         <message>
             <location line="234" filename="../listview/onlineclient.ui"/>
             <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
-            <translation type="unfinished"/>
+            <translation>Pentru asistență cu încărcarea fișierelor de fundal sau orice alt suport, vă rugăm să trimiteți un e-mail la liuminghang0821@gmail.com sau 523633637@qq.com.</translation>
         </message>
         <message>
             <location line="253" filename="../listview/onlineclient.ui"/>
             <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
-            <translation type="unfinished"/>
+            <translation>Conținutul de mai sus provine de pe internet. Dacă orice conținut încalcă drepturile dumneavoastră, vă rugăm să trimiteți un e-mail la liuminghang0821@gmail.com sau 523633637@qq.com pentru a solicita eliminarea. Ne cerem scuze pentru orice neplăcere.</translation>
         </message>
         <message>
             <location line="286" filename="../listview/onlineclient.ui"/>
@@ -454,32 +454,32 @@
             <location line="647" filename="../listview/onlineclient.ui"/>
             <location line="689" filename="../listview/onlineclient.ui"/>
             <source>Unknown</source>
-            <translation type="unfinished"/>
+            <translation>Necunoscut</translation>
         </message>
         <message>
             <location line="331" filename="../listview/onlineclient.ui"/>
             <source>Description</source>
-            <translation type="unfinished"/>
+            <translation>Descriere</translation>
         </message>
         <message>
             <location line="376" filename="../listview/onlineclient.ui"/>
             <source>Category</source>
-            <translation type="unfinished"/>
+            <translation>Categorie</translation>
         </message>
         <message>
             <location line="418" filename="../listview/onlineclient.ui"/>
             <source>Author</source>
-            <translation type="unfinished"/>
+            <translation>Autor</translation>
         </message>
         <message>
             <location line="460" filename="../listview/onlineclient.ui"/>
             <source>Download Count</source>
-            <translation type="unfinished"/>
+            <translation>Număr de descărcări</translation>
         </message>
         <message>
             <location line="502" filename="../listview/onlineclient.ui"/>
             <source>File Name</source>
-            <translation type="unfinished"/>
+            <translation>Nume fișier</translation>
         </message>
         <message>
             <location line="544" filename="../listview/onlineclient.ui"/>
@@ -499,43 +499,43 @@
         <message>
             <location line="670" filename="../listview/onlineclient.ui"/>
             <source>Wait Download Task</source>
-            <translation type="unfinished"/>
+            <translation>Așteaptă activitatea de descărcare</translation>
         </message>
         <message>
             <location line="849" filename="../listview/onlineclient.ui"/>
             <source>Download</source>
-            <translation type="unfinished"/>
+            <translation>Descărcare</translation>
         </message>
         <message>
             <location line="41" filename="../listview/onlineclient.cpp"/>
             <source>Spark-Hub</source>
-            <translation type="unfinished"/>
+            <translation>Spark- Hub</translation>
         </message>
         <message>
             <location line="97" filename="../listview/onlineclient.cpp"/>
             <source>Error</source>
-            <translation type="unfinished"/>
+            <translation>Eroare</translation>
         </message>
         <message>
             <location line="97" filename="../listview/onlineclient.cpp"/>
             <source>Downlaod Error!</source>
-            <translation type="unfinished"/>
+            <translation>Eroare de descărcare!</translation>
         </message>
         <message>
             <location line="258" filename="../listview/onlineclient.cpp"/>
             <source>Download Ing.....</source>
-            <translation type="unfinished"/>
+            <translation>Download Ing.....</translation>
         </message>
         <message>
             <location line="481" filename="../listview/onlineclient.cpp"/>
             <source>Online</source>
-            <translation type="unfinished"/>
+            <translation>Online</translation>
         </message>
         <message>
             <location line="41" filename="../listview/onlineclient.ui"/>
             <location line="487" filename="../listview/onlineclient.cpp"/>
             <source>Not Online</source>
-            <translation type="unfinished"/>
+            <translation>Nu este online</translation>
         </message>
     </context>
     <context>
@@ -585,7 +585,7 @@
         <message>
             <location line="33" filename="../download/downloadwidget.cpp"/>
             <source>Download</source>
-            <translation type="unfinished"/>
+            <translation>Descărcare</translation>
         </message>
     </context>
     <context>
@@ -626,7 +626,7 @@
         <message>
             <location line="53" filename="../listview/historywidget.ui"/>
             <source>Set Wallpaper 2</source>
-            <translation type="unfinished"/>
+            <translation>Setează imaginea de fundal 2</translation>
         </message>
         <message>
             <location line="60" filename="../listview/historywidget.ui"/>
@@ -662,27 +662,27 @@
         <message>
             <location line="212" filename="../listview/historywidget.ui"/>
             <source>Name:</source>
-            <translation type="unfinished"/>
+            <translation>Nume:</translation>
         </message>
         <message>
             <location line="254" filename="../listview/historywidget.ui"/>
             <source>Path:</source>
-            <translation type="unfinished"/>
+            <translation>Cale:</translation>
         </message>
         <message>
             <location line="290" filename="../listview/historywidget.ui"/>
             <source>Thumbnail Path:</source>
-            <translation type="unfinished"/>
+            <translation>Calea miniaturilor:</translation>
         </message>
         <message>
             <location line="345" filename="../listview/historywidget.ui"/>
             <source>Reload images</source>
-            <translation type="unfinished"/>
+            <translation>Reîncarcă imaginile</translation>
         </message>
         <message>
             <location line="352" filename="../listview/historywidget.ui"/>
             <source>Select image as thumbnail</source>
-            <translation type="unfinished"/>
+            <translation>Selectează imaginea ca miniatură</translation>
         </message>
         <message>
             <location line="19" filename="../listview/historywidget.cpp"/>
@@ -722,7 +722,7 @@
         <message>
             <location line="145" filename="../settingwindow.ui"/>
             <source>Screen 2 independent playback</source>
-            <translation type="unfinished"/>
+            <translation>Redare independentă a ecranului 2</translation>
         </message>
         <message>
             <location line="154" filename="../settingwindow.ui"/>
@@ -754,7 +754,7 @@
         <message>
             <location line="265" filename="../settingwindow.ui"/>
             <source>Set New 2</source>
-            <translation type="unfinished"/>
+            <translation>Setează noul 2</translation>
         </message>
         <message>
             <location line="284" filename="../settingwindow.ui"/>
@@ -801,7 +801,7 @@
         <message>
             <location line="542" filename="../settingwindow.ui"/>
             <source>Download Wallpaper</source>
-            <translation type="unfinished"/>
+            <translation>Descarcă imaginea de fundal</translation>
         </message>
         <message>
             <location line="380" filename="../settingwindow.ui"/>
@@ -862,7 +862,7 @@
         <message>
             <location line="535" filename="../settingwindow.ui"/>
             <source>Spark-Hub(Test)</source>
-            <translation type="unfinished"/>
+            <translation>Spark-Hub( Test)</translation>
         </message>
         <message>
             <location line="553" filename="../settingwindow.ui"/>
@@ -903,7 +903,7 @@
         <message>
             <location line="145" filename="../settingwindow.cpp"/>
             <source>Help</source>
-            <translation type="unfinished"/>
+            <translation>Ajutor</translation>
         </message>
         <message>
             <location line="153" filename="../settingwindow.cpp"/>
@@ -966,13 +966,13 @@
             <location line="165" filename="../listview/wallpaperengineplugin.cpp"/>
             <location line="179" filename="../listview/wallpaperengineplugin.cpp"/>
             <source>Error</source>
-            <translation type="unfinished"/>
+            <translation>Eroare</translation>
         </message>
         <message>
             <location line="165" filename="../listview/wallpaperengineplugin.cpp"/>
             <location line="179" filename="../listview/wallpaperengineplugin.cpp"/>
             <source>Not containing the word steam!</source>
-            <translation type="unfinished"/>
+            <translation>Nu conţine cuvântul abur!</translation>
         </message>
     </context>
 </TS>
