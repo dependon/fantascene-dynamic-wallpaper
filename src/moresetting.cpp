@@ -34,7 +34,8 @@ MoreSetting::MoreSetting(QWidget *parent) :
 
     m_languageMap["en"] = u8"English";
     m_languageMap["zh_CN"] = u8"中文";
-    m_languageMap["zh_TW"] = u8"繁體中文";
+    m_languageMap["zh_TW"] = u8"繁體中文(中国台湾)";
+    m_languageMap["zh_HK"] = u8"繁體中文(中国香港)";
     m_languageMap["es"] = u8"Español";
     m_languageMap["pl"] = u8"Polski";
     m_languageMap["ja"] = u8"日本語";
@@ -54,6 +55,12 @@ MoreSetting::MoreSetting(QWidget *parent) :
     m_languageMap["sk"] = u8"Slovenčina";
     m_languageMap["ro"] = u8"Română";
     m_languageMap["ms"] = u8"Bahasa Melayu";
+    m_languageMap["nl"] = u8"Nederlands";
+    m_languageMap["et"] = u8"Eesti keel";
+    m_languageMap["bg"] = u8"Български";
+    m_languageMap["cs"] = u8"Čeština";
+    m_languageMap["da"] = u8"Dansk sprog";
+    m_languageMap["el"] = u8"Ελληνική γλώσσα";
 
     setLanguageCombox();
 }
