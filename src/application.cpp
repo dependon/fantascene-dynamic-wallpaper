@@ -240,8 +240,9 @@ bool Application::setThumbnail(const QString &path)
 #endif
     qDebug() << commod;
     if (!QFileInfo(thumPath).isFile()) {
-
-       // system(commod.toStdString().c_str());
+#ifdef Q_OS_LINUX
+        system(commod.toStdString().c_str());
+#else
         // 创建QProcess对象
         QProcess process;
 
@@ -252,6 +253,7 @@ bool Application::setThumbnail(const QString &path)
             return false;
         }
         process.waitForFinished(10000);
+#endif
     }
 
     return true;

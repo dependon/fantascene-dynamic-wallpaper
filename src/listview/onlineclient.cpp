@@ -479,13 +479,18 @@ void OnlineClient::on_btn_to_clicked()
 void OnlineClient::slotConnected()
 {
     ui->lbl_status->setText(tr("Online"));
-    ui->btn_try->setEnabled(false);
+    if(ui->label_CurrentCount->text().toInt() <= 1)
+    {
+        Q_EMIT sigSendData(u8"GET_VIDEO_RECOMMEND|1");
+    }
+    //ui->btn_try->setEnabled(false);
 }
 
 void OnlineClient::slotDisconnected()
 {
     ui->lbl_status->setText(tr("Not Online"));
-    ui->btn_try->setEnabled(true);
+    Q_EMIT sigStart();
+    //ui->btn_try->setEnabled(true);
 }
 
 void OnlineClient::on_btn_try_clicked()

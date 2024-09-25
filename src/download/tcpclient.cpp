@@ -62,7 +62,6 @@ void TcpClient::run()
         if (socket->waitForConnected(1000)) {
             Q_EMIT connected();
             qDebug() << "Connected to server";
-            sendData(u8"GET_VIDEO_RECOMMEND|1");
             return ;
         } else {
             qDebug() << "Dis Connected to server";
