@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ro_RO">
+<TS version="2.1" language="cs_CZ">
     <context>
         <name>Application</name>
         <message>
             <location line="152" filename="../application.cpp"/>
             <location line="153" filename="../application.cpp"/>
             <source>fantascene-dynamic-wallpaper</source>
-            <translation>fantascene-dynamic-wallpaper</translation>
+            <translation>fantascene-dynamic-tapety</translation>
         </message>
     </context>
     <context>
@@ -15,7 +15,7 @@
         <message>
             <location line="14" filename="../desktop.ui"/>
             <source>Form</source>
-            <translation>Formular</translation>
+            <translation>Formulář</translation>
         </message>
     </context>
     <context>
@@ -23,12 +23,12 @@
         <message>
             <location line="48" filename="../download/downloadmanager.cpp"/>
             <source>Failed to start wget.</source>
-            <translation>Nu a reușit să pornească wget.</translation>
+            <translation>Nepodařilo se spustit wget.</translation>
         </message>
         <message>
             <location line="53" filename="../download/downloadmanager.cpp"/>
             <source>Download failed.</source>
-            <translation>Descărcare eșuată.</translation>
+            <translation>Stahování selhalo.</translation>
         </message>
     </context>
     <context>
@@ -36,17 +36,17 @@
         <message>
             <location line="14" filename="../download/downloadwidget.ui"/>
             <source>Form</source>
-            <translation type="unfinished">Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="25" filename="../download/downloadwidget.ui"/>
             <source>Load</source>
-            <translation>Sarcină</translation>
+            <translation>Zatížení</translation>
         </message>
         <message>
             <location line="11" filename="../download/downloadwidget.cpp"/>
             <source>The download address comes from the network and may not be usable</source>
-            <translation>Adresa de descărcare provine din rețea și este posibil să nu fie utilizabilă</translation>
+            <translation>Adresa stahování pochází ze sítě a nemusí být použitelná</translation>
         </message>
     </context>
     <context>
@@ -54,17 +54,17 @@
         <message>
             <location line="14" filename="../help/helpdialog.ui"/>
             <source>Dialog</source>
-            <translation type="unfinished">Dialog</translation>
+            <translation>Dialog</translation>
         </message>
         <message>
             <location line="53" filename="../help/helpdialog.ui"/>
             <source>Close</source>
-            <translation>Închide</translation>
+            <translation>Zavřít</translation>
         </message>
         <message>
             <location line="9" filename="../help/helpdialog.cpp"/>
             <source>Help</source>
-            <translation>Ajutor</translation>
+            <translation>Pomoc</translation>
         </message>
     </context>
     <context>
@@ -72,133 +72,133 @@
         <message>
             <location line="183" filename="../desktop/iconview.cpp"/>
             <source>Open</source>
-            <translation>Deschide</translation>
+            <translation>Otevřít</translation>
         </message>
         <message>
             <location line="188" filename="../desktop/iconview.cpp"/>
             <source>Open With</source>
-            <translation>Deschide cu</translation>
+            <translation>Otevřít s</translation>
         </message>
         <message>
             <location line="193" filename="../desktop/iconview.cpp"/>
             <source>New Built</source>
-            <translation>Construit nou</translation>
+            <translation>Nově postavený</translation>
         </message>
         <message>
             <location line="198" filename="../desktop/iconview.cpp"/>
             <source>Select all</source>
-            <translation>Selectează tot</translation>
+            <translation>Vybrat vše</translation>
         </message>
         <message>
             <location line="203" filename="../desktop/iconview.cpp"/>
             <source>Open Terminal</source>
-            <translation>Deschide terminalul</translation>
+            <translation>Otevřít terminál</translation>
         </message>
         <message>
             <location line="209" filename="../desktop/iconview.cpp"/>
             <location line="933" filename="../desktop/iconview.cpp"/>
             <source>New Folder</source>
-            <translation>Dosar nou</translation>
+            <translation>Nová složka</translation>
         </message>
         <message>
             <location line="215" filename="../desktop/iconview.cpp"/>
             <source>Sort Order</source>
-            <translation>Ordinea de sortare</translation>
+            <translation>Pořadí třídění</translation>
         </message>
         <message>
             <location line="219" filename="../desktop/iconview.cpp"/>
             <source>Refresh Sort</source>
-            <translation>Reîmprospătează sortarea</translation>
+            <translation>Obnovit řazení</translation>
         </message>
         <message>
             <location line="223" filename="../desktop/iconview.cpp"/>
             <source>Name</source>
-            <translation>Denumire</translation>
+            <translation>Jméno</translation>
         </message>
         <message>
             <location line="227" filename="../desktop/iconview.cpp"/>
             <source>Change Date</source>
-            <translation>Modificare dată</translation>
+            <translation>Datum změny</translation>
         </message>
         <message>
             <location line="231" filename="../desktop/iconview.cpp"/>
             <source>File Size</source>
-            <translation>Dimensiune fișier</translation>
+            <translation>Velikost souboru</translation>
         </message>
         <message>
             <location line="235" filename="../desktop/iconview.cpp"/>
             <source>File Type</source>
-            <translation>Tip fișier</translation>
+            <translation>Typ souboru</translation>
         </message>
         <message>
             <location line="240" filename="../desktop/iconview.cpp"/>
             <source>Icon Size</source>
-            <translation>Dimensiune pictogramă</translation>
+            <translation>Velikost ikony</translation>
         </message>
         <message>
             <location line="244" filename="../desktop/iconview.cpp"/>
             <source>Small</source>
-            <translation>Mic</translation>
+            <translation>Malé</translation>
         </message>
         <message>
             <location line="248" filename="../desktop/iconview.cpp"/>
             <source>Medium</source>
-            <translation>Mediu</translation>
+            <translation>Střední</translation>
         </message>
         <message>
             <location line="252" filename="../desktop/iconview.cpp"/>
             <source>Big</source>
-            <translation>Mare</translation>
+            <translation>Velký</translation>
         </message>
         <message>
             <location line="258" filename="../desktop/iconview.cpp"/>
             <source>Copy</source>
-            <translation>Copiază</translation>
+            <translation>Kopírovat</translation>
         </message>
         <message>
             <location line="263" filename="../desktop/iconview.cpp"/>
             <source>Cut</source>
-            <translation>Taie</translation>
+            <translation>Střih</translation>
         </message>
         <message>
             <location line="268" filename="../desktop/iconview.cpp"/>
             <source>Paste</source>
-            <translation>Lipește</translation>
+            <translation>Vložit</translation>
         </message>
         <message>
             <location line="273" filename="../desktop/iconview.cpp"/>
             <source>Rename</source>
-            <translation>Redenumește</translation>
+            <translation>Přejmenovat</translation>
         </message>
         <message>
             <location line="278" filename="../desktop/iconview.cpp"/>
             <source>Trash</source>
-            <translation>Gunoi</translation>
+            <translation>Koš</translation>
         </message>
         <message>
             <location line="283" filename="../desktop/iconview.cpp"/>
             <source>Set Wallpaper</source>
-            <translation>Setează imaginea de fundal</translation>
+            <translation>Nastavit tapetu</translation>
         </message>
         <message>
             <location line="296" filename="../desktop/iconview.cpp"/>
             <source>New TXT</source>
-            <translation>TXT nou</translation>
+            <translation>Nový TXT</translation>
         </message>
         <message>
             <location line="365" filename="../desktop/iconview.cpp"/>
             <source>Select Other Application</source>
-            <translation>Selectează altă aplicație</translation>
+            <translation>Vybrat jinou aplikaci</translation>
         </message>
         <message>
             <location line="489" filename="../desktop/iconview.cpp"/>
             <source>Please Select App</source>
-            <translation>Selectați aplicația</translation>
+            <translation>Prosím vyberte aplikaci</translation>
         </message>
         <message>
             <location line="947" filename="../desktop/iconview.cpp"/>
             <source>New Txt Files</source>
-            <translation>Fișiere Txt noi</translation>
+            <translation>Nové soubory TXT</translation>
         </message>
     </context>
     <context>
@@ -206,27 +206,27 @@
         <message>
             <location line="14" filename="../listview/localwidget.ui"/>
             <source>Form</source>
-            <translation>Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="20" filename="../listview/localwidget.ui"/>
             <source>Local</source>
-            <translation>Local</translation>
+            <translation>Místní</translation>
         </message>
         <message>
             <location line="45" filename="../listview/localwidget.ui"/>
             <source>Play</source>
-            <translation>Joacă</translation>
+            <translation>Hrát</translation>
         </message>
         <message>
             <location line="34" filename="../listview/localwidget.cpp"/>
             <source>Wallpaper Local</source>
-            <translation>Imagine de fundal locală</translation>
+            <translation>Tapeta místní</translation>
         </message>
         <message>
             <location line="43" filename="../listview/localwidget.cpp"/>
             <source>Please place the local video on:</source>
-            <translation>Vă rugăm să plasați videoclipul local pe:</translation>
+            <translation>Umístěte prosím místní video na:</translation>
         </message>
     </context>
     <context>
@@ -234,61 +234,45 @@
         <message>
             <location line="14" filename="../moresetting.ui"/>
             <source>Form</source>
-            <translation>Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="22" filename="../moresetting.ui"/>
             <source>When desktop is hidden</source>
-            <translation>Când biroul este ascuns</translation>
+            <translation>Když je plocha skrytá</translation>
         </message>
         <message>
             <location line="30" filename="../moresetting.ui"/>
             <location line="69" filename="../moresetting.cpp"/>
             <location line="152" filename="../moresetting.cpp"/>
             <source>continue playing</source>
-            <translation>continuă să joci</translation>
+            <translation>pokračovat v hraní</translation>
         </message>
         <message>
             <location line="35" filename="../moresetting.ui"/>
             <location line="71" filename="../moresetting.cpp"/>
             <source>pause</source>
-            <translation>pauză</translation>
+            <translation>pauza</translation>
         </message>
         <message>
             <location line="47" filename="../moresetting.ui"/>
             <source>Video FPS</source>
-            <translation>FPS video</translation>
-        </message>
-        <message>
-            <location line="76" filename="../moresetting.cpp"/>
-            <location line="160" filename="../moresetting.cpp"/>
-            <source>default</source>
-            <translation>implicit</translation>
+            <translation>Video FPS</translation>
         </message>
         <message>
             <location line="102" filename="../moresetting.ui"/>
             <source>Decoder</source>
-            <translation>Decodor</translation>
-        </message>
-        <message>
-            <location line="87" filename="../moresetting.cpp"/>
-            <location line="100" filename="../moresetting.cpp"/>
-            <location line="167" filename="../moresetting.cpp"/>
-            <location line="174" filename="../moresetting.cpp"/>
-            <location line="232" filename="../moresetting.cpp"/>
-            <location line="259" filename="../moresetting.cpp"/>
-            <source>other</source>
-            <translation>altele</translation>
+            <translation>Dekodédér</translation>
         </message>
         <message>
             <location line="157" filename="../moresetting.ui"/>
             <source>VO</source>
-            <translation>O</translation>
+            <translation>VO</translation>
         </message>
         <message>
             <location line="207" filename="../moresetting.ui"/>
             <source>Show desktop icon</source>
-            <translation>Arată pictograma biroului</translation>
+            <translation>Zobrazit ikonu plochy</translation>
         </message>
         <message>
             <location line="215" filename="../moresetting.ui"/>
@@ -301,7 +285,7 @@
             <location line="188" filename="../moresetting.cpp"/>
             <location line="202" filename="../moresetting.cpp"/>
             <source>true</source>
-            <translation>adevărat</translation>
+            <translation>pravda</translation>
         </message>
         <message>
             <location line="220" filename="../moresetting.ui"/>
@@ -311,17 +295,17 @@
             <location line="114" filename="../moresetting.cpp"/>
             <location line="122" filename="../moresetting.cpp"/>
             <source>false</source>
-            <translation>fals</translation>
+            <translation>falešné</translation>
         </message>
         <message>
             <location line="232" filename="../moresetting.ui"/>
             <source>Place on top of the original desktop</source>
-            <translation>Plasează deasupra biroului original</translation>
+            <translation>Umístění na vrchol původní plochy</translation>
         </message>
         <message>
             <location line="257" filename="../moresetting.ui"/>
             <source>Desktop transparency </source>
-            <translation>Transparență biroului</translation>
+            <translation>Průhlednost plochy</translation>
         </message>
         <message>
             <location line="264" filename="../moresetting.ui"/>
@@ -331,37 +315,53 @@
         <message>
             <location line="294" filename="../moresetting.ui"/>
             <source>Wallpaper transparency </source>
-            <translation>Transparența imaginii de fundal</translation>
+            <translation>Průhlednost tapety</translation>
         </message>
         <message>
             <location line="324" filename="../moresetting.ui"/>
             <source>Event penetration</source>
-            <translation>Penetrarea evenimentelor</translation>
+            <translation>Penetrace událostí</translation>
         </message>
         <message>
             <location line="349" filename="../moresetting.ui"/>
             <source>Spark Desktop font color</source>
-            <translation>Culoarea fontului Spark Desktop</translation>
+            <translation>Barva písma Spark Desktop</translation>
         </message>
         <message>
             <location line="454" filename="../moresetting.ui"/>
             <source>Language</source>
-            <translation>Limba</translation>
+            <translation>Jazyk</translation>
         </message>
         <message>
             <location line="468" filename="../moresetting.ui"/>
             <source>Confirm</source>
-            <translation>Confirmă</translation>
+            <translation>Potvrdit</translation>
         </message>
         <message>
             <location line="475" filename="../moresetting.ui"/>
             <source>Cancel</source>
-            <translation>Anulează</translation>
+            <translation>Zrušit</translation>
         </message>
         <message>
             <location line="33" filename="../moresetting.cpp"/>
             <source>Advanced Settings</source>
-            <translation>Configurări avansate</translation>
+            <translation>Pokročilá nastavení</translation>
+        </message>
+        <message>
+            <location line="76" filename="../moresetting.cpp"/>
+            <location line="160" filename="../moresetting.cpp"/>
+            <source>default</source>
+            <translation>výchozí</translation>
+        </message>
+        <message>
+            <location line="87" filename="../moresetting.cpp"/>
+            <location line="100" filename="../moresetting.cpp"/>
+            <location line="167" filename="../moresetting.cpp"/>
+            <location line="174" filename="../moresetting.cpp"/>
+            <location line="232" filename="../moresetting.cpp"/>
+            <location line="259" filename="../moresetting.cpp"/>
+            <source>other</source>
+            <translation>ostatní</translation>
         </message>
     </context>
     <context>
@@ -369,43 +369,49 @@
         <message>
             <location line="14" filename="../listview/onlineclient.ui"/>
             <source>Form</source>
-            <translation type="unfinished">Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="27" filename="../listview/onlineclient.ui"/>
             <source>Recommend</source>
-            <translation>Recomandă</translation>
+            <translation>Doporučit</translation>
         </message>
         <message>
             <location line="34" filename="../listview/onlineclient.ui"/>
             <source>Status:</source>
-            <translation>Stare:</translation>
+            <translation>Stav:</translation>
+        </message>
+        <message>
+            <location line="41" filename="../listview/onlineclient.ui"/>
+            <location line="487" filename="../listview/onlineclient.cpp"/>
+            <source>Not Online</source>
+            <translation>Není online</translation>
         </message>
         <message>
             <location line="48" filename="../listview/onlineclient.ui"/>
             <source>Try Connected</source>
-            <translation>Încearcă conectat</translation>
+            <translation>Zkusit připojení</translation>
         </message>
         <message>
             <location line="70" filename="../listview/onlineclient.ui"/>
             <source>If unable to download, please check if 'wget' is installed on the command line.</source>
-            <translation>Dacă nu se poate descărca, verificați dacă 'wget' este instalat pe linia de comandă.</translation>
+            <translation>Pokud není možné stáhnout, zkontrolujte, zda je na příkazovém řádku nainstalováno 'wget'.</translation>
         </message>
         <message>
             <location line="82" filename="../listview/onlineclient.ui"/>
             <source>Search</source>
-            <translation>Caută</translation>
+            <translation>Hledat</translation>
         </message>
         <message>
             <location line="100" filename="../listview/onlineclient.ui"/>
             <source>Page</source>
-            <translation>Pagină</translation>
+            <translation>Stránka</translation>
         </message>
         <message>
             <location line="119" filename="../listview/onlineclient.ui"/>
             <location line="157" filename="../listview/onlineclient.ui"/>
             <source>0</source>
-            <translation type="unfinished">un punct trei trei {0?}</translation>
+            <translation>0</translation>
         </message>
         <message>
             <location line="138" filename="../listview/onlineclient.ui"/>
@@ -425,22 +431,22 @@
         <message>
             <location line="200" filename="../listview/onlineclient.ui"/>
             <source>To</source>
-            <translation>Pentru</translation>
+            <translation>Na</translation>
         </message>
         <message>
             <location line="234" filename="../listview/onlineclient.ui"/>
             <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
-            <translation>Pentru asistență cu încărcarea fișierelor de fundal sau orice alt suport, vă rugăm să trimiteți un e-mail la liuminghang0821@gmail.com sau 523633637@qq.com.</translation>
+            <translation>Pro pomoc s nahráváním souborů tapet nebo jakoukoli jinou podporu, pošlete prosím e-mail na buď liuminghang0821@gmail.com nebo 523633637@qq.com.</translation>
         </message>
         <message>
             <location line="253" filename="../listview/onlineclient.ui"/>
             <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
-            <translation>Conținutul de mai sus provine de pe internet. Dacă orice conținut încalcă drepturile dumneavoastră, vă rugăm să trimiteți un e-mail la liuminghang0821@gmail.com sau 523633637@qq.com pentru a solicita eliminarea. Ne cerem scuze pentru orice neplăcere.</translation>
+            <translation>Výše uvedený obsah pochází z internetu. Pokud jakýkoli obsah porušuje vaše práva, zašlete prosím e-mail na buď liuminghang0821@gmail.com nebo 523633637@qq.com požádat o odstranění. Omlouváme se za případné nepříjemnosti.</translation>
         </message>
         <message>
             <location line="286" filename="../listview/onlineclient.ui"/>
             <source>Name</source>
-            <translation type="unfinished">Denumire</translation>
+            <translation>Jméno</translation>
         </message>
         <message>
             <location line="308" filename="../listview/onlineclient.ui"/>
@@ -454,17 +460,17 @@
             <location line="647" filename="../listview/onlineclient.ui"/>
             <location line="689" filename="../listview/onlineclient.ui"/>
             <source>Unknown</source>
-            <translation>Necunoscut</translation>
+            <translation>Neznámý</translation>
         </message>
         <message>
             <location line="331" filename="../listview/onlineclient.ui"/>
             <source>Description</source>
-            <translation>Descriere</translation>
+            <translation>Popis</translation>
         </message>
         <message>
             <location line="376" filename="../listview/onlineclient.ui"/>
             <source>Category</source>
-            <translation>Categorie</translation>
+            <translation>Kategorie</translation>
         </message>
         <message>
             <location line="418" filename="../listview/onlineclient.ui"/>
@@ -474,37 +480,37 @@
         <message>
             <location line="460" filename="../listview/onlineclient.ui"/>
             <source>Download Count</source>
-            <translation>Număr de descărcări</translation>
+            <translation>Počet stahování</translation>
         </message>
         <message>
             <location line="502" filename="../listview/onlineclient.ui"/>
             <source>File Name</source>
-            <translation>Nume fișier</translation>
+            <translation>Název souboru</translation>
         </message>
         <message>
             <location line="544" filename="../listview/onlineclient.ui"/>
             <source>File Size</source>
-            <translation type="unfinished">Dimensiune fișier</translation>
+            <translation>Velikost souboru</translation>
         </message>
         <message>
             <location line="586" filename="../listview/onlineclient.ui"/>
             <source>Width</source>
-            <translation type="unfinished">Lăţime</translation>
+            <translation>Šířka</translation>
         </message>
         <message>
             <location line="628" filename="../listview/onlineclient.ui"/>
             <source>Height</source>
-            <translation type="unfinished">Înălţime</translation>
+            <translation>Výška</translation>
         </message>
         <message>
             <location line="670" filename="../listview/onlineclient.ui"/>
             <source>Wait Download Task</source>
-            <translation>Așteaptă activitatea de descărcare</translation>
+            <translation>Počkat, stahovat úlohu</translation>
         </message>
         <message>
             <location line="849" filename="../listview/onlineclient.ui"/>
             <source>Download</source>
-            <translation>Descărcare</translation>
+            <translation>Stáhnout</translation>
         </message>
         <message>
             <location line="41" filename="../listview/onlineclient.cpp"/>
@@ -514,28 +520,22 @@
         <message>
             <location line="97" filename="../listview/onlineclient.cpp"/>
             <source>Error</source>
-            <translation>Eroare</translation>
+            <translation>Chyba</translation>
         </message>
         <message>
             <location line="97" filename="../listview/onlineclient.cpp"/>
             <source>Downlaod Error!</source>
-            <translation>Eroare de descărcare!</translation>
+            <translation>Chyba stahování!</translation>
         </message>
         <message>
             <location line="258" filename="../listview/onlineclient.cpp"/>
             <source>Download Ing.....</source>
-            <translation>Download Ing.....</translation>
+            <translation>Stáhnout Ing.....</translation>
         </message>
         <message>
             <location line="481" filename="../listview/onlineclient.cpp"/>
             <source>Online</source>
             <translation>Online</translation>
-        </message>
-        <message>
-            <location line="41" filename="../listview/onlineclient.ui"/>
-            <location line="487" filename="../listview/onlineclient.cpp"/>
-            <source>Not Online</source>
-            <translation>Nu este online</translation>
         </message>
     </context>
     <context>
@@ -548,12 +548,12 @@
         <message>
             <location line="22" filename="../listview/playlistsettingdialog.ui"/>
             <source>Timer(second)</source>
-            <translation>Cronometru( secundă)</translation>
+            <translation>Časovač( sekunda)</translation>
         </message>
         <message>
             <location line="31" filename="../listview/playlistsettingdialog.ui"/>
             <source>60</source>
-            <translation>60</translation>
+            <translation>šedesát</translation>
         </message>
         <message>
             <location line="60" filename="../listview/playlistsettingdialog.ui"/>
@@ -562,7 +562,7 @@
             <location line="35" filename="../listview/playlistsettingdialog.cpp"/>
             <location line="38" filename="../listview/playlistsettingdialog.cpp"/>
             <source>other</source>
-            <translation>altele</translation>
+            <translation>ostatní</translation>
         </message>
         <message>
             <location line="84" filename="../listview/playlistsettingdialog.ui"/>
@@ -572,20 +572,20 @@
         <message>
             <location line="91" filename="../listview/playlistsettingdialog.ui"/>
             <source>Cancel</source>
-            <translation>Anulează</translation>
+            <translation>Zrušit</translation>
         </message>
     </context>
     <context>
         <name>QObject</name>
         <message>
-            <location line="160" filename="../main.cpp"/>
-            <source>fantacy</source>
-            <translation>fantezii</translation>
-        </message>
-        <message>
             <location line="33" filename="../download/downloadwidget.cpp"/>
             <source>Download</source>
-            <translation>Descărcare</translation>
+            <translation>Stáhnout</translation>
+        </message>
+        <message>
+            <location line="160" filename="../main.cpp"/>
+            <source>fantacy</source>
+            <translation>fantazie</translation>
         </message>
     </context>
     <context>
@@ -593,17 +593,17 @@
         <message>
             <location line="434" filename="../wallpaper.cpp"/>
             <source>Copy</source>
-            <translation>Copiază</translation>
+            <translation>Kopírovat</translation>
         </message>
         <message>
             <location line="439" filename="../wallpaper.cpp"/>
             <source>Extend</source>
-            <translation>Extinde</translation>
+            <translation>Rozšířit</translation>
         </message>
         <message>
             <location line="444" filename="../wallpaper.cpp"/>
             <source>Manual</source>
-            <translation>Manual</translation>
+            <translation>Manuál</translation>
         </message>
     </context>
     <context>
@@ -611,99 +611,99 @@
         <message>
             <location line="14" filename="../listview/historywidget.ui"/>
             <source>Form</source>
-            <translation>Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="34" filename="../listview/historywidget.ui"/>
             <source>History</source>
-            <translation>Istoric</translation>
+            <translation>Historie</translation>
         </message>
         <message>
             <location line="46" filename="../listview/historywidget.ui"/>
             <source>Set Wallpaper</source>
-            <translation>Setează imaginea de fundal</translation>
+            <translation>Nastavit tapetu</translation>
         </message>
         <message>
             <location line="53" filename="../listview/historywidget.ui"/>
             <source>Set Wallpaper 2</source>
-            <translation>Setează imaginea de fundal 2</translation>
+            <translation>Nastavit tapetu 2</translation>
         </message>
         <message>
             <location line="60" filename="../listview/historywidget.ui"/>
             <location line="107" filename="../listview/historywidget.ui"/>
             <source>Delete</source>
-            <translation>Șterge</translation>
+            <translation>Smazat</translation>
         </message>
         <message>
             <location line="67" filename="../listview/historywidget.ui"/>
             <source>Import</source>
-            <translation>Import</translation>
+            <translation>Dovoz</translation>
         </message>
         <message>
             <location line="88" filename="../listview/historywidget.ui"/>
             <source>Playlist</source>
-            <translation>Listă de redare</translation>
+            <translation>Seznam skladeb</translation>
         </message>
         <message>
             <location line="100" filename="../listview/historywidget.ui"/>
             <source>Add Playlist</source>
-            <translation>Adaugă lista de redare</translation>
+            <translation>Přidat seznam skladeb</translation>
         </message>
         <message>
             <location line="114" filename="../listview/historywidget.ui"/>
             <source>Loop play</source>
-            <translation>Redare buclă</translation>
+            <translation>Přehrávání smyčky</translation>
         </message>
         <message>
             <location line="121" filename="../listview/historywidget.ui"/>
             <source>Loop playback settings</source>
-            <translation>Setări de redare buclă</translation>
+            <translation>Nastavení přehrávání smyčky</translation>
         </message>
         <message>
             <location line="212" filename="../listview/historywidget.ui"/>
             <source>Name:</source>
-            <translation>Nume:</translation>
+            <translation>Jméno:</translation>
         </message>
         <message>
             <location line="254" filename="../listview/historywidget.ui"/>
             <source>Path:</source>
-            <translation>Cale:</translation>
+            <translation>Cesta:</translation>
         </message>
         <message>
             <location line="290" filename="../listview/historywidget.ui"/>
             <source>Thumbnail Path:</source>
-            <translation>Calea miniaturilor:</translation>
+            <translation>Cesta k miniaturám:</translation>
         </message>
         <message>
             <location line="345" filename="../listview/historywidget.ui"/>
             <source>Reload images</source>
-            <translation>Reîncarcă imaginile</translation>
+            <translation>Obnovit obrázky</translation>
         </message>
         <message>
             <location line="352" filename="../listview/historywidget.ui"/>
             <source>Select image as thumbnail</source>
-            <translation>Selectează imaginea ca miniatură</translation>
+            <translation>Vybrat obrázek jako miniaturu</translation>
         </message>
         <message>
             <location line="19" filename="../listview/historywidget.cpp"/>
             <source>Wallpaper History</source>
-            <translation>Istoricul imaginii de fundal</translation>
+            <translation>Historie tapet</translation>
         </message>
         <message>
             <location line="86" filename="../listview/historywidget.cpp"/>
             <location line="148" filename="../listview/historywidget.cpp"/>
             <source>Delete!!</source>
-            <translation>Șterge!!</translation>
+            <translation>Smazat!!</translation>
         </message>
         <message>
             <location line="86" filename="../listview/historywidget.cpp"/>
             <source>Delete all history imports ?</source>
-            <translation>Șterge toate importurile istoricului?</translation>
+            <translation>Smazat všechny importy historie?</translation>
         </message>
         <message>
             <location line="148" filename="../listview/historywidget.cpp"/>
             <source>Delete all playback ?</source>
-            <translation>Șterge toate redările?</translation>
+            <translation>Smazat všechny přehrávání?</translation>
         </message>
     </context>
     <context>
@@ -711,108 +711,103 @@
         <message>
             <location line="14" filename="../settingwindow.ui"/>
             <source>MainWindow</source>
-            <translation>Fereastra principală</translation>
+            <translation>Hlavní okno</translation>
         </message>
         <message>
             <location line="24" filename="../settingwindow.ui"/>
             <location line="42" filename="../settingwindow.ui"/>
             <source>File</source>
-            <translation>Fișier</translation>
+            <translation>Soubor</translation>
         </message>
         <message>
             <location line="145" filename="../settingwindow.ui"/>
             <source>Screen 2 independent playback</source>
-            <translation>Redare independentă a ecranului 2</translation>
+            <translation>Obrazovka 2 nezávislé přehrávání</translation>
         </message>
         <message>
             <location line="154" filename="../settingwindow.ui"/>
             <source>Transparency</source>
-            <translation>Transparență</translation>
+            <translation>Transparentnost</translation>
         </message>
         <message>
             <location line="181" filename="../settingwindow.ui"/>
             <source>Volume</source>
-            <translation>Volumul</translation>
+            <translation>Objem</translation>
         </message>
         <message>
             <location line="214" filename="../settingwindow.ui"/>
-            <location line="105" filename="../settingwindow.cpp"/>
+            <location line="106" filename="../settingwindow.cpp"/>
             <source>Play</source>
-            <translation>Joacă</translation>
+            <translation>Hrát</translation>
         </message>
         <message>
             <location line="233" filename="../settingwindow.ui"/>
-            <location line="117" filename="../settingwindow.cpp"/>
+            <location line="118" filename="../settingwindow.cpp"/>
             <source>Pause</source>
-            <translation>Pauză</translation>
+            <translation>Pozastavit</translation>
         </message>
         <message>
             <location line="252" filename="../settingwindow.ui"/>
             <source>Set New</source>
-            <translation>Setează nou</translation>
+            <translation>Nastavit nové</translation>
         </message>
         <message>
             <location line="265" filename="../settingwindow.ui"/>
             <source>Set New 2</source>
-            <translation>Setează noul 2</translation>
+            <translation>Nastavit nové 2</translation>
         </message>
         <message>
             <location line="284" filename="../settingwindow.ui"/>
             <source>Hide</source>
-            <translation>Ascunde</translation>
+            <translation>Skrýt</translation>
         </message>
         <message>
             <location line="299" filename="../settingwindow.ui"/>
             <source>Model</source>
-            <translation>Model</translation>
+            <translation>Vzor</translation>
         </message>
         <message>
             <location line="307" filename="../settingwindow.ui"/>
             <source>Copy</source>
-            <translation>Copiază</translation>
+            <translation>Kopírovat</translation>
         </message>
         <message>
             <location line="312" filename="../settingwindow.ui"/>
             <source>Extend</source>
-            <translation>Extinde</translation>
+            <translation>Rozšířit</translation>
         </message>
         <message>
             <location line="317" filename="../settingwindow.ui"/>
-            <location line="703" filename="../settingwindow.cpp"/>
+            <location line="704" filename="../settingwindow.cpp"/>
             <source>Manual</source>
-            <translation>Manual</translation>
+            <translation>Manuál</translation>
         </message>
         <message>
             <location line="325" filename="../settingwindow.ui"/>
             <source>Add to startup</source>
-            <translation>Adaugă la pornire</translation>
+            <translation>Přidat ke spuštění</translation>
         </message>
         <message>
             <location line="336" filename="../settingwindow.ui"/>
             <source>Video aspect ratio</source>
-            <translation>Raport de aspect video</translation>
+            <translation>Poměr stran videa</translation>
         </message>
         <message>
             <location line="350" filename="../settingwindow.ui"/>
-            <location line="878" filename="../settingwindow.cpp"/>
+            <location line="879" filename="../settingwindow.cpp"/>
             <source>default</source>
-            <translation>implicit</translation>
-        </message>
-        <message>
-            <location line="542" filename="../settingwindow.ui"/>
-            <source>Download Wallpaper</source>
-            <translation>Descarcă imaginea de fundal</translation>
+            <translation>výchozí</translation>
         </message>
         <message>
             <location line="380" filename="../settingwindow.ui"/>
-            <location line="890" filename="../settingwindow.cpp"/>
+            <location line="891" filename="../settingwindow.cpp"/>
             <source>custom</source>
-            <translation>personalizat</translation>
+            <translation>vlastní</translation>
         </message>
         <message>
             <location line="397" filename="../settingwindow.ui"/>
             <source>Apply scale</source>
-            <translation>Aplică scală</translation>
+            <translation>Použít stupnici</translation>
         </message>
         <message>
             <location line="416" filename="../settingwindow.ui"/>
@@ -827,17 +822,17 @@
         <message>
             <location line="444" filename="../settingwindow.ui"/>
             <source>Width</source>
-            <translation>Lăţime</translation>
+            <translation>Šířka</translation>
         </message>
         <message>
             <location line="458" filename="../settingwindow.ui"/>
             <source>Height</source>
-            <translation>Înălţime</translation>
+            <translation>Výška</translation>
         </message>
         <message>
             <location line="472" filename="../settingwindow.ui"/>
             <source>Apply Custom Dimensions</source>
-            <translation>Aplică dimensiuni personalizate</translation>
+            <translation>Použít vlastní dimenze</translation>
         </message>
         <message>
             <location line="491" filename="../settingwindow.ui"/>
@@ -847,12 +842,12 @@
         <message>
             <location line="498" filename="../settingwindow.ui"/>
             <source>new(gitee)</source>
-            <translation>new(gitee)</translation>
+            <translation>new( gitee)</translation>
         </message>
         <message>
             <location line="505" filename="../settingwindow.ui"/>
             <source>new(github)</source>
-            <translation>new(github)</translation>
+            <translation>new( github)</translation>
         </message>
         <message>
             <location line="512" filename="../settingwindow.ui"/>
@@ -862,63 +857,68 @@
         <message>
             <location line="535" filename="../settingwindow.ui"/>
             <source>Spark-Hub(Test)</source>
-            <translation>Spark-Hub( Test)</translation>
+            <translation>Spark- Hub(Test)</translation>
+        </message>
+        <message>
+            <location line="542" filename="../settingwindow.ui"/>
+            <source>Download Wallpaper</source>
+            <translation>Stáhnout tapetu</translation>
         </message>
         <message>
             <location line="553" filename="../settingwindow.ui"/>
             <source>Advanced Settings</source>
-            <translation>Configurări avansate</translation>
+            <translation>Pokročilá nastavení</translation>
         </message>
         <message>
             <location line="560" filename="../settingwindow.ui"/>
             <source>Wallpaper Local</source>
-            <translation>Imagine de fundal locală</translation>
+            <translation>Tapeta místní</translation>
         </message>
         <message>
             <location line="567" filename="../settingwindow.ui"/>
-            <location line="124" filename="../settingwindow.cpp"/>
+            <location line="125" filename="../settingwindow.cpp"/>
             <source>Wallpaper History</source>
-            <translation>Istoricul imaginii de fundal</translation>
+            <translation>Historie tapet</translation>
         </message>
         <message>
             <location line="574" filename="../settingwindow.ui"/>
             <source>Wallpaper Engine-plugin</source>
-            <translation>Modul motor de fundal</translation>
+            <translation>Modul tapety</translation>
         </message>
         <message>
-            <location line="91" filename="../settingwindow.cpp"/>
+            <location line="92" filename="../settingwindow.cpp"/>
             <source>Exit</source>
-            <translation>Ieșire</translation>
+            <translation>Výstup</translation>
         </message>
         <message>
-            <location line="112" filename="../settingwindow.cpp"/>
+            <location line="113" filename="../settingwindow.cpp"/>
             <source>Screenshot</source>
-            <translation>Captură de ecran</translation>
+            <translation>Snímek obrazovky</translation>
         </message>
         <message>
-            <location line="128" filename="../settingwindow.cpp"/>
+            <location line="129" filename="../settingwindow.cpp"/>
             <source>Main View</source>
-            <translation>Vizualizare principală</translation>
+            <translation>Hlavní pohled</translation>
         </message>
         <message>
-            <location line="145" filename="../settingwindow.cpp"/>
+            <location line="146" filename="../settingwindow.cpp"/>
             <source>Help</source>
-            <translation>Ajutor</translation>
+            <translation>Pomoc</translation>
         </message>
         <message>
-            <location line="153" filename="../settingwindow.cpp"/>
+            <location line="154" filename="../settingwindow.cpp"/>
             <source>github</source>
             <translation>github</translation>
         </message>
         <message>
-            <location line="170" filename="../settingwindow.cpp"/>
+            <location line="171" filename="../settingwindow.cpp"/>
             <source>Double click to open the configuration interface</source>
-            <translation>Dublu clic pentru a deschide interfața de configurare</translation>
+            <translation>Dvojitým kliknutím otevřete konfigurační rozhraní</translation>
         </message>
         <message>
-            <location line="223" filename="../settingwindow.cpp"/>
+            <location line="224" filename="../settingwindow.cpp"/>
             <source>Latest version</source>
-            <translation>Ultima versiune</translation>
+            <translation>Nejnovější verze</translation>
         </message>
     </context>
     <context>
@@ -927,17 +927,17 @@
             <location line="244" filename="../listview/view.cpp"/>
             <location line="251" filename="../listview/view.cpp"/>
             <source>Delete!!</source>
-            <translation>Șterge!!</translation>
+            <translation>Smazat!!</translation>
         </message>
         <message>
             <location line="244" filename="../listview/view.cpp"/>
             <source>The file does not exist. Do you want to delete it</source>
-            <translation>Fișierul nu există. Doriți să-l ștergeți</translation>
+            <translation>Soubor neexistuje. Chceš ho smazat?</translation>
         </message>
         <message>
             <location line="251" filename="../listview/view.cpp"/>
             <source>Delete all history imports ?</source>
-            <translation>Șterge toate importurile istoricului?</translation>
+            <translation>Smazat všechny importy historie?</translation>
         </message>
     </context>
     <context>
@@ -945,34 +945,34 @@
         <message>
             <location line="14" filename="../listview/wallpaperengineplugin.ui"/>
             <source>Form</source>
-            <translation>Formular</translation>
+            <translation>Formulář</translation>
         </message>
         <message>
             <location line="25" filename="../listview/wallpaperengineplugin.ui"/>
             <source>Select Path</source>
-            <translation>Selectează calea</translation>
+            <translation>Vybrat cestu</translation>
         </message>
         <message>
             <location line="35" filename="../listview/wallpaperengineplugin.ui"/>
             <source>Apply</source>
-            <translation>Aplică</translation>
+            <translation>Použít</translation>
         </message>
         <message>
             <location line="56" filename="../listview/wallpaperengineplugin.ui"/>
             <source>You have to provide the path of Wallpaper Engine from Steam. It doesn't work on Linux, but required functionality is present</source>
-            <translation>Trebuie să oferi calea de Wallpaper Engine de pe Steam. Nu funcționează pe Linux, dar funcționalitatea necesară este prezentă</translation>
+            <translation>Musíte zadat cestu Wallpaper Engine ze služby Steam. Nefunguje na Linuxu, ale požadovaná funkce je přítomna</translation>
         </message>
         <message>
             <location line="165" filename="../listview/wallpaperengineplugin.cpp"/>
             <location line="179" filename="../listview/wallpaperengineplugin.cpp"/>
             <source>Error</source>
-            <translation>Eroare</translation>
+            <translation>Chyba</translation>
         </message>
         <message>
             <location line="165" filename="../listview/wallpaperengineplugin.cpp"/>
             <location line="179" filename="../listview/wallpaperengineplugin.cpp"/>
             <source>Not containing the word steam!</source>
-            <translation>Nu conţine cuvântul abur!</translation>
+            <translation>Neobsahuje slovo pára!</translation>
         </message>
     </context>
 </TS>

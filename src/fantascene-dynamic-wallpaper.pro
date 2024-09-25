@@ -229,6 +229,7 @@ TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_en.ts \ #English
     translations/fantascene-dynamic-wallpaper_zh_CN.ts \ #中文
     translations/fantascene-dynamic-wallpaper_zh_TW.ts \ #中文繁体
+    translations/fantascene-dynamic-wallpaper_zh_HK.ts \ #粤语
     translations/fantascene-dynamic-wallpaper_es.ts \ #西班牙语
     translations/fantascene-dynamic-wallpaper_pl.ts \ #波兰语
     translations/fantascene-dynamic-wallpaper_ja.ts \ #日语
@@ -247,5 +248,10 @@ TRANSLATIONS += \
     translations/fantascene-dynamic-wallpaper_sv.ts \ #瑞典
     translations/fantascene-dynamic-wallpaper_sk.ts \ #斯洛伐克
     translations/fantascene-dynamic-wallpaper_ro.ts \ #罗马尼亚
-    translations/fantascene-dynamic-wallpaper_ms.ts  #马来
-
+    translations/fantascene-dynamic-wallpaper_ms.ts \ #马来
+    translations/fantascene-dynamic-wallpaper_nl.ts \ #荷兰语
+    translations/fantascene-dynamic-wallpaper_et.ts \ #爱沙尼亚语
+    translations/fantascene-dynamic-wallpaper_bg.ts \ #保加利亚语
+    translations/fantascene-dynamic-wallpaper_cs.ts \ #捷克语
+    translations/fantascene-dynamic-wallpaper_da.ts \ #丹麦语
+    translations/fantascene-dynamic-wallpaper_el.ts  #希腊语

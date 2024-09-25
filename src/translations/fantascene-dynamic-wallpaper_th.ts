@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE TS>
-<TS language="th_TH" version="2.1">
+<TS version="2.1" language="th_TH">
     <context>
         <name>Application</name>
         <message>

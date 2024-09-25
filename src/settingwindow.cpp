@@ -85,6 +85,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
 
 
     m_traymenu = new QMenu();
+    m_traymenu->setWindowFlags(m_traymenu->windowFlags() | Qt::FramelessWindowHint);
     m_traymenu->setAttribute(Qt::WA_TranslucentBackground);
 
     QAction *exitAction = new QAction(m_traymenu);
@@ -962,6 +963,18 @@ void settingWindow::changeEvent(QEvent *event)
         ui->retranslateUi(this);
     }
     QWidget::changeEvent(event);
+}
+
+void settingWindow::showEvent(QShowEvent *event)
+{
+    if(m_parentMainWindow)
+    {
+        m_parentMainWindow->setFixedSize(QSize(801, 600));
+        repaint();
+        m_parentMainWindow->setFixedSize(QSize(800, 600));
+    }
+
+    QWidget::showEvent(event);
 }
 
 void settingWindow::slotMoreSettingSave()

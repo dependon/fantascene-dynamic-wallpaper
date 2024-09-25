@@ -94,6 +94,8 @@ protected:
 
     void changeEvent(QEvent *event);
 
+    void showEvent(QShowEvent *event);
+
 private Q_SLOTS:
 
     void slotMoreSettingSave();
