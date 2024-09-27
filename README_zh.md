@@ -4,6 +4,8 @@
 
 [https://www.fantacy.online/](https://www.fantacy.online/)
 
+## 1.9.2
+优化了国内网络走直连，不走cdn
 
 ## 1.8.4 
 
