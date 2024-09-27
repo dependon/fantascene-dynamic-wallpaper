@@ -25,13 +25,14 @@
 
 [https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
-AppImage:1.8.4，在ubuntu16.04打包，兼容大部分版本，但是mpv版本为很旧版本，并且视频壁纸切换web壁纸概率崩溃，能够使用deb，尽量使用deb包(该问题在debian10和ubuntu20.04以上版本似乎就没了)
 
-下载地址 https://www.fantacy.online/fantascene-dynamic-wallpaper-1.8.6_x86_64.AppImage 
+AppImage:，在ubuntu16.04打包，兼容大部分版本，但是mpv版本为很旧版本，能够使用deb，尽量使用deb包
 
-Windows:1.8.6
+下载地址 https://sourceforge.net/projects/fantascene-dynamic-wallpaper/
 
-下载地址 https://www.fantacy.online/Spark-Wallpaper-Windows_1.8.6_x64.zip
+Windows:
+
+下载地址 https://sourceforge.net/projects/fantascene-dynamic-wallpaper/
 
 ## gnome桌面环境（如ubuntu os）和kylin os或deepin v23 环境的配置(使用本来的原生桌面，不改变右键菜单和桌面图标布局)
 
