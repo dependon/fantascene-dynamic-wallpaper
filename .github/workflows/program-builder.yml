@@ -1,0 +1,13 @@
+name: Building Program
+run-name: Building ${{ GITHUB.REPOSITORY }}
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  call:
+    uses: GXDE-OS/GXDE/.github/workflows/building-deb.yml@master
+    secrets: inherit

@@ -19,6 +19,7 @@ Build-Depends:  debhelper (>= 9),
 				libxcb-shape0-dev
 
 Rules-Requires-Root: no
+Provides: fantascene-gxde
 Standards-Version: 4.6.0.1
 Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 Package: fantascene-dynamic-wallpaper
