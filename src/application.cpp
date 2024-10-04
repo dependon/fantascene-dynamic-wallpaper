@@ -325,10 +325,6 @@ void Application::setSpecialDesktop()
                 }
             }
 
-            QTimer::singleShot(500, []() {
-                system("deepin-kwin --replace &");
-            });
-
         }
         else if(dApp->m_isLingMo)
         {
