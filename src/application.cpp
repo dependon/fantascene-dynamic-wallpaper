@@ -324,6 +324,10 @@ void Application::setSpecialDesktop()
                     m_screenWid.push_back(id);
                 }
             }
+            QTimer::singleShot(500, []() {
+                system("deepin-kwin --replace &");
+            });
+
 
         }
         else if(dApp->m_isLingMo)
