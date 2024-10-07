@@ -20,6 +20,8 @@ Build-Depends:  debhelper (>= 9),
 
 Rules-Requires-Root: no
 Provides: fantascene-gxde
+Replaces: fantascene-gxde(<<1.9~)
+Breaks: fantascene-gxde (<<1.9~)
 Standards-Version: 4.6.0.1
 Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 Package: fantascene-dynamic-wallpaper
