@@ -26,5 +26,5 @@ Standards-Version: 4.6.0.1
 Homepage: http://github.com/dependon/fantascene-dynamic-wallpaper
 Package: fantascene-dynamic-wallpaper
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends} , wget, ffmpeg
+Depends: ${shlibs:Depends}, ${misc:Depends} , wget, ffmpeg , aria2
 Description: video wallpaper for fantascene.

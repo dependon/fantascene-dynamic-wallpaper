@@ -70,14 +70,26 @@
            <height>16777215</height>
           </size>
          </property>
+         <property name="toolTip">
+          <string notr="true"/>
+         </property>
+         <property name="statusTip">
+          <string notr="true"/>
+         </property>
+         <property name="whatsThis">
+          <string notr="true"/>
+         </property>
+         <property name="currentText">
+          <string notr="true">wget</string>
+         </property>
          <item>
           <property name="text">
-           <string>wget</string>
+           <string notr="true">wget</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>aria2</string>
+           <string notr="true">aria2</string>
           </property>
          </item>
         </widget>
