@@ -210,9 +210,9 @@ QString OnlineClient::removeZipSuffix(const QString &str) {
 
 void OnlineClient::changeEvent(QEvent *event)
 {
-    if (event->type() == QEvent::LanguageChange) {
-        ui->retranslateUi(this);
-    }
+//    if (event->type() == QEvent::LanguageChange) {
+//        ui->retranslateUi(this);
+//    }
     QWidget::changeEvent(event);
 }
 
