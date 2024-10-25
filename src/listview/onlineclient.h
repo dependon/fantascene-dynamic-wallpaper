@@ -57,6 +57,8 @@ private Q_SLOTS:
     void downloadFinished(const DownloadInfo &data);
     void downloadError(const DownloadInfo &data, const QString &errorMessage);
 
+    void on_com_tool_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::OnlineClient *ui;
     view *m_viewDowload{nullptr};

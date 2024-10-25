@@ -101,6 +101,8 @@ OnlineClient::OnlineClient(QWidget *parent) :
      connect(m_downloadManger,&DownloadManager::downloadStarted,this,&OnlineClient::downloadStarted);
      connect(m_downloadManger,&DownloadManager::downloadFinished,this,&OnlineClient::downloadFinished);
      connect(m_downloadManger,&DownloadManager::downloadError,this,&OnlineClient::downloadError);
+
+     ui->label_wTip->setWordWrap(true);
 }
 
 OnlineClient::~OnlineClient()
@@ -141,6 +143,10 @@ bool OnlineClient::downloadFileWithCurl(const QString &oldurl, const QString &ou
             QString part2 = url.mid(slashIndex + 1);
             QString encodedFilename = QUrl::toPercentEncoding(part2);
             command = strWget + " -o "+downlog +" -O " + outputFilePath + " " + part1+"/"+encodedFilename;
+            if(ui->com_tool->currentText() == "aria2")
+            {
+                command = "aria2c -d "+outputFilePath+" "+part1+"/"+encodedFilename + " >> " +downlog;
+            }
         } else {
             qDebug() << "未找到'/'";
         }
@@ -246,7 +252,6 @@ void OnlineClient::slotClickedChange(const QString &md5)
 
 void OnlineClient::slotDoubleClickedChange(const QString &md5)
 {
-    ui->label_DownloadCount->setText(QString::number(ui->label_DownloadCount->text().toInt()+1));
     slotClickedChange(md5);
     QString name = m_datas.value(m_currentMd5).fileName;
     QString newName = name.replace(QRegExp("\\s+"), "");
@@ -258,7 +263,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
         ui->label_DTip->setText(tr("Download Ing....."));
         bool isExists = QFileInfo(saveFile).exists();
         bool isExistsHtml = QFileInfo(saveHtml).exists();
-        if(!isExists )
+        if(isExists )
         {
             if(QFileInfo(saveFile).size() <10)
             {
@@ -267,19 +272,19 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
             }
         }
 
-        if(!isExistsHtml )
+        if(isExistsHtml )
         {
             if(QFileInfo(saveHtml).size() <10)
             {
                 QFile(saveHtml).remove();
-                isExists = false;
+                isExistsHtml = false;
             }
         }
 
 
         if(!isExists && !isExistsHtml)
         {
-
+            ui->label_DownloadCount->setText(QString::number(ui->label_DownloadCount->text().toInt()+1));
             //Q_EMIT dApp->sigSetDownloadIng(false);
             QString strExtra;
             strExtra = m_currentMd5;
@@ -563,3 +568,20 @@ void OnlineClient::downloadError(const DownloadInfo &data, const QString &errorM
     Q_EMIT dApp->sigDownloadError();
     ui->label_DownloadCount->setText(QString::number(data.downloadIngTaskCount));
 }
+
+void OnlineClient::on_com_tool_currentIndexChanged(const QString &arg1)
+{
+    if(arg1 == "wget")
+    {
+        ui->label_wTip->setText(tr("If unable to download, please check if 'wget' is installed on the command line."));
+    }
+    else if(arg1 == "aria2")
+    {
+        ui->label_wTip->setText(tr("If unable to download, please check if 'aria2' is installed on the command line.But download html web wallpaper need 'wget' ."));
+    }
+    else
+    {
+        ui->label_wTip->setText(tr("If unable to download, please check if 'wget' is installed on the command line."));
+    }
+}
+

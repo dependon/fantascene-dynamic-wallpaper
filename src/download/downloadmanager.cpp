@@ -41,7 +41,9 @@ void DownloadManager::processDownloadQueue()
         DownloadInfo data = downloadQueue.takeFirst();
         data.downloadIngTaskCount = downloadQueue.size();
         Q_EMIT downloadStarted(data);
-
+#ifdef Q_OS_LINUX
+        system(data.dowloadCode.toStdString().c_str());
+#else
         QProcess process;
         process.start(data.dowloadCode);
         if (!process.waitForStarted()) {
@@ -53,6 +55,7 @@ void DownloadManager::processDownloadQueue()
             Q_EMIT downloadError(data,  tr("Download failed."));
             continue;
         }
+#endif
         data.bDownloaded = true;
         Q_EMIT downloadFinished(data);
     }
