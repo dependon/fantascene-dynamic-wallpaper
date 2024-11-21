@@ -121,21 +121,6 @@ const QString toMd5(const QByteArray &data)
 Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
-    //设置界面风格，qt默认存在Fusion Windows等
-//    QStringList styleKeys = QStyleFactory::keys();
-//    qDebug() << "Available styles:";
-//    for ( QString key : styleKeys) {
-//        qDebug() << key;
-//    }
-//    QString styleName = "Fusion";
-
-//    // 检查该样式是否存在
-//    if (QStyleFactory::keys().contains(styleName)) {
-//        // 设置应用程序的样式
-//        qApp->setStyle(QStyleFactory::create(styleName));
-//    } else {
-//        qDebug() << "Style" << styleName << "is not available.";
-//    }
 
     // 从外部文件加载QSS样式表
     QFile styleFile(":/style/MainQss.qss");
@@ -151,16 +136,7 @@ Application::Application(int &argc, char **argv)
 
     this->setApplicationName(tr("fantascene-dynamic-wallpaper"));
     this->setApplicationDisplayName(tr("fantascene-dynamic-wallpaper"));
-//    this->setApplicationDescription(
-//        QObject::tr(
-//            "<span style='font-size:10pt;font-weight:60;'>wallpaper by deepin community</span><br/>"
-//            "<a href='https://github.com/dependon/fantascene-dynamic-wallpaper/'>github/fantascene-dynamic-wallpaper</a><br/>"
-//            "<a href='https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/'>gitee/fantascene-dynamic-wallpaper</a><br/>"
-//            "<span style='font-size:12pt;'>mail: liuminghang0821@gmail.com</span><br/><br/>"
-//            "Published under GPL V3"
-//        )
-//    );
-//    this->setProductIcon(QIcon(":/install/wallpaper.png"));
+
     this->setWindowIcon(QIcon(":/install/wallpaper.png"));
 
     m_currentScreenNum = screens().size();
@@ -523,7 +499,18 @@ bool Application::clearPlayListPaths()
 void Application::CheckSystem()
 {
 #ifndef Q_OS_WIN
+    //add one no wallpaper delay
     std::vector<WindowInfo>  list = getAllDesktopWindows();
+    if(list.size() <= 0 )
+    {
+        QThread::sleep(2);
+        list = getAllDesktopWindows();
+        if(list.size() <= 0 )
+        {
+            QThread::sleep(2);
+            list = getAllDesktopWindows();
+        }
+    }
     if(list.size()>0)
     {
         for(WindowInfo info : list)
