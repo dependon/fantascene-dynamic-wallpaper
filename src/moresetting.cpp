@@ -287,7 +287,15 @@ void MoreSetting::on_setWorkPaper_clicked()
                          "/com/deepin/daemon/Appearance",
                          "com.deepin.daemon.Appearance",
                          QDBusConnection::sessionBus());
-    iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+    if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
+    {
+        iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+    }
+    else if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png"))
+    {
+        iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
+    }
+
 }
 
 

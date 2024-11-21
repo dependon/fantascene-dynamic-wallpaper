@@ -159,7 +159,7 @@ isEmpty(PREFIX){
 }
 APPSHAREDIR = $${PREFIX}/share/fantascene-dynamic-wallpaper
 
-#DEFINES+= DEEPIN_STORE
+DEFINES+= DEEPIN_STORE
 #DEEPIN STORE
 contains(DEFINES,DEEPIN_STORE){
 target.path=/opt/apps/com.github.fantacy/files/bin/
@@ -182,7 +182,9 @@ translations.files = $$PWD/translations/*.qm
 video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/deepin/
 video.files=$$PWD/install/normal.mp4
 
-INSTALLS += target  desktop1  translations info other icon video
+touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/deepin/
+touming.files=$$PWD/install/touming.png
+INSTALLS += target  desktop1  translations info other icon video touming
 
 }else{
 

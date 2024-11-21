@@ -345,7 +345,14 @@ void Application::setSpecialDesktop()
                                  "/com/deepin/daemon/Appearance",
                                  "com.deepin.daemon.Appearance",
                                  QDBusConnection::sessionBus());
-            iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+            if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
+            {
+                iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+            }
+            else if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png"))
+            {
+                iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
+            }
 // #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 //             dApp->m_startDesktop  = QThread::create([ = ]()
 //             {
