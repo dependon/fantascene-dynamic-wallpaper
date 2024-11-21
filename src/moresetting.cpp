@@ -23,6 +23,8 @@
 #include "application.h"
 
 #include <QTimer>
+#include <QDBusInterface>
+#include <QDBusPendingCall>
 
 #include "ini/inimanager.h"
 MoreSetting::MoreSetting(QWidget *parent) :
@@ -134,6 +136,8 @@ void MoreSetting::setData(const MoreSetData &data)
 
     ui->fontBox->setCurrentText(dApp->m_moreData.fontColor);
     ui->langbox->setCurrentText(m_languageMap.value(dApp->m_moreData.language));
+
+    ui->check_deepin->setChecked(dApp->m_isDDE23);
 
 }
 
@@ -268,5 +272,31 @@ void MoreSetting::on_voBox_currentTextChanged(const QString &arg1)
     } else {
         ui->voEdit->hide();
     }
+}
+
+
+void MoreSetting::on_check_deepin_stateChanged(int arg1)
+{
+    dApp->m_isDDE23 = ui->check_deepin->isChecked();
+}
+
+
+void MoreSetting::on_setWorkPaper_clicked()
+{
+    QDBusInterface iface("com.deepin.daemon.Appearance",
+                         "/com/deepin/daemon/Appearance",
+                         "com.deepin.daemon.Appearance",
+                         QDBusConnection::sessionBus());
+    iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+}
+
+
+void MoreSetting::on_setWorkPaper_2_clicked()
+{
+    QDBusInterface iface("com.deepin.daemon.Appearance",
+                         "/com/deepin/daemon/Appearance",
+                         "com.deepin.daemon.Appearance",
+                         QDBusConnection::sessionBus());
+    iface.asyncCall("SetCurrentWorkspaceBackground", "");
 }
 

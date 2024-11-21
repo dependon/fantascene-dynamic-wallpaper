@@ -75,6 +75,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     download/downloadmanager.cpp \
     download/tcpclient.cpp \
+    help/tipdeepindialog.cpp \
     listview/onlineclient.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
@@ -100,6 +101,7 @@ SOURCES += main.cpp \
 HEADERS += \
     download/downloadmanager.h \
     download/tcpclient.h \
+    help/tipdeepindialog.h \
     listview/onlineclient.h \
     wallpaper.h \
     dbuswallpaperservice.h \
@@ -214,6 +216,7 @@ INSTALLS += target  icon desktop  translations video touming
 
 
 FORMS += \
+    help/tipdeepindialog.ui \
     listview/onlineclient.ui \
     settingwindow.ui \
     listview/historywidget.ui \

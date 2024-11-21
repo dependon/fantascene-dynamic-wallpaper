@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>477</width>
-    <height>475</height>
+    <width>675</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -261,12 +261,18 @@
      <item>
       <widget class="QLabel" name="label_name">
        <property name="text">
-        <string>xx</string>
+        <string>DESKTOP</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QSlider" name="desktop_transparency">
+       <property name="minimumSize">
+        <size>
+         <width>330</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -297,6 +303,12 @@
      </item>
      <item>
       <widget class="QSlider" name="back_transparency">
+       <property name="minimumSize">
+        <size>
+         <width>330</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -327,6 +339,12 @@
      </item>
      <item>
       <widget class="QComboBox" name="eventBox">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
+       </property>
        <item>
         <property name="text">
          <string>false</string>
@@ -457,6 +475,60 @@
      </item>
      <item>
       <widget class="QComboBox" name="langbox"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_13">
+     <item>
+      <widget class="QCheckBox" name="check_deepin">
+       <property name="text">
+        <string>Deepin/Uos desktop environment</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setWorkPaper">
+       <property name="minimumSize">
+        <size>
+         <width>380</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Set deepin current work region to dynamic wallpaper</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_14">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="setWorkPaper_2">
+       <property name="minimumSize">
+        <size>
+         <width>380</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Set deepin current work region to normal wallpaper</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

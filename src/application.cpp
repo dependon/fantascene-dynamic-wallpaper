@@ -365,45 +365,50 @@ void Application::setSpecialDesktop()
                     findDDe = true;
                 }
             }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-            dApp->m_startDesktop  = QThread::create([ = ]()
-            {
-                QStringList argumentsGet;
-                argumentsGet << "--get" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList";
-                QProcess processGet;
-                processGet.start("dde-dconfig", argumentsGet);
-                if(processGet.waitForFinished(-1))
-                {
-                    QByteArray result = processGet.readAllStandardOutput();
-                    QString output(result);
-                    if(output.contains( "desktop.blackList"))
-                    {
-                        return ;
-                    }
-                    QByteArray resultError = processGet.readAllStandardError();
-                    QString outputError(resultError);
-                    if(outputError.contains( "desktop.blackList"))
-                    {
-                        return ;
-                    }
+            QDBusInterface iface("com.deepin.daemon.Appearance",
+                                 "/com/deepin/daemon/Appearance",
+                                 "com.deepin.daemon.Appearance",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+// #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+//             dApp->m_startDesktop  = QThread::create([ = ]()
+//             {
+//                 QStringList argumentsGet;
+//                 argumentsGet << "--get" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList";
+//                 QProcess processGet;
+//                 processGet.start("dde-dconfig", argumentsGet);
+//                 if(processGet.waitForFinished(-1))
+//                 {
+//                     QByteArray result = processGet.readAllStandardOutput();
+//                     QString output(result);
+//                     if(output.contains( "desktop.blackList"))
+//                     {
+//                         return ;
+//                     }
+//                     QByteArray resultError = processGet.readAllStandardError();
+//                     QString outputError(resultError);
+//                     if(outputError.contains( "desktop.blackList"))
+//                     {
+//                         return ;
+//                     }
 
-                }
+//                 }
 
-                QStringList arguments;
-                arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[\"ddplugin-background\"]";
+//                 QStringList arguments;
+//                 arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[\"ddplugin-background\"]";
 
-                QProcess process;
-                process.start("dde-dconfig", arguments);
-                process.waitForFinished(-1);
-                QProcess::execute("killall dde-desktop");
+//                 QProcess process;
+//                 process.start("dde-dconfig", arguments);
+//                 process.waitForFinished(-1);
+//                 QProcess::execute("killall dde-desktop");
 
-                QProcess pro;
-                QString strPath = QString("dde-desktop");
-                qDebug()<<"dde no background start!";
-                pro.startDetached(strPath);
-            });
-            dApp->m_startDesktop->start();
-#endif
+//                 QProcess pro;
+//                 QString strPath = QString("dde-desktop");
+//                 qDebug()<<"dde no background start!";
+//                 pro.startDetached(strPath);
+//             });
+//             dApp->m_startDesktop->start();
+// #endif
         }
     }
     else

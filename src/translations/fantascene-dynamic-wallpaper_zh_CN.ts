@@ -250,14 +250,14 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
-        <location filename="../moresetting.cpp" line="76"/>
-        <location filename="../moresetting.cpp" line="159"/>
+        <location filename="../moresetting.cpp" line="78"/>
+        <location filename="../moresetting.cpp" line="163"/>
         <source>continue playing</source>
         <translation>继续播放</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
-        <location filename="../moresetting.cpp" line="78"/>
+        <location filename="../moresetting.cpp" line="80"/>
         <source>pause</source>
         <translation>暂停</translation>
     </message>
@@ -267,8 +267,8 @@
         <translation>帧率</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="83"/>
-        <location filename="../moresetting.cpp" line="167"/>
+        <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="171"/>
         <source>default</source>
         <translatorcomment>默认</translatorcomment>
         <translation>默认</translation>
@@ -291,23 +291,23 @@
     <message>
         <location filename="../moresetting.ui" line="215"/>
         <location filename="../moresetting.ui" line="240"/>
-        <location filename="../moresetting.ui" line="337"/>
-        <location filename="../moresetting.cpp" line="113"/>
-        <location filename="../moresetting.cpp" line="119"/>
-        <location filename="../moresetting.cpp" line="125"/>
-        <location filename="../moresetting.cpp" line="188"/>
-        <location filename="../moresetting.cpp" line="195"/>
-        <location filename="../moresetting.cpp" line="209"/>
+        <location filename="../moresetting.ui" line="355"/>
+        <location filename="../moresetting.cpp" line="115"/>
+        <location filename="../moresetting.cpp" line="121"/>
+        <location filename="../moresetting.cpp" line="127"/>
+        <location filename="../moresetting.cpp" line="192"/>
+        <location filename="../moresetting.cpp" line="199"/>
+        <location filename="../moresetting.cpp" line="213"/>
         <source>true</source>
         <translation>是</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="220"/>
         <location filename="../moresetting.ui" line="245"/>
-        <location filename="../moresetting.ui" line="332"/>
-        <location filename="../moresetting.cpp" line="115"/>
-        <location filename="../moresetting.cpp" line="121"/>
-        <location filename="../moresetting.cpp" line="129"/>
+        <location filename="../moresetting.ui" line="350"/>
+        <location filename="../moresetting.cpp" line="117"/>
+        <location filename="../moresetting.cpp" line="123"/>
+        <location filename="../moresetting.cpp" line="131"/>
         <source>false</source>
         <translation>否</translation>
     </message>
@@ -323,51 +323,70 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="264"/>
-        <source>xx</source>
-        <translation>XX</translation>
+        <source>DESKTOP</source>
+        <translation>桌面</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="294"/>
+        <source>xx</source>
+        <translation type="vanished">XX</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="300"/>
         <source>Wallpaper transparency </source>
         <translation>壁纸透明度 </translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="324"/>
+        <location filename="../moresetting.ui" line="336"/>
         <source>Event penetration</source>
         <translation>事件穿透</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="349"/>
+        <location filename="../moresetting.ui" line="367"/>
         <source>Spark Desktop font color</source>
         <translation>星火桌面图标字体颜色</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="454"/>
+        <location filename="../moresetting.ui" line="472"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="468"/>
+        <location filename="../moresetting.ui" line="486"/>
+        <source>Deepin/Uos desktop environment</source>
+        <translation>Deepin/uos系统环境</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="499"/>
+        <source>Set deepin current work region to dynamic wallpaper</source>
+        <translation>设置deepin当前工作环境为动态壁纸</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="529"/>
+        <source>Set deepin current work region to normal wallpaper</source>
+        <translation>设置deepin当前工作环境为普通壁纸</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="540"/>
         <source>Confirm</source>
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="475"/>
+        <location filename="../moresetting.ui" line="547"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="94"/>
-        <location filename="../moresetting.cpp" line="107"/>
-        <location filename="../moresetting.cpp" line="174"/>
-        <location filename="../moresetting.cpp" line="181"/>
-        <location filename="../moresetting.cpp" line="239"/>
-        <location filename="../moresetting.cpp" line="266"/>
+        <location filename="../moresetting.cpp" line="96"/>
+        <location filename="../moresetting.cpp" line="109"/>
+        <location filename="../moresetting.cpp" line="178"/>
+        <location filename="../moresetting.cpp" line="185"/>
+        <location filename="../moresetting.cpp" line="243"/>
+        <location filename="../moresetting.cpp" line="270"/>
         <source>other</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="33"/>
+        <location filename="../moresetting.cpp" line="35"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
     </message>
@@ -609,6 +628,19 @@
     </message>
 </context>
 <context>
+    <name>TipDeepinDialog</name>
+    <message>
+        <location filename="../help/tipdeepindialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../help/tipdeepindialog.ui" line="36"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Wallpaper</name>
     <message>
         <location filename="../wallpaper.cpp" line="434"/>
@@ -817,13 +849,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="879"/>
+        <location filename="../settingwindow.cpp" line="884"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="891"/>
+        <location filename="../settingwindow.cpp" line="896"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>

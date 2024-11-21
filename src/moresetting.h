@@ -55,6 +55,12 @@ private Q_SLOTS:
 
     void on_voBox_currentTextChanged(const QString &arg1);
 
+    void on_check_deepin_stateChanged(int arg1);
+
+    void on_setWorkPaper_clicked();
+
+    void on_setWorkPaper_2_clicked();
+
 private:
     Ui::MoreSetting *ui;
     QMap<QString, QString> m_languageMap;

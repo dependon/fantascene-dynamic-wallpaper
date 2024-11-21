@@ -762,26 +762,31 @@ void settingWindow::quitApp()
         //deepinv23 quit!
         else if(dApp->m_isDDE23)
         {
-            if(dApp->m_startDesktop)
-            {
-                //dde-dconfig --set -a org.deepin.dde.file-manager -r org.deepin.dde.file-manager.plugins -k desktop.blackList -v "[]"
-                QStringList arguments;
-                arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[]";
-                QProcess process;
-                process.start("dde-dconfig", arguments);
-                process.waitForFinished(-1);
-                qDebug()<<"dde-dconfig end";
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-                QThread * thread = QThread::create([ = ]() {
-                    QProcess::execute("killall dde-desktop");
-                    QString strPath = QString("dde-desktop");
-                    QProcess pro;
-                    pro.startDetached(strPath);
-                    qDebug() << "启动失败: " ;
-                });
-                thread->start();
-#endif
-            }
+            QDBusInterface iface("com.deepin.daemon.Appearance",
+                                 "/com/deepin/daemon/Appearance",
+                                 "com.deepin.daemon.Appearance",
+                                 QDBusConnection::sessionBus());
+            iface.asyncCall("SetCurrentWorkspaceBackground", "");
+//             if(dApp->m_startDesktop)
+//             {
+//                 //dde-dconfig --set -a org.deepin.dde.file-manager -r org.deepin.dde.file-manager.plugins -k desktop.blackList -v "[]"
+//                 QStringList arguments;
+//                 arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[]";
+//                 QProcess process;
+//                 process.start("dde-dconfig", arguments);
+//                 process.waitForFinished(-1);
+//                 qDebug()<<"dde-dconfig end";
+// #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+//                 QThread * thread = QThread::create([ = ]() {
+//                     QProcess::execute("killall dde-desktop");
+//                     QString strPath = QString("dde-desktop");
+//                     QProcess pro;
+//                     pro.startDetached(strPath);
+//                     qDebug() << "启动失败: " ;
+//                 });
+//                 thread->start();
+// #endif
+//             }
         }
     }
     dApp->exit();
