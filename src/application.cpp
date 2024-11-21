@@ -341,6 +341,14 @@ void Application::setSpecialDesktop()
                     findDDe = true;
                 }
             }
+            //设置默认不屏蔽插件
+            QStringList arguments;
+            arguments << "--set" << "-a" << "org.deepin.dde.file-manager" << "-r" << "org.deepin.dde.file-manager.plugins" << "-k" << "desktop.blackList" << "-v" << "[]";
+            QProcess process;
+            process.start("dde-dconfig", arguments);
+            process.waitForFinished(-1);
+
+
             QDBusInterface iface("com.deepin.daemon.Appearance",
                                  "/com/deepin/daemon/Appearance",
                                  "com.deepin.daemon.Appearance",
