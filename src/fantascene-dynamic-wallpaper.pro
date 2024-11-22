@@ -159,7 +159,7 @@ isEmpty(PREFIX){
 }
 APPSHAREDIR = $${PREFIX}/share/fantascene-dynamic-wallpaper
 
-DEFINES+= DEEPIN_STORE
+#DEFINES+= DEEPIN_STORE
 #DEEPIN STORE
 contains(DEFINES,DEEPIN_STORE){
 target.path=/opt/apps/com.github.fantacy/files/bin/
