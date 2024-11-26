@@ -113,9 +113,10 @@ int main(int argc, char *argv[])
 #endif
     Application a(argc, argv);
     a.setApplicationVersion("1.0.0");
+#ifndef QT_DEBUG
     // 安装自定义的消息处理程序
     qInstallMessageHandler(customMessageHandler);
-
+#endif
     qDebug()<<"start " <<QGuiApplication::platformName();
 
     qDebug()<< QApplication::applicationDirPath();

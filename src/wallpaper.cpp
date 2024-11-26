@@ -104,6 +104,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
     connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
 
+
     QScreen *primaryScreen = QGuiApplication::primaryScreen();
     // 监听屏幕大小变化信号
     QObject::connect(primaryScreen, &QScreen::geometryChanged, [=]() {
@@ -112,7 +113,6 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         });
         updateGeometry();
     });
-
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -563,6 +563,11 @@ HWND GetWorkerDesktop(){
 void Wallpaper::registerDesktop()
 {
 #ifdef Q_OS_LINUX
+    // if(dApp->m_screenDesktopWid.size() > 0)
+    // {
+    //     int i = dApp->m_screenDesktopWid.size();
+    //     QWindow::fromWinId(winId())->setParent( QWindow::fromWinId(dApp->m_screenDesktopWid.at(0)));
+    // }
     if(QGuiApplication::platformName() == "xcb") {
 
         Display * display = display = XOpenDisplay(NULL);
@@ -671,17 +676,23 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    if(dApp->m_moreData.isTop)
+    if(event->type() == QEvent::Hide)
     {
-        if (event->type() == QEvent::WindowActivate) {
-            slotActiveWallpaper(true);
-        }
+        this->setVisible(true);
+        this->activateWindow();
+        this->raise();
+
+        slotActiveWallpaper(dApp->m_moreData.isTop);
     }
-    else {
-        if (event->type() == QEvent::WindowActivate) {
-            slotActiveWallpaper(false);
-        }
+
+    if (event->type() == QEvent::ActivationChange) {
+        slotActiveWallpaper(dApp->m_moreData.isTop);
+        QTimer::singleShot(1500,[=] {
+            slotActiveWallpaper(dApp->m_moreData.isTop);
+        });
     }
+
+
     return  QWidget::event(event);
 }
 
@@ -943,12 +954,15 @@ void Wallpaper::slotMouseClick(const int &index)
 
 void Wallpaper::slotActiveWallpaper(bool bRet)
 {
+    qDebug()<< "slotActiveWallpaper:" << bRet;
     if(!bRet)
     {
         for (auto wid : dApp->m_screenWid) {
             if(wid == this->winId())
             {
+                this->raise();
                 this->lower();
+                QThread::msleep(100);
             }
             else
             {
@@ -968,6 +982,7 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
             {
                 QWindow *window = QWindow::fromWinId(wid);
                 if (window) {
+                    QThread::msleep(10);
                     window->raise();
                 }
             }
