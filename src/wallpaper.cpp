@@ -676,8 +676,18 @@ void Wallpaper::registerDesktop()
 
 bool Wallpaper::event(QEvent *event)
 {
-    if(event->type() == QEvent::Hide)
+    if(event->type() == QEvent::Close)
     {
+        qDebug()<<"qApp->quit();";
+        m_quitApp = true;
+    }
+    if(m_quitApp)
+    {
+        return  QWidget::event(event);
+    }
+    else if(event->type() == QEvent::Hide)
+    {
+
         this->setVisible(true);
         this->activateWindow();
         this->raise();

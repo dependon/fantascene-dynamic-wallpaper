@@ -27,6 +27,7 @@
 #include <QTimer>
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QDateTime>
 
 #include "webwidget.h"
 #include "desktop/iconview.h"
@@ -96,6 +97,9 @@ private:
 //    ScreenMode m_cuurentMode{IdCopyScreen};
 //    Desktop *de{nullptr};
     IconView *m_iconView{nullptr};
+
+    qint64 m_lastHideWallpaper = 0;//用于区分上次隐藏的时间，用于关闭程序
+    bool m_quitApp=false;
 #ifdef Q_OS_WINDOWS
     HHOOK hook;
     HWND workerW;
