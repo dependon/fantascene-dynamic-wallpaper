@@ -964,7 +964,6 @@ void Wallpaper::slotMouseClick(const int &index)
 
 void Wallpaper::slotActiveWallpaper(bool bRet)
 {
-    qDebug()<< "slotActiveWallpaper:" << bRet;
     if(!bRet)
     {
         for (auto wid : dApp->m_screenWid) {

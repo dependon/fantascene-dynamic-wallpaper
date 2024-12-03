@@ -252,6 +252,8 @@ void Application::setisPlayList(bool bRet)
 void Application::setSpecialDesktop()
 {
 #ifndef Q_OS_WIN
+    QString currentDir =  QCoreApplication::applicationDirPath();
+    QString toumingCurr = currentDir+"/touming.png";
     if(!dApp->m_moreData.isShowDesktopIcon && !dApp->m_moreData.isTop )
     {
         if(dApp->m_isUKUI)
@@ -259,6 +261,13 @@ void Application::setSpecialDesktop()
            if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
            {
                QString command1 = "gsettings set org.mate.background picture-filename 'usr/share/fantascene-dynamic-wallpaper/normal/touming.png'";
+               QProcess process1;
+               process1.start(command1);
+               process1.waitForFinished(-1);  // 等待进程执行完成
+           }
+           else if(QFile::exists(toumingCurr))
+           {
+               QString command1 = QString("gsettings set org.mate.background picture-filename '%1'").arg(toumingCurr);
                QProcess process1;
                process1.start(command1);
                process1.waitForFinished(-1);  // 等待进程执行完成
@@ -360,6 +369,10 @@ void Application::setSpecialDesktop()
             else if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png"))
             {
                 iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
+            }
+            else if(QFile::exists(toumingCurr))
+            {
+                iface.asyncCall("SetCurrentWorkspaceBackground", toumingCurr);
             }
 // #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 //             dApp->m_startDesktop  = QThread::create([ = ]()
