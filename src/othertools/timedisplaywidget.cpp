@@ -24,12 +24,18 @@ TimeDisplayWidget::TimeDisplayWidget(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(timeLabel);
     setLayout(layout);
+    layout->setStretchFactor(timeLabel, 1);
+
+    QSizePolicy policy = timeLabel->sizePolicy();
+    policy.setHorizontalPolicy(QSizePolicy::Expanding);
+    policy.setVerticalPolicy(QSizePolicy::Expanding);
+    timeLabel ->setSizePolicy(policy);
 
     // 初始更新时间显示
     updateTime();
 
     QString FontName = IniManager::instance()->value("TimeDisplay/FontName","Moonstar").toString();
-    int FontSize = IniManager::instance()->value("TimeDisplay/FontSize",20).toInt();
+    int FontSize = IniManager::instance()->value("TimeDisplay/FontSize",25).toInt();
     int FontX= IniManager::instance()->value("TimeDisplay/X",0).toInt();
     int FontY = IniManager::instance()->value("TimeDisplay/Y",0).toInt();
 
@@ -69,7 +75,7 @@ void TimeDisplayWidget::setFontPointSize(int size)
     QFont currentFont = timeLabel->font();
     currentFont.setPointSize(size);
     timeLabel->setFont(currentFont);
-    this->setMinimumSize(size*16,size*3);
+    this->setMinimumSize(size*17,size*3);
     //timeLabel->setMinimumSize(size*14,size*2);
 }
 
