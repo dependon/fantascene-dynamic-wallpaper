@@ -29,7 +29,7 @@ TimeDisplayWidget::TimeDisplayWidget(QWidget *parent)
     updateTime();
 
     QString FontName = IniManager::instance()->value("TimeDisplay/FontName","Moonstar").toString();
-    int FontSize = IniManager::instance()->value("TimeDisplay/FontSize",25).toInt();
+    int FontSize = IniManager::instance()->value("TimeDisplay/FontSize",20).toInt();
     int FontX= IniManager::instance()->value("TimeDisplay/X",0).toInt();
     int FontY = IniManager::instance()->value("TimeDisplay/Y",0).toInt();
 
@@ -69,7 +69,7 @@ void TimeDisplayWidget::setFontPointSize(int size)
     QFont currentFont = timeLabel->font();
     currentFont.setPointSize(size);
     timeLabel->setFont(currentFont);
-    this->setMinimumSize(size*15,size*3);
+    this->setMinimumSize(size*16,size*3);
     //timeLabel->setMinimumSize(size*14,size*2);
 }
 
@@ -87,7 +87,7 @@ void TimeDisplayWidget::setTimeMove(int x, int y)
     {
         if(qApp->screens().size()>0)
         {
-            int x = qApp->screens().at(0)->geometry().width()-this->width()-50;
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-100;
             int y = qApp->screens().at(0)->geometry().height()-this->height()-100;
             this->move(x,y);
 
