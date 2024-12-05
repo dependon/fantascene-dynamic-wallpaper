@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QLabel>
 #include <QDBusConnection>
+#include <QFontDatabase>
 
 #include <QGuiApplication>
 #include <QEvent>
@@ -72,6 +73,7 @@
 #endif
 
 #include "application.h"
+#include "othertools/timedisplaywidget.h"
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
@@ -103,7 +105,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::sigSetTransparency, this, &Wallpaper::slotSetTransparency);
     connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
     connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
-
+    // 设置时间控件显示
+    connect(dApp,&Application::setTimeVisible,this,&Wallpaper::setTimeVisible,Qt::DirectConnection);
 
     QScreen *primaryScreen = QGuiApplication::primaryScreen();
     // 监听屏幕大小变化信号
@@ -213,6 +216,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         }
     }
 
+    m_TimeVisible = IniManager::instance()->value("TimeDisplay/Visible",false).toBool();
 
 }
 
@@ -1027,6 +1031,8 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
             }
         }
     }
+
+    setTimeVisible(m_TimeVisible);
 }
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet)
@@ -1088,6 +1094,27 @@ void Wallpaper::slotWallpaperEventChanged(bool bRet)
 #else
     Q_UNUSED(bRet);
 #endif
+}
+
+void Wallpaper::setTimeVisible(bool bVisible)
+{
+    m_TimeVisible = bVisible;
+    if(m_TimeVisible)
+    {
+        if(!m_timedisplayWidget)
+        {
+            m_timedisplayWidget =new TimeDisplayWidget(this);
+        }
+        m_timedisplayWidget->show();
+    }
+    else
+    {
+        if(m_timedisplayWidget)
+        {
+            delete m_timedisplayWidget;
+            m_timedisplayWidget = nullptr;
+        }
+    }
 }
 
 void Wallpaper::LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos)

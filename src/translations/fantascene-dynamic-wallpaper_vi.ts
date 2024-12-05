@@ -4,8 +4,8 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../application.cpp" line="152"/>
-        <location filename="../application.cpp" line="153"/>
+        <location filename="../application.cpp" line="160"/>
+        <location filename="../application.cpp" line="161"/>
         <source>fantascene-dynamic-wallpaper</source>
         <translation>fantascene hình nền sống</translation>
     </message>
@@ -70,133 +70,133 @@
 <context>
     <name>IconView</name>
     <message>
-        <location filename="../desktop/iconview.cpp" line="183"/>
+        <location filename="../desktop/iconview.cpp" line="185"/>
         <source>Open</source>
         <translation>Mở bình thường</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="188"/>
+        <location filename="../desktop/iconview.cpp" line="191"/>
         <source>Open With</source>
         <translation>Cách mở</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="193"/>
+        <location filename="../desktop/iconview.cpp" line="197"/>
         <source>New Built</source>
         <translation>Mới</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="198"/>
+        <location filename="../desktop/iconview.cpp" line="202"/>
         <source>Select all</source>
         <translation>Chọn tất cả</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="203"/>
+        <location filename="../desktop/iconview.cpp" line="207"/>
         <source>Open Terminal</source>
         <translation>Mở Terminal</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="209"/>
-        <location filename="../desktop/iconview.cpp" line="933"/>
+        <location filename="../desktop/iconview.cpp" line="213"/>
+        <location filename="../desktop/iconview.cpp" line="937"/>
         <source>New Folder</source>
         <translation>Thư mục mới</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="215"/>
+        <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Sort Order</source>
         <translation>Thứ tự sắp xếp</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="219"/>
+        <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Refresh Sort</source>
         <translation>Làm mới sắp xếp</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="223"/>
+        <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Name</source>
         <translation>Tên</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="227"/>
+        <location filename="../desktop/iconview.cpp" line="231"/>
         <source>Change Date</source>
         <translation>Thay đổi ngày</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="231"/>
+        <location filename="../desktop/iconview.cpp" line="235"/>
         <source>File Size</source>
         <translation>Cỡ tập tin</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="235"/>
+        <location filename="../desktop/iconview.cpp" line="239"/>
         <source>File Type</source>
         <translation>Kiểu tập tin</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="240"/>
+        <location filename="../desktop/iconview.cpp" line="244"/>
         <source>Icon Size</source>
         <translation>Cỡ biểu tượng</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="244"/>
+        <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Small</source>
         <translation>Nhỏ</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="248"/>
+        <location filename="../desktop/iconview.cpp" line="252"/>
         <source>Medium</source>
         <translation>Trung bình</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="252"/>
+        <location filename="../desktop/iconview.cpp" line="256"/>
         <source>Big</source>
         <translation>Lớn</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="258"/>
+        <location filename="../desktop/iconview.cpp" line="262"/>
         <source>Copy</source>
         <translation>Sao chép</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="263"/>
+        <location filename="../desktop/iconview.cpp" line="267"/>
         <source>Cut</source>
         <translation>Cắt</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="268"/>
+        <location filename="../desktop/iconview.cpp" line="272"/>
         <source>Paste</source>
         <translation>Dán</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="273"/>
+        <location filename="../desktop/iconview.cpp" line="277"/>
         <source>Rename</source>
         <translation>Thay tên</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="278"/>
+        <location filename="../desktop/iconview.cpp" line="282"/>
         <source>Trash</source>
         <translation>Thùng rác</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="283"/>
+        <location filename="../desktop/iconview.cpp" line="287"/>
         <source>Set Wallpaper</source>
         <translation>Đặt hình nền</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="296"/>
+        <location filename="../desktop/iconview.cpp" line="300"/>
         <source>New TXT</source>
         <translation>TXT mới</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="365"/>
+        <location filename="../desktop/iconview.cpp" line="369"/>
         <source>Select Other Application</source>
         <translation>Chọn ứng dụng khác</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="489"/>
+        <location filename="../desktop/iconview.cpp" line="493"/>
         <source>Please Select App</source>
         <translation>Vui lòng chọn ứng dụng</translation>
     </message>
     <message>
-        <location filename="../desktop/iconview.cpp" line="947"/>
+        <location filename="../desktop/iconview.cpp" line="951"/>
         <source>New Txt Files</source>
         <translation>Tập tin Txt mới</translation>
     </message>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../moresetting.ui" line="264"/>
         <source>DESKTOP</source>
-        <translation type="unfinished"></translation>
+        <translation>Máy tính để bàn</translation>
     </message>
     <message>
         <source>xx</source>
@@ -355,17 +355,17 @@
     <message>
         <location filename="../moresetting.ui" line="486"/>
         <source>Deepin/Uos desktop environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Môi trường Desktop Deep/Uos</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="499"/>
         <source>Set deepin current work region to dynamic wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Đặt khu vực làm việc hiện tại của deepin thành Live Wallpaper</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="529"/>
         <source>Set deepin current work region to normal wallpaper</source>
-        <translation type="unfinished"></translation>
+        <translation>Đặt khu vực làm việc hiện tại của deepin thành hình nền bình thường</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="540"/>
@@ -408,7 +408,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="55"/>
         <source>Download Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>Công cụ tải xuống</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="115"/>
@@ -560,13 +560,85 @@
     <message>
         <location filename="../listview/onlineclient.cpp" line="580"/>
         <source>If unable to download, please check if &apos;aria2&apos; is installed on the command line.But download html web wallpaper need &apos;wget&apos; .</source>
-        <translation type="unfinished"></translation>
+        <translation>Nếu bạn không thể tải xuống, hãy kiểm tra xem &quot;aria2&quot; đã được cài đặt trên dòng lệnh chưa. Tuy nhiên, để tải hình nền HTML, bạn cần &quot;wget&quot;.</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
         <location filename="../listview/onlineclient.cpp" line="496"/>
         <source>Not Online</source>
         <translation>Không trực tuyến</translation>
+    </message>
+</context>
+<context>
+    <name>OtherSetDialog</name>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation>Hộp thoại</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="20"/>
+        <source>DateTime Tool</source>
+        <translation>Công cụ DateTime</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="28"/>
+        <source>Visible</source>
+        <translation>Hiển thị</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="48"/>
+        <location filename="../othertools/othersetdialog.cpp" line="22"/>
+        <location filename="../othertools/othersetdialog.cpp" line="88"/>
+        <source>True</source>
+        <translation type="unfinished">Đúng vậy.</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="53"/>
+        <location filename="../othertools/othersetdialog.cpp" line="26"/>
+        <location filename="../othertools/othersetdialog.cpp" line="93"/>
+        <source>False</source>
+        <translation>Sai rồi</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="72"/>
+        <source>Format</source>
+        <translation>Định dạng</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="127"/>
+        <source>Position</source>
+        <translation>Vị trí</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="173"/>
+        <source>Font Size</source>
+        <translation>Cỡ phông chữ</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="200"/>
+        <source>Font</source>
+        <translation>Phông chữ</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="227"/>
+        <source>Color</source>
+        <translation>Màu sắc</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="246"/>
+        <source>Select</source>
+        <translation>Chọn</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="286"/>
+        <source>Close</source>
+        <translation>Đóng cửa</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.cpp" line="35"/>
+        <source>Other Display Tools</source>
+        <translation>Công cụ hiển thị khác</translation>
     </message>
 </context>
 <context>
@@ -609,7 +681,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="160"/>
+        <location filename="../main.cpp" line="161"/>
         <source>fantacy</source>
         <translation>tưởng tượng</translation>
     </message>
@@ -629,23 +701,23 @@
     <message>
         <location filename="../help/tipdeepindialog.ui" line="36"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>Nhãn văn bản</translation>
     </message>
 </context>
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="434"/>
+        <location filename="../wallpaper.cpp" line="438"/>
         <source>Copy</source>
         <translation>Sao chép</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="439"/>
+        <location filename="../wallpaper.cpp" line="443"/>
         <source>Extend</source>
         <translation>Mở rộng</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="444"/>
+        <location filename="../wallpaper.cpp" line="448"/>
         <source>Manual</source>
         <translation>Hướng dẫn sử dụng</translation>
     </message>
@@ -780,13 +852,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="106"/>
+        <location filename="../settingwindow.cpp" line="109"/>
         <source>Play</source>
         <translation>Chơi</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="118"/>
+        <location filename="../settingwindow.cpp" line="121"/>
         <source>Pause</source>
         <translation>Tạm dừng</translation>
     </message>
@@ -806,163 +878,184 @@
         <translation>Ẩn</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="299"/>
+        <location filename="../settingwindow.ui" line="303"/>
+        <source>Close</source>
+        <translation type="unfinished">Đóng cửa</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="318"/>
         <source>Model</source>
         <translation>Mô hình</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="307"/>
+        <location filename="../settingwindow.ui" line="326"/>
         <source>Copy</source>
         <translation>Sao chép</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="312"/>
+        <location filename="../settingwindow.ui" line="331"/>
         <source>Extend</source>
         <translation>Mở rộng</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="317"/>
-        <location filename="../settingwindow.cpp" line="704"/>
+        <location filename="../settingwindow.ui" line="336"/>
+        <location filename="../settingwindow.cpp" line="705"/>
         <source>Manual</source>
         <translation>Hướng dẫn sử dụng</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="325"/>
+        <location filename="../settingwindow.ui" line="344"/>
         <source>Add to startup</source>
         <translation>Thêm vào Startup</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="336"/>
+        <location filename="../settingwindow.ui" line="355"/>
         <source>Video aspect ratio</source>
         <translation>Tỷ lệ khung hình video</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="350"/>
-        <location filename="../settingwindow.cpp" line="884"/>
+        <location filename="../settingwindow.ui" line="369"/>
+        <location filename="../settingwindow.cpp" line="869"/>
         <source>default</source>
         <translation>Mặc định</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="542"/>
+        <location filename="../settingwindow.ui" line="526"/>
         <source>Download Wallpaper</source>
         <translation>Tải hình nền</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="380"/>
-        <location filename="../settingwindow.cpp" line="896"/>
+        <location filename="../settingwindow.ui" line="601"/>
+        <source>Version:</source>
+        <translation>Phiên bản:</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="399"/>
+        <location filename="../settingwindow.cpp" line="881"/>
         <source>custom</source>
         <translation>Trang chủ</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="397"/>
+        <location filename="../settingwindow.ui" line="416"/>
         <source>Apply scale</source>
         <translation>Quy mô ứng dụng</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="416"/>
+        <location filename="../settingwindow.ui" line="435"/>
         <source>X</source>
         <translation>Mười.</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="430"/>
+        <location filename="../settingwindow.ui" line="449"/>
         <source>Y</source>
         <translation>Y</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="444"/>
+        <location filename="../settingwindow.ui" line="463"/>
         <source>Width</source>
         <translation>Chiều rộng</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="458"/>
+        <location filename="../settingwindow.ui" line="477"/>
         <source>Height</source>
         <translation>Chiều cao</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="472"/>
+        <location filename="../settingwindow.ui" line="491"/>
         <source>Apply Custom Dimensions</source>
         <translation>Áp dụng kích thước tùy chỉnh</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="491"/>
         <source>githubWeb</source>
-        <translation>Trang web github</translation>
+        <translation type="vanished">Trang web github</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="498"/>
         <source>new(gitee)</source>
-        <translation>Mới (Gitee)</translation>
+        <translation type="vanished">Mới (Gitee)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="505"/>
         <source>new(github)</source>
-        <translation>Tạo mới (github)</translation>
+        <translation type="vanished">Tạo mới (github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="512"/>
         <source>reprotBug</source>
-        <translation>reprotBug</translation>
+        <translation type="vanished">reprotBug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="535"/>
+        <location filename="../settingwindow.ui" line="519"/>
         <source>Spark-Hub(Test)</source>
         <translation>Spark Hub (thử nghiệm)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="553"/>
+        <location filename="../settingwindow.ui" line="533"/>
+        <source>Other Display Tools</source>
+        <translation>Công cụ hiển thị khác</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="544"/>
         <source>Advanced Settings</source>
         <translation>Cài đặt nâng cao</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="560"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Wallpaper Local</source>
         <translation>Wallpaper địa phương</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="567"/>
-        <location filename="../settingwindow.cpp" line="125"/>
+        <location filename="../settingwindow.ui" line="558"/>
+        <location filename="../settingwindow.cpp" line="128"/>
         <source>Wallpaper History</source>
         <translation>Lịch sử hình nền</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="574"/>
+        <location filename="../settingwindow.ui" line="565"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>Plugin động cơ hình nền</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="92"/>
+        <location filename="../settingwindow.cpp" line="95"/>
         <source>Exit</source>
         <translation>Xuất khẩu</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="113"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Screenshot</source>
         <translation>Ảnh chụp màn hình</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="129"/>
+        <location filename="../settingwindow.cpp" line="132"/>
         <source>Main View</source>
         <translation>Xem chính</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="146"/>
+        <location filename="../settingwindow.cpp" line="149"/>
         <source>Help</source>
         <translation>Trợ giúp</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="154"/>
+        <location filename="../settingwindow.cpp" line="157"/>
         <source>github</source>
         <translation>github</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="171"/>
+        <location filename="../settingwindow.cpp" line="174"/>
         <source>Double click to open the configuration interface</source>
         <translation>Nhấp đúp để mở giao diện cấu hình</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="224"/>
+        <location filename="../settingwindow.cpp" line="222"/>
         <source>Latest version</source>
         <translation>Phiên bản mới nhất</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="1494"/>
+        <source>Close!!</source>
+        <translation>Đóng cửa!</translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="1494"/>
+        <source>Close the App ?</source>
+        <translation>Đóng ứng dụng?</translation>
     </message>
 </context>
 <context>

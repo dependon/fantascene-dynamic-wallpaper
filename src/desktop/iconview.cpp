@@ -177,18 +177,22 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QMenu *viewMenu = new QMenu();
+    //viewMenu->setWindowFlags(viewMenu->windowFlags() | Qt::FramelessWindowHint);
     viewMenu->setAttribute(Qt::WA_TranslucentBackground);
+
 
     QAction *openAction = new QAction(viewMenu);
     openAction->setText(tr("Open"));
     viewMenu->addAction(openAction);
 
     m_openSelect = new QMenu(viewMenu);
+    //m_openSelect->setWindowFlags(m_openSelect->windowFlags() | Qt::FramelessWindowHint);
     m_openSelect->setAttribute(Qt::WA_TranslucentBackground);
     m_openSelect->setTitle(tr("Open With"));
     viewMenu->addMenu(m_openSelect);
 
     m_createNew = new QMenu(viewMenu);
+    //m_createNew->setWindowFlags(m_createNew->windowFlags() | Qt::FramelessWindowHint);
     m_createNew->setAttribute(Qt::WA_TranslucentBackground);
     m_createNew->setTitle(tr("New Built"));
     viewMenu->addMenu(m_createNew);

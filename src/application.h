@@ -42,6 +42,8 @@ const QString PIC_DIR_PATH =   QDir::homePath() +
 
 #define dApp (static_cast<Application*>(QCoreApplication::instance()))
 
+#define APP_VERSION "1.9.8"
+
 class xcb_connection_t;
 
 class Application : public QApplication
@@ -147,6 +149,19 @@ Q_SIGNALS:
     void sigSetDownloadIng(bool bRet);
 
     void sigDownloadError();
+
+    // 设置时间控件字体的接口
+    void setTimeFontFamily(const QString &fontFamily);
+    // 设置时间控件字体大小的接口
+    void setTimeFontPointSize(int size);
+    // 设置时间控件字体颜色的接口
+    void setTimeFontColor(const QColor &color);
+    // 设置时间控件位置
+    void setTimeMove(int,int);
+    // 设置时间控件格式
+    void setTimeFormat(const QString &format);
+    // 设置时间控件显示
+    void setTimeVisible(bool bVisble);
 public:
 
     QRect m_manual{0, 0, 1, 1};

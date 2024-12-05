@@ -41,6 +41,7 @@
 #include <QDirIterator>
 #include <QLockFile>
 #include <QTranslator>
+#include <QFontDatabase>
 
 #include "db/dbmanager.h"
 
@@ -132,6 +133,28 @@ Application::Application(int &argc, char **argv)
         styleFile.close();
         qApp->setStyleSheet(styleSheet);
     }
+
+    //加载字体
+    QFontDatabase::addApplicationFont(":/font/Winter_Trendy.ttf");
+    QFontDatabase::addApplicationFont(":/font/Carnevalee Freakshow.ttf");
+    QFontDatabase::addApplicationFont(":/font/CHERL___.TTF");
+    QFontDatabase::addApplicationFont(":/font/Doodle Gum.ttf");
+    QFontDatabase::addApplicationFont(":/font/Fighting Spirit 2 bold.otf");
+    QFontDatabase::addApplicationFont(":/font/Finger Printed.ttf");
+    QFontDatabase::addApplicationFont(":/font/FlowerGirl-Regular.ttf");
+    QFontDatabase::addApplicationFont(":/font/Galaksi.ttf");
+    QFontDatabase::addApplicationFont(":/font/Moonstar.ttf");
+    QFontDatabase::addApplicationFont(":/font/Pokemon Hollow.ttf");
+    QFontDatabase::addApplicationFont(":/font/Pokemon Solid.ttf");
+    QFontDatabase::addApplicationFont(":/font/Sawer.otf");
+    QFontDatabase::addApplicationFont(":/font/SHADSER.TTF");
+    QFontDatabase::addApplicationFont(":/font/spacetime-regular.ttf");
+    QFontDatabase::addApplicationFont(":/font/Story Milky.ttf");
+    QFontDatabase::addApplicationFont(":/font/Super Morning.ttf");
+    QFontDatabase::addApplicationFont(":/font/Super Shiny.ttf");
+    QFontDatabase::addApplicationFont(":/font/SuperMario256.ttf");
+    QFontDatabase::addApplicationFont(":/font/Winter Half.otf");
+    QFontDatabase::addApplicationFont(":/font/Winter Selfie.otf");
 
 
     this->setApplicationName(tr("fantascene-dynamic-wallpaper"));

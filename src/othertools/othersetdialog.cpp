@@ -1,0 +1,121 @@
+#include "othersetdialog.h"
+#include "ui_othersetdialog.h"
+#include "ini/inimanager.h"
+#include "application.h"
+#include <QColorDialog>
+OtherSetDialog::OtherSetDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::OtherSetDialog)
+{
+    ui->setupUi(this);
+    ui->checkBoxShow->setVisible(false);
+    QString FontName = IniManager::instance()->value("TimeDisplay/FontName","Winter Trendy").toString();
+    int FontSize = IniManager::instance()->value("TimeDisplay/FontSize",25).toInt();
+    int FontX= IniManager::instance()->value("TimeDisplay/X",0).toInt();
+    int FontY = IniManager::instance()->value("TimeDisplay/Y",0).toInt();
+
+    QString timeFormat = IniManager::instance()->value("TimeDisplay/TimeFormat","yyyy-MM-dd HH:mm:ss").toString();
+
+    bool bVisible = IniManager::instance()->value("TimeDisplay/Visible",true).toBool();
+    if(bVisible)
+    {
+        ui->comboBoxVisible->setCurrentText(tr("True"));
+    }
+    else
+    {
+        ui->comboBoxVisible->setCurrentText(tr("False"));
+    }
+    ui->comboBoxFormat->setCurrentText(timeFormat);
+    ui->x->setText(QString::number(FontX));
+    ui->y->setText(QString::number(FontY));
+    ui->fontComboBox->setCurrentText(FontName);
+
+    ui->fontSizeEdit->setText(QString::number(FontSize));
+
+    this->setWindowTitle(tr("Other Display Tools"));
+
+}
+
+OtherSetDialog::~OtherSetDialog()
+{
+    delete ui;
+}
+
+void OtherSetDialog::on_closeBtn_clicked()
+{
+    this->close();
+}
+
+void OtherSetDialog::on_comboBoxFormat_currentTextChanged(const QString &arg1)
+{
+    IniManager::instance()->setValue("TimeDisplay/TimeFormat",arg1);
+    Q_EMIT dApp->setTimeFormat(arg1);
+    //刷新下字体大小
+    on_fontSizeEdit_editingFinished();
+}
+
+
+void OtherSetDialog::on_x_editingFinished()
+{
+    IniManager::instance()->setValue("TimeDisplay/X",ui->x->text().toInt());
+    Q_EMIT dApp->setTimeMove(ui->x->text().toInt(),ui->y->text().toInt());
+}
+
+
+void OtherSetDialog::on_y_editingFinished()
+{
+    IniManager::instance()->setValue("TimeDisplay/Y",ui->y->text().toInt());
+    Q_EMIT dApp->setTimeMove(ui->x->text().toInt(),ui->y->text().toInt());
+}
+
+
+void OtherSetDialog::on_fontComboBox_currentTextChanged(const QString &arg1)
+{
+    IniManager::instance()->setValue("TimeDisplay/FontName",arg1);
+    Q_EMIT dApp->setTimeFontFamily(arg1);
+}
+
+
+void OtherSetDialog::on_checkBoxShow_clicked(bool checked)
+{
+    IniManager::instance()->setValue("TimeDisplay/Visible",checked);
+    Q_EMIT dApp->setTimeVisible(checked);
+}
+
+
+void OtherSetDialog::on_comboBoxVisible_currentTextChanged(const QString &arg1)
+{
+    if(arg1 == tr("True"))
+    {
+        IniManager::instance()->setValue("TimeDisplay/Visible",true);
+        Q_EMIT dApp->setTimeVisible(true);
+    }
+    else if(arg1 == tr("False"))
+    {
+        IniManager::instance()->setValue("TimeDisplay/Visible",false);
+        Q_EMIT dApp->setTimeVisible(false);
+    }
+}
+
+
+void OtherSetDialog::on_selectBtn_clicked()
+{
+    QColor color = QColorDialog::getColor();
+    if (color.isValid())
+    {
+        IniManager::instance()->setValue("TimeDisplay/Color",color);
+        Q_EMIT dApp->setTimeFontColor(color);
+    }
+}
+
+
+void OtherSetDialog::on_fontSizeEdit_editingFinished()
+{
+    int FontSize = ui->fontSizeEdit->text().toInt();
+    if(FontSize > 0 && FontSize < 200)
+    {
+        IniManager::instance()->setValue("TimeDisplay/FontSize",FontSize);
+    }
+    Q_EMIT dApp->setTimeFontPointSize(FontSize);
+}
+

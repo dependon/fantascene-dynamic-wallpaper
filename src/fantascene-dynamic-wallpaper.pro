@@ -77,6 +77,8 @@ SOURCES += main.cpp \
     download/tcpclient.cpp \
     help/tipdeepindialog.cpp \
     listview/onlineclient.cpp \
+    othertools/othersetdialog.cpp \
+    othertools/timedisplaywidget.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
     mpvwidget.cpp \
@@ -103,6 +105,8 @@ HEADERS += \
     download/tcpclient.h \
     help/tipdeepindialog.h \
     listview/onlineclient.h \
+    othertools/othersetdialog.h \
+    othertools/timedisplaywidget.h \
     wallpaper.h \
     dbuswallpaperservice.h \
     mpvwidget.h \
@@ -220,6 +224,7 @@ INSTALLS += target  icon desktop  translations video touming
 FORMS += \
     help/tipdeepindialog.ui \
     listview/onlineclient.ui \
+    othertools/othersetdialog.ui \
     settingwindow.ui \
     listview/historywidget.ui \
     moresetting.ui \

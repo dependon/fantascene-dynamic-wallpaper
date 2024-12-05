@@ -35,7 +35,7 @@
 #ifdef Q_OS_WINDOWS
 #include <Windows.h>
 #endif
-
+class TimeDisplayWidget;
 class QLabel;
 //class Desktop;
 class Wallpaper : public QWidget
@@ -71,6 +71,8 @@ public Q_SLOTS:
     void slotActiveWallpaper(bool bRet);
     void slotWallpaperEventChanged(bool bRet);
 
+    void setTimeVisible (bool bVisible );
+
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
@@ -100,6 +102,9 @@ private:
 
     qint64 m_lastHideWallpaper = 0;//用于区分上次隐藏的时间，用于关闭程序
     bool m_quitApp=false;
+
+    TimeDisplayWidget * m_timedisplayWidget{nullptr};
+    bool m_TimeVisible{false};
 #ifdef Q_OS_WINDOWS
     HHOOK hook;
     HWND workerW;

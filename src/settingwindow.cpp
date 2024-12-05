@@ -34,6 +34,7 @@
 #include <QTimer>
 #include <QDesktopServices>
 #include <QStringList>
+#include <QMessageBox>
 
 #include <QDropEvent>
 #include <QMimeData>
@@ -50,6 +51,7 @@
 #include "help/helpdialog.h"
 #include "download/downloadwidget.h"
 #include "db/dbmanager.h"
+#include "othertools/othersetdialog.h"
 
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>
@@ -58,6 +60,7 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 #endif
+
 
 settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     QWidget(parent),
@@ -212,11 +215,6 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
         }
     }, Qt::DirectConnection);
 
-    ui->bugBtn->hide();
-    ui->mainWeb->hide();
-    ui->githubWeb->hide();
-    ui->giteeWeb->hide();
-
     if (m_parentMainWindow) {
         m_aboutMenu = new QMenu();
 
@@ -234,6 +232,9 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
 #endif
     initWallpaperWidget();
     executeSettings();
+
+    //新增设置版本
+    ui->label_version->setText(APP_VERSION);
 
 }
 void settingWindow::pathChanged(const QString &path)
@@ -860,22 +861,6 @@ void settingWindow::slotWallPaper2(const QString &path)
     }
 }
 
-
-void settingWindow::on_giteeWeb_clicked()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://gitee.com/liuminghang/fantascene-dynamic-wallpaper/releases")));
-}
-
-void settingWindow::on_githubWeb_clicked()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/releases")));
-}
-
-void settingWindow::on_bugBtn_clicked()
-{
-    QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/issues/new")));
-}
-
 void settingWindow::on_videoBLCombox_activated(const QString &arg1)
 {
     ui->videoBLEdit->setVisible(false);
@@ -1494,5 +1479,22 @@ void settingWindow::on_downBtn_clicked()
     m_onlineWidget->show();
     m_onlineWidget->move(screenWidth/2 - m_onlineWidget->width()/2,screenHeight/2 - m_onlineWidget->height()/2);
     m_onlineWidget->activateWindow();
+}
+
+
+void settingWindow::on_otherToolsBtn_clicked()
+{
+    OtherSetDialog dialog;
+    dialog.exec();
+}
+
+
+void settingWindow::on_closeBtn_clicked()
+{
+    if (QMessageBox::Yes == QMessageBox::information(nullptr, tr("Close!!"), tr("Close the App ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes))
+    {
+        quitApp();
+    }
+
 }
 

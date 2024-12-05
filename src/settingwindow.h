@@ -140,12 +140,6 @@ private Q_SLOTS:
     void slotWallPaper(const QString &path);
     void slotWallPaper2(const QString &path);
 
-    void on_giteeWeb_clicked();
-
-    void on_githubWeb_clicked();
-
-    void on_bugBtn_clicked();
-
     void on_videoBLCombox_activated(const QString &arg1);
 
     void on_videoBZDY_clicked();
@@ -178,6 +172,10 @@ private Q_SLOTS:
 
 
     void on_downBtn_clicked();
+
+    void on_otherToolsBtn_clicked();
+
+    void on_closeBtn_clicked();
 
 public Q_SLOTS:
     void activeWindow();
