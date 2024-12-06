@@ -16,7 +16,7 @@ OtherSetDialog::OtherSetDialog(QWidget *parent)
 
     QString timeFormat = IniManager::instance()->value("TimeDisplay/TimeFormat","yyyy-MM-dd HH:mm:ss").toString();
 
-    bool bVisible = IniManager::instance()->value("TimeDisplay/Visible",true).toBool();
+    bool bVisible = IniManager::instance()->value("TimeDisplay/Visible",false).toBool();
     if(bVisible)
     {
         ui->comboBoxVisible->setCurrentText(tr("True"));
