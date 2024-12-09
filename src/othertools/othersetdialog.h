@@ -34,6 +34,8 @@ private Q_SLOTS:
 
     void on_fontSizeEdit_editingFinished();
 
+    void on_trSlider_sliderReleased();
+
 private:
     Ui::OtherSetDialog *ui;
 };

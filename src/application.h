@@ -162,6 +162,8 @@ Q_SIGNALS:
     void setTimeFormat(const QString &format);
     // 设置时间控件显示
     void setTimeVisible(bool bVisble);
+    // 设置时间控件透明度
+    void setTimeTransparent(int value);
 public:
 
     QRect m_manual{0, 0, 1, 1};

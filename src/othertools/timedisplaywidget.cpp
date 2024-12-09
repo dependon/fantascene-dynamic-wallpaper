@@ -11,7 +11,6 @@ TimeDisplayWidget::TimeDisplayWidget(QWidget *parent)
     connect(dApp,&Application::setTimeMove,this,&TimeDisplayWidget::setTimeMove);
     connect(dApp,&Application::setTimeFormat,this,&TimeDisplayWidget::setTimeFormat);
 
-
     timeLabel = new QLabel(this);
     timeLabel->setAlignment(Qt::AlignLeft);
 

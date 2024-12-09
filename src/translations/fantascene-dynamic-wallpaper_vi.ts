@@ -631,7 +631,12 @@
         <translation>Chọn</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="286"/>
+        <location filename="../othertools/othersetdialog.ui" line="269"/>
+        <source>Transparency</source>
+        <translation type="unfinished">Độ trong suốt</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="337"/>
         <source>Close</source>
         <translation>Đóng cửa</translation>
     </message>

@@ -101,8 +101,10 @@ void OtherSetDialog::on_comboBoxVisible_currentTextChanged(const QString &arg1)
 void OtherSetDialog::on_selectBtn_clicked()
 {
     QColor color = QColorDialog::getColor();
+    int sliderValue = ui->trSlider->value();
     if (color.isValid())
     {
+        color.setAlpha(sliderValue);
         IniManager::instance()->setValue("TimeDisplay/Color",color);
         Q_EMIT dApp->setTimeFontColor(color);
     }
@@ -117,5 +119,25 @@ void OtherSetDialog::on_fontSizeEdit_editingFinished()
         IniManager::instance()->setValue("TimeDisplay/FontSize",FontSize);
     }
     Q_EMIT dApp->setTimeFontPointSize(FontSize);
+}
+
+
+void OtherSetDialog::on_trSlider_sliderReleased()
+{
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("TimeDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+
+    int sliderValue = ui->trSlider->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("TimeDisplay/Color",color);
+        Q_EMIT dApp->setTimeFontColor(color);
+    }
 }
 

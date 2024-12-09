@@ -639,7 +639,12 @@
         <translation>选择</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="286"/>
+        <location filename="../othertools/othersetdialog.ui" line="269"/>
+        <source>Transparency</source>
+        <translation>透明度</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="337"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
