@@ -358,7 +358,7 @@ void Application::setSpecialDesktop()
                 process.waitForFinished();
                 QByteArray result = process.readAllStandardOutput();
 
-                if (result.isEmpty())
+                if (result.isEmpty() && m_screenDesktopWid.isEmpty())
                 {
                     qDebug() << "dde-desktop no find ,wait 1s continue find";
                     QThread::sleep(1);
