@@ -25,12 +25,23 @@ OtherSetDialog::OtherSetDialog(QWidget *parent)
     {
         ui->comboBoxVisible->setCurrentText(tr("False"));
     }
+
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("TimeDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+    ui->trSlider->setValue(color.alpha());
+
     ui->comboBoxFormat->setCurrentText(timeFormat);
     ui->x->setText(QString::number(FontX));
     ui->y->setText(QString::number(FontY));
     ui->fontComboBox->setCurrentText(FontName);
 
     ui->fontSizeEdit->setText(QString::number(FontSize));
+
 
     this->setWindowTitle(tr("Other Display Tools"));
 
