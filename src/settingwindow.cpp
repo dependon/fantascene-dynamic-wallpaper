@@ -886,7 +886,7 @@ void settingWindow::on_videoBLCombox_activated(const QString &arg1)
     ui->videoBLEdit->setText(QString::number(value));
     m_videoAspect = value;
     m_videoASpectStr = arg1;
-    Q_EMIT dApp->setMpvValue("video-aspect", QString::number(value));
+    Q_EMIT dApp->setMpvValue("video-aspect-override", QString::number(value));
 
     saveSettings();
 }
