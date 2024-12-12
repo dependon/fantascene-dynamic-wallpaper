@@ -727,6 +727,7 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
         if(key == "video-aspect")
         {
             m_mpv->setProperty(key, value.toDouble());
+            m_mpv->setProperty("video-aspect-override", value.toDouble());
         }
         else {
             m_mpv->setProperty(key, value);
@@ -736,6 +737,7 @@ void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
         if(key == "video-aspect")
         {
             m_mpv2->setProperty(key, value.toDouble());
+            m_mpv2->setProperty("video-aspect-override", value.toDouble());
         }
         else {
             m_mpv2->setProperty(key, value);
