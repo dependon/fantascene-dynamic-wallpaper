@@ -724,10 +724,22 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 {
     if (m_mpv) {
-        m_mpv->setProperty(key, value);
+        if(key == "video-aspect")
+        {
+            m_mpv->setProperty(key, value.toDouble());
+        }
+        else {
+            m_mpv->setProperty(key, value);
+        }
     }
     if (m_mpv2) {
-        m_mpv2->setProperty(key, value);
+        if(key == "video-aspect")
+        {
+            m_mpv2->setProperty(key, value.toDouble());
+        }
+        else {
+            m_mpv2->setProperty(key, value);
+        }
     }
 }
 
