@@ -1,3 +1,46 @@
+## 1.9.8
+
+Add time control to display time in real time
+
+Increase the operation of configuration transparency
+
+Fix the problem that the transparency of the time control was opened incorrectly for the first time
+
+Enlarge the size of the main interface
+
+Add wikis, which can be viewed in gitee and github (Chinese only)
+
+## 1.9.7
+
+Fix the blocking shutdown problem
+
+Fix transparent wallpaper problem
+
+Change the deep scheme to set transparent wallpaper, and add special buttons for deep in more settings
+
+Delay startup for 2s (if the desktop window is not found)
+
+## 1.9.3
+
+Add the download extension of spark hub and the download of aria2
+
+## 1.9.2
+
+Optimized the domestic network to connect directly instead of cdn
+Add translation
+
+The black edge of the menu of the tray is eliminated
+
+## 1.9.0
+
+Update Translation
+
+Fix download problems
+
+## 1.8.6
+
+Modification compatible with windows
+
 ## 1.8.4
 
 Compatible with GXDE OS (native desktop)

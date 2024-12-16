@@ -1,4 +1,4 @@
-# Fantascene-dynamic-wallpaper(Spark-dynamic-wallpaper)
+# Fantascene-dynamic-wallpaper
 
 ### Managed animated wallpaper based on X11 under Linux.
 
@@ -6,57 +6,64 @@
 
 [https://www.fantacy.online](https://www.fantacy.online)
 
+## Other Readme
+
+[English](UpdateLog.md) [中文项目介绍](README_zh.md)
+
+## Update Log
+
+[English](UpdateLog.md) [中文日志](UpdateLog_zh.md)
+
+## Supporting languages (Current Using machine translation)
+
+#### if possible, you can submit updates for '.ts' file to help us
+
+English 
+中文 
+繁體中文(中国台湾)
+繁體中文(中国香港) 
+Español Polski 
+日本語 
+Deutsch 
+한국어 
+Italiano 
+Français 
+Русский 
+Português 
+Português (Brasil) 
+Suomi 
+Tiếng Việt
+Türkçe
+ภาษาไทย
+Magyar
+Svenska
+Slovenčina
+Română
+Bahasa Melayu
+Nederlands
+Eesti keel
+Български
+Čeština
+Dansk sprog
+Ελληνική γλώσσα
+
+## wiki(介绍)
+
+https://github.com/dependon/fantascene-dynamic-wallpaper/wiki
+
 ## Latest version download (Open Build Service)
 
 [https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
-AppImage: 1.8.4， Packaged in Ubuntu 16.04, compatible with most versions, but the MPV version is very old and the probability of crashing when video switching web wallpapers is high. If you can use deb, try to use the deb package as much as possible
+AppImage: 1.9.8， Packaged in Ubuntu 16.04, compatible with most versions, but the MPV version is very old and the probability of crashing when video switching web wallpapers is high. If you can use deb, try to use the deb package as much as possible
 
-DownloadPath: https://www.fantacy.online/fantascene-dynamic-wallpaper-1.8.4_x86_64.AppImage
+DownloadPath: https://sourceforge.net/projects/fantascene-dynamic-wallpaper/files/1.9.8/
 
-## 1.8.4
-
-Fixed the issue where some wallpapers in the warehouse were not displayed.
-
-##Important update for version 1.8.3:
-
-New wallpaper repository Spark Hub, available for online download (Testing).
  
 ### Give me a star on github page if you like this toy :)
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
 
-[中文项目介绍](README_zh.md)
-
-## Settings for Gnome or Kylin os or Deepin V23 
-
-If your Gnome desktop environment has a desktop-file-utils plugin     (Kylin and Deepin V23 are the same way)
-
-Open More Settings Button
-
-Set Show desktop icon to false
-
-Set Place on top of the original desktop to false.
-
-Principle properties:
-
-Because the desktop of Kylin OS also has transparency properties with desktop file utils after setting up transparent wallpapers, it is now possible to use the native desktop on both Kylin OS and gnome desktops, which is relatively simple
-
-Processing of Deepin V23: The same settings as before, two no's, will be set to disable the DDE wallpaper plugin after saving, and then restart the DDE desktop to make it transparent with only icons
-
-When closing the program (not killing), it will determine the current environment, actively restore Kylin's wallpaper and v23's wallpaper plugin, restart the DDE desktop, and other operations
-
-DDE will involve restarting DDE
-
-Kylin and Gnome desktop environments do not require a desktop restart
-
-The above operations are all completed by the program (1.7.5 and above, to achieve this function)
-
-## Update Log
-
-[English](UpdateLog.md)
-
-[中文日志](UpdateLog_zh.md)
 
 ## License
 ```
@@ -93,24 +100,13 @@ Later, I wrote a simple desktop for the general version
 ## qq群(及时反馈和分享bug需求等) 2023/08/29
 
 群号:917552088
- 请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
 
-## 特殊版本deepinv23(2024/4/11)：
-
-## 特殊版本deepinv20(2024/4/11)：
-
-## 特殊版本uos家庭版(2024/4/11)：
-
-都在星火商店下载最新的
-
+请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
 
 ## Installation
 
 
 ### Fedora and OpenSUSE
-[![build result](https://build.opensuse.org/projects/home:liuminghang/packages/fantascene-dynamic-wallpaper/badge.svg?type=default)](https://build.opensuse.org/package/show/home:liuminghang/fantascene-dynamic-wallpaper)
-
-[![build result](https://build.opensuse.org/projects/home:liuminghang/packages/fantascene-fedora/badge.svg?type=default)](https://build.opensuse.org/package/show/home:liuminghang/fantascene-fedora)
 
 Please see: [fantascene-dynamic-wallpaper](https://software.opensuse.org//download.html?project=home%3Aliuminghang&package=fantascene-dynamic-wallpaper)
 
@@ -118,9 +114,11 @@ Please see: [fantascene-dynamic-wallpaper](https://software.opensuse.org//downlo
 
 yay -S fantascene-dynamic-wallpaper-git
 
+yay -S fantascene-dynamic-wallpaper
+
 ### windows demo
 
-Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.com/dependon/mpv-dynamic-wallpaper)
+Please see: [https://sourceforge.net/projects/fantascene-dynamic-wallpaper/files/1.9.1/](https://sourceforge.net/projects/fantascene-dynamic-wallpaper/files/1.9.1/)
 
 ## Build Dependencies
 
@@ -131,21 +129,14 @@ qt >=5.8
 
 mpv >=29.0
 
-sudo apt install qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev libqt5opengl5-dev qttools5-dev-tools qtbase5-dev qt5-qmake qtwebengine5-dev libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev qt5-default build-essential g++ libxcb-shape0-dev build-essential
-
-```
-
-## Build from SCM
-
-debian and ubuntu and deepin
-```
-dpkg-buildpackage -b -us -uc
-
-```
-
-### Other Linux variants
-```
-git clone https://github.com/dependon/fantascene-dynamic-wallpaper
+git clone https://github.com/dependon/fantascene-dynamic-wallpaper.git
+sudo apt-get install -y qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev qttools5-dev-tools qtbase5-dev qt5-qmake libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev build-essential g++ libxcb-shape0-dev aria2
+sudo apt-get install -y qtwebengine5-dev
+sudo apt-get install -y libqt5opengl5-dev
+sudo apt-get install -y qt5-default
+sudo apt-get install -y qtdeclarative5-dev-tools
+sudo apt-get install -y devscripts equivs
+sudo apt-get install -y qttools5-dev-tools qttools5-dev
 
 cd fantascene-dynamic-wallpaper
 
@@ -155,9 +146,16 @@ cd build
 
 qmake ..
 
-make all # For debug and release
+make -j4
 ```
 
+## Build from SCM
+
+debian and ubuntu and deepin
+```
+dpkg-buildpackage -b -us -uc
+
+```
 
 ## Thanks
 
@@ -184,7 +182,7 @@ Contributions are always welcome, Please create a new PR or issue if necessary.
 
 [https://github.com/dependon/simple-wallpaper](https://github.com/dependon/simple-wallpaper)
 
-## ScreenShot
+## ScreenShot show
 
 #### manjaro xfce4
 <img src="https://s4.ax1x.com/2022/02/24/biMa9I.gif" alt="show" />
