@@ -129,6 +129,13 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
         showMe();
     });
 
+    QAction *setHubAction = new QAction(m_traymenu);
+    setHubAction->setText(tr("Spark Hub"));
+    connect(setHubAction, &QAction::triggered, this, [=]
+    {
+        on_downBtn_clicked();
+    });
+
 
     QAction *maingithub;
     QLocale locale = QLocale::system();
@@ -153,6 +160,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
 
     m_traymenu->addAction(setMainViewAction);
     m_traymenu->addAction(setHistoryAction);
+    m_traymenu->addAction(setHubAction);
     m_traymenu->addAction(setMpvPlayAction);
     m_traymenu->addAction(setMpvpauseAction);
     m_traymenu->addAction(setScreenshotAction);
