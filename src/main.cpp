@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
     QMainWindow *mainwindw = new QMainWindow();
     settingWindow *window = new settingWindow(mainwindw, mainwindw);
     mainwindw->setCentralWidget(window);
-    mainwindw->setFixedSize(QSize(850, 650));
+    mainwindw->setFixedSize(QSize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT));
     mainwindw->setWindowTitle(QObject::tr("fantacy"));
     mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
     mainwindw->move(QGuiApplication::primaryScreen()->geometry().center() - mainwindw->rect().center());

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>938</width>
     <height>448</height>
    </rect>
   </property>
@@ -36,12 +36,31 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout"/>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>1</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+      </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1,0,0,0">
        <item>
         <widget class="QPushButton" name="setWallPaper">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Set Wallpaper</string>
          </property>
@@ -49,6 +68,18 @@
        </item>
        <item>
         <widget class="QPushButton" name="setWallPaper2">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Set Wallpaper 2</string>
          </property>
@@ -56,6 +87,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="delWallPaper">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Delete</string>
          </property>
@@ -63,10 +100,29 @@
        </item>
        <item>
         <widget class="QPushButton" name="importBtn">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Import</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
@@ -90,12 +146,25 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="layoutPlaylist"/>
+      <layout class="QVBoxLayout" name="layoutPlaylist">
+       <property name="leftMargin">
+        <number>1</number>
+       </property>
+       <property name="rightMargin">
+        <number>1</number>
+       </property>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QPushButton" name="addPlaylistBtn">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Add Playlist</string>
          </property>
@@ -103,6 +172,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="deletePlaylist">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Delete</string>
          </property>
@@ -130,6 +205,9 @@
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <property name="spacing">
       <number>3</number>
+     </property>
+     <property name="topMargin">
+      <number>27</number>
      </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -198,13 +276,13 @@
         <widget class="QLabel" name="label_3">
          <property name="minimumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -217,13 +295,13 @@
         <widget class="QLabel" name="lbl_Name">
          <property name="minimumSize">
           <size>
-           <width>300</width>
+           <width>200</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>300</width>
+           <width>200</width>
            <height>16777215</height>
           </size>
          </property>
@@ -240,13 +318,13 @@
         <widget class="QLabel" name="label_4">
          <property name="minimumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -259,7 +337,7 @@
         <widget class="QLabel" name="lbl_Path">
          <property name="maximumSize">
           <size>
-           <width>300</width>
+           <width>200</width>
            <height>16777215</height>
           </size>
          </property>
@@ -276,13 +354,13 @@
         <widget class="QLabel" name="label_5">
          <property name="minimumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>0</height>
           </size>
          </property>
          <property name="maximumSize">
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>16777215</height>
           </size>
          </property>
@@ -301,7 +379,7 @@
          </property>
          <property name="maximumSize">
           <size>
-           <width>300</width>
+           <width>200</width>
            <height>199999</height>
           </size>
          </property>
@@ -341,6 +419,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="btn_reload">
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Reload images</string>
          </property>
@@ -348,6 +432,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="btn_select">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
          <property name="text">
           <string>Select image as thumbnail</string>
          </property>

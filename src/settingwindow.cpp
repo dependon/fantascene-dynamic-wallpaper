@@ -97,12 +97,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     connect(dApp, &Application::quitApp, this, &settingWindow::quitApp, Qt::DirectConnection);
     connect(dApp, &Application::sigWallpaperAction, this,[=]
     {
-        if (m_parentMainWindow)
-        {
-            m_parentMainWindow->resize(500, 300);
-            m_parentMainWindow->show();
-            m_parentMainWindow->activateWindow();
-        }
+        showMe();
     });
 
     QAction *setMpvPlayAction = new QAction(m_traymenu);
@@ -131,12 +126,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     QAction *setMainViewAction = new QAction(m_traymenu);
     setMainViewAction->setText(tr("Main View"));
     connect(setMainViewAction, &QAction::triggered, this, [ = ] {
-        if (m_parentMainWindow)
-        {
-            m_parentMainWindow->resize(500, 300);
-            m_parentMainWindow->show();
-            m_parentMainWindow->activateWindow();
-        }
+        showMe();
     });
 
 
@@ -179,11 +169,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     connect(m_trayIcon, &QSystemTrayIcon::activated, this, [ = ](QSystemTrayIcon::ActivationReason reason) {
         if (QSystemTrayIcon::Trigger == reason) {
             this->show();
-            if (m_parentMainWindow) {
-                m_parentMainWindow->resize(500, 300);
-                m_parentMainWindow->show();
-                m_parentMainWindow->activateWindow();
-            }
+            showMe();
         }
     });
 
@@ -199,12 +185,7 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     connect(dApp, &Application::sigActiveWindow, this, &settingWindow::activeWindow);
     connect(dApp, &Application::sigDesktopActive, this, [ = ] {
         this->show();
-        if (m_parentMainWindow)
-        {
-            m_parentMainWindow->resize(500, 300);
-            m_parentMainWindow->show();
-            m_parentMainWindow->activateWindow();
-        }
+        showMe();
     });
 
     connect(dApp, &Application::sigReadPlayerConfig, this, [ = ] {
@@ -557,6 +538,16 @@ void settingWindow::setScreenMode(const QString &arg)
     Q_EMIT dApp->setScreenMode(arg);
 }
 
+void settingWindow::showMe()
+{
+    if (m_parentMainWindow)
+    {
+        m_parentMainWindow->resize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT);
+        m_parentMainWindow->show();
+        m_parentMainWindow->activateWindow();
+    }
+}
+
 void settingWindow::on_pathBtn_clicked()
 {
     QString path ;
@@ -804,7 +795,7 @@ void settingWindow::on_history_clicked()
 {
     if (!m_history) {
         m_history = new historyWidget();
-        m_history->resize(800, 600);
+        m_history->resize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT);
         m_history->showNormal();
         m_history->move(QGuiApplication::primaryScreen()->geometry().center() - m_history->rect().center());
     } else {
@@ -959,9 +950,9 @@ void settingWindow::showEvent(QShowEvent *event)
 {
     if(m_parentMainWindow)
     {
-        m_parentMainWindow->setFixedSize(QSize(801, 600));
+        m_parentMainWindow->setFixedSize(QSize(MAINWINDOWWIDTH-1, MAINWINDOWHEIGHT));
         repaint();
-        m_parentMainWindow->setFixedSize(QSize(800, 600));
+        m_parentMainWindow->setFixedSize(QSize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT));
     }
 
     QWidget::showEvent(event);
@@ -1074,9 +1065,11 @@ void settingWindow::on_pluginBtn_clicked()
 {
     if (!m_wallpaperEnginePlugin) {
         m_wallpaperEnginePlugin = new wallpaperEnginePlugin();
+        m_wallpaperEnginePlugin->resize(MAINWINDOWWIDTH,MAINWINDOWHEIGHT);
         m_wallpaperEnginePlugin->showNormal();
         m_wallpaperEnginePlugin->move(QGuiApplication::primaryScreen()->geometry().center() - m_wallpaperEnginePlugin->rect().center());
     } else {
+        m_wallpaperEnginePlugin->resize(MAINWINDOWWIDTH,MAINWINDOWHEIGHT);
         m_wallpaperEnginePlugin->showNormal();
         m_wallpaperEnginePlugin->activateWindow();
     }
@@ -1086,7 +1079,7 @@ void settingWindow::activeWindow()
 {
     this->show();
     if (m_parentMainWindow) {
-        m_parentMainWindow->resize(500, 300);
+        m_parentMainWindow->resize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT);
         m_parentMainWindow->show();
         m_parentMainWindow->activateWindow();
     }
@@ -1378,7 +1371,7 @@ void settingWindow::on_localBtn_clicked()
 {
     if (!m_local) {
         m_local = new LocalWidget();
-        m_local->resize(800, 600);
+        m_local->resize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT);
         m_local->showNormal();
         m_local->move(QGuiApplication::primaryScreen()->geometry().center() - m_local->rect().center());
     } else {

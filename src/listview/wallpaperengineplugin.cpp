@@ -107,10 +107,10 @@ void wallpaperEnginePlugin::showView()
 
     }
     m_view->setFiles(list);
-    if (this->size() == QSize(800, 600)) {
-        m_view->resize(QSize(801, 601));
+    if (this->size() == QSize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT)) {
+        m_view->resize(QSize(MAINWINDOWWIDTH+1, MAINWINDOWHEIGHT+1));
     } else {
-        m_view->resize(QSize(800, 600));
+        m_view->resize(QSize(MAINWINDOWWIDTH, MAINWINDOWHEIGHT));
     }
 
 }

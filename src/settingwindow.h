@@ -35,6 +35,8 @@
 #include <xcb/xcb_ewmh.h>
 #endif
 
+
+
 class QSystemTrayIcon;
 class QMenu;
 class historyWidget;
@@ -68,6 +70,8 @@ public:
     int isAutoStart();
 
     void setScreenMode(const QString &arg);
+
+    void showMe();
 
 #ifdef Q_OS_LINUX
 
