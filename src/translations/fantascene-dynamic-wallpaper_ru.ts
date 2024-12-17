@@ -589,14 +589,14 @@
     <message>
         <location filename="../othertools/othersetdialog.ui" line="48"/>
         <location filename="../othertools/othersetdialog.cpp" line="22"/>
-        <location filename="../othertools/othersetdialog.cpp" line="88"/>
+        <location filename="../othertools/othersetdialog.cpp" line="99"/>
         <source>True</source>
         <translation>Вот именно.</translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="53"/>
         <location filename="../othertools/othersetdialog.cpp" line="26"/>
-        <location filename="../othertools/othersetdialog.cpp" line="93"/>
+        <location filename="../othertools/othersetdialog.cpp" line="104"/>
         <source>False</source>
         <translation>Ошибка</translation>
     </message>
@@ -641,7 +641,7 @@
         <translation type="unfinished">Закрыть</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.cpp" line="35"/>
+        <location filename="../othertools/othersetdialog.cpp" line="46"/>
         <source>Other Display Tools</source>
         <translation>Другие инструменты отображения</translation>
     </message>
@@ -740,68 +740,68 @@
         <translation>История</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="46"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Set Wallpaper</source>
         <translation>Настройка обоев</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="53"/>
+        <location filename="../listview/historywidget.ui" line="84"/>
         <source>Set Wallpaper 2</source>
         <translation>Настройка обоев 2</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="60"/>
-        <location filename="../listview/historywidget.ui" line="107"/>
+        <location filename="../listview/historywidget.ui" line="97"/>
+        <location filename="../listview/historywidget.ui" line="182"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="67"/>
+        <location filename="../listview/historywidget.ui" line="110"/>
         <source>Import</source>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="88"/>
+        <location filename="../listview/historywidget.ui" line="144"/>
         <source>Playlist</source>
         <translation>Список воспроизведения</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="100"/>
+        <location filename="../listview/historywidget.ui" line="169"/>
         <source>Add Playlist</source>
         <translation>Добавить список воспроизведения</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="114"/>
+        <location filename="../listview/historywidget.ui" line="189"/>
         <source>Loop play</source>
         <translation>Цикл воспроизведения</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="121"/>
+        <location filename="../listview/historywidget.ui" line="196"/>
         <source>Loop playback settings</source>
         <translation>Параметры воспроизведения</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="212"/>
+        <location filename="../listview/historywidget.ui" line="290"/>
         <source>Name:</source>
         <translation>Имя и фамилия:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="254"/>
+        <location filename="../listview/historywidget.ui" line="332"/>
         <source>Path:</source>
         <translation>Путь:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="290"/>
+        <location filename="../listview/historywidget.ui" line="368"/>
         <source>Thumbnail Path:</source>
         <translation>Путь к миниатюре:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="345"/>
+        <location filename="../listview/historywidget.ui" line="429"/>
         <source>Reload images</source>
         <translation>Перезагрузить изображение</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="352"/>
+        <location filename="../listview/historywidget.ui" line="442"/>
         <source>Select image as thumbnail</source>
         <translation>Выберите изображение как миниатюру</translation>
     </message>
@@ -857,13 +857,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="109"/>
+        <location filename="../settingwindow.cpp" line="104"/>
         <source>Play</source>
         <translation>Трансляция</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="121"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Pause</source>
         <translation>Приостановление</translation>
     </message>
@@ -873,95 +873,95 @@
         <translation>Создать</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="265"/>
+        <location filename="../settingwindow.ui" line="271"/>
         <source>Set New 2</source>
         <translation>Создать новый 2</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="284"/>
+        <location filename="../settingwindow.ui" line="484"/>
         <source>Hide</source>
         <translation>Скрыть</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="303"/>
+        <location filename="../settingwindow.ui" line="503"/>
         <source>Close</source>
         <translation type="unfinished">Закрыть</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="318"/>
+        <location filename="../settingwindow.ui" line="286"/>
         <source>Model</source>
         <translation>Модель</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="326"/>
+        <location filename="../settingwindow.ui" line="294"/>
         <source>Copy</source>
         <translation>Копирование</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="331"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Extend</source>
         <translation>Расширение</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="336"/>
-        <location filename="../settingwindow.cpp" line="705"/>
+        <location filename="../settingwindow.ui" line="304"/>
+        <location filename="../settingwindow.cpp" line="704"/>
         <source>Manual</source>
         <translation>Справочник</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="344"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Add to startup</source>
         <translation>Добавить в начало</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
+        <location filename="../settingwindow.ui" line="323"/>
         <source>Video aspect ratio</source>
         <translation>Отношение ширины видео</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="369"/>
-        <location filename="../settingwindow.cpp" line="869"/>
+        <location filename="../settingwindow.ui" line="337"/>
+        <location filename="../settingwindow.cpp" line="868"/>
         <source>default</source>
         <translation>Нарушение обязательств</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="399"/>
-        <location filename="../settingwindow.cpp" line="881"/>
+        <location filename="../settingwindow.ui" line="367"/>
+        <location filename="../settingwindow.cpp" line="880"/>
         <source>custom</source>
         <translation>Обычаи</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="416"/>
+        <location filename="../settingwindow.ui" line="384"/>
         <source>Apply scale</source>
         <translation>Масштабы применения</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="435"/>
+        <location filename="../settingwindow.ui" line="403"/>
         <source>X</source>
         <translation>Х.</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="449"/>
+        <location filename="../settingwindow.ui" line="417"/>
         <source>Y</source>
         <translation>И</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="463"/>
+        <location filename="../settingwindow.ui" line="431"/>
         <source>Width</source>
         <translation>Ширина</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="477"/>
+        <location filename="../settingwindow.ui" line="445"/>
         <source>Height</source>
         <translation>Рост</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="491"/>
+        <location filename="../settingwindow.ui" line="459"/>
         <source>Apply Custom Dimensions</source>
         <translation>Применить другой размер</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="601"/>
+        <location filename="../settingwindow.ui" line="608"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
@@ -982,38 +982,38 @@
         <translation type="vanished">Репротбаг</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="519"/>
+        <location filename="../settingwindow.ui" line="526"/>
         <source>Spark-Hub(Test)</source>
         <translation>Ступица искрового колеса (тест)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="526"/>
+        <location filename="../settingwindow.ui" line="533"/>
         <source>Download Wallpaper</source>
         <translation>Скачать обои</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="533"/>
+        <location filename="../settingwindow.ui" line="540"/>
         <source>Other Display Tools</source>
         <translation>Другие инструменты отображения</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Advanced Settings</source>
         <translation>Дополнительные параметры</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="551"/>
+        <location filename="../settingwindow.ui" line="558"/>
         <source>Wallpaper Local</source>
         <translation>Обои локальные</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="558"/>
-        <location filename="../settingwindow.cpp" line="128"/>
+        <location filename="../settingwindow.ui" line="565"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Wallpaper History</source>
         <translation>История обоев</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="565"/>
+        <location filename="../settingwindow.ui" line="572"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>Модуль обойного движка</translation>
     </message>
@@ -1023,42 +1023,47 @@
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="116"/>
+        <location filename="../settingwindow.cpp" line="111"/>
         <source>Screenshot</source>
         <translation>Снимок экрана</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="132"/>
+        <location filename="../settingwindow.cpp" line="127"/>
         <source>Main View</source>
         <translation>Главный вид</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="149"/>
+        <location filename="../settingwindow.cpp" line="133"/>
+        <source>Spark Hub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="146"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="157"/>
+        <location filename="../settingwindow.cpp" line="154"/>
         <source>github</source>
         <translation>Джитхуб</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="174"/>
+        <location filename="../settingwindow.cpp" line="172"/>
         <source>Double click to open the configuration interface</source>
         <translation>Двойной щелчок для открытия интерфейса конфигурации</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="222"/>
+        <location filename="../settingwindow.cpp" line="211"/>
         <source>Latest version</source>
         <translation>Последняя версия</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close!!</source>
         <translation>Закрой!</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close the App ?</source>
         <translation>Закрыть приложение?</translation>
     </message>

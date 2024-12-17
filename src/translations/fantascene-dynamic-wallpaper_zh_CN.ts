@@ -597,14 +597,14 @@
     <message>
         <location filename="../othertools/othersetdialog.ui" line="48"/>
         <location filename="../othertools/othersetdialog.cpp" line="22"/>
-        <location filename="../othertools/othersetdialog.cpp" line="88"/>
+        <location filename="../othertools/othersetdialog.cpp" line="99"/>
         <source>True</source>
         <translation>是</translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="53"/>
         <location filename="../othertools/othersetdialog.cpp" line="26"/>
-        <location filename="../othertools/othersetdialog.cpp" line="93"/>
+        <location filename="../othertools/othersetdialog.cpp" line="104"/>
         <source>False</source>
         <translation>否</translation>
     </message>
@@ -649,7 +649,7 @@
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.cpp" line="35"/>
+        <location filename="../othertools/othersetdialog.cpp" line="46"/>
         <source>Other Display Tools</source>
         <translation>其他显示控件</translation>
     </message>
@@ -749,69 +749,69 @@
         <translation>历史</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="46"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Set Wallpaper</source>
         <translation>设置壁纸</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="53"/>
+        <location filename="../listview/historywidget.ui" line="84"/>
         <source>Set Wallpaper 2</source>
         <translation>设置壁纸2</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="60"/>
-        <location filename="../listview/historywidget.ui" line="107"/>
+        <location filename="../listview/historywidget.ui" line="97"/>
+        <location filename="../listview/historywidget.ui" line="182"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="67"/>
+        <location filename="../listview/historywidget.ui" line="110"/>
         <source>Import</source>
         <translatorcomment>导入</translatorcomment>
         <translation>导入</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="88"/>
+        <location filename="../listview/historywidget.ui" line="144"/>
         <source>Playlist</source>
         <translation>循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="100"/>
+        <location filename="../listview/historywidget.ui" line="169"/>
         <source>Add Playlist</source>
         <translation>加入循环播放列表</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="114"/>
+        <location filename="../listview/historywidget.ui" line="189"/>
         <source>Loop play</source>
         <translation>是否循环播放</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="121"/>
+        <location filename="../listview/historywidget.ui" line="196"/>
         <source>Loop playback settings</source>
         <translation>循环播放设置</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="212"/>
+        <location filename="../listview/historywidget.ui" line="290"/>
         <source>Name:</source>
         <translation>名称:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="254"/>
+        <location filename="../listview/historywidget.ui" line="332"/>
         <source>Path:</source>
         <translation>地址:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="290"/>
+        <location filename="../listview/historywidget.ui" line="368"/>
         <source>Thumbnail Path:</source>
         <translation>缩略图地址:</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="345"/>
+        <location filename="../listview/historywidget.ui" line="429"/>
         <source>Reload images</source>
         <translation>重新加载缩略图</translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="352"/>
+        <location filename="../listview/historywidget.ui" line="442"/>
         <source>Select image as thumbnail</source>
         <translation>选择其他图片作为缩略图</translation>
     </message>
@@ -852,8 +852,8 @@
         <translation>选择文件</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="336"/>
-        <location filename="../settingwindow.cpp" line="705"/>
+        <location filename="../settingwindow.ui" line="304"/>
+        <location filename="../settingwindow.cpp" line="704"/>
         <source>Manual</source>
         <translation>手动</translation>
     </message>
@@ -874,13 +874,13 @@
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="109"/>
+        <location filename="../settingwindow.cpp" line="104"/>
         <source>Play</source>
         <translation>播放</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="121"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
@@ -890,107 +890,107 @@
         <translation>设置新壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="265"/>
+        <location filename="../settingwindow.ui" line="271"/>
         <source>Set New 2</source>
         <translation>设置新壁纸2</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="284"/>
+        <location filename="../settingwindow.ui" line="484"/>
         <source>Hide</source>
         <translation>隐藏窗口</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="303"/>
+        <location filename="../settingwindow.ui" line="503"/>
         <source>Close</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="318"/>
+        <location filename="../settingwindow.ui" line="286"/>
         <source>Model</source>
         <translation>模式</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="326"/>
+        <location filename="../settingwindow.ui" line="294"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="331"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Extend</source>
         <translation>扩展</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="344"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Add to startup</source>
         <translation>开机自启动</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
+        <location filename="../settingwindow.ui" line="323"/>
         <source>Video aspect ratio</source>
         <translation>视频比例</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="369"/>
-        <location filename="../settingwindow.cpp" line="869"/>
+        <location filename="../settingwindow.ui" line="337"/>
+        <location filename="../settingwindow.cpp" line="868"/>
         <source>default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="399"/>
-        <location filename="../settingwindow.cpp" line="881"/>
+        <location filename="../settingwindow.ui" line="367"/>
+        <location filename="../settingwindow.cpp" line="880"/>
         <source>custom</source>
         <translatorcomment>自定义</translatorcomment>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="519"/>
+        <location filename="../settingwindow.ui" line="526"/>
         <source>Spark-Hub(Test)</source>
         <translation>星火壁纸仓库(Test)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="526"/>
+        <location filename="../settingwindow.ui" line="533"/>
         <source>Download Wallpaper</source>
         <translation>其他下载壁纸渠道</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="533"/>
+        <location filename="../settingwindow.ui" line="540"/>
         <source>Other Display Tools</source>
         <translation>其他显示控件</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="544"/>
+        <location filename="../settingwindow.ui" line="551"/>
         <source>Advanced Settings</source>
         <translation>更多设置界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="551"/>
+        <location filename="../settingwindow.ui" line="558"/>
         <source>Wallpaper Local</source>
         <translation>本地壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="558"/>
-        <location filename="../settingwindow.cpp" line="128"/>
+        <location filename="../settingwindow.ui" line="565"/>
+        <location filename="../settingwindow.cpp" line="123"/>
         <source>Wallpaper History</source>
         <translation>历史壁纸</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="565"/>
+        <location filename="../settingwindow.ui" line="572"/>
         <source>Wallpaper Engine-plugin</source>
         <translation>壁纸引擎插件</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="601"/>
+        <location filename="../settingwindow.ui" line="608"/>
         <source>Version:</source>
         <translation>版本:</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="435"/>
+        <location filename="../settingwindow.ui" line="403"/>
         <source>X</source>
         <translatorcomment>横向偏移</translatorcomment>
         <translation>横向偏移</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="449"/>
+        <location filename="../settingwindow.ui" line="417"/>
         <source>Y</source>
         <translatorcomment>纵向偏移</translatorcomment>
         <translation>纵向偏移</translation>
@@ -1010,22 +1010,22 @@
         <translation type="vanished">新版本(github)</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="416"/>
+        <location filename="../settingwindow.ui" line="384"/>
         <source>Apply scale</source>
         <translation>执行比例</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="463"/>
+        <location filename="../settingwindow.ui" line="431"/>
         <source>Width</source>
         <translation>宽度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="477"/>
+        <location filename="../settingwindow.ui" line="445"/>
         <source>Height</source>
         <translation>高度</translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="491"/>
+        <location filename="../settingwindow.ui" line="459"/>
         <source>Apply Custom Dimensions</source>
         <translation>执行自定义尺寸</translation>
     </message>
@@ -1034,7 +1034,7 @@
         <translation type="vanished">报告bug</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="132"/>
+        <location filename="../settingwindow.cpp" line="127"/>
         <source>Main View</source>
         <translation>主窗体</translation>
     </message>
@@ -1044,38 +1044,43 @@
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="116"/>
+        <location filename="../settingwindow.cpp" line="111"/>
         <source>Screenshot</source>
         <translation>截图</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="149"/>
+        <location filename="../settingwindow.cpp" line="133"/>
+        <source>Spark Hub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="146"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="157"/>
+        <location filename="../settingwindow.cpp" line="154"/>
         <source>github</source>
         <translation>github</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="174"/>
+        <location filename="../settingwindow.cpp" line="172"/>
         <source>Double click to open the configuration interface</source>
         <translation>双击打开界面</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="222"/>
+        <location filename="../settingwindow.cpp" line="211"/>
         <source>Latest version</source>
         <translatorcomment>最新版本</translatorcomment>
         <translation>最新版本</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close!!</source>
         <translation>关闭!!</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close the App ?</source>
         <translation>关闭这个软件？</translation>
     </message>
