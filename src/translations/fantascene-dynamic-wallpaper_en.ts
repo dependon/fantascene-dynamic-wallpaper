@@ -7,7 +7,7 @@
         <location filename="../application.cpp" line="160"/>
         <location filename="../application.cpp" line="161"/>
         <source>fantascene-dynamic-wallpaper</source>
-        <translation>fantascene-dynamic- tapete</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -15,7 +15,7 @@
     <message>
         <location filename="../desktop.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -23,12 +23,12 @@
     <message>
         <location filename="../download/downloadmanager.cpp" line="50"/>
         <source>Failed to start wget.</source>
-        <translation>Αποτυχία εκκίνησης wget.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../download/downloadmanager.cpp" line="55"/>
         <source>Download failed.</source>
-        <translation>Αποτυχία λήψης.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -36,17 +36,17 @@
     <message>
         <location filename="../download/downloadwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.ui" line="25"/>
         <source>Load</source>
-        <translation>Φόρτωση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../download/downloadwidget.cpp" line="11"/>
         <source>The download address comes from the network and may not be usable</source>
-        <translation>Η διεύθυνση λήψης προέρχεται από το δίκτυο και ενδέχεται να μην είναι χρήσιμη</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -54,17 +54,17 @@
     <message>
         <location filename="../help/helpdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Διάλογος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../help/helpdialog.ui" line="53"/>
         <source>Close</source>
-        <translation>Κλείσιμο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../help/helpdialog.cpp" line="9"/>
         <source>Help</source>
-        <translation>Βοήθεια</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -72,133 +72,133 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="185"/>
         <source>Open</source>
-        <translation>Άνοιγμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="191"/>
         <source>Open With</source>
-        <translation>Άνοιγμα με</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="197"/>
         <source>New Built</source>
-        <translation>Νέα οικοδομή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="202"/>
         <source>Select all</source>
-        <translation>Επιλογή όλων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="207"/>
         <source>Open Terminal</source>
-        <translation>Άνοιγμα τερματικού</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="213"/>
         <location filename="../desktop/iconview.cpp" line="937"/>
         <source>New Folder</source>
-        <translation>Νέος φάκελος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="219"/>
         <source>Sort Order</source>
-        <translation>Σειρά ταξινόμησης</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="223"/>
         <source>Refresh Sort</source>
-        <translation>Ανανέωση ταξινόμησης</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="227"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="231"/>
         <source>Change Date</source>
-        <translation>Ημερομηνία αλλαγής</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="235"/>
         <source>File Size</source>
-        <translation>Μέγεθος αρχείου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="239"/>
         <source>File Type</source>
-        <translation>Τύπος αρχείου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="244"/>
         <source>Icon Size</source>
-        <translation>Μέγεθος εικονιδίου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="248"/>
         <source>Small</source>
-        <translation>Μικρό</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="252"/>
         <source>Medium</source>
-        <translation>Μεσαίο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="256"/>
         <source>Big</source>
-        <translation>Μεγάλο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="262"/>
         <source>Copy</source>
-        <translation>Αντιγραφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="267"/>
         <source>Cut</source>
-        <translation>Κόψιμο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="272"/>
         <source>Paste</source>
-        <translation>Επικόλληση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="277"/>
         <source>Rename</source>
-        <translation>Μετονομασία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="282"/>
         <source>Trash</source>
-        <translation>Σκουπίδια</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="287"/>
         <source>Set Wallpaper</source>
-        <translation>Ορισμός ταπετσαρίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="300"/>
         <source>New TXT</source>
-        <translation>Νέο TXT</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="369"/>
         <source>Select Other Application</source>
-        <translation>Επιλογή άλλης εφαρμογής</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="493"/>
         <source>Please Select App</source>
-        <translation>Παρακαλώ επιλέξτε εφαρμογή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="951"/>
         <source>New Txt Files</source>
-        <translation>Νέα αρχεία TXT</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -206,27 +206,27 @@
     <message>
         <location filename="../listview/localwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="20"/>
         <source>Local</source>
-        <translation>Τοπικός</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.ui" line="45"/>
         <source>Play</source>
-        <translation>Αναπαραγωγή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="34"/>
         <source>Wallpaper Local</source>
-        <translation>Τοπική ταπετσαρία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/localwidget.cpp" line="43"/>
         <source>Please place the local video on:</source>
-        <translation>Παρακαλώ τοποθετήστε το τοπικό βίντεο στο:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -234,61 +234,45 @@
     <message>
         <location filename="../moresetting.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="22"/>
         <source>When desktop is hidden</source>
-        <translation>Όταν η επιφάνεια εργασίας είναι κρυφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="78"/>
         <location filename="../moresetting.cpp" line="163"/>
         <source>continue playing</source>
-        <translation>Συνέχισε να παίζεις</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="35"/>
         <location filename="../moresetting.cpp" line="80"/>
         <source>pause</source>
-        <translation>παύση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="47"/>
         <source>Video FPS</source>
-        <translation>Βίντεο FPS</translation>
-    </message>
-    <message>
-        <location filename="../moresetting.cpp" line="85"/>
-        <location filename="../moresetting.cpp" line="171"/>
-        <source>default</source>
-        <translation>προεπιλογή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="102"/>
         <source>Decoder</source>
-        <translation>Αποκωδικοποιητής</translation>
-    </message>
-    <message>
-        <location filename="../moresetting.cpp" line="96"/>
-        <location filename="../moresetting.cpp" line="109"/>
-        <location filename="../moresetting.cpp" line="178"/>
-        <location filename="../moresetting.cpp" line="185"/>
-        <location filename="../moresetting.cpp" line="243"/>
-        <location filename="../moresetting.cpp" line="270"/>
-        <source>other</source>
-        <translation>άλλα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="157"/>
         <source>VO</source>
-        <translation>VO</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="207"/>
         <source>Show desktop icon</source>
-        <translation>Εμφάνιση εικονιδίου επιφάνειας εργασίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="215"/>
@@ -301,7 +285,7 @@
         <location filename="../moresetting.cpp" line="199"/>
         <location filename="../moresetting.cpp" line="213"/>
         <source>true</source>
-        <translation>αληθές</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="220"/>
@@ -311,76 +295,88 @@
         <location filename="../moresetting.cpp" line="123"/>
         <location filename="../moresetting.cpp" line="131"/>
         <source>false</source>
-        <translation>ψευδές</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="232"/>
         <source>Place on top of the original desktop</source>
-        <translation>Τοποθετήστε στην κορυφή της αρχικής επιφάνειας εργασίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="257"/>
         <source>Desktop transparency </source>
-        <translation>Διαφάνεια επιφάνειας εργασίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="264"/>
         <source>DESKTOP</source>
-        <translation>DESKTOP</translation>
-    </message>
-    <message>
-        <source>xx</source>
-        <translation type="vanished">xx</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="300"/>
         <source>Wallpaper transparency </source>
-        <translation>Διαφάνεια ταπετσαρίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="336"/>
         <source>Event penetration</source>
-        <translation>Διείσδυση συμβάντων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="367"/>
         <source>Spark Desktop font color</source>
-        <translation>Χρώμα γραμματοσειράς επιφάνειας εργασίας Spark</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="472"/>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="486"/>
         <source>Deepin/Uos desktop environment</source>
-        <translation>Περιβάλλον επιφάνειας εργασίας Deepin/Uos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="499"/>
         <source>Set deepin current work region to dynamic wallpaper</source>
-        <translation>Ορισμός της τρέχουσας περιοχής εργασίας σε δυναμική ταπετσαρία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="529"/>
         <source>Set deepin current work region to normal wallpaper</source>
-        <translation>Ορισμός της τρέχουσας περιοχής εργασίας σε κανονική ταπετσαρία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="540"/>
         <source>Confirm</source>
-        <translation>Επιβεβαίωση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="547"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../moresetting.cpp" line="35"/>
         <source>Advanced Settings</source>
-        <translation>Προηγμένες ρυθμίσεις</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="85"/>
+        <location filename="../moresetting.cpp" line="171"/>
+        <source>default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../moresetting.cpp" line="96"/>
+        <location filename="../moresetting.cpp" line="109"/>
+        <location filename="../moresetting.cpp" line="178"/>
+        <location filename="../moresetting.cpp" line="185"/>
+        <location filename="../moresetting.cpp" line="243"/>
+        <location filename="../moresetting.cpp" line="270"/>
+        <source>other</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -388,91 +384,91 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="27"/>
         <source>Recommend</source>
-        <translation>Συνιστώ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="34"/>
         <source>Status:</source>
-        <translation>Κατάσταση:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="41"/>
         <location filename="../listview/onlineclient.cpp" line="496"/>
         <source>Not Online</source>
-        <translation>Χωρίς σύνδεση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="48"/>
         <source>Try Connected</source>
-        <translation>Δοκιμάστε σύνδεση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="55"/>
         <source>Download Tool</source>
-        <translation>Εργαλείο λήψης</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="115"/>
         <location filename="../listview/onlineclient.cpp" line="576"/>
         <location filename="../listview/onlineclient.cpp" line="584"/>
         <source>If unable to download, please check if &apos;wget&apos; is installed on the command line.</source>
-        <translation>Εάν δεν είναι δυνατή η λήψη, ελέγξτε αν είναι εγκατεστημένο στη γραμμή εντολών.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="127"/>
         <source>Search</source>
-        <translation>Αναζήτηση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="145"/>
         <source>Page</source>
-        <translation>Σελίδα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="164"/>
         <location filename="../listview/onlineclient.ui" line="202"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="183"/>
         <source>/</source>
-        <translation>/</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="215"/>
         <source>&lt;</source>
-        <translation>&lt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="228"/>
         <source>&gt;</source>
-        <translation>&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="245"/>
         <source>To</source>
-        <translation>Για</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="279"/>
         <source>For assistance with uploading wallpaper files or any other support, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com.</source>
-        <translation>Για βοήθεια με την αποστολή αρχείων ταπετσαρίας ή οποιαδήποτε άλλη υποστήριξη, παρακαλούμε στείλτε ένα μήνυμα ηλεκτρονικού ταχυδρομείου σε είτε liuminghang0821@gmail.com ή 523633637@qq.com.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="298"/>
         <source>The content above is sourced from the internet. If any content infringes upon your rights, please send an email to either liuminghang0821@gmail.com or 523633637@qq.com to request removal. We apologize for any inconvenience.</source>
-        <translation>Το παραπάνω περιεχόμενο προέρχεται από το διαδίκτυο. Εάν οποιοδήποτε περιεχόμενο παραβιάζει τα δικαιώματά σας, παρακαλούμε στείλτε ένα μήνυμα ηλεκτρονικού ταχυδρομείου σε: liuminghang0821@gmail.com ή 523633637@qq.com να ζητήσει την απομάκρυνση. Ζητούμε συγγνώμη για τυχόν ταλαιπωρία.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="331"/>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="353"/>
@@ -486,87 +482,87 @@
         <location filename="../listview/onlineclient.ui" line="692"/>
         <location filename="../listview/onlineclient.ui" line="734"/>
         <source>Unknown</source>
-        <translation>Άγνωστος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="376"/>
         <source>Description</source>
-        <translation>Περιγραφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="421"/>
         <source>Category</source>
-        <translation>Κατηγορία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="463"/>
         <source>Author</source>
-        <translation>Συγγραφέας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="505"/>
         <source>Download Count</source>
-        <translation>Αριθμός λήψης</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="547"/>
         <source>File Name</source>
-        <translation>Όνομα αρχείου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="589"/>
         <source>File Size</source>
-        <translation>Μέγεθος αρχείου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="631"/>
         <source>Width</source>
-        <translation>Πλάτος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="673"/>
         <source>Height</source>
-        <translation>Ύψος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="715"/>
         <source>Wait Download Task</source>
-        <translation>Περίμενε λήψη εργασίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="894"/>
         <source>Download</source>
-        <translation>Λήψη</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="41"/>
         <source>Spark-Hub</source>
-        <translation>Spark- Hub</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="97"/>
         <source>Downlaod Error!</source>
-        <translation>Σφάλμα λήψης!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="263"/>
         <source>Download Ing.....</source>
-        <translation>Κατεβάστε Ing.....</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="486"/>
         <source>Online</source>
-        <translation>Σε απευθείας σύνδεση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="580"/>
         <source>If unable to download, please check if &apos;aria2&apos; is installed on the command line.But download html web wallpaper need &apos;wget&apos; .</source>
-        <translation>Εάν δεν είναι δυνατή η λήψη, ελέγξτε αν έχει εγκατασταθεί το &apos;aria2&apos; στη γραμμή εντολών. Αλλά κατεβάστε την ταπετσαρία ιστού html χρειάζεται &quot;wget&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -574,76 +570,76 @@
     <message>
         <location filename="../othertools/othersetdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Διάλογος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="20"/>
         <source>DateTime Tool</source>
-        <translation>Εργαλείο ημερομηνίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="28"/>
         <source>Visible</source>
-        <translation>ορατό</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="48"/>
         <location filename="../othertools/othersetdialog.cpp" line="22"/>
-        <location filename="../othertools/othersetdialog.cpp" line="88"/>
+        <location filename="../othertools/othersetdialog.cpp" line="99"/>
         <source>True</source>
-        <translation>Αλήθεια</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="53"/>
         <location filename="../othertools/othersetdialog.cpp" line="26"/>
-        <location filename="../othertools/othersetdialog.cpp" line="93"/>
+        <location filename="../othertools/othersetdialog.cpp" line="104"/>
         <source>False</source>
-        <translation>Λάθος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="72"/>
         <source>Format</source>
-        <translation>Μορφοποίηση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="127"/>
         <source>Position</source>
-        <translation>Θέση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="173"/>
         <source>Font Size</source>
-        <translation>Μέγεθος γραμματοσειράς</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="200"/>
         <source>Font</source>
-        <translation>Γραμματοσειρά</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="227"/>
         <source>Color</source>
-        <translation>Χρώμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="246"/>
         <source>Select</source>
-        <translation>Επιλογή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="269"/>
         <source>Transparency</source>
-        <translation type="unfinished">Διαφάνεια</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../othertools/othersetdialog.ui" line="337"/>
         <source>Close</source>
-        <translation type="unfinished">Κλείσιμο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.cpp" line="35"/>
+        <location filename="../othertools/othersetdialog.cpp" line="46"/>
         <source>Other Display Tools</source>
-        <translation>Άλλα εργαλεία προβολής</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -651,17 +647,17 @@
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Διάλογος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="22"/>
         <source>Timer(second)</source>
-        <translation>Χρονόμετρο( δευτερόλεπτο)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="31"/>
         <source>60</source>
-        <translation>εξήντα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="60"/>
@@ -670,17 +666,17 @@
         <location filename="../listview/playlistsettingdialog.cpp" line="35"/>
         <location filename="../listview/playlistsettingdialog.cpp" line="38"/>
         <source>other</source>
-        <translation>άλλα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="84"/>
         <source>Ok</source>
-        <translation>Εντάξει.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/playlistsettingdialog.ui" line="91"/>
         <source>Cancel</source>
-        <translation>Ακύρωση</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -688,12 +684,12 @@
     <message>
         <location filename="../download/downloadwidget.cpp" line="33"/>
         <source>Download</source>
-        <translation>Λήψη</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../main.cpp" line="161"/>
         <source>fantacy</source>
-        <translation>φαντασιώσεις</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -701,12 +697,12 @@
     <message>
         <location filename="../help/tipdeepindialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Διάλογος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../help/tipdeepindialog.ui" line="36"/>
         <source>TextLabel</source>
-        <translation>ΚείμενοLabel</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -714,17 +710,17 @@
     <message>
         <location filename="../wallpaper.cpp" line="438"/>
         <source>Copy</source>
-        <translation>Αντιγραφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="443"/>
         <source>Extend</source>
-        <translation>Επέκταση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../wallpaper.cpp" line="448"/>
         <source>Manual</source>
-        <translation>Εγχειρίδιο</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -732,99 +728,99 @@
     <message>
         <location filename="../listview/historywidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="34"/>
         <source>History</source>
-        <translation>Ιστορία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="46"/>
+        <location filename="../listview/historywidget.ui" line="65"/>
         <source>Set Wallpaper</source>
-        <translation>Ορισμός ταπετσαρίας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="53"/>
+        <location filename="../listview/historywidget.ui" line="84"/>
         <source>Set Wallpaper 2</source>
-        <translation>Ορισμός ταπετσαρίας 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="60"/>
-        <location filename="../listview/historywidget.ui" line="107"/>
+        <location filename="../listview/historywidget.ui" line="97"/>
+        <location filename="../listview/historywidget.ui" line="182"/>
         <source>Delete</source>
-        <translation>Διαγραφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="67"/>
+        <location filename="../listview/historywidget.ui" line="110"/>
         <source>Import</source>
-        <translation>Εισαγωγή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="88"/>
+        <location filename="../listview/historywidget.ui" line="144"/>
         <source>Playlist</source>
-        <translation>Λίστα αναπαραγωγής</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="100"/>
+        <location filename="../listview/historywidget.ui" line="169"/>
         <source>Add Playlist</source>
-        <translation>Προσθήκη λίστας αναπαραγωγής</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="114"/>
+        <location filename="../listview/historywidget.ui" line="189"/>
         <source>Loop play</source>
-        <translation>Αναπαραγωγή βρόχου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="121"/>
+        <location filename="../listview/historywidget.ui" line="196"/>
         <source>Loop playback settings</source>
-        <translation>Ρυθμίσεις αναπαραγωγής βρόχου</translation>
-    </message>
-    <message>
-        <location filename="../listview/historywidget.ui" line="212"/>
-        <source>Name:</source>
-        <translation>Όνομα:</translation>
-    </message>
-    <message>
-        <location filename="../listview/historywidget.ui" line="254"/>
-        <source>Path:</source>
-        <translation>Διαδρομή:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="290"/>
+        <source>Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="332"/>
+        <source>Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../listview/historywidget.ui" line="368"/>
         <source>Thumbnail Path:</source>
-        <translation>Διαδρομή μικρογραφιών:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="345"/>
+        <location filename="../listview/historywidget.ui" line="429"/>
         <source>Reload images</source>
-        <translation>Επαναφόρτωση εικόνων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listview/historywidget.ui" line="352"/>
+        <location filename="../listview/historywidget.ui" line="442"/>
         <source>Select image as thumbnail</source>
-        <translation>Επιλογή εικόνας ως μικρογραφία</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="19"/>
         <source>Wallpaper History</source>
-        <translation>Ιστορικό ταπετσαριών</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete!!</source>
-        <translation>Διαγραφή!!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="86"/>
         <source>Delete all history imports ?</source>
-        <translation>Διαγραφή όλων των εισαγωγών ιστορικού;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/historywidget.cpp" line="148"/>
         <source>Delete all playback ?</source>
-        <translation>Διαγραφή όλης της αναπαραγωγής;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -832,235 +828,224 @@
     <message>
         <location filename="../settingwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation>Κύριο παράθυρο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="24"/>
         <location filename="../settingwindow.ui" line="42"/>
         <source>File</source>
-        <translation>Αρχείο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="145"/>
         <source>Screen 2 independent playback</source>
-        <translation>Οθόνη 2 ανεξάρτητη αναπαραγωγή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="154"/>
         <source>Transparency</source>
-        <translation>Διαφάνεια</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="181"/>
         <source>Volume</source>
-        <translation>Όγκος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="214"/>
-        <location filename="../settingwindow.cpp" line="109"/>
+        <location filename="../settingwindow.cpp" line="104"/>
         <source>Play</source>
-        <translation>Αναπαραγωγή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="233"/>
-        <location filename="../settingwindow.cpp" line="121"/>
+        <location filename="../settingwindow.cpp" line="116"/>
         <source>Pause</source>
-        <translation>Παύση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="252"/>
         <source>Set New</source>
-        <translation>Ορισμός νέου</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="265"/>
+        <location filename="../settingwindow.ui" line="271"/>
         <source>Set New 2</source>
-        <translation>Ορισμός νέου 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="284"/>
-        <source>Hide</source>
-        <translation>Απόκρυψη</translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="303"/>
-        <source>Close</source>
-        <translation type="unfinished">Κλείσιμο</translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="318"/>
+        <location filename="../settingwindow.ui" line="286"/>
         <source>Model</source>
-        <translation>Υπόδειγμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="326"/>
+        <location filename="../settingwindow.ui" line="294"/>
         <source>Copy</source>
-        <translation>Αντιγραφή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="331"/>
+        <location filename="../settingwindow.ui" line="299"/>
         <source>Extend</source>
-        <translation>Επέκταση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="336"/>
-        <location filename="../settingwindow.cpp" line="705"/>
+        <location filename="../settingwindow.ui" line="304"/>
+        <location filename="../settingwindow.cpp" line="704"/>
         <source>Manual</source>
-        <translation>Εγχειρίδιο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="344"/>
+        <location filename="../settingwindow.ui" line="312"/>
         <source>Add to startup</source>
-        <translation>Προσθήκη στην εκκίνηση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="355"/>
+        <location filename="../settingwindow.ui" line="323"/>
         <source>Video aspect ratio</source>
-        <translation>Λόγος πλευράς βίντεο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="369"/>
-        <location filename="../settingwindow.cpp" line="869"/>
+        <location filename="../settingwindow.ui" line="337"/>
+        <location filename="../settingwindow.cpp" line="868"/>
         <source>default</source>
-        <translation>προεπιλογή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="399"/>
-        <location filename="../settingwindow.cpp" line="881"/>
+        <location filename="../settingwindow.ui" line="367"/>
+        <location filename="../settingwindow.cpp" line="880"/>
         <source>custom</source>
-        <translation>προσαρμοσμένο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="416"/>
+        <location filename="../settingwindow.ui" line="384"/>
         <source>Apply scale</source>
-        <translation>Εφαρμογή κλίμακας</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="435"/>
+        <location filename="../settingwindow.ui" line="403"/>
         <source>X</source>
-        <translation>X</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="449"/>
+        <location filename="../settingwindow.ui" line="417"/>
         <source>Y</source>
-        <translation>Y</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="463"/>
+        <location filename="../settingwindow.ui" line="431"/>
         <source>Width</source>
-        <translation>Πλάτος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="477"/>
+        <location filename="../settingwindow.ui" line="445"/>
         <source>Height</source>
-        <translation>Ύψος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="491"/>
+        <location filename="../settingwindow.ui" line="459"/>
         <source>Apply Custom Dimensions</source>
-        <translation>Εφαρμογή προσαρμοσμένων διαστάσεων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="601"/>
-        <source>Version:</source>
-        <translation>Έκδοση:</translation>
+        <location filename="../settingwindow.ui" line="484"/>
+        <source>Hide</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>githubWeb</source>
-        <translation type="vanished">githubWeb</translation>
-    </message>
-    <message>
-        <source>new(gitee)</source>
-        <translation type="vanished">new( gitee)</translation>
-    </message>
-    <message>
-        <source>new(github)</source>
-        <translation type="vanished">new( github)</translation>
-    </message>
-    <message>
-        <source>reprotBug</source>
-        <translation type="vanished">Bug reprotName</translation>
-    </message>
-    <message>
-        <location filename="../settingwindow.ui" line="519"/>
-        <source>Spark-Hub(Test)</source>
-        <translation>Spark- Hub( δοκιμή)</translation>
+        <location filename="../settingwindow.ui" line="503"/>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="526"/>
-        <source>Download Wallpaper</source>
-        <translation>Λήψη ταπετσαρίας</translation>
+        <source>Spark-Hub(Test)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="533"/>
-        <source>Other Display Tools</source>
-        <translation>Άλλα εργαλεία προβολής</translation>
+        <source>Download Wallpaper</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.ui" line="544"/>
-        <source>Advanced Settings</source>
-        <translation>Προηγμένες ρυθμίσεις</translation>
+        <location filename="../settingwindow.ui" line="540"/>
+        <source>Other Display Tools</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="551"/>
-        <source>Wallpaper Local</source>
-        <translation>Τοπική ταπετσαρία</translation>
+        <source>Advanced Settings</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="558"/>
-        <location filename="../settingwindow.cpp" line="128"/>
-        <source>Wallpaper History</source>
-        <translation>Ιστορικό ταπετσαριών</translation>
+        <source>Wallpaper Local</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="565"/>
+        <location filename="../settingwindow.cpp" line="123"/>
+        <source>Wallpaper History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="572"/>
         <source>Wallpaper Engine-plugin</source>
-        <translation>Πρόσθετο μηχανής ταπετσαρίας</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.ui" line="608"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="95"/>
         <source>Exit</source>
-        <translation>Έξοδος</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="116"/>
+        <location filename="../settingwindow.cpp" line="111"/>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο οθόνης</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="132"/>
+        <location filename="../settingwindow.cpp" line="127"/>
         <source>Main View</source>
-        <translation>Κύρια προβολή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="149"/>
+        <location filename="../settingwindow.cpp" line="133"/>
+        <source>Spark Hub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingwindow.cpp" line="146"/>
         <source>Help</source>
-        <translation>Βοήθεια</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="157"/>
+        <location filename="../settingwindow.cpp" line="154"/>
         <source>github</source>
-        <translation>githhub</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="174"/>
+        <location filename="../settingwindow.cpp" line="172"/>
         <source>Double click to open the configuration interface</source>
-        <translation>Διπλό κλικ για να ανοίξετε τη διεπαφή ρύθμισης παραμέτρων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="222"/>
+        <location filename="../settingwindow.cpp" line="211"/>
         <source>Latest version</source>
-        <translation>Τελευταία έκδοση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close!!</source>
-        <translation>Κλείσε!!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="1494"/>
+        <location filename="../settingwindow.cpp" line="1495"/>
         <source>Close the App ?</source>
-        <translation>Κλείσε την εφαρμογή;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1069,17 +1054,17 @@
         <location filename="../listview/view.cpp" line="244"/>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete!!</source>
-        <translation>Διαγραφή!!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="244"/>
         <source>The file does not exist. Do you want to delete it</source>
-        <translation>Το αρχείο δεν υπάρχει. Θέλεις να το διαγράψεις;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/view.cpp" line="251"/>
         <source>Delete all history imports ?</source>
-        <translation>Διαγραφή όλων των εισαγωγών ιστορικού;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1087,34 +1072,34 @@
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="14"/>
         <source>Form</source>
-        <translation>Έντυπο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="25"/>
         <source>Select Path</source>
-        <translation>Επιλογή διαδρομής</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="35"/>
         <source>Apply</source>
-        <translation>Εφαρμογή</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.ui" line="56"/>
         <source>You have to provide the path of Wallpaper Engine from Steam. It doesn&apos;t work on Linux, but required functionality is present</source>
-        <translation>Θα πρέπει να παρέχετε τη διαδρομή της μηχανής ταπετσαρίας από το Steam. Δεν λειτουργεί στο Linux, αλλά η απαιτούμενη λειτουργικότητα είναι παρούσα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../listview/wallpaperengineplugin.cpp" line="165"/>
         <location filename="../listview/wallpaperengineplugin.cpp" line="179"/>
         <source>Not containing the word steam!</source>
-        <translation>Δεν περιέχει τη λέξη ατμός!</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
