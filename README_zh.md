@@ -10,7 +10,7 @@
 
 ## 其他语言介绍
 
-[English](UpdateLog.md) [中文项目介绍](README_zh.md)
+[English](README.md) [中文项目介绍](README_zh.md)
 
 
 ## 更新日志

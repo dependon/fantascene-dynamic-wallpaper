@@ -8,11 +8,11 @@
 
 ## Other Readme
 
-[English](UpdateLog.md) [中文项目介绍](README_zh.md)
+[English](README.md) [中文项目介绍](README_zh.md)
 
 ## Update Log
 
-[English](UpdateLog.md) [中文日志](UpdateLog_zh.md)
+[English](md/UpdateLog.md) [中文日志](md/UpdateLog_zh.md)
 
 ## Supporting languages (Current Using machine translation)
 
