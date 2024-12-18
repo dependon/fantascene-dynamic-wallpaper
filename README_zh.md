@@ -174,7 +174,7 @@ make -j4
 
 ## 一种可能的`scene.pkg`解包为`.mp4`方案
 
-[方案步骤](pkg2mp4.md)
+[方案步骤](md/pkg2mp4.md)
 
 ## 截图
 
