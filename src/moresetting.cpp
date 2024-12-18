@@ -93,7 +93,7 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->hwdecEdit->hide();
         ui->hwdecBox->setCurrentText(data.hwdec);
     } else {
-        ui->hwdecBox->setCurrentText(tr("other"));
+        ui->hwdecBox->setCurrentText("other");
         ui->hwdecEdit->setText(data.hwdec);
     }
 
@@ -106,7 +106,7 @@ void MoreSetting::setData(const MoreSetData &data)
         ui->voEdit->hide();
         ui->voBox->setCurrentText(data.vo);
     } else {
-        ui->voBox->setCurrentText(tr("other"));
+        ui->voBox->setCurrentText("other");
         ui->voEdit->setText(data.vo);
     }
 
@@ -175,14 +175,14 @@ void MoreSetting::on_okBtn_clicked()
     }
 
     QString hwdecBoxStr = ui->hwdecBox->currentText();
-    if (hwdecBoxStr.contains(tr("other"))) {
+    if (hwdecBoxStr.contains("other")) {
         dApp->m_moreData.hwdec = ui->hwdecEdit->text();
     } else {
         dApp->m_moreData.hwdec = ui->hwdecBox->currentText();
     }
 
     QString voBoxStr = ui->voBox->currentText();
-    if (voBoxStr.contains(tr("other"))) {
+    if (voBoxStr.contains("other")) {
         dApp->m_moreData.vo = ui->voEdit->text();
     } else {
         dApp->m_moreData.vo = ui->voBox->currentText();
@@ -240,7 +240,7 @@ void MoreSetting::on_cancelBtn_clicked()
 
 void MoreSetting::on_hwdecBox_activated(const QString &arg1)
 {
-    if (arg1.contains(tr("other"))) {
+    if (arg1.contains("other")) {
         ui->hwdecEdit->show();
     } else {
         ui->hwdecEdit->hide();
@@ -267,7 +267,7 @@ void MoreSetting::on_back_transparency_valueChanged(int value)
 
 void MoreSetting::on_voBox_currentTextChanged(const QString &arg1)
 {
-    if (arg1.contains(tr("other"))) {
+    if (arg1.contains("other")) {
         ui->voEdit->show();
     } else {
         ui->voEdit->hide();
