@@ -159,19 +159,21 @@ dpkg-buildpackage -b -us -uc
 
 ## Thanks
 
-Thank [shenmo](https://gitee.com/spark-store-project) its great support.
+Thanks [shenmo](https://gitee.com/spark-store-project) its great support.
 
-Thank [taotieren](https://github.com/taotieren) for his help on arch.
+Thanks [taotieren](https://github.com/taotieren) for his help on arch.
 
-Thank [gesangtome](https://github.com/gesangtome) for fixing some project bugs.
+Thanks [gesangtome](https://github.com/gesangtome) for fixing some project bugs.
 
-Thank [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
+Thanks [Akiba illusion](https://github.com/AkibaIllusionLinux) its great support.
 
 Thanks for the Polish translation provided by  [raspin0](https://github.com/raspin0).
 
 Thanks for the Spanish translation provided by [Alvaro samudio](https://github.com/alvarosamudio).
 
-Thanks for the pkg2mp4.md provided by [M0rtzz](https://github.com/M0rtzz).
+Thanks for the pkg2mp4.md provided by [M0rtzz] (https://github.com/M0rtzz).
+
+Thanks [lisuke] (https://github.com/lisuke) support fix bug
 
 ## Contribute
 ```

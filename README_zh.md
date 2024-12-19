@@ -155,7 +155,7 @@ make -j4
 
 感谢[Akiba illusion](https://github.com/AkibaIllusionLinux)的大力支持。
 
-感谢[taotieren](https://github.com/taotieren)对ARCH的帮助
+感谢[taotieren](https://github.com/taotieren)对arch的帮助
 
 感谢[gesangtome](https://github.com/gesangtome)修复了一些项目的问题。
 
@@ -163,6 +163,7 @@ make -j4
 
 感谢[Alvaro samudio](https://github.com/alvarosamudio)提供的西班牙语翻译。
 
+感谢[lisuke](https://github.com/lisuke) 修改bug
 
 ## 贡献
 ```
