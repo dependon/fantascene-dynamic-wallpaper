@@ -857,12 +857,12 @@ const QPixmap Application::getThumbnail(const QString &path)
         QPixmap  a(thumPath);
         if (a.isNull()) {
             a = getThumbnailText(path);
-            a.save(thumPath);
+            //a.save(thumPath);
         }
         return a;
     }
     QPixmap  tmpA = getThumbnailText(path);
-    tmpA.save(thumPath);
+    //tmpA.save(thumPath);
     return tmpA;
 }
 
