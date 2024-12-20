@@ -47,7 +47,7 @@ Eesti keel
 Dansk sprog
 Ελληνική γλώσσα
 
-## wiki(介绍)
+## wiki
 
 https://github.com/dependon/fantascene-dynamic-wallpaper/wiki
 
@@ -73,11 +73,6 @@ COPYRIGHT (C) 2020-2024 LIUMINGHANG <liuminghang0821@gmail.com>
 THE PROJECT IS RELEASED UNDER THE：
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://raw.github.com/dependon/fantascene-dynamic-wallpaper/master/LICENSE)
-
-## Wiki
-
-Detailed instructions will be written to wiki later.
-
 
 ## Regarding the issue where ubuntu may display dual icons
 
