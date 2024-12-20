@@ -151,9 +151,9 @@ settingWindow::settingWindow(QWidget *parent, QWidget *mainWindow) :
     } else {
         // 当前语言环境不是中文
         maingithub = new QAction(m_traymenu);
-        maingithub->setText(tr("github"));
+        maingithub->setText(tr("Help"));
         connect(maingithub, &QAction::triggered, this, [ = ] {
-            QDesktopServices::openUrl(QUrl(QLatin1String("https://github.com/dependon/fantascene-dynamic-wallpaper/")));
+            QDesktopServices::openUrl(QUrl(QLatin1String("https://www.fantacy.online/en/")));
         });
     }
 
