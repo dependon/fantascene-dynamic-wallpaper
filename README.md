@@ -2,7 +2,7 @@
 
 ### Managed animated wallpaper based on X11 under Linux.
 
-### Chinese official website
+### Official website
 
 [https://www.fantacy.online](https://www.fantacy.online)
 
@@ -97,14 +97,7 @@ The inspiration for the software comes from the deepin desktop dde-desktop. Afte
 
 Later, I wrote a simple desktop for the general version
 
-## qq群(及时反馈和分享bug需求等) 2023/08/29
-
-群号:917552088
-
-请申请的时候备注下加群的信息(比如:使用动态壁纸等，防止有小广告选手混入其中)
-
 ## Installation
-
 
 ### Fedora and OpenSUSE
 
@@ -171,9 +164,9 @@ Thanks for the Polish translation provided by  [raspin0](https://github.com/rasp
 
 Thanks for the Spanish translation provided by [Alvaro samudio](https://github.com/alvarosamudio).
 
-Thanks for the pkg2mp4.md provided by [M0rtzz] (https://github.com/M0rtzz).
+Thanks for the pkg2mp4.md provided by [M0rtzz](https://github.com/M0rtzz).
 
-Thanks [lisuke] (https://github.com/lisuke) support fix bug
+Thanks [lisuke](https://github.com/lisuke) support fix bug
 
 ## Contribute
 ```
