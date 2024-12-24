@@ -107,12 +107,22 @@
       <widget class="QComboBox" name="hwdecBox">
        <item>
         <property name="text">
+         <string notr="true">gpu</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">gpu-next</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string notr="true">auto</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string notr="true">gpu</string>
+         <string notr="true">none</string>
         </property>
        </item>
        <item>
@@ -123,11 +133,6 @@
        <item>
         <property name="text">
          <string notr="true">vdpau</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">none</string>
         </property>
        </item>
        <item>
@@ -172,12 +177,47 @@
        </item>
        <item>
         <property name="text">
+         <string notr="true">gpu</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string notr="true">opengl</string>
         </property>
        </item>
        <item>
         <property name="text">
          <string notr="true">opengl-cb</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">x11</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">direct3d</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">sdl</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">dmabuf-wayland</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">wayland</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string notr="true">wlshm</string>
         </property>
        </item>
        <item>
