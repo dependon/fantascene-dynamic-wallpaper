@@ -16,6 +16,7 @@ qtHaveModule(webengine){
         DEFINES += USE_WEBKIT
     }
 }
+    QT += multimedia multimediawidgets
 
 contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
@@ -77,11 +78,13 @@ SOURCES += main.cpp \
     download/tcpclient.cpp \
     help/tipdeepindialog.cpp \
     listview/onlineclient.cpp \
+    media/mediapluginwidget.cpp \
+    media/qmediawid.cpp \
     othertools/othersetdialog.cpp \
     othertools/timedisplaywidget.cpp \
     wallpaper.cpp \
     dbuswallpaperservice.cpp \
-    mpvwidget.cpp \
+    media/mpvwidget.cpp \
     settingwindow.cpp \
     application.cpp \
     listview/delegate.cpp \
@@ -105,11 +108,13 @@ HEADERS += \
     download/tcpclient.h \
     help/tipdeepindialog.h \
     listview/onlineclient.h \
+    media/mediapluginwidget.h \
+    media/qmediawid.h \
     othertools/othersetdialog.h \
     othertools/timedisplaywidget.h \
     wallpaper.h \
     dbuswallpaperservice.h \
-    mpvwidget.h \
+    media/mpvwidget.h \
     settingwindow.h \
     application.h \
     data.h \
@@ -143,6 +148,7 @@ CONFIG(release, debug|release) {
 
 INCLUDEPATH += $$PWD/ini
 INCLUDEPATH += $$PWD/download
+INCLUDEPATH += $$PWD/media
 unix {
 # No matter the build type is release or debug, we always need to generate the qm file.
 TRANSLATIONS = $$files($$PWD/translations/*.ts)
@@ -224,6 +230,8 @@ INSTALLS += target  icon desktop  translations video touming
 FORMS += \
     help/tipdeepindialog.ui \
     listview/onlineclient.ui \
+    media/mediapluginwidget.ui \
+    media/qmediawid.ui \
     othertools/othersetdialog.ui \
     settingwindow.ui \
     listview/historywidget.ui \

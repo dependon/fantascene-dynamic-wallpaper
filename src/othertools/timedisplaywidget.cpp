@@ -53,6 +53,8 @@ TimeDisplayWidget::TimeDisplayWidget(QWidget *parent)
     setTimeMove(FontX,FontY);
 
     setAttribute(Qt::WA_TransparentForMouseEvents);
+
+    this->setStyleSheet("background: transparent;");
 }
 
 void TimeDisplayWidget::setFont(const QFont &font)

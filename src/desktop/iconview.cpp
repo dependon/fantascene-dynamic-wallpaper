@@ -177,7 +177,7 @@ IconView::IconView(int id, QString rootPath, QWidget *parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QMenu *viewMenu = new QMenu();
-    //viewMenu->setWindowFlags(viewMenu->windowFlags() | Qt::FramelessWindowHint);
+    viewMenu->setWindowFlags(viewMenu->windowFlags() | Qt::FramelessWindowHint);
     viewMenu->setAttribute(Qt::WA_TranslucentBackground);
 
 

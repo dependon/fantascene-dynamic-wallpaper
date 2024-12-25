@@ -140,6 +140,9 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
         m_bScrrenShot = true;
     });
 
+    setProperty("loop", true);
+    setProperty("panscan", 1);
+
 }
 
 MpvWidget::~MpvWidget()

@@ -61,6 +61,8 @@ private Q_SLOTS:
 
     void on_setWorkPaper_2_clicked();
 
+    void on_comboxVideoPlugin_currentIndexChanged(int index);
+
 private:
     Ui::MoreSetting *ui;
     QMap<QString, QString> m_languageMap;

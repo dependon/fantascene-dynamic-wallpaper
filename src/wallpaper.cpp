@@ -240,10 +240,10 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
-        if (nullptr != m_mpv2) {
-            layout()->removeWidget(m_mpv2);
-            delete m_mpv2 ;
-            m_mpv2 = nullptr;
+        if (nullptr != m_media) {
+            layout()->removeWidget(m_media);
+            delete m_media ;
+            m_media = nullptr;
         }
         break;
     }
@@ -253,10 +253,10 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
-        if (nullptr != m_mpv2) {
-            layout()->removeWidget(m_mpv2);
-            delete m_mpv2 ;
-            m_mpv2 = nullptr;
+        if (nullptr != m_media2) {
+            layout()->removeWidget(m_media2);
+            delete m_media2 ;
+            m_media2 = nullptr;
         }
         break;
     }
@@ -285,11 +285,11 @@ void Wallpaper::setFile(const QString &path)
     malloc_trim(0);
 #endif
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
-        if (m_mpv) {
-            layout()->removeWidget(m_mpv);
-            m_mpv->setProperty("pause", true);
-            delete m_mpv;
-            m_mpv = nullptr;
+        if (m_media) {
+            layout()->removeWidget(m_media);
+            m_media->pause();
+            delete m_media;
+            m_media = nullptr;
 
         }
         if (!m_webView) {
@@ -311,18 +311,14 @@ void Wallpaper::setFile(const QString &path)
             delete m_webView;
             m_webView = nullptr;
         }
-        if (!m_mpv) {
-            m_mpv = new MpvWidget(this);
-            m_mpv->setGeometry(geometry());
-
-            m_mpv->setProperty("loop", true);
-            m_mpv->setProperty("panscan", 1);
-            m_mpv->setGeometry(geometry());
-            m_mpv->show();
+        if (!m_media) {
+            m_media = new MediaPluginWidget(this);
+            m_media->setGeometry(geometry());
+            m_media->show();
         }
 
-        m_mpv->command(QStringList() << "loadfile" << path);
-        m_mpv->setProperty("pause", true);
+        m_media->setFile(path);
+        m_media->pause();
     }
     //        //发送读取配置文件
     Q_EMIT dApp->sigReadPlayerConfig();
@@ -357,18 +353,15 @@ void Wallpaper::setFile2(const QString &path)
             m_webView2 = nullptr;
         }
         if (qApp->screens().count() > 1 && IdCopyScreen == dApp->m_cuurentMode) {
-            if (!m_mpv2) {
-                m_mpv2 = new MpvWidget(this);
+            if (!m_media2) {
+                m_media2 = new MediaPluginWidget(this);
             }
-            m_mpv2->setProperty("loop", true);
-            m_mpv2->setProperty("panscan", 1);
-            m_mpv2->setGeometry(geometry());
-            m_mpv2->setProperty("volume", 0);
-            m_mpv2->show();
+            m_media2->setGeometry(geometry());
+            m_media2->setVolume(0);
+            m_media2->show();
         }
-        if (m_mpv2) {
-            m_mpv2->command(QStringList() << "loadfile" << path);
-//            m_mpv2->setProperty("pause", true);
+        if (m_media2) {
+            m_media2->setFile(path);
         }
     }
 
@@ -377,11 +370,11 @@ void Wallpaper::setFile2(const QString &path)
 
 void Wallpaper::setVolume(const qint32 volume)
 {
-    if (m_mpv) {
-        m_mpv->setProperty("volume", volume);
+    if (m_media) {
+        m_media->setVolume(volume);
     }
-    if (m_mpv2) {
-        m_mpv2->setProperty("volume", 0);
+    if (m_media2) {
+        m_media2->setVolume(0);
     }
 
 }
@@ -394,35 +387,35 @@ void Wallpaper::clear()
 
 void Wallpaper::play()
 {
-    if (!m_webView && m_mpv) {
-        m_mpv->show();
-        m_mpv->setProperty("pause", false);
+    if (!m_webView && m_media) {
+        m_media->show();
+        m_media->play();
         dApp->m_currentIsPlay = true;
     }
-    if (m_mpv2) {
-        m_mpv2->show();
-        m_mpv2->setProperty("pause", false);
+    if (m_media2) {
+        m_media2->show();
+        m_media2->play();
     }
 }
 
 void Wallpaper::pause()
 {
     dApp->m_currentIsPlay = false;
-    if (m_mpv) {
-        m_mpv->setProperty("pause", true);
+    if (m_media) {
+        m_media->pause();
     }
-    if (m_mpv2) {
-        m_mpv2->setProperty("pause", true);
+    if (m_media2) {
+        m_media2->pause();
     }
 }
 
 void Wallpaper::stop()
 {
-    if (m_mpv) {
-        m_mpv->setProperty("stop", true);
+    if (m_media) {
+        m_media->stop();
     }
-    if (m_mpv2) {
-        m_mpv2->setProperty("stop", true);
+    if (m_media2) {
+        m_media2->stop();
     }
 }
 
@@ -723,24 +716,22 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList)
 
 void Wallpaper::slotSetMpvValue(const QString &key, const QString &value)
 {
-    if (m_mpv) {
+    if (m_media) {
         if(key == "video-aspect")
         {
-            m_mpv->setProperty(key, value.toDouble());
-            m_mpv->setProperty("video-aspect-override", value.toDouble());
+            m_media->setAspect(value.toDouble());
         }
         else {
-            m_mpv->setProperty(key, value);
+            m_media->setProperty(key, value);
         }
     }
-    if (m_mpv2) {
+    if (m_media2) {
         if(key == "video-aspect")
         {
-            m_mpv2->setProperty(key, value.toDouble());
-            m_mpv2->setProperty("video-aspect-override", value.toDouble());
+            m_media2->setAspect(value.toDouble());
         }
         else {
-            m_mpv2->setProperty(key, value);
+            m_media2->setProperty(key, value);
         }
     }
 }
@@ -822,10 +813,10 @@ void Wallpaper::updateGeometry()
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() ;
-                if(screen->name() == priScreen->name() && m_mpv)
+                if(screen->name() == priScreen->name() && m_media)
                 {
-                    m_mpv->setGeometry(screen->geometry());
-                    m_mpv->setMinimumWidth(screen->geometry().width());
+                    m_media->setGeometry(screen->geometry());
+                    m_media->setMinimumWidth(screen->geometry().width());
                     iX = screen->geometry().width();
                     qDebug()<<"Main : "<< screen->geometry();
                     i++;
@@ -843,8 +834,8 @@ void Wallpaper::updateGeometry()
             for (auto screen : qApp->screens()) {
                 dApp->m_currentScreenNum = QGuiApplication::screens().size();
                 qDebug()<<"screen->name() "<<screen->name() << screen->geometry().y() ;
-                if(screen->name() != priScreen->name() && m_mpv2){
-                    m_mpv2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
+                if(screen->name() != priScreen->name() && m_media2){
+                    m_media2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
                     i++;
                      qDebug()<<"Main2 : "<< screen->geometry();
                     continue;
@@ -864,13 +855,13 @@ void Wallpaper::updateGeometry()
             size1.setHeight(rec.height());
             this->setGeometry(rec);
 
-            if (m_mpv) {
-                m_mpv->setGeometry(rec);
+            if (m_media) {
+                m_media->setGeometry(rec);
             }
-            if (m_mpv2) {
-                this->layout()->removeWidget(m_mpv2);
-                m_mpv2->deleteLater();
-                m_mpv2 = nullptr;
+            if (m_media2) {
+                this->layout()->removeWidget(m_media2);
+                m_media2->deleteLater();
+                m_media2 = nullptr;
             }
             if (m_webView) {
                 m_webView->setGeometry(rec);
@@ -886,13 +877,13 @@ void Wallpaper::updateGeometry()
             size1.setWidth(dApp->m_manual.width());
             size1.setHeight(dApp->m_manual.height());
             this->setGeometry(rec);
-            if (m_mpv) {
-                m_mpv->setGeometry(rec);
+            if (m_media) {
+                m_media->setGeometry(rec);
             }
-            if (m_mpv2) {
-                this->layout()->removeWidget(m_mpv2);
-                m_mpv2->deleteLater();
-                m_mpv2 = nullptr;
+            if (m_media2) {
+                this->layout()->removeWidget(m_media2);
+                m_media2->deleteLater();
+                m_media2 = nullptr;
             }
             if (m_webView) {
                 m_webView->setGeometry(rec);
@@ -906,10 +897,10 @@ void Wallpaper::updateGeometry()
         setIconVisble(dApp->m_moreData.isShowDesktopIcon);
         if (m_iconView && m_iconView->isVisible())
         {
-            if (m_mpv) {
+            if (m_media) {
                 m_iconView->setGeometry(deskRect);
                 m_iconView->setFixedSize(deskRect.width(), deskRect.height());
-                m_iconView->setParent(m_mpv);
+                m_iconView->setParent(m_media);
             } else if (m_webView) {
                 m_iconView->setGeometry(deskRect);
                 m_iconView->setFixedSize(deskRect.width(), deskRect.height());
@@ -1172,33 +1163,33 @@ void Wallpaper::setIconVisble(bool visble)
 
 void Wallpaper::refreashLayout()
 {
-    if(m_mpv)
+    if(m_media)
     {
-        layout()->removeWidget(m_mpv);
+        layout()->removeWidget(m_media);
     }
     if(m_webView)
     {
         layout()->removeWidget(m_webView);
     }
-    if(m_mpv2)
+    if(m_media2)
     {
-        layout()->removeWidget(m_mpv2);
+        layout()->removeWidget(m_media2);
     }
     if(m_webView2)
     {
         layout()->removeWidget(m_webView2);
     }
-    if(m_mpv)
+    if(m_media)
     {
-        layout()->addWidget(m_mpv);
+        layout()->addWidget(m_media);
     }
     if(m_webView)
     {
         layout()->addWidget(m_webView);
     }
-    if(m_mpv2)
+    if(m_media2)
     {
-        layout()->addWidget(m_mpv2);
+        layout()->addWidget(m_media2);
     }
     if(m_webView2)
     {

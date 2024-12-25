@@ -139,6 +139,9 @@ void MoreSetting::setData(const MoreSetData &data)
 
     ui->check_deepin->setChecked(dApp->m_isDDE23);
 
+    int videoPlugin = IniManager::instance()->value("Media/CurrentPlugin",0).toInt();
+    ui->comboxVideoPlugin->setCurrentIndex(videoPlugin);
+
 }
 
 void MoreSetting::setLanguageCombox()
@@ -230,6 +233,10 @@ void MoreSetting::on_okBtn_clicked()
 
     dApp->setSpecialDesktop();
 
+    IniManager::instance()->setValue("Media/CurrentPlugin",ui->comboxVideoPlugin->currentIndex());
+    VideoWidgetType type = VideoWidgetType(ui->comboxVideoPlugin->currentIndex());
+    dApp->sigSetMeidaType(type);
+
     close();
 }
 
@@ -306,5 +313,45 @@ void MoreSetting::on_setWorkPaper_2_clicked()
                          "com.deepin.daemon.Appearance",
                          QDBusConnection::sessionBus());
     iface.asyncCall("SetCurrentWorkspaceBackground", "");
+}
+
+
+void MoreSetting::on_comboxVideoPlugin_currentIndexChanged(int index)
+{
+
+    switch (index) {
+    case 0:
+        ui->label_FPS->setVisible(true);
+        ui->label_Decoder->setVisible(true);
+        ui->label_vo->setVisible(true);
+
+        ui->hwdecBox->setVisible(true);
+        ui->fpsbox->setVisible(true);
+        ui->voBox->setVisible(true);
+        if(ui->hwdecBox->currentText() == "other")
+        {
+            ui->hwdecEdit->setVisible(true);
+        }
+        if(ui->voBox->currentText() == "other")
+        {
+            ui->voEdit->setVisible(true);
+        }
+
+        break;
+    case 1:
+        ui->label_FPS->setVisible(false);
+        ui->label_Decoder->setVisible(false);
+        ui->label_vo->setVisible(false);
+
+        ui->hwdecBox->setVisible(false);
+        ui->fpsbox->setVisible(false);
+        ui->voBox->setVisible(false);
+
+        ui->hwdecEdit->setVisible(false);
+        ui->voEdit->setVisible(false);
+        break;
+    default:
+        break;
+    }
 }
 

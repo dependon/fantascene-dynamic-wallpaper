@@ -21,7 +21,7 @@
 #ifndef WALLPAPER_H
 #define WALLPAPER_H
 
-#include "mpvwidget.h"
+#include "mediapluginwidget.h"
 #include "data.h"
 
 #include <QTimer>
@@ -86,8 +86,8 @@ private Q_SLOTS:
 private:
     QHBoxLayout *mainlayout;
 
-    MpvWidget *m_mpv{nullptr};
-    MpvWidget *m_mpv2{nullptr};
+    MediaPluginWidget *m_media{nullptr};
+    MediaPluginWidget *m_media2{nullptr};
 
     int m_currentScreen{0};
     QLabel *m_label2{nullptr};

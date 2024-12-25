@@ -167,6 +167,8 @@ Q_SIGNALS:
     void setTimeVisible(bool bVisble);
     // 设置时间控件透明度
     void setTimeTransparent(int value);
+    // 设置视频播放插件
+    void sigSetMeidaType(VideoWidgetType type);
 public:
 
     QRect m_manual{0, 0, 1, 1};

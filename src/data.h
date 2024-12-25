@@ -66,4 +66,9 @@ struct DownloadInfo
     bool bDownloaded = false; //下载成功与否
 };
 
+enum VideoWidgetType {
+    Type_Mpv = 0,
+    Type_QMedia = 1,
+};
+
 #endif // DATA_H
