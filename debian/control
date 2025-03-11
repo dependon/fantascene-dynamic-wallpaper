@@ -17,7 +17,8 @@ Build-Depends:  debhelper (>= 9),
 				qtwebengine5-dev | libqt5webkit5-dev,
 				libxext-dev ,
 				libxrender-dev ,
-				libxcb-shape0-dev
+				libxcb-shape0-dev ,
+                                libqt5charts5-dev
 
 Rules-Requires-Root: no
 Provides: fantascene-gxde

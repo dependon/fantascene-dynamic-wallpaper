@@ -26,6 +26,26 @@ OtherSetDialog::OtherSetDialog(QWidget *parent)
         ui->comboBoxVisible->setCurrentText(tr("False"));
     }
 
+    bool bCpuVisible = IniManager::instance()->value("CpuDisplay/Visible",false).toBool();
+    if(bCpuVisible)
+    {
+        ui->CpuVcombox->setCurrentText(tr("True"));
+    }
+    else
+    {
+        ui->CpuVcombox->setCurrentText(tr("False"));
+    }
+
+    bool bMemoryVisible = IniManager::instance()->value("MemoryDisplay/Visible",false).toBool();
+    if(bMemoryVisible)
+    {
+        ui->MemoryVcombox->setCurrentText(tr("True"));
+    }
+    else
+    {
+        ui->MemoryVcombox->setCurrentText(tr("False"));
+    }
+
     QColor color = QColor(170,255,255);
     QVariant variantColor = IniManager::instance()->value("TimeDisplay/Color",color);
     if (variantColor.canConvert<QColor>()) {
@@ -152,3 +172,31 @@ void OtherSetDialog::on_trSlider_sliderReleased()
     }
 }
 
+
+void OtherSetDialog::on_CpuVcombox_currentTextChanged(const QString &arg1)
+{
+    if(arg1 == tr("True"))
+    {
+        IniManager::instance()->setValue("CpuDisplay/Visible",true);
+        Q_EMIT dApp->setCpuVisible(true);
+    }
+    else if(arg1 == tr("False"))
+    {
+        IniManager::instance()->setValue("CpuDisplay/Visible",false);
+        Q_EMIT dApp->setCpuVisible(false);
+    }
+}
+
+void OtherSetDialog::on_MemoryVcombox_currentTextChanged(const QString &arg1)
+{
+    if(arg1 == tr("True"))
+    {
+        IniManager::instance()->setValue("MemoryDisplay/Visible",true);
+        Q_EMIT dApp->setMemoryVisible(true);
+    }
+    else if(arg1 == tr("False"))
+    {
+        IniManager::instance()->setValue("MemoryDisplay/Visible",false);
+        Q_EMIT dApp->setMemoryVisible(false);
+    }
+}

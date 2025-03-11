@@ -169,6 +169,13 @@ Q_SIGNALS:
     void setTimeTransparent(int value);
     // 设置视频播放插件
     void sigSetMeidaType(VideoWidgetType type);
+
+    // 设置Cpu控件显示
+    void setCpuVisible(bool bVisble);
+
+    // 设置内存控件显示
+    void setMemoryVisible(bool bVisble);
+
 public:
 
     QRect m_manual{0, 0, 1, 1};

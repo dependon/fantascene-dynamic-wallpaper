@@ -36,6 +36,10 @@ private Q_SLOTS:
 
     void on_trSlider_sliderReleased();
 
+    void on_CpuVcombox_currentTextChanged(const QString &arg1);
+
+    void on_MemoryVcombox_currentTextChanged(const QString &arg1);
+
 private:
     Ui::OtherSetDialog *ui;
 };

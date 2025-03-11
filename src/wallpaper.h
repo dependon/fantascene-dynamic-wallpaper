@@ -36,6 +36,9 @@
 #include <Windows.h>
 #endif
 class TimeDisplayWidget;
+class MemoryMonitorWidget;
+class CpuMonitorWidget;
+
 class QLabel;
 //class Desktop;
 class Wallpaper : public QWidget
@@ -72,6 +75,8 @@ public Q_SLOTS:
     void slotWallpaperEventChanged(bool bRet);
 
     void setTimeVisible (bool bVisible );
+    void setCpuVisible (bool bVisible );
+    void setMemoryVisible (bool bVisible );
 
 private:
     void registerDesktop();
@@ -105,6 +110,11 @@ private:
 
     TimeDisplayWidget * m_timedisplayWidget{nullptr};
     bool m_TimeVisible{false};
+    CpuMonitorWidget * m_cpudisplayWidget{nullptr};
+    bool m_CpuVisible{false};
+    MemoryMonitorWidget * m_memorydisplayWidget{nullptr};
+    bool m_MemoryVisible{false};
+
 #ifdef Q_OS_WINDOWS
     HHOOK hook;
     HWND workerW;

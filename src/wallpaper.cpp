@@ -74,6 +74,8 @@
 
 #include "application.h"
 #include "othertools/timedisplaywidget.h"
+#include "othertools/memorymonitorwidget.h"
+#include "othertools/cpumonitorwidget.h"
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
@@ -107,6 +109,10 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
     // 设置时间控件显示
     connect(dApp,&Application::setTimeVisible,this,&Wallpaper::setTimeVisible,Qt::DirectConnection);
+
+    connect(dApp,&Application::setCpuVisible,this,&Wallpaper::setCpuVisible,Qt::DirectConnection);
+
+    connect(dApp,&Application::setMemoryVisible,this,&Wallpaper::setMemoryVisible,Qt::DirectConnection);
 
     QScreen *primaryScreen = QGuiApplication::primaryScreen();
     // 监听屏幕大小变化信号
@@ -1038,6 +1044,8 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
     }
 
     setTimeVisible(m_TimeVisible);
+    setCpuVisible(m_CpuVisible);
+    setMemoryVisible(m_MemoryVisible);
 }
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet)
@@ -1118,6 +1126,52 @@ void Wallpaper::setTimeVisible(bool bVisible)
         {
             delete m_timedisplayWidget;
             m_timedisplayWidget = nullptr;
+        }
+    }
+}
+
+void Wallpaper::setCpuVisible(bool bVisible)
+{
+    m_CpuVisible = bVisible;
+    if(m_CpuVisible)
+    {
+        if(!m_cpudisplayWidget)
+        {
+            m_cpudisplayWidget =new CpuMonitorWidget(this);
+        }
+        m_cpudisplayWidget->show();
+        m_cpudisplayWidget->resize(400,260);
+        m_cpudisplayWidget->move(1400,100);
+    }
+    else
+    {
+        if(m_cpudisplayWidget)
+        {
+            delete m_cpudisplayWidget;
+            m_cpudisplayWidget = nullptr;
+        }
+    }
+}
+
+void Wallpaper::setMemoryVisible(bool bVisible)
+{
+    m_MemoryVisible = bVisible;
+    if(m_MemoryVisible)
+    {
+        if(!m_memorydisplayWidget)
+        {
+            m_memorydisplayWidget =new MemoryMonitorWidget(this);
+        }
+        m_memorydisplayWidget->show();
+        m_memorydisplayWidget->resize(400,260);
+        m_memorydisplayWidget->move(1400,100);
+    }
+    else
+    {
+        if(m_memorydisplayWidget)
+        {
+            delete m_memorydisplayWidget;
+            m_memorydisplayWidget = nullptr;
         }
     }
 }
