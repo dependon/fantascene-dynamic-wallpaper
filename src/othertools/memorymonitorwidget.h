@@ -15,8 +15,8 @@ class MemoryMonitorWidget : public QWidget
     Q_OBJECT
 public:
     explicit MemoryMonitorWidget(QWidget *parent = nullptr);
-
-private slots:
+    void setMove(int x, int y);
+private Q_SLOTS:
     void updateMemoryUsage(const QVector<double>& usage);
     void updateMemoryTitle();
 

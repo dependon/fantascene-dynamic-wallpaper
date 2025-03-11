@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>586</width>
-    <height>510</height>
+    <height>531</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,6 +42,9 @@
             <width>280</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="currentText">
+           <string>False</string>
           </property>
           <item>
            <property name="text">
@@ -345,6 +348,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="currentText">
+           <string>False</string>
+          </property>
           <item>
            <property name="text">
             <string>True</string>
@@ -355,13 +361,6 @@
             <string>False</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxShow_2">
-          <property name="text">
-           <string/>
-          </property>
          </widget>
         </item>
        </layout>
@@ -411,6 +410,9 @@
             <height>16777215</height>
            </size>
           </property>
+          <property name="currentText">
+           <string>False</string>
+          </property>
           <item>
            <property name="text">
             <string>True</string>
@@ -421,13 +423,6 @@
             <string>False</string>
            </property>
           </item>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxShow_3">
-          <property name="text">
-           <string/>
-          </property>
          </widget>
         </item>
        </layout>

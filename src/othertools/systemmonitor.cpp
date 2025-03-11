@@ -1,5 +1,7 @@
 #include "systemmonitor.h"
-
+#include <fstream>
+#include <sstream>
+#include <iostream>
 SystemMonitor* SystemMonitor::instance = nullptr;
 
 SystemMonitor* SystemMonitor::getInstance()
@@ -183,50 +185,63 @@ QString SystemMonitor::getMemoryInfo()
         double usedMemory = static_cast<double>(memInfo.ullTotalPhys - memInfo.ullAvailPhys) / (1024 * 1024 * 1024);
         return QString("%1GB/%2GB").arg(usedMemory, 0, 'f', 1).arg(totalMemory, 0, 'f', 1);
 #else
-        QFile file("/proc/meminfo");
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QTextStream in(&file);
-            double totalMemory = 0;
-            double freeMemory = 0;
-            while (!in.atEnd()) {
-                QString line = in.readLine();
-                if (line.startsWith("MemTotal:")) {
-                    QStringList parts = line.split(' ');
-                    for (const QString &part : parts) {
-                        if (!part.isEmpty()) {
-                            totalMemory = part.toDouble() / (1024 * 1024);
-                            break;
-                        }
-                    }
-                } else if (line.startsWith("MemFree:")) {
-                    QStringList parts = line.split(' ');
-                    for (const QString &part : parts) {
-                        if (!part.isEmpty()) {
-                            freeMemory = part.toDouble() / (1024 * 1024);
-                            break;
-                        }
-                    }
-                }
-            }
-            file.close();
-            double usedMemory = totalMemory - freeMemory;
-            return QString("%1GB/%2GB").arg(usedMemory, 0, 'f', 1).arg(totalMemory, 0, 'f', 1);
+    std::ifstream meminfo("/proc/meminfo");
+    if (!meminfo.is_open()) {
+        return "0/0";
+    }
+
+    double totalMemory = 0, freeMemory = 0, buffers = 0, cached = 0;
+    std::string line;
+    while (std::getline(meminfo, line)) {
+        if (line.find("MemTotal:") != std::string::npos) {
+            std::istringstream iss(line);
+            std::string label;
+            iss >> label >> totalMemory;
+        } else if (line.find("MemFree:") != std::string::npos) {
+            std::istringstream iss(line);
+            std::string label;
+            iss >> label >> freeMemory;
+        } else if (line.find("Buffers:") != std::string::npos) {
+            std::istringstream iss(line);
+            std::string label;
+            iss >> label >> buffers;
+        } else if (line.find("Cached:") != std::string::npos) {
+            std::istringstream iss(line);
+            std::string label;
+            iss >> label >> cached;
         }
-        return "Unknown";
+    }
+    meminfo.close();
+
+    double usedMemory = totalMemory - freeMemory - buffers - cached;
+
+
+    if (totalMemory == 0) {
+        return 0;
+    }
+    else
+    {
+        double memoryUsage = ((double)usedMemory / totalMemory) * 100.0;
+        // 更新数据
+        memoryUsageData.removeFirst();
+        memoryUsageData.append(memoryUsage);
+
+        totalMemory = (double)totalMemory / (1024.0 * 1024.0);
+        usedMemory = (double)usedMemory / (1024.0 * 1024.0);
+    }
+    return QString("%1GB/%2GB").arg(usedMemory, 0, 'f', 1).arg(totalMemory, 0, 'f', 1);
 #endif
 }
 
 void SystemMonitor::updateUsage()
 {
     double cpuUsage = getCpuUsage();
-    double memoryUsage = getMemoryUsage();
+    memoryInfo= getMemoryInfo();
 
     // 更新数据
     cpuUsageData.removeFirst();
     cpuUsageData.append(cpuUsage);
-    memoryUsageData.removeFirst();
-    memoryUsageData.append(memoryUsage);
 
-    emit cpuUsageChanged(cpuUsageData);
-    emit memoryUsageChanged(memoryUsageData);
+    Q_EMIT cpuUsageChanged(cpuUsageData);
+    Q_EMIT memoryUsageChanged(memoryUsageData);
 }

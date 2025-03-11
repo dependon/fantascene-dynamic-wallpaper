@@ -1,6 +1,9 @@
 #include "memorymonitorwidget.h"
 #include <QVBoxLayout>
 #include <QAreaSeries>
+#include "application.h"
+#include <QScreen>
+
 MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
 {
     m_monitor = SystemMonitor::getInstance();
@@ -52,6 +55,26 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
 
     connect(m_monitor, &SystemMonitor::memoryUsageChanged, this, &MemoryMonitorWidget::updateMemoryUsage);
     connect(m_monitor, &SystemMonitor::memoryUsageChanged, this, &MemoryMonitorWidget::updateMemoryTitle);
+
+    setMove(0,0);
+}
+
+void MemoryMonitorWidget::setMove(int x, int y)
+{
+    if( x == 0 && y == 0 )
+    {
+        if(qApp->screens().size()>0)
+        {
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-400;
+            int y = 400;
+            this->move(x,y);
+
+        }
+    }
+    else
+    {
+        this->move(x, y);
+    }
 }
 
 void MemoryMonitorWidget::updateMemoryUsage(const QVector<double> &usage)

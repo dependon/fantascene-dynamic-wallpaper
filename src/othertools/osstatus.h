@@ -162,7 +162,7 @@ MemoryInfo getLinuxMemoryInfo() {
 }
 #endif
 // 根据不同系统调用对应的内存信息获取函数
-MemoryInfo getMemoryInfo() {
+MemoryInfo getApiMemoryInfo() {
 #ifdef Q_OS_WIN
     return getWindowsMemoryInfo();
 #elif defined(Q_OS_LINUX)

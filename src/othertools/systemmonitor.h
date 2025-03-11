@@ -29,11 +29,11 @@ public:
     QVector<double> cpuUsageData;
     QVector<double> memoryUsageData;
 
-signals:
+Q_SIGNALS:
     void cpuUsageChanged(const QVector<double>& usage);
     void memoryUsageChanged(const QVector<double>& usage);
 
-private slots:
+private Q_SLOTS:
     void updateUsage();
 
 private:

@@ -15,8 +15,8 @@ class CpuMonitorWidget : public QWidget
     Q_OBJECT
 public:
     explicit CpuMonitorWidget(QWidget *parent = nullptr);
-
-private slots:
+    void setMove(int x, int y);
+private Q_SLOTS:
     void updateCpuUsage(const QVector<double>& usage);
 
 private:

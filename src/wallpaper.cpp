@@ -223,6 +223,8 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     }
 
     m_TimeVisible = IniManager::instance()->value("TimeDisplay/Visible",false).toBool();
+    m_CpuVisible = IniManager::instance()->value("CpuDisplay/Visible",false).toBool();
+    m_MemoryVisible = IniManager::instance()->value("MemoryDisplay/Visible",false).toBool();
 
 }
 
@@ -1141,7 +1143,6 @@ void Wallpaper::setCpuVisible(bool bVisible)
         }
         m_cpudisplayWidget->show();
         m_cpudisplayWidget->resize(400,260);
-        m_cpudisplayWidget->move(1400,100);
     }
     else
     {
@@ -1164,7 +1165,6 @@ void Wallpaper::setMemoryVisible(bool bVisible)
         }
         m_memorydisplayWidget->show();
         m_memorydisplayWidget->resize(400,260);
-        m_memorydisplayWidget->move(1400,100);
     }
     else
     {

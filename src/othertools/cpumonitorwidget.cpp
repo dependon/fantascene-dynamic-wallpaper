@@ -1,5 +1,8 @@
 #include "cpumonitorwidget.h"
 #include <QVBoxLayout>
+#include "application.h"
+#include <QScreen>
+
 CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
 {
     m_monitor = SystemMonitor::getInstance();
@@ -51,6 +54,25 @@ CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
     layout->addWidget(m_cpuChartView);
 
     connect(m_monitor, &SystemMonitor::cpuUsageChanged, this, &CpuMonitorWidget::updateCpuUsage);
+    setMove(0,0);
+}
+
+void CpuMonitorWidget::setMove(int x, int y)
+{
+    if( x == 0 && y == 0 )
+    {
+        if(qApp->screens().size()>0)
+        {
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-400;
+            int y = 100;
+            this->move(x,y);
+
+        }
+    }
+    else
+    {
+        this->move(x, y);
+    }
 }
 
 void CpuMonitorWidget::updateCpuUsage(const QVector<double> &usage)
