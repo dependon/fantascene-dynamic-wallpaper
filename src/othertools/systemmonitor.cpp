@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <string.h>
 #include "application.h"
 #include "inimanager.h"
 #include <QRegularExpression>
@@ -172,26 +173,25 @@ QString SystemMonitor::getCpuModel()
     __cpuid((int*)&cpuBrand[32], 0x80000004);
     return QString::fromUtf8(cpuBrand);
 #else
-    QFile file("/proc/cpuinfo");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "File opened successfully";
-        QTextStream in(&file);
-        // 可以尝试设置编码
-        in.setCodec("UTF-8");
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            if (line.startsWith("model name")) {
-                QStringList parts = line.split(':');
-                if (parts.size() >= 2) {
-                    file.close();
-                    return parts[1].trimmed();
+    std::ifstream file("/proc/cpuinfo");
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            if (line.find("model name") != std::string::npos) {
+                std::istringstream iss(line);
+                std::string key;
+                std::getline(iss, key, ':');
+                std::string value;
+                std::getline(iss, value);
+                // 去除前后空格
+                size_t start = value.find_first_not_of(" \t");
+                size_t end = value.find_last_not_of(" \t");
+                if (start != std::string::npos && end != std::string::npos) {
+                    return QString::fromStdString(value.substr(start, end - start + 1));
                 }
             }
         }
         file.close();
-        qDebug() << "Did not find 'model name' in the file.";
-    } else {
-        qDebug() << "Failed to open file:" << file.errorString();
     }
     return "Unknown";
 #endif
