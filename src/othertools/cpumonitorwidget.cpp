@@ -14,7 +14,7 @@ CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
 
     // 创建 CPU 图表
     m_cpuChart = new QChart();
-    m_cpuChart->setTitle(QString(tr("CPU: %1").arg(m_monitor->getCpuModel())));
+    m_cpuChart->setTitle(QString("CPU: %1").arg(m_monitor->getCpuModel()));
     m_cpuChart->legend()->hide();
     // 确保图表背景透明
     m_cpuChart->setBackgroundVisible(false);

@@ -14,7 +14,7 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
 
     // 创建内存图表
     m_memoryChart = new QChart();
-    m_memoryChart->setTitle(QString(tr("Memory(%1)").arg(m_monitor->getMemoryInfo())));
+    m_memoryChart->setTitle(QString("Memory(%1)").arg(m_monitor->getMemoryInfo()));
     m_memoryChart->legend()->hide();
     // 确保图表背景透明
     m_memoryChart->setBackgroundVisible(false);
@@ -31,7 +31,7 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
     m_memoryAxisX = new QValueAxis();
     m_memoryAxisX->setRange(0, 60);
     m_memoryAxisX->setLabelFormat("%d");
-    m_memoryAxisX->setTitleText(tr("Time (s)"));
+    m_memoryAxisX->setTitleText("Time (s)");
     m_memoryAxisY = new QValueAxis();
     m_memoryAxisY->setRange(0, 100);
 

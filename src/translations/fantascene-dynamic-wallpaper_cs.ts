@@ -230,6 +230,14 @@
     </message>
 </context>
 <context>
+    <name>MediaPluginWidget</name>
+    <message>
+        <location filename="../media/mediapluginwidget.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulář</translation>
+    </message>
+</context>
+<context>
     <name>MoreSetting</name>
     <message>
         <location filename="../moresetting.ui" line="14"/>
@@ -244,7 +252,7 @@
     <message>
         <location filename="../moresetting.ui" line="30"/>
         <location filename="../moresetting.cpp" line="78"/>
-        <location filename="../moresetting.cpp" line="163"/>
+        <location filename="../moresetting.cpp" line="166"/>
         <source>continue playing</source>
         <translation>pokračovat v hraní</translation>
     </message>
@@ -265,32 +273,32 @@
         <translation>Dekodédér</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="157"/>
+        <location filename="../moresetting.ui" line="162"/>
         <source>VO</source>
         <translation>VO</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="207"/>
+        <location filename="../moresetting.ui" line="247"/>
         <source>Show desktop icon</source>
         <translation>Zobrazit ikonu plochy</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="215"/>
-        <location filename="../moresetting.ui" line="240"/>
-        <location filename="../moresetting.ui" line="355"/>
+        <location filename="../moresetting.ui" line="255"/>
+        <location filename="../moresetting.ui" line="280"/>
+        <location filename="../moresetting.ui" line="395"/>
         <location filename="../moresetting.cpp" line="115"/>
         <location filename="../moresetting.cpp" line="121"/>
         <location filename="../moresetting.cpp" line="127"/>
-        <location filename="../moresetting.cpp" line="192"/>
-        <location filename="../moresetting.cpp" line="199"/>
-        <location filename="../moresetting.cpp" line="213"/>
+        <location filename="../moresetting.cpp" line="195"/>
+        <location filename="../moresetting.cpp" line="202"/>
+        <location filename="../moresetting.cpp" line="216"/>
         <source>true</source>
         <translation>pravda</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="220"/>
-        <location filename="../moresetting.ui" line="245"/>
-        <location filename="../moresetting.ui" line="350"/>
+        <location filename="../moresetting.ui" line="260"/>
+        <location filename="../moresetting.ui" line="285"/>
+        <location filename="../moresetting.ui" line="390"/>
         <location filename="../moresetting.cpp" line="117"/>
         <location filename="../moresetting.cpp" line="123"/>
         <location filename="../moresetting.cpp" line="131"/>
@@ -298,17 +306,17 @@
         <translation>falešné</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="232"/>
+        <location filename="../moresetting.ui" line="272"/>
         <source>Place on top of the original desktop</source>
         <translation>Umístění na vrchol původní plochy</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="257"/>
+        <location filename="../moresetting.ui" line="297"/>
         <source>Desktop transparency </source>
         <translation>Průhlednost plochy</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="264"/>
+        <location filename="../moresetting.ui" line="304"/>
         <source>DESKTOP</source>
         <translation>DESKTOP</translation>
     </message>
@@ -317,47 +325,52 @@
         <translation type="vanished">xx</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="300"/>
+        <location filename="../moresetting.ui" line="340"/>
         <source>Wallpaper transparency </source>
         <translation>Průhlednost tapety</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="336"/>
+        <location filename="../moresetting.ui" line="376"/>
         <source>Event penetration</source>
         <translation>Penetrace událostí</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="367"/>
+        <location filename="../moresetting.ui" line="407"/>
         <source>Spark Desktop font color</source>
         <translation>Barva písma Spark Desktop</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="472"/>
+        <location filename="../moresetting.ui" line="512"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="486"/>
+        <location filename="../moresetting.ui" line="541"/>
+        <source>Video Plugin</source>
+        <translation>Video modul</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="566"/>
         <source>Deepin/Uos desktop environment</source>
         <translation>Desktopové prostředí Deepin/Uos</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="499"/>
+        <location filename="../moresetting.ui" line="579"/>
         <source>Set deepin current work region to dynamic wallpaper</source>
         <translation>Nastavit hlubokou aktuální pracovní oblast na dynamickou tapetu</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="529"/>
+        <location filename="../moresetting.ui" line="609"/>
         <source>Set deepin current work region to normal wallpaper</source>
         <translation>Nastavit hlubokou aktuální pracovní oblast na normální tapetu</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="540"/>
+        <location filename="../moresetting.ui" line="620"/>
         <source>Confirm</source>
         <translation>Potvrdit</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="547"/>
+        <location filename="../moresetting.ui" line="627"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -368,19 +381,13 @@
     </message>
     <message>
         <location filename="../moresetting.cpp" line="85"/>
-        <location filename="../moresetting.cpp" line="171"/>
+        <location filename="../moresetting.cpp" line="174"/>
         <source>default</source>
         <translation>výchozí</translation>
     </message>
     <message>
-        <location filename="../moresetting.cpp" line="96"/>
-        <location filename="../moresetting.cpp" line="109"/>
-        <location filename="../moresetting.cpp" line="178"/>
-        <location filename="../moresetting.cpp" line="185"/>
-        <location filename="../moresetting.cpp" line="243"/>
-        <location filename="../moresetting.cpp" line="270"/>
         <source>other</source>
-        <translation>ostatní</translation>
+        <translation type="vanished">ostatní</translation>
     </message>
 </context>
 <context>
@@ -574,74 +581,163 @@
     <message>
         <location filename="../othertools/othersetdialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="20"/>
+        <location filename="../othertools/othersetdialog.ui" line="22"/>
         <source>DateTime Tool</source>
         <translation>Nástroj DateTime</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="28"/>
+        <location filename="../othertools/othersetdialog.ui" line="30"/>
+        <location filename="../othertools/othersetdialog.ui" line="319"/>
+        <location filename="../othertools/othersetdialog.ui" line="589"/>
+        <location filename="../othertools/othersetdialog.ui" line="884"/>
         <source>Visible</source>
         <translation>Viditelné</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="48"/>
-        <location filename="../othertools/othersetdialog.cpp" line="22"/>
-        <location filename="../othertools/othersetdialog.cpp" line="99"/>
+        <location filename="../othertools/othersetdialog.ui" line="49"/>
+        <location filename="../othertools/othersetdialog.ui" line="53"/>
+        <location filename="../othertools/othersetdialog.ui" line="338"/>
+        <location filename="../othertools/othersetdialog.ui" line="342"/>
+        <location filename="../othertools/othersetdialog.ui" line="608"/>
+        <location filename="../othertools/othersetdialog.ui" line="612"/>
+        <location filename="../othertools/othersetdialog.ui" line="903"/>
+        <location filename="../othertools/othersetdialog.ui" line="907"/>
+        <location filename="../othertools/othersetdialog.cpp" line="38"/>
+        <location filename="../othertools/othersetdialog.cpp" line="67"/>
+        <location filename="../othertools/othersetdialog.cpp" line="97"/>
+        <location filename="../othertools/othersetdialog.cpp" line="128"/>
+        <location filename="../othertools/othersetdialog.cpp" line="188"/>
+        <location filename="../othertools/othersetdialog.cpp" line="247"/>
+        <location filename="../othertools/othersetdialog.cpp" line="261"/>
+        <location filename="../othertools/othersetdialog.cpp" line="391"/>
         <source>True</source>
         <translation>Pravda</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="53"/>
-        <location filename="../othertools/othersetdialog.cpp" line="26"/>
-        <location filename="../othertools/othersetdialog.cpp" line="104"/>
+        <location filename="../othertools/othersetdialog.ui" line="58"/>
+        <location filename="../othertools/othersetdialog.ui" line="347"/>
+        <location filename="../othertools/othersetdialog.ui" line="617"/>
+        <location filename="../othertools/othersetdialog.ui" line="912"/>
+        <location filename="../othertools/othersetdialog.cpp" line="42"/>
+        <location filename="../othertools/othersetdialog.cpp" line="71"/>
+        <location filename="../othertools/othersetdialog.cpp" line="101"/>
+        <location filename="../othertools/othersetdialog.cpp" line="132"/>
+        <location filename="../othertools/othersetdialog.cpp" line="193"/>
+        <location filename="../othertools/othersetdialog.cpp" line="252"/>
+        <location filename="../othertools/othersetdialog.cpp" line="266"/>
+        <location filename="../othertools/othersetdialog.cpp" line="396"/>
         <source>False</source>
         <translation>Falešné</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="72"/>
+        <location filename="../othertools/othersetdialog.ui" line="77"/>
         <source>Format</source>
         <translation>Formát</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="127"/>
+        <location filename="../othertools/othersetdialog.ui" line="132"/>
+        <location filename="../othertools/othersetdialog.ui" line="362"/>
+        <location filename="../othertools/othersetdialog.ui" line="632"/>
+        <location filename="../othertools/othersetdialog.ui" line="927"/>
         <source>Position</source>
         <translation>Poloha</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="173"/>
+        <location filename="../othertools/othersetdialog.ui" line="178"/>
         <source>Font Size</source>
         <translation>Velikost písma</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="200"/>
+        <location filename="../othertools/othersetdialog.ui" line="205"/>
         <source>Font</source>
         <translation>Písmo</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="227"/>
+        <location filename="../othertools/othersetdialog.ui" line="232"/>
         <source>Color</source>
         <translation>Barva</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="246"/>
+        <location filename="../othertools/othersetdialog.ui" line="251"/>
+        <location filename="../othertools/othersetdialog.ui" line="424"/>
+        <location filename="../othertools/othersetdialog.ui" line="454"/>
+        <location filename="../othertools/othersetdialog.ui" line="740"/>
+        <location filename="../othertools/othersetdialog.ui" line="770"/>
+        <location filename="../othertools/othersetdialog.ui" line="800"/>
+        <location filename="../othertools/othersetdialog.ui" line="1035"/>
+        <location filename="../othertools/othersetdialog.ui" line="1065"/>
+        <location filename="../othertools/othersetdialog.ui" line="1095"/>
         <source>Select</source>
         <translation>Vybrat</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="269"/>
+        <location filename="../othertools/othersetdialog.ui" line="274"/>
+        <location filename="../othertools/othersetdialog.ui" line="523"/>
+        <location filename="../othertools/othersetdialog.ui" line="823"/>
+        <location filename="../othertools/othersetdialog.ui" line="1118"/>
         <source>Transparency</source>
-        <translation type="unfinished">Transparentnost</translation>
+        <translation>Transparentnost</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.ui" line="337"/>
+        <location filename="../othertools/othersetdialog.ui" line="311"/>
+        <source>Network Tool</source>
+        <translation>Síťový nástroj</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="405"/>
+        <source>Upstream Color</source>
+        <translation>Upstream Barva</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="435"/>
+        <source>Downstream Color</source>
+        <translation>Barva následující</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="468"/>
+        <location filename="../othertools/othersetdialog.ui" line="678"/>
+        <location filename="../othertools/othersetdialog.ui" line="973"/>
+        <source>Size</source>
+        <translation>Velikost</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="581"/>
+        <source>CPU Tool</source>
+        <translation>Nástroj CPU</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="721"/>
+        <location filename="../othertools/othersetdialog.ui" line="1016"/>
+        <source>Graphic Color</source>
+        <translation>Grafická barva</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="751"/>
+        <location filename="../othertools/othersetdialog.ui" line="1046"/>
+        <source>Font Color</source>
+        <translation>Barva písma</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="781"/>
+        <location filename="../othertools/othersetdialog.ui" line="1076"/>
+        <source>Background Color</source>
+        <translation>Barva pozadí</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="876"/>
+        <source>Memory Tool</source>
+        <translation>Paměťový nástroj</translation>
+    </message>
+    <message>
+        <location filename="../othertools/othersetdialog.ui" line="1190"/>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../othertools/othersetdialog.cpp" line="46"/>
+        <location filename="../othertools/othersetdialog.cpp" line="135"/>
         <source>Other Display Tools</source>
         <translation>Ostatní nástroje pro zobrazení</translation>
     </message>
@@ -684,6 +780,14 @@
     </message>
 </context>
 <context>
+    <name>QMediaWid</name>
+    <message>
+        <location filename="../media/qmediawid.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulář</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../download/downloadwidget.cpp" line="33"/>
@@ -701,7 +805,7 @@
     <message>
         <location filename="../help/tipdeepindialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation type="unfinished">Dialog</translation>
+        <translation>Dialog</translation>
     </message>
     <message>
         <location filename="../help/tipdeepindialog.ui" line="36"/>
@@ -712,17 +816,17 @@
 <context>
     <name>Wallpaper</name>
     <message>
-        <location filename="../wallpaper.cpp" line="438"/>
+        <location filename="../wallpaper.cpp" line="442"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="443"/>
+        <location filename="../wallpaper.cpp" line="447"/>
         <source>Extend</source>
         <translation>Rozšířit</translation>
     </message>
     <message>
-        <location filename="../wallpaper.cpp" line="448"/>
+        <location filename="../wallpaper.cpp" line="452"/>
         <source>Manual</source>
         <translation>Manuál</translation>
     </message>
@@ -885,7 +989,7 @@
     <message>
         <location filename="../settingwindow.ui" line="503"/>
         <source>Close</source>
-        <translation type="unfinished">Zavřít</translation>
+        <translation>Zavřít</translation>
     </message>
     <message>
         <location filename="../settingwindow.ui" line="286"/>
@@ -1035,17 +1139,17 @@
     <message>
         <location filename="../settingwindow.cpp" line="133"/>
         <source>Spark Hub</source>
-        <translation type="unfinished"></translation>
+        <translation>Spark Hub</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="146"/>
+        <location filename="../settingwindow.cpp" line="154"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
     <message>
-        <location filename="../settingwindow.cpp" line="154"/>
         <source>github</source>
-        <translation>github</translation>
+        <translation type="vanished">github</translation>
     </message>
     <message>
         <location filename="../settingwindow.cpp" line="172"/>
