@@ -172,9 +172,21 @@ Q_SIGNALS:
 
     // 设置Cpu控件显示
     void setCpuVisible(bool bVisble);
+    // 设置控件位置
+    void setCpuMove(int,int);
+    // 设置控件字体颜色的接口
+    void setCpuFontColor(const QColor &color);
+    // 设置控件透明度
+    void setCpuTransparent(int value);
 
     // 设置内存控件显示
     void setMemoryVisible(bool bVisble);
+    // 设置控件位置
+    void setMemoryMove(int,int);
+    // 设置控件字体颜色的接口
+    void setMemoryFontColor(const QColor &color);
+    // 设置控件透明度
+    void setMemoryTransparent(int value);
 
 public:
 

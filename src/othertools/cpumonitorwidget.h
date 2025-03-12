@@ -15,9 +15,13 @@ class CpuMonitorWidget : public QWidget
     Q_OBJECT
 public:
     explicit CpuMonitorWidget(QWidget *parent = nullptr);
-    void setMove(int x, int y);
 private Q_SLOTS:
     void updateCpuUsage(const QVector<double>& usage);
+
+    // 设置控件位置
+    void setMove(int x, int y);
+    // 设置字体颜色的接口
+    void setFontColor(const QColor &color);
 
 private:
     QChart *m_cpuChart{nullptr};

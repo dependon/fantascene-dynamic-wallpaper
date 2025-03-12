@@ -20,6 +20,7 @@ private Q_SLOTS:
 
     void on_comboBoxFormat_currentTextChanged(const QString &arg1);
 
+    //Date Tool
     void on_x_editingFinished();
 
     void on_y_editingFinished();
@@ -36,9 +37,29 @@ private Q_SLOTS:
 
     void on_trSlider_sliderReleased();
 
+
+   //Cpu Tool
     void on_CpuVcombox_currentTextChanged(const QString &arg1);
 
+    void on_x_cpu_editingFinished();
+
+    void on_y_cpu_editingFinished();
+
+    void on_selectBtn_cpu_clicked();
+
+    void on_trSlider_cpu_sliderReleased();
+
+    //Memory tool
+
     void on_MemoryVcombox_currentTextChanged(const QString &arg1);
+
+    void on_x_memory_editingFinished();
+
+    void on_y_memory_editingFinished();
+
+    void on_selectBtn_memory_clicked();
+
+    void on_trSlider_memory_sliderReleased();
 
 private:
     Ui::OtherSetDialog *ui;

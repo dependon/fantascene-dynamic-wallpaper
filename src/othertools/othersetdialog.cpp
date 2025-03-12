@@ -200,3 +200,89 @@ void OtherSetDialog::on_MemoryVcombox_currentTextChanged(const QString &arg1)
         Q_EMIT dApp->setMemoryVisible(false);
     }
 }
+
+void OtherSetDialog::on_x_memory_editingFinished()
+{
+    IniManager::instance()->setValue("MemoryDisplay/X",ui->x_memory->text().toInt());
+    Q_EMIT dApp->setCpuMove(ui->x_memory->text().toInt(),ui->y_memory->text().toInt());
+}
+
+void OtherSetDialog::on_y_memory_editingFinished()
+{
+    IniManager::instance()->setValue("MemoryDisplay/Y",ui->y_memory->text().toInt());
+    Q_EMIT dApp->setCpuMove(ui->x_memory->text().toInt(),ui->y_memory->text().toInt());
+}
+
+void OtherSetDialog::on_selectBtn_memory_clicked()
+{
+    QColor color = QColorDialog::getColor();
+    int sliderValue = ui->trSlider_memory->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("MemoryDisplay/Color",color);
+        Q_EMIT dApp->setMemoryFontColor(color);
+    }
+}
+
+void OtherSetDialog::on_trSlider_memory_sliderReleased()
+{
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("MemoryDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+
+    int sliderValue = ui->trSlider_memory->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("MemoryDisplay/Color",color);
+        Q_EMIT dApp->setMemoryFontColor(color);
+    }
+}
+
+void OtherSetDialog::on_x_cpu_editingFinished()
+{
+    IniManager::instance()->setValue("CpuDisplay/X",ui->x_cpu->text().toInt());
+    Q_EMIT dApp->setCpuMove(ui->x_cpu->text().toInt(),ui->y_cpu->text().toInt());
+}
+
+void OtherSetDialog::on_y_cpu_editingFinished()
+{
+    IniManager::instance()->setValue("CpuDisplay/Y",ui->y_cpu->text().toInt());
+    Q_EMIT dApp->setCpuMove(ui->x_cpu->text().toInt(),ui->y_cpu->text().toInt());
+}
+
+void OtherSetDialog::on_selectBtn_cpu_clicked()
+{
+    QColor color = QColorDialog::getColor();
+    int sliderValue = ui->trSlider_cpu->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("CpuDisplay/Color",color);
+        Q_EMIT dApp->setCpuFontColor(color);
+    }
+}
+
+void OtherSetDialog::on_trSlider_cpu_sliderReleased()
+{
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("CpuDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+
+    int sliderValue = ui->trSlider_cpu->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("CpuDisplay/Color",color);
+        Q_EMIT dApp->setCpuFontColor(color);
+    }
+}

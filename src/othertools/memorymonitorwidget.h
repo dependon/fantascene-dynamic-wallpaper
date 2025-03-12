@@ -15,10 +15,15 @@ class MemoryMonitorWidget : public QWidget
     Q_OBJECT
 public:
     explicit MemoryMonitorWidget(QWidget *parent = nullptr);
-    void setMove(int x, int y);
+
 private Q_SLOTS:
     void updateMemoryUsage(const QVector<double>& usage);
     void updateMemoryTitle();
+
+    // 设置控件位置
+    void setMove(int x, int y);
+    // 设置字体颜色的接口
+    void setFontColor(const QColor &color);
 
 private:
     QChart *m_memoryChart{nullptr};

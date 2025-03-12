@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include <QAreaSeries>
 #include "application.h"
+#include "inimanager.h"
 #include <QScreen>
 
 MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
@@ -57,6 +58,24 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
     connect(m_monitor, &SystemMonitor::memoryUsageChanged, this, &MemoryMonitorWidget::updateMemoryTitle);
 
     setMove(0,0);
+
+    // read ini
+    connect(dApp,&Application::setMemoryFontColor,this,&MemoryMonitorWidget::setFontColor);
+    connect(dApp,&Application::setMemoryMove,this,&MemoryMonitorWidget::setMove);
+
+    int FontX= IniManager::instance()->value("MemoryDisplay/X",0).toInt();
+    int FontY = IniManager::instance()->value("MemoryDisplay/Y",0).toInt();
+
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("MemoryDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+    this->setFontColor(color);
+    this->setMove(FontX,FontY);
+
 }
 
 void MemoryMonitorWidget::setMove(int x, int y)
@@ -74,6 +93,16 @@ void MemoryMonitorWidget::setMove(int x, int y)
     else
     {
         this->move(x, y);
+    }
+}
+
+void MemoryMonitorWidget::setFontColor(const QColor &color)
+{
+    // 设置轮廓颜色和宽度
+    if(m_areaSeries)
+    {
+        QPen pen(color);
+        m_areaSeries->setPen(pen);
     }
 }
 

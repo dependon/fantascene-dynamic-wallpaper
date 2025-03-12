@@ -1,6 +1,7 @@
 #include "cpumonitorwidget.h"
 #include <QVBoxLayout>
 #include "application.h"
+#include "inimanager.h"
 #include <QScreen>
 
 CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
@@ -55,6 +56,26 @@ CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
 
     connect(m_monitor, &SystemMonitor::cpuUsageChanged, this, &CpuMonitorWidget::updateCpuUsage);
     setMove(0,0);
+
+    connect(dApp,&Application::setCpuFontColor,this,&CpuMonitorWidget::setFontColor);
+    connect(dApp,&Application::setCpuMove,this,&CpuMonitorWidget::setMove);
+
+    // read ini
+    connect(dApp,&Application::setCpuFontColor,this,&CpuMonitorWidget::setFontColor);
+    connect(dApp,&Application::setCpuMove,this,&CpuMonitorWidget::setMove);
+
+    int FontX= IniManager::instance()->value("CpuDisplay/X",0).toInt();
+    int FontY = IniManager::instance()->value("CpuDisplay/Y",0).toInt();
+
+    QColor color = QColor(170,255,255);
+    QVariant variantColor = IniManager::instance()->value("CpuDisplay/Color",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = QColor(170,255,255);
+    }
+    this->setFontColor(color);
+    this->setMove(FontX,FontY);
 }
 
 void CpuMonitorWidget::setMove(int x, int y)
@@ -73,6 +94,17 @@ void CpuMonitorWidget::setMove(int x, int y)
     {
         this->move(x, y);
     }
+}
+
+void CpuMonitorWidget::setFontColor(const QColor &color)
+{
+    // 设置轮廓颜色和宽度
+    if(m_areaSeries)
+    {
+        QPen pen(color);
+        m_areaSeries->setPen(pen);
+    }
+
 }
 
 void CpuMonitorWidget::updateCpuUsage(const QVector<double> &usage)
