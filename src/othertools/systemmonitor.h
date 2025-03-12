@@ -7,9 +7,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
-#ifdef Q_OS_WIN
-#include "windows.h"
-#endif
+
 class SystemMonitor : public QObject
 {
     Q_OBJECT

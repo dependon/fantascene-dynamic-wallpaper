@@ -117,7 +117,6 @@ HEADERS += \
     othertools/cpumonitorwidget.h \
     othertools/memorymonitorwidget.h \
     othertools/networkmonitorwidget.h \
-    othertools/osstatus.h \
     othertools/othersetdialog.h \
     othertools/systemmonitor.h \
     othertools/timedisplaywidget.h \

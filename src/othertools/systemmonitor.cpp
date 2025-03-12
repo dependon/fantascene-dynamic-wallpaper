@@ -5,6 +5,18 @@
 #include "application.h"
 #include "inimanager.h"
 #include <QRegularExpression>
+
+#ifdef Q_OS_WIN
+#include "windows.h"
+#include <pdh.h>
+#include <pdhmsg.h>
+#pragma comment(lib, "pdh.lib")
+// 性能计数器句柄
+PDH_HQUERY queryPDH;
+PDH_HCOUNTER rxCounterPDH;
+PDH_HCOUNTER txCounterPDH;
+#endif
+
 SystemMonitor* SystemMonitor::instance = nullptr;
 
 SystemMonitor* SystemMonitor::getInstance()
@@ -162,17 +174,24 @@ QString SystemMonitor::getCpuModel()
 #else
     QFile file("/proc/cpuinfo");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "File opened successfully";
         QTextStream in(&file);
+        // 可以尝试设置编码
+        in.setCodec("UTF-8");
         while (!in.atEnd()) {
             QString line = in.readLine();
             if (line.startsWith("model name")) {
                 QStringList parts = line.split(':');
                 if (parts.size() >= 2) {
+                    file.close();
                     return parts[1].trimmed();
                 }
             }
         }
         file.close();
+        qDebug() << "Did not find 'model name' in the file.";
+    } else {
+        qDebug() << "Failed to open file:" << file.errorString();
     }
     return "Unknown";
 #endif
@@ -249,27 +268,20 @@ double SystemMonitor::getDownloadSpeed()
 void SystemMonitor::updateNetworkSpeed()
 {
 #ifdef Q_OS_WIN
-    PMIB_IF_TABLE2 pIfTable = nullptr;
-    if (GetIfTable2(&pIfTable) == NO_ERROR) {
-        qint64 newSent = 0;
-        qint64 newReceived = 0;
-
-        for (ULONG i = 0; i < pIfTable->NumEntries; i++) {
-            MIB_IF_ROW2& row = pIfTable->Table[i];
-            if (row.Type != IF_TYPE_SOFTWARE_LOOPBACK) {
-                newSent += row.OutOctets;
-                newReceived += row.InOctets;
-            }
-        }
-
-        uploadSpeed = (newSent - lastBytesSent) / 1024.0; // KB/s
-        downloadSpeed = (newReceived - lastBytesReceived) / 1024.0;
-
-        lastBytesSent = newSent;
-        lastBytesReceived = newReceived;
-
-        FreeMibTable(pIfTable);
+    PDH_FMT_COUNTERVALUE rxValue;
+    PDH_FMT_COUNTERVALUE txValue;
+    if (PdhCollectQueryData(queryPDH) != ERROR_SUCCESS) {
+        return ;
     }
+    if (PdhGetFormattedCounterValue(rxCounterPDH, PDH_FMT_DOUBLE, nullptr, &rxValue) != ERROR_SUCCESS) {
+        return ;
+    }
+    if (PdhGetFormattedCounterValue(txCounterPDH, PDH_FMT_DOUBLE, nullptr, &txValue) != ERROR_SUCCESS) {
+        return ;
+    }
+    double uploadSpeed = rxValue.doubleValue / 1024.0;  // 转换为 KB/s
+    double downloadSpeed = txValue.doubleValue / 1024.0;
+
 #else
     QFile file("/proc/net/dev");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
