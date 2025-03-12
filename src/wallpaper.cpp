@@ -76,6 +76,8 @@
 #include "othertools/timedisplaywidget.h"
 #include "othertools/memorymonitorwidget.h"
 #include "othertools/cpumonitorwidget.h"
+#include "othertools/systemmonitor.h"
+#include "othertools/networkmonitorwidget.h"
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     : QWidget(parent)
@@ -107,12 +109,12 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     connect(dApp, &Application::sigSetTransparency, this, &Wallpaper::slotSetTransparency);
     connect(dApp,&Application::sigWallpaperTopChanged,this,&Wallpaper::slotActiveWallpaper);
     connect(dApp,&Application::sigWallpaperEventChanged,this,&Wallpaper::slotWallpaperEventChanged);
-    // 设置时间控件显示
+    // 设置控件显示
     connect(dApp,&Application::setTimeVisible,this,&Wallpaper::setTimeVisible,Qt::DirectConnection);
-
     connect(dApp,&Application::setCpuVisible,this,&Wallpaper::setCpuVisible,Qt::DirectConnection);
-
     connect(dApp,&Application::setMemoryVisible,this,&Wallpaper::setMemoryVisible,Qt::DirectConnection);
+    connect(dApp,&Application::setNetworkVisible,this,&Wallpaper::setNetworkVisible,Qt::DirectConnection);
+
 
     QScreen *primaryScreen = QGuiApplication::primaryScreen();
     // 监听屏幕大小变化信号
@@ -225,6 +227,7 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     m_TimeVisible = IniManager::instance()->value("TimeDisplay/Visible",false).toBool();
     m_CpuVisible = IniManager::instance()->value("CpuDisplay/Visible",false).toBool();
     m_MemoryVisible = IniManager::instance()->value("MemoryDisplay/Visible",false).toBool();
+    m_NetworkVisible = IniManager::instance()->value("NetworkDisplay/Visible",false).toBool();
 
 }
 
@@ -1048,6 +1051,7 @@ void Wallpaper::slotActiveWallpaper(bool bRet)
     setTimeVisible(m_TimeVisible);
     setCpuVisible(m_CpuVisible);
     setMemoryVisible(m_MemoryVisible);
+    setNetworkVisible(m_NetworkVisible);
 }
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet)
@@ -1135,6 +1139,7 @@ void Wallpaper::setTimeVisible(bool bVisible)
 void Wallpaper::setCpuVisible(bool bVisible)
 {
     m_CpuVisible = bVisible;
+    SystemMonitor::getInstance()->m_readCpu= bVisible;
     if(m_CpuVisible)
     {
         if(!m_cpudisplayWidget)
@@ -1142,7 +1147,6 @@ void Wallpaper::setCpuVisible(bool bVisible)
             m_cpudisplayWidget =new CpuMonitorWidget(this);
         }
         m_cpudisplayWidget->show();
-        m_cpudisplayWidget->resize(400,260);
     }
     else
     {
@@ -1157,6 +1161,7 @@ void Wallpaper::setCpuVisible(bool bVisible)
 void Wallpaper::setMemoryVisible(bool bVisible)
 {
     m_MemoryVisible = bVisible;
+    SystemMonitor::getInstance()->m_readMemory = bVisible;
     if(m_MemoryVisible)
     {
         if(!m_memorydisplayWidget)
@@ -1164,7 +1169,6 @@ void Wallpaper::setMemoryVisible(bool bVisible)
             m_memorydisplayWidget =new MemoryMonitorWidget(this);
         }
         m_memorydisplayWidget->show();
-        m_memorydisplayWidget->resize(400,260);
     }
     else
     {
@@ -1172,6 +1176,28 @@ void Wallpaper::setMemoryVisible(bool bVisible)
         {
             delete m_memorydisplayWidget;
             m_memorydisplayWidget = nullptr;
+        }
+    }
+}
+
+void Wallpaper::setNetworkVisible(bool bVisible)
+{
+    m_NetworkVisible = bVisible;
+    SystemMonitor::getInstance()->m_readNetwork = bVisible;
+    if(m_NetworkVisible)
+    {
+        if(!m_networkMonitorWidget)
+        {
+            m_networkMonitorWidget =new NetworkMonitorWidget(this);
+        }
+        m_networkMonitorWidget->show();
+    }
+    else
+    {
+        if(m_networkMonitorWidget)
+        {
+            delete m_networkMonitorWidget;
+            m_networkMonitorWidget = nullptr;
         }
     }
 }

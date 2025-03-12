@@ -94,7 +94,7 @@ void TimeDisplayWidget::setTimeMove(int x, int y)
     {
         if(qApp->screens().size()>0)
         {
-            int x = qApp->screens().at(0)->geometry().width()-this->width()-100;
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-50;
             int y = qApp->screens().at(0)->geometry().height()-this->height()-100;
             this->move(x,y);
 

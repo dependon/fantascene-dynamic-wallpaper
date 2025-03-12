@@ -56,16 +56,19 @@ CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
 
     connect(m_monitor, &SystemMonitor::cpuUsageChanged, this, &CpuMonitorWidget::updateCpuUsage);
     setMove(0,0);
+    resize(400,260);
 
+    connect(dApp,&Application::setCpuColor,this,&CpuMonitorWidget::setColor);
     connect(dApp,&Application::setCpuFontColor,this,&CpuMonitorWidget::setFontColor);
-    connect(dApp,&Application::setCpuMove,this,&CpuMonitorWidget::setMove);
+    connect(dApp,&Application::setCpuBackgroundColor,this,&CpuMonitorWidget::setBackgroundColor);
 
-    // read ini
-    connect(dApp,&Application::setCpuFontColor,this,&CpuMonitorWidget::setFontColor);
     connect(dApp,&Application::setCpuMove,this,&CpuMonitorWidget::setMove);
+    connect(dApp,&Application::setCpuSize,this,&CpuMonitorWidget::setSize);
 
     int FontX= IniManager::instance()->value("CpuDisplay/X",0).toInt();
     int FontY = IniManager::instance()->value("CpuDisplay/Y",0).toInt();
+    int width= IniManager::instance()->value("CpuDisplay/Width",400).toInt();
+    int height = IniManager::instance()->value("CpuDisplay/Height",260).toInt();
 
     QColor color = QColor(170,255,255);
     QVariant variantColor = IniManager::instance()->value("CpuDisplay/Color",color);
@@ -74,18 +77,41 @@ CpuMonitorWidget::CpuMonitorWidget(QWidget *parent) : QWidget(parent)
     } else {
         color = QColor(170,255,255);
     }
+    this->setColor(color);
+
+    color = Qt::white;
+    variantColor = IniManager::instance()->value("CpuDisplay/Color_Font",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = Qt::white;
+    }
     this->setFontColor(color);
+
+    color = Qt::white;
+    variantColor = IniManager::instance()->value("CpuDisplay/Color_Background",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = Qt::white;
+    }
+    this->setBackgroundColor(color);
+
+
     this->setMove(FontX,FontY);
+    this->setSize(width,height);
+
+    setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 void CpuMonitorWidget::setMove(int x, int y)
 {
-    if( x == 0 && y == 0 )
+    if( x <= 0 && y <= 0 )
     {
         if(qApp->screens().size()>0)
         {
-            int x = qApp->screens().at(0)->geometry().width()-this->width()-400;
-            int y = 100;
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-100;
+            int y = 50;
             this->move(x,y);
 
         }
@@ -96,15 +122,66 @@ void CpuMonitorWidget::setMove(int x, int y)
     }
 }
 
-void CpuMonitorWidget::setFontColor(const QColor &color)
+void CpuMonitorWidget::setColor(const QColor &color)
 {
     // 设置轮廓颜色和宽度
     if(m_areaSeries)
     {
         QPen pen(color);
-        m_areaSeries->setPen(pen);
-    }
 
+        m_areaSeries->setPen(pen);
+
+        // 设置面积图的填充颜色
+        QBrush brush(color);
+        m_areaSeries->setBrush(brush);
+    }
+}
+
+void CpuMonitorWidget::setFontColor(const QColor &color)
+{
+    if(m_cpuChart && m_cpuAxisX && m_cpuAxisY)
+    {
+        // 设置图表标题字体颜色
+        QPalette chartPalette = m_cpuChart->palette();
+        chartPalette.setColor(QPalette::WindowText, color);
+        m_cpuChart->setPalette(chartPalette);
+
+        // 设置图表背景颜色
+        m_cpuChart->setTitleBrush(QBrush(color));
+        m_cpuAxisX->setTitleBrush(QBrush(color));
+        m_cpuAxisY->setTitleBrush(QBrush(color));
+
+        // 设置坐标轴标签颜色
+        m_cpuAxisX->setLabelsColor(color);
+        m_cpuAxisY->setLabelsColor(color);
+    }
+}
+
+void CpuMonitorWidget::setBackgroundColor(const QColor &color)
+{
+    if(m_cpuChart && m_cpuAxisX && m_cpuAxisY)
+    {
+        // 设置坐标轴线条颜色和宽度
+        QPen axisPen(color);
+        m_cpuAxisX->setLinePen(axisPen);
+        m_cpuAxisY->setLinePen(axisPen);
+
+        // 设置坐标轴刻度线颜色
+        m_cpuAxisX->setGridLinePen(axisPen);
+        m_cpuAxisY->setGridLinePen(axisPen);
+    }
+}
+
+void CpuMonitorWidget::setSize(int width, int height)
+{
+    if(width>0 && height > 0)
+    {
+        resize(width,height);
+    }
+    else
+    {
+        resize(400,260);
+    }
 }
 
 void CpuMonitorWidget::updateCpuUsage(const QVector<double> &usage)

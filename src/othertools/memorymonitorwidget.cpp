@@ -58,13 +58,20 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
     connect(m_monitor, &SystemMonitor::memoryUsageChanged, this, &MemoryMonitorWidget::updateMemoryTitle);
 
     setMove(0,0);
+    resize(400,260);
 
     // read ini
+    connect(dApp,&Application::setMemoryColor,this,&MemoryMonitorWidget::setColor);
     connect(dApp,&Application::setMemoryFontColor,this,&MemoryMonitorWidget::setFontColor);
+    connect(dApp,&Application::setMemoryBackgroundColor,this,&MemoryMonitorWidget::setBackgroundColor);
     connect(dApp,&Application::setMemoryMove,this,&MemoryMonitorWidget::setMove);
+    connect(dApp,&Application::setMemorySize,this,&MemoryMonitorWidget::setSize);
 
     int FontX= IniManager::instance()->value("MemoryDisplay/X",0).toInt();
     int FontY = IniManager::instance()->value("MemoryDisplay/Y",0).toInt();
+    int width= IniManager::instance()->value("MemoryDisplay/Width",400).toInt();
+    int height = IniManager::instance()->value("MemoryDisplay/Height",260).toInt();
+
 
     QColor color = QColor(170,255,255);
     QVariant variantColor = IniManager::instance()->value("MemoryDisplay/Color",color);
@@ -73,19 +80,41 @@ MemoryMonitorWidget::MemoryMonitorWidget(QWidget *parent) : QWidget(parent)
     } else {
         color = QColor(170,255,255);
     }
+    this->setColor(color);
+
+    color = Qt::white;
+    variantColor = IniManager::instance()->value("MemoryDisplay/Color_Font",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = Qt::white;
+    }
     this->setFontColor(color);
+
+    color = Qt::white;
+    variantColor = IniManager::instance()->value("MemoryDisplay/Color_Background",color);
+    if (variantColor.canConvert<QColor>()) {
+        color = variantColor.value<QColor>();
+    } else {
+        color = Qt::white;
+    }
+    this->setBackgroundColor(color);
+
     this->setMove(FontX,FontY);
+    this->setSize(width,height);
+
+    setAttribute(Qt::WA_TransparentForMouseEvents);
 
 }
 
 void MemoryMonitorWidget::setMove(int x, int y)
 {
-    if( x == 0 && y == 0 )
+    if( x <= 0 && y <= 0 )
     {
         if(qApp->screens().size()>0)
         {
-            int x = qApp->screens().at(0)->geometry().width()-this->width()-400;
-            int y = 400;
+            int x = qApp->screens().at(0)->geometry().width()-this->width()-100;
+            int y = 300;
             this->move(x,y);
 
         }
@@ -96,13 +125,60 @@ void MemoryMonitorWidget::setMove(int x, int y)
     }
 }
 
-void MemoryMonitorWidget::setFontColor(const QColor &color)
+void MemoryMonitorWidget::setColor(const QColor &color)
 {
     // 设置轮廓颜色和宽度
     if(m_areaSeries)
     {
         QPen pen(color);
         m_areaSeries->setPen(pen);
+    }
+}
+
+void MemoryMonitorWidget::setFontColor(const QColor &color)
+{
+    if(m_memoryChart && m_memoryAxisX && m_memoryAxisY)
+    {
+        // 设置图表标题字体颜色
+        QPalette chartPalette = m_memoryChart->palette();
+        chartPalette.setColor(QPalette::WindowText, color);
+        m_memoryChart->setPalette(chartPalette);
+
+        // 设置图表背景颜色
+        m_memoryChart->setTitleBrush(QBrush(color));
+        m_memoryAxisX->setTitleBrush(QBrush(color));
+        m_memoryAxisY->setTitleBrush(QBrush(color));
+
+        // 设置坐标轴标签颜色
+        m_memoryAxisX->setLabelsColor(color);
+        m_memoryAxisY->setLabelsColor(color);
+    }
+}
+
+void MemoryMonitorWidget::setBackgroundColor(const QColor &color)
+{
+    if(m_memoryChart && m_memoryAxisX && m_memoryAxisY)
+    {
+        // 设置坐标轴线条颜色和宽度
+        QPen axisPen(color);
+        m_memoryAxisX->setLinePen(axisPen);
+        m_memoryAxisY->setLinePen(axisPen);
+
+        // 设置坐标轴刻度线颜色
+        m_memoryAxisX->setGridLinePen(axisPen);
+        m_memoryAxisY->setGridLinePen(axisPen);
+    }
+}
+
+void MemoryMonitorWidget::setSize(int width, int height)
+{
+    if(width>0 && height > 0)
+    {
+        resize(width,height);
+    }
+    else
+    {
+        resize(400,260);
     }
 }
 

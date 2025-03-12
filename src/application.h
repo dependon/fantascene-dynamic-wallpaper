@@ -174,8 +174,12 @@ Q_SIGNALS:
     void setCpuVisible(bool bVisble);
     // 设置控件位置
     void setCpuMove(int,int);
-    // 设置控件字体颜色的接口
+    // 设置控件大小
+    void setCpuSize(int,int);
+    // 设置控件颜色的接口
+    void setCpuColor(const QColor &color);
     void setCpuFontColor(const QColor &color);
+    void setCpuBackgroundColor(const QColor &color);
     // 设置控件透明度
     void setCpuTransparent(int value);
 
@@ -183,10 +187,27 @@ Q_SIGNALS:
     void setMemoryVisible(bool bVisble);
     // 设置控件位置
     void setMemoryMove(int,int);
+    // 设置控件大小
+    void setMemorySize(int,int);
     // 设置控件字体颜色的接口
+    void setMemoryColor(const QColor &color);
     void setMemoryFontColor(const QColor &color);
+    void setMemoryBackgroundColor(const QColor &color);
     // 设置控件透明度
     void setMemoryTransparent(int value);
+
+    //设置网速控件显示
+    void setNetworkVisible(bool bVisble);
+    // 设置控件位置
+    void setNetworkMove(int,int);
+    // 设置控件大小
+    void setNetworkSize(int,int);
+    // 设置上行字体
+    void setNetworkUpFontColor(const QColor &color);
+    // 设置下行字体
+    void setNetworkDownFontColor(const QColor &color);
+    // 设置控件透明度
+    void setNetworkTransparent(int value);
 
 public:
 

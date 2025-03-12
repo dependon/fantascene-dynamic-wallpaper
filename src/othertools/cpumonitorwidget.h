@@ -20,8 +20,12 @@ private Q_SLOTS:
 
     // 设置控件位置
     void setMove(int x, int y);
-    // 设置字体颜色的接口
+    // 设置颜色的接口
+    void setColor(const QColor &color);
     void setFontColor(const QColor &color);
+    void setBackgroundColor(const QColor &color);
+
+    void setSize(int width,int height);
 
 private:
     QChart *m_cpuChart{nullptr};

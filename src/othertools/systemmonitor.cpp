@@ -2,6 +2,9 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "application.h"
+#include "inimanager.h"
+#include <QRegularExpression>
 SystemMonitor* SystemMonitor::instance = nullptr;
 
 SystemMonitor* SystemMonitor::getInstance()
@@ -18,8 +21,8 @@ SystemMonitor::SystemMonitor(QObject *parent) : QObject(parent)
     connect(timer, &QTimer::timeout, this, &SystemMonitor::updateUsage);
     timer->start(1000); // 每秒更新一次
 
-    cpuUsageData.resize(60);
-    memoryUsageData.resize(60);
+    cpuUsageData.resize(61);
+    memoryUsageData.resize(61);
 
     cpuModel = getCpuModel();
     memoryInfo = getMemoryInfo();
@@ -233,15 +236,102 @@ QString SystemMonitor::getMemoryInfo()
 #endif
 }
 
+double SystemMonitor::getUploadSpeed()
+{
+    return uploadSpeedData.last();
+}
+
+double SystemMonitor::getDownloadSpeed()
+{
+    return downloadSpeedData.last();
+}
+
+void SystemMonitor::updateNetworkSpeed()
+{
+#ifdef Q_OS_WIN
+    PMIB_IF_TABLE2 pIfTable = nullptr;
+    if (GetIfTable2(&pIfTable) == NO_ERROR) {
+        qint64 newSent = 0;
+        qint64 newReceived = 0;
+
+        for (ULONG i = 0; i < pIfTable->NumEntries; i++) {
+            MIB_IF_ROW2& row = pIfTable->Table[i];
+            if (row.Type != IF_TYPE_SOFTWARE_LOOPBACK) {
+                newSent += row.OutOctets;
+                newReceived += row.InOctets;
+            }
+        }
+
+        uploadSpeed = (newSent - lastBytesSent) / 1024.0; // KB/s
+        downloadSpeed = (newReceived - lastBytesReceived) / 1024.0;
+
+        lastBytesSent = newSent;
+        lastBytesReceived = newReceived;
+
+        FreeMibTable(pIfTable);
+    }
+#else
+    QFile file("/proc/net/dev");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        in.readLine(); // 跳过前两行标题
+        in.readLine();
+
+        qint64 newSent = 0;
+        qint64 newReceived = 0;
+
+        while (!in.atEnd()) {
+            QString line = in.readLine().trimmed();
+            QStringList parts = line.split(QRegularExpression("\\s+"));
+            if (parts.size() > 9) {
+                newReceived += parts[1].toLongLong();
+                newSent += parts[9].toLongLong();
+            }
+        }
+
+        uploadSpeed = (newSent - lastBytesSent) / 1024.0;
+        downloadSpeed = (newReceived - lastBytesReceived) / 1024.0;
+
+        lastBytesSent = newSent;
+        lastBytesReceived = newReceived;
+    }
+#endif
+
+    uploadSpeedData.append(uploadSpeed);
+    downloadSpeedData.append(downloadSpeed);
+
+    if (uploadSpeedData.size() > 61) {
+        uploadSpeedData.removeFirst();
+    }
+    if (downloadSpeedData.size() > 61) {
+        downloadSpeedData.removeFirst();
+    }
+
+    Q_EMIT uploadSpeedChanged(uploadSpeedData);
+    Q_EMIT downloadSpeedChanged(downloadSpeedData);
+}
+
 void SystemMonitor::updateUsage()
 {
-    double cpuUsage = getCpuUsage();
-    memoryInfo= getMemoryInfo();
+    if(m_readCpu)
+    {
+        double cpuUsage = getCpuUsage();
+        // 更新数据
+        cpuUsageData.removeFirst();
+        cpuUsageData.append(cpuUsage);
 
-    // 更新数据
-    cpuUsageData.removeFirst();
-    cpuUsageData.append(cpuUsage);
-
-    Q_EMIT cpuUsageChanged(cpuUsageData);
-    Q_EMIT memoryUsageChanged(memoryUsageData);
+        Q_EMIT cpuUsageChanged(cpuUsageData);
+    }
+    if(m_readMemory)
+    {
+        memoryInfo= getMemoryInfo();
+        Q_EMIT memoryUsageChanged(memoryUsageData);
+    }
+    if(m_readNetwork)
+    {
+        // 更新网络速度
+        updateNetworkSpeed();
+        double uploadSpeed = getUploadSpeed();
+        double downloadSpeed = getDownloadSpeed();
+    }
 }

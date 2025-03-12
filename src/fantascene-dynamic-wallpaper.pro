@@ -82,6 +82,7 @@ SOURCES += main.cpp \
     media/qmediawid.cpp \
     othertools/cpumonitorwidget.cpp \
     othertools/memorymonitorwidget.cpp \
+    othertools/networkmonitorwidget.cpp \
     othertools/othersetdialog.cpp \
     othertools/systemmonitor.cpp \
     othertools/timedisplaywidget.cpp \
@@ -115,6 +116,7 @@ HEADERS += \
     media/qmediawid.h \
     othertools/cpumonitorwidget.h \
     othertools/memorymonitorwidget.h \
+    othertools/networkmonitorwidget.h \
     othertools/osstatus.h \
     othertools/othersetdialog.h \
     othertools/systemmonitor.h \

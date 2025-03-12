@@ -38,6 +38,7 @@
 class TimeDisplayWidget;
 class MemoryMonitorWidget;
 class CpuMonitorWidget;
+class NetworkMonitorWidget;
 
 class QLabel;
 //class Desktop;
@@ -77,6 +78,7 @@ public Q_SLOTS:
     void setTimeVisible (bool bVisible );
     void setCpuVisible (bool bVisible );
     void setMemoryVisible (bool bVisible );
+    void setNetworkVisible(bool bVisible );
 
 private:
     void registerDesktop();
@@ -114,6 +116,8 @@ private:
     bool m_CpuVisible{false};
     MemoryMonitorWidget * m_memorydisplayWidget{nullptr};
     bool m_MemoryVisible{false};
+    NetworkMonitorWidget * m_networkMonitorWidget{nullptr};
+    bool m_NetworkVisible{false};
 
 #ifdef Q_OS_WINDOWS
     HHOOK hook;
