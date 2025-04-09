@@ -738,7 +738,11 @@ void settingWindow::quitApp()
         //kylin os quit!
         if(dApp->m_isUKUI)
         {
-           QString command1 = "gsettings set org.mate.background picture-filename ''";
+            QString command1 = "gsettings set org.mate.background picture-filename ''";
+            if(!dApp->m_UKUICurrentWallpaper.isEmpty())
+            {
+                command1 = "gsettings set org.mate.background picture-filename " + dApp->m_UKUICurrentWallpaper;
+            }
            QProcess process1;
            process1.start(command1);
            process1.waitForFinished(-1);  // 等待进程执行完成
