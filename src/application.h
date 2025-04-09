@@ -243,6 +243,7 @@ public:
 
     bool m_isLingMo =false;//是否是LingMo
     bool m_isUKUI =false;//是否是ukui
+    QString m_UKUICurrentWallpaper;
     bool m_isDDE23 =false;//是否是dde23
     bool m_isGXDE = false;//是否是GXDE
     QThread * m_startDesktop = nullptr;

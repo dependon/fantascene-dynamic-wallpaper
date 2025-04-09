@@ -281,6 +281,24 @@ void Application::setSpecialDesktop()
     {
         if(dApp->m_isUKUI)
         {
+            m_UKUICurrentWallpaper = "";
+            QString currentWallpaper1;
+            QString currentWallpaper2;
+            QProcess getProcess;
+            getProcess.start("gsettings get org.mate.background picture-filename");
+            getProcess.waitForFinished(-1);
+            currentWallpaper1 = getProcess.readAllStandardOutput().trimmed();
+            currentWallpaper2 = getProcess.readAllStandardError().trimmed();
+
+            if(!currentWallpaper1.isEmpty())
+            {
+                m_UKUICurrentWallpaper = currentWallpaper1;
+            }
+            else if (!currentWallpaper2.isEmpty())
+            {
+                m_UKUICurrentWallpaper = currentWallpaper2;
+            }
+
            if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
            {
                QString command1 = "gsettings set org.mate.background picture-filename 'usr/share/fantascene-dynamic-wallpaper/normal/touming.png'";
@@ -443,10 +461,14 @@ void Application::setSpecialDesktop()
         //kylin os quit!
         if(dApp->m_isUKUI)
         {
-           QString command1 = "gsettings set org.mate.background picture-filename ''";
-           QProcess process1;
-           process1.start(command1);
-           process1.waitForFinished(-1);  // 等待进程执行完成
+            QString command1 = "gsettings set org.mate.background picture-filename ''";
+            if(!m_UKUICurrentWallpaper.isEmpty())
+            {
+                command1 = "gsettings set org.mate.background picture-filename "+m_UKUICurrentWallpaper;
+            }
+            QProcess process1;
+            process1.start(command1);
+            process1.waitForFinished(-1);  // 等待进程执行完成
         }
     }
 #endif
