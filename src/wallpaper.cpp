@@ -860,6 +860,7 @@ void Wallpaper::updateGeometry()
                 {
                     m_media->setGeometry(screen->geometry());
                     m_media->setMinimumWidth(screen->geometry().width());
+                    m_media->setFixedSize(screen->size());
                     iX = screen->geometry().width();
                     qDebug()<<"Main : "<< screen->geometry();
                     i++;
@@ -868,6 +869,7 @@ void Wallpaper::updateGeometry()
                 if (screen->name() == priScreen->name()&& m_webView) {
                     m_webView->setGeometry(screen->geometry());
                     m_webView->setMinimumWidth(screen->geometry().width());
+                    m_webView->setFixedSize(screen->size());
                     iX = screen->geometry().width();
                     i++;
                     continue;
@@ -880,11 +882,14 @@ void Wallpaper::updateGeometry()
                 if(screen->name() != priScreen->name() && m_media2){
                     m_media2->setGeometry(iX,screen->geometry().y(),screen->geometry().width(),screen->geometry().height());
                     i++;
-                     qDebug()<<"Main2 : "<< screen->geometry();
+                    qDebug()<<"Main2 : "<< screen->geometry();
+
+                    m_media2->setFixedSize(screen->size());
                     continue;
                 }
                 if (screen->name() != priScreen->name() && m_webView2) {
                     m_webView2->setGeometry(iX,0,screen->geometry().width(),screen->geometry().height());
+                    m_webView2->setFixedSize(screen->size());
                     i++;
                     continue;
                 }
@@ -900,6 +905,7 @@ void Wallpaper::updateGeometry()
 
             if (m_media) {
                 m_media->setGeometry(rec);
+                m_media->setFixedSize(rec.size());
             }
             if (m_media2) {
                 m_rightLayout->removeWidget(m_media2);
@@ -908,6 +914,7 @@ void Wallpaper::updateGeometry()
             }
             if (m_webView) {
                 m_webView->setGeometry(rec);
+                m_webView->setFixedSize(rec.size());
             }
             if (m_webView2) {
                 m_rightLayout->removeWidget(m_webView2);
@@ -922,6 +929,7 @@ void Wallpaper::updateGeometry()
             this->setGeometry(rec);
             if (m_media) {
                 m_media->setGeometry(rec);
+                m_media->setFixedSize(size1);
             }
             if (m_media2) {
                 m_rightLayout->removeWidget(m_media2);
@@ -930,6 +938,7 @@ void Wallpaper::updateGeometry()
             }
             if (m_webView) {
                 m_webView->setGeometry(rec);
+                m_webView->setFixedSize(size1);
             }
             if (m_webView2) {
                 m_rightLayout->removeWidget(m_webView2);
