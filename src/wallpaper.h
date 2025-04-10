@@ -28,6 +28,8 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QDateTime>
+#include <QVBoxLayout>
+#include <QSpacerItem>
 
 #include "webwidget.h"
 #include "desktop/iconview.h"
@@ -119,10 +121,16 @@ private:
     NetworkMonitorWidget * m_networkMonitorWidget{nullptr};
     bool m_NetworkVisible{false};
 
+    QVBoxLayout *m_leftLayout{nullptr};
+    QVBoxLayout *m_rightLayout{nullptr};
+    QSpacerItem *m_leftSpacer{nullptr};
+    QSpacerItem *m_rightSpacer{nullptr};
+
 #ifdef Q_OS_WINDOWS
     HHOOK hook;
     HWND workerW;
 #endif
+
 };
 
 #endif // WALLPAPER_H

@@ -91,6 +91,39 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
     layout->setContentsMargins(0,0,0,0);
     setLayout(layout);
 
+    QVBoxLayout * leftlayout = new QVBoxLayout();
+    leftlayout->setSpacing(0);
+    leftlayout->setContentsMargins(0, 0, 0, 0);
+
+    m_leftLayout = new QVBoxLayout();
+    m_leftLayout->setSpacing(0);
+    m_leftLayout->setContentsMargins(0, 0, 0, 0);
+    m_leftLayout->setObjectName(QString::fromUtf8("left"));
+
+    m_leftSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+    leftlayout->addLayout(m_leftLayout);
+    leftlayout->addItem(m_leftSpacer);
+
+
+    QVBoxLayout * rightlayout = new QVBoxLayout();
+    rightlayout->setSpacing(0);
+    rightlayout->setContentsMargins(0, 0, 0, 0);
+
+    m_rightLayout = new QVBoxLayout();
+    m_rightLayout->setSpacing(0);
+    m_rightLayout->setContentsMargins(0, 0, 0, 0);
+    m_rightLayout->setObjectName(QString::fromUtf8("right"));
+
+    m_rightSpacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+    rightlayout->addLayout(m_rightLayout);
+    rightlayout->addItem(m_rightSpacer);
+
+
+    layout->addLayout(leftlayout);
+    layout->addLayout(rightlayout);
+
     registerDesktop();
 
     connect(dApp, &Application::refreshPix, this, &Wallpaper::slotrefreshPix);
@@ -247,25 +280,25 @@ void Wallpaper::changeScreenMode(ScreenMode mode)
     }
     case IdlayoutScreen: {
         if (nullptr != m_webView2) {
-            layout()->removeWidget(m_webView2);
+            m_rightLayout->removeWidget(m_webView2);
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
-        if (nullptr != m_media) {
-            layout()->removeWidget(m_media);
-            delete m_media ;
-            m_media = nullptr;
+        if (nullptr != m_media2) {
+            m_rightLayout->removeWidget(m_media2);
+            delete m_media2 ;
+            m_media2 = nullptr;
         }
         break;
     }
     case IdManualSet: {
         if (nullptr != m_webView2) {
-            layout()->removeWidget(m_webView2);
+            m_rightLayout->removeWidget(m_webView2);
             delete m_webView2 ;
             m_webView2 = nullptr;
         }
         if (nullptr != m_media2) {
-            layout()->removeWidget(m_media2);
+            m_rightLayout->removeWidget(m_media2);
             delete m_media2 ;
             m_media2 = nullptr;
         }
@@ -297,7 +330,7 @@ void Wallpaper::setFile(const QString &path)
 #endif
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (m_media) {
-            layout()->removeWidget(m_media);
+            m_leftLayout->removeWidget(m_media);
             m_media->pause();
             delete m_media;
             m_media = nullptr;
@@ -307,7 +340,6 @@ void Wallpaper::setFile(const QString &path)
             m_webView = new webWidget(this);
             m_webView->setContextMenuPolicy(Qt::NoContextMenu);
         }
-        //        layout()->addWidget(m_webView);
         if (QFileInfo(path).isFile()) {
             m_webView->load(QUrl("file://" + path));
         } else {
@@ -318,7 +350,7 @@ void Wallpaper::setFile(const QString &path)
         pause();
     }  else {
         if (m_webView) {
-            layout()->removeWidget(m_webView);
+            m_leftLayout->removeWidget(m_webView);
             delete m_webView;
             m_webView = nullptr;
         }
@@ -359,7 +391,7 @@ void Wallpaper::setFile2(const QString &path)
         }
     }  else {
         if (m_webView2) {
-            layout()->removeWidget(m_webView2);
+            m_rightLayout->removeWidget(m_webView2);
             delete m_webView2;
             m_webView2 = nullptr;
         }
@@ -870,7 +902,7 @@ void Wallpaper::updateGeometry()
                 m_media->setGeometry(rec);
             }
             if (m_media2) {
-                this->layout()->removeWidget(m_media2);
+                m_rightLayout->removeWidget(m_media2);
                 m_media2->deleteLater();
                 m_media2 = nullptr;
             }
@@ -878,7 +910,7 @@ void Wallpaper::updateGeometry()
                 m_webView->setGeometry(rec);
             }
             if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
+                m_rightLayout->removeWidget(m_webView2);
                 m_webView2->deleteLater();
                 m_webView2 = nullptr;
             }
@@ -892,7 +924,7 @@ void Wallpaper::updateGeometry()
                 m_media->setGeometry(rec);
             }
             if (m_media2) {
-                this->layout()->removeWidget(m_media2);
+                m_rightLayout->removeWidget(m_media2);
                 m_media2->deleteLater();
                 m_media2 = nullptr;
             }
@@ -900,7 +932,7 @@ void Wallpaper::updateGeometry()
                 m_webView->setGeometry(rec);
             }
             if (m_webView2) {
-                this->layout()->removeWidget(m_webView2);
+                m_rightLayout->removeWidget(m_webView2);
                 m_webView2->deleteLater();
                 m_webView2 = nullptr;
             }
@@ -1245,35 +1277,35 @@ void Wallpaper::refreashLayout()
 {
     if(m_media)
     {
-        layout()->removeWidget(m_media);
+        m_leftLayout->removeWidget(m_media);
     }
     if(m_webView)
     {
-        layout()->removeWidget(m_webView);
+        m_leftLayout->removeWidget(m_webView);
     }
     if(m_media2)
     {
-        layout()->removeWidget(m_media2);
+        m_rightLayout->removeWidget(m_media2);
     }
     if(m_webView2)
     {
-        layout()->removeWidget(m_webView2);
+        m_rightLayout->removeWidget(m_webView2);
     }
     if(m_media)
     {
-        layout()->addWidget(m_media);
+        m_leftLayout->addWidget(m_media);
     }
     if(m_webView)
     {
-        layout()->addWidget(m_webView);
+        m_leftLayout->addWidget(m_webView);
     }
     if(m_media2)
     {
-        layout()->addWidget(m_media2);
+        m_rightLayout->addWidget(m_media2);
     }
     if(m_webView2)
     {
-        layout()->addWidget(m_webView2);
+        m_rightLayout->addWidget(m_webView2);
     }
     //暂时调用两次,为保证切换顺利
     QTimer::singleShot(10, [ = ] {
