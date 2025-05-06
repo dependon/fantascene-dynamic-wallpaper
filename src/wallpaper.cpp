@@ -190,58 +190,51 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         }
         if (index1 == 0)
         {
+            QString defaultVideo = "/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4";
+            QString defaultVideoPath1 = dApp->m_moreData.defaultPath1;
+            QString defaultVideoPath2 = dApp->m_moreData.defaultPath2;
 
-            QString playPath = QApplication::applicationDirPath()+"/normal.mp4";
-            if(!QFile::exists(playPath))
-            {
-                playPath = "/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4";
+            bool isUrl = defaultVideoPath1.startsWith("http://") || defaultVideoPath1.startsWith("https://");
+            if (defaultVideoPath1.isEmpty() || (!isUrl && !QFile::exists(defaultVideoPath1))){
+                defaultVideoPath1 = defaultVideo;
             }
-            if(!QFile::exists(playPath))
-            {
-                playPath = "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/normal.mp4";
-            }
-            dApp->m_currentPath = dApp->m_currentPath.replace("file://", "");
-            if (!dApp->m_currentPath.isEmpty()) {
-                if (QFileInfo(dApp->m_currentPath).isFile())
-                {
-                    playPath = dApp->m_currentPath;
-                }
-                else if (path.contains("www") || path.contains("http//") || path.contains("https//"))
-                {
-                    playPath = dApp->m_currentPath;
-                }
-                else
-                {
 
+            isUrl = defaultVideoPath2.startsWith("http://") || defaultVideoPath2.startsWith("https://");
+            if (defaultVideoPath2.isEmpty() || (!isUrl && !QFile::exists(defaultVideoPath2))){
+                defaultVideoPath2 = defaultVideo;
+            }
+
+            QString playPath1 = dApp->m_currentPath.replace("file://", "");
+            QString playPath2 = dApp->m_currentPath2.replace("file://", "");
+
+            isUrl = playPath1.startsWith("http://") || playPath1.startsWith("https://");
+            if (playPath1.isEmpty() || (!isUrl && !QFile::exists(playPath1))) {
+                playPath1 = defaultVideoPath1;
+            }
+
+            setFile(playPath1);
+
+            // 双屏逻辑
+            if (QGuiApplication::screens().size() > 1) {
+                isUrl = playPath2.startsWith("http://") || playPath2.startsWith("https://");
+
+                if (playPath2.isEmpty() || (!isUrl && !QFile::exists(playPath2))) {
+                    playPath2 = defaultVideoPath2;
                 }
+                if (dApp->m_isPath2) setFile2(playPath2); // 非独立显示器时显示器2要和显示器1一样壁纸
+                else setFile2(playPath1);
             }
-            setFile(playPath);
-            if(QGuiApplication::screens().size() > 1 && !dApp->m_currentPath2.isEmpty() && dApp->m_isPath2)
-            {
-                QString playPath2;
-                dApp->m_currentPath2 = dApp->m_currentPath2.replace("file://", "");
-                if (!dApp->m_currentPath2.isEmpty()) {
-                    if (QFileInfo(dApp->m_currentPath2).isFile())
-                    {
-                        playPath2 = dApp->m_currentPath2;
-                    }
-                    else if (path.contains("www") || path.contains("http//") || path.contains("https//"))
-                    {
-                        playPath2 = dApp->m_currentPath2;
-                    }
-                }
-                setFile2(playPath2);
-            }
-            else if (QGuiApplication::screens().size() > 1)
-            {
-                setFile2(playPath);
-            }
-            play();
-            dApp->m_currentPath = QFileInfo(dApp->m_currentPath).filePath();
+
+            dApp->m_currentPath2 = QFileInfo(playPath2).filePath();
+            Q_EMIT dApp->pathChanged(dApp->m_currentPath2);
+
+            dApp->m_currentPath = QFileInfo(playPath1).filePath();
             Q_EMIT dApp->pathChanged(dApp->m_currentPath);
 
+            play();
             slotActiveWallpaper(dApp->m_moreData.isTop);
         }
+
 //        QTimer::singleShot(100, [ = ] {
 //            updateGeometry();
 //        });

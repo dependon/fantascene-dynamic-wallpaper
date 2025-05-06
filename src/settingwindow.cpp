@@ -313,8 +313,9 @@ void settingWindow::readSettings()
             dApp->load_translation_files(TRANSALTION_PATH,dApp->m_moreData.language);
         }
     }
-
-
+    dApp->m_moreData.theme = IniManager::instance()->value("WallPaper/theme").toString();
+    dApp->m_moreData.defaultPath1 = IniManager::instance()->value("WallPaper/defaultPath1").toString();
+    dApp->m_moreData.defaultPath2 = IniManager::instance()->value("WallPaper/defaultPath2").toString();
 
 
     dApp->setSpecialDesktop();

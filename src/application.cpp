@@ -43,6 +43,9 @@
 #include <QTranslator>
 #include <QFontDatabase>
 
+#include "ini/inimanager.h"
+#include <QMessageBox>
+
 #include "db/dbmanager.h"
 
 #include "setdesktop.h"
@@ -122,9 +125,13 @@ const QString toMd5(const QByteArray &data)
 Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
+    QString theme = IniManager::instance()->value("WallPaper/theme").toString();
 
     // 从外部文件加载QSS样式表
-    QFile styleFile(":/style/MainQss.qss");
+    QFile styleFile;
+    if (theme == "dark") styleFile.setFileName(":/style/MainQss-DarkTheme.qss");
+    else styleFile.setFileName(":/style/MainQss.qss");
+
     if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         // 处理文件无法打开的错误
         qDebug() << "no qss";

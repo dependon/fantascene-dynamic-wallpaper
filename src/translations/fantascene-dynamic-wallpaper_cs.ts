@@ -366,11 +366,26 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="620"/>
+        <source>Theme</source>
+        <translation>Téma</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="645"/>
+        <source>DefaultUrl-screen0</source>
+        <translation>Výchozí cesta k tapetě pro obrazovku 1</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="663"/>
+        <source>DefaultUrl-screen1</source>
+        <translation>Výchozí cesta k tapetě pro obrazovku 2</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="681"/>
         <source>Confirm</source>
         <translation>Potvrdit</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="627"/>
+        <location filename="../moresetting.ui" line="687"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>

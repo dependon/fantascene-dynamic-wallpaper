@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>938</width>
-    <height>448</height>
+    <height>439</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -421,7 +421,7 @@
         <widget class="QPushButton" name="btn_reload">
          <property name="maximumSize">
           <size>
-           <width>150</width>
+           <width>600</width>
            <height>16777215</height>
           </size>
          </property>
@@ -431,10 +431,40 @@
         </widget>
        </item>
        <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QPushButton" name="btn_select">
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>600</width>
            <height>16777215</height>
           </size>
          </property>
@@ -444,7 +474,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_4">
+        <spacer name="horizontalSpacer_5">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>

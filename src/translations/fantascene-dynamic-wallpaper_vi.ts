@@ -376,11 +376,26 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="620"/>
+        <source>Theme</source>
+        <translation>Chủ đề</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="645"/>
+        <source>DefaultUrl-screen0</source>
+        <translation>Đường dẫn mặc định hình nền màn hình 1</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="663"/>
+        <source>DefaultUrl-screen1</source>
+        <translation>Đường dẫn mặc định hình nền màn hình 2</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="681"/>
         <source>Confirm</source>
         <translation>Xác nhận</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="627"/>
+        <location filename="../moresetting.ui" line="687"/>
         <source>Cancel</source>
         <translation>Hủy bỏ</translation>
     </message>

@@ -25,7 +25,7 @@
 #include <QTimer>
 #include <QDBusInterface>
 #include <QDBusPendingCall>
-
+#include <QMessageBox>
 #include "ini/inimanager.h"
 MoreSetting::MoreSetting(QWidget *parent) :
     QWidget(parent),
@@ -142,6 +142,9 @@ void MoreSetting::setData(const MoreSetData &data)
     int videoPlugin = IniManager::instance()->value("Media/CurrentPlugin",0).toInt();
     ui->comboxVideoPlugin->setCurrentIndex(videoPlugin);
 
+    ui->themeBox->setCurrentText(data.theme);
+    ui->DefaultPath1Edit->setText(data.defaultPath1);
+    ui->DefaultPath2Edit->setText(data.defaultPath2);
 }
 
 void MoreSetting::setLanguageCombox()
@@ -226,8 +229,23 @@ void MoreSetting::on_okBtn_clicked()
         }
         dApp->m_moreData.isEventPenetration = false;
     }
+
+    if (dApp->m_moreData.fontColor != ui->fontBox->currentText()) {
+        QMessageBox::information(this, tr("提示"), "文本颜色更改需要重启本软件后生效！");
+    }
     dApp->m_moreData.fontColor = ui->fontBox->currentText();
     dApp->m_moreData.language  = m_languageMap.key(ui->langbox->currentText());
+
+    if (dApp->m_moreData.theme != ui->themeBox->currentText()) {
+        QMessageBox::information(this, tr("提示"), "主题更改需要重启本软件后生效！");
+    }
+    dApp->m_moreData.theme = ui->themeBox->currentText();
+    dApp->m_moreData.defaultPath1 = ui->DefaultPath1Edit->text();
+    dApp->m_moreData.defaultPath2 = ui->DefaultPath2Edit->text();
+
+    IniManager::instance()->setValue("WallPaper/theme",ui->themeBox->currentText());
+    IniManager::instance()->setValue("WallPaper/defaultPath1",ui->DefaultPath1Edit->text());
+    IniManager::instance()->setValue("WallPaper/defaultPath2",ui->DefaultPath2Edit->text());
 
     Q_EMIT dApp->moreSettingSave();
 

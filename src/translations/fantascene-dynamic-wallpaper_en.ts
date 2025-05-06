@@ -362,11 +362,26 @@
     </message>
     <message>
         <location filename="../moresetting.ui" line="620"/>
+        <source>Theme</source>
+        <translation>Theme</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="645"/>
+        <source>DefaultUrl-screen0</source>
+        <translation>Default wallpaper path for screen 1</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="663"/>
+        <source>DefaultUrl-screen1</source>
+        <translation>Default wallpaper path for screen 2</translation>
+    </message>
+    <message>
+        <location filename="../moresetting.ui" line="681"/>
         <source>Confirm</source>
         <translation>Confirm</translation>
     </message>
     <message>
-        <location filename="../moresetting.ui" line="627"/>
+        <location filename="../moresetting.ui" line="687"/>
         <source>Cancel</source>
         <translation>Cancel</translation>
     </message>
