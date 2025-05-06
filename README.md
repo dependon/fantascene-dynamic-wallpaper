@@ -125,6 +125,7 @@ sudo apt-get install -y qt5-default
 sudo apt-get install -y qtdeclarative5-dev-tools
 sudo apt-get install -y devscripts equivs
 sudo apt-get install -y qttools5-dev-tools qttools5-dev
+sudo apt-get install -y qtmultimedia5-dev
 
 cd fantascene-dynamic-wallpaper
 
