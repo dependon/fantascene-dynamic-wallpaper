@@ -231,13 +231,13 @@ void MoreSetting::on_okBtn_clicked()
     }
 
     if (dApp->m_moreData.fontColor != ui->fontBox->currentText()) {
-        QMessageBox::information(this, tr("提示"), "文本颜色更改需要重启本软件后生效！");
+        QMessageBox::information(this, tr("Tips"), tr("The text color change will take effect after restarting this software!"));
     }
     dApp->m_moreData.fontColor = ui->fontBox->currentText();
     dApp->m_moreData.language  = m_languageMap.key(ui->langbox->currentText());
 
     if (dApp->m_moreData.theme != ui->themeBox->currentText()) {
-        QMessageBox::information(this, tr("提示"), "主题更改需要重启本软件后生效！");
+        QMessageBox::information(this, tr("Tips"), tr("The theme change will take effect after restarting this software!"));
     }
     dApp->m_moreData.theme = ui->themeBox->currentText();
     dApp->m_moreData.defaultPath1 = ui->DefaultPath1Edit->text();
