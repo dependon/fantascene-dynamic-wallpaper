@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
-    <height>605</height>
+    <width>683</width>
+    <height>716</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -607,6 +607,67 @@
        </property>
        <property name="text">
         <string>Set deepin current work region to normal wallpaper</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_17">
+     <item>
+      <widget class="QLabel" name="label_13">
+       <property name="text">
+        <string>Theme</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="themeBox">
+       <item>
+        <property name="text">
+         <string>dark</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>white</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_18">
+     <item>
+      <widget class="QLabel" name="label_14">
+       <property name="text">
+        <string>DefaultUrl-screen0</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="DefaultPath1Edit">
+       <property name="text">
+        <string>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_16">
+     <item>
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>DefaultUrl-screen1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="DefaultPath2Edit">
+       <property name="text">
+        <string>/usr/share/fantascene-dynamic-wallpaper/normal/normal.mp4</string>
        </property>
       </widget>
      </item>

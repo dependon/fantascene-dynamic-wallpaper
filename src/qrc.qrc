@@ -4,6 +4,7 @@
         <file>select_active.svg</file>
         <file>install/wallpaper.png</file>
         <file>style/MainQss.qss</file>
+        <file>style/MainQss-DarkTheme.qss</file>
         <file>font/Winter_Trendy.ttf</file>
         <file>font/Carnevalee Freakshow.ttf</file>
         <file>font/CHERL___.TTF</file>

@@ -376,11 +376,26 @@
         </message>
         <message>
             <location filename="../moresetting.ui" line="620"/>
+            <source>Theme</source>
+            <translation>테마</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="645"/>
+            <source>DefaultUrl-screen0</source>
+            <translation>화면 1 기본 배경 화면 경로</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="663"/>
+            <source>DefaultUrl-screen1</source>
+            <translation>화면 2 기본 배경 화면 경로</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="681"/>
             <source>Confirm</source>
             <translation>확인</translation>
         </message>
         <message>
-            <location filename="../moresetting.ui" line="627"/>
+            <location filename="../moresetting.ui" line="687"/>
             <source>Cancel</source>
             <translation>취소</translation>
         </message>

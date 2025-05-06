@@ -39,6 +39,9 @@ struct MoreSetData {
     double m_WallpaperTransparency = 0.99;
     QString fontColor ="default";
     QString language  ="";
+    QString theme = "";
+    QString defaultPath1 = "";
+    QString defaultPath2 = "";
 };
 
 struct VideoData {

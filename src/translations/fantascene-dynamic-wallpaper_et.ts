@@ -366,11 +366,26 @@
         </message>
         <message>
             <location filename="../moresetting.ui" line="620"/>
+            <source>Theme</source>
+            <translation>Teema</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="645"/>
+            <source>DefaultUrl-screen0</source>
+            <translation>Vaikimisi taustapildi asukoht ekraanil 1</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="663"/>
+            <source>DefaultUrl-screen1</source>
+            <translation>Vaikimisi taustapildi asukoht ekraanil 2</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="681"/>
             <source>Confirm</source>
             <translation>Kinnita</translation>
         </message>
         <message>
-            <location filename="../moresetting.ui" line="627"/>
+            <location filename="../moresetting.ui" line="687"/>
             <source>Cancel</source>
             <translation>Tühista</translation>
         </message>

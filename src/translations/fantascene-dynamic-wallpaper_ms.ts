@@ -372,11 +372,26 @@
         </message>
         <message>
             <location filename="../moresetting.ui" line="620"/>
+            <source>Theme</source>
+            <translation>Tema</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="645"/>
+            <source>DefaultUrl-screen0</source>
+            <translation>Laluan lalai kertas dinding untuk skrin 1</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="663"/>
+            <source>DefaultUrl-screen1</source>
+            <translation>Laluan lalai kertas dinding untuk skrin 2</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="681"/>
             <source>Confirm</source>
             <translation>Sahkan</translation>
         </message>
         <message>
-            <location filename="../moresetting.ui" line="627"/>
+            <location filename="../moresetting.ui" line="687"/>
             <source>Cancel</source>
             <translation>Batalkan</translation>
         </message>

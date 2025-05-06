@@ -376,11 +376,26 @@
         </message>
         <message>
             <location filename="../moresetting.ui" line="620"/>
+            <source>Theme</source>
+            <translation>Teema</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="645"/>
+            <source>DefaultUrl-screen0</source>
+            <translation>Oletuspolku taustakuvalle näytöllä 1</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="663"/>
+            <source>DefaultUrl-screen1</source>
+            <translation>Oletuspolku taustakuvalle näytöllä 2</translation>
+        </message>
+        <message>
+            <location filename="../moresetting.ui" line="681"/>
             <source>Confirm</source>
             <translation>Vahvista</translation>
         </message>
         <message>
-            <location filename="../moresetting.ui" line="627"/>
+            <location filename="../moresetting.ui" line="687"/>
             <source>Cancel</source>
             <translation>Peruuta</translation>
         </message>
