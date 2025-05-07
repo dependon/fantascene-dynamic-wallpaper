@@ -110,45 +110,38 @@ Please see: [https://sourceforge.net/projects/fantascene-dynamic-wallpaper/files
 
 ## Build Dependencies
 
+```
+qt >=5.8
+mpv >=29.0
+```
+
 ### debian/Deepin/Other
 
 ```
-qt >=5.8
-
-mpv >=29.0
-
-git clone https://github.com/dependon/fantascene-dynamic-wallpaper.git
-sudo apt-get install -y qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev qttools5-dev-tools qtbase5-dev qt5-qmake libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev build-essential g++ libxcb-shape0-dev aria2
-sudo apt-get install -y qtwebengine5-dev
-sudo apt-get install -y libqt5opengl5-dev
-sudo apt-get install -y qt5-default
-sudo apt-get install -y qtdeclarative5-dev-tools
-sudo apt-get install -y devscripts equivs
-sudo apt-get install -y qttools5-dev-tools qttools5-dev
-sudo apt-get install -y qtmultimedia5-dev
+git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
 
-mkdir build
+sh start_makeLocal.sh
 
-cd build
-
-qmake ..
-
-make -j4
 ```
 
 ## Build from SCM
 
 debian and ubuntu and deepin
+
 ```
-dpkg-buildpackage -b -us -uc
+git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
+
+cd fantascene-dynamic-wallpaper
+
+sh start_deb.sh
 
 ```
 
 ## Thanks
 
-Thanks [shenmo](https://gitee.com/spark-store-project) its great support.
+Thanks [shenmo](https://gitee.com/spark-store-project) its great support.  [欢迎体验星火商店，专为linux应用分发打造的社区商店](https://www.spark-app.store)
 
 Thanks [taotieren](https://github.com/taotieren) for his help on arch.
 
@@ -163,6 +156,10 @@ Thanks for the Spanish translation provided by [Alvaro samudio](https://github.c
 Thanks for the pkg2mp4.md provided by [M0rtzz](https://github.com/M0rtzz).
 
 Thanks [lisuke](https://github.com/lisuke) support fix bug
+
+Thanks [gfdgd_xi](https://github.com/lisuke) Solve the compilation issues on loongarch,Welcome to [GXDE OS](https://www.gxde.top/)
+
+Thanks [SoHugePenguin](https://github.com/SoHugePenguin) Add dark-style QSS and optimize program experience
 
 ## Contribute
 ```
