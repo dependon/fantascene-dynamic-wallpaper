@@ -120,36 +120,38 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 
 ## 构建依赖
 
-debian/深度操作系统/其他Linux
-
 ```
 qt >=5.8
-
 mpv >=29.0
+```
 
-git clone https://github.com/dependon/fantascene-dynamic-wallpaper.git
-sudo apt-get install -y qtcreator libx11-xcb-dev libxcb-ewmh-dev libmpv-dev mpv ffmpeg dpkg-dev fakeroot libmtdev-dev qttools5-dev-tools qtbase5-dev qt5-qmake libxext-dev libxrender-dev libqt5x11extras5-dev libglib2.0-dev build-essential g++ libxcb-shape0-dev aria2
-sudo apt-get install -y qtwebengine5-dev
-sudo apt-get install -y libqt5opengl5-dev
-sudo apt-get install -y qt5-default
-sudo apt-get install -y qtdeclarative5-dev-tools
-sudo apt-get install -y devscripts equivs
-sudo apt-get install -y qttools5-dev-tools qttools5-dev
+### debian/Deepin/Other
+
+```
+git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
 
-mkdir build
+sh start_makeLocal.sh 
 
-cd build
+```
 
-qmake ..
+## 打包为deb
 
-make -j4
+debian and ubuntu and deepin
+
+```
+git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
+
+cd fantascene-dynamic-wallpaper
+
+sh start_deb.sh
+
 ```
 
 ## 感谢
 
-感谢[shenmo](https://gitee.com/spark-store-project)的大力支持。
+感谢[shenmo](https://gitee.com/spark-store-project)的大力支持。[欢迎体验星火商店，专为linux应用分发打造的社区商店](https://www.spark-app.store)
 
 感谢[M0rtzz](https://github.com/M0rtzz)的提供pkg转化mp4教程。
 
@@ -164,6 +166,10 @@ make -j4
 感谢[Alvaro samudio](https://github.com/alvarosamudio)提供的西班牙语翻译。
 
 感谢[lisuke](https://github.com/lisuke) 修改bug
+
+感谢 [gfdgd_xi](https://github.com/gfdgd-xi) 对龙芯编译的支持,欢迎体验[GXDE OS](https://www.gxde.top/)
+
+感谢 [SoHugePenguin](https://github.com/SoHugePenguin) 增加暗黑风格qss和优化程序体验
 
 ## 贡献
 ```
