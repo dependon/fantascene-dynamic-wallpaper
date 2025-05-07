@@ -1460,6 +1460,10 @@ void settingWindow::on_setBtn2_clicked()
     if (ui->pathEdit2->text() != nullptr) {
         dApp->m_currentPath2 = ui->pathEdit2->text();
         dApp->m_currentPath2 = dApp->m_currentPath2.replace("file://", "");
+        bool isUrl = dApp->m_currentPath2.startsWith("http://") || dApp->m_currentPath2.startsWith("https://");
+        if (!isUrl && !QFileInfo(dApp->m_currentPath2).exists()){
+            QMessageBox::information(this, tr("提示"), "文件" + dApp->m_currentPath2 + "不存在");
+        }
         Q_EMIT dApp->setPlayPath2(ui->pathEdit2->text());
         Q_EMIT dApp->setMpvPlay();
         dApp->m_isNoMpvPause = true;
