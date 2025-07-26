@@ -142,7 +142,12 @@ void MoreSetting::setData(const MoreSetData &data)
     int videoPlugin = IniManager::instance()->value("Media/CurrentPlugin",0).toInt();
     ui->comboxVideoPlugin->setCurrentIndex(videoPlugin);
 
-    ui->themeBox->setCurrentText(data.theme);
+    if (data.theme == "white") {
+        ui->themeBox->setCurrentText(tr("white"));
+    } else {
+        ui->themeBox->setCurrentText(tr("dark"));
+    }
+
     ui->DefaultPath1Edit->setText(data.defaultPath1);
     ui->DefaultPath2Edit->setText(data.defaultPath2);
 }
@@ -243,7 +248,11 @@ void MoreSetting::on_okBtn_clicked()
     dApp->m_moreData.defaultPath1 = ui->DefaultPath1Edit->text();
     dApp->m_moreData.defaultPath2 = ui->DefaultPath2Edit->text();
 
-    IniManager::instance()->setValue("WallPaper/theme",ui->themeBox->currentText());
+    int index = ui->themeBox->currentIndex();
+    if (index == 0)  // 第一个选项, dark
+        IniManager::instance()->setValue("WallPaper/theme", "dark");
+    else if (index == 1)  // 第二个选项, white
+        IniManager::instance()->setValue("WallPaper/theme", "white");
     IniManager::instance()->setValue("WallPaper/defaultPath1",ui->DefaultPath1Edit->text());
     IniManager::instance()->setValue("WallPaper/defaultPath2",ui->DefaultPath2Edit->text());
 
