@@ -129,13 +129,13 @@ Application::Application(int &argc, char **argv)
 
     // 从外部文件加载QSS样式表
     QFile styleFile;
-    if (theme == "dark")
+    if (theme == "white")
     {
-        styleFile.setFileName(":/style/MainQss-DarkTheme.qss");
+        styleFile.setFileName(":/style/MainQss.qss");
     }
     else
     {
-        styleFile.setFileName(":/style/MainQss.qss");
+        styleFile.setFileName(":/style/MainQss-DarkTheme.qss");
     }
 
     if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
