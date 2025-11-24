@@ -7,7 +7,7 @@
         <location filename="../application.cpp" line="173"/>
         <location filename="../application.cpp" line="174"/>
         <source>fantascene-dynamic-wallpaper</source>
-        <translation>fantascene-dynamic- wallpaper</translation>
+        <translation>fantascene-dynamic-wallpaper</translation>
     </message>
 </context>
 <context>
@@ -193,7 +193,7 @@
     <message>
         <location filename="../desktop/iconview.cpp" line="493"/>
         <source>Please Select App</source>
-        <translation>Bitte App auswählen</translation>
+        <translation>Bitte wählen Sie eine App aus</translation>
     </message>
     <message>
         <location filename="../desktop/iconview.cpp" line="951"/>
@@ -226,7 +226,7 @@
     <message>
         <location filename="../listview/localwidget.cpp" line="43"/>
         <source>Please place the local video on:</source>
-        <translation>Bitte das lokale Video platzieren in:</translation>
+        <translation>Bitte platzieren Sie das lokale Video in:</translation>
     </message>
 </context>
 <context>
@@ -383,12 +383,12 @@
     <message>
         <location filename="../moresetting.ui" line="579"/>
         <source>Set deepin current work region to dynamic wallpaper</source>
-        <translation>Deepin aktuellen Arbeitsregion auf dynamisches Wallpaper setzen</translation>
+        <translation>Deepin aktuelle Arbeitsregion auf dynamisches Wallpaper setzen</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="609"/>
         <source>Set deepin current work region to normal wallpaper</source>
-        <translation>Deepin aktuellen Arbeitsregion auf normales Wallpaper setzen</translation>
+        <translation>Deepin aktuelle Arbeitsregion auf normales Wallpaper setzen</translation>
     </message>
     <message>
         <location filename="../moresetting.ui" line="620"/>
@@ -914,12 +914,12 @@
     <message>
         <location filename="../listview/historywidget.ui" line="144"/>
         <source>Playlist</source>
-        <translation>Wiedergabeliste</translation>
+        <translation>Playlist</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="169"/>
         <source>Add Playlist</source>
-        <translation>Wiedergabeliste hinzufügen</translation>
+        <translation>Playlist hinzufügen</translation>
     </message>
     <message>
         <location filename="../listview/historywidget.ui" line="189"/>
