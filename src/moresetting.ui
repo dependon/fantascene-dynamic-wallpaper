@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>683</width>
-    <height>716</height>
+    <width>851</width>
+    <height>708</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -326,7 +326,7 @@
         <number>99</number>
        </property>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
      </item>
@@ -362,7 +362,7 @@
         <number>99</number>
        </property>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
      </item>
@@ -571,8 +571,14 @@
       <widget class="QPushButton" name="setWorkPaper">
        <property name="minimumSize">
         <size>
-         <width>380</width>
+         <width>600</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="text">
@@ -587,7 +593,7 @@
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -601,8 +607,14 @@
       <widget class="QPushButton" name="setWorkPaper_2">
        <property name="minimumSize">
         <size>
-         <width>380</width>
+         <width>600</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>600</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="text">
