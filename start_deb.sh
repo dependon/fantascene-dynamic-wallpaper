@@ -6,5 +6,6 @@ sudo apt-get install -y qt5-default
 sudo apt-get install -y qtdeclarative5-dev-tools
 sudo apt-get install -y devscripts equivs
 sudo apt-get install -y qttools5-dev-tools qttools5-dev
+sudo apt-get install -y libqt5charts5-dev
 sudo mk-build-deps ./debian/control -i -t "apt-get --yes" -r
 dpkg-buildpackage -b -us -uc

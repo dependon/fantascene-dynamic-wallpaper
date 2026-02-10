@@ -321,13 +321,20 @@ void MoreSetting::on_setWorkPaper_clicked()
                          "/com/deepin/daemon/Appearance",
                          "com.deepin.daemon.Appearance",
                          QDBusConnection::sessionBus());
+    //dde25更新了接口
+    QDBusInterface iface2("org.deepin.dde.Appearance1",
+                          "/org/deepin/dde/Appearance1",
+                          "org.deepin.dde.Appearance1",
+                          QDBusConnection::sessionBus());
     if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
     {
         iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+        iface2.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
     }
     else if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png"))
     {
         iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
+        iface2.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
     }
 
 }
@@ -340,6 +347,14 @@ void MoreSetting::on_setWorkPaper_2_clicked()
                          "com.deepin.daemon.Appearance",
                          QDBusConnection::sessionBus());
     iface.asyncCall("SetCurrentWorkspaceBackground", "");
+
+    //dde25更新了接口
+    QDBusInterface iface2("org.deepin.dde.Appearance1",
+                          "/org/deepin/dde/Appearance1",
+                          "org.deepin.dde.Appearance1",
+                          QDBusConnection::sessionBus());
+    iface2.asyncCall("SetCurrentWorkspaceBackground", "");
+
 }
 
 

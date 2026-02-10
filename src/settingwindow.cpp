@@ -772,6 +772,13 @@ void settingWindow::quitApp()
                                  "com.deepin.daemon.Appearance",
                                  QDBusConnection::sessionBus());
             iface.asyncCall("SetCurrentWorkspaceBackground", "");
+
+            //dde25更新了接口
+            QDBusInterface iface2("org.deepin.dde.Appearance1",
+                                  "/org/deepin/dde/Appearance1",
+                                  "org.deepin.dde.Appearance1",
+                                  QDBusConnection::sessionBus());
+            iface2.asyncCall("SetCurrentWorkspaceBackground", "");
 //             if(dApp->m_startDesktop)
 //             {
 //                 //dde-dconfig --set -a org.deepin.dde.file-manager -r org.deepin.dde.file-manager.plugins -k desktop.blackList -v "[]"

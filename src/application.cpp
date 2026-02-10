@@ -412,21 +412,31 @@ void Application::setSpecialDesktop()
             process.waitForFinished(-1);
 
 
+            //dde21旧
             QDBusInterface iface("com.deepin.daemon.Appearance",
                                  "/com/deepin/daemon/Appearance",
                                  "com.deepin.daemon.Appearance",
                                  QDBusConnection::sessionBus());
+
+            //dde25更新了接口
+            QDBusInterface iface2("org.deepin.dde.Appearance1",
+                                 "/org/deepin/dde/Appearance1",
+                                 "org.deepin.dde.Appearance1",
+                                 QDBusConnection::sessionBus());
             if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/touming.png"))
             {
                 iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
+                iface2.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/touming.png");
             }
             else if(QFile::exists("/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png"))
             {
                 iface.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
+                iface2.asyncCall("SetCurrentWorkspaceBackground", "/usr/share/fantascene-dynamic-wallpaper/normal/deepin/touming.png");
             }
             else if(QFile::exists(toumingCurr))
             {
                 iface.asyncCall("SetCurrentWorkspaceBackground", toumingCurr);
+                iface2.asyncCall("SetCurrentWorkspaceBackground", toumingCurr);
             }
 // #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 //             dApp->m_startDesktop  = QThread::create([ = ]()
