@@ -61,6 +61,6 @@ void DownloadManager::processDownloadQueue()
     }
 
     if (!downloadQueue.isEmpty()) {
-        QMetaObject::invokeMethod(this, "processDownloadQueue", Qt::QueuedConnection, Q_ARG(QVariant, QVariant()));
+        QMetaObject::invokeMethod(this, "processDownloadQueue", Qt::QueuedConnection);
     }
 }

@@ -40,6 +40,7 @@
 #include <QStandardPaths>
 #include <QStyleFactory>
 #include <QScreen>
+#include <QTextStream>
 
 
 /* instance lock path */
@@ -87,7 +88,7 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
     QFile outFile(logFileName);
     outFile.open(QIODevice::WriteOnly | QIODevice::Append);
     QTextStream textStream(&outFile);
-    textStream << txt << endl;
+    textStream << txt << Qt::endl;
 
     // 删除10天前的日志文件
     QDir logDir(logFolder);
@@ -97,7 +98,11 @@ void customMessageHandler(QtMsgType type, const QMessageLogContext &context, con
 
     QFileInfoList fileList = logDir.entryInfoList();
     for (QFileInfo fileInfo: fileList) {
+#if QT_VERSION_MAJOR == 5
         QDateTime fileTime = fileInfo.created();
+#else
+        QDateTime fileTime = fileInfo.fileTime(QFile::FileBirthTime);
+#endif
         if (fileTime.daysTo(QDateTime::currentDateTime()) > 10) {
             QFile::remove(fileInfo.absoluteFilePath());
         }

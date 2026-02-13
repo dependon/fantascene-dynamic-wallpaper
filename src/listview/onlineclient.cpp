@@ -254,7 +254,13 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
 {
     slotClickedChange(md5);
     QString name = m_datas.value(m_currentMd5).fileName;
+#if QT_VERSION_MAJOR == 5
     QString newName = name.replace(QRegExp("\\s+"), "");
+#else
+    QString newName = name.replace(QRegularExpression("\\s+"), "");
+#endif
+
+
     QString saveFile = saveDir+"/fantascene/"+newName;
     QString saveHtml = saveDir+"/fantascene/"+m_currentMd5+"/"+newName;
     QFuture<void> future = QtConcurrent::run([=]()
@@ -529,7 +535,7 @@ void OnlineClient::downloadFinished(const DownloadInfo &data)
     QString strExtra;
     strExtra = data.extraPath;
     QString name = m_datas.value(strExtra).fileName;
-    QString newName = name.replace(QRegExp("\\s+"), "");
+    QString newName = name.replace(QRegularExpression("\\s+"), "");
 
     if(data.bDownloaded && QFileInfo(data.outputFilePath).exists())
     {

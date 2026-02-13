@@ -8,7 +8,9 @@
 #include <QtCharts/QAreaSeries>
 #include "systemmonitor.h"
 
+#if QT_VERSION_MAJOR == 5
 QT_CHARTS_USE_NAMESPACE
+#endif
 
 class CpuMonitorWidget : public QWidget
 {
