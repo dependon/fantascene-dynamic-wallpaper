@@ -505,7 +505,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="245"/>
         <source>To</source>
-        <translation>An</translation>
+        <translation>Springen</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="279"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="505"/>
         <source>Download Count</source>
-        <translation>Download Count</translation>
+        <translation>Download-Anzahl</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="547"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../listview/onlineclient.ui" line="715"/>
         <source>Wait Download Task</source>
-        <translation>Warten Download-Aufgabe</translation>
+        <translation>Warten auf Download-Task</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.ui" line="894"/>
@@ -604,7 +604,7 @@
     <message>
         <location filename="../listview/onlineclient.cpp" line="263"/>
         <source>Download Ing.....</source>
-        <translation>Download Ing.....</translation>
+        <translation>Wird heruntergeladen ...</translation>
     </message>
     <message>
         <location filename="../listview/onlineclient.cpp" line="486"/>
