@@ -85,6 +85,7 @@ public Q_SLOTS:
 private:
     void registerDesktop();
     bool event(QEvent *event) override;
+    void showEvent(QShowEvent *event);
 
 private Q_SLOTS:
     void onSysLockState(QString, QVariantMap key2value, QStringList);

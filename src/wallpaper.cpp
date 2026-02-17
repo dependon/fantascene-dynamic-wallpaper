@@ -69,6 +69,7 @@
 #include <QStandardPaths>
 #include <QScreen>
 
+
 #ifdef USE_WEBENGINE
 
 #include <QWebEngineView>
@@ -716,6 +717,17 @@ bool Wallpaper::event(QEvent *event) {
 
 
     return QWidget::event(event);
+}
+
+void Wallpaper::showEvent(QShowEvent *event)
+{
+#if QT_VERSION_MAJOR == 6
+    if (!dApp->m_screenWid.contains(winId())) {
+        dApp->m_screenWid.push_back(winId());
+        registerDesktop();
+    }
+#endif
+    return QWidget::showEvent(event);
 }
 
 void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList) {
