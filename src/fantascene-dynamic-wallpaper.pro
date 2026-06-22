@@ -22,7 +22,7 @@ contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
 }
 
-CONFIG += c++11
+CONFIG += c++17
 unix {
 
 # Build binary with debuginfo and REL by default.

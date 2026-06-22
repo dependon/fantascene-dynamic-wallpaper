@@ -315,14 +315,14 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
                     dApp->setWallPaper(newPath);
                 }
                 //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
-                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+                Q_EMIT sigSendData("VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
             else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
             {
                 dApp->setWallPaper(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName);
 
                 //ui->label_Count->setText(QString::number(ui->label_Count->text().toInt()+1));
-                Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+                Q_EMIT sigSendData("VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
             }
             else
             {
@@ -348,7 +348,7 @@ void OnlineClient::slotDoubleClickedChange(const QString &md5)
 void OnlineClient::on_btn_search_clicked()
 {
     m_isRecommd = false;
-    QByteArray str = u8"GET_VIDEO_LIST|"+ui->edit_search->text().toUtf8()+"|1";
+    QByteArray str = "GET_VIDEO_LIST|"+ui->edit_search->text().toUtf8()+"|1";
     m_searchString = ui->edit_search->text();
     Q_EMIT sigSendData(str);
 }
@@ -373,7 +373,7 @@ void OnlineClient::slotShowData(const QList<VideoData> &datas)
 
 void OnlineClient::on_btn_Recommend_clicked()
 {
-    Q_EMIT sigSendData(u8"GET_VIDEO_RECOMMEND|1");
+    Q_EMIT sigSendData("GET_VIDEO_RECOMMEND|1");
 }
 
 void OnlineClient::slotSearchTotalCount(const int &count)
@@ -474,12 +474,12 @@ void OnlineClient::on_btn_to_clicked()
     {
         if(m_isRecommd)
         {
-            QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(page).toUtf8();
+            QByteArray str = "GET_VIDEO_RECOMMEND|" + QString::number(page).toUtf8();
             Q_EMIT sigSendData(str);
         }
         else
         {
-            QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(page).toUtf8();
+            QByteArray str = "GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(page).toUtf8();
             Q_EMIT sigSendData(str);
         }
         ui->label_CurrentCount->setText(QString::number(page));
@@ -492,7 +492,7 @@ void OnlineClient::slotConnected()
     ui->lbl_status->setText(tr("Online"));
     if(ui->label_CurrentCount->text().toInt() <= 1)
     {
-        Q_EMIT sigSendData(u8"GET_VIDEO_RECOMMEND|1");
+        Q_EMIT sigSendData("GET_VIDEO_RECOMMEND|1");
     }
     //ui->btn_try->setEnabled(false);
 }
@@ -513,12 +513,12 @@ void OnlineClient::delayedPageFunction()
 {
     if(m_isRecommd)
     {
-        QByteArray str = u8"GET_VIDEO_RECOMMEND|" + QString::number(m_currentPage).toUtf8();
+        QByteArray str = "GET_VIDEO_RECOMMEND|" + QString::number(m_currentPage).toUtf8();
         Q_EMIT sigSendData(str);
     }
     else
     {
-        QByteArray str = u8"GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(m_currentPage).toUtf8();
+        QByteArray str = "GET_VIDEO_LIST|"+ m_searchString.toUtf8() + "|" + QString::number(m_currentPage).toUtf8();
         Q_EMIT sigSendData(str);
     }
 }
@@ -554,12 +554,12 @@ void OnlineClient::downloadFinished(const DownloadInfo &data)
         {
             dApp->setWallPaper(newPath);
         }
-        Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+strExtra.toLatin1());
+        Q_EMIT sigSendData("VIDEO_COUNT_ADD|"+strExtra.toLatin1());
     }
     else if(QFileInfo(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName).exists())
     {
         dApp->setWallPaper(saveDir+"/fantascene/"+m_currentMd5+"/"+ newName);
-        Q_EMIT sigSendData(u8"VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
+        Q_EMIT sigSendData("VIDEO_COUNT_ADD|"+m_currentMd5.toLatin1());
     }
     else
     {
