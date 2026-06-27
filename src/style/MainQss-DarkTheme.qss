@@ -1,5 +1,6 @@
 QWidget {
     background: #2e2e2e;
+    color: #f0f0f0;
 }
 
 QMenu {
@@ -8,10 +9,11 @@ QMenu {
     border-radius: 10px;
     padding: 4px 2px;
     margin: 4px 2px;
+    color: #f0f0f0;
 }
 
 QLabel, QComboBox, QCheckBox {
-    color: white
+    color: #f0f0f0
 }
 
 QMenu::item {
@@ -20,10 +22,12 @@ QMenu::item {
     margin: 2px 2px;
     height: 30px;
     border-radius: 4px;
+    color: #f0f0f0;
 }
 
 QMenu::item:selected {
     background-color: #3a3a3a;
+    color: #f0f0f0;
 }
 
 QPushButton {
@@ -31,29 +35,29 @@ QPushButton {
     border: 1px solid rgb(200,200,200);
     border-radius: 10px;
     min-height: 25px;
-    color: #ffffff;
+    color: #f0f0f0;
     padding: 4px 20px;
     margin: 4px 4px;
 }
 
 QPushButton:hover {
     background-color: #3a3a3a;
-    color: #ffffff;
+    color: #f0f0f0;
 }
 
 QPushButton:pressed {
     background-color: #3a3a3a;
-    color: #ffffff;
+    color: #f0f0f0;
 }
 
 QPushButton:checked {
     background-color: #3a3a3a;
-    color: #ffffff;
+    color: #f0f0f0;
 }
 
 QPushButton:pressed:checked {
     background-color: #3a3a3a;
-    color: #ffffff;
+    color: #f0f0f0;
 }
 
 QSlider::groove:horizontal {
@@ -117,7 +121,7 @@ QComboBox::down-arrow:on {
 
 QComboBox::item:selected {
     background-color: #3a3a3a;
-    color: white;
+    color: #f0f0f0;
     padding-left: 0px;
     text-align: center;
     border-radius: 5px;
@@ -133,7 +137,7 @@ QLineEdit {
     border-radius: 5px;
     padding: 3px;
     background-color: #2e2e2e;
-    selection-color: white;
+    selection-color: #f0f0f0;
     selection-background-color: blue;
 }
 

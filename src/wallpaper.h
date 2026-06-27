@@ -84,6 +84,7 @@ public Q_SLOTS:
 
 private:
     void registerDesktop();
+    void updateWindowTypeForLayering();
     bool event(QEvent *event) override;
     void showEvent(QShowEvent *event);
 

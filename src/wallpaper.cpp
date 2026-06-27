@@ -84,7 +84,8 @@
 
 Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
         : QWidget(parent), m_currentScreen(currentScreen) {
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Tool);
+    // 保持 Qt::Tool，作为壁纸窗口，通过 X11 属性控制层级
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnBottomHint);
     setAttribute(Qt::WA_TranslucentBackground);
 
     QHBoxLayout *layout = new QHBoxLayout;
@@ -1009,6 +1010,12 @@ void Wallpaper::slotMouseClick(const int &index) {
 }
 
 void Wallpaper::slotActiveWallpaper(bool bRet) {
+    // 根据是否显示桌面图标决定窗口层级
+    // false=显示桌面图标时窗口在最上方, true=不显示桌面图标时窗口在最下方
+
+    // 动态设置窗口类型：GNOME中窗口类型决定层级
+    updateWindowTypeForLayering();
+
     if (!bRet) {
         for (auto wid: dApp->m_screenWid) {
             if (wid == this->winId()) {
@@ -1060,6 +1067,64 @@ void Wallpaper::slotActiveWallpaper(bool bRet) {
     setCpuVisible(m_CpuVisible);
     setMemoryVisible(m_MemoryVisible);
     setNetworkVisible(m_NetworkVisible);
+}
+
+// 根据桌面图标显示状态动态设置窗口类型
+void Wallpaper::updateWindowTypeForLayering() {
+#ifdef Q_OS_LINUX
+    if(QGuiApplication::platformName() != "xcb") {
+        return; // 非 X11 环境不处理
+    }
+
+    Display *display = XOpenDisplay(NULL);
+    if (!display) {
+        return;
+    }
+
+    // 获取窗口类型 atom
+    Atom net_wm_window_type = XInternAtom(display, "_NET_WM_WINDOW_TYPE", False);
+
+    if (dApp->m_moreData.isShowDesktopIcon) {
+        // 显示桌面图标：使用 NORMAL 窗口类型，在同层级最上方
+        Atom net_wm_window_type_normal = XInternAtom(display, "_NET_WM_WINDOW_TYPE_NORMAL", False);
+        XChangeProperty(display, winId(), net_wm_window_type,
+                        XA_ATOM, 32, PropModeReplace,
+                        (unsigned char *) &net_wm_window_type_normal, 1);
+
+        // 移除 BELOW 状态（如果有）
+        Atom net_wm_state = XInternAtom(display, "_NET_WM_STATE", False);
+        Atom net_wm_state_above = XInternAtom(display, "_NET_WM_STATE_ABOVE", False);
+
+        // 添加 ABOVE 状态确保在最上方
+        XChangeProperty(display, winId(), net_wm_state,
+                        XA_ATOM, 32, PropModeReplace,
+                        (unsigned char *) &net_wm_state_above, 1);
+    } else {
+        // 不显示桌面图标：使用 DESKTOP 窗口类型，在同层级最下方
+        Atom net_wm_window_type_desktop = XInternAtom(display, "_NET_WM_WINDOW_TYPE_DESKTOP", False);
+        XChangeProperty(display, winId(), net_wm_window_type,
+                        XA_ATOM, 32, PropModeReplace,
+                        (unsigned char *) &net_wm_window_type_desktop, 1);
+
+        // 添加 BELOW 状态确保在最下方
+        Atom net_wm_state = XInternAtom(display, "_NET_WM_STATE", False);
+        Atom net_wm_state_below = XInternAtom(display, "_NET_WM_STATE_BELOW", False);
+        XChangeProperty(display, winId(), net_wm_state,
+                        XA_ATOM, 32, PropModeReplace,
+                        (unsigned char *) &net_wm_state_below, 1);
+    }
+
+    XCloseDisplay(display);
+
+    // 稍作延迟后重新应用 raise/lower 以确保层级生效
+    QTimer::singleShot(50, this, [this]() {
+        if (dApp->m_moreData.isShowDesktopIcon) {
+            this->raise();
+        } else {
+            this->lower();
+        }
+    });
+#endif
 }
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet) {
