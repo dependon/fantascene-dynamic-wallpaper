@@ -179,8 +179,8 @@ system($$LRELEASE -version > /dev/null 2>&1) {
 # 只有找到 lrelease 时才执行翻译文件编译
 !isEmpty(LRELEASE) {
     # 假设你的翻译文件是 *.ts，这里替换成你实际的 ts 文件列表
-    TRANSLATIONS += translations/your_app_zh_CN.ts \
-                    translations/your_app_en.ts
+    TRANSLATIONS += $$PWD/../translations/fantascene-dynamic-wallpaper_en.ts \
+                    $$PWD/../translations/fantascene-dynamic-wallpaper_zh_CN.ts
 
     # 执行 lrelease 编译 ts 文件为 qm 文件
     for(tsfile, TRANSLATIONS) {
