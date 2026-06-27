@@ -170,6 +170,7 @@ Q_SIGNALS:
     // 设置视频播放插件
     void sigSetMeidaType(VideoWidgetType type);
 
+#ifdef USE_CHARTS
     // 设置Cpu控件显示
     void setCpuVisible(bool bVisble);
     // 设置控件位置
@@ -195,6 +196,7 @@ Q_SIGNALS:
     void setMemoryBackgroundColor(const QColor &color);
     // 设置控件透明度
     void setMemoryTransparent(int value);
+#endif
 
     //设置网速控件显示
     void setNetworkVisible(bool bVisble);

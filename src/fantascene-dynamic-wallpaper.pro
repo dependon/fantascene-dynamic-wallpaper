@@ -3,7 +3,12 @@ TEMPLATE = app
 TARGET = fantascene-dynamic-wallpaper
 
 
-QT += gui core widgets dbus concurrent sql network charts
+QT += gui core widgets dbus concurrent sql network
+
+qtHaveModule(charts){
+   QT += charts
+   DEFINES += USE_CHARTS
+}
 
 qtHaveModule(webengine){
    QT += webengine webenginewidgets
@@ -80,8 +85,6 @@ SOURCES += main.cpp \
     listview/onlineclient.cpp \
     media/mediapluginwidget.cpp \
     media/qmediawid.cpp \
-    othertools/cpumonitorwidget.cpp \
-    othertools/memorymonitorwidget.cpp \
     othertools/networkmonitorwidget.cpp \
     othertools/othersetdialog.cpp \
     othertools/systemmonitor.cpp \
@@ -107,6 +110,15 @@ SOURCES += main.cpp \
     download/customwebengineview.cpp \
     db/dbmanager.cpp
 
+contains(DEFINES, USE_CHARTS) {
+    SOURCES += \
+        othertools/cpumonitorwidget.cpp \
+        othertools/memorymonitorwidget.cpp
+    HEADERS += \
+        othertools/cpumonitorwidget.h \
+        othertools/memorymonitorwidget.h
+}
+
 HEADERS += \
     download/downloadmanager.h \
     download/tcpclient.h \
@@ -114,8 +126,6 @@ HEADERS += \
     listview/onlineclient.h \
     media/mediapluginwidget.h \
     media/qmediawid.h \
-    othertools/cpumonitorwidget.h \
-    othertools/memorymonitorwidget.h \
     othertools/networkmonitorwidget.h \
     othertools/othersetdialog.h \
     othertools/systemmonitor.h \

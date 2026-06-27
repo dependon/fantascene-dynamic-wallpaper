@@ -2,6 +2,7 @@
 #define CPUMONITORWIDGET_H
 
 #include <QWidget>
+#ifdef USE_CHARTS
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
@@ -39,4 +40,5 @@ private:
     SystemMonitor *m_monitor{nullptr};
 };
 
+#endif // USE_CHARTS
 #endif // CPUMONITORWIDGET_H

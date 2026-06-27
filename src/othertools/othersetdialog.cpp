@@ -242,6 +242,7 @@ void OtherSetDialog::on_trSlider_sliderReleased()
 }
 
 
+#ifdef USE_CHARTS
 void OtherSetDialog::on_CpuVcombox_currentTextChanged(const QString &arg1)
 {
     if(arg1 == tr("True"))
@@ -269,7 +270,9 @@ void OtherSetDialog::on_MemoryVcombox_currentTextChanged(const QString &arg1)
         Q_EMIT dApp->setMemoryVisible(false);
     }
 }
+#endif
 
+#ifdef USE_CHARTS
 void OtherSetDialog::on_x_memory_editingFinished()
 {
     IniManager::instance()->setValue("MemoryDisplay/X",ui->x_memory->text().toInt());
@@ -313,6 +316,7 @@ void OtherSetDialog::on_trSlider_memory_sliderReleased()
     }
 }
 
+
 void OtherSetDialog::on_x_cpu_editingFinished()
 {
     IniManager::instance()->setValue("CpuDisplay/X",ui->x_cpu->text().toInt());
@@ -323,18 +327,6 @@ void OtherSetDialog::on_y_cpu_editingFinished()
 {
     IniManager::instance()->setValue("CpuDisplay/Y",ui->y_cpu->text().toInt());
     Q_EMIT dApp->setCpuMove(ui->x_cpu->text().toInt(),ui->y_cpu->text().toInt());
-}
-
-void OtherSetDialog::on_selectBtn_cpu_clicked()
-{
-    QColor color = QColorDialog::getColor();
-    int sliderValue = ui->trSlider_cpu->value();
-    if (color.isValid())
-    {
-        color.setAlpha(sliderValue);
-        IniManager::instance()->setValue("CpuDisplay/Color",color);
-        Q_EMIT dApp->setCpuColor(color);
-    }
 }
 
 void OtherSetDialog::on_trSlider_cpu_sliderReleased()
@@ -355,6 +347,17 @@ void OtherSetDialog::on_trSlider_cpu_sliderReleased()
             IniManager::instance()->setValue("CpuDisplay/Color",color);
             Q_EMIT dApp->setCpuColor(color);
         }
+    }
+}
+void OtherSetDialog::on_selectBtn_cpu_clicked()
+{
+    QColor color = QColorDialog::getColor();
+    int sliderValue = ui->trSlider_cpu->value();
+    if (color.isValid())
+    {
+        color.setAlpha(sliderValue);
+        IniManager::instance()->setValue("CpuDisplay/Color",color);
+        Q_EMIT dApp->setCpuColor(color);
     }
 }
 
@@ -384,6 +387,66 @@ void OtherSetDialog::on_height_memory_editingFinished()
     IniManager::instance()->setValue("MemoryDisplay/Height",ui->height_memory->text().toInt());
     Q_EMIT dApp->setMemorySize(ui->width_memory->text().toInt(),ui->height_memory->text().toInt());
 }
+
+
+void OtherSetDialog::on_selectBtn_memory_2_clicked()
+{
+    // 设置选项，使对话框显示透明度选择
+    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
+
+    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
+    if (color.isValid())
+    {
+        IniManager::instance()->setValue("MemoryDisplay/Color_Font",color);
+        Q_EMIT dApp->setMemoryFontColor(color);
+    }
+}
+
+
+void OtherSetDialog::on_selectBtn_memory_3_clicked()
+{
+    // 设置选项，使对话框显示透明度选择
+    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
+
+    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
+    if (color.isValid())
+    {
+        IniManager::instance()->setValue("MemoryDisplay/Color_Background",color);
+        Q_EMIT dApp->setMemoryBackgroundColor(color);
+    }
+}
+
+
+void OtherSetDialog::on_selectBtn_cpu_2_clicked()
+{
+    // 设置选项，使对话框显示透明度选择
+    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
+
+    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
+    if (color.isValid())
+    {
+        IniManager::instance()->setValue("CpuDisplay/Color_Font",color);
+        Q_EMIT dApp->setCpuFontColor(color);
+    }
+}
+
+
+void OtherSetDialog::on_selectBtn_cpu_3_clicked()
+{
+    // 设置选项，使对话框显示透明度选择
+    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
+
+    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
+    if (color.isValid())
+    {
+        IniManager::instance()->setValue("CpuDisplay/Color_Background",color);
+        Q_EMIT dApp->setCpuBackgroundColor(color);
+    }
+
+}
+
+
+#endif
 
 
 void OtherSetDialog::on_NetworkVcombox_currentTextChanged(const QString &arg1)
@@ -486,61 +549,5 @@ void OtherSetDialog::on_height_network_editingFinished()
 {
     IniManager::instance()->setValue("NetworkDisplay/Height",ui->height_network->text().toInt());
     Q_EMIT dApp->setNetworkSize(ui->width_network->text().toInt(),ui->height_network->text().toInt());
-}
-
-
-void OtherSetDialog::on_selectBtn_memory_2_clicked()
-{
-    // 设置选项，使对话框显示透明度选择
-    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
-
-    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
-    if (color.isValid())
-    {
-        IniManager::instance()->setValue("MemoryDisplay/Color_Font",color);
-        Q_EMIT dApp->setMemoryFontColor(color);
-    }
-}
-
-
-void OtherSetDialog::on_selectBtn_memory_3_clicked()
-{
-    // 设置选项，使对话框显示透明度选择
-    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
-
-    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
-    if (color.isValid())
-    {
-        IniManager::instance()->setValue("MemoryDisplay/Color_Background",color);
-        Q_EMIT dApp->setMemoryBackgroundColor(color);
-    }
-}
-
-
-void OtherSetDialog::on_selectBtn_cpu_2_clicked()
-{
-    // 设置选项，使对话框显示透明度选择
-    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
-
-    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
-    if (color.isValid())
-    {
-        IniManager::instance()->setValue("CpuDisplay/Color_Font",color);
-        Q_EMIT dApp->setCpuFontColor(color);
-    }
-}
-
-
-void OtherSetDialog::on_selectBtn_cpu_3_clicked()
-{
-    // 设置选项，使对话框显示透明度选择
-    QColorDialog::ColorDialogOptions options = QColorDialog::ShowAlphaChannel;
-
-    QColor color = QColorDialog::getColor(Qt::white, nullptr, "Select Color", options);
-    if (color.isValid())
-    {
-        IniManager::instance()->setValue("CpuDisplay/Color_Background",color);
-        Q_EMIT dApp->setCpuBackgroundColor(color);
-    }
 }
 

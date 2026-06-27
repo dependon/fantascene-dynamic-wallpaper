@@ -2,6 +2,7 @@
 #define MEMORYMONITORWIDGET_H
 
 #include <QWidget>
+#ifdef USE_CHARTS
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
@@ -39,8 +40,7 @@ private:
     QChartView *m_memoryChartView{nullptr};
     QAreaSeries *m_areaSeries{nullptr};
     SystemMonitor *m_monitor{nullptr};
-
-
 };
 
+#endif // USE_CHARTS
 #endif // MEMORYMONITORWIDGET_H

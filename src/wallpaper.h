@@ -38,8 +38,10 @@
 #include <Windows.h>
 #endif
 class TimeDisplayWidget;
+#ifdef USE_CHARTS
 class MemoryMonitorWidget;
 class CpuMonitorWidget;
+#endif
 class NetworkMonitorWidget;
 
 class QLabel;
@@ -78,8 +80,10 @@ public Q_SLOTS:
     void slotWallpaperEventChanged(bool bRet);
 
     void setTimeVisible (bool bVisible );
+#ifdef USE_CHARTS
     void setCpuVisible (bool bVisible );
     void setMemoryVisible (bool bVisible );
+#endif
     void setNetworkVisible(bool bVisible );
 
 private:
@@ -116,10 +120,12 @@ private:
 
     TimeDisplayWidget * m_timedisplayWidget{nullptr};
     bool m_TimeVisible{false};
+#ifdef USE_CHARTS
     CpuMonitorWidget * m_cpudisplayWidget{nullptr};
     bool m_CpuVisible{false};
     MemoryMonitorWidget * m_memorydisplayWidget{nullptr};
     bool m_MemoryVisible{false};
+#endif
     NetworkMonitorWidget * m_networkMonitorWidget{nullptr};
     bool m_NetworkVisible{false};
 

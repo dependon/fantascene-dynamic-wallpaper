@@ -38,6 +38,7 @@ private Q_SLOTS:
     void on_trSlider_sliderReleased();
 
 
+#ifdef USE_CHARTS
    //Cpu Tool
     void on_CpuVcombox_currentTextChanged(const QString &arg1);
 
@@ -76,6 +77,7 @@ private Q_SLOTS:
     void on_selectBtn_memory_2_clicked();
 
     void on_selectBtn_memory_3_clicked();
+#endif
 
 
     //NetWork tool
