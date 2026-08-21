@@ -54,6 +54,8 @@
 #include <X11/Xlib.h>
 #include <xcb/xcb.h>
 
+#include "./utils/gxde_utils.h"
+
 Display *display = nullptr;
 xcb_connection_t *connection = nullptr;
 int find_pid_by_name1(char *ProcName, int *foundpid)
@@ -363,9 +365,15 @@ void Application::setSpecialDesktop()
                     m_screenWid.push_back(id);
                 }
             }
-            QTimer::singleShot(500, []() {
-                system("deepin-kwin --replace &");
-            });
+
+            // 针对GXDE-Wlcom不做deepin-kwin --replace
+            // 否则GXDE-Wlcom的XWayland会被KWin接管，导致XWayland程序不显示
+            // Closes: #IK9JEQ
+            if (!Utils::GXDE::IsGXWM()) {
+                QTimer::singleShot(500, []() {
+                    system("deepin-kwin --replace &");
+                });
+            }
 
 
         }

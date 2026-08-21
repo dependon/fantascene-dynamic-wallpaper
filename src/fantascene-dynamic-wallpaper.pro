@@ -46,7 +46,7 @@ RCC_DIR = $$DESTDIR/.qrc
 UI_DIR = $$DESTDIR/.u
 
     CONFIG += link_pkgconfig no_keywords
- PKGCONFIG += xcb-ewmh mpv x11 xext xrender
+ PKGCONFIG += xcb-ewmh mpv wayland-client x11 xext xrender
  PKGCONFIG +=gio-2.0 glib-2.0 gio-unix-2.0
  LIBS +=-lgio-2.0 -lglib-2.0
 
@@ -57,7 +57,8 @@ SOURCES +=  \
     desktop/iconprovider.cpp \
     desktop/iconview.cpp \
     desktop/delegateicon.cpp \
-    desktop/gioclass.cpp
+    desktop/gioclass.cpp \
+    utils/gxde_utils.cc
 HEADERS += \
     desktop/customsortfilterproxymodel.h \
     desktop/filemodel.h \
@@ -65,7 +66,8 @@ HEADERS += \
     desktop/iconprovider.h \
     desktop/iconview.h \
     desktop/delegateicon.h \
-    desktop/gioclass.h
+    desktop/gioclass.h \
+    utils/gxde_utils.h
 }
 win32 {
     INCLUDEPATH += $$PWD/../3rd/include/
