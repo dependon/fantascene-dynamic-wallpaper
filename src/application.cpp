@@ -369,11 +369,12 @@ void Application::setSpecialDesktop()
             // 针对GXDE-Wlcom不做deepin-kwin --replace
             // 否则GXDE-Wlcom的XWayland会被KWin接管，导致XWayland程序不显示
             // Closes: #IK9JEQ
-            if (!Utils::GXDE::IsGXWM()) {
-                QTimer::singleShot(500, []() {
-                    system("deepin-kwin --replace &");
-                });
-            }
+            //直接屏蔽掉deepin-kwin --replace &，现在已经不清楚是否还有用处
+//            if (!Utils::GXDE::IsGXWM()) {
+//                QTimer::singleShot(500, []() {
+//                    system("deepin-kwin --replace &");
+//                });
+//            }
 
 
         }
