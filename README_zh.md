@@ -2,9 +2,9 @@
 
 ### Linux 下支持 X11 与 Wayland 的动态壁纸管理器
 
-在原生 Wayland 会话中，程序通过 LayerShellQt 为每个显示器创建独立的背景层窗口，支持显示器热插拔以及主、副屏分别设置壁纸。X11 会话继续使用原有桌面窗口实现。
-
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
+
+在原生 Wayland 会话中，程序通过 LayerShellQt 为每个显示器创建独立的背景层窗口，支持显示器热插拔以及主、副屏分别设置壁纸（请参阅[Wayland.zh.md](./md/Wayland.zh.md)），需要合成器支持`zwlr_layer_shell_v1`。X11 会话继续使用原有桌面窗口实现。
 
 ### 官网:
 

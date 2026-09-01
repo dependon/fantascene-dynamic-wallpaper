@@ -2,7 +2,7 @@
 
 ### Animated wallpaper manager for X11 and Wayland under Linux.
 
-In a native Wayland session, the application uses LayerShellQt to create one background-layer surface per output. It supports monitor hot-plugging and separate primary/secondary wallpapers. The existing desktop-window implementation remains available on X11.
+In a native Wayland session, the application uses LayerShellQt to create one background-layer surface per output. It supports monitor hot-plugging and separate primary/secondary wallpapers. (Please refer to [Wayland.md](./md/Wayland.md)), and your Wayland compositor must support the `zwlr_layer_shell_v1` protocol. The existing desktop-window implementation remains available on X11.
 
 ### Official website
 
