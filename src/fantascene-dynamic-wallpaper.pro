@@ -25,6 +25,15 @@ qtHaveModule(webengine){
 
 contains(QT_MAJOR_VERSION, 6) {
     QT += openglwidgets
+
+    isEmpty(LAYERSHELLQT_INCLUDE_DIR) {
+        LAYERSHELLQT_INCLUDE_DIR = /usr/include
+    }
+    unix:exists($$LAYERSHELLQT_INCLUDE_DIR/LayerShellQt/Window) {
+        DEFINES += HAVE_LAYER_SHELL_QT
+        INCLUDEPATH += $$LAYERSHELLQT_INCLUDE_DIR
+        LIBS += -lLayerShellQtInterface
+    }
 }
 
 CONFIG += c++11
@@ -111,6 +120,11 @@ SOURCES += main.cpp \
     download/downloadwidget.cpp \
     download/customwebengineview.cpp \
     db/dbmanager.cpp
+
+contains(DEFINES, HAVE_LAYER_SHELL_QT) {
+    SOURCES += utils/wayland_utils.cc
+    HEADERS += utils/wayland_utils.h
+}
 
 contains(DEFINES, USE_CHARTS) {
     SOURCES += \
