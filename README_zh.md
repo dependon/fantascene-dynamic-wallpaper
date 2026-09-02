@@ -1,8 +1,10 @@
 # 星火动态壁纸
 
-### 在Linux下的基于X11的动态壁纸管理器
+### Linux 下支持 X11 与 Wayland 的动态壁纸管理器
 
 [![biMxKK.gif](https://s4.ax1x.com/2022/02/24/biMxKK.gif)](https://imgtu.com/i/biMxKK)
+
+在原生 Wayland 会话中，程序通过 LayerShellQt 为每个显示器创建独立的背景层窗口，支持显示器热插拔以及主、副屏分别设置壁纸（请参阅[Wayland.zh.md](./md/Wayland.zh.md)），需要合成器支持`zwlr_layer_shell_v1`。X11 会话继续使用原有桌面窗口实现。
 
 ### 官网:
 
@@ -121,9 +123,12 @@ Please see: [https://github.com/dependon/mpv-dynamic-wallpaper](https://github.c
 ## 构建依赖
 
 ```
-qt >=5.8
+Qt 6（原生 Wayland/LayerShell 构建）
+LayerShellQt
 mpv >=29.0
 ```
+
+Qt 5 仍可用于 X11 构建；原生 Wayland 多屏支持需要 Qt 6、Qt Wayland 和 LayerShellQt。
 
 ### debian/Deepin/Other
 
@@ -132,7 +137,7 @@ git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
 
-sh start_makeLocal.sh 
+sh qt6-build.sh
 
 ```
 

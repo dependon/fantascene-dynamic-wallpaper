@@ -30,6 +30,7 @@
 #include <QDateTime>
 #include <QVBoxLayout>
 #include <QSpacerItem>
+#include <QHash>
 
 #include "webwidget.h"
 #include "desktop/iconview.h"
@@ -45,12 +46,21 @@ class CpuMonitorWidget;
 class NetworkMonitorWidget;
 
 class QLabel;
+class QScreen;
+#ifdef HAVE_LAYER_SHELL_QT
+namespace Utils {
+namespace LayerShell {
+class WaylandWallpaperSurface;
+}
+}
+#endif
 //class Desktop;
 class Wallpaper : public QWidget
 {
     Q_OBJECT
 public:
     explicit Wallpaper(QString path = nullptr, int currentScreen = 0, QWidget *parent = nullptr);
+    ~Wallpaper() override;
 
     void changeScreenMode(ScreenMode mode);
     void LeftMouseMove(QWidget *eventsReciverWidget, QPoint clickPos);
@@ -89,6 +99,11 @@ public Q_SLOTS:
 private:
     void registerDesktop();
     void updateWindowTypeForLayering();
+    bool isLayerShellController() const;
+#ifdef HAVE_LAYER_SHELL_QT
+    void syncWaylandScreens();
+    void updateWaylandScreenFiles();
+#endif
     bool event(QEvent *event) override;
     void showEvent(QShowEvent *event);
 
@@ -133,6 +148,11 @@ private:
     QVBoxLayout *m_rightLayout{nullptr};
     QSpacerItem *m_leftSpacer{nullptr};
     QSpacerItem *m_rightSpacer{nullptr};
+    qint32 m_volume{0};
+
+#ifdef HAVE_LAYER_SHELL_QT
+    QHash<QScreen *, Utils::LayerShell::WaylandWallpaperSurface *> m_waylandSurfaces;
+#endif
 
 #ifdef Q_OS_WINDOWS
     HHOOK hook;

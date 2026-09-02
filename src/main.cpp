@@ -25,6 +25,9 @@
 #include "wallpaper.h"
 #include "dbuswallpaperservice.h"
 #include "settingwindow.h"
+#ifdef HAVE_LAYER_SHELL_QT
+#include "utils/wayland_utils.h"
+#endif
 
 #include <QObject>
 #include <QMainWindow>
@@ -41,6 +44,8 @@
 #include <QStyleFactory>
 #include <QScreen>
 #include <QTextStream>
+#include <QMessageBox>
+#include <QTimer>
 
 
 /* instance lock path */
@@ -116,11 +121,39 @@ int main(int argc, char *argv[])
 {
 
 #ifdef Q_OS_LINUX
+#ifdef HAVE_LAYER_SHELL_QT
+    const QByteArray requestedPlatform = qgetenv("QT_QPA_PLATFORM");
+    const bool platformAllowsWayland = requestedPlatform.isEmpty()
+        || requestedPlatform.contains("wayland");
+    const bool waylandSession = platformAllowsWayland
+        && (requestedPlatform.startsWith("wayland")
+        || qEnvironmentVariable("XDG_SESSION_TYPE") == QLatin1String("wayland")
+        || !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY"));
+
+    // Enforce Wayland platform under Wayland so LayerShell sets correctly.
+    if (waylandSession) {
+        qputenv("QT_QPA_PLATFORM", "wayland");
+    } else if (requestedPlatform.isEmpty()) {
+        qputenv("QT_QPA_PLATFORM", "xcb");
+    }
+#else
+    // Qt 5 builds retain the established X11 backend.
+    // While Qt6 builds gain LayerShellQt6 support (I have to pick one from
+    // LayerShellQt5 and LayerShellQt6 because those two are conflict on Debian)
     qputenv("QT_QPA_PLATFORM", "xcb");
+#endif
     mallopt(M_ARENA_MAX, 1);
 #endif
     Application a(argc, argv);
     a.setApplicationVersion("1.0.0");
+
+    bool layerShellUnavailable = false;
+#ifdef HAVE_LAYER_SHELL_QT
+    if (QGuiApplication::platformName() == QLatin1String("wayland")) {
+        Utils::LayerShell::DetectLayerShellSupport();
+        layerShellUnavailable = !Utils::LayerShell::IsLayerShellAvailable();
+    }
+#endif
 #ifndef QT_DEBUG
     // 安装自定义的消息处理程序
     qInstallMessageHandler(customMessageHandler);
@@ -170,6 +203,20 @@ int main(int argc, char *argv[])
     mainwindw->setWindowIcon(QIcon(":/install/wallpaper.png"));
     mainwindw->move(QGuiApplication::primaryScreen()->geometry().center() - mainwindw->rect().center());
 
+    if (layerShellUnavailable) {
+        QTimer::singleShot(0, mainwindw, [mainwindw]() {
+            mainwindw->show();
+            QMessageBox::warning(
+                mainwindw,
+                QObject::tr("Wayland compositor is not supported"),
+                QObject::tr("The current Wayland compositor does not provide "
+                    "zwlr_layer_shell_v1. Dynamic wallpaper surfaces have been "
+                    "disabled to prevent an ordinary fullscreen window from being "
+                    "created. GNOME Wayland requires a GNOME Shell extension or "
+                    "another compatible backend."));
+        });
+    }
+
     QString envName("DDE_SESSION_PROCESS_COOKIE_ID");
     QByteArray cookie = qgetenv(envName.toUtf8().data());
     qunsetenv(envName.toUtf8().data());
@@ -184,5 +231,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-
-

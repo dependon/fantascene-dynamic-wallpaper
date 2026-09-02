@@ -20,6 +20,12 @@
  */
 #include "wallpaper.h"
 
+#ifdef HAVE_LAYER_SHELL_QT
+#include "utils/wayland_utils.h"
+
+using Utils::LayerShell::WaylandWallpaperSurface;
+#endif
+
 #ifdef Q_OS_LINUX
 #include <xcb/xcb.h>
 #include <xcb/xcb_ewmh.h>
@@ -156,13 +162,26 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
 
     QScreen *primaryScreen = QGuiApplication::primaryScreen();
-    // 监听屏幕大小变化信号
-    QObject::connect(primaryScreen, &QScreen::geometryChanged, [=]() {
-        QTimer::singleShot(1000, [=] {
+    if (primaryScreen) {
+        // 监听屏幕大小变化信号
+        QObject::connect(primaryScreen, &QScreen::geometryChanged, this, [=]() {
+            QTimer::singleShot(1000, this, &Wallpaper::updateGeometry);
             updateGeometry();
         });
-        updateGeometry();
-    });
+    }
+
+#ifdef HAVE_LAYER_SHELL_QT
+    if (isLayerShellController()) {
+        connect(qApp, &QGuiApplication::screenAdded, this, [this](QScreen *) {
+            QTimer::singleShot(0, this, &Wallpaper::syncWaylandScreens);
+        });
+        connect(qApp, &QGuiApplication::screenRemoved, this, [this](QScreen *) {
+            QTimer::singleShot(0, this, &Wallpaper::syncWaylandScreens);
+        });
+        connect(qApp, &QGuiApplication::primaryScreenChanged,
+                this, [this](QScreen *) { updateWaylandScreenFiles(); });
+    }
+#endif
 
     QDBusConnection::sessionBus().connect("com.deepin.SessionManager", "/com/deepin/SessionManager",
                                           "org.freedesktop.DBus.Properties", "PropertiesChanged", this,
@@ -261,7 +280,100 @@ Wallpaper::Wallpaper(QString path, int currentScreen, QWidget *parent)
 
 }
 
+Wallpaper::~Wallpaper()
+{
+#ifdef HAVE_LAYER_SHELL_QT
+    if (m_iconView && isLayerShellController()) {
+        m_iconView->setParent(this);
+    }
+    qDeleteAll(m_waylandSurfaces);
+    m_waylandSurfaces.clear();
+#endif
+}
+
+bool Wallpaper::isLayerShellController() const
+{
+#ifdef HAVE_LAYER_SHELL_QT
+    return QGuiApplication::platformName() == QLatin1String("wayland");
+#else
+    return false;
+#endif
+}
+
+#ifdef HAVE_LAYER_SHELL_QT
+void Wallpaper::syncWaylandScreens()
+{
+    if (!isLayerShellController() ||
+        !Utils::LayerShell::IsLayerShellAvailable()) {
+        return;
+    }
+
+    const QList<QScreen *> screens = QGuiApplication::screens();
+    for (auto it = m_waylandSurfaces.begin(); it != m_waylandSurfaces.end();) {
+        if (!screens.contains(it.key())) {
+            if (m_iconView && m_iconView->parentWidget() == it.value()) {
+                m_iconView->setParent(this);
+                m_iconView->hide();
+            }
+            delete it.value();
+            it = m_waylandSurfaces.erase(it);
+        } else {
+            ++it;
+        }
+    }
+
+    for (QScreen *screen : screens) {
+        if (!m_waylandSurfaces.contains(screen)) {
+            auto *surface = new WaylandWallpaperSurface(screen);
+            surface->SetEventPenetration(dApp->m_moreData.isEventPenetration);
+            surface->SetVolume(m_volume);
+            m_waylandSurfaces.insert(screen, surface);
+        }
+    }
+
+    dApp->m_currentScreenNum = screens.size();
+    updateWaylandScreenFiles();
+}
+
+void Wallpaper::updateWaylandScreenFiles()
+{
+    if (!isLayerShellController() ||
+        !Utils::LayerShell::IsLayerShellAvailable()) {
+        return;
+    }
+
+    QScreen *primary = QGuiApplication::primaryScreen();
+    for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+        surface->SetOverlayWidget(nullptr);
+    }
+    for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+        const bool isPrimary = surface->screen() == primary;
+        surface->SetPrimary(isPrimary);
+        surface->SetOverlayWidget(isPrimary && dApp->m_moreData.isShowDesktopIcon
+                                      ? m_iconView
+                                      : nullptr);
+        const QString path = (!isPrimary && dApp->m_isPath2)
+                ? dApp->m_currentPath2 : dApp->m_currentPath;
+        if (!path.isEmpty()) {
+            surface->SetFile(path);
+            if (dApp->m_currentIsPlay) {
+                surface->Play();
+            } else {
+                surface->Pause();
+            }
+        }
+    }
+}
+#endif
+
 void Wallpaper::changeScreenMode(ScreenMode mode) {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        Q_UNUSED(mode);
+        updateWaylandScreenFiles();
+#endif
+        return;
+    }
     switch (mode) {
         case IdCopyScreen: {
             if (QGuiApplication::screens().size() > 1) {
@@ -315,6 +427,18 @@ void Wallpaper::setScreen(const int &index) {
 
 void Wallpaper::setFile(const QString &path) {
     dApp->m_currentPath = path;
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        QScreen *primary = QGuiApplication::primaryScreen();
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            if (surface->screen() == primary || !dApp->m_isPath2) {
+                surface->SetFile(path);
+            }
+        }
+#endif
+        Q_EMIT dApp->sigReadPlayerConfig();
+        return;
+    }
     if (m_iconView) {
         m_iconView->setParent(this);
     }
@@ -363,6 +487,18 @@ void Wallpaper::setFile(const QString &path) {
 }
 
 void Wallpaper::setFile2(const QString &path) {
+    dApp->m_currentPath2 = path;
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        QScreen *primary = QGuiApplication::primaryScreen();
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            if (surface->screen() != primary) {
+                surface->SetFile(path);
+            }
+        }
+#endif
+        return;
+    }
     if (path.contains("html") || path.contains("www") || path.contains("http//") || path.contains("https//")) {
         if (qApp->screens().count() > 1 && dApp->m_cuurentMode == IdCopyScreen) {
 
@@ -403,6 +539,15 @@ void Wallpaper::setFile2(const QString &path) {
 }
 
 void Wallpaper::setVolume(const qint32 volume) {
+    m_volume = volume;
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->SetVolume(volume);
+        }
+#endif
+        return;
+    }
     if (m_media) {
         m_media->setVolume(volume);
     }
@@ -414,10 +559,27 @@ void Wallpaper::setVolume(const qint32 volume) {
 
 void Wallpaper::clear() {
     stop();
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->hide();
+        }
+#endif
+        return;
+    }
     hide();
 }
 
 void Wallpaper::play() {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->Play();
+        }
+#endif
+        dApp->m_currentIsPlay = true;
+        return;
+    }
     if (!m_webView && m_media) {
         m_media->show();
         m_media->play();
@@ -430,6 +592,15 @@ void Wallpaper::play() {
 }
 
 void Wallpaper::pause() {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->Pause();
+        }
+#endif
+        dApp->m_currentIsPlay = false;
+        return;
+    }
     dApp->m_currentIsPlay = false;
     if (m_media) {
         m_media->pause();
@@ -440,6 +611,15 @@ void Wallpaper::pause() {
 }
 
 void Wallpaper::stop() {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->Stop();
+        }
+#endif
+        dApp->m_currentIsPlay = false;
+        return;
+    }
     if (m_media) {
         m_media->stop();
     }
@@ -588,6 +768,14 @@ HWND GetWorkerDesktop(){
 
 void Wallpaper::registerDesktop() {
 #ifdef Q_OS_LINUX
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        if (Utils::LayerShell::IsLayerShellAvailable()) {
+            QTimer::singleShot(0, this, &Wallpaper::syncWaylandScreens);
+        }
+#endif
+        return;
+    }
     // if(dApp->m_screenDesktopWid.size() > 0)
     // {
     //     int i = dApp->m_screenDesktopWid.size();
@@ -748,6 +936,14 @@ void Wallpaper::onSysLockState(QString, QVariantMap key2value, QStringList) {
 }
 
 void Wallpaper::slotSetMpvValue(const QString &key, const QString &value) {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->SetPlayerValue(key, value);
+        }
+#endif
+        return;
+    }
     if (m_media) {
         if (key == "video-aspect") {
             m_media->setAspect(value.toDouble());
@@ -773,6 +969,12 @@ void Wallpaper::slotSetTransparency(const int value) {
 }
 
 void Wallpaper::updateGeometry() {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        syncWaylandScreens();
+#endif
+        return;
+    }
     QTimer::singleShot(0, [=] {
         dApp->m_currentScreenNum = QGuiApplication::screens().size();
 
@@ -1016,6 +1218,12 @@ void Wallpaper::slotMouseClick(const int &index) {
 }
 
 void Wallpaper::slotActiveWallpaper(bool bRet) {
+    if (isLayerShellController()) {
+        Q_UNUSED(bRet);
+        // Layer-shell owns the stacking order. Background surfaces must not
+        // be raised/lowered as ordinary windows.
+        return;
+    }
     // 根据是否显示桌面图标决定窗口层级
     // false=显示桌面图标时窗口在最上方, true=不显示桌面图标时窗口在最下方
 
@@ -1136,6 +1344,14 @@ void Wallpaper::updateWindowTypeForLayering() {
 }
 
 void Wallpaper::slotWallpaperEventChanged(bool bRet) {
+    if (isLayerShellController()) {
+#ifdef HAVE_LAYER_SHELL_QT
+        for (WaylandWallpaperSurface *surface : m_waylandSurfaces) {
+            surface->SetEventPenetration(bRet);
+        }
+#endif
+        return;
+    }
 #ifdef Q_OS_LINUX
     Display * display = XOpenDisplay(NULL);
     Atom xa = 1247;

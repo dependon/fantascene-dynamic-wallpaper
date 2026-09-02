@@ -1,6 +1,8 @@
 # Fantascene-dynamic-wallpaper
 
-### Managed animated wallpaper based on X11 under Linux.
+### Animated wallpaper manager for X11 and Wayland under Linux.
+
+In a native Wayland session, the application uses LayerShellQt to create one background-layer surface per output. It supports monitor hot-plugging and separate primary/secondary wallpapers. (Please refer to [Wayland.md](./md/Wayland.md)), and your Wayland compositor must support the `zwlr_layer_shell_v1` protocol. The existing desktop-window implementation remains available on X11.
 
 ### Official website
 
@@ -111,9 +113,12 @@ Please see: [https://sourceforge.net/projects/fantascene-dynamic-wallpaper/files
 ## Build Dependencies
 
 ```
-qt >=5.8
+Qt 6 (for native Wayland/LayerShell builds)
+LayerShellQt
 mpv >=29.0
 ```
+
+Qt 5 remains supported for X11 builds. Native Wayland multi-monitor support requires Qt 6, Qt Wayland, and LayerShellQt.
 
 ### debian/Deepin/Other
 
@@ -122,7 +127,7 @@ git clone https://gitee.com/liuminghang/fantascene-dynamic-wallpaper
 
 cd fantascene-dynamic-wallpaper
 
-sh start_makeLocal.sh
+sh qt6-build.sh
 
 ```
 

@@ -4,22 +4,22 @@ Priority: optional
 Maintainer: liuminghang <liuminghang0821@gmail.com>
 Build-Depends:  debhelper (>= 9),
 				pkg-config, 
-				qt5-qmake, 
-				qtbase5-dev, 
-				qtmultimedia5-dev, 
+				qt6-base-dev,
+				qt6-multimedia-dev,
 				libxcb-ewmh-dev,
 				libmpv-dev ,
-				qttools5-dev-tools, 
+				qt6-tools-dev-tools,
 				libglib2.0-dev,
 				libmtdev-dev ,
 				libwayland-dev,
+				liblayershellqtinterface-dev,
 				libx11-xcb-dev , 
 				fakeroot ,
-				qtwebengine5-dev [i386 amd64 arm64 mips64el] | libqt5webkit5-dev [i386 amd64 arm64 mips64el],
+				qt6-webengine-dev [i386 amd64 arm64],
 				libxext-dev ,
 				libxrender-dev ,
 				libxcb-shape0-dev ,
-                                libqt5charts5-dev
+                                qt6-charts-dev
 
 Rules-Requires-Root: no
 Provides: fantascene-gxde
