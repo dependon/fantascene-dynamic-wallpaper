@@ -107,12 +107,7 @@
       <widget class="QComboBox" name="hwdecBox">
        <item>
         <property name="text">
-         <string notr="true">gpu</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">gpu-next</string>
+         <string notr="true">auto-safe</string>
         </property>
        </item>
        <item>

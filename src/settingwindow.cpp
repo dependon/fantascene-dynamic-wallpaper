@@ -277,7 +277,11 @@ void settingWindow::readSettings()
 
     dApp->m_moreData.isAuto = IniManager::instance()->value("WallPaper/videoAutoMode").toInt();
     dApp->m_moreData.fps = IniManager::instance()->value("WallPaper/fps").toInt();
-    dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString();
+    dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString().trimmed();
+    if (dApp->m_moreData.hwdec.isEmpty() || dApp->m_moreData.hwdec == "gpu" ||
+            dApp->m_moreData.hwdec == "gpu-next") {
+        dApp->m_moreData.hwdec = "auto-safe";
+    }
     dApp->m_moreData.vo = IniManager::instance()->value("WallPaper/vo").toString();
     dApp->m_wallpaperEnginePath = IniManager::instance()->value("WallPaper/wallpaperEnginePath").toString();
     if(IniManager::instance()->contains("WallPaper/isPlayList")){
@@ -324,7 +328,7 @@ void settingWindow::readSettings()
     dApp->setPlayListTimer(dApp->m_PlaylistTimer);
 
     if (dApp->m_moreData.hwdec.isEmpty()) {
-        dApp->m_moreData.hwdec = "gpu";
+        dApp->m_moreData.hwdec = "auto-safe";
     }
     if(IniManager::instance()->contains("WallPaper/DesktopTransparency"))
     {
@@ -1515,4 +1519,3 @@ void settingWindow::on_closeBtn_clicked()
     }
 
 }
-

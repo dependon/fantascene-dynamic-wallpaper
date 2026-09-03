@@ -122,13 +122,37 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_LINUX
 #ifdef HAVE_LAYER_SHELL_QT
+    const bool nativeWaylandSession =
+        qEnvironmentVariable("XDG_SESSION_TYPE") == QLatin1String("wayland")
+        || !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY");
+
+    // Older desktop files always appended "--platform xcb".  That overrides
+    // QT_QPA_PLATFORM during QApplication construction and forces a Wayland
+    // session through XWayland, bypassing the layer-shell backend.  Keep an
+    // explicit QT_QPA_PLATFORM=xcb as the supported opt-out, but migrate the
+    // obsolete launcher argument in-place so existing autostart copies work.
+    if (nativeWaylandSession &&
+            qgetenv("QT_QPA_PLATFORM") != QByteArrayLiteral("xcb")) {
+        for (int i = 1; i + 1 < argc; ++i) {
+            const QByteArray option(argv[i]);
+            if ((option == QByteArrayLiteral("--platform") ||
+                    option == QByteArrayLiteral("-platform")) &&
+                    QByteArray(argv[i + 1]) == QByteArrayLiteral("xcb")) {
+                for (int j = i; j + 2 < argc; ++j) {
+                    argv[j] = argv[j + 2];
+                }
+                argc -= 2;
+                argv[argc] = nullptr;
+                --i;
+            }
+        }
+    }
+
     const QByteArray requestedPlatform = qgetenv("QT_QPA_PLATFORM");
     const bool platformAllowsWayland = requestedPlatform.isEmpty()
         || requestedPlatform.contains("wayland");
     const bool waylandSession = platformAllowsWayland
-        && (requestedPlatform.startsWith("wayland")
-        || qEnvironmentVariable("XDG_SESSION_TYPE") == QLatin1String("wayland")
-        || !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY"));
+        && (requestedPlatform.startsWith("wayland") || nativeWaylandSession);
 
     // Enforce Wayland platform under Wayland so LayerShell sets correctly.
     if (waylandSession) {
