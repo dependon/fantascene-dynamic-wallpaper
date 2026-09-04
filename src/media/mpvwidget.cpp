@@ -25,7 +25,46 @@
 #include "application.h"
 #include "inimanager.h"
 #include <QDateTime>
+#include <QDebug>
+#include <QGuiApplication>
 #include <QStandardPaths>
+
+#if defined(Q_OS_LINUX) && QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QtGui/qguiapplication_platform.h>
+#elif defined(Q_OS_LINUX)
+#include <qpa/qplatformnativeinterface.h>
+#endif
+
+namespace {
+
+QString normalizedHwdec(QString hwdec)
+{
+    hwdec = hwdec.trimmed();
+
+    // "gpu" and "gpu-next" are video-output names, not hardware decoder
+    // backends.  Older Fantascene versions stored them as the hwdec value,
+    // which makes current mpv silently fall back to software decoding.
+    if (hwdec.isEmpty() || hwdec == QLatin1String("gpu") ||
+            hwdec == QLatin1String("gpu-next")) {
+        return QStringLiteral("auto-safe");
+    }
+
+    return hwdec;
+}
+
+bool setMpvOption(mpv_handle *mpv, const char *name, const QString &value)
+{
+    const QByteArray utf8Value = value.toUtf8();
+    const int error = mpv_set_option_string(mpv, name, utf8Value.constData());
+    if (error < 0) {
+        qWarning().noquote() << "Failed to set mpv option" << name << "to"
+                             << value << ":" << mpv_error_string(error);
+        return false;
+    }
+    return true;
+}
+
+} // namespace
 
 static void wakeup(void *ctx)
 {
@@ -40,6 +79,23 @@ static void *get_proc_address(void *ctx, const char *name)
         return nullptr;
     return reinterpret_cast<void *>(glctx->getProcAddress(QByteArray(name)));
 }
+
+#ifdef Q_OS_LINUX
+static void *nativeWaylandDisplay()
+{
+    if (!QGuiApplication::platformName().startsWith(QLatin1String("wayland")))
+        return nullptr;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (auto *wayland = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>())
+        return wayland->display();
+#else
+    if (auto *native = QGuiApplication::platformNativeInterface())
+        return native->nativeResourceForIntegration(QByteArrayLiteral("wl_display"));
+#endif
+    return nullptr;
+}
+#endif
 
 MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     : QOpenGLWidget(parent, f)
@@ -56,8 +112,12 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
 
     mpv_set_option_string(mpv, "terminal", "no");
     mpv_set_option_string(mpv, "msg-level", "all=v");
-    if (mpv_initialize(mpv) < 0)
-        throw std::runtime_error("could not initialize mpv context");
+
+    // A wallpaper is continuously downscaled and composited, often once per
+    // output. Prefer mpv's lightweight GPU pipeline over its default Lanczos
+    // scaler; this substantially reduces the cost of 4K sources on 1080p
+    // displays without changing the decoded frame rate.
+    setMpvOption(mpv, "profile", QStringLiteral("fast"));
 
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     if(IniManager::instance()->contains("WallPaper/vo"))
@@ -67,35 +127,47 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
         if(dApp->m_moreData.vo.length() > 0)
         {
             ss = dApp->m_moreData.vo ;
-            mpv::qt::set_option_variant(mpv, "vo",dApp->m_moreData.vo);
+            setMpvOption(mpv, "vo", dApp->m_moreData.vo);
         }
         else
         {
             //默认改为libmpv
-            mpv::qt::set_option_variant(mpv, "vo","libmpv");
+            setMpvOption(mpv, "vo", QStringLiteral("libmpv"));
         }
     }
 	else
 	{
 		//默认改为libmpv
-		mpv::qt::set_option_variant(mpv, "vo","libmpv");
+		setMpvOption(mpv, "vo", QStringLiteral("libmpv"));
 	}
 #else
     // Make use of the MPV_SUB_API_OPENGL_CB API.
-    mpv::qt::set_option_variant(mpv, "vo", "opengl-cb");
+    setMpvOption(mpv, "vo", QStringLiteral("opengl-cb"));
 #endif
 
-    // Request hw decoding, just for testing.
-//    mpv::qt::set_option_variant(mpv, "hwdec", "auto");
+    const QString configuredHwdec = IniManager::instance()->contains("WallPaper/hwdec")
+            ? IniManager::instance()->value("WallPaper/hwdec").toString()
+            : QString();
+    dApp->m_moreData.hwdec = normalizedHwdec(configuredHwdec);
+    QString mpvHwdec = dApp->m_moreData.hwdec;
+#ifdef Q_OS_LINUX
+    // mpv's safe automatic selection currently prefers vaapi-copy with the
+    // libmpv render API.  On Linux, try direct VA-API first so decoded DRM
+    // PRIME frames stay on the GPU; retain auto-safe as a portable fallback.
+    if (mpvHwdec == QLatin1String("auto") ||
+            mpvHwdec == QLatin1String("auto-safe")) {
+        mpvHwdec.prepend(QStringLiteral("vaapi,"));
+    }
+#endif
+    if (!setMpvOption(mpv, "hwdec", mpvHwdec)) {
+        dApp->m_moreData.hwdec = QStringLiteral("auto-safe");
+        setMpvOption(mpv, "hwdec", dApp->m_moreData.hwdec);
+    }
 
-    if(IniManager::instance()->contains("WallPaper/hwdec"))
-    {
-        dApp->m_moreData.hwdec = IniManager::instance()->value("WallPaper/hwdec").toString();
-        mpv::qt::set_option_variant(mpv, "hwdec", dApp->m_moreData.hwdec);
-    }
-    else {
-        mpv::qt::set_option_variant(mpv, "hwdec", "gpu");
-    }
+    // Options such as vo and hwdec are startup options. Setting them after
+    // mpv_initialize() fails, so initialize only after all of them are ready.
+    if (mpv_initialize(mpv) < 0)
+        throw std::runtime_error("could not initialize mpv context");
 
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
 #else
@@ -107,6 +179,7 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
 #endif
     mpv_observe_property(mpv, 0, "duration", MPV_FORMAT_DOUBLE);
     mpv_observe_property(mpv, 0, "time-pos", MPV_FORMAT_DOUBLE);
+    mpv_request_log_messages(mpv, "info");
     mpv_set_wakeup_callback(mpv, wakeup, this);
 
     QList<QVariant> list;
@@ -181,9 +254,17 @@ void MpvWidget::initializeGL()
 {
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
     mpv_opengl_init_params gl_init_params{get_proc_address, nullptr};
+    void *waylandDisplay = nullptr;
+#ifdef Q_OS_LINUX
+    waylandDisplay = nativeWaylandDisplay();
+#endif
     mpv_render_param params[] {
         {MPV_RENDER_PARAM_API_TYPE, const_cast<char *>(MPV_RENDER_API_TYPE_OPENGL)},
         {MPV_RENDER_PARAM_OPENGL_INIT_PARAMS, &gl_init_params},
+#ifdef Q_OS_LINUX
+        {waylandDisplay ? MPV_RENDER_PARAM_WL_DISPLAY : MPV_RENDER_PARAM_INVALID,
+         waylandDisplay},
+#endif
         {MPV_RENDER_PARAM_INVALID, nullptr}
     };
 
@@ -278,6 +359,22 @@ void MpvWidget::handle_mpv_event(mpv_event *event)
         }
         break;
     }
+    case MPV_EVENT_VIDEO_RECONFIG:
+        qInfo().noquote() << "mpv video output:"
+                          << "hwdec=" << getProperty(QStringLiteral("hwdec-current")).toString()
+                          << "interop=" << getProperty(QStringLiteral("hwdec-interop")).toString()
+                          << "vo=" << getProperty(QStringLiteral("current-vo")).toString()
+                          << "gpu-context=" << getProperty(QStringLiteral("current-gpu-context")).toString();
+        break;
+    case MPV_EVENT_LOG_MESSAGE: {
+        const mpv_event_log_message *message =
+                static_cast<const mpv_event_log_message *>(event->data);
+        qInfo().noquote() << QStringLiteral("mpv[%1/%2]")
+                                .arg(QString::fromUtf8(message->prefix),
+                                     QString::fromUtf8(message->level))
+                          << QString::fromUtf8(message->text).trimmed();
+        break;
+    }
     default: ;
         // Ignore uninteresting or unknown events.
     }
@@ -307,4 +404,3 @@ void MpvWidget::on_update(void *ctx)
 {
     QMetaObject::invokeMethod((MpvWidget *)ctx, "maybeUpdate");
 }
-

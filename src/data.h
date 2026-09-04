@@ -31,7 +31,7 @@ struct MoreSetData {
     int isAuto = 0;
     int fps = 10;
     QString vo = "";
-    QString hwdec = "gpu";
+    QString hwdec = "auto-safe";
     bool isShowDesktopIcon = true;
     bool isTop = true;
     bool isEventPenetration = false;

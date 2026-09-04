@@ -5,6 +5,12 @@ TARGET = fantascene-dynamic-wallpaper
 
 QT += gui core widgets dbus concurrent sql network
 
+unix:lessThan(QT_MAJOR_VERSION, 6) {
+    # Qt 5 exposes the native Wayland display through its private platform
+    # interface. libmpv needs this handle for zero-copy VA-API interop.
+    QT += gui-private
+}
+
 qtHaveModule(charts){
    QT += charts
    DEFINES += USE_CHARTS
