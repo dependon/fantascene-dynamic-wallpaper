@@ -25,6 +25,7 @@
 #include "application.h"
 #include "inimanager.h"
 #include <QDateTime>
+#include <QStringList>
 #include <QDebug>
 #include <QGuiApplication>
 #include <QStandardPaths>
@@ -50,6 +51,88 @@ QString normalizedHwdec(QString hwdec)
     }
 
     return hwdec;
+}
+
+// ---- 低版本 mpv 运行时兼容性处理 -----------------------------------------
+// 部分默认使用的选项只有新版 mpv 才认识。通过读取 "mpv-version" 属性，
+// 在 mpv_create() 之后、mpv_initialize() 之前（即设置任何启动选项之前）
+// 就能拿到实际链接的运行时版本，从而提前选择兼容的值。
+//
+//   hwdec=auto-safe  : mpv 0.31.0 起才支持。更老的版本只会打 warning 并
+//                      静默丢失硬件解码。
+//   vo=gpu-next      : mpv 0.32.0 起才支持。更老的版本会直接报错退出，
+//                      因为未知的 VO 是硬错误，不会静默回退到其他 VO。
+//
+// 下面这些兜底值在所有受支持的 mpv 版本中都存在：
+//   hwdec=auto  - 启用硬件解码，所选后端不可用/不安全时回退到软件解码。
+//   vo=gpu      - 长期稳定的 GPU 视频输出驱动。
+
+struct MpvVersion {
+    int major = 0;
+    int minor = 0;
+};
+
+// 解析 "mpv-version" 属性，例如 "mpv 0.33.0-dirty" 或 "mpv v0.41.0"。
+// 版本无法确定时返回 false；调用方应按"旧版/未知"处理，只保留通用兼容值。
+bool queryMpvVersion(mpv_handle *mpv, MpvVersion *version)
+{
+    char *raw = nullptr;
+    if (mpv_get_property(mpv, "mpv-version", MPV_FORMAT_STRING, &raw) < 0 || !raw)
+        return false;
+    const QByteArray text(raw);
+    mpv_free(raw);
+
+    // 取最后一个形似版本号的空白分隔字段，
+    // 以兼容 "mpv 0.33.0-dirty" 和裸版本号 "0.33.0" 两种情况。
+    QList<QByteArray> nums;
+    const QList<QByteArray> words = text.trimmed().split(' ');
+    for (int i = words.size() - 1; i >= 0; --i) {
+        if (words.at(i).contains('.')) {
+            nums = words.at(i).split('.');
+            break;
+        }
+    }
+    if (nums.size() < 2)
+        return false;
+
+    // 去掉每段开头的非数字字符，使 "v0.41.0" 也能解析为 0.41。
+    for (int i = 0; i < nums.size(); ++i) {
+        QByteArray &n = nums[i];
+        int cut = 0;
+        while (cut < n.size() && (n.at(cut) < '0' || n.at(cut) > '9'))
+            ++cut;
+        n = n.mid(cut);
+    }
+
+    bool majorOk = false;
+    bool minorOk = false;
+    const int major = nums.at(0).toInt(&majorOk);
+    const int minor = nums.at(1).toInt(&minorOk);
+    if (!majorOk || !minorOk)
+        return false;
+
+    version->major = major;
+    version->minor = minor;
+    return true;
+}
+
+bool versionAtLeast(const MpvVersion &v, int major, int minor)
+{
+    return v.major > major || (v.major == major && v.minor >= minor);
+}
+
+QString compatHwdec(const QString &hwdec, const MpvVersion &v)
+{
+    if (!versionAtLeast(v, 0, 31) && hwdec == QLatin1String("auto-safe"))
+        return QStringLiteral("auto");
+    return hwdec;
+}
+
+QString compatVo(const QString &vo, const MpvVersion &v)
+{
+    if (!versionAtLeast(v, 0, 32) && vo == QLatin1String("gpu-next"))
+        return QStringLiteral("gpu");
+    return vo;
 }
 
 bool setMpvOption(mpv_handle *mpv, const char *name, const QString &value)
@@ -105,6 +188,17 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     if (!mpv)
         throw std::runtime_error("could not create mpv context");
 
+    // 检测链接到的 mpv 版本，以便下面设置的启动选项使用当前构建能识别的值。
+    MpvVersion mpvVersion;
+    if (queryMpvVersion(mpv, &mpvVersion)) {
+        qInfo().noquote() << "mpv runtime version:"
+                          << mpvVersion.major << mpvVersion.minor;
+    } else {
+        // 版本未知：按旧版处理，只使用通用兼容值（见 compatHwdec()/compatVo()）。
+        qInfo().noquote() << "mpv runtime version: unknown, assuming old";
+    }
+
+
     // 反推版本号
 //    unsigned int major = (MPV_CLIENT_API_VERSION >> 16);
 //    unsigned int minor = (MPV_CLIENT_API_VERSION & 0xFFFF);
@@ -120,35 +214,26 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
     setMpvOption(mpv, "profile", QStringLiteral("fast"));
 
 #if MPV_MAKE_VERSION(1,108) < MPV_CLIENT_API_VERSION
-    if(IniManager::instance()->contains("WallPaper/vo"))
-    {
+    // vo 是启动选项。使用配置值，默认用 mpv render API 所需的 "libmpv"。
+    if (IniManager::instance()->contains("WallPaper/vo"))
         dApp->m_moreData.vo = IniManager::instance()->value("WallPaper/vo").toString();
-        QString ss;
-        if(dApp->m_moreData.vo.length() > 0)
-        {
-            ss = dApp->m_moreData.vo ;
-            setMpvOption(mpv, "vo", dApp->m_moreData.vo);
-        }
-        else
-        {
-            //默认改为libmpv
-            setMpvOption(mpv, "vo", QStringLiteral("libmpv"));
-        }
-    }
-	else
-	{
-		//默认改为libmpv
-		setMpvOption(mpv, "vo", QStringLiteral("libmpv"));
-	}
+    QString mpvVo = dApp->m_moreData.vo.trimmed();
+    if (mpvVo.isEmpty())
+        mpvVo = QStringLiteral("libmpv");
+    mpvVo = compatVo(mpvVo, mpvVersion); // mpv < 0.32 时 gpu-next -> gpu
+    dApp->m_moreData.vo = mpvVo;
+    if (!setMpvOption(mpv, "vo", mpvVo))
+        setMpvOption(mpv, "vo", QStringLiteral("libmpv"));
 #else
     // Make use of the MPV_SUB_API_OPENGL_CB API.
     setMpvOption(mpv, "vo", QStringLiteral("opengl-cb"));
 #endif
 
+
     const QString configuredHwdec = IniManager::instance()->contains("WallPaper/hwdec")
             ? IniManager::instance()->value("WallPaper/hwdec").toString()
             : QString();
-    dApp->m_moreData.hwdec = normalizedHwdec(configuredHwdec);
+    dApp->m_moreData.hwdec = compatHwdec(normalizedHwdec(configuredHwdec), mpvVersion);
     QString mpvHwdec = dApp->m_moreData.hwdec;
 #ifdef Q_OS_LINUX
     // mpv's safe automatic selection currently prefers vaapi-copy with the
@@ -159,10 +244,20 @@ MpvWidget::MpvWidget(QWidget *parent, Qt::WindowFlags f)
         mpvHwdec.prepend(QStringLiteral("vaapi,"));
     }
 #endif
+    // auto-safe 从 mpv 0.31 起才有；如果当前构建拒绝了所选值，
+    // 就沿一条所有版本都能识别的取值链逐级回退。
     if (!setMpvOption(mpv, "hwdec", mpvHwdec)) {
-        dApp->m_moreData.hwdec = QStringLiteral("auto-safe");
-        setMpvOption(mpv, "hwdec", dApp->m_moreData.hwdec);
+        const QStringList fallbacks = versionAtLeast(mpvVersion, 0, 31)
+                ? QStringList{QStringLiteral("auto-safe"), QStringLiteral("auto"), QStringLiteral("no")}
+                : QStringList{QStringLiteral("auto"), QStringLiteral("no")};
+        for (const QString &fallback : fallbacks) {
+            if (setMpvOption(mpv, "hwdec", fallback)) {
+                dApp->m_moreData.hwdec = fallback;
+                break;
+            }
+        }
     }
+
 
     // Options such as vo and hwdec are startup options. Setting them after
     // mpv_initialize() fails, so initialize only after all of them are ready.
