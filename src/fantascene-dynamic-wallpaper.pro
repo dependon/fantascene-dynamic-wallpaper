@@ -269,6 +269,10 @@ icon.files= $$PWD/install/fantascene-dynamic-wallpaper.png
 desktop.path = $${PREFIX}/share/applications/
 desktop.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
+desktop_xcb.path = $${PREFIX}/share/applications/
+desktop_xcb.files = $$PWD/install/fantascene-dynamic-wallpaper-xcb.desktop
+
+
 #desktopleft.path = $${PREFIX}/share/deepin/dde-file-manager/oem-menuextensions/
 #desktopleft.files = $$PWD/install/fantascene-dynamic-wallpaper.desktop
 
@@ -284,7 +288,7 @@ video.files=$$PWD/install/normal.mp4
 touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 touming.files=$$PWD/install/touming.png
 
-INSTALLS += target  icon desktop  translations video touming
+INSTALLS += target  icon desktop desktop_xcb translations video touming
 }
 
 

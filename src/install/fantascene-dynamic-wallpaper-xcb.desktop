@@ -1,0 +1,18 @@
+[Desktop Entry]
+Categories=System;
+Comment=fantascene-dynamic-wallpaper(xcb)
+Comment[zh_CN]=星火动态壁纸(xcb)
+Comment[pl]=Tapeta dynamiczna Fantascene(xcb)
+
+Exec=fantascene-dynamic-wallpaper --platform xcb
+GenericName=fantascene-dynamic-wallpaper(xcb)
+GenericName[zh_CN]=星火动态壁纸(xcb)
+GenericName[pl]=Tapeta dynamiczna Fantascene(xcb)
+Icon=fantascene-dynamic-wallpaper
+Name=fantascene-dynamic-wallpaper(xcb)
+Name[zh_CN]=星火动态壁纸(xcb)
+Name[pl]=Tapeta dynamiczna Fantascene(xcb)
+StartupNotify=false
+Terminal=false
+Type=Application
+Version=1.0.0.0
