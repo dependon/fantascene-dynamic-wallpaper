@@ -1,8 +1,21 @@
 #!/usr/bin/make -f
 include /usr/share/dpkg/default.mk
 
+# Do not use --buildsystem=qmake6: the qmake6 buildsystem plugin ships with
+# debhelper >= 13.7 only, and older debhelper in some OBS build environments
+# lacks it (Can't locate Debian/Debhelper/Buildsystem/qmake6.pm). Drive
+# qmake6 directly instead; the generated Makefile is handled by the default
+# makefile buildsystem.
+
 %:
-	dh $@ --buildsystem=qmake6 --parallel
+	dh $@
+
+override_dh_auto_clean:
+	dh_auto_clean || true
+	rm -f Makefile .qmake.stash src/Makefile* src/.qmake.stash
 
 override_dh_auto_configure:
-	dh_auto_configure -- DEFINES+="VERSION=$(DEB_VERSION_UPSTREAM)"
+	qmake6 DEFINES+="VERSION=$(DEB_VERSION_UPSTREAM)"
+
+override_dh_auto_install:
+	dh_auto_install -- INSTALL_ROOT=$(CURDIR)/debian/fantascene-dynamic-wallpaper
