@@ -30,7 +30,7 @@
 #include <QGuiApplication>
 #include <QStandardPaths>
 
-#if defined(Q_OS_LINUX) && QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if defined(Q_OS_LINUX) && QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtGui/qguiapplication_platform.h>
 #elif defined(Q_OS_LINUX)
 #include <qpa/qplatformnativeinterface.h>
@@ -169,7 +169,7 @@ static void *nativeWaylandDisplay()
     if (!QGuiApplication::platformName().startsWith(QLatin1String("wayland")))
         return nullptr;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
     if (auto *wayland = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>())
         return wayland->display();
 #else

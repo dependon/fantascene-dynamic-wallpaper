@@ -5,11 +5,13 @@ TARGET = fantascene-dynamic-wallpaper
 
 QT += gui core widgets dbus concurrent sql network
 
-unix:lessThan(QT_MAJOR_VERSION, 6) {
-    # Qt 5 exposes the native Wayland display through its private platform
-    # interface. libmpv needs this handle for zero-copy VA-API interop.
-    QT += gui-private
-}
+# unix:lessThan(QT_VERSION, 6.5.0) {
+#     # QNativeInterface::QWaylandApplication only exists since Qt 6.5; older
+#     # Qt (5.x and 6.0-6.4) exposes the native Wayland display through its
+#     # private platform interface. libmpv needs this handle for zero-copy
+#     # VA-API interop.
+#     QT += gui-private
+# }
 
 qtHaveModule(charts){
    QT += charts
@@ -254,9 +256,11 @@ translations.files = $$PWD/translations/*.qm
 
 video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/deepin/
 video.files=$$PWD/install/normal.mp4
+video.CONFIG += nostrip
 
 touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/deepin/
 touming.files=$$PWD/install/touming.png
+touming.CONFIG += nostrip
 INSTALLS += target  desktop1  translations info other icon video touming
 
 }else{
@@ -284,9 +288,11 @@ translations.files = $$PWD/translations/*.qm
 
 video.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 video.files=$$PWD/install/normal.mp4
+video.CONFIG += nostrip
 
 touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 touming.files=$$PWD/install/touming.png
+touming.CONFIG += nostrip
 
 INSTALLS += target  icon desktop desktop_xcb translations video touming
 }

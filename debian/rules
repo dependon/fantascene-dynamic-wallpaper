@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 include /usr/share/dpkg/default.mk
 
+# OBS chroots often have no UTF-8 locale; Qt warns loudly without one.
+export LC_ALL := C.UTF-8
+
 # Do not use --buildsystem=qmake6: the qmake6 buildsystem plugin ships with
 # debhelper >= 13.7 only, and older debhelper in some OBS build environments
 # lacks it (Can't locate Debian/Debhelper/Buildsystem/qmake6.pm). Drive
