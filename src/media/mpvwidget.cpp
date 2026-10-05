@@ -33,7 +33,7 @@
 #if defined(Q_OS_LINUX) && QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
 #include <QtGui/qguiapplication_platform.h>
 #elif defined(Q_OS_LINUX)
-#include <qpa/qplatformnativeinterface.h>
+//#include <qpa/qplatformnativeinterface.h>
 #endif
 
 namespace {
@@ -173,8 +173,8 @@ static void *nativeWaylandDisplay()
     if (auto *wayland = qGuiApp->nativeInterface<QNativeInterface::QWaylandApplication>())
         return wayland->display();
 #else
-    if (auto *native = QGuiApplication::platformNativeInterface())
-        return native->nativeResourceForIntegration(QByteArrayLiteral("wl_display"));
+    // if (auto *native = QGuiApplication::platformNativeInterface())
+    //     return native->nativeResourceForIntegration(QByteArrayLiteral("wl_display"));
 #endif
     return nullptr;
 }

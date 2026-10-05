@@ -37,10 +37,17 @@ contains(QT_MAJOR_VERSION, 6) {
     isEmpty(LAYERSHELLQT_INCLUDE_DIR) {
         LAYERSHELLQT_INCLUDE_DIR = /usr/include
     }
+    message("=== LayerShellQt detection: QT_VERSION=$$QT_VERSION QT_MAJOR_VERSION=$$QT_MAJOR_VERSION")
+    message("=== LayerShellQt detection: LAYERSHELLQT_INCLUDE_DIR=$$LAYERSHELLQT_INCLUDE_DIR")
+    message("=== LayerShellQt detection: checking $$LAYERSHELLQT_INCLUDE_DIR/LayerShellQt/Window")
     unix:exists($$LAYERSHELLQT_INCLUDE_DIR/LayerShellQt/Window) {
         DEFINES += HAVE_LAYER_SHELL_QT
         INCLUDEPATH += $$LAYERSHELLQT_INCLUDE_DIR
         LIBS += -lLayerShellQtInterface
+        message("=== LayerShellQt detection: FOUND -> HAVE_LAYER_SHELL_QT enabled")
+    }
+    !exists($$LAYERSHELLQT_INCLUDE_DIR/LayerShellQt/Window) {
+        message("=== LayerShellQt detection: NOT FOUND -> HAVE_LAYER_SHELL_QT disabled")
     }
 }
 
