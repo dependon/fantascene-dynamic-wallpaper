@@ -17,7 +17,7 @@ rm -f "${NAME}-${VERSION}.tar.gz"
 # 先写到 /tmp 避免输出文件改变源目录导致 tar 报 "file changed as we read it"
 tar -czf "/tmp/${NAME}-${VERSION}.tar.gz" \
     --exclude='.git' --exclude='build' --exclude='rpmbuild' \
-    --exclude='*.tar.gz' --exclude='.qmake.stash' \
+    --exclude='*.tar.gz' --exclude='*.qm' --exclude='.qmake.stash' \
     --transform "s,^\.,${NAME}-${VERSION}," .
 mv "/tmp/${NAME}-${VERSION}.tar.gz" "${NAME}-${VERSION}.tar.gz"
 
