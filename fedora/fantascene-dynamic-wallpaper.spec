@@ -23,8 +23,8 @@ BuildRequires:  qt6-qtbase-devel
 BuildRequires:  qt6-qtmultimedia-devel
 BuildRequires:  qt6-qtcharts-devel
 BuildRequires:  qt6-qtwebengine-devel
-# lrelease-qt6 (translation build)
-BuildRequires:  qt6-qttools
+# lrelease-qt6 在 qt6-linguist 子包
+BuildRequires:  qt6-linguist
 # PKGCONFIG deps from src/fantascene-dynamic-wallpaper.pro:
 #   xcb-ewmh mpv wayland-client x11 xext xrender gio-2.0 glib-2.0 gio-unix-2.0
 BuildRequires:  mpv-devel

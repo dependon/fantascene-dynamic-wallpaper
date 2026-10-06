@@ -30,8 +30,9 @@ BuildRequires:  qt6-charts-devel
 # openSUSE splits Qt6 WebEngine devel per module (no qt6-webengine-devel)
 BuildRequires:  qt6-webenginecore-devel
 BuildRequires:  qt6-webenginewidgets-devel
-# lrelease6 / linguist tools
+# lrelease6 在 qt6-tools-linguist 子包
 BuildRequires:  qt6-tools
+BuildRequires:  qt6-tools-linguist
 BuildRequires:  qt6-macros
 # PKGCONFIG deps from src/fantascene-dynamic-wallpaper.pro:
 #   xcb-ewmh mpv wayland-client x11 xext xrender gio-2.0 glib-2.0 gio-unix-2.0
@@ -93,7 +94,3 @@ make install INSTALL_ROOT=%{buildroot}
 %dir %{_datadir}/%{_appname}
 %{_datadir}/%{_appname}/translations
 %{_datadir}/%{_appname}/normal
-
-%changelog
-* Tue Oct 06 2026 liuminghang <liuminghang0821@gmail.com> - 2.1.6
-- Initial RPM packaging for openSUSE (parity with Debian packaging 2.1.6-1)
