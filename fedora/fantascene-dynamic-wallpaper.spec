@@ -13,6 +13,9 @@ License:        GPL-3.0-only
 URL:            https://github.com/dependon/fantascene-dynamic-wallpaper
 Source0:        https://github.com/dependon/fantascene-dynamic-wallpaper/archive/refs/tags/%{name}-%{version}.tar.gz
 
+# qmake 不使用 RPM 的编译标志, 无调试信息, 生成 debugsource 包会失败
+%define debug_package %{nil}
+
 BuildRequires:  gcc-c++
 BuildRequires:  make
 # Qt 6 modules: core/gui/widgets/dbus/concurrent/sql/network/openglwidgets
