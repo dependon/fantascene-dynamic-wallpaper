@@ -43,3 +43,7 @@ vendor/lib/*
 !debian/control
 !debian/compat
 !debian/source/*
+
+# openSUSE / RPM 打包产物
+rpmbuild/
+*.tar.gz

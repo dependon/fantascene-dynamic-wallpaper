@@ -21,6 +21,12 @@ qtHaveModule(charts){
 qtHaveModule(webengine){
    QT += webengine webenginewidgets
    DEFINES += USE_WEBENGINE
+} else {
+    # openSUSE 等 Qt6 打包不含 "webengine" 模块名，但含 webenginewidgets
+    qtHaveModule(webenginewidgets){
+       QT += webenginewidgets
+       DEFINES += USE_WEBENGINE
+    }
 }
 
 !qtHaveModule(webengine) {
@@ -205,15 +211,21 @@ LRELEASE = lrelease
 system($$LRELEASE -version > /dev/null 2>&1) {
     message("Found lrelease in system PATH: $$LRELEASE")
 } else {
-    # 第二步：检查 Qt6 自带的 lrelease 绝对路径
-    QT6_LRELEASE = /usr/lib/qt6/bin/lrelease
-    exists($$QT6_LRELEASE) {
-        LRELEASE = $$QT6_LRELEASE
-        message("Found lrelease at Qt6 path: $$LRELEASE")
+    # 第二步：openSUSE 等发行版将 Qt6 工具以后缀命名（lrelease6）
+    system(lrelease6 -version > /dev/null 2>&1) {
+        LRELEASE = lrelease6
+        message("Found lrelease6 in system PATH: $$LRELEASE")
     } else {
-        # 第三步：都不存在，标记为不可用
-        LRELEASE =
-        message("lrelease not found, skipping translation compilation")
+        # 第三步：检查 Qt6 自带的 lrelease 绝对路径
+        QT6_LRELEASE = /usr/lib/qt6/bin/lrelease
+        exists($$QT6_LRELEASE) {
+            LRELEASE = $$QT6_LRELEASE
+            message("Found lrelease at Qt6 path: $$LRELEASE")
+        } else {
+            # 第四步：都不存在，标记为不可用
+            LRELEASE =
+            message("lrelease not found, skipping translation compilation")
+        }
     }
 }
 
@@ -301,7 +313,7 @@ touming.path=$${PREFIX}/share/fantascene-dynamic-wallpaper/normal/
 touming.files=$$PWD/install/touming.png
 touming.CONFIG += nostrip
 
-INSTALLS += target  icon desktop desktop_xcb translations video touming
+INSTALLS += target  icon desktop desktop_xcb translations video touming dbus_service
 }
 
 
