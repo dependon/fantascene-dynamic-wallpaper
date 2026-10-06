@@ -216,15 +216,24 @@ system($$LRELEASE -version > /dev/null 2>&1) {
         LRELEASE = lrelease6
         message("Found lrelease6 in system PATH: $$LRELEASE")
     } else {
-        # 第三步：检查 Qt6 自带的 lrelease 绝对路径
-        QT6_LRELEASE = /usr/lib/qt6/bin/lrelease
-        exists($$QT6_LRELEASE) {
-            LRELEASE = $$QT6_LRELEASE
-            message("Found lrelease at Qt6 path: $$LRELEASE")
+        # 第三步：Fedora/RHEL 等使用 -qt6 后缀
+        system(lrelease-qt6 -version > /dev/null 2>&1) {
+            LRELEASE = lrelease-qt6
+            message("Found lrelease-qt6 in system PATH: $$LRELEASE")
         } else {
-            # 第四步：都不存在，标记为不可用
-            LRELEASE =
-            message("lrelease not found, skipping translation compilation")
+            # 第四步：检查 Qt6 自带的 lrelease 绝对路径（Debian: /usr/lib, Fedora: /usr/lib64）
+            QT6_LRELEASE = /usr/lib/qt6/bin/lrelease
+            !exists($$QT6_LRELEASE) {
+                QT6_LRELEASE = /usr/lib64/qt6/bin/lrelease
+            }
+            exists($$QT6_LRELEASE) {
+                LRELEASE = $$QT6_LRELEASE
+                message("Found lrelease at Qt6 path: $$LRELEASE")
+            } else {
+                # 第五步：都不存在，标记为不可用
+                LRELEASE =
+                message("lrelease not found, skipping translation compilation")
+            }
         }
     }
 }
